@@ -1,5 +1,59 @@
 # Changelog
 
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v3.1.0...toolresults-v3.2.0) (2023-08-09)
+
+
+### Features
+
+* **toolresults:** update the API ([d07c878](https://github.com/googleapis/google-api-nodejs-client/commit/d07c8782d3a7f80696b468e712003997c3a48389))
+
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v3.0.0...toolresults-v3.1.0) (2023-07-10)
+
+
+### Features
+
+* **toolresults:** update the API ([a9b14b6](https://github.com/googleapis/google-api-nodejs-client/commit/a9b14b62afd13081e59483375b601635b2e61334))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v2.0.0...toolresults-v3.0.0) (2023-04-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3211](https://github.com/googleapis/google-api-nodejs-client/issues/3211)) ([e2d966e](https://github.com/googleapis/google-api-nodejs-client/commit/e2d966e089bf8e743dbfc83af8ef3b37a0f4c83d))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v1.0.1...toolresults-v2.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v1.0.0...toolresults-v1.0.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **toolresults:** update the API ([656c975](https://github.com/googleapis/google-api-nodejs-client/commit/656c9754fde6b7d46238b0873ebe1f1acb7501f3))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v0.4.1...toolresults-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v0.4.0...toolresults-v0.4.1) (2022-09-21)
 
 

@@ -177,6 +177,23 @@ export namespace cloudchannel_v1 {
     eventType?: string | null;
   }
   /**
+   * The definition of a report column. Specifies the data properties in the corresponding position of the report rows.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1Column {
+    /**
+     * The unique name of the column (for example, customer_domain, channel_partner, customer_cost). You can use column IDs in RunReportJobRequest.filter. To see all reports and their columns, call CloudChannelReportsService.ListReports.
+     */
+    columnId?: string | null;
+    /**
+     * The type of the values for this column.
+     */
+    dataType?: string | null;
+    /**
+     * The column's display name.
+     */
+    displayName?: string | null;
+  }
+  /**
    * Commitment settings for commitment-based offers.
    */
   export interface Schema$GoogleCloudChannelV1alpha1CommitmentSettings {
@@ -207,6 +224,27 @@ export namespace cloudchannel_v1 {
     eventType?: string | null;
   }
   /**
+   * A representation of usage or invoice date ranges.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1DateRange {
+    /**
+     * The latest invoice date (inclusive). If this value is not the last day of a month, this will move it forward to the last day of the given month.
+     */
+    invoiceEndDate?: Schema$GoogleTypeDate;
+    /**
+     * The earliest invoice date (inclusive). If this value is not the first day of a month, this will move it back to the first day of the given month.
+     */
+    invoiceStartDate?: Schema$GoogleTypeDate;
+    /**
+     * The latest usage date time (exclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage end date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time.
+     */
+    usageEndDateTime?: Schema$GoogleTypeDateTime;
+    /**
+     * The earliest usage date time (inclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage start date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time.
+     */
+    usageStartDateTime?: Schema$GoogleTypeDateTime;
+  }
+  /**
    * An entitlement is a representation of a customer's ability to use a service.
    */
   export interface Schema$GoogleCloudChannelV1alpha1Entitlement {
@@ -218,6 +256,10 @@ export namespace cloudchannel_v1 {
      * Association information to other entitlements.
      */
     associationInfo?: Schema$GoogleCloudChannelV1alpha1AssociationInfo;
+    /**
+     * Optional. The billing account resource name that is used to pay for this entitlement.
+     */
+    billingAccount?: string | null;
     /**
      * Cloud Identity ID of a channel partner who will be the direct reseller for the customer's order. This field is generally used in 2-tier ordering, where the order is placed by a top-level distributor on behalf of their channel partner or reseller. Required for distributors. Deprecated: `channel_partner_id` has been moved to the Customer.
      */
@@ -247,7 +289,7 @@ export namespace cloudchannel_v1 {
      */
     offer?: string | null;
     /**
-     * Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. The response may include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. - max_units: The maximum assignable units for a flexible offer. - num_units: The total commitment for commitment-based offers.
+     * Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For Google Cloud billing subaccounts, the following Parameter may be accepted as input: - display_name: The display name of the billing subaccount.
      */
     parameters?: Schema$GoogleCloudChannelV1alpha1Parameter[];
     /**
@@ -336,7 +378,7 @@ export namespace cloudchannel_v1 {
      */
     productId?: string | null;
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud Platform, this is the Billing Account ID of the billing subaccount."
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud, this is the Billing Account ID of the billing subaccount.
      */
     provisioningId?: string | null;
     /**
@@ -372,6 +414,95 @@ export namespace cloudchannel_v1 {
      * If true and enable_renewal = true, the unit (for example seats or licenses) will be set to the number of active units at renewal time.
      */
     resizeUnitCount?: boolean | null;
+    /**
+     * Output only. The offer resource name that the entitlement will renew on at the end date. Takes the form: accounts/{account_id\}/offers/{offer_id\}.
+     */
+    scheduledRenewalOffer?: string | null;
+  }
+  /**
+   * The ID and description of a report that was used to generate report data. For example, "Google Cloud Daily Spend", "Google Workspace License Activity", etc.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1Report {
+    /**
+     * The list of columns included in the report. This defines the schema of the report results.
+     */
+    columns?: Schema$GoogleCloudChannelV1alpha1Column[];
+    /**
+     * A description of other aspects of the report, such as the products it supports.
+     */
+    description?: string | null;
+    /**
+     * A human-readable name for this report.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id\}/reports/{report_id\}
+     */
+    name?: string | null;
+  }
+  /**
+   * The result of a RunReportJob operation. Contains the name to use in FetchReportResultsRequest.report_job and the status of the operation.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1ReportJob {
+    /**
+     * Required. The resource name of a report job. Name uses the format: `accounts/{account_id\}/reportJobs/{report_job_id\}`
+     */
+    name?: string | null;
+    /**
+     * The current status of report generation.
+     */
+    reportStatus?: Schema$GoogleCloudChannelV1alpha1ReportStatus;
+  }
+  /**
+   * The features describing the data. Returned by CloudChannelReportsService.RunReportJob and CloudChannelReportsService.FetchReportResults.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1ReportResultsMetadata {
+    /**
+     * The date range of reported usage.
+     */
+    dateRange?: Schema$GoogleCloudChannelV1alpha1DateRange;
+    /**
+     * The usage dates immediately preceding `date_range` with the same duration. Use this to calculate trending usage and costs. This is only populated if you request trending data. For example, if `date_range` is July 1-15, `preceding_date_range` will be June 16-30.
+     */
+    precedingDateRange?: Schema$GoogleCloudChannelV1alpha1DateRange;
+    /**
+     * Details of the completed report.
+     */
+    report?: Schema$GoogleCloudChannelV1alpha1Report;
+    /**
+     * The total number of rows of data in the final report.
+     */
+    rowCount?: string | null;
+  }
+  /**
+   * Status of a report generation process.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1ReportStatus {
+    /**
+     * The report generation's completion time.
+     */
+    endTime?: string | null;
+    /**
+     * The report generation's start time.
+     */
+    startTime?: string | null;
+    /**
+     * The current state of the report generation process.
+     */
+    state?: string | null;
+  }
+  /**
+   * Response message for CloudChannelReportsService.RunReportJob.
+   */
+  export interface Schema$GoogleCloudChannelV1alpha1RunReportJobResponse {
+    /**
+     * Pass `report_job.name` to FetchReportResultsRequest.report_job to retrieve the report's results.
+     */
+    reportJob?: Schema$GoogleCloudChannelV1alpha1ReportJob;
+    /**
+     * The metadata for the report's results (display name, columns, row count, and date range). If you view this before the operation finishes, you may see incomplete data.
+     */
+    reportMetadata?: Schema$GoogleCloudChannelV1alpha1ReportResultsMetadata;
   }
   /**
    * Represents information which resellers will get as part of notification from Pub/Sub.
@@ -447,6 +578,61 @@ export namespace cloudchannel_v1 {
     baseEntitlement?: string | null;
   }
   /**
+   * Represents the Billable SKU information.
+   */
+  export interface Schema$GoogleCloudChannelV1BillableSku {
+    /**
+     * Resource name of Service which contains Repricing SKU. Format: services/{service\}. Example: "services/B7D9-FDCB-15D8".
+     */
+    service?: string | null;
+    /**
+     * Unique human readable name for the Service.
+     */
+    serviceDisplayName?: string | null;
+    /**
+     * Resource name of Billable SKU. Format: billableSkus/{sku\}. Example: billableSkus/6E1B-6634-470F".
+     */
+    sku?: string | null;
+    /**
+     * Unique human readable name for the SKU.
+     */
+    skuDisplayName?: string | null;
+  }
+  /**
+   * Represents a billing account.
+   */
+  export interface Schema$GoogleCloudChannelV1BillingAccount {
+    /**
+     * Output only. The time when this billing account was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The 3-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Display name of the billing account.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Resource name of the billing account. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}.
+     */
+    name?: string | null;
+    /**
+     * Output only. The CLDR region code.
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Represents a billing account that can be used to make a purchase.
+   */
+  export interface Schema$GoogleCloudChannelV1BillingAccountPurchaseInfo {
+    /**
+     * The billing account resource.
+     */
+    billingAccount?: Schema$GoogleCloudChannelV1BillingAccount;
+  }
+  /**
    * Request message for CloudChannelService.CancelEntitlement.
    */
   export interface Schema$GoogleCloudChannelV1CancelEntitlementRequest {
@@ -459,6 +645,10 @@ export namespace cloudchannel_v1 {
    * Request message for CloudChannelService.ChangeOffer.
    */
   export interface Schema$GoogleCloudChannelV1ChangeOfferRequest {
+    /**
+     * Optional. The billing account resource name that is used to pay for this entitlement when setting up billing on a trial subscription. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.
+     */
+    billingAccount?: string | null;
     /**
      * Required. New Offer. Format: accounts/{account_id\}/offers/{offer_id\}.
      */
@@ -637,6 +827,23 @@ export namespace cloudchannel_v1 {
     primaryDomain?: string | null;
   }
   /**
+   * The definition of a report column. Specifies the data properties in the corresponding position of the report rows.
+   */
+  export interface Schema$GoogleCloudChannelV1Column {
+    /**
+     * The unique name of the column (for example, customer_domain, channel_partner, customer_cost). You can use column IDs in RunReportJobRequest.filter. To see all reports and their columns, call CloudChannelReportsService.ListReports.
+     */
+    columnId?: string | null;
+    /**
+     * The type of the values for this column.
+     */
+    dataType?: string | null;
+    /**
+     * The column's display name.
+     */
+    displayName?: string | null;
+  }
+  /**
    * Commitment settings for commitment-based offers.
    */
   export interface Schema$GoogleCloudChannelV1CommitmentSettings {
@@ -652,6 +859,23 @@ export namespace cloudchannel_v1 {
      * Output only. Commitment start timestamp.
      */
     startTime?: string | null;
+  }
+  /**
+   * Specifies the override to conditionally apply.
+   */
+  export interface Schema$GoogleCloudChannelV1ConditionalOverride {
+    /**
+     * Required. Information about the applied override's adjustment.
+     */
+    adjustment?: Schema$GoogleCloudChannelV1RepricingAdjustment;
+    /**
+     * Required. The RebillingBasis to use for the applied override. Shows the relative cost based on your repricing costs.
+     */
+    rebillingBasis?: string | null;
+    /**
+     * Required. Specifies the condition which, if met, will apply the override.
+     */
+    repricingCondition?: Schema$GoogleCloudChannelV1RepricingCondition;
   }
   /**
    * Represents the constraints for buying the Offer.
@@ -724,6 +948,10 @@ export namespace cloudchannel_v1 {
      * Output only. Cloud Identity information for the customer. Populated only if a Cloud Identity account exists for this customer.
      */
     cloudIdentityInfo?: Schema$GoogleCloudChannelV1CloudIdentityInfo;
+    /**
+     * Optional. External CRM ID for the customer. Populated only if a CRM ID exists for this customer.
+     */
+    correlationId?: string | null;
     /**
      * Output only. Time when the customer was created.
      */
@@ -805,6 +1033,27 @@ export namespace cloudchannel_v1 {
     updateTime?: string | null;
   }
   /**
+   * A representation of usage or invoice date ranges.
+   */
+  export interface Schema$GoogleCloudChannelV1DateRange {
+    /**
+     * The latest invoice date (inclusive). If this value is not the last day of a month, this will move it forward to the last day of the given month.
+     */
+    invoiceEndDate?: Schema$GoogleTypeDate;
+    /**
+     * The earliest invoice date (inclusive). If this value is not the first day of a month, this will move it back to the first day of the given month.
+     */
+    invoiceStartDate?: Schema$GoogleTypeDate;
+    /**
+     * The latest usage date time (exclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage end date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time.
+     */
+    usageEndDateTime?: Schema$GoogleTypeDateTime;
+    /**
+     * The earliest usage date time (inclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage start date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time.
+     */
+    usageStartDateTime?: Schema$GoogleTypeDateTime;
+  }
+  /**
    * Required Edu Attributes
    */
   export interface Schema$GoogleCloudChannelV1EduData {
@@ -830,6 +1079,10 @@ export namespace cloudchannel_v1 {
      */
     associationInfo?: Schema$GoogleCloudChannelV1AssociationInfo;
     /**
+     * Optional. The billing account resource name that is used to pay for this entitlement.
+     */
+    billingAccount?: string | null;
+    /**
      * Commitment settings for a commitment-based Offer. Required for commitment based offers.
      */
     commitmentSettings?: Schema$GoogleCloudChannelV1CommitmentSettings;
@@ -846,7 +1099,7 @@ export namespace cloudchannel_v1 {
      */
     offer?: string | null;
     /**
-     * Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. The response may include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. - max_units: The maximum assignable units for a flexible offer. - num_units: The total commitment for commitment-based offers.
+     * Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For Google Cloud billing subaccounts, the following Parameter may be accepted as input: - display_name: The display name of the billing subaccount.
      */
     parameters?: Schema$GoogleCloudChannelV1Parameter[];
     /**
@@ -875,6 +1128,59 @@ export namespace cloudchannel_v1 {
     updateTime?: string | null;
   }
   /**
+   * Change event entry for Entitlement order history
+   */
+  export interface Schema$GoogleCloudChannelV1EntitlementChange {
+    /**
+     * The Entitlement's activation reason
+     */
+    activationReason?: string | null;
+    /**
+     * Cancellation reason for the Entitlement.
+     */
+    cancellationReason?: string | null;
+    /**
+     * The change action type.
+     */
+    changeType?: string | null;
+    /**
+     * The submitted time of the change.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Resource name of an entitlement in the form: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
+     */
+    entitlement?: string | null;
+    /**
+     * Required. Resource name of the Offer at the time of change. Takes the form: accounts/{account_id\}/offers/{offer_id\}.
+     */
+    offer?: string | null;
+    /**
+     * Human-readable identifier that shows what operator made a change. When the operator_type is RESELLER, this is the user's email address. For all other operator types, this is empty.
+     */
+    operator?: string | null;
+    /**
+     * Operator type responsible for the change.
+     */
+    operatorType?: string | null;
+    /**
+     * e.g. purchase_number change reason, entered by CRS.
+     */
+    otherChangeReason?: string | null;
+    /**
+     * Extended parameters, such as: purchase_order_number, gcp_details; internal_correlation_id, long_running_operation_id, order_id; etc.
+     */
+    parameters?: Schema$GoogleCloudChannelV1Parameter[];
+    /**
+     * Service provisioned for an Entitlement.
+     */
+    provisionedService?: Schema$GoogleCloudChannelV1ProvisionedService;
+    /**
+     * Suspension reason for the Entitlement.
+     */
+    suspensionReason?: string | null;
+  }
+  /**
    * Represents Pub/Sub message content describing entitlement update.
    */
   export interface Schema$GoogleCloudChannelV1EntitlementEvent {
@@ -886,6 +1192,40 @@ export namespace cloudchannel_v1 {
      * Type of event which happened on the entitlement.
      */
     eventType?: string | null;
+  }
+  /**
+   * Request message for CloudChannelReportsService.FetchReportResults.
+   */
+  export interface Schema$GoogleCloudChannelV1FetchReportResultsRequest {
+    /**
+     * Optional. Requested page size of the report. The server may return fewer results than requested. If you don't specify a page size, the server uses a sensible default (may change over time). The maximum value is 30,000; the server will change larger values to 30,000.
+     */
+    pageSize?: number | null;
+    /**
+     * Optional. A token that specifies a page of results beyond the first page. Obtained through FetchReportResultsResponse.next_page_token of the previous CloudChannelReportsService.FetchReportResults call.
+     */
+    pageToken?: string | null;
+    /**
+     * Optional. List of keys specifying which report partitions to return. If empty, returns all partitions.
+     */
+    partitionKeys?: string[] | null;
+  }
+  /**
+   * Response message for CloudChannelReportsService.FetchReportResults. Contains a tabular representation of the report results.
+   */
+  export interface Schema$GoogleCloudChannelV1FetchReportResultsResponse {
+    /**
+     * Pass this token to FetchReportResultsRequest.page_token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The metadata for the report results (display name, columns, row count, and date ranges).
+     */
+    reportMetadata?: Schema$GoogleCloudChannelV1ReportResultsMetadata;
+    /**
+     * The report's lists of values. Each row follows the settings and ordering of the columns from `report_metadata`.
+     */
+    rows?: Schema$GoogleCloudChannelV1Row[];
   }
   /**
    * Request message for CloudChannelService.ImportCustomer
@@ -969,6 +1309,19 @@ export namespace cloudchannel_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for CloudChannelService.ListEntitlementChanges
+   */
+  export interface Schema$GoogleCloudChannelV1ListEntitlementChangesResponse {
+    /**
+     * The list of entitlement changes.
+     */
+    entitlementChanges?: Schema$GoogleCloudChannelV1EntitlementChange[];
+    /**
+     * A token to list the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for CloudChannelService.ListEntitlements.
    */
   export interface Schema$GoogleCloudChannelV1ListEntitlementsResponse {
@@ -1034,6 +1387,45 @@ export namespace cloudchannel_v1 {
     purchasableSkus?: Schema$GoogleCloudChannelV1PurchasableSku[];
   }
   /**
+   * Response message for CloudChannelReportsService.ListReports.
+   */
+  export interface Schema$GoogleCloudChannelV1ListReportsResponse {
+    /**
+     * Pass this token to FetchReportResultsRequest.page_token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The reports available to the partner.
+     */
+    reports?: Schema$GoogleCloudChannelV1Report[];
+  }
+  /**
+   * Response message for ListSkuGroupBillableSkus.
+   */
+  export interface Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse {
+    /**
+     * The list of billable SKUs in the requested SKU group.
+     */
+    billableSkus?: Schema$GoogleCloudChannelV1BillableSku[];
+    /**
+     * A token to retrieve the next page of results. Pass to ListSkuGroupBillableSkus.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListSkuGroups.
+   */
+  export interface Schema$GoogleCloudChannelV1ListSkuGroupsResponse {
+    /**
+     * A token to retrieve the next page of results. Pass to ListSkuGroups.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of SKU groups requested.
+     */
+    skuGroups?: Schema$GoogleCloudChannelV1SkuGroup[];
+  }
+  /**
    * Response message for ListSkus.
    */
   export interface Schema$GoogleCloudChannelV1ListSkusResponse {
@@ -1067,6 +1459,10 @@ export namespace cloudchannel_v1 {
    * Request message for CloudChannelService.ListTransferableOffers
    */
   export interface Schema$GoogleCloudChannelV1ListTransferableOffersRequest {
+    /**
+     * Optional. The Billing Account to look up Offers for. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.
+     */
+    billingAccount?: string | null;
     /**
      * Customer's Cloud Identity ID
      */
@@ -1190,6 +1586,10 @@ export namespace cloudchannel_v1 {
      */
     constraints?: Schema$GoogleCloudChannelV1Constraints;
     /**
+     * The deal code of the offer to get a special promotion or discount.
+     */
+    dealCode?: string | null;
+    /**
      * Output only. End of the Offer validity time.
      */
     endTime?: string | null;
@@ -1304,7 +1704,7 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1Plan {
     /**
-     * Reseller Billing account to charge after an offer transaction. Only present for Google Cloud Platform offers.
+     * Reseller Billing account to charge after an offer transaction. Only present for Google Cloud offers.
      */
     billingAccount?: string | null;
     /**
@@ -1443,7 +1843,7 @@ export namespace cloudchannel_v1 {
      */
     productId?: string | null;
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud Platform, this is the Billing Account ID of the billing subaccount."
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud, this is the Billing Account ID of the billing subaccount.
      */
     provisioningId?: string | null;
     /**
@@ -1468,6 +1868,15 @@ export namespace cloudchannel_v1 {
      * SKU
      */
     sku?: Schema$GoogleCloudChannelV1Sku;
+  }
+  /**
+   * Response message for QueryEligibleBillingAccounts.
+   */
+  export interface Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse {
+    /**
+     * List of SKU purchase groups where each group represents a set of SKUs that must be purchased using the same billing account. Each SKU from [QueryEligibleBillingAccountsRequest.skus] will appear in exactly one SKU group.
+     */
+    skuPurchaseGroups?: Schema$GoogleCloudChannelV1SkuPurchaseGroup[];
   }
   /**
    * Request Message for RegisterSubscriber.
@@ -1509,6 +1918,107 @@ export namespace cloudchannel_v1 {
     resizeUnitCount?: boolean | null;
   }
   /**
+   * The ID and description of a report that was used to generate report data. For example, "Google Cloud Daily Spend", "Google Workspace License Activity", etc.
+   */
+  export interface Schema$GoogleCloudChannelV1Report {
+    /**
+     * The list of columns included in the report. This defines the schema of the report results.
+     */
+    columns?: Schema$GoogleCloudChannelV1Column[];
+    /**
+     * A description of other aspects of the report, such as the products it supports.
+     */
+    description?: string | null;
+    /**
+     * A human-readable name for this report.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id\}/reports/{report_id\}
+     */
+    name?: string | null;
+  }
+  /**
+   * The result of a RunReportJob operation. Contains the name to use in FetchReportResultsRequest.report_job and the status of the operation.
+   */
+  export interface Schema$GoogleCloudChannelV1ReportJob {
+    /**
+     * Required. The resource name of a report job. Name uses the format: `accounts/{account_id\}/reportJobs/{report_job_id\}`
+     */
+    name?: string | null;
+    /**
+     * The current status of report generation.
+     */
+    reportStatus?: Schema$GoogleCloudChannelV1ReportStatus;
+  }
+  /**
+   * The features describing the data. Returned by CloudChannelReportsService.RunReportJob and CloudChannelReportsService.FetchReportResults.
+   */
+  export interface Schema$GoogleCloudChannelV1ReportResultsMetadata {
+    /**
+     * The date range of reported usage.
+     */
+    dateRange?: Schema$GoogleCloudChannelV1DateRange;
+    /**
+     * The usage dates immediately preceding `date_range` with the same duration. Use this to calculate trending usage and costs. This is only populated if you request trending data. For example, if `date_range` is July 1-15, `preceding_date_range` will be June 16-30.
+     */
+    precedingDateRange?: Schema$GoogleCloudChannelV1DateRange;
+    /**
+     * Details of the completed report.
+     */
+    report?: Schema$GoogleCloudChannelV1Report;
+    /**
+     * The total number of rows of data in the final report.
+     */
+    rowCount?: string | null;
+  }
+  /**
+   * Status of a report generation process.
+   */
+  export interface Schema$GoogleCloudChannelV1ReportStatus {
+    /**
+     * The report generation's completion time.
+     */
+    endTime?: string | null;
+    /**
+     * The report generation's start time.
+     */
+    startTime?: string | null;
+    /**
+     * The current state of the report generation process.
+     */
+    state?: string | null;
+  }
+  /**
+   * A single report value.
+   */
+  export interface Schema$GoogleCloudChannelV1ReportValue {
+    /**
+     * A value of type `google.type.DateTime` (year, month, day, hour, minute, second, and UTC offset or timezone.)
+     */
+    dateTimeValue?: Schema$GoogleTypeDateTime;
+    /**
+     * A value of type `google.type.Date` (year, month, day).
+     */
+    dateValue?: Schema$GoogleTypeDate;
+    /**
+     * A value of type `google.type.Decimal`, representing non-integer numeric values.
+     */
+    decimalValue?: Schema$GoogleTypeDecimal;
+    /**
+     * A value of type `int`.
+     */
+    intValue?: string | null;
+    /**
+     * A value of type `google.type.Money` (currency code, whole units, decimal units).
+     */
+    moneyValue?: Schema$GoogleTypeMoney;
+    /**
+     * A value of type `string`.
+     */
+    stringValue?: string | null;
+  }
+  /**
    * A type that represents the various adjustments you can apply to a bill.
    */
   export interface Schema$GoogleCloudChannelV1RepricingAdjustment {
@@ -1516,6 +2026,15 @@ export namespace cloudchannel_v1 {
      * Flat markup or markdown on an entire bill.
      */
     percentageAdjustment?: Schema$GoogleCloudChannelV1PercentageAdjustment;
+  }
+  /**
+   * Represents the various repricing conditions you can use for a conditional override.
+   */
+  export interface Schema$GoogleCloudChannelV1RepricingCondition {
+    /**
+     * SKU Group condition for override.
+     */
+    skuGroupCondition?: Schema$GoogleCloudChannelV1SkuGroupCondition;
   }
   /**
    * Configuration for repricing a Google bill over a period of time.
@@ -1526,15 +2045,19 @@ export namespace cloudchannel_v1 {
      */
     adjustment?: Schema$GoogleCloudChannelV1RepricingAdjustment;
     /**
-     * Applies the repricing configuration at the channel partner level. This is the only supported value for ChannelPartnerRepricingConfig.
+     * Applies the repricing configuration at the channel partner level. Only ChannelPartnerRepricingConfig supports this value.
      */
     channelPartnerGranularity?: Schema$GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity;
+    /**
+     * The conditional overrides to apply for this configuration. If you list multiple overrides, only the first valid override is used. If you don't list any overrides, the API uses the normal adjustment and rebilling basis.
+     */
+    conditionalOverrides?: Schema$GoogleCloudChannelV1ConditionalOverride[];
     /**
      * Required. The YearMonth when these adjustments activate. The Day field needs to be "0" since we only accept YearMonth repricing boundaries.
      */
     effectiveInvoiceMonth?: Schema$GoogleTypeDate;
     /**
-     * Applies the repricing configuration at the entitlement level. This is the only supported value for CustomerRepricingConfig.
+     * Applies the repricing configuration at the entitlement level. Note: If a ChannelPartnerRepricingConfig using RepricingConfig.EntitlementGranularity becomes effective, then no existing or future RepricingConfig.ChannelPartnerGranularity will apply to the RepricingConfig.EntitlementGranularity.entitlement. This is the recommended value for both CustomerRepricingConfig and ChannelPartnerRepricingConfig.
      */
     entitlementGranularity?: Schema$GoogleCloudChannelV1RepricingConfigEntitlementGranularity;
     /**
@@ -1556,6 +2079,49 @@ export namespace cloudchannel_v1 {
     entitlement?: string | null;
   }
   /**
+   * A row of report values.
+   */
+  export interface Schema$GoogleCloudChannelV1Row {
+    /**
+     * The key for the partition this row belongs to. This field is empty if the report is not partitioned.
+     */
+    partitionKey?: string | null;
+    /**
+     * The list of values in the row.
+     */
+    values?: Schema$GoogleCloudChannelV1ReportValue[];
+  }
+  /**
+   * Request message for CloudChannelReportsService.RunReportJob.
+   */
+  export interface Schema$GoogleCloudChannelV1RunReportJobRequest {
+    /**
+     * Optional. The range of usage or invoice dates to include in the result.
+     */
+    dateRange?: Schema$GoogleCloudChannelV1DateRange;
+    /**
+     * Optional. A structured string that defines conditions on dimension columns to restrict the report output. Filters support logical operators (AND, OR, NOT) and conditional operators (=, !=, <, \>, <=, and \>=) using `column_id` as keys. For example: `(customer:"accounts/C123abc/customers/S456def" OR customer:"accounts/C123abc/customers/S789ghi") AND invoice_start_date.year \>= 2022`
+     */
+    filter?: string | null;
+    /**
+     * Optional. The BCP-47 language code, such as "en-US". If specified, the response is localized to the corresponding language code if the original data sources support it. Default is "en-US".
+     */
+    languageCode?: string | null;
+  }
+  /**
+   * Response message for CloudChannelReportsService.RunReportJob.
+   */
+  export interface Schema$GoogleCloudChannelV1RunReportJobResponse {
+    /**
+     * Pass `report_job.name` to FetchReportResultsRequest.report_job to retrieve the report's results.
+     */
+    reportJob?: Schema$GoogleCloudChannelV1ReportJob;
+    /**
+     * The metadata for the report's results (display name, columns, row count, and date range). If you view this before the operation finishes, you may see incomplete data.
+     */
+    reportMetadata?: Schema$GoogleCloudChannelV1ReportResultsMetadata;
+  }
+  /**
    * Represents a product's purchasable Stock Keeping Unit (SKU). SKUs represent the different variations of the product. For example, Google Workspace Business Standard and Google Workspace Business Plus are Google Workspace product SKUs.
    */
   export interface Schema$GoogleCloudChannelV1Sku {
@@ -1571,6 +2137,41 @@ export namespace cloudchannel_v1 {
      * Product the SKU is associated with.
      */
     product?: Schema$GoogleCloudChannelV1Product;
+  }
+  /**
+   * Represents the SKU group information.
+   */
+  export interface Schema$GoogleCloudChannelV1SkuGroup {
+    /**
+     * Unique human readable identifier for the SKU group.
+     */
+    displayName?: string | null;
+    /**
+     * Resource name of SKU group. Format: accounts/{account\}/skuGroups/{sku_group\}. Example: "accounts/C01234/skuGroups/3d50fd57-3157-4577-a5a9-a219b8490041".
+     */
+    name?: string | null;
+  }
+  /**
+   * A condition that applies the override if a line item SKU is found in the SKU group.
+   */
+  export interface Schema$GoogleCloudChannelV1SkuGroupCondition {
+    /**
+     * Specifies a SKU group (https://cloud.google.com/skus/sku-groups). Resource name of SKU group. Format: accounts/{account\}/skuGroups/{sku_group\}. Example: "accounts/C01234/skuGroups/3d50fd57-3157-4577-a5a9-a219b8490041".
+     */
+    skuGroup?: string | null;
+  }
+  /**
+   * Represents a set of SKUs that must be purchased using the same billing account.
+   */
+  export interface Schema$GoogleCloudChannelV1SkuPurchaseGroup {
+    /**
+     * List of billing accounts that are eligible to purhcase these SKUs.
+     */
+    billingAccountPurchaseInfos?: Schema$GoogleCloudChannelV1BillingAccountPurchaseInfo[];
+    /**
+     * Resource names of the SKUs included in this group. Format: products/{product_id\}/skus/{sku_id\}.
+     */
+    skus?: string[] | null;
   }
   /**
    * Request message for CloudChannelService.StartPaidService.
@@ -1792,7 +2393,7 @@ export namespace cloudchannel_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1831,6 +2432,47 @@ export namespace cloudchannel_v1 {
     month?: number | null;
     /**
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
+   */
+  export interface Schema$GoogleTypeDateTime {
+    /**
+     * Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day.
+     */
+    day?: number | null;
+    /**
+     * Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.
+     */
+    minutes?: number | null;
+    /**
+     * Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month.
+     */
+    month?: number | null;
+    /**
+     * Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0.
+     */
+    nanos?: number | null;
+    /**
+     * Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+    /**
+     * Time zone.
+     */
+    timeZone?: Schema$GoogleTypeTimeZone;
+    /**
+     * UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 \}.
+     */
+    utcOffset?: string | null;
+    /**
+     * Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.
      */
     year?: number | null;
   }
@@ -1909,12 +2551,28 @@ export namespace cloudchannel_v1 {
      */
     sublocality?: string | null;
   }
+  /**
+   * Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).
+   */
+  export interface Schema$GoogleTypeTimeZone {
+    /**
+     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     */
+    id?: string | null;
+    /**
+     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     */
+    version?: string | null;
+  }
 
   export class Resource$Accounts {
     context: APIRequestContext;
     channelPartnerLinks: Resource$Accounts$Channelpartnerlinks;
     customers: Resource$Accounts$Customers;
     offers: Resource$Accounts$Offers;
+    reportJobs: Resource$Accounts$Reportjobs;
+    reports: Resource$Accounts$Reports;
+    skuGroups: Resource$Accounts$Skugroups;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.channelPartnerLinks = new Resource$Accounts$Channelpartnerlinks(
@@ -1922,60 +2580,13 @@ export namespace cloudchannel_v1 {
       );
       this.customers = new Resource$Accounts$Customers(this.context);
       this.offers = new Resource$Accounts$Offers(this.context);
+      this.reportJobs = new Resource$Accounts$Reportjobs(this.context);
+      this.reports = new Resource$Accounts$Reports(this.context);
+      this.skuGroups = new Resource$Accounts$Skugroups(this.context);
     }
 
     /**
      * Confirms the existence of Cloud Identity accounts based on the domain and if the Cloud Identity accounts are owned by the reseller. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * INVALID_VALUE: Invalid domain value in the request. Return value: A list of CloudIdentityCustomerAccount resources for the domain (may be empty) Note: in the v1alpha1 version of the API, a NOT_FOUND error returns if no CloudIdentityCustomerAccount resources match the domain.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.checkCloudIdentityAccountsExist({
-     *     // Required. The reseller account's resource name. Parent uses the format: accounts/{account_id\}
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "domain": "my_domain"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cloudIdentityAccounts": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2071,54 +2682,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Lists service accounts with subscriber privileges on the Cloud Pub/Sub topic created for this Channel Services account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: A list of service email addresses.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.listSubscribers({
-     *     // Required. Resource name of the account.
-     *     account: 'accounts/my-account',
-     *     // Optional. The maximum number of service accounts to return. The service may return fewer than this value. If unspecified, returns at most 100 service accounts. The maximum value is 1000; the server will coerce values above 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous `ListSubscribers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscribers` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "serviceAccounts": [],
-     *   //   "topic": "my_topic"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2214,63 +2777,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * List TransferableOffers of a customer based on Cloud Identity ID or Customer Name in the request. Use this method when a reseller gets the entitlement information of an unowned customer. The reseller should provide the customer's Cloud Identity ID or Customer Name. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller and has no auth token. * The customer provided incorrect reseller information when generating auth token. * The reseller account making the request is different from the reseller account in the query. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: List of TransferableOffer for the given customer and SKU.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.listTransferableOffers({
-     *     // Required. The resource name of the reseller's account.
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cloudIdentityId": "my_cloudIdentityId",
-     *       //   "customerName": "my_customerName",
-     *       //   "languageCode": "my_languageCode",
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken",
-     *       //   "sku": "my_sku"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "transferableOffers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * List TransferableOffers of a customer based on Cloud Identity ID or Customer Name in the request. Use this method when a reseller gets the entitlement information of an unowned customer. The reseller should provide the customer's Cloud Identity ID or Customer Name. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller and has no auth token. * The customer provided incorrect reseller information when generating auth token. * The reseller account making the request is different from the reseller account in the query. * The reseller is not authorized to transact on this Product. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: List of TransferableOffer for the given customer and SKU.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2367,62 +2874,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * List TransferableSkus of a customer based on the Cloud Identity ID or Customer Name in the request. Use this method to list the entitlements information of an unowned customer. You should provide the customer's Cloud Identity ID or Customer Name. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller and has no auth token. * The supplied auth token is invalid. * The reseller account making the request is different from the reseller account in the query. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: A list of the customer's TransferableSku.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.listTransferableSkus({
-     *     // Required. The reseller account's resource name. Parent uses the format: accounts/{account_id\}
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authToken": "my_authToken",
-     *       //   "cloudIdentityId": "my_cloudIdentityId",
-     *       //   "customerName": "my_customerName",
-     *       //   "languageCode": "my_languageCode",
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "transferableSkus": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2519,56 +2970,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Registers a service account with subscriber privileges on the Cloud Pub/Sub topic for this Channel Services account. After you create a subscriber, you get the events through SubscriberEvent Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name with the registered service email address.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.register({
-     *     // Required. Resource name of the account.
-     *     account: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "serviceAccount": "my_serviceAccount"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "topic": "my_topic"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2665,56 +3066,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Unregisters a service account with subscriber privileges on the Cloud Pub/Sub topic created for this Channel Services account. If there are no service accounts left with subscriber privileges, this deletes the topic. You can call ListSubscribers to check for these accounts. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name that unregistered the service email address. Returns a success response if the service email address wasn't registered with the topic.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.unregister({
-     *     // Required. Resource name of the account.
-     *     account: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "serviceAccount": "my_serviceAccount"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "topic": "my_topic"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2903,70 +3254,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Initiates a channel partner link between a distributor and a reseller, or between resellers in an n-tier reseller channel. Invited partners need to follow the invite_link_uri provided in the response to accept. After accepting the invitation, a link is set up between the two parties. You must be a distributor to call this method. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * ALREADY_EXISTS: The ChannelPartnerLink sent in the request already exists. * NOT_FOUND: No Cloud Identity customer exists for provided domain. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The new ChannelPartnerLink resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.channelPartnerLinks.create({
-     *     // Required. Create a channel partner link for the provided reseller account's resource name. Parent uses the format: accounts/{account_id\}
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "channelPartnerCloudIdentityInfo": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "inviteLinkUri": "my_inviteLinkUri",
-     *       //   "linkState": "my_linkState",
-     *       //   "name": "my_name",
-     *       //   "publicId": "my_publicId",
-     *       //   "resellerCloudIdentityId": "my_resellerCloudIdentityId",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "channelPartnerCloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "inviteLinkUri": "my_inviteLinkUri",
-     *   //   "linkState": "my_linkState",
-     *   //   "name": "my_name",
-     *   //   "publicId": "my_publicId",
-     *   //   "resellerCloudIdentityId": "my_resellerCloudIdentityId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3063,57 +3350,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Returns the requested ChannelPartnerLink resource. You must be a distributor to call this method. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: ChannelPartnerLink resource not found because of an invalid channel partner link name. Return value: The ChannelPartnerLink resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.channelPartnerLinks.get({
-     *     // Required. The resource name of the channel partner link to retrieve. Name uses the format: accounts/{account_id\}/channelPartnerLinks/{id\} where {id\} is the Cloud Identity ID of the partner.
-     *     name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink',
-     *     // Optional. The level of granularity the ChannelPartnerLink will display.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "channelPartnerCloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "inviteLinkUri": "my_inviteLinkUri",
-     *   //   "linkState": "my_linkState",
-     *   //   "name": "my_name",
-     *   //   "publicId": "my_publicId",
-     *   //   "resellerCloudIdentityId": "my_resellerCloudIdentityId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3207,55 +3443,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * List ChannelPartnerLinks belonging to a distributor. You must be a distributor to call this method. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: The list of the distributor account's ChannelPartnerLink resources.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.channelPartnerLinks.list({
-     *     // Optional. Requested page size. Server might return fewer results than requested. If unspecified, server will pick a default size (25). The maximum value is 200; the server will coerce values above 200.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token for a page of results other than the first page. Obtained using ListChannelPartnerLinksResponse.next_page_token of the previous CloudChannelService.ListChannelPartnerLinks call.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the reseller account for listing channel partner links. Parent uses the format: accounts/{account_id\}
-     *     parent: 'accounts/my-account',
-     *     // Optional. The level of granularity the ChannelPartnerLink will display.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "channelPartnerLinks": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3352,64 +3539,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Updates a channel partner link. Distributors call this method to change a link's status. For example, to suspend a partner link. You must be a distributor to call this method. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Link state cannot change from invited to active or suspended. * Cannot send reseller_cloud_identity_id, invite_url, or name in update mask. * NOT_FOUND: ChannelPartnerLink resource not found. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The updated ChannelPartnerLink resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.channelPartnerLinks.patch({
-     *     // Required. The resource name of the channel partner link to cancel. Name uses the format: accounts/{account_id\}/channelPartnerLinks/{id\} where {id\} is the Cloud Identity ID of the partner.
-     *     name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "channelPartnerLink": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "channelPartnerCloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "inviteLinkUri": "my_inviteLinkUri",
-     *   //   "linkState": "my_linkState",
-     *   //   "name": "my_name",
-     *   //   "publicId": "my_publicId",
-     *   //   "resellerCloudIdentityId": "my_resellerCloudIdentityId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3564,64 +3693,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Creates a ChannelPartnerRepricingConfig. Call this method to set modifications for a specific ChannelPartner's bill. You can only create configs if the RepricingConfig.effective_invoice_month is a future month. If needed, you can create a config for the current month, with some restrictions. When creating a config for a future month, make sure there are no existing configs for that RepricingConfig.effective_invoice_month. The following restrictions are for creating configs in the current month. * This functionality is reserved for recovering from an erroneous config, and should not be used for regular business cases. * The new config will not modify exports used with other configs. Changes to the config may be immediate, but may take up to 24 hours. * There is a limit of ten configs for any ChannelPartner or RepricingConfig.effective_invoice_month. * The contained ChannelPartnerRepricingConfig.repricing_config vaule must be different from the value used in the current config for a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated ChannelPartnerRepricingConfig resource, otherwise returns an error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.create(
-     *       {
-     *         // Required. The resource name of the ChannelPartner that will receive the repricing config. Parent uses the format: accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
-     *         parent: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "name": "my_name",
-     *           //   "repricingConfig": {},
-     *           //   "updateTime": "my_updateTime"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "repricingConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a ChannelPartnerRepricingConfig. Call this method to set modifications for a specific ChannelPartner's bill. You can only create configs if the RepricingConfig.effective_invoice_month is a future month. If needed, you can create a config for the current month, with some restrictions. When creating a config for a future month, make sure there are no existing configs for that RepricingConfig.effective_invoice_month. The following restrictions are for creating configs in the current month. * This functionality is reserved for recovering from an erroneous config, and should not be used for regular business cases. * The new config will not modify exports used with other configs. Changes to the config may be immediate, but may take up to 24 hours. * There is a limit of ten configs for any ChannelPartner or RepricingConfig.EntitlementGranularity.entitlement, for any RepricingConfig.effective_invoice_month. * The contained ChannelPartnerRepricingConfig.repricing_config value must be different from the value used in the current config for a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated ChannelPartnerRepricingConfig resource, otherwise returns an error.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3718,49 +3790,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Deletes the given ChannelPartnerRepricingConfig permanently. You can only delete configs if their RepricingConfig.effective_invoice_month is set to a date after the current month. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The ChannelPartnerRepricingConfig is active or in the past. * NOT_FOUND: No ChannelPartnerRepricingConfig found for the name in the request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.delete(
-     *       {
-     *         // Required. The resource name of the channel partner repricing config rule to delete.
-     *         name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/channelPartnerRepricingConfigs/my-channelPartnerRepricingConfig',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3849,53 +3878,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Gets information about how a Distributor modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig was not found. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resource, otherwise returns an error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.get(
-     *       {
-     *         // Required. The resource name of the ChannelPartnerRepricingConfig Format: accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}/channelPartnerRepricingConfigs/{id\}.
-     *         name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/channelPartnerRepricingConfigs/my-channelPartnerRepricingConfig',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "repricingConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3989,59 +3971,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Lists information about how a Reseller modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * channel partner ID * RepricingConfig.effective_invoice_month * ChannelPartnerRepricingConfig.update_time If unsuccessful, returns an error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.list(
-     *       {
-     *         // Optional. A filter for [CloudChannelService.ListChannelPartnerRepricingConfigs] results (channel_partner_link only). You can use this filter when you support a BatchGet-like query. To use the filter, you must set `parent=accounts/{account_id\}/channelPartnerLinks/-`. Example: `channel_partner_link = accounts/account_id/channelPartnerLinks/c1` OR `channel_partner_link = accounts/account_id/channelPartnerLinks/c2`.
-     *         filter: 'placeholder-value',
-     *         // Optional. The maximum number of repricing configs to return. The service may return fewer than this value. If unspecified, returns a maximum of 50 rules. The maximum value is 100; values above 100 will be coerced to 100.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. A token identifying a page of results beyond the first page. Obtained through ListChannelPartnerRepricingConfigsResponse.next_page_token of the previous CloudChannelService.ListChannelPartnerRepricingConfigs call.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The resource name of the account's ChannelPartnerLink. Parent uses the format: accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}. Supports accounts/{account_id\}/channelPartnerLinks/- to retrieve configs for all channel partners.
-     *         parent: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "channelPartnerRepricingConfigs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists information about how a Reseller modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * Channel Partner ID * RepricingConfig.effective_invoice_month * ChannelPartnerRepricingConfig.update_time If unsuccessful, returns an error.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4138,63 +4068,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Updates a ChannelPartnerRepricingConfig. Call this method to set modifications for a specific ChannelPartner's bill. This method overwrites the existing CustomerRepricingConfig. You can only update configs if the RepricingConfig.effective_invoice_month is a future month. To make changes to configs for the current month, use CreateChannelPartnerRepricingConfig, taking note of its restrictions. You cannot update the RepricingConfig.effective_invoice_month. When updating a config in the future: * This config must already exist. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated ChannelPartnerRepricingConfig resource, otherwise returns an error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.patch(
-     *       {
-     *         // Output only. Resource name of the ChannelPartnerRepricingConfig. Format: accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}/channelPartnerRepricingConfigs/{id\}.
-     *         name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/channelPartnerRepricingConfigs/my-channelPartnerRepricingConfig',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "name": "my_name",
-     *           //   "repricingConfig": {},
-     *           //   "updateTime": "my_updateTime"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "repricingConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4353,79 +4226,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.create({
-     *     // Required. The resource name of reseller account in which to create the customer. Parent uses the format: accounts/{account_id\}
-     *     parent: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateEmail": "my_alternateEmail",
-     *       //   "channelPartnerId": "my_channelPartnerId",
-     *       //   "cloudIdentityId": "my_cloudIdentityId",
-     *       //   "cloudIdentityInfo": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "domain": "my_domain",
-     *       //   "languageCode": "my_languageCode",
-     *       //   "name": "my_name",
-     *       //   "orgDisplayName": "my_orgDisplayName",
-     *       //   "orgPostalAddress": {},
-     *       //   "primaryContactInfo": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateEmail": "my_alternateEmail",
-     *   //   "channelPartnerId": "my_channelPartnerId",
-     *   //   "cloudIdentityId": "my_cloudIdentityId",
-     *   //   "cloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "domain": "my_domain",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "orgDisplayName": "my_orgDisplayName",
-     *   //   "orgPostalAddress": {},
-     *   //   "primaryContactInfo": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: * The reseller account making the request is different from the reseller account in the API request. * You are not authorized to create a customer. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4523,46 +4324,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Deletes the given Customer permanently. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The customer has existing entitlements. * NOT_FOUND: No Customer resource found for the name in the request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.delete({
-     *     // Required. The resource name of the customer to delete.
-     *     name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/customers/my-customer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4651,59 +4412,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Returns the requested Customer resource. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer resource doesn't exist. Usually the result of an invalid name parameter. Return value: The Customer resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.get({
-     *     // Required. The resource name of the customer to retrieve. Name uses the format: accounts/{account_id\}/customers/{customer_id\}
-     *     name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/customers/my-customer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateEmail": "my_alternateEmail",
-     *   //   "channelPartnerId": "my_channelPartnerId",
-     *   //   "cloudIdentityId": "my_cloudIdentityId",
-     *   //   "cloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "domain": "my_domain",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "orgDisplayName": "my_orgDisplayName",
-     *   //   "orgPostalAddress": {},
-     *   //   "primaryContactInfo": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4797,73 +4505,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.import({
-     *     // Required. The resource name of the reseller's account. Parent takes the format: accounts/{account_id\} or accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
-     *     parent: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authToken": "my_authToken",
-     *       //   "channelPartnerId": "my_channelPartnerId",
-     *       //   "cloudIdentityId": "my_cloudIdentityId",
-     *       //   "customer": "my_customer",
-     *       //   "domain": "my_domain",
-     *       //   "overwriteIfExists": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateEmail": "my_alternateEmail",
-     *   //   "channelPartnerId": "my_channelPartnerId",
-     *   //   "cloudIdentityId": "my_cloudIdentityId",
-     *   //   "cloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "domain": "my_domain",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "orgDisplayName": "my_orgDisplayName",
-     *   //   "orgPostalAddress": {},
-     *   //   "primaryContactInfo": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: * The reseller account making the request is different from the reseller account in the API request. * You are not authorized to import the customer. See https://support.google.com/channelservices/answer/9759265 * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4961,55 +4603,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * List Customers. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: List of Customers, or an empty list if there are no customers.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.list({
-     *     // Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers for more information.
-     *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of customers to return. The service may return fewer than this value. If unspecified, returns at most 10 customers. The maximum value is 50.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token identifying a page of results other than the first page. Obtained through ListCustomersResponse.next_page_token of the previous CloudChannelService.ListCustomers call.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the reseller account to list customers from. Parent uses the format: accounts/{account_id\}.
-     *     parent: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customers": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5107,80 +4700,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Updates an existing Customer resource for the reseller or distributor. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: No Customer resource found for the name in the request. Return value: The updated Customer resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.patch({
-     *     // Output only. Resource name of the customer. Format: accounts/{account_id\}/customers/{customer_id\}
-     *     name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/customers/my-customer',
-     *     // The update mask that applies to the resource. Optional.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateEmail": "my_alternateEmail",
-     *       //   "channelPartnerId": "my_channelPartnerId",
-     *       //   "cloudIdentityId": "my_cloudIdentityId",
-     *       //   "cloudIdentityInfo": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "domain": "my_domain",
-     *       //   "languageCode": "my_languageCode",
-     *       //   "name": "my_name",
-     *       //   "orgDisplayName": "my_orgDisplayName",
-     *       //   "orgPostalAddress": {},
-     *       //   "primaryContactInfo": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateEmail": "my_alternateEmail",
-     *   //   "channelPartnerId": "my_channelPartnerId",
-     *   //   "cloudIdentityId": "my_cloudIdentityId",
-     *   //   "cloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "domain": "my_domain",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "orgDisplayName": "my_orgDisplayName",
-     *   //   "orgPostalAddress": {},
-     *   //   "primaryContactInfo": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5362,79 +4881,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.create({
-     *     // Required. The resource name of reseller account in which to create the customer. Parent uses the format: accounts/{account_id\}
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateEmail": "my_alternateEmail",
-     *       //   "channelPartnerId": "my_channelPartnerId",
-     *       //   "cloudIdentityId": "my_cloudIdentityId",
-     *       //   "cloudIdentityInfo": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "domain": "my_domain",
-     *       //   "languageCode": "my_languageCode",
-     *       //   "name": "my_name",
-     *       //   "orgDisplayName": "my_orgDisplayName",
-     *       //   "orgPostalAddress": {},
-     *       //   "primaryContactInfo": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateEmail": "my_alternateEmail",
-     *   //   "channelPartnerId": "my_channelPartnerId",
-     *   //   "cloudIdentityId": "my_cloudIdentityId",
-     *   //   "cloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "domain": "my_domain",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "orgDisplayName": "my_orgDisplayName",
-     *   //   "orgPostalAddress": {},
-     *   //   "primaryContactInfo": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: * The reseller account making the request is different from the reseller account in the API request. * You are not authorized to create a customer. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5531,46 +4978,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Deletes the given Customer permanently. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The customer has existing entitlements. * NOT_FOUND: No Customer resource found for the name in the request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.delete({
-     *     // Required. The resource name of the customer to delete.
-     *     name: 'accounts/my-account/customers/my-customer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5658,59 +5065,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Returns the requested Customer resource. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer resource doesn't exist. Usually the result of an invalid name parameter. Return value: The Customer resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.get({
-     *     // Required. The resource name of the customer to retrieve. Name uses the format: accounts/{account_id\}/customers/{customer_id\}
-     *     name: 'accounts/my-account/customers/my-customer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateEmail": "my_alternateEmail",
-     *   //   "channelPartnerId": "my_channelPartnerId",
-     *   //   "cloudIdentityId": "my_cloudIdentityId",
-     *   //   "cloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "domain": "my_domain",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "orgDisplayName": "my_orgDisplayName",
-     *   //   "orgPostalAddress": {},
-     *   //   "primaryContactInfo": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5803,73 +5157,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.import({
-     *     // Required. The resource name of the reseller's account. Parent takes the format: accounts/{account_id\} or accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authToken": "my_authToken",
-     *       //   "channelPartnerId": "my_channelPartnerId",
-     *       //   "cloudIdentityId": "my_cloudIdentityId",
-     *       //   "customer": "my_customer",
-     *       //   "domain": "my_domain",
-     *       //   "overwriteIfExists": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateEmail": "my_alternateEmail",
-     *   //   "channelPartnerId": "my_channelPartnerId",
-     *   //   "cloudIdentityId": "my_cloudIdentityId",
-     *   //   "cloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "domain": "my_domain",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "orgDisplayName": "my_orgDisplayName",
-     *   //   "orgPostalAddress": {},
-     *   //   "primaryContactInfo": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: * The reseller account making the request is different from the reseller account in the API request. * You are not authorized to import the customer. See https://support.google.com/channelservices/answer/9759265 * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5966,55 +5254,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * List Customers. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: List of Customers, or an empty list if there are no customers.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.list({
-     *     // Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers for more information.
-     *     filter: 'placeholder-value',
-     *     // Optional. The maximum number of customers to return. The service may return fewer than this value. If unspecified, returns at most 10 customers. The maximum value is 50.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token identifying a page of results other than the first page. Obtained through ListCustomersResponse.next_page_token of the previous CloudChannelService.ListCustomers call.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the reseller account to list customers from. Parent uses the format: accounts/{account_id\}.
-     *     parent: 'accounts/my-account',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customers": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6110,62 +5349,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Lists the following: * Offers that you can purchase for a customer. * Offers that you can change for an entitlement. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.listPurchasableOffers({
-     *     // Required. Resource name of the entitlement. Format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     'changeOfferPurchase.entitlement': 'placeholder-value',
-     *     // Optional. Resource name of the new target SKU. Provide this SKU when upgrading or downgrading an entitlement. Format: products/{product_id\}/skus/{sku_id\}
-     *     'changeOfferPurchase.newSku': 'placeholder-value',
-     *     // Required. SKU that the result should be restricted to. Format: products/{product_id\}/skus/{sku_id\}.
-     *     'createEntitlementPurchase.sku': 'placeholder-value',
-     *     // Required. The resource name of the customer to list Offers for. Format: accounts/{account_id\}/customers/{customer_id\}.
-     *     customer: 'accounts/my-account/customers/my-customer',
-     *     // Optional. The BCP-47 language code. For example, "en-US". The response will localize in the corresponding language code, if specified. The default value is "en-US".
-     *     languageCode: 'placeholder-value',
-     *     // Optional. Requested page size. Server might return fewer results than requested. If unspecified, returns at most 100 Offers. The maximum value is 1000; the server will coerce values above 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token for a page of results other than the first page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "purchasableOffers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists the following: * Offers that you can purchase for a customer. * Offers that you can change for an entitlement. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller * The reseller is not authorized to transact on this Product. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: Required request parameters are missing or invalid.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6262,61 +5446,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Lists the following: * SKUs that you can purchase for a customer * SKUs that you can upgrade or downgrade for an entitlement. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.listPurchasableSkus({
-     *     // Required. Change Type for the entitlement.
-     *     'changeOfferPurchase.changeType': 'placeholder-value',
-     *     // Required. Resource name of the entitlement. Format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     'changeOfferPurchase.entitlement': 'placeholder-value',
-     *     // Required. List SKUs belonging to this Product. Format: products/{product_id\}. Supports products/- to retrieve SKUs for all products.
-     *     'createEntitlementPurchase.product': 'placeholder-value',
-     *     // Required. The resource name of the customer to list SKUs for. Format: accounts/{account_id\}/customers/{customer_id\}.
-     *     customer: 'accounts/my-account/customers/my-customer',
-     *     // Optional. The BCP-47 language code. For example, "en-US". The response will localize in the corresponding language code, if specified. The default value is "en-US".
-     *     languageCode: 'placeholder-value',
-     *     // Optional. Requested page size. Server might return fewer results than requested. If unspecified, returns at most 100 SKUs. The maximum value is 1000; the server will coerce values above 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token for a page of results other than the first page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "purchasableSkus": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6413,80 +5542,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Updates an existing Customer resource for the reseller or distributor. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: No Customer resource found for the name in the request. Return value: The updated Customer resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.patch({
-     *     // Output only. Resource name of the customer. Format: accounts/{account_id\}/customers/{customer_id\}
-     *     name: 'accounts/my-account/customers/my-customer',
-     *     // The update mask that applies to the resource. Optional.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateEmail": "my_alternateEmail",
-     *       //   "channelPartnerId": "my_channelPartnerId",
-     *       //   "cloudIdentityId": "my_cloudIdentityId",
-     *       //   "cloudIdentityInfo": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "domain": "my_domain",
-     *       //   "languageCode": "my_languageCode",
-     *       //   "name": "my_name",
-     *       //   "orgDisplayName": "my_orgDisplayName",
-     *       //   "orgPostalAddress": {},
-     *       //   "primaryContactInfo": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateEmail": "my_alternateEmail",
-     *   //   "channelPartnerId": "my_channelPartnerId",
-     *   //   "cloudIdentityId": "my_cloudIdentityId",
-     *   //   "cloudIdentityInfo": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "domain": "my_domain",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "orgDisplayName": "my_orgDisplayName",
-     *   //   "orgPostalAddress": {},
-     *   //   "primaryContactInfo": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6579,63 +5634,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Creates a Cloud Identity for the given customer using the customer's information, or the information provided here. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer was not found. * ALREADY_EXISTS: The customer's primary email already exists. Retry after changing the customer's primary contact email. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata contains an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.provisionCloudIdentity({
-     *     // Required. Resource name of the customer. Format: accounts/{account_id\}/customers/{customer_id\}
-     *     customer: 'accounts/my-account/customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cloudIdentityInfo": {},
-     *       //   "user": {},
-     *       //   "validateOnly": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a Cloud Identity for the given customer using the customer's information, or the information provided here. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller. * You are not authorized to provision cloud identity id. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer was not found. * ALREADY_EXISTS: The customer's primary email already exists. Retry after changing the customer's primary contact email. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata contains an instance of OperationMetadata.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6730,63 +5729,103 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Transfers customer entitlements to new reseller. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer or offer resource was not found. * ALREADY_EXISTS: The SKU was already transferred for the customer. * CONDITION_NOT_MET or FAILED_PRECONDITION: * The SKU requires domain verification to transfer, but the domain is not verified. * An Add-On SKU (example, Vault or Drive) is missing the pre-requisite SKU (example, G Suite Basic). * (Developer accounts only) Reseller and resold domain must meet the following naming requirements: * Domain names must start with goog-test. * Domain names must include the reseller domain. * Specify all transferring entitlements. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
+     * Lists the billing accounts that are eligible to purchase particular SKUs for a given customer. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: Based on the provided list of SKUs, returns a list of SKU groups that must be purchased using the same billing account and the billing accounts eligible to purchase each SKU group.
      *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.transferEntitlements({
-     *     // Required. The resource name of the reseller's customer account that will receive transferred entitlements. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
-     *     parent: 'accounts/my-account/customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authToken": "my_authToken",
-     *       //   "entitlements": [],
-     *       //   "requestId": "my_requestId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryEligibleBillingAccounts(
+      params: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryEligibleBillingAccounts(
+      params?: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>;
+    queryEligibleBillingAccounts(
+      params: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryEligibleBillingAccounts(
+      params: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+    ): void;
+    queryEligibleBillingAccounts(
+      params: Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+    ): void;
+    queryEligibleBillingAccounts(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+    ): void;
+    queryEligibleBillingAccounts(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}:queryEligibleBillingAccounts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1QueryEligibleBillingAccountsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Transfers customer entitlements to new reseller. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller. * The reseller is not authorized to transact on this Product. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer or offer resource was not found. * ALREADY_EXISTS: The SKU was already transferred for the customer. * CONDITION_NOT_MET or FAILED_PRECONDITION: * The SKU requires domain verification to transfer, but the domain is not verified. * An Add-On SKU (example, Vault or Drive) is missing the pre-requisite SKU (example, G Suite Basic). * (Developer accounts only) Reseller and resold domain must meet the following naming requirements: * Domain names must start with goog-test. * Domain names must include the reseller domain. * Specify all transferring entitlements. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6881,62 +5920,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Transfers customer entitlements from their current reseller to Google. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer or offer resource was not found. * ALREADY_EXISTS: The SKU was already transferred for the customer. * CONDITION_NOT_MET or FAILED_PRECONDITION: * The SKU requires domain verification to transfer, but the domain is not verified. * An Add-On SKU (example, Vault or Drive) is missing the pre-requisite SKU (example, G Suite Basic). * (Developer accounts only) Reseller and resold domain must meet the following naming requirements: * Domain names must start with goog-test. * Domain names must include the reseller domain. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The response will contain google.protobuf.Empty on success. The Operation metadata will contain an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.customers.transferEntitlementsToGoogle({
-     *       // Required. The resource name of the reseller's customer account where the entitlements transfer from. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
-     *       parent: 'accounts/my-account/customers/my-customer',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "entitlements": [],
-     *         //   "requestId": "my_requestId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7090,6 +6073,10 @@ export namespace cloudchannel_v1 {
   export interface Params$Resource$Accounts$Customers$Listpurchasableoffers
     extends StandardParameters {
     /**
+     * Optional. Resource name of the new target Billing Account. Provide this Billing Account when setting up billing for a trial subscription. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.
+     */
+    'changeOfferPurchase.billingAccount'?: string;
+    /**
      * Required. Resource name of the entitlement. Format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
      */
     'changeOfferPurchase.entitlement'?: string;
@@ -7097,6 +6084,10 @@ export namespace cloudchannel_v1 {
      * Optional. Resource name of the new target SKU. Provide this SKU when upgrading or downgrading an entitlement. Format: products/{product_id\}/skus/{sku_id\}
      */
     'changeOfferPurchase.newSku'?: string;
+    /**
+     * Optional. Billing account that the result should be restricted to. Format: accounts/{account_id\}/billingAccounts/{billing_account_id\}.
+     */
+    'createEntitlementPurchase.billingAccount'?: string;
     /**
      * Required. SKU that the result should be restricted to. Format: products/{product_id\}/skus/{sku_id\}.
      */
@@ -7177,6 +6168,17 @@ export namespace cloudchannel_v1 {
      */
     requestBody?: Schema$GoogleCloudChannelV1ProvisionCloudIdentityRequest;
   }
+  export interface Params$Resource$Accounts$Customers$Queryeligiblebillingaccounts
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the customer to list eligible billing accounts for. Format: accounts/{account_id\}/customers/{customer_id\}.
+     */
+    customer?: string;
+    /**
+     * Required. List of SKUs to list eligible billing accounts for. At least one SKU is required. Format: products/{product_id\}/skus/{sku_id\}.
+     */
+    skus?: string[];
+  }
   export interface Params$Resource$Accounts$Customers$Transferentitlements
     extends StandardParameters {
     /**
@@ -7209,62 +6211,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Creates a CustomerRepricingConfig. Call this method to set modifications for a specific customer's bill. You can only create configs if the RepricingConfig.effective_invoice_month is a future month. If needed, you can create a config for the current month, with some restrictions. When creating a config for a future month, make sure there are no existing configs for that RepricingConfig.effective_invoice_month. The following restrictions are for creating configs in the current month. * This functionality is reserved for recovering from an erroneous config, and should not be used for regular business cases. * The new config will not modify exports used with other configs. Changes to the config may be immediate, but may take up to 24 hours. * There is a limit of ten configs for any RepricingConfig.EntitlementGranularity.entitlement or RepricingConfig.effective_invoice_month. * The contained CustomerRepricingConfig.repricing_config vaule must be different from the value used in the current config for a RepricingConfig.EntitlementGranularity.entitlement. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated CustomerRepricingConfig resource, otherwise returns an error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.customers.customerRepricingConfigs.create({
-     *       // Required. The resource name of the customer that will receive this repricing config. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
-     *       parent: 'accounts/my-account/customers/my-customer',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "name": "my_name",
-     *         //   "repricingConfig": {},
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "repricingConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a CustomerRepricingConfig. Call this method to set modifications for a specific customer's bill. You can only create configs if the RepricingConfig.effective_invoice_month is a future month. If needed, you can create a config for the current month, with some restrictions. When creating a config for a future month, make sure there are no existing configs for that RepricingConfig.effective_invoice_month. The following restrictions are for creating configs in the current month. * This functionality is reserved for recovering from an erroneous config, and should not be used for regular business cases. * The new config will not modify exports used with other configs. Changes to the config may be immediate, but may take up to 24 hours. * There is a limit of ten configs for any RepricingConfig.EntitlementGranularity.entitlement, for any RepricingConfig.effective_invoice_month. * The contained CustomerRepricingConfig.repricing_config value must be different from the value used in the current config for a RepricingConfig.EntitlementGranularity.entitlement. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated CustomerRepricingConfig resource, otherwise returns an error.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7362,47 +6309,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Deletes the given CustomerRepricingConfig permanently. You can only delete configs if their RepricingConfig.effective_invoice_month is set to a date after the current month. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The CustomerRepricingConfig is active or in the past. * NOT_FOUND: No CustomerRepricingConfig found for the name in the request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.customers.customerRepricingConfigs.delete({
-     *       // Required. The resource name of the customer repricing config rule to delete. Format: accounts/{account_id\}/customers/{customer_id\}/customerRepricingConfigs/{id\}.
-     *       name: 'accounts/my-account/customers/my-customer/customerRepricingConfigs/my-customerRepricingConfig',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7491,51 +6397,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Gets information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig was not found. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resource, otherwise returns an error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.customers.customerRepricingConfigs.get({
-     *       // Required. The resource name of the CustomerRepricingConfig. Format: accounts/{account_id\}/customers/{customer_id\}/customerRepricingConfigs/{id\}.
-     *       name: 'accounts/my-account/customers/my-customer/customerRepricingConfigs/my-customerRepricingConfig',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "repricingConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7629,57 +6490,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Lists information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * customer ID * RepricingConfig.EntitlementGranularity.entitlement * RepricingConfig.effective_invoice_month * CustomerRepricingConfig.update_time If unsuccessful, returns an error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.customers.customerRepricingConfigs.list({
-     *       // Optional. A filter for [CloudChannelService.ListCustomerRepricingConfigs] results (customer only). You can use this filter when you support a BatchGet-like query. To use the filter, you must set `parent=accounts/{account_id\}/customers/-`. Example: customer = accounts/account_id/customers/c1 OR customer = accounts/account_id/customers/c2.
-     *       filter: 'placeholder-value',
-     *       // Optional. The maximum number of repricing configs to return. The service may return fewer than this value. If unspecified, returns a maximum of 50 rules. The maximum value is 100; values above 100 will be coerced to 100.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. A token identifying a page of results beyond the first page. Obtained through ListCustomerRepricingConfigsResponse.next_page_token of the previous CloudChannelService.ListCustomerRepricingConfigs call.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the customer. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}. Supports accounts/{account_id\}/customers/- to retrieve configs for all customers.
-     *       parent: 'accounts/my-account/customers/my-customer',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customerRepricingConfigs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * Customer ID * RepricingConfig.EntitlementGranularity.entitlement * RepricingConfig.effective_invoice_month * CustomerRepricingConfig.update_time If unsuccessful, returns an error.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7777,61 +6588,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Updates a CustomerRepricingConfig. Call this method to set modifications for a specific customer's bill. This method overwrites the existing CustomerRepricingConfig. You can only update configs if the RepricingConfig.effective_invoice_month is a future month. To make changes to configs for the current month, use CreateCustomerRepricingConfig, taking note of its restrictions. You cannot update the RepricingConfig.effective_invoice_month. When updating a config in the future: * This config must already exist. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated CustomerRepricingConfig resource, otherwise returns an error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.customers.customerRepricingConfigs.patch({
-     *       // Output only. Resource name of the CustomerRepricingConfig. Format: accounts/{account_id\}/customers/{customer_id\}/customerRepricingConfigs/{id\}.
-     *       name: 'accounts/my-account/customers/my-customer/customerRepricingConfigs/my-customerRepricingConfig',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "name": "my_name",
-     *         //   "repricingConfig": {},
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "repricingConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7991,60 +6747,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Activates a previously suspended entitlement. Entitlements suspended for pending ToS acceptance can't be activated using this method. An entitlement activation is a long-running operation and it updates the state of the customer entitlement. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement resource not found. * SUSPENSION_NOT_RESELLER_INITIATED: Can only activate reseller-initiated suspensions and entitlements that have accepted the TOS. * NOT_SUSPENDED: Can only activate suspended entitlements not in an ACTIVE state. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.activate({
-     *     // Required. The resource name of the entitlement to activate. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requestId": "my_requestId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8139,60 +6841,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Cancels a previously fulfilled entitlement. An entitlement cancellation is a long-running operation. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * FAILED_PRECONDITION: There are Google Cloud projects linked to the Google Cloud entitlement's Cloud Billing subaccount. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement resource not found. * DELETION_TYPE_NOT_ALLOWED: Cancel is only allowed for Google Workspace add-ons, or entitlements for Google Cloud's development platform. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The response will contain google.protobuf.Empty on success. The Operation metadata will contain an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.cancel({
-     *     // Required. The resource name of the entitlement to cancel. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requestId": "my_requestId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8284,63 +6932,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Updates the Offer for an existing customer entitlement. An entitlement update is a long-running operation and it updates the entitlement as a result of fulfillment. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Offer or Entitlement resource not found. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.changeOffer({
-     *     // Required. The resource name of the entitlement to update. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "offer": "my_offer",
-     *       //   "parameters": [],
-     *       //   "purchaseOrderId": "my_purchaseOrderId",
-     *       //   "requestId": "my_requestId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8436,63 +7027,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Change parameters of the entitlement. An entitlement update is a long-running operation and it updates the entitlement as a result of fulfillment. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. For example, the number of seats being changed is greater than the allowed number of max seats, or decreasing seats for a commitment based plan. * NOT_FOUND: Entitlement resource not found. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.customers.entitlements.changeParameters({
-     *       // Required. The name of the entitlement to update. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *       name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "parameters": [],
-     *         //   "purchaseOrderId": "my_purchaseOrderId",
-     *         //   "requestId": "my_requestId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8588,62 +7122,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Updates the renewal settings for an existing customer entitlement. An entitlement update is a long-running operation and it updates the entitlement as a result of fulfillment. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement resource not found. * NOT_COMMITMENT_PLAN: Renewal Settings are only applicable for a commitment plan. Can't enable or disable renewals for non-commitment plans. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.customers.entitlements.changeRenewalSettings({
-     *       // Required. The name of the entitlement to update. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *       name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "renewalSettings": {},
-     *         //   "requestId": "my_requestId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8738,62 +7216,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Creates an entitlement for a customer. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * There is already a customer entitlement for a SKU from the same product family. * INVALID_VALUE: Make sure the OfferId is valid. If it is, contact Google Channel support for further troubleshooting. * NOT_FOUND: The customer or offer resource was not found. * ALREADY_EXISTS: * The SKU was already purchased for the customer. * The customer's primary email already exists. Retry after changing the customer's primary contact email. * CONDITION_NOT_MET or FAILED_PRECONDITION: * The domain required for purchasing a SKU has not been verified. * A pre-requisite SKU required to purchase an Add-On SKU is missing. For example, Google Workspace Business Starter is required to purchase Vault or Drive. * (Developer accounts only) Reseller and resold domain must meet the following naming requirements: * Domain names must start with goog-test. * Domain names must include the reseller domain. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.create({
-     *     // Required. The resource name of the reseller's customer account in which to create the entitlement. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
-     *     parent: 'accounts/my-account/customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "entitlement": {},
-     *       //   "requestId": "my_requestId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates an entitlement for a customer. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller. * The reseller is not authorized to transact on this Product. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * There is already a customer entitlement for a SKU from the same product family. * INVALID_VALUE: Make sure the OfferId is valid. If it is, contact Google Channel support for further troubleshooting. * NOT_FOUND: The customer or offer resource was not found. * ALREADY_EXISTS: * The SKU was already purchased for the customer. * The customer's primary email already exists. Retry after changing the customer's primary contact email. * CONDITION_NOT_MET or FAILED_PRECONDITION: * The domain required for purchasing a SKU has not been verified. * A pre-requisite SKU required to purchase an Add-On SKU is missing. For example, Google Workspace Business Starter is required to purchase Vault or Drive. * (Developer accounts only) Reseller and resold domain must meet the following naming requirements: * Domain names must start with goog-test. * Domain names must include the reseller domain. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8888,59 +7311,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Returns the requested Entitlement resource. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer entitlement was not found. Return value: The requested Entitlement resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.get({
-     *     // Required. The resource name of the entitlement to retrieve. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "associationInfo": {},
-     *   //   "commitmentSettings": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "name": "my_name",
-     *   //   "offer": "my_offer",
-     *   //   "parameters": [],
-     *   //   "provisionedService": {},
-     *   //   "provisioningState": "my_provisioningState",
-     *   //   "purchaseOrderId": "my_purchaseOrderId",
-     *   //   "suspensionReasons": [],
-     *   //   "trialSettings": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9034,53 +7404,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Lists Entitlements belonging to a customer. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: A list of the customer's Entitlements.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.list({
-     *     // Optional. Requested page size. Server might return fewer results than requested. If unspecified, return at most 50 entitlements. The maximum value is 100; the server will coerce values above 100.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token for a page of results other than the first page. Obtained using ListEntitlementsResponse.next_page_token of the previous CloudChannelService.ListEntitlements call.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the reseller's customer account to list entitlements for. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
-     *     parent: 'accounts/my-account/customers/my-customer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entitlements": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9176,58 +7499,104 @@ export namespace cloudchannel_v1 {
     }
 
     /**
+     * List entitlement history. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different. * INVALID_ARGUMENT: Missing or invalid required fields in the request. * NOT_FOUND: The parent resource doesn't exist. Usually the result of an invalid name parameter. * INTERNAL: Any non-user error related to a technical issue in the backend. In this case, contact CloudChannel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. In this case, contact Cloud Channel support. Return value: List of EntitlementChanges.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listEntitlementChanges(
+      params: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listEntitlementChanges(
+      params?: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>;
+    listEntitlementChanges(
+      params: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listEntitlementChanges(
+      params: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+    ): void;
+    listEntitlementChanges(
+      params: Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+    ): void;
+    listEntitlementChanges(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+    ): void;
+    listEntitlementChanges(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:listEntitlementChanges').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1ListEntitlementChangesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns the requested Offer resource. Possible error codes: * PERMISSION_DENIED: The entitlement doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement or offer was not found. Return value: The Offer resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.lookupOffer({
-     *     // Required. The resource name of the entitlement to retrieve the Offer. Entitlement uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     entitlement:
-     *       'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "constraints": {},
-     *   //   "endTime": "my_endTime",
-     *   //   "marketingInfo": {},
-     *   //   "name": "my_name",
-     *   //   "parameterDefinitions": [],
-     *   //   "plan": {},
-     *   //   "priceByResources": [],
-     *   //   "sku": {},
-     *   //   "startTime": "my_startTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9323,61 +7692,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Starts paid service for a trial entitlement. Starts paid service for a trial entitlement immediately. This method is only applicable if a plan is set up for a trial entitlement but has some trial days remaining. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement resource not found. * FAILED_PRECONDITION/NOT_IN_TRIAL: This method only works for entitlement on trial plans. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudchannel.accounts.customers.entitlements.startPaidService({
-     *       // Required. The name of the entitlement to start a paid service for. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *       name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "requestId": "my_requestId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9473,60 +7787,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Suspends a previously fulfilled entitlement. An entitlement suspension is a long-running operation. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement resource not found. * NOT_ACTIVE: Entitlement is not active. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.suspend({
-     *     // Required. The resource name of the entitlement to suspend. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requestId": "my_requestId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9714,6 +7974,25 @@ export namespace cloudchannel_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Accounts$Customers$Entitlements$Listentitlementchanges
+    extends StandardParameters {
+    /**
+     * Optional. Filters applied to the list results.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of entitlement changes to return. The service may return fewer than this value. If unspecified, returns at most 10 entitlement changes. The maximum value is 50; the server will coerce values above 50.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous CloudChannelService.ListEntitlementChanges call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to CloudChannelService.ListEntitlementChanges must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the entitlement for which to list entitlement changes. The `-` wildcard may be used to match entitlements across a customer. Formats: * accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\} * accounts/{account_id\}/customers/{customer_id\}/entitlements/-
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Accounts$Customers$Entitlements$Lookupoffer
     extends StandardParameters {
     /**
@@ -9754,57 +8033,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Lists the Offers the reseller can sell. Possible error codes: * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.accounts.offers.list({
-     *     // Optional. The expression to filter results by name (name of the Offer), sku.name (name of the SKU), or sku.product.name (name of the Product). Example 1: sku.product.name=products/p1 AND sku.name!=products/p1/skus/s1 Example 2: name=accounts/a1/offers/o1
-     *     filter: 'placeholder-value',
-     *     // Optional. The BCP-47 language code. For example, "en-US". The response will localize in the corresponding language code, if specified. The default value is "en-US".
-     *     languageCode: 'placeholder-value',
-     *     // Optional. Requested page size. Server might return fewer results than requested. If unspecified, returns at most 500 Offers. The maximum value is 1000; the server will coerce values above 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token for a page of results other than the first page.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the reseller account from which to list Offers. Parent uses the format: accounts/{account_id\}.
-     *     parent: 'accounts/my-account',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "offers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9922,6 +8150,594 @@ export namespace cloudchannel_v1 {
      * Required. The resource name of the reseller account from which to list Offers. Parent uses the format: accounts/{account_id\}.
      */
     parent?: string;
+    /**
+     * Optional. A boolean flag that determines if a response returns future offers 30 days from now. If the show_future_offers is true, the response will only contain offers that are scheduled to be available 30 days from now.
+     */
+    showFutureOffers?: boolean;
+  }
+
+  export class Resource$Accounts$Reportjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves data generated by CloudChannelReportsService.RunReportJob.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchReportResults(
+      params: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchReportResults(
+      params?: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1FetchReportResultsResponse>;
+    fetchReportResults(
+      params: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchReportResults(
+      params: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+    ): void;
+    fetchReportResults(
+      params: Params$Resource$Accounts$Reportjobs$Fetchreportresults,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+    ): void;
+    fetchReportResults(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+    ): void;
+    fetchReportResults(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Reportjobs$Fetchreportresults
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1FetchReportResultsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Reportjobs$Fetchreportresults;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Reportjobs$Fetchreportresults;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+reportJob}:fetchReportResults').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['reportJob'],
+        pathParams: ['reportJob'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1FetchReportResultsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1FetchReportResultsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Reportjobs$Fetchreportresults
+    extends StandardParameters {
+    /**
+     * Required. The report job created by CloudChannelReportsService.RunReportJob. Report_job uses the format: accounts/{account_id\}/reportJobs/{report_job_id\}
+     */
+    reportJob?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudChannelV1FetchReportResultsRequest;
+  }
+
+  export class Resource$Accounts$Reports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the reports that RunReportJob can run. These reports include an ID, a description, and the list of columns that will be in the result.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Reports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Reports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListReportsResponse>;
+    list(
+      params: Params$Resource$Accounts$Reports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Reports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Reports$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Reports$List
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1ListReportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Reports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Reports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1ListReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1ListReportsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Begins generation of data for a given report. The report identifier is a UID (for example, `613bf59q`). Possible error codes: * PERMISSION_DENIED: The user doesn't have access to this report. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The report identifier was not found. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata contains an instance of OperationMetadata. To get the results of report generation, call CloudChannelReportsService.FetchReportResults with the RunReportJobResponse.report_job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    run(
+      params: Params$Resource$Accounts$Reports$Run,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    run(
+      params?: Params$Resource$Accounts$Reports$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    run(
+      params: Params$Resource$Accounts$Reports$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    run(
+      params: Params$Resource$Accounts$Reports$Run,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    run(
+      params: Params$Resource$Accounts$Reports$Run,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    run(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Reports$Run
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Reports$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Reports$Run;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Reports$List
+    extends StandardParameters {
+    /**
+     * Optional. The BCP-47 language code, such as "en-US". If specified, the response is localized to the corresponding language code if the original data sources support it. Default is "en-US".
+     */
+    languageCode?: string;
+    /**
+     * Optional. Requested page size of the report. The server might return fewer results than requested. If unspecified, returns 20 reports. The maximum value is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token that specifies a page of results beyond the first page. Obtained through ListReportsResponse.next_page_token of the previous CloudChannelReportsService.ListReports call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the partner account to list available reports for. Parent uses the format: accounts/{account_id\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Reports$Run
+    extends StandardParameters {
+    /**
+     * Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id\}/reports/{report_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudChannelV1RunReportJobRequest;
+  }
+
+  export class Resource$Accounts$Skugroups {
+    context: APIRequestContext;
+    billableSkus: Resource$Accounts$Skugroups$Billableskus;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.billableSkus = new Resource$Accounts$Skugroups$Billableskus(
+        this.context
+      );
+    }
+
+    /**
+     * Lists the Rebilling supported SKU groups the account is authorized to sell. Reference: https://cloud.google.com/skus/sku-groups Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different, or the account doesn't exist. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the SkuGroup resources. The data for each resource is displayed in the alphabetical order of SKU group display name. The data for each resource is displayed in the ascending order of SkuGroup.display_name If unsuccessful, returns an error.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Skugroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Skugroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>;
+    list(
+      params: Params$Resource$Accounts$Skugroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Skugroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Skugroups$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Skugroups$List
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Skugroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Skugroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/skuGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1ListSkuGroupsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Skugroups$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of SKU groups to return. The service may return fewer than this value. If unspecified, returns a maximum of 1000 SKU groups. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroups.next_page_token of the previous CloudChannelService.ListSkuGroups call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the account from which to list SKU groups. Parent uses the format: accounts/{account\}.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Accounts$Skugroups$Billableskus {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the Billable SKUs in a given SKU group. Possible error codes: PERMISSION_DENIED: If the account making the request and the account being queried for are different, or the account doesn't exist. INVALID_ARGUMENT: Missing or invalid required parameters in the request. INTERNAL: Any non-user error related to technical issue in the backend. In this case, contact cloud channel support. Return Value: If successful, the BillableSku resources. The data for each resource is displayed in the ascending order of: * BillableSku.service_display_name * BillableSku.sku_display_name If unsuccessful, returns an error.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Skugroups$Billableskus$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Skugroups$Billableskus$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>;
+    list(
+      params: Params$Resource$Accounts$Skugroups$Billableskus$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Skugroups$Billableskus$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Skugroups$Billableskus$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Skugroups$Billableskus$List
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Skugroups$Billableskus$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Skugroups$Billableskus$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/billableSkus').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1ListSkuGroupBillableSkusResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Skugroups$Billableskus$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of SKUs to return. The service may return fewer than this value. If unspecified, returns a maximum of 100000 SKUs. The maximum value is 100000; values above 100000 will be coerced to 100000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroupBillableSkus.next_page_token of the previous CloudChannelService.ListSkuGroupBillableSkus call.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the SKU group. Format: accounts/{account\}/skuGroups/{sku_group\}.
+     */
+    parent?: string;
   }
 
   export class Resource$Operations {
@@ -9932,52 +8748,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'operations/.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10065,46 +8835,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'operations/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10192,52 +8922,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'operations/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10327,56 +9011,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'operations',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10522,55 +9157,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Lists the Products the reseller is authorized to sell. Possible error codes: * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.products.list({
-     *     // Required. The resource name of the reseller account. Format: accounts/{account_id\}.
-     *     account: 'placeholder-value',
-     *     // Optional. The BCP-47 language code. For example, "en-US". The response will localize in the corresponding language code, if specified. The default value is "en-US".
-     *     languageCode: 'placeholder-value',
-     *     // Optional. Requested page size. Server might return fewer results than requested. If unspecified, returns at most 100 Products. The maximum value is 1000; the server will coerce values above 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token for a page of results other than the first page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "products": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10689,57 +9275,6 @@ export namespace cloudchannel_v1 {
 
     /**
      * Lists the SKUs for a product the reseller is authorized to sell. Possible error codes: * INVALID_ARGUMENT: Required request parameters are missing or invalid.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudchannel = google.cloudchannel('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudchannel.products.skus.list({
-     *     // Required. Resource name of the reseller. Format: accounts/{account_id\}.
-     *     account: 'placeholder-value',
-     *     // Optional. The BCP-47 language code. For example, "en-US". The response will localize in the corresponding language code, if specified. The default value is "en-US".
-     *     languageCode: 'placeholder-value',
-     *     // Optional. Requested page size. Server might return fewer results than requested. If unspecified, returns at most 100 SKUs. The maximum value is 1000; the server will coerce values above 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token for a page of results other than the first page. Optional.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the Product to list SKUs for. Parent uses the format: products/{product_id\}. Supports products/- to retrieve SKUs for all products.
-     *     parent: 'products/my-product',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "skus": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

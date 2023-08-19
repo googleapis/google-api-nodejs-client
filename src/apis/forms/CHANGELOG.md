@@ -1,5 +1,30 @@
 # Changelog
 
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v2.0.1...forms-v2.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **forms:** update the API ([8ba614a](https://github.com/googleapis/google-api-nodejs-client/commit/8ba614a2aab87eca8ffd770a8bbf6912e1ed9c66))
+
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v2.0.0...forms-v2.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **forms:** update the API ([8ba614a](https://github.com/googleapis/google-api-nodejs-client/commit/8ba614a2aab87eca8ffd770a8bbf6912e1ed9c66))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v1.1.2...forms-v2.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v1.1.1...forms-v1.1.2) (2022-09-21)
 
 

@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v1.0.2...sourcerepo-v1.0.3) (2023-08-09)
+
+
+### Bug Fixes
+
+* **sourcerepo:** update the API ([f803061](https://github.com/googleapis/google-api-nodejs-client/commit/f803061d7932d9df9db91cf02c909e6b5a5c4db2))
+
+## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v1.0.1...sourcerepo-v1.0.2) (2023-02-24)
+
+
+### Bug Fixes
+
+* **sourcerepo:** update the API ([ba3d1d1](https://github.com/googleapis/google-api-nodejs-client/commit/ba3d1d1afb8769d6f1db0c82f7c6eb5424baaf36))
+
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v1.0.0...sourcerepo-v1.0.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **sourcerepo:** update the API ([ba3d1d1](https://github.com/googleapis/google-api-nodejs-client/commit/ba3d1d1afb8769d6f1db0c82f7c6eb5424baaf36))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v0.3.9...sourcerepo-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.3.9](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v0.3.8...sourcerepo-v0.3.9) (2022-09-21)
 
 

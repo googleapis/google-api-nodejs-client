@@ -1,5 +1,129 @@
 # Changelog
 
+## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v5.0.1...gmail-v5.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([6ee8730](https://github.com/googleapis/google-api-nodejs-client/commit/6ee873005b2b97a54a4a7d3af9d8ae0d42c6ca6e))
+
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v5.0.0...gmail-v5.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([6ee8730](https://github.com/googleapis/google-api-nodejs-client/commit/6ee873005b2b97a54a4a7d3af9d8ae0d42c6ca6e))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v4.0.0...gmail-v5.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **gmail:** update the API ([45acd52](https://github.com/googleapis/google-api-nodejs-client/commit/45acd522ec16e9c91190060190c539e6e8867a85))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([6ff8ff8](https://github.com/googleapis/google-api-nodejs-client/commit/6ff8ff8eeaac6b0245abf3e1543e891ac96eff86))
+* **gmail:** update the API ([c6fa1dc](https://github.com/googleapis/google-api-nodejs-client/commit/c6fa1dc47d81d49492f7e81a13b816326840340d))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v3.0.0...gmail-v4.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **gmail:** update the API ([45acd52](https://github.com/googleapis/google-api-nodejs-client/commit/45acd522ec16e9c91190060190c539e6e8867a85))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([6ff8ff8](https://github.com/googleapis/google-api-nodejs-client/commit/6ff8ff8eeaac6b0245abf3e1543e891ac96eff86))
+* **gmail:** update the API ([c6fa1dc](https://github.com/googleapis/google-api-nodejs-client/commit/c6fa1dc47d81d49492f7e81a13b816326840340d))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v2.0.1...gmail-v3.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v2.0.0...gmail-v2.0.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([6ff8ff8](https://github.com/googleapis/google-api-nodejs-client/commit/6ff8ff8eeaac6b0245abf3e1543e891ac96eff86))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v1.2.0...gmail-v2.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v1.1.1...gmail-v1.2.0) (2023-02-24)
+
+
+### Features
+
+* **gmail:** update the API ([d57935a](https://github.com/googleapis/google-api-nodejs-client/commit/d57935a2b8a0056dd8cfe8ceddfb90dbe4ac01cb))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([c6fa1dc](https://github.com/googleapis/google-api-nodejs-client/commit/c6fa1dc47d81d49492f7e81a13b816326840340d))
+* **gmail:** update the API ([454caaf](https://github.com/googleapis/google-api-nodejs-client/commit/454caaf1e282d8afb2dd933ec6cf56c1193a27e5))
+
+## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v1.1.0...gmail-v1.1.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([454caaf](https://github.com/googleapis/google-api-nodejs-client/commit/454caaf1e282d8afb2dd933ec6cf56c1193a27e5))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v1.0.0...gmail-v1.1.0) (2022-12-22)
+
+
+### Features
+
+* **gmail:** update the API ([d57935a](https://github.com/googleapis/google-api-nodejs-client/commit/d57935a2b8a0056dd8cfe8ceddfb90dbe4ac01cb))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v0.3.5...gmail-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.3.5](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v0.3.4...gmail-v0.3.5) (2022-09-21)
 
 

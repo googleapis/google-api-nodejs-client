@@ -33,7 +33,7 @@ export function texttospeech(
   options: texttospeech_v1beta1.Options
 ): texttospeech_v1beta1.Texttospeech;
 export function texttospeech<
-  T = texttospeech_v1.Texttospeech | texttospeech_v1beta1.Texttospeech
+  T = texttospeech_v1.Texttospeech | texttospeech_v1beta1.Texttospeech,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

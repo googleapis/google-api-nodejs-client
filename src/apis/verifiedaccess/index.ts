@@ -31,7 +31,7 @@ export function verifiedaccess(
   options: verifiedaccess_v2.Options
 ): verifiedaccess_v2.Verifiedaccess;
 export function verifiedaccess<
-  T = verifiedaccess_v1.Verifiedaccess | verifiedaccess_v2.Verifiedaccess
+  T = verifiedaccess_v1.Verifiedaccess | verifiedaccess_v2.Verifiedaccess,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

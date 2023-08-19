@@ -287,6 +287,10 @@ export namespace testing_v1 {
      */
     name?: string | null;
     /**
+     * Version-specific information of an Android model.
+     */
+    perVersionInfo?: Schema$PerAndroidVersionInfo[];
+    /**
      * Screen density in DPI. This corresponds to ro.sf.lcd_density
      */
     screenDensity?: number | null;
@@ -464,6 +468,10 @@ export namespace testing_v1 {
      */
     maxSdkVersion?: number | null;
     /**
+     * Meta-data tags defined in the manifest.
+     */
+    metadata?: Schema$Metadata[];
+    /**
      * Minimum API level required for the application to run.
      */
     minSdkVersion?: number | null;
@@ -472,9 +480,17 @@ export namespace testing_v1 {
      */
     packageName?: string | null;
     /**
+     * Services contained in the tag.
+     */
+    services?: Schema$Service[];
+    /**
      * Specifies the API Level on which the application is designed to run.
      */
     targetSdkVersion?: number | null;
+    /**
+     * Feature usage tags defined in the manifest.
+     */
+    usesFeature?: Schema$UsesFeature[];
     /**
      * Permissions declared to be used by the application
      */
@@ -781,6 +797,10 @@ export namespace testing_v1 {
      */
     name?: string | null;
     /**
+     * Version-specific information of an iOS model.
+     */
+    perVersionInfo?: Schema$PerIosVersionInfo[];
+    /**
      * Screen density in DPI.
      */
     screenDensity?: number | null;
@@ -800,6 +820,23 @@ export namespace testing_v1 {
      * Tags for this dimension. Examples: "default", "preview", "deprecated".
      */
     tags?: string[] | null;
+  }
+  /**
+   * A test that explores an iOS application on an iOS device.
+   */
+  export interface Schema$IosRoboTest {
+    /**
+     * The bundle ID for the app-under-test. This is determined by examining the application's "Info.plist" file.
+     */
+    appBundleId?: string | null;
+    /**
+     * Required. The ipa stored at this file should be used to run the test.
+     */
+    appIpa?: Schema$FileReference;
+    /**
+     * An optional Roboscript to customize the crawl. See https://firebase.google.com/docs/test-lab/android/robo-scripts-reference for more information about Roboscripts.
+     */
+    roboScript?: Schema$FileReference;
   }
   /**
    * iOS configuration that can be selected at the time a test is run.
@@ -932,9 +969,22 @@ export namespace testing_v1 {
    */
   export interface Schema$ManualSharding {
     /**
-     * Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.
+     * Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500.
      */
     testTargetsForShard?: Schema$TestTargetsForShard[];
+  }
+  /**
+   * A tag within a manifest. https://developer.android.com/guide/topics/manifest/meta-data-element.html
+   */
+  export interface Schema$Metadata {
+    /**
+     * The android:name value
+     */
+    name?: string | null;
+    /**
+     * The android:value value
+     */
+    value?: string | null;
   }
   export interface Schema$NetworkConfiguration {
     /**
@@ -953,6 +1003,10 @@ export namespace testing_v1 {
   export interface Schema$NetworkConfigurationCatalog {
     configurations?: Schema$NetworkConfiguration[];
   }
+  /**
+   * Skips the starting activity
+   */
+  export interface Schema$NoActivityIntent {}
   /**
    * An opaque binary blob file to install on the device before the test starts.
    */
@@ -982,6 +1036,32 @@ export namespace testing_v1 {
      * Tags for this dimension. Example: "default".
      */
     tags?: string[] | null;
+  }
+  /**
+   * A version-specific information of an Android model.
+   */
+  export interface Schema$PerAndroidVersionInfo {
+    /**
+     * The number of online devices for an Android version.
+     */
+    deviceCapacity?: string | null;
+    /**
+     * An Android version.
+     */
+    versionId?: string | null;
+  }
+  /**
+   * A version-specific information of an iOS model.
+   */
+  export interface Schema$PerIosVersionInfo {
+    /**
+     * The number of online devices for an iOS version.
+     */
+    deviceCapacity?: string | null;
+    /**
+     * An iOS version.
+     */
+    versionId?: string | null;
   }
   /**
    * The currently provided software environment on the devices under test.
@@ -1056,6 +1136,10 @@ export namespace testing_v1 {
      */
     launcherActivity?: Schema$LauncherActivityIntent;
     /**
+     * Skips the starting activity
+     */
+    noActivity?: Schema$NoActivityIntent;
+    /**
      * An intent that starts an activity with specific details.
      */
     startActivity?: Schema$StartActivityIntent;
@@ -1065,9 +1149,26 @@ export namespace testing_v1 {
     timeout?: string | null;
   }
   /**
+   * The section of an tag. https://developer.android.com/guide/topics/manifest/service-element
+   */
+  export interface Schema$Service {
+    /**
+     * Intent filters in the service
+     */
+    intentFilter?: Schema$IntentFilter[];
+    /**
+     * The android:name value
+     */
+    name?: string | null;
+  }
+  /**
    * Output only. Details about the shard.
    */
   export interface Schema$Shard {
+    /**
+     * Output only. The estimated shard duration based on previous test case timing records, if available.
+     */
+    estimatedShardDuration?: string | null;
     /**
      * Output only. The total number of shards.
      */
@@ -1090,9 +1191,22 @@ export namespace testing_v1 {
      */
     manualSharding?: Schema$ManualSharding;
     /**
+     * Shards test based on previous test case timing records.
+     */
+    smartSharding?: Schema$SmartSharding;
+    /**
      * Uniformly shards test cases given a total number of shards.
      */
     uniformSharding?: Schema$UniformSharding;
+  }
+  /**
+   * Shards test based on previous test case timing records.
+   */
+  export interface Schema$SmartSharding {
+    /**
+     * The amount of time tests within a shard should take. Default: 300 seconds (5 minutes). The minimum allowed: 120 seconds (2 minutes). The shard count is dynamically set based on time, up to the maximum shard limit (described below). To guarantee at least one test case for each shard, the number of shards will not exceed the number of test cases. Shard duration will be exceeded if: - The maximum shard limit is reached and there is more calculated test time remaining to allocate into shards. - Any individual test is estimated to be longer than the targeted shard duration. Shard duration is not guaranteed because smart sharding uses test case history and default durations which may not be accurate. The rules for finding the test case timing records are: - If the service has processed a test case in the last 30 days, the record of the latest successful test case will be used. - For new test cases, the average duration of other known test cases will be used. - If there are no previous test case timing records available, the default test case duration is 15 seconds. Because the actual shard duration can exceed the targeted shard duration, we recommend that you set the targeted value at least 5 minutes less than the maximum allowed test timeout (45 minutes for physical devices and 60 minutes for virtual), or that you use the custom test timeout value that you set. This approach avoids cancelling the shard before all tests can finish. Note that there is a limit for maximum number of shards. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500. To guarantee at least one test case for per shard, the number of shards will not exceed the number of test cases. Each shard created counts toward daily test quota.
+     */
+    targetedShardDuration?: string | null;
   }
   /**
    * A starting intent specified by an action, uri, and categories.
@@ -1290,7 +1404,7 @@ export namespace testing_v1 {
      */
     networkProfile?: string | null;
     /**
-     * Deprecated: Systrace uses Python 2 which has been sunset 2020-01-01. Support of Systrace may stop at any time, at which point no Systrace file will be provided in the results. Systrace configuration for the run. If set a systrace will be taken, starting on test start and lasting for the configured duration. The systrace file thus obtained is put in the results bucket together with the other artifacts from the run.
+     * Systrace configuration for the run. Deprecated: Systrace used Python 2 which was sunsetted on 2020-01-01. Systrace is no longer supported in the Cloud Testing API, and no Systrace file will be provided in the results.
      */
     systrace?: Schema$SystraceSetup;
   }
@@ -1318,6 +1432,10 @@ export namespace testing_v1 {
      * Disables video recording. May reduce test latency.
      */
     disableVideoRecording?: boolean | null;
+    /**
+     * An iOS Robo test.
+     */
+    iosRoboTest?: Schema$IosRoboTest;
     /**
      * An iOS application with a test loop.
      */
@@ -1429,9 +1547,22 @@ export namespace testing_v1 {
    */
   export interface Schema$UniformSharding {
     /**
-     * Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.
+     * Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500.
      */
     numShards?: number | null;
+  }
+  /**
+   * A tag within a manifest. https://developer.android.com/guide/topics/manifest/uses-feature-element.html
+   */
+  export interface Schema$UsesFeature {
+    /**
+     * The android:required value
+     */
+    isRequired?: boolean | null;
+    /**
+     * The android:name value
+     */
+    name?: string | null;
   }
   /**
    * An Xcode version that an iOS version is compatible with.
@@ -1455,53 +1586,6 @@ export namespace testing_v1 {
 
     /**
      * Gets the details of an Android application APK.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/testing.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const testing = google.testing('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await testing.applicationDetailService.getApkDetails({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "gcsPath": "my_gcsPath"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apkDetail": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1619,50 +1703,6 @@ export namespace testing_v1 {
 
     /**
      * Cancels unfinished test executions in a test matrix. This call returns immediately and cancellation proceeds asynchronously. If the matrix is already final, this operation will have no effect. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/testing.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const testing = google.testing('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await testing.projects.testMatrices.cancel({
-     *     // Cloud project that owns the test.
-     *     projectId: 'placeholder-value',
-     *     // Test matrix that will be canceled.
-     *     testMatrixId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "testState": "my_testState"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1756,83 +1796,7 @@ export namespace testing_v1 {
     }
 
     /**
-     * Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/testing.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const testing = google.testing('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await testing.projects.testMatrices.create({
-     *     // The GCE project under which this job will run.
-     *     projectId: 'placeholder-value',
-     *     // A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended. Optional, but strongly recommended.
-     *     requestId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clientInfo": {},
-     *       //   "environmentMatrix": {},
-     *       //   "failFast": false,
-     *       //   "flakyTestAttempts": 0,
-     *       //   "invalidMatrixDetails": "my_invalidMatrixDetails",
-     *       //   "outcomeSummary": "my_outcomeSummary",
-     *       //   "projectId": "my_projectId",
-     *       //   "resultStorage": {},
-     *       //   "state": "my_state",
-     *       //   "testExecutions": [],
-     *       //   "testMatrixId": "my_testMatrixId",
-     *       //   "testSpecification": {},
-     *       //   "timestamp": "my_timestamp"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientInfo": {},
-     *   //   "environmentMatrix": {},
-     *   //   "failFast": false,
-     *   //   "flakyTestAttempts": 0,
-     *   //   "invalidMatrixDetails": "my_invalidMatrixDetails",
-     *   //   "outcomeSummary": "my_outcomeSummary",
-     *   //   "projectId": "my_projectId",
-     *   //   "resultStorage": {},
-     *   //   "state": "my_state",
-     *   //   "testExecutions": [],
-     *   //   "testMatrixId": "my_testMatrixId",
-     *   //   "testSpecification": {},
-     *   //   "timestamp": "my_timestamp"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. The returned matrix will not yet contain the executions that will be created for this matrix. Execution creation happens later on and will require a call to GetTestMatrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1919,66 +1883,7 @@ export namespace testing_v1 {
     }
 
     /**
-     * Checks the status of a test matrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/testing.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const testing = google.testing('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await testing.projects.testMatrices.get({
-     *     // Cloud project that owns the test matrix.
-     *     projectId: 'placeholder-value',
-     *     // Unique test matrix id which was assigned by the service.
-     *     testMatrixId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "clientInfo": {},
-     *   //   "environmentMatrix": {},
-     *   //   "failFast": false,
-     *   //   "flakyTestAttempts": 0,
-     *   //   "invalidMatrixDetails": "my_invalidMatrixDetails",
-     *   //   "outcomeSummary": "my_outcomeSummary",
-     *   //   "projectId": "my_projectId",
-     *   //   "resultStorage": {},
-     *   //   "state": "my_state",
-     *   //   "testExecutions": [],
-     *   //   "testMatrixId": "my_testMatrixId",
-     *   //   "testSpecification": {},
-     *   //   "timestamp": "my_timestamp"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Checks the status of a test matrix and the executions once they are created. The test matrix will contain the list of test executions to run if and only if the resultStorage.toolResultsExecution fields have been populated. Note: Flaky test executions may be added to the matrix at a later stage. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2111,57 +2016,6 @@ export namespace testing_v1 {
 
     /**
      * Gets the catalog of supported test environments. May return any of the following canonical error codes: - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the environment type does not exist - INTERNAL - if an internal error occurred
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/testing.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const testing = google.testing('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await testing.testEnvironmentCatalog.get({
-     *     // Required. The type of environment that should be listed.
-     *     environmentType: 'placeholder-value',
-     *     // For authorization, the cloud project requesting the TestEnvironmentCatalog.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "androidDeviceCatalog": {},
-     *   //   "deviceIpBlockCatalog": {},
-     *   //   "iosDeviceCatalog": {},
-     *   //   "networkConfigurationCatalog": {},
-     *   //   "softwareCatalog": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

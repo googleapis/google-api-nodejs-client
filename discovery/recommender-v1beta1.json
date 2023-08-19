@@ -214,7 +214,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
+                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -382,7 +382,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
+                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -433,6 +433,34 @@
                       "path": "v1beta1/{+name}:markClaimed",
                       "request": {
                         "$ref": "GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRecommenderV1beta1Recommendation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "markDismissed": {
+                      "description": "Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.",
+                      "flatPath": "v1beta1/billingAccounts/{billingAccountsId}/locations/{locationsId}/recommenders/{recommendersId}/recommendations/{recommendationsId}:markDismissed",
+                      "httpMethod": "POST",
+                      "id": "recommender.billingAccounts.locations.recommenders.recommendations.markDismissed",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Name of the recommendation.",
+                          "location": "path",
+                          "pattern": "^billingAccounts/[^/]+/locations/[^/]+/recommenders/[^/]+/recommendations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:markDismissed",
+                      "request": {
+                        "$ref": "GoogleCloudRecommenderV1beta1MarkRecommendationDismissedRequest"
                       },
                       "response": {
                         "$ref": "GoogleCloudRecommenderV1beta1Recommendation"
@@ -548,7 +576,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
+                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -650,7 +678,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
+                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -701,6 +729,34 @@
                       "path": "v1beta1/{+name}:markClaimed",
                       "request": {
                         "$ref": "GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRecommenderV1beta1Recommendation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "markDismissed": {
+                      "description": "Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.",
+                      "flatPath": "v1beta1/folders/{foldersId}/locations/{locationsId}/recommenders/{recommendersId}/recommendations/{recommendationsId}:markDismissed",
+                      "httpMethod": "POST",
+                      "id": "recommender.folders.locations.recommenders.recommendations.markDismissed",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Name of the recommendation.",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/locations/[^/]+/recommenders/[^/]+/recommendations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:markDismissed",
+                      "request": {
+                        "$ref": "GoogleCloudRecommenderV1beta1MarkRecommendationDismissedRequest"
                       },
                       "response": {
                         "$ref": "GoogleCloudRecommenderV1beta1Recommendation"
@@ -770,6 +826,37 @@
               }
             }
           }
+        }
+      }
+    },
+    "insightTypes": {
+      "methods": {
+        "list": {
+          "description": "Lists available InsightTypes. No IAM permissions are required.",
+          "flatPath": "v1beta1/insightTypes",
+          "httpMethod": "GET",
+          "id": "recommender.insightTypes.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The number of InsightTypes to return per page. The service may return fewer than this value.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token, received from a previous `ListRecommenders` call. Provide this to retrieve the subsequent page.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/insightTypes",
+          "response": {
+            "$ref": "GoogleCloudRecommenderV1beta1ListInsightTypesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
         }
       }
     },
@@ -882,7 +969,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
+                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -1050,7 +1137,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
+                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -1101,6 +1188,34 @@
                       "path": "v1beta1/{+name}:markClaimed",
                       "request": {
                         "$ref": "GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRecommenderV1beta1Recommendation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "markDismissed": {
+                      "description": "Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.",
+                      "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/recommenders/{recommendersId}/recommendations/{recommendationsId}:markDismissed",
+                      "httpMethod": "POST",
+                      "id": "recommender.organizations.locations.recommenders.recommendations.markDismissed",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Name of the recommendation.",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/locations/[^/]+/recommenders/[^/]+/recommendations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:markDismissed",
+                      "request": {
+                        "$ref": "GoogleCloudRecommenderV1beta1MarkRecommendationDismissedRequest"
                       },
                       "response": {
                         "$ref": "GoogleCloudRecommenderV1beta1Recommendation"
@@ -1282,7 +1397,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
+                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -1450,7 +1565,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
+                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` * `targetResources` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `targetResources : //compute.googleapis.com/projects/1234/zones/us-central1-a/instances/instance-1` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` The max allowed filter length is 500 characters. (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -1501,6 +1616,34 @@
                       "path": "v1beta1/{+name}:markClaimed",
                       "request": {
                         "$ref": "GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRecommenderV1beta1Recommendation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "markDismissed": {
+                      "description": "Mark the Recommendation State as Dismissed. Users can use this method to indicate to the Recommender API that an ACTIVE recommendation has to be marked back as DISMISSED. MarkRecommendationDismissed can be applied to recommendations in ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/recommenders/{recommendersId}/recommendations/{recommendationsId}:markDismissed",
+                      "httpMethod": "POST",
+                      "id": "recommender.projects.locations.recommenders.recommendations.markDismissed",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Name of the recommendation.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/recommenders/[^/]+/recommendations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:markDismissed",
+                      "request": {
+                        "$ref": "GoogleCloudRecommenderV1beta1MarkRecommendationDismissedRequest"
                       },
                       "response": {
                         "$ref": "GoogleCloudRecommenderV1beta1Recommendation"
@@ -1572,9 +1715,40 @@
           }
         }
       }
+    },
+    "recommenders": {
+      "methods": {
+        "list": {
+          "description": "Lists all available Recommenders. No IAM permissions are required.",
+          "flatPath": "v1beta1/recommenders",
+          "httpMethod": "GET",
+          "id": "recommender.recommenders.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The number of RecommenderTypes to return per page. The service may return fewer than this value.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token, received from a previous `ListRecommenders` call. Provide this to retrieve the subsequent page.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/recommenders",
+          "response": {
+            "$ref": "GoogleCloudRecommenderV1beta1ListRecommendersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
     }
   },
-  "revision": "20221023",
+  "revision": "20230806",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
@@ -1778,6 +1952,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecommenderV1beta1InsightType": {
+      "description": "The type of insight.",
+      "id": "GoogleCloudRecommenderV1beta1InsightType",
+      "properties": {
+        "name": {
+          "description": "The insight_type’s name in format insightTypes/{insight_type} eg: insightTypes/google.iam.policy.Insight",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecommenderV1beta1InsightTypeConfig": {
       "description": "Configuration for an InsightType.",
       "id": "GoogleCloudRecommenderV1beta1InsightTypeConfig",
@@ -1833,6 +2018,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecommenderV1beta1ListInsightTypesResponse": {
+      "description": "Response for the `ListInsightTypes` method. Next ID: 3",
+      "id": "GoogleCloudRecommenderV1beta1ListInsightTypesResponse",
+      "properties": {
+        "insightTypes": {
+          "description": "The set of recommenders available",
+          "items": {
+            "$ref": "GoogleCloudRecommenderV1beta1InsightType"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecommenderV1beta1ListInsightsResponse": {
       "description": "Response to the `ListInsights` method.",
       "id": "GoogleCloudRecommenderV1beta1ListInsightsResponse",
@@ -1863,6 +2066,24 @@
           "description": "The set of recommendations for the `parent` resource.",
           "items": {
             "$ref": "GoogleCloudRecommenderV1beta1Recommendation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1beta1ListRecommendersResponse": {
+      "description": "Response for the `ListRecommender` method. Next ID: 3",
+      "id": "GoogleCloudRecommenderV1beta1ListRecommendersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "recommenders": {
+          "description": "The set of recommenders available",
+          "items": {
+            "$ref": "GoogleCloudRecommenderV1beta1RecommenderType"
           },
           "type": "array"
         }
@@ -1901,6 +2122,17 @@
           },
           "description": "State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex `/^a-z0-9{0,62}$/`. Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1beta1MarkRecommendationDismissedRequest": {
+      "description": "Request for the `MarkRecommendationDismissed` Method.",
+      "id": "GoogleCloudRecommenderV1beta1MarkRecommendationDismissedRequest",
+      "properties": {
+        "etag": {
+          "description": "Fingerprint of the Recommendation. Provides optimistic locking.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2202,6 +2434,17 @@
           },
           "description": "Parameters for this RecommenderGenerationConfig. These configs can be used by or are applied to all subtypes.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1beta1RecommenderType": {
+      "description": "The type of a recommender.",
+      "id": "GoogleCloudRecommenderV1beta1RecommenderType",
+      "properties": {
+        "name": {
+          "description": "The recommender's name in format RecommenderTypes/{recommender_type} eg: recommenderTypes/google.iam.policy.Recommender",
+          "type": "string"
         }
       },
       "type": "object"

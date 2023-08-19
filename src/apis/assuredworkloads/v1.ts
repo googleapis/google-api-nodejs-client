@@ -125,7 +125,7 @@ export namespace assuredworkloads_v1 {
   }
 
   /**
-   * Request for acknowledging the violation Next Id: 4
+   * Request for acknowledging the violation Next Id: 5
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest {
     /**
@@ -189,6 +189,23 @@ export namespace assuredworkloads_v1 {
     workloads?: Schema$GoogleCloudAssuredworkloadsV1Workload[];
   }
   /**
+   * Request for updating permission settings for a partner workload.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest {
+    /**
+     * Optional. The etag of the workload. If this is provided, it must match the server's etag.
+     */
+    etag?: string | null;
+    /**
+     * Required. The partner permissions to be updated.
+     */
+    partnerPermissions?: Schema$GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions;
+    /**
+     * Required. The list of fields to be updated. E.g. update_mask { paths: "partner_permissions.data_logs_viewer"\}
+     */
+    updateMask?: string | null;
+  }
+  /**
    * Request for restricting list of available resources in Workload environment.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest {
@@ -202,7 +219,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse {}
   /**
-   * Workload monitoring Violation.
+   * Workload monitoring Violation. Next Id: 28
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1Violation {
     /**
@@ -210,7 +227,7 @@ export namespace assuredworkloads_v1 {
      */
     acknowledged?: boolean | null;
     /**
-     * Optional. Timestamp when this violation was acknowledged last. This will be absent when acknowledged field is marked as false.
+     * Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false.
      */
     acknowledgementTime?: string | null;
     /**
@@ -233,6 +250,10 @@ export namespace assuredworkloads_v1 {
      * Output only. Immutable. Audit Log link to find business justification provided for violation exception. Format: https://console.cloud.google.com/logs/query;query={logName\}{protoPayload.resourceName\}{protoPayload.methodName\}{timeRange\}{organization\}
      */
     exceptionAuditLogLink?: string | null;
+    /**
+     * Output only. List of all the exception detail added for the violation.
+     */
+    exceptionContexts?: Schema$GoogleCloudAssuredworkloadsV1ViolationExceptionContext[];
     /**
      * Output only. Immutable. Name of the Violation. Format: organizations/{organization\}/locations/{location\}/workloads/{workload_id\}/violations/{violations_id\}
      */
@@ -261,6 +282,23 @@ export namespace assuredworkloads_v1 {
      * Output only. The last time when the Violation record was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Violation exception detail. Next Id: 6
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1ViolationExceptionContext {
+    /**
+     * Timestamp when the violation was acknowledged.
+     */
+    acknowledgementTime?: string | null;
+    /**
+     * Business justification provided towards the acknowledgement of the violation.
+     */
+    comment?: string | null;
+    /**
+     * Name of the user (or service account) who acknowledged the violation.
+     */
+    userName?: string | null;
   }
   /**
    * Represents remediation guidance to resolve compliance violation for AssuredWorkload
@@ -355,6 +393,10 @@ export namespace assuredworkloads_v1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Represents the Ekm Provisioning State of the given workload.
+     */
+    ekmProvisioningResponse?: Schema$GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse;
+    /**
      * Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.
      */
     enableSovereignControls?: boolean | null;
@@ -379,9 +421,13 @@ export namespace assuredworkloads_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Compliance Regime associated with this workload.
+     * Optional. Partner regime associated with this workload.
      */
     partner?: string | null;
+    /**
+     * Optional. Permissions granted to the AW Partner SA account for the customer workload
+     */
+    partnerPermissions?: Schema$GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions;
     /**
      * Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id\}
      */
@@ -398,22 +444,43 @@ export namespace assuredworkloads_v1 {
      * Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.
      */
     saaEnrollmentResponse?: Schema$GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse;
+    /**
+     * Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload.
+     */
+    violationNotificationsEnabled?: boolean | null;
   }
   /**
    * Represents the Compliance Status of this workload
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus {
     /**
-     * Count of active Violations which are acknowledged in the Workload.
+     * Number of current orgPolicy violations which are acknowledged.
      */
     acknowledgedViolationCount?: number | null;
     /**
-     * Count of active Violations which haven't been acknowledged.
+     * Number of current orgPolicy violations which are not acknowledged.
      */
     activeViolationCount?: number | null;
   }
   /**
-   * Settings specific to the Key Management Service. This message is deprecated. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
+   * External key management systems(EKM) Provisioning response
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse {
+    /**
+     * Indicates Ekm provisioning error if any.
+     */
+    ekmProvisioningErrorDomain?: string | null;
+    /**
+     * Detailed error message if Ekm provisioning fails
+     */
+    ekmProvisioningErrorMapping?: string | null;
+    /**
+     * Indicates Ekm enrollment Provisioning of a given workload.
+     */
+    ekmProvisioningState?: string | null;
+  }
+  /**
+   * Settings specific to the Key Management Service.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadKMSSettings {
     /**
@@ -424,6 +491,23 @@ export namespace assuredworkloads_v1 {
      * Required. Input only. Immutable. [next_rotation_time] will be advanced by this period when the Key Management Service automatically rotates a key. Must be at least 24 hours and at most 876,000 hours.
      */
     rotationPeriod?: string | null;
+  }
+  /**
+   * Permissions granted to the AW Partner SA account for the customer workload
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions {
+    /**
+     * Optional. Allow partner to view violation alerts.
+     */
+    assuredWorkloadsMonitoring?: boolean | null;
+    /**
+     * Allow the partner to view inspectability logs and monitoring violations.
+     */
+    dataLogsViewer?: boolean | null;
+    /**
+     * Optional. Allow partner to view access approval logs.
+     */
+    serviceAccessApprover?: boolean | null;
   }
   /**
    * Represent the resources that are children of this Workload.
@@ -451,7 +535,7 @@ export namespace assuredworkloads_v1 {
      */
     resourceId?: string | null;
     /**
-     * Indicates the type of resource. This field should be specified to correspond the id to the right resource type (CONSUMER_FOLDER or ENCRYPTION_KEYS_PROJECT)
+     * Indicates the type of resource. This field should be specified to correspond the id to the right project type (CONSUMER_PROJECT or ENCRYPTION_KEYS_PROJECT)
      */
     resourceType?: string | null;
   }
@@ -502,7 +586,7 @@ export namespace assuredworkloads_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -560,52 +644,6 @@ export namespace assuredworkloads_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -697,56 +735,7 @@ export namespace assuredworkloads_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'organizations/my-organization/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -881,78 +870,6 @@ export namespace assuredworkloads_v1 {
 
     /**
      * Creates Assured Workload.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.workloads.create({
-     *     // Optional. A identifier associated with the workload and underlying projects which allows for the break down of billing costs for a workload. The value provided for the identifier will add a label to the workload and contained projects with the identifier as the value.
-     *     externalId: 'placeholder-value',
-     *     // Required. The resource name of the new Workload's parent. Must be of the form `organizations/{org_id\}/locations/{location_id\}`.
-     *     parent: 'organizations/my-organization/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "billingAccount": "my_billingAccount",
-     *       //   "complianceRegime": "my_complianceRegime",
-     *       //   "complianceStatus": {},
-     *       //   "compliantButDisallowedServices": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "enableSovereignControls": false,
-     *       //   "etag": "my_etag",
-     *       //   "kajEnrollmentState": "my_kajEnrollmentState",
-     *       //   "kmsSettings": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "partner": "my_partner",
-     *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
-     *       //   "resourceSettings": [],
-     *       //   "resources": [],
-     *       //   "saaEnrollmentResponse": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1047,49 +964,7 @@ export namespace assuredworkloads_v1 {
     }
 
     /**
-     * Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.workloads.delete({
-     *     // Optional. The etag of the workload. If this is provided, it must match the server's etag.
-     *     etag: 'placeholder-value',
-     *     // Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
-     *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error. In addition to assuredworkloads.workload.delete permission, the user should also have orgpolicy.policy.set permission on the deleted folder to remove Assured Workloads OrgPolicies.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1178,64 +1053,6 @@ export namespace assuredworkloads_v1 {
 
     /**
      * Gets Assured Workload associated with a CRM Node
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.workloads.get({
-     *     // Required. The resource name of the Workload to fetch. This is the workload's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
-     *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "billingAccount": "my_billingAccount",
-     *   //   "complianceRegime": "my_complianceRegime",
-     *   //   "complianceStatus": {},
-     *   //   "compliantButDisallowedServices": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "enableSovereignControls": false,
-     *   //   "etag": "my_etag",
-     *   //   "kajEnrollmentState": "my_kajEnrollmentState",
-     *   //   "kmsSettings": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "partner": "my_partner",
-     *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
-     *   //   "resourceSettings": [],
-     *   //   "resources": [],
-     *   //   "saaEnrollmentResponse": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1330,55 +1147,6 @@ export namespace assuredworkloads_v1 {
 
     /**
      * Lists Assured Workloads under a CRM Node.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.workloads.list({
-     *     // A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.
-     *     filter: 'placeholder-value',
-     *     // Page size.
-     *     pageSize: 'placeholder-value',
-     *     // Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id\}/locations/{location\}`.
-     *     parent: 'organizations/my-organization/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "workloads": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1475,91 +1243,105 @@ export namespace assuredworkloads_v1 {
     }
 
     /**
+     * Update the permissions settings for an existing partner workload. For force updates don't set etag field in the Workload. Only one update operation per workload can be in progress.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    mutatePartnerPermissions(
+      params: Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    mutatePartnerPermissions(
+      params?: Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1Workload>;
+    mutatePartnerPermissions(
+      params: Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    mutatePartnerPermissions(
+      params: Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+    ): void;
+    mutatePartnerPermissions(
+      params: Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+    ): void;
+    mutatePartnerPermissions(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+    ): void;
+    mutatePartnerPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1Workload>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:mutatePartnerPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1Workload>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1Workload>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates an existing workload. Currently allows updating of workload display_name and labels. For force updates don't set etag field in the Workload. Only one update operation per workload can be in progress.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.workloads.patch({
-     *     // Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
-     *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *     // Required. The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "billingAccount": "my_billingAccount",
-     *       //   "complianceRegime": "my_complianceRegime",
-     *       //   "complianceStatus": {},
-     *       //   "compliantButDisallowedServices": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "enableSovereignControls": false,
-     *       //   "etag": "my_etag",
-     *       //   "kajEnrollmentState": "my_kajEnrollmentState",
-     *       //   "kmsSettings": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "partner": "my_partner",
-     *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
-     *       //   "resourceSettings": [],
-     *       //   "resources": [],
-     *       //   "saaEnrollmentResponse": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "billingAccount": "my_billingAccount",
-     *   //   "complianceRegime": "my_complianceRegime",
-     *   //   "complianceStatus": {},
-     *   //   "compliantButDisallowedServices": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "enableSovereignControls": false,
-     *   //   "etag": "my_etag",
-     *   //   "kajEnrollmentState": "my_kajEnrollmentState",
-     *   //   "kmsSettings": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "partner": "my_partner",
-     *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
-     *   //   "resourceSettings": [],
-     *   //   "resources": [],
-     *   //   "saaEnrollmentResponse": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1654,57 +1436,6 @@ export namespace assuredworkloads_v1 {
 
     /**
      * Restrict the list of resources allowed in the Workload environment. The current list of allowed products can be found at https://cloud.google.com/assured-workloads/docs/supported-products In addition to assuredworkloads.workload.update permission, the user should also have orgpolicy.policy.set permission on the folder resource to use this functionality.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.workloads.restrictAllowedResources(
-     *       {
-     *         // Required. The resource name of the Workload. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
-     *         name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "restrictionType": "my_restrictionType"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1832,7 +1563,7 @@ export namespace assuredworkloads_v1 {
   export interface Params$Resource$Organizations$Locations$Workloads$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Workload to fetch. This is the workload's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     * Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
      */
     name?: string;
   }
@@ -1854,6 +1585,18 @@ export namespace assuredworkloads_v1 {
      * Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id\}/locations/{location\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Workloads$Mutatepartnerpermissions
+    extends StandardParameters {
+    /**
+     * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest;
   }
   export interface Params$Resource$Organizations$Locations$Workloads$Patch
     extends StandardParameters {
@@ -1892,58 +1635,6 @@ export namespace assuredworkloads_v1 {
 
     /**
      * Acknowledges an existing violation. By acknowledging a violation, users acknowledge the existence of a compliance violation in their workload and decide to ignore it due to a valid business justification. Acknowledgement is a permanent operation and it cannot be reverted.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.workloads.violations.acknowledge(
-     *       {
-     *         // Required. The resource name of the Violation to acknowledge. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
-     *         name: 'organizations/my-organization/locations/my-location/workloads/my-workload/violations/my-violation',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "comment": "my_comment",
-     *           //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2042,62 +1733,6 @@ export namespace assuredworkloads_v1 {
 
     /**
      * Retrieves Assured Workload Violation based on ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.workloads.violations.get({
-     *       // Required. The resource name of the Violation to fetch (ie. Violation.name). Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
-     *       name: 'organizations/my-organization/locations/my-location/workloads/my-workload/violations/my-violation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acknowledged": false,
-     *   //   "acknowledgementTime": "my_acknowledgementTime",
-     *   //   "auditLogLink": "my_auditLogLink",
-     *   //   "beginTime": "my_beginTime",
-     *   //   "category": "my_category",
-     *   //   "description": "my_description",
-     *   //   "exceptionAuditLogLink": "my_exceptionAuditLogLink",
-     *   //   "name": "my_name",
-     *   //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy",
-     *   //   "orgPolicyConstraint": "my_orgPolicyConstraint",
-     *   //   "remediation": {},
-     *   //   "resolveTime": "my_resolveTime",
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2193,61 +1828,6 @@ export namespace assuredworkloads_v1 {
 
     /**
      * Lists the Violations in the AssuredWorkload Environment. Callers may also choose to read across multiple Workloads as per [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash character) as a wildcard character instead of workload-id in the parent. Format `organizations/{org_id\}/locations/{location\}/workloads/-`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.workloads.violations.list({
-     *       // Optional. A custom filter for filtering by the Violations properties.
-     *       filter: 'placeholder-value',
-     *       // The end of the time window.
-     *       'interval.endTime': 'placeholder-value',
-     *       // The start of the time window.
-     *       'interval.startTime': 'placeholder-value',
-     *       // Optional. Page size.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Page token returned from previous request.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The Workload name. Format `organizations/{org_id\}/locations/{location\}/workloads/{workload\}`.
-     *       parent:
-     *         'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "violations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

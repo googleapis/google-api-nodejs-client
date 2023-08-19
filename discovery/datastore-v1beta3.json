@@ -336,20 +336,28 @@
       }
     }
   },
-  "revision": "20221018",
+  "revision": "20230806",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "Aggregation": {
-      "description": "Defines a aggregation that produces a single result.",
+      "description": "Defines an aggregation that produces a single result.",
       "id": "Aggregation",
       "properties": {
         "alias": {
-          "description": "Optional. Optional name of the property to store the result of the aggregation. If not provided, Datastore will pick a default name following the format `property_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS property_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) AS property_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to entity property name limitations.",
+          "description": "Optional. Optional name of the property to store the result of the aggregation. If not provided, Datastore will pick a default name following the format `property_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS property_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS property_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to entity property name limitations.",
           "type": "string"
+        },
+        "avg": {
+          "$ref": "Avg",
+          "description": "Average aggregator."
         },
         "count": {
           "$ref": "Count",
           "description": "Count aggregator."
+        },
+        "sum": {
+          "$ref": "Sum",
+          "description": "Sum aggregator."
         }
       },
       "type": "object"
@@ -465,6 +473,17 @@
       },
       "type": "object"
     },
+    "Avg": {
+      "description": "Average of the values of the requested property. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. Infinity math follows IEEE-754 standards. * If the aggregated value set is empty, returns `NULL`. * Always returns the result as a double.",
+      "id": "Avg",
+      "properties": {
+        "property": {
+          "$ref": "PropertyReference",
+          "description": "The property to aggregate on."
+        }
+      },
+      "type": "object"
+    },
     "BeginTransactionRequest": {
       "description": "The request for Datastore.BeginTransaction.",
       "id": "BeginTransactionRequest",
@@ -560,11 +579,13 @@
           "description": "The operator for combining multiple filters.",
           "enum": [
             "OPERATOR_UNSPECIFIED",
-            "AND"
+            "AND",
+            "OR"
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
-            "The results are required to satisfy each of the combined filters."
+            "The results are required to satisfy each of the combined filters.",
+            "Documents are required to satisfy at least one of the combined filters."
           ],
           "type": "string"
         }
@@ -576,7 +597,7 @@
       "id": "Count",
       "properties": {
         "upTo": {
-          "description": "Optional. Optional constraint on the maximum number of entities to count. This provides a way to set an upper bound on the number of entities to scan, limiting latency and cost. Unspecified is interpreted as no bound. If a zero value is provided, a count result of zero should always be expected. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be non-negative when present.",
+          "description": "Optional. Optional constraint on the maximum number of entities to count. This provides a way to set an upper bound on the number of entities to scan, limiting latency, and cost. Unspecified is interpreted as no bound. If a zero value is provided, a count result of zero should always be expected. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be non-negative when present.",
           "format": "int64",
           "type": "string"
         }
@@ -584,7 +605,7 @@
       "type": "object"
     },
     "Entity": {
-      "description": "A Datastore data object. An entity is limited to 1 megabyte when stored. That _roughly_ corresponds to a limit of 1 megabyte for the serialized form of this message.",
+      "description": "A Datastore data object. Must not exceed 1 MiB - 4 bytes.",
       "id": "Entity",
       "properties": {
         "key": {
@@ -595,7 +616,7 @@
           "additionalProperties": {
             "$ref": "Value"
           },
-          "description": "The entity's properties. The map's keys are property names. A property name matching regex `__.*__` is reserved. A reserved property name is forbidden in certain documented contexts. The name must not contain more than 500 characters. The name cannot be `\"\"`.",
+          "description": "The entity's properties. The map's keys are property names. A property name matching regex `__.*__` is reserved. A reserved property name is forbidden in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.",
           "type": "object"
         }
       },
@@ -605,6 +626,11 @@
       "description": "The result of fetching an entity from Datastore.",
       "id": "EntityResult",
       "properties": {
+        "createTime": {
+          "description": "The time at which the entity was created. This field is set for `FULL` entity results. If this entity is missing, this field will not be set.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "cursor": {
           "description": "A cursor that points to the position after the result entity. Set only when the `EntityResult` is part of a `QueryResultBatch` message.",
           "format": "byte",
@@ -1333,6 +1359,11 @@
           "description": "Whether a conflict was detected for this mutation. Always false when a conflict detection strategy field is not set in the mutation.",
           "type": "boolean"
         },
+        "createTime": {
+          "description": "The create time of the entity. This field will not be set after a 'delete'.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "key": {
           "$ref": "Key",
           "description": "The automatically allocated key. Set only when the mutation allocated a key."
@@ -1421,10 +1452,10 @@
             "The given `property` is greater than the given `value`. Requires: * That `property` comes first in `order_by`.",
             "The given `property` is greater than or equal to the given `value`. Requires: * That `property` comes first in `order_by`.",
             "The given `property` is equal to the given `value`.",
-            "The given `property` is equal to at least one value in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN` or `NOT_IN` is in the same query.",
+            "The given `property` is equal to at least one value in the given array. Requires: * That `value` is a non-empty `ArrayValue`, subject to disjunction limits. * No `NOT_IN` is in the same query.",
             "The given `property` is not equal to the given `value`. Requires: * No other `NOT_EQUAL` or `NOT_IN` is in the same query. * That `property` comes first in the `order_by`.",
-            "Limit the result set to the given entity and its descendants. Requires: * That `value` is an entity key.",
-            "The value of the `property` is not in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN`, `NOT_IN`, `NOT_EQUAL` is in the same query. * That `field` comes first in the `order_by`."
+            "Limit the result set to the given entity and its descendants. Requires: * That `value` is an entity key. * All evaluated disjunctions must have the same `HAS_ANCESTOR` filter.",
+            "The value of the `property` is not in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `OR`, `IN`, `NOT_IN`, `NOT_EQUAL` is in the same query. * That `field` comes first in the `order_by`."
           ],
           "type": "string"
         },
@@ -1480,7 +1511,7 @@
       "id": "Query",
       "properties": {
         "distinctOn": {
-          "description": "The properties to make distinct. The query results will contain the first result for each distinct combination of values for the given properties (if empty, all results are returned).",
+          "description": "The properties to make distinct. The query results will contain the first result for each distinct combination of values for the given properties (if empty, all results are returned). Requires: * If `order` is specified, the set of distinct on properties must appear before the non-distinct on properties in `order`.",
           "items": {
             "$ref": "PropertyReference"
           },
@@ -1612,7 +1643,7 @@
       "id": "ReadOnly",
       "properties": {
         "readTime": {
-          "description": "Reads entities at the given time. This may not be older than 60 seconds.",
+          "description": "Reads entities at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -1638,7 +1669,7 @@
           "type": "string"
         },
         "readTime": {
-          "description": "Reads entities as they were at the given time. This may not be older than 270 seconds. This value is only supported for Cloud Firestore in Datastore mode.",
+          "description": "Reads entities as they were at the given time. This value is only supported for Cloud Firestore in Datastore mode. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1776,6 +1807,17 @@
         "query": {
           "$ref": "Query",
           "description": "The parsed form of the `GqlQuery` from the request, if it was set."
+        }
+      },
+      "type": "object"
+    },
+    "Sum": {
+      "description": "Sum of the values of the requested property. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. Infinity math follows IEEE-754 standards. * If the aggregated value set is empty, returns 0. * Returns a 64-bit integer if all aggregated numbers are integers and the sum result does not overflow. Otherwise, the result is returned as a double. Note that even if all the aggregated values are integers, the result is returned as a double if it cannot fit within a 64-bit signed integer. When this occurs, the returned value will lose precision. * When underflow occurs, floating-point aggregation is non-deterministic. This means that running the same query repeatedly without any changes to the underlying values could produce slightly different results each time. In those cases, values should be stored as integers over floating-point numbers.",
+      "id": "Sum",
+      "properties": {
+        "property": {
+          "$ref": "PropertyReference",
+          "description": "The property to aggregate on."
         }
       },
       "type": "object"

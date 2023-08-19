@@ -1,5 +1,31 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v7.0.0...serviceusage-v8.0.0) (2023-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **serviceusage:** This release has breaking changes.
+
+### Features
+
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+* regenerate index files ([4216892](https://github.com/googleapis/google-api-nodejs-client/commit/42168925208e087c952d1fc8267847731d05ae9f))
+* **serviceusage:** update the API ([6f08362](https://github.com/googleapis/google-api-nodejs-client/commit/6f0836293aaeb2da119c41fe6c1f5782d8087e25))
+* **serviceusage:** update the API ([cf72cfd](https://github.com/googleapis/google-api-nodejs-client/commit/cf72cfd02b0f1f0ea5d30a84cd0a89b23c898225))
+* **serviceusage:** update the API ([cd64af0](https://github.com/googleapis/google-api-nodejs-client/commit/cd64af023954ec0668204c0c7e52be16a1045152))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v6.0.0...serviceusage-v7.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v5.1.0...serviceusage-v6.0.0) (2022-09-21)
 
 

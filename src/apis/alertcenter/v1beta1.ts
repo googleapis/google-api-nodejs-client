@@ -135,25 +135,17 @@ export namespace alertcenter_v1beta1 {
      */
     additionalDetails?: Schema$EntityList;
     /**
-     * Displayed after Customer abuse detected - {alert_descriptor\}. If missing, alert name will be displayed as Customer abuse detected.
-     */
-    alertDescriptor?: string | null;
-    /**
-     * Customizable text to display in the next steps section of the alert. Will be parsed as HTML to allow new paragraphs and hyperlinks.
-     */
-    nextSteps?: string | null;
-    /**
      * Product that the abuse is originating from.
      */
     product?: string | null;
     /**
-     * Unique identifier of each alert that is onboarded.
+     * Unique identifier of each sub alert that is onboarded.
      */
     subAlertId?: string | null;
     /**
-     * Customizable text to display in the summary section of the alert. Will be parsed as HTML to allow new paragraphs and hyperlinks.
+     * Variation of AbuseDetected alerts. The variation_type determines the texts displayed the alert details. This differs from sub_alert_id because each sub alert can have multiple variation_types, representing different stages of the alert.
      */
-    summary?: string | null;
+    variationType?: string | null;
   }
   /**
    * Details about why an account is receiving an account suspension warning.
@@ -268,7 +260,7 @@ export namespace alertcenter_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The unique identifier of the Google account of the customer.
+     * Output only. The unique identifier of the Google Workspace account of the customer.
      */
     customerId?: string | null;
     /**
@@ -325,7 +317,7 @@ export namespace alertcenter_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The unique identifier of the Google account of the customer.
+     * Output only. The unique identifier of the Google Workspace account of the customer.
      */
     customerId?: string | null;
     /**
@@ -354,7 +346,7 @@ export namespace alertcenter_v1beta1 {
      */
     assignee?: string | null;
     /**
-     * Output only. The unique identifier of the Google account of the customer.
+     * Output only. The unique identifier of the Google Workspace account of the customer.
      */
     customerId?: string | null;
     /**
@@ -375,19 +367,19 @@ export namespace alertcenter_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * The explanation message associated with ApnsCertificationExpiring and ApnsCertificationExpired alerts.
+   * The explanation message associated with "APNS certificate is expiring soon" and "APNS certificate has expired" alerts.
    */
   export interface Schema$ApnsCertificateExpirationInfo {
     /**
-     * The Apple ID used for the certificate, may be blank if admins did not enter it.
+     * The Apple ID used to create the certificate. It may be blank if admins didn't enter it.
      */
     appleId?: string | null;
     /**
-     * The expiration date of the APNS Certificate.
+     * The expiration date of the APNS certificate.
      */
     expirationTime?: string | null;
     /**
-     * The UID for the certificate.
+     * The UID of the certificate.
      */
     uid?: string | null;
   }
@@ -481,11 +473,11 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$BatchDeleteAlertsRequest {
     /**
-     * Required. list of alert IDs.
+     * Required. The list of alert IDs to delete.
      */
     alertId?: string[] | null;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string | null;
   }
@@ -494,7 +486,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$BatchDeleteAlertsResponse {
     /**
-     * The status details for each failed alert_id.
+     * The status details for each failed `alert_id`.
      */
     failedAlertStatus?: {[key: string]: Schema$Status} | null;
     /**
@@ -507,11 +499,11 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$BatchUndeleteAlertsRequest {
     /**
-     * Required. list of alert IDs.
+     * Required. The list of alert IDs to undelete.
      */
     alertId?: string[] | null;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string | null;
   }
@@ -520,7 +512,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$BatchUndeleteAlertsResponse {
     /**
-     * The status details for each failed alert_id.
+     * The status details for each failed `alert_id`.
      */
     failedAlertStatus?: {[key: string]: Schema$Status} | null;
     /**
@@ -710,6 +702,10 @@ export namespace alertcenter_v1beta1 {
      * The recipient of this email.
      */
     recipient?: string | null;
+    /**
+     * The sent time of the email.
+     */
+    sentTime?: string | null;
     /**
      * The email subject text (only available for reported emails).
      */
@@ -1184,11 +1180,45 @@ export namespace alertcenter_v1beta1 {
     serialNumber?: string | null;
   }
   /**
+   * Details for an invalid transfer or forward.
+   */
+  export interface Schema$TransferError {
+    /**
+     * User's email address. This may be unavailable if the entity was deleted.
+     */
+    email?: string | null;
+    /**
+     * Type of entity being transferred to. For ring group members, this should always be USER.
+     */
+    entityType?: string | null;
+    /**
+     * Ring group or auto attendant ID. Not set for users.
+     */
+    id?: string | null;
+    /**
+     * Reason for the error.
+     */
+    invalidReason?: string | null;
+    /**
+     * User's full name, or the ring group / auto attendant name. This may be unavailable if the entity was deleted.
+     */
+    name?: string | null;
+  }
+  /**
+   * Error related to transferring or forwarding a phone call.
+   */
+  export interface Schema$TransferMisconfiguration {
+    /**
+     * Details for each invalid transfer or forward.
+     */
+    errors?: Schema$TransferError[];
+  }
+  /**
    * A request to undelete a specific alert that was marked for deletion.
    */
   export interface Schema$UndeleteAlertRequest {
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string | null;
   }
@@ -1227,6 +1257,57 @@ export namespace alertcenter_v1beta1 {
      */
     resourceName?: string | null;
   }
+  /**
+   * Issue(s) with sending to voicemail.
+   */
+  export interface Schema$VoicemailMisconfiguration {
+    /**
+     * Issue(s) with voicemail recipients.
+     */
+    errors?: Schema$VoicemailRecipientError[];
+  }
+  /**
+   * Issue(s) with a voicemail recipient.
+   */
+  export interface Schema$VoicemailRecipientError {
+    /**
+     * Email address of the invalid recipient. This may be unavailable if the recipient was deleted.
+     */
+    email?: string | null;
+    /**
+     * Reason for the error.
+     */
+    invalidReason?: string | null;
+  }
+  /**
+   * An alert triggered when Google Voice configuration becomes invalid, generally due to an external entity being modified or deleted.
+   */
+  export interface Schema$VoiceMisconfiguration {
+    /**
+     * Name of the entity whose configuration is now invalid.
+     */
+    entityName?: string | null;
+    /**
+     * Type of the entity whose configuration is now invalid.
+     */
+    entityType?: string | null;
+    /**
+     * Link that the admin can follow to fix the issue.
+     */
+    fixUri?: string | null;
+    /**
+     * Issue(s) with members of a ring group.
+     */
+    membersMisconfiguration?: Schema$TransferMisconfiguration;
+    /**
+     * Issue(s) with transferring or forwarding to an external entity.
+     */
+    transferMisconfiguration?: Schema$TransferMisconfiguration;
+    /**
+     * Issue(s) with sending to voicemail.
+     */
+    voicemailMisconfiguration?: Schema$VoicemailMisconfiguration;
+  }
 
   export class Resource$Alerts {
     context: APIRequestContext;
@@ -1238,55 +1319,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Performs batch delete operation on alerts.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.alerts.batchDelete({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alertId": [],
-     *       //   "customerId": "my_customerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "failedAlertStatus": {},
-     *   //   "successAlertIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1381,55 +1413,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Performs batch undelete operation on alerts.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.alerts.batchUndelete({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alertId": [],
-     *       //   "customerId": "my_customerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "failedAlertStatus": {},
-     *   //   "successAlertIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1524,48 +1507,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Marks the specified alert for deletion. An alert that has been marked for deletion is removed from Alert Center after 30 days. Marking an alert for deletion has no effect on an alert which has already been marked for deletion. Attempting to mark a nonexistent alert for deletion results in a `NOT_FOUND` error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.alerts.delete({
-     *     // Required. The identifier of the alert to delete.
-     *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
-     *     customerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1652,62 +1593,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Gets the specified alert. Attempting to get a nonexistent alert returns `NOT_FOUND` error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.alerts.get({
-     *     // Required. The identifier of the alert to retrieve.
-     *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
-     *     customerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alertId": "my_alertId",
-     *   //   "createTime": "my_createTime",
-     *   //   "customerId": "my_customerId",
-     *   //   "data": {},
-     *   //   "deleted": false,
-     *   //   "endTime": "my_endTime",
-     *   //   "etag": "my_etag",
-     *   //   "metadata": {},
-     *   //   "securityInvestigationToolLink": "my_securityInvestigationToolLink",
-     *   //   "source": "my_source",
-     *   //   "startTime": "my_startTime",
-     *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1794,56 +1679,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Returns the metadata of an alert. Attempting to get metadata for a non-existent alert returns `NOT_FOUND` error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.alerts.getMetadata({
-     *     // Required. The identifier of the alert this metadata belongs to.
-     *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
-     *     customerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alertId": "my_alertId",
-     *   //   "assignee": "my_assignee",
-     *   //   "customerId": "my_customerId",
-     *   //   "etag": "my_etag",
-     *   //   "severity": "my_severity",
-     *   //   "status": "my_status",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1931,57 +1766,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Lists the alerts.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.alerts.list({
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
-     *     customerId: 'placeholder-value',
-     *     // Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
-     *     filter: 'placeholder-value',
-     *     // Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by="create_time desc"`. Currently, supported sorting are `create_time asc`, `create_time desc`, `update_time desc`
-     *     orderBy: 'placeholder-value',
-     *     // Optional. The requested page size. Server may return fewer items than requested. If unspecified, server picks an appropriate default.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A token identifying a page of results the server should return. If empty, a new iteration is started. To continue an iteration, pass in the value from the previous ListAlertsResponse's next_page_token field.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alerts": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2068,68 +1852,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Restores, or "undeletes", an alert that was marked for deletion within the past 30 days. Attempting to undelete an alert which was marked for deletion over 30 days ago (which has been removed from the Alert Center database) or a nonexistent alert returns a `NOT_FOUND` error. Attempting to undelete an alert which has not been marked for deletion has no effect.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.alerts.undelete({
-     *     // Required. The identifier of the alert to undelete.
-     *     alertId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "customerId": "my_customerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alertId": "my_alertId",
-     *   //   "createTime": "my_createTime",
-     *   //   "customerId": "my_customerId",
-     *   //   "data": {},
-     *   //   "deleted": false,
-     *   //   "endTime": "my_endTime",
-     *   //   "etag": "my_etag",
-     *   //   "metadata": {},
-     *   //   "securityInvestigationToolLink": "my_securityInvestigationToolLink",
-     *   //   "source": "my_source",
-     *   //   "startTime": "my_startTime",
-     *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2235,7 +1957,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
   }
@@ -2245,7 +1967,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
   }
@@ -2256,13 +1978,13 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert metadata is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
   }
   export interface Params$Resource$Alerts$List extends StandardParameters {
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alerts are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
     /**
@@ -2302,68 +2024,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Creates new feedback for an alert. Attempting to create a feedback for a non-existent alert returns `NOT_FOUND` error. Attempting to create a feedback for an alert that is marked for deletion returns `FAILED_PRECONDITION' error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.alerts.feedback.create({
-     *     // Required. The identifier of the alert this feedback belongs to.
-     *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
-     *     customerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alertId": "my_alertId",
-     *       //   "createTime": "my_createTime",
-     *       //   "customerId": "my_customerId",
-     *       //   "email": "my_email",
-     *       //   "feedbackId": "my_feedbackId",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alertId": "my_alertId",
-     *   //   "createTime": "my_createTime",
-     *   //   "customerId": "my_customerId",
-     *   //   "email": "my_email",
-     *   //   "feedbackId": "my_feedbackId",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2451,52 +2111,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Lists all the feedback for an alert. Attempting to list feedbacks for a non-existent alert returns `NOT_FOUND` error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.alerts.feedback.list({
-     *     // Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
-     *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
-     *     customerId: 'placeholder-value',
-     *     // Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
-     *     filter: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "feedback": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2597,7 +2211,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
 
@@ -2613,7 +2227,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert is associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
     /**
@@ -2630,48 +2244,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Returns customer-level settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.getSettings({
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
-     *     customerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "notifications": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2756,56 +2328,6 @@ export namespace alertcenter_v1beta1 {
 
     /**
      * Updates the customer-level settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const alertcenter = google.alertcenter('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/apps.alerts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await alertcenter.updateSettings({
-     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
-     *     customerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "notifications": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "notifications": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2892,14 +2414,14 @@ export namespace alertcenter_v1beta1 {
   export interface Params$Resource$V1beta1$Getsettings
     extends StandardParameters {
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must/ have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
   }
   export interface Params$Resource$V1beta1$Updatesettings
     extends StandardParameters {
     /**
-     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace account of the customer the alert settings are associated with. The `customer_id` must have the initial "C" stripped (for example, `046psxkn`). Inferred from the caller identity if not provided. [Find your customer ID](https://support.google.com/cloudidentity/answer/10070793).
      */
     customerId?: string;
 

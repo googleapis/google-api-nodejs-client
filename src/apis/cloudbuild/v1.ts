@@ -201,7 +201,7 @@ export namespace cloudbuild_v1 {
      */
     fileHash?: Schema$FileHashes[];
     /**
-     * The path of an artifact in a Google Cloud Storage bucket, with the generation number. For example, `gs://mybucket/path/to/output.jar#generation`.
+     * The path of an artifact in a Cloud Storage bucket, with the generation number. For example, `gs://mybucket/path/to/output.jar#generation`.
      */
     location?: string | null;
   }
@@ -217,6 +217,10 @@ export namespace cloudbuild_v1 {
      * A list of Maven artifacts to be uploaded to Artifact Registry upon successful completion of all build steps. Artifacts in the workspace matching specified paths globs will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any artifacts fail to be pushed, the build is marked FAILURE.
      */
     mavenArtifacts?: Schema$MavenArtifact[];
+    /**
+     * A list of npm packages to be uploaded to Artifact Registry upon successful completion of all build steps. Npm packages in the specified paths will be uploaded to the specified Artifact Registry repository using the builder service account's credentials. If any packages fail to be pushed, the build is marked FAILURE.
+     */
+    npmPackages?: Schema$NpmPackage[];
     /**
      * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE.
      */
@@ -487,7 +491,7 @@ export namespace cloudbuild_v1 {
      */
     images?: string[] | null;
     /**
-     * Google Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket\}/log-${build_id\}.txt`.
+     * Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket\}/log-${build_id\}.txt`.
      */
     logsBucket?: string | null;
     /**
@@ -555,7 +559,7 @@ export namespace cloudbuild_v1 {
      */
     tags?: string[] | null;
     /**
-     * Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be `TIMEOUT`. `timeout` starts ticking from `startTime`. Default time is ten minutes.
+     * Amount of time that this build should be allowed to run, to second granularity. If this amount of time elapses, work on the build will cease and the build status will be `TIMEOUT`. `timeout` starts ticking from `startTime`. Default time is 60 minutes.
      */
     timeout?: string | null;
     /**
@@ -598,7 +602,15 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$BuildOptions {
     /**
-     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.
+     * Option to include built-in and custom substitutions as env variables for all build steps.
+     */
+    automapSubstitutions?: boolean | null;
+    /**
+     * Optional. Option to specify how default logs buckets are setup.
+     */
+    defaultLogsBucketBehavior?: string | null;
+    /**
+     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.
      */
     diskSizeGb?: string | null;
     /**
@@ -614,7 +626,7 @@ export namespace cloudbuild_v1 {
      */
     logging?: string | null;
     /**
-     * Option to define build log streaming behavior to Google Cloud Storage.
+     * Option to define build log streaming behavior to Cloud Storage.
      */
     logStreamingOption?: string | null;
     /**
@@ -666,6 +678,10 @@ export namespace cloudbuild_v1 {
      * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
+    /**
+     * Option to include built-in and custom substitutions as env variables for this build step. This option will override the global option in BuildOption.
+     */
+    automapSubstitutions?: boolean | null;
     /**
      * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
      */
@@ -804,6 +820,10 @@ export namespace cloudbuild_v1 {
      */
     pubsubConfig?: Schema$PubsubConfig;
     /**
+     * The configuration of a trigger that creates a build whenever an event from Repo API is received.
+     */
+    repositoryEventConfig?: Schema$RepositoryEventConfig;
+    /**
      * The `Trigger` name with format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`, where {trigger\} is a unique identifier generated by the service.
      */
     resourceName?: string | null;
@@ -870,6 +890,23 @@ export namespace cloudbuild_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Location of the source in a 2nd-gen Google Cloud Build repository resource.
+   */
+  export interface Schema$ConnectedRepository {
+    /**
+     * Directory, relative to the source root, in which to run the build.
+     */
+    dir?: string | null;
+    /**
+     * Required. Name of the Google Cloud Build repository, formatted as `projects/x/locations/x/connections/x/repositories/x`.
+     */
+    repository?: string | null;
+    /**
+     * The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref.
+     */
+    revision?: string | null;
+  }
   /**
    * Metadata for `CreateBitbucketServerConfig` operation.
    */
@@ -1075,6 +1112,10 @@ export namespace cloudbuild_v1 {
      */
     path?: string | null;
     /**
+     * The fully qualified resource name of the Repos API repository. Either URI or repository can be specified. If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.
+     */
+    repository?: string | null;
+    /**
      * See RepoType above.
      */
     repoType?: string | null;
@@ -1108,7 +1149,7 @@ export namespace cloudbuild_v1 {
      */
     hostUrl?: string | null;
     /**
-     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string | null;
     /**
@@ -1170,7 +1211,7 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$GitHubEventsConfig {
     /**
-     * Optional. The resource name of the github enterprise config that should be applied to this installation. For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * Optional. The resource name of the github enterprise config that should be applied to this installation. For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     enterpriseConfigResourceName?: string | null;
     /**
@@ -1362,46 +1403,34 @@ export namespace cloudbuild_v1 {
      */
     ref?: string | null;
     /**
+     * The connected repository resource name, in the format `projects/x/locations/x/connections/x/repositories/x`. Either `uri` or `repository` can be specified and is required.
+     */
+    repository?: string | null;
+    /**
      * See RepoType below.
      */
     repoType?: string | null;
     /**
-     * The URI of the repo. Either uri or repository can be specified and is required.
+     * The URI of the repo (e.g. https://github.com/user/repo.git). Either `uri` or `repository` can be specified and is required.
      */
     uri?: string | null;
   }
   /**
-   * Represents the metadata of the long-running operation.
+   * Location of the source in any accessible Git repository.
    */
-  export interface Schema$GoogleDevtoolsCloudbuildV2OperationMetadata {
+  export interface Schema$GitSource {
     /**
-     * Output only. API version used to start the operation.
+     * Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.
      */
-    apiVersion?: string | null;
+    dir?: string | null;
     /**
-     * Output only. The time the operation was created.
+     * The revision to fetch from the Git repository such as a branch, a tag, a commit SHA, or any Git ref. Cloud Build uses `git fetch` to fetch the revision from the Git repository; therefore make sure that the string you provide for `revision` is parsable by the command. For information on string values accepted by `git fetch`, see https://git-scm.com/docs/gitrevisions#_specifying_revisions. For information on `git fetch`, see https://git-scm.com/docs/git-fetch.
      */
-    createTime?: string | null;
+    revision?: string | null;
     /**
-     * Output only. The time the operation finished running.
+     * Location of the Git repo to build. This will be used as a `git remote`, see https://git-scm.com/docs/git-remote.
      */
-    endTime?: string | null;
-    /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    requestedCancellation?: boolean | null;
-    /**
-     * Output only. Human-readable status of the operation, if any.
-     */
-    statusMessage?: string | null;
-    /**
-     * Output only. Server-defined resource path for the target of the operation.
-     */
-    target?: string | null;
-    /**
-     * Output only. Name of the verb executed by the operation.
-     */
-    verb?: string | null;
+    url?: string | null;
   }
   /**
    * Container message for hash values.
@@ -1432,15 +1461,6 @@ export namespace cloudbuild_v1 {
      * Application specific response metadata. Must be set in the first response for streaming APIs.
      */
     extensions?: Array<{[key: string]: any}> | null;
-  }
-  /**
-   * HTTPDelivery is the delivery configuration for an HTTP notification.
-   */
-  export interface Schema$HTTPDelivery {
-    /**
-     * The URI to which JSON-containing HTTP POST requests should be sent.
-     */
-    uri?: string | null;
   }
   /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
@@ -1592,100 +1612,23 @@ export namespace cloudbuild_v1 {
      * Required. Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to `WorkerPool.project_id` on the service producer network. Must be in the format `projects/{project\}/global/networks/{network\}`, where `{project\}` is a project number, such as `12345`, and `{network\}` is the name of a VPC network in the project. See [Understanding network configuration options](https://cloud.google.com/build/docs/private-pools/set-up-private-pool-environment)
      */
     peeredNetwork?: string | null;
+    /**
+     * Immutable. Subnet IP range within the peered network. This is specified in CIDR notation with a slash and the subnet prefix size. You can optionally specify an IP address before the subnet prefix value. e.g. `192.168.0.0/29` would specify an IP range starting at 192.168.0.0 with a prefix size of 29 bits. `/16` would specify a prefix size of 16 bits, with an automatically determined IP within the peered VPC. If unspecified, a value of `/24` will be used.
+     */
+    peeredNetworkIpRange?: string | null;
   }
   /**
-   * Notification is the container which holds the data that is relevant to this particular notification.
+   * Npm package to upload to Artifact Registry upon successful completion of all build steps.
    */
-  export interface Schema$Notification {
+  export interface Schema$NpmPackage {
     /**
-     * The filter string to use for notification filtering. Currently, this is assumed to be a CEL program. See https://opensource.google/projects/cel for more.
+     * Path to the package.json. e.g. workspace/path/to/package
      */
-    filter?: string | null;
+    packagePath?: string | null;
     /**
-     * Configuration for HTTP delivery.
+     * Artifact Registry repository, in the form "https://$REGION-npm.pkg.dev/$PROJECT/$REPOSITORY" Npm package in the workspace specified by path will be zipped and uploaded to Artifact Registry with this location as a prefix.
      */
-    httpDelivery?: Schema$HTTPDelivery;
-    /**
-     * Configuration for Slack delivery.
-     */
-    slackDelivery?: Schema$SlackDelivery;
-    /**
-     * Configuration for SMTP (email) delivery.
-     */
-    smtpDelivery?: Schema$SMTPDelivery;
-    /**
-     * Escape hatch for users to supply custom delivery configs.
-     */
-    structDelivery?: {[key: string]: any} | null;
-  }
-  /**
-   * NotifierConfig is the top-level configuration message.
-   */
-  export interface Schema$NotifierConfig {
-    /**
-     * The API version of this configuration format.
-     */
-    apiVersion?: string | null;
-    /**
-     * The type of notifier to use (e.g. SMTPNotifier).
-     */
-    kind?: string | null;
-    /**
-     * Metadata for referring to/handling/deploying this notifier.
-     */
-    metadata?: Schema$NotifierMetadata;
-    /**
-     * The actual configuration for this notifier.
-     */
-    spec?: Schema$NotifierSpec;
-  }
-  /**
-   * NotifierMetadata contains the data which can be used to reference or describe this notifier.
-   */
-  export interface Schema$NotifierMetadata {
-    /**
-     * The human-readable and user-given name for the notifier. For example: "repo-merge-email-notifier".
-     */
-    name?: string | null;
-    /**
-     * The string representing the name and version of notifier to deploy. Expected to be of the form of "/:". For example: "gcr.io/my-project/notifiers/smtp:1.2.34".
-     */
-    notifier?: string | null;
-  }
-  /**
-   * NotifierSecret is the container that maps a secret name (reference) to its Google Cloud Secret Manager resource path.
-   */
-  export interface Schema$NotifierSecret {
-    /**
-     * Name is the local name of the secret, such as the verbatim string "my-smtp-password".
-     */
-    name?: string | null;
-    /**
-     * Value is interpreted to be a resource path for fetching the actual (versioned) secret data for this secret. For example, this would be a Google Cloud Secret Manager secret version resource path like: "projects/my-project/secrets/my-secret/versions/latest".
-     */
-    value?: string | null;
-  }
-  /**
-   * NotifierSecretRef contains the reference to a secret stored in the corresponding NotifierSpec.
-   */
-  export interface Schema$NotifierSecretRef {
-    /**
-     * The value of `secret_ref` should be a `name` that is registered in a `Secret` in the `secrets` list of the `Spec`.
-     */
-    secretRef?: string | null;
-  }
-  /**
-   * NotifierSpec is the configuration container for notifications.
-   */
-  export interface Schema$NotifierSpec {
-    /**
-     * The configuration of this particular notifier.
-     */
-    notification?: Schema$Notification;
-    /**
-     * Configurations for secret resources used by this particular notifier.
-     */
-    secrets?: Schema$NotifierSecret[];
+    repository?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1708,7 +1651,7 @@ export namespace cloudbuild_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1875,6 +1818,27 @@ export namespace cloudbuild_v1 {
     connectedRepository?: Schema$GitLabRepositoryId;
   }
   /**
+   * The configuration of a trigger that creates a build whenever an event from Repo API is received.
+   */
+  export interface Schema$RepositoryEventConfig {
+    /**
+     * Filter to match changes in pull requests.
+     */
+    pullRequest?: Schema$PullRequestFilter;
+    /**
+     * Filter to match changes in refs like branches, tags.
+     */
+    push?: Schema$PushFilter;
+    /**
+     * The resource name of the Repo API resource.
+     */
+    repository?: string | null;
+    /**
+     * Output only. The type of the SCM vendor the repository points to.
+     */
+    repositoryType?: string | null;
+  }
+  /**
    * Location of the source in a Google Cloud Source Repository.
    */
   export interface Schema$RepoSource {
@@ -1940,6 +1904,10 @@ export namespace cloudbuild_v1 {
      */
     mavenArtifacts?: Schema$UploadedMavenArtifact[];
     /**
+     * Npm packages uploaded to Artifact Registry at the end of the build.
+     */
+    npmPackages?: Schema$UploadedNpmPackage[];
+    /**
      * Number of non-container artifacts uploaded to Cloud Storage. Only populated when artifacts are uploaded to Cloud Storage.
      */
     numArtifacts?: string | null;
@@ -1981,39 +1949,6 @@ export namespace cloudbuild_v1 {
      * Required. ID of the trigger.
      */
     triggerId?: string | null;
-  }
-  /**
-   * Represents the custom metadata of the RunWorkflow long-running operation.
-   */
-  export interface Schema$RunWorkflowCustomOperationMetadata {
-    /**
-     * Output only. API version used to start the operation.
-     */
-    apiVersion?: string | null;
-    /**
-     * Output only. The time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. The time the operation finished running.
-     */
-    endTime?: string | null;
-    /**
-     * Output only. ID of the pipeline run created by RunWorkflow.
-     */
-    pipelineRunId?: string | null;
-    /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    requestedCancellation?: boolean | null;
-    /**
-     * Output only. Server-defined resource path for the target of the operation.
-     */
-    target?: string | null;
-    /**
-     * Output only. Name of the verb executed by the operation.
-     */
-    verb?: string | null;
   }
   /**
    * Pairs a set of secret environment variables containing encrypted values with the Cloud KMS key to use to decrypt the value. Note: Use `kmsKeyName` with `available_secrets` instead of using `kmsKeyName` with `secret`. For instructions see: https://cloud.google.com/cloud-build/docs/securing-builds/use-encrypted-credentials.
@@ -2064,57 +1999,27 @@ export namespace cloudbuild_v1 {
     service?: string | null;
   }
   /**
-   * SlackDelivery is the delivery configuration for delivering Slack messages via webhooks. See Slack webhook documentation at: https://api.slack.com/messaging/webhooks.
-   */
-  export interface Schema$SlackDelivery {
-    /**
-     * The secret reference for the Slack webhook URI for sending messages to a channel.
-     */
-    webhookUri?: Schema$NotifierSecretRef;
-  }
-  /**
-   * SMTPDelivery is the delivery configuration for an SMTP (email) notification.
-   */
-  export interface Schema$SMTPDelivery {
-    /**
-     * This is the SMTP account/email that appears in the `From:` of the email. If empty, it is assumed to be sender.
-     */
-    fromAddress?: string | null;
-    /**
-     * The SMTP sender's password.
-     */
-    password?: Schema$NotifierSecretRef;
-    /**
-     * The SMTP port of the server.
-     */
-    port?: string | null;
-    /**
-     * This is the list of addresses to which we send the email (i.e. in the `To:` of the email).
-     */
-    recipientAddresses?: string[] | null;
-    /**
-     * This is the SMTP account/email that is used to send the message.
-     */
-    senderAddress?: string | null;
-    /**
-     * The address of the SMTP server.
-     */
-    server?: string | null;
-  }
-  /**
    * Location of the source in a supported storage service.
    */
   export interface Schema$Source {
+    /**
+     * Optional. If provided, get the source from this 2nd-gen Google Cloud Build repository resource.
+     */
+    connectedRepository?: Schema$ConnectedRepository;
+    /**
+     * If provided, get the source from this Git repository.
+     */
+    gitSource?: Schema$GitSource;
     /**
      * If provided, get the source from this location in a Cloud Source Repository.
      */
     repoSource?: Schema$RepoSource;
     /**
-     * If provided, get the source from this location in Google Cloud Storage.
+     * If provided, get the source from this location in Cloud Storage.
      */
     storageSource?: Schema$StorageSource;
     /**
-     * If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
+     * If provided, get the source from this manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      */
     storageSourceManifest?: Schema$StorageSourceManifest;
   }
@@ -2157,36 +2062,36 @@ export namespace cloudbuild_v1 {
     message?: string | null;
   }
   /**
-   * Location of the source in an archive file in Google Cloud Storage.
+   * Location of the source in an archive file in Cloud Storage.
    */
   export interface Schema$StorageSource {
     /**
-     * Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     * Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      */
     bucket?: string | null;
     /**
-     * Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
      */
     generation?: string | null;
     /**
-     * Google Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
+     * Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
   }
   /**
-   * Location of the source manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
+   * Location of the source manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
    */
   export interface Schema$StorageSourceManifest {
     /**
-     * Google Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     * Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
      */
     bucket?: string | null;
     /**
-     * Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
      */
     generation?: string | null;
     /**
-     * Google Cloud Storage object containing the source manifest. This object must be a JSON file.
+     * Cloud Storage object containing the source manifest. This object must be a JSON file.
      */
     object?: string | null;
   }
@@ -2289,6 +2194,23 @@ export namespace cloudbuild_v1 {
     uri?: string | null;
   }
   /**
+   * An npm package uploaded to Artifact Registry using the NpmPackage directive.
+   */
+  export interface Schema$UploadedNpmPackage {
+    /**
+     * Hash types and values of the npm package.
+     */
+    fileHashes?: Schema$FileHashes;
+    /**
+     * Output only. Stores timing information for pushing the specified artifact.
+     */
+    pushTiming?: Schema$TimeSpan;
+    /**
+     * URI of the uploaded npm package.
+     */
+    uri?: string | null;
+  }
+  /**
    * Artifact uploaded using the PythonPackage directive.
    */
   export interface Schema$UploadedPythonPackage {
@@ -2349,7 +2271,7 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$WorkerConfig {
     /**
-     * Size of the disk attached to the worker, in GB. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). Specify a value of up to 1000. If `0` is specified, Cloud Build will use a standard disk size.
+     * Size of the disk attached to the worker, in GB. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). Specify a value of up to 2000. If `0` is specified, Cloud Build will use a standard disk size.
      */
     diskSizeGb?: string | null;
     /**
@@ -2411,56 +2333,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * ReceiveGitHubDotComWebhook is called when the API receives a github.com webhook.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.githubDotComWebhook.receive({
-     *     // For GitHub Enterprise webhooks, this key is used to associate the webhook request with the GitHubEnterpriseConfig to use for validation.
-     *     webhookKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentType": "my_contentType",
-     *       //   "data": "my_data",
-     *       //   "extensions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2568,58 +2440,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * ReceiveRegionalWebhook is called when the API receives a regional GitHub webhook.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.locations.regionalWebhook({
-     *     // Required. The location where the webhook should be sent.
-     *     location: 'locations/my-location',
-     *     // For GitHub Enterprise webhooks, this key is used to associate the webhook request with the GitHubEnterpriseConfig to use for validation.
-     *     webhookKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentType": "my_contentType",
-     *       //   "data": "my_data",
-     *       //   "extensions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2731,52 +2551,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'operations/.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2861,52 +2635,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'operations/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3032,60 +2760,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Approves or rejects a pending build. If approved, the returned LRO will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.builds.approve({
-     *     // Required. Name of the target build. For example: "projects/{$project_id\}/builds/{$build_id\}"
-     *     name: 'projects/my-project/builds/my-build',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "approvalResult": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3173,88 +2847,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Cancels a build in progress.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.builds.cancel({
-     *     // Required. ID of the build.
-     *     id: 'placeholder-value',
-     *     // Required. ID of the project.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "id": "my_id",
-     *       //   "name": "my_name",
-     *       //   "projectId": "my_projectId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "approval": {},
-     *   //   "artifacts": {},
-     *   //   "availableSecrets": {},
-     *   //   "buildTriggerId": "my_buildTriggerId",
-     *   //   "createTime": "my_createTime",
-     *   //   "failureInfo": {},
-     *   //   "finishTime": "my_finishTime",
-     *   //   "id": "my_id",
-     *   //   "images": [],
-     *   //   "logUrl": "my_logUrl",
-     *   //   "logsBucket": "my_logsBucket",
-     *   //   "name": "my_name",
-     *   //   "options": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "queueTtl": "my_queueTtl",
-     *   //   "results": {},
-     *   //   "secrets": [],
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "source": {},
-     *   //   "sourceProvenance": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "status": "my_status",
-     *   //   "statusDetail": "my_statusDetail",
-     *   //   "steps": [],
-     *   //   "substitutions": {},
-     *   //   "tags": [],
-     *   //   "timeout": "my_timeout",
-     *   //   "timing": {},
-     *   //   "warnings": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3341,90 +2933,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Starts a build with the specified configuration. This method returns a long-running `Operation`, which includes the build ID. Pass the build ID to `GetBuild` to determine the build status (such as `SUCCESS` or `FAILURE`).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.builds.create({
-     *     // The parent resource where this build will be created. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'placeholder-value',
-     *     // Required. ID of the project.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "approval": {},
-     *       //   "artifacts": {},
-     *       //   "availableSecrets": {},
-     *       //   "buildTriggerId": "my_buildTriggerId",
-     *       //   "createTime": "my_createTime",
-     *       //   "failureInfo": {},
-     *       //   "finishTime": "my_finishTime",
-     *       //   "id": "my_id",
-     *       //   "images": [],
-     *       //   "logUrl": "my_logUrl",
-     *       //   "logsBucket": "my_logsBucket",
-     *       //   "name": "my_name",
-     *       //   "options": {},
-     *       //   "projectId": "my_projectId",
-     *       //   "queueTtl": "my_queueTtl",
-     *       //   "results": {},
-     *       //   "secrets": [],
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "source": {},
-     *       //   "sourceProvenance": {},
-     *       //   "startTime": "my_startTime",
-     *       //   "status": "my_status",
-     *       //   "statusDetail": "my_statusDetail",
-     *       //   "steps": [],
-     *       //   "substitutions": {},
-     *       //   "tags": [],
-     *       //   "timeout": "my_timeout",
-     *       //   "timing": {},
-     *       //   "warnings": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3512,80 +3020,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Returns information about a previously requested build. The `Build` that is returned includes its status (such as `SUCCESS`, `FAILURE`, or `WORKING`), and timing information.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.builds.get({
-     *     // Required. ID of the build.
-     *     id: 'placeholder-value',
-     *     // The name of the `Build` to retrieve. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
-     *     name: 'placeholder-value',
-     *     // Required. ID of the project.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "approval": {},
-     *   //   "artifacts": {},
-     *   //   "availableSecrets": {},
-     *   //   "buildTriggerId": "my_buildTriggerId",
-     *   //   "createTime": "my_createTime",
-     *   //   "failureInfo": {},
-     *   //   "finishTime": "my_finishTime",
-     *   //   "id": "my_id",
-     *   //   "images": [],
-     *   //   "logUrl": "my_logUrl",
-     *   //   "logsBucket": "my_logsBucket",
-     *   //   "name": "my_name",
-     *   //   "options": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "queueTtl": "my_queueTtl",
-     *   //   "results": {},
-     *   //   "secrets": [],
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "source": {},
-     *   //   "sourceProvenance": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "status": "my_status",
-     *   //   "statusDetail": "my_statusDetail",
-     *   //   "steps": [],
-     *   //   "substitutions": {},
-     *   //   "tags": [],
-     *   //   "timeout": "my_timeout",
-     *   //   "timing": {},
-     *   //   "warnings": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3673,57 +3107,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Lists previously requested builds. Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.builds.list({
-     *     // The raw filter text to constrain the results.
-     *     filter: 'placeholder-value',
-     *     // Number of results to return in the list.
-     *     pageSize: 'placeholder-value',
-     *     // The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.
-     *     pageToken: 'placeholder-value',
-     *     // The parent of the collection of `Builds`. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'placeholder-value',
-     *     // Required. ID of the project.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "builds": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3813,65 +3196,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Google Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.builds.retry({
-     *     // Required. Build ID of the original build.
-     *     id: 'placeholder-value',
-     *     // Required. ID of the project.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "id": "my_id",
-     *       //   "name": "my_name",
-     *       //   "projectId": "my_projectId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4064,72 +3389,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Create an association between a GCP project and a GitHub Enterprise server.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.githubEnterpriseConfigs.create({
-     *     // Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig's resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
-     *     gheConfigId: 'placeholder-value',
-     *     // Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
-     *     parent: 'projects/my-project',
-     *     // ID of the project.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "appId": "my_appId",
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "hostUrl": "my_hostUrl",
-     *       //   "name": "my_name",
-     *       //   "peeredNetwork": "my_peeredNetwork",
-     *       //   "secrets": {},
-     *       //   "sslCa": "my_sslCa",
-     *       //   "webhookKey": "my_webhookKey"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4217,56 +3476,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Delete an association between a GCP project and a GitHub Enterprise server.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.githubEnterpriseConfigs.delete({
-     *     // Unique identifier of the `GitHubEnterpriseConfig`
-     *     configId: 'placeholder-value',
-     *     // This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
-     *     name: 'projects/my-project/githubEnterpriseConfigs/my-githubEnterpriseConfig',
-     *     // ID of the project
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4351,60 +3560,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Retrieve a GitHubEnterpriseConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.githubEnterpriseConfigs.get({
-     *     // Unique identifier of the `GitHubEnterpriseConfig`
-     *     configId: 'placeholder-value',
-     *     // This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
-     *     name: 'projects/my-project/githubEnterpriseConfigs/my-githubEnterpriseConfig',
-     *     // ID of the project
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appId": "my_appId",
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "hostUrl": "my_hostUrl",
-     *   //   "name": "my_name",
-     *   //   "peeredNetwork": "my_peeredNetwork",
-     *   //   "secrets": {},
-     *   //   "sslCa": "my_sslCa",
-     *   //   "webhookKey": "my_webhookKey"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4494,50 +3649,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * List all GitHubEnterpriseConfigs for a given project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.githubEnterpriseConfigs.list({
-     *     // Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
-     *     parent: 'projects/my-project',
-     *     // ID of the project
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "configs": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4634,70 +3745,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Update an association between a GCP project and a GitHub Enterprise server.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.githubEnterpriseConfigs.patch({
-     *     // Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
-     *     name: 'projects/my-project/githubEnterpriseConfigs/my-githubEnterpriseConfig',
-     *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "appId": "my_appId",
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "hostUrl": "my_hostUrl",
-     *       //   "name": "my_name",
-     *       //   "peeredNetwork": "my_peeredNetwork",
-     *       //   "secrets": {},
-     *       //   "sslCa": "my_sslCa",
-     *       //   "webhookKey": "my_webhookKey"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4808,7 +3855,7 @@ export namespace cloudbuild_v1 {
      */
     configId?: string;
     /**
-     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string;
     /**
@@ -4823,7 +3870,7 @@ export namespace cloudbuild_v1 {
      */
     configId?: string;
     /**
-     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string;
     /**
@@ -4845,7 +3892,7 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Githubenterpriseconfigs$Patch
     extends StandardParameters {
     /**
-     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string;
     /**
@@ -4905,73 +3952,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Creates a new `BitbucketServerConfig`. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.create(
-     *     {
-     *       // Optional. The ID to use for the BitbucketServerConfig, which will become the final component of the BitbucketServerConfig's resource name. bitbucket_server_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character.
-     *       bitbucketServerConfigId: 'placeholder-value',
-     *       // Required. Name of the parent resource.
-     *       parent: 'projects/my-project/locations/my-location',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "apiKey": "my_apiKey",
-     *         //   "connectedRepositories": [],
-     *         //   "createTime": "my_createTime",
-     *         //   "hostUri": "my_hostUri",
-     *         //   "name": "my_name",
-     *         //   "peeredNetwork": "my_peeredNetwork",
-     *         //   "secrets": {},
-     *         //   "sslCa": "my_sslCa",
-     *         //   "username": "my_username",
-     *         //   "webhookKey": "my_webhookKey"
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5060,54 +4040,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Delete a `BitbucketServerConfig`. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.delete(
-     *     {
-     *       // Required. The config resource name.
-     *       name: 'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5193,57 +4125,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Retrieve a `BitbucketServerConfig`. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.get({
-     *     // Required. The config resource name.
-     *     name: 'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiKey": "my_apiKey",
-     *   //   "connectedRepositories": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "hostUri": "my_hostUri",
-     *   //   "name": "my_name",
-     *   //   "peeredNetwork": "my_peeredNetwork",
-     *   //   "secrets": {},
-     *   //   "sslCa": "my_sslCa",
-     *   //   "username": "my_username",
-     *   //   "webhookKey": "my_webhookKey"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5334,53 +4215,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * List all `BitbucketServerConfigs` for a given project. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.list({
-     *     // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListBitbucketServerConfigsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBitbucketServerConfigsRequest` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Name of the parent resource.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bitbucketServerConfigs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5478,71 +4312,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Updates an existing `BitbucketServerConfig`. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.patch({
-     *     // The resource name for the config.
-     *     name: 'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
-     *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiKey": "my_apiKey",
-     *       //   "connectedRepositories": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "hostUri": "my_hostUri",
-     *       //   "name": "my_name",
-     *       //   "peeredNetwork": "my_peeredNetwork",
-     *       //   "secrets": {},
-     *       //   "sslCa": "my_sslCa",
-     *       //   "username": "my_username",
-     *       //   "webhookKey": "my_webhookKey"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5628,58 +4397,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Remove a Bitbucket Server repository from a given BitbucketServerConfig's connected repositories. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudbuild.projects.locations.bitbucketServerConfigs.removeBitbucketServerConnectedRepository(
-     *       {
-     *         // Required. The name of the `BitbucketServerConfig` to remove a connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
-     *         config:
-     *           'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "connectedRepository": {}
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5850,64 +4567,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Batch connecting Bitbucket Server repositories to Cloud Build.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudbuild.projects.locations.bitbucketServerConfigs.connectedRepositories.batchCreate(
-     *       {
-     *         // The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
-     *         parent:
-     *           'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "requests": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6015,55 +4674,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * List all repositories for a given `BitbucketServerConfig`. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudbuild.projects.locations.bitbucketServerConfigs.repos.list({
-     *       // The maximum number of configs to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     *       pageSize: 'placeholder-value',
-     *       // A page token, received from a previous `ListBitbucketServerRepositoriesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBitbucketServerConfigsRequest` must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Name of the parent resource.
-     *       parent:
-     *         'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bitbucketServerRepositories": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6184,60 +4794,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Approves or rejects a pending build. If approved, the returned LRO will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.builds.approve({
-     *     // Required. Name of the target build. For example: "projects/{$project_id\}/builds/{$build_id\}"
-     *     name: 'projects/my-project/locations/my-location/builds/my-build',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "approvalResult": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6325,86 +4881,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Cancels a build in progress.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.builds.cancel({
-     *     // The name of the `Build` to cancel. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
-     *     name: 'projects/my-project/locations/my-location/builds/my-build',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "id": "my_id",
-     *       //   "name": "my_name",
-     *       //   "projectId": "my_projectId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "approval": {},
-     *   //   "artifacts": {},
-     *   //   "availableSecrets": {},
-     *   //   "buildTriggerId": "my_buildTriggerId",
-     *   //   "createTime": "my_createTime",
-     *   //   "failureInfo": {},
-     *   //   "finishTime": "my_finishTime",
-     *   //   "id": "my_id",
-     *   //   "images": [],
-     *   //   "logUrl": "my_logUrl",
-     *   //   "logsBucket": "my_logsBucket",
-     *   //   "name": "my_name",
-     *   //   "options": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "queueTtl": "my_queueTtl",
-     *   //   "results": {},
-     *   //   "secrets": [],
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "source": {},
-     *   //   "sourceProvenance": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "status": "my_status",
-     *   //   "statusDetail": "my_statusDetail",
-     *   //   "steps": [],
-     *   //   "substitutions": {},
-     *   //   "tags": [],
-     *   //   "timeout": "my_timeout",
-     *   //   "timing": {},
-     *   //   "warnings": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6489,90 +4965,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Starts a build with the specified configuration. This method returns a long-running `Operation`, which includes the build ID. Pass the build ID to `GetBuild` to determine the build status (such as `SUCCESS` or `FAILURE`).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.builds.create({
-     *     // The parent resource where this build will be created. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. ID of the project.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "approval": {},
-     *       //   "artifacts": {},
-     *       //   "availableSecrets": {},
-     *       //   "buildTriggerId": "my_buildTriggerId",
-     *       //   "createTime": "my_createTime",
-     *       //   "failureInfo": {},
-     *       //   "finishTime": "my_finishTime",
-     *       //   "id": "my_id",
-     *       //   "images": [],
-     *       //   "logUrl": "my_logUrl",
-     *       //   "logsBucket": "my_logsBucket",
-     *       //   "name": "my_name",
-     *       //   "options": {},
-     *       //   "projectId": "my_projectId",
-     *       //   "queueTtl": "my_queueTtl",
-     *       //   "results": {},
-     *       //   "secrets": [],
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "source": {},
-     *       //   "sourceProvenance": {},
-     *       //   "startTime": "my_startTime",
-     *       //   "status": "my_status",
-     *       //   "statusDetail": "my_statusDetail",
-     *       //   "steps": [],
-     *       //   "substitutions": {},
-     *       //   "tags": [],
-     *       //   "timeout": "my_timeout",
-     *       //   "timing": {},
-     *       //   "warnings": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6660,80 +5052,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Returns information about a previously requested build. The `Build` that is returned includes its status (such as `SUCCESS`, `FAILURE`, or `WORKING`), and timing information.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.builds.get({
-     *     // Required. ID of the build.
-     *     id: 'placeholder-value',
-     *     // The name of the `Build` to retrieve. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
-     *     name: 'projects/my-project/locations/my-location/builds/my-build',
-     *     // Required. ID of the project.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "approval": {},
-     *   //   "artifacts": {},
-     *   //   "availableSecrets": {},
-     *   //   "buildTriggerId": "my_buildTriggerId",
-     *   //   "createTime": "my_createTime",
-     *   //   "failureInfo": {},
-     *   //   "finishTime": "my_finishTime",
-     *   //   "id": "my_id",
-     *   //   "images": [],
-     *   //   "logUrl": "my_logUrl",
-     *   //   "logsBucket": "my_logsBucket",
-     *   //   "name": "my_name",
-     *   //   "options": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "queueTtl": "my_queueTtl",
-     *   //   "results": {},
-     *   //   "secrets": [],
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "source": {},
-     *   //   "sourceProvenance": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "status": "my_status",
-     *   //   "statusDetail": "my_statusDetail",
-     *   //   "steps": [],
-     *   //   "substitutions": {},
-     *   //   "tags": [],
-     *   //   "timeout": "my_timeout",
-     *   //   "timing": {},
-     *   //   "warnings": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6818,57 +5136,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Lists previously requested builds. Previously requested builds may still be in-progress, or may have finished successfully or unsuccessfully.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.builds.list({
-     *     // The raw filter text to constrain the results.
-     *     filter: 'placeholder-value',
-     *     // Number of results to return in the list.
-     *     pageSize: 'placeholder-value',
-     *     // The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.
-     *     pageToken: 'placeholder-value',
-     *     // The parent of the collection of `Builds`. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. ID of the project.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "builds": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6958,63 +5225,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Google Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.builds.retry({
-     *     // The name of the `Build` to retry. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
-     *     name: 'projects/my-project/locations/my-location/builds/my-build',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "id": "my_id",
-     *       //   "name": "my_name",
-     *       //   "projectId": "my_projectId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a new build based on the specified build. This method creates a new build using the original build request, which may or may not result in an identical build. For triggered builds: * Triggered builds resolve to a precise revision; therefore a retry of a triggered build will result in a build that uses the same revision. For non-triggered builds that specify `RepoSource`: * If the original build built from the tip of a branch, the retried build will build from the tip of that branch, which may not be the same revision as the original build. * If the original build specified a commit sha or revision ID, the retried build will use the identical source. For builds that specify `StorageSource`: * If the original build pulled source from Cloud Storage without specifying the generation of the object, the new build will use the current object, which may be different from the original build source. * If the original build pulled source from Cloud Storage and specified the generation of the object, the new build will attempt to use the same object, which may or may not be available depending on the bucket's lifecycle management settings.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7197,73 +5408,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Create an association between a GCP project and a GitHub Enterprise server.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudbuild.projects.locations.githubEnterpriseConfigs.create({
-     *       // Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig's resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
-     *       gheConfigId: 'placeholder-value',
-     *       // Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
-     *       parent: 'projects/my-project/locations/my-location',
-     *       // ID of the project.
-     *       projectId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "appId": "my_appId",
-     *         //   "createTime": "my_createTime",
-     *         //   "displayName": "my_displayName",
-     *         //   "hostUrl": "my_hostUrl",
-     *         //   "name": "my_name",
-     *         //   "peeredNetwork": "my_peeredNetwork",
-     *         //   "secrets": {},
-     *         //   "sslCa": "my_sslCa",
-     *         //   "webhookKey": "my_webhookKey"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7352,57 +5496,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Delete an association between a GCP project and a GitHub Enterprise server.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudbuild.projects.locations.githubEnterpriseConfigs.delete({
-     *       // Unique identifier of the `GitHubEnterpriseConfig`
-     *       configId: 'placeholder-value',
-     *       // This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
-     *       name: 'projects/my-project/locations/my-location/githubEnterpriseConfigs/my-githubEnterpriseConfig',
-     *       // ID of the project
-     *       projectId: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7488,60 +5581,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Retrieve a GitHubEnterpriseConfig.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.githubEnterpriseConfigs.get({
-     *     // Unique identifier of the `GitHubEnterpriseConfig`
-     *     configId: 'placeholder-value',
-     *     // This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
-     *     name: 'projects/my-project/locations/my-location/githubEnterpriseConfigs/my-githubEnterpriseConfig',
-     *     // ID of the project
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appId": "my_appId",
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "hostUrl": "my_hostUrl",
-     *   //   "name": "my_name",
-     *   //   "peeredNetwork": "my_peeredNetwork",
-     *   //   "secrets": {},
-     *   //   "sslCa": "my_sslCa",
-     *   //   "webhookKey": "my_webhookKey"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7632,50 +5671,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * List all GitHubEnterpriseConfigs for a given project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.githubEnterpriseConfigs.list({
-     *     // Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // ID of the project
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "configs": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7773,72 +5768,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Update an association between a GCP project and a GitHub Enterprise server.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.githubEnterpriseConfigs.patch(
-     *     {
-     *       // Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
-     *       name: 'projects/my-project/locations/my-location/githubEnterpriseConfigs/my-githubEnterpriseConfig',
-     *       // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "appId": "my_appId",
-     *         //   "createTime": "my_createTime",
-     *         //   "displayName": "my_displayName",
-     *         //   "hostUrl": "my_hostUrl",
-     *         //   "name": "my_name",
-     *         //   "peeredNetwork": "my_peeredNetwork",
-     *         //   "secrets": {},
-     *         //   "sslCa": "my_sslCa",
-     *         //   "webhookKey": "my_webhookKey"
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7950,7 +5879,7 @@ export namespace cloudbuild_v1 {
      */
     configId?: string;
     /**
-     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string;
     /**
@@ -7965,7 +5894,7 @@ export namespace cloudbuild_v1 {
      */
     configId?: string;
     /**
-     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string;
     /**
@@ -7987,7 +5916,7 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch
     extends StandardParameters {
     /**
-     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/githubEnterpriseConfigs/{$config_id\}"
+     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/locations/{$location_id\}/githubEnterpriseConfigs/{$config_id\}"
      */
     name?: string;
     /**
@@ -8018,68 +5947,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Creates a new `GitLabConfig`. This API is experimental
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.gitLabConfigs.create({
-     *     // Optional. The ID to use for the GitLabConfig, which will become the final component of the GitLabConfig’s resource name. gitlab_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
-     *     gitlabConfigId: 'placeholder-value',
-     *     // Required. Name of the parent resource.
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "connectedRepositories": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "enterpriseConfig": {},
-     *       //   "name": "my_name",
-     *       //   "secrets": {},
-     *       //   "username": "my_username",
-     *       //   "webhookKey": "my_webhookKey"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8167,52 +6034,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Delete a `GitLabConfig`. This API is experimental
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.gitLabConfigs.delete({
-     *     // Required. The config resource name.
-     *     name: 'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8297,54 +6118,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Retrieves a `GitLabConfig`. This API is experimental
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.gitLabConfigs.get({
-     *     // Required. The config resource name.
-     *     name: 'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "connectedRepositories": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "enterpriseConfig": {},
-     *   //   "name": "my_name",
-     *   //   "secrets": {},
-     *   //   "username": "my_username",
-     *   //   "webhookKey": "my_webhookKey"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8429,53 +6202,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * List all `GitLabConfigs` for a given project. This API is experimental
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.gitLabConfigs.list({
-     *     // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000;, values above 1000 will be coerced to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous ‘ListGitlabConfigsRequest’ call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ‘ListGitlabConfigsRequest’ must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Name of the parent resource
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "gitlabConfigs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8570,68 +6296,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Updates an existing `GitLabConfig`. This API is experimental
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.gitLabConfigs.patch({
-     *     // The resource name for the config.
-     *     name: 'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
-     *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "connectedRepositories": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "enterpriseConfig": {},
-     *       //   "name": "my_name",
-     *       //   "secrets": {},
-     *       //   "username": "my_username",
-     *       //   "webhookKey": "my_webhookKey"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8716,58 +6380,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Remove a GitLab repository from a given GitLabConfig's connected repositories. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudbuild.projects.locations.gitLabConfigs.removeGitLabConnectedRepository(
-     *       {
-     *         // Required. The name of the `GitLabConfig` to remove a connected repository. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
-     *         config:
-     *           'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "connectedRepository": {}
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8938,64 +6550,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Batch connecting GitLab repositories to Cloud Build. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudbuild.projects.locations.gitLabConfigs.connectedRepositories.batchCreate(
-     *       {
-     *         // The name of the `GitLabConfig` that adds connected repositories. Format: `projects/{project\}/locations/{location\}/gitLabConfigs/{config\}`
-     *         parent:
-     *           'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "requests": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9103,54 +6657,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * List all repositories for a given `GitLabConfig`. This API is experimental
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.gitLabConfigs.repos.list({
-     *     // The maximum number of repositories to return. The service may return fewer than this value.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous ListGitLabRepositoriesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGitLabRepositoriesRequest` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Name of the parent resource.
-     *     parent:
-     *       'projects/my-project/locations/my-location/gitLabConfigs/my-gitLabConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "gitlabRepositories": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9271,52 +6777,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9401,52 +6861,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9558,108 +6972,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Creates a new `BuildTrigger`. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.triggers.create({
-     *     // The parent resource where this trigger will be created. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. ID of the project for which to configure automatic builds.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "approvalConfig": {},
-     *       //   "autodetect": false,
-     *       //   "bitbucketServerTriggerConfig": {},
-     *       //   "build": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "disabled": false,
-     *       //   "eventType": "my_eventType",
-     *       //   "filename": "my_filename",
-     *       //   "filter": "my_filter",
-     *       //   "gitFileSource": {},
-     *       //   "github": {},
-     *       //   "gitlabEnterpriseEventsConfig": {},
-     *       //   "id": "my_id",
-     *       //   "ignoredFiles": [],
-     *       //   "includeBuildLogs": "my_includeBuildLogs",
-     *       //   "includedFiles": [],
-     *       //   "name": "my_name",
-     *       //   "pubsubConfig": {},
-     *       //   "resourceName": "my_resourceName",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "sourceToBuild": {},
-     *       //   "substitutions": {},
-     *       //   "tags": [],
-     *       //   "triggerTemplate": {},
-     *       //   "webhookConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "approvalConfig": {},
-     *   //   "autodetect": false,
-     *   //   "bitbucketServerTriggerConfig": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "disabled": false,
-     *   //   "eventType": "my_eventType",
-     *   //   "filename": "my_filename",
-     *   //   "filter": "my_filter",
-     *   //   "gitFileSource": {},
-     *   //   "github": {},
-     *   //   "gitlabEnterpriseEventsConfig": {},
-     *   //   "id": "my_id",
-     *   //   "ignoredFiles": [],
-     *   //   "includeBuildLogs": "my_includeBuildLogs",
-     *   //   "includedFiles": [],
-     *   //   "name": "my_name",
-     *   //   "pubsubConfig": {},
-     *   //   "resourceName": "my_resourceName",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "sourceToBuild": {},
-     *   //   "substitutions": {},
-     *   //   "tags": [],
-     *   //   "triggerTemplate": {},
-     *   //   "webhookConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9747,50 +7059,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Deletes a `BuildTrigger` by its project ID and trigger ID. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.triggers.delete({
-     *     // The name of the `Trigger` to delete. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
-     *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
-     *     // Required. ID of the project that owns the trigger.
-     *     projectId: 'placeholder-value',
-     *     // Required. ID of the `BuildTrigger` to delete.
-     *     triggerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9875,77 +7143,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Returns information about a `BuildTrigger`. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.triggers.get({
-     *     // The name of the `Trigger` to retrieve. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
-     *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
-     *     // Required. ID of the project that owns the trigger.
-     *     projectId: 'placeholder-value',
-     *     // Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.
-     *     triggerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "approvalConfig": {},
-     *   //   "autodetect": false,
-     *   //   "bitbucketServerTriggerConfig": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "disabled": false,
-     *   //   "eventType": "my_eventType",
-     *   //   "filename": "my_filename",
-     *   //   "filter": "my_filter",
-     *   //   "gitFileSource": {},
-     *   //   "github": {},
-     *   //   "gitlabEnterpriseEventsConfig": {},
-     *   //   "id": "my_id",
-     *   //   "ignoredFiles": [],
-     *   //   "includeBuildLogs": "my_includeBuildLogs",
-     *   //   "includedFiles": [],
-     *   //   "name": "my_name",
-     *   //   "pubsubConfig": {},
-     *   //   "resourceName": "my_resourceName",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "sourceToBuild": {},
-     *   //   "substitutions": {},
-     *   //   "tags": [],
-     *   //   "triggerTemplate": {},
-     *   //   "webhookConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10030,55 +7227,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Lists existing `BuildTrigger`s. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.triggers.list({
-     *     // Number of results to return in the list.
-     *     pageSize: 'placeholder-value',
-     *     // Token to provide to skip to a particular spot in the list.
-     *     pageToken: 'placeholder-value',
-     *     // The parent of the collection of `Triggers`. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. ID of the project for which to list BuildTriggers.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "triggers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10173,111 +7321,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Updates a `BuildTrigger` by its project ID and trigger ID. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.triggers.patch({
-     *     // Required. ID of the project that owns the trigger.
-     *     projectId: 'placeholder-value',
-     *     // The `Trigger` name with format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`, where {trigger\} is a unique identifier generated by the service.
-     *     resourceName:
-     *       'projects/my-project/locations/my-location/triggers/my-trigger',
-     *     // Required. ID of the `BuildTrigger` to update.
-     *     triggerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "approvalConfig": {},
-     *       //   "autodetect": false,
-     *       //   "bitbucketServerTriggerConfig": {},
-     *       //   "build": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "disabled": false,
-     *       //   "eventType": "my_eventType",
-     *       //   "filename": "my_filename",
-     *       //   "filter": "my_filter",
-     *       //   "gitFileSource": {},
-     *       //   "github": {},
-     *       //   "gitlabEnterpriseEventsConfig": {},
-     *       //   "id": "my_id",
-     *       //   "ignoredFiles": [],
-     *       //   "includeBuildLogs": "my_includeBuildLogs",
-     *       //   "includedFiles": [],
-     *       //   "name": "my_name",
-     *       //   "pubsubConfig": {},
-     *       //   "resourceName": "my_resourceName",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "sourceToBuild": {},
-     *       //   "substitutions": {},
-     *       //   "tags": [],
-     *       //   "triggerTemplate": {},
-     *       //   "webhookConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "approvalConfig": {},
-     *   //   "autodetect": false,
-     *   //   "bitbucketServerTriggerConfig": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "disabled": false,
-     *   //   "eventType": "my_eventType",
-     *   //   "filename": "my_filename",
-     *   //   "filter": "my_filter",
-     *   //   "gitFileSource": {},
-     *   //   "github": {},
-     *   //   "gitlabEnterpriseEventsConfig": {},
-     *   //   "id": "my_id",
-     *   //   "ignoredFiles": [],
-     *   //   "includeBuildLogs": "my_includeBuildLogs",
-     *   //   "includedFiles": [],
-     *   //   "name": "my_name",
-     *   //   "pubsubConfig": {},
-     *   //   "resourceName": "my_resourceName",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "sourceToBuild": {},
-     *   //   "substitutions": {},
-     *   //   "tags": [],
-     *   //   "triggerTemplate": {},
-     *   //   "webhookConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10364,63 +7407,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Runs a `BuildTrigger` at a particular source revision. To run a regional or global trigger, use the POST request that includes the location endpoint in the path. The POST request that does not include the location endpoint in the path can only be used when running global triggers.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.triggers.run({
-     *     // The name of the `Trigger` to run. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
-     *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "projectId": "my_projectId",
-     *       //   "source": {},
-     *       //   "triggerId": "my_triggerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Runs a `BuildTrigger` at a particular source revision. To run a regional or global trigger, use the POST request that includes the location endpoint in the path (ex. v1/projects/{projectId\}/locations/{region\}/triggers/{triggerId\}:run). The POST request that does not include the location endpoint in the path can only be used when running global triggers.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10505,62 +7492,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * ReceiveTriggerWebhook [Experimental] is called when the API receives a webhook request targeted at a specific trigger.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.triggers.webhook({
-     *     // The name of the `ReceiveTriggerWebhook` to retrieve. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
-     *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
-     *     // Project in which the specified trigger lives
-     *     projectId: 'placeholder-value',
-     *     // Secret token used for authorization if an OAuth token isn't provided.
-     *     secret: 'placeholder-value',
-     *     // Name of the trigger to run the payload against
-     *     trigger: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentType": "my_contentType",
-     *       //   "data": "my_data",
-     *       //   "extensions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10735,6 +7666,10 @@ export namespace cloudbuild_v1 {
      * Required. ID of the `BuildTrigger` to update.
      */
     triggerId?: string;
+    /**
+     * Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -10786,73 +7721,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Creates a `WorkerPool`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.workerPools.create({
-     *     // Required. The parent resource where this worker pool will be created. Format: `projects/{project\}/locations/{location\}`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // If set, validate the request and preview the response, but do not actually post it.
-     *     validateOnly: 'placeholder-value',
-     *     // Required. Immutable. The ID to use for the `WorkerPool`, which will become the final component of the resource name. This value should be 1-63 characters, and valid characters are /a-z-/.
-     *     workerPoolId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "annotations": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "deleteTime": "my_deleteTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "etag": "my_etag",
-     *       //   "name": "my_name",
-     *       //   "privatePoolV1Config": {},
-     *       //   "state": "my_state",
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10940,58 +7808,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Deletes a `WorkerPool`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.workerPools.delete({
-     *     // If set to true, and the `WorkerPool` is not found, the request will succeed but no action will be taken on the server.
-     *     allowMissing: 'placeholder-value',
-     *     // Optional. If provided, it must match the server's etag on the workerpool for the request to be processed.
-     *     etag: 'placeholder-value',
-     *     // Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPool\}`.
-     *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
-     *     // If set, validate the request and preview the response, but do not actually post it.
-     *     validateOnly: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11076,57 +7892,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Returns details of a `WorkerPool`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.workerPools.get({
-     *     // Required. The name of the `WorkerPool` to retrieve. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPool\}`.
-     *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "annotations": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "deleteTime": "my_deleteTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "etag": "my_etag",
-     *   //   "name": "my_name",
-     *   //   "privatePoolV1Config": {},
-     *   //   "state": "my_state",
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11211,53 +7976,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Lists `WorkerPool`s.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.workerPools.list({
-     *     // The maximum number of `WorkerPool`s to return. The service may return fewer than this value. If omitted, the server will use a sensible default.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListWorkerPools` call. Provide this to retrieve the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent of the collection of `WorkerPools`. Format: `projects/{project\}/locations/{location\}`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "workerPools": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11350,73 +8068,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Updates a `WorkerPool`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.locations.workerPools.patch({
-     *     // Output only. The resource name of the `WorkerPool`, with format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. The value of `{worker_pool\}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location\}` is determined by the endpoint accessed.
-     *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
-     *     // A mask specifying which fields in `worker_pool` to update.
-     *     updateMask: 'placeholder-value',
-     *     // If set, validate the request and preview the response, but do not actually post it.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "annotations": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "deleteTime": "my_deleteTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "etag": "my_etag",
-     *       //   "name": "my_name",
-     *       //   "privatePoolV1Config": {},
-     *       //   "state": "my_state",
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11590,108 +8241,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Creates a new `BuildTrigger`. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.triggers.create({
-     *     // The parent resource where this trigger will be created. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'placeholder-value',
-     *     // Required. ID of the project for which to configure automatic builds.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "approvalConfig": {},
-     *       //   "autodetect": false,
-     *       //   "bitbucketServerTriggerConfig": {},
-     *       //   "build": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "disabled": false,
-     *       //   "eventType": "my_eventType",
-     *       //   "filename": "my_filename",
-     *       //   "filter": "my_filter",
-     *       //   "gitFileSource": {},
-     *       //   "github": {},
-     *       //   "gitlabEnterpriseEventsConfig": {},
-     *       //   "id": "my_id",
-     *       //   "ignoredFiles": [],
-     *       //   "includeBuildLogs": "my_includeBuildLogs",
-     *       //   "includedFiles": [],
-     *       //   "name": "my_name",
-     *       //   "pubsubConfig": {},
-     *       //   "resourceName": "my_resourceName",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "sourceToBuild": {},
-     *       //   "substitutions": {},
-     *       //   "tags": [],
-     *       //   "triggerTemplate": {},
-     *       //   "webhookConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "approvalConfig": {},
-     *   //   "autodetect": false,
-     *   //   "bitbucketServerTriggerConfig": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "disabled": false,
-     *   //   "eventType": "my_eventType",
-     *   //   "filename": "my_filename",
-     *   //   "filter": "my_filter",
-     *   //   "gitFileSource": {},
-     *   //   "github": {},
-     *   //   "gitlabEnterpriseEventsConfig": {},
-     *   //   "id": "my_id",
-     *   //   "ignoredFiles": [],
-     *   //   "includeBuildLogs": "my_includeBuildLogs",
-     *   //   "includedFiles": [],
-     *   //   "name": "my_name",
-     *   //   "pubsubConfig": {},
-     *   //   "resourceName": "my_resourceName",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "sourceToBuild": {},
-     *   //   "substitutions": {},
-     *   //   "tags": [],
-     *   //   "triggerTemplate": {},
-     *   //   "webhookConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11779,50 +8328,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Deletes a `BuildTrigger` by its project ID and trigger ID. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.triggers.delete({
-     *     // The name of the `Trigger` to delete. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
-     *     name: 'placeholder-value',
-     *     // Required. ID of the project that owns the trigger.
-     *     projectId: 'placeholder-value',
-     *     // Required. ID of the `BuildTrigger` to delete.
-     *     triggerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11909,77 +8414,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Returns information about a `BuildTrigger`. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.triggers.get({
-     *     // The name of the `Trigger` to retrieve. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
-     *     name: 'placeholder-value',
-     *     // Required. ID of the project that owns the trigger.
-     *     projectId: 'placeholder-value',
-     *     // Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.
-     *     triggerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "approvalConfig": {},
-     *   //   "autodetect": false,
-     *   //   "bitbucketServerTriggerConfig": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "disabled": false,
-     *   //   "eventType": "my_eventType",
-     *   //   "filename": "my_filename",
-     *   //   "filter": "my_filter",
-     *   //   "gitFileSource": {},
-     *   //   "github": {},
-     *   //   "gitlabEnterpriseEventsConfig": {},
-     *   //   "id": "my_id",
-     *   //   "ignoredFiles": [],
-     *   //   "includeBuildLogs": "my_includeBuildLogs",
-     *   //   "includedFiles": [],
-     *   //   "name": "my_name",
-     *   //   "pubsubConfig": {},
-     *   //   "resourceName": "my_resourceName",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "sourceToBuild": {},
-     *   //   "substitutions": {},
-     *   //   "tags": [],
-     *   //   "triggerTemplate": {},
-     *   //   "webhookConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12066,55 +8500,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Lists existing `BuildTrigger`s. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.triggers.list({
-     *     // Number of results to return in the list.
-     *     pageSize: 'placeholder-value',
-     *     // Token to provide to skip to a particular spot in the list.
-     *     pageToken: 'placeholder-value',
-     *     // The parent of the collection of `Triggers`. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'placeholder-value',
-     *     // Required. ID of the project for which to list BuildTriggers.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "triggers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12209,108 +8594,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * Updates a `BuildTrigger` by its project ID and trigger ID. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.triggers.patch({
-     *     // Required. ID of the project that owns the trigger.
-     *     projectId: 'placeholder-value',
-     *     // Required. ID of the `BuildTrigger` to update.
-     *     triggerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "approvalConfig": {},
-     *       //   "autodetect": false,
-     *       //   "bitbucketServerTriggerConfig": {},
-     *       //   "build": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "disabled": false,
-     *       //   "eventType": "my_eventType",
-     *       //   "filename": "my_filename",
-     *       //   "filter": "my_filter",
-     *       //   "gitFileSource": {},
-     *       //   "github": {},
-     *       //   "gitlabEnterpriseEventsConfig": {},
-     *       //   "id": "my_id",
-     *       //   "ignoredFiles": [],
-     *       //   "includeBuildLogs": "my_includeBuildLogs",
-     *       //   "includedFiles": [],
-     *       //   "name": "my_name",
-     *       //   "pubsubConfig": {},
-     *       //   "resourceName": "my_resourceName",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "sourceToBuild": {},
-     *       //   "substitutions": {},
-     *       //   "tags": [],
-     *       //   "triggerTemplate": {},
-     *       //   "webhookConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "approvalConfig": {},
-     *   //   "autodetect": false,
-     *   //   "bitbucketServerTriggerConfig": {},
-     *   //   "build": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "disabled": false,
-     *   //   "eventType": "my_eventType",
-     *   //   "filename": "my_filename",
-     *   //   "filter": "my_filter",
-     *   //   "gitFileSource": {},
-     *   //   "github": {},
-     *   //   "gitlabEnterpriseEventsConfig": {},
-     *   //   "id": "my_id",
-     *   //   "ignoredFiles": [],
-     *   //   "includeBuildLogs": "my_includeBuildLogs",
-     *   //   "includedFiles": [],
-     *   //   "name": "my_name",
-     *   //   "pubsubConfig": {},
-     *   //   "resourceName": "my_resourceName",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "sourceToBuild": {},
-     *   //   "substitutions": {},
-     *   //   "tags": [],
-     *   //   "triggerTemplate": {},
-     *   //   "webhookConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12396,72 +8679,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Runs a `BuildTrigger` at a particular source revision. To run a regional or global trigger, use the POST request that includes the location endpoint in the path. The POST request that does not include the location endpoint in the path can only be used when running global triggers.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.triggers.run({
-     *     // The name of the `Trigger` to run. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
-     *     name: 'placeholder-value',
-     *     // Required. ID of the project.
-     *     projectId: 'placeholder-value',
-     *     // Required. ID of the trigger.
-     *     triggerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "branchName": "my_branchName",
-     *       //   "commitSha": "my_commitSha",
-     *       //   "dir": "my_dir",
-     *       //   "invertRegex": false,
-     *       //   "projectId": "my_projectId",
-     *       //   "repoName": "my_repoName",
-     *       //   "substitutions": {},
-     *       //   "tagName": "my_tagName"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Runs a `BuildTrigger` at a particular source revision. To run a regional or global trigger, use the POST request that includes the location endpoint in the path (ex. v1/projects/{projectId\}/locations/{region\}/triggers/{triggerId\}:run). The POST request that does not include the location endpoint in the path can only be used when running global triggers.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12548,62 +8766,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * ReceiveTriggerWebhook [Experimental] is called when the API receives a webhook request targeted at a specific trigger.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.projects.triggers.webhook({
-     *     // The name of the `ReceiveTriggerWebhook` to retrieve. Format: `projects/{project\}/locations/{location\}/triggers/{trigger\}`
-     *     name: 'placeholder-value',
-     *     // Project in which the specified trigger lives
-     *     projectId: 'placeholder-value',
-     *     // Secret token used for authorization if an OAuth token isn't provided.
-     *     secret: 'placeholder-value',
-     *     // Name of the trigger to run the payload against
-     *     trigger: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentType": "my_contentType",
-     *       //   "data": "my_data",
-     *       //   "extensions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12773,6 +8935,10 @@ export namespace cloudbuild_v1 {
      * Required. ID of the `BuildTrigger` to update.
      */
     triggerId?: string;
+    /**
+     * Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -12832,56 +8998,6 @@ export namespace cloudbuild_v1 {
 
     /**
      * ReceiveWebhook is called when the API receives a GitHub webhook.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudbuild.webhook({
-     *     // For GitHub Enterprise webhooks, this key is used to associate the webhook request with the GitHubEnterpriseConfig to use for validation.
-     *     webhookKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "contentType": "my_contentType",
-     *       //   "data": "my_data",
-     *       //   "extensions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

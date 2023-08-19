@@ -109,6 +109,26 @@
   "protocol": "rest",
   "resources": {
     "accounts": {
+      "methods": {
+        "revokeToken": {
+          "description": "Revokes a user's token from an Identity Provider (IdP). This is done by manually providing an IdP credential, and the token types for revocation. An [API key](https://cloud.google.com/docs/authentication/api-keys) is required in the request in order to identify the Google Cloud project.",
+          "flatPath": "v2/accounts:revokeToken",
+          "httpMethod": "POST",
+          "id": "identitytoolkit.accounts.revokeToken",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v2/accounts:revokeToken",
+          "request": {
+            "$ref": "GoogleCloudIdentitytoolkitV2RevokeTokenRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudIdentitytoolkitV2RevokeTokenResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      },
       "resources": {
         "mfaEnrollment": {
           "methods": {
@@ -269,6 +289,32 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getPasskeyConfig": {
+          "description": "Retrieve a passkey configuration for an Identity Toolkit project.",
+          "flatPath": "v2/projects/{projectsId}/passkeyConfig",
+          "httpMethod": "GET",
+          "id": "identitytoolkit.projects.getPasskeyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the config, for example: 'projects/my-awesome-project/passkeyConfig'.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/passkeyConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v2/{+name}",
+          "response": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        },
         "updateConfig": {
           "description": "Update an Identity Toolkit project configuration.",
           "flatPath": "v2/projects/{projectsId}/config",
@@ -298,6 +344,41 @@
           },
           "response": {
             "$ref": "GoogleCloudIdentitytoolkitAdminV2Config"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        },
+        "updatePasskeyConfig": {
+          "description": "Update a passkey configuration for an Identity Toolkit project.",
+          "flatPath": "v2/projects/{projectsId}/passkeyConfig",
+          "httpMethod": "PATCH",
+          "id": "identitytoolkit.projects.updatePasskeyConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the PasskeyConfig resource.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/passkeyConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The update mask applies to the resource. Empty update mask will result in updating nothing. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v2/{+name}",
+          "request": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
+          },
+          "response": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -936,6 +1017,32 @@
                 "https://www.googleapis.com/auth/firebase"
               ]
             },
+            "getPasskeyConfig": {
+              "description": "Retrieve a passkey configuration for an Identity Toolkit project.",
+              "flatPath": "v2/projects/{projectsId}/tenants/{tenantsId}/passkeyConfig",
+              "httpMethod": "GET",
+              "id": "identitytoolkit.projects.tenants.getPasskeyConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the config, for example: 'projects/my-awesome-project/passkeyConfig'.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/tenants/[^/]+/passkeyConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "response": {
+                "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
             "list": {
               "description": "List tenants under the given agent project. Requires read permission on the Agent project.",
               "flatPath": "v2/projects/{projectsId}/tenants",
@@ -1060,6 +1167,41 @@
               },
               "response": {
                 "$ref": "GoogleIamV1TestIamPermissionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
+            "updatePasskeyConfig": {
+              "description": "Update a passkey configuration for an Identity Toolkit project.",
+              "flatPath": "v2/projects/{projectsId}/tenants/{tenantsId}/passkeyConfig",
+              "httpMethod": "PATCH",
+              "id": "identitytoolkit.projects.tenants.updatePasskeyConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the PasskeyConfig resource.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/tenants/[^/]+/passkeyConfig$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The update mask applies to the resource. Empty update mask will result in updating nothing. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "request": {
+                "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -1557,9 +1699,85 @@
           }
         }
       }
+    },
+    "v2": {
+      "methods": {
+        "getPasswordPolicy": {
+          "description": "Gets password policy config set on the project or tenant.",
+          "flatPath": "v2/passwordPolicy",
+          "httpMethod": "GET",
+          "id": "identitytoolkit.getPasswordPolicy",
+          "parameterOrder": [],
+          "parameters": {
+            "tenantId": {
+              "description": "The id of a tenant.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v2/passwordPolicy",
+          "response": {
+            "$ref": "GoogleCloudIdentitytoolkitV2PasswordPolicy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "getRecaptchaConfig": {
+          "description": "Gets parameters needed for reCAPTCHA analysis.",
+          "flatPath": "v2/recaptchaConfig",
+          "httpMethod": "GET",
+          "id": "identitytoolkit.getRecaptchaConfig",
+          "parameterOrder": [],
+          "parameters": {
+            "clientType": {
+              "description": "reCAPTCHA Enterprise uses separate site keys for different client types. Specify the client type to get the corresponding key.",
+              "enum": [
+                "CLIENT_TYPE_UNSPECIFIED",
+                "CLIENT_TYPE_WEB",
+                "CLIENT_TYPE_ANDROID",
+                "CLIENT_TYPE_IOS"
+              ],
+              "enumDescriptions": [
+                "Client type is not specified.",
+                "Client type is web.",
+                "Client type is android.",
+                "Client type is ios."
+              ],
+              "location": "query",
+              "type": "string"
+            },
+            "tenantId": {
+              "description": "The id of a tenant.",
+              "location": "query",
+              "type": "string"
+            },
+            "version": {
+              "description": "The reCAPTCHA version.",
+              "enum": [
+                "RECAPTCHA_VERSION_UNSPECIFIED",
+                "RECAPTCHA_ENTERPRISE"
+              ],
+              "enumDescriptions": [
+                "The reCAPTCHA version is not specified.",
+                "Use reCAPTCHA Enterprise."
+              ],
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v2/recaptchaConfig",
+          "response": {
+            "$ref": "GoogleCloudIdentitytoolkitV2RecaptchaConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
     }
   },
-  "revision": "20221021",
+  "revision": "20230804",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitAdminV2AllowByDefault": {
@@ -1725,6 +1943,10 @@
           "$ref": "GoogleCloudIdentitytoolkitAdminV2ClientConfig",
           "description": "Options related to how clients making requests on behalf of a project should be configured."
         },
+        "emailPrivacyConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig",
+          "description": "Configuration for settings related to email privacy and public visibility."
+        },
         "mfa": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig",
           "description": "Configuration for this project's multi-factor authentication, including whether it is active and what factors can be used for the second factor"
@@ -1746,9 +1968,17 @@
           "$ref": "GoogleCloudIdentitytoolkitAdminV2NotificationConfig",
           "description": "Configuration related to sending notifications to users."
         },
+        "passwordPolicyConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig",
+          "description": "The project level password policy configuration."
+        },
         "quota": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2QuotaConfig",
           "description": "Configuration related to quotas."
+        },
+        "recaptchaConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig",
+          "description": "The project-level reCAPTCHA config."
         },
         "signIn": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2SignInConfig",
@@ -1772,6 +2002,39 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2CustomStrengthOptions": {
+      "description": "Custom strength options to enforce on user passwords.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2CustomStrengthOptions",
+      "properties": {
+        "containsLowercaseCharacter": {
+          "description": "The password must contain a lower case character.",
+          "type": "boolean"
+        },
+        "containsNonAlphanumericCharacter": {
+          "description": "The password must contain a non alpha numeric character.",
+          "type": "boolean"
+        },
+        "containsNumericCharacter": {
+          "description": "The password must contain a number.",
+          "type": "boolean"
+        },
+        "containsUppercaseCharacter": {
+          "description": "The password must contain an upper case character.",
+          "type": "boolean"
+        },
+        "maxPasswordLength": {
+          "description": "Maximum password length. No default max length",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minPasswordLength": {
+          "description": "Minimum password length. Range from 6 to 30",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1874,6 +2137,17 @@
         },
         "passwordRequired": {
           "description": "Whether a password is required for email auth or not. If true, both an email and password must be provided to sign in. If false, a user may sign in via either email/password or email link.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig": {
+      "description": "Configuration for settings related to email privacy and public visibility. Settings in this config protect against email enumeration, but may make some trade-offs in user-friendliness.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig",
+      "properties": {
+        "enableImprovedEmailPrivacy": {
+          "description": "Migrates the project to a state of improved email privacy. For example certain error codes are more generic to avoid giving away information on whether the account exists. In addition, this disables certain features that as a side-effect allow user enumeration. Enabling this toggle disables the fetchSignInMethodsForEmail functionality and changing the user's email to an unverified email. It is recommended to remove dependence on this functionality and enable this toggle to improve user privacy.",
           "type": "boolean"
         }
       },
@@ -2217,6 +2491,13 @@
           },
           "type": "array"
         },
+        "providerConfigs": {
+          "description": "A list of usable second factors for this project along with their configurations. This field does not support phone based MFA, for that use the 'enabled_providers' field.",
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2ProviderConfig"
+          },
+          "type": "array"
+        },
         "state": {
           "description": "Whether MultiFactor Authentication has been enabled for this project.",
           "enum": [
@@ -2318,8 +2599,86 @@
           "type": "boolean"
         },
         "token": {
+          "deprecated": true,
           "description": "Do not use. The `token` response type is not supported at the moment.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig": {
+      "description": "Configuration for signing in users using passkeys.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2PasskeyConfig",
+      "properties": {
+        "expectedOrigins": {
+          "description": "Required. The website or app origins associated with the customer's sites or apps. Only challenges signed from these origins will be allowed to sign in with passkeys.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. The name of the PasskeyConfig resource.",
+          "type": "string"
+        },
+        "rpId": {
+          "description": "Required. The relying party ID for the purpose of passkeys verifications. This cannot be changed once created.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig": {
+      "description": "The configuration for the password policy on the project.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig",
+      "properties": {
+        "forceUpgradeOnSignin": {
+          "description": "Users must have a password compliant with the password policy to sign-in.",
+          "type": "boolean"
+        },
+        "lastUpdateTime": {
+          "description": "Output only. The last time the password policy on the project was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "passwordPolicyEnforcementState": {
+          "description": "Which enforcement mode to use for the password policy.",
+          "enum": [
+            "PASSWORD_POLICY_ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "ENFORCE"
+          ],
+          "enumDescriptions": [
+            "Illegal State, should not be used.",
+            "Password Policy will not be used on the project.",
+            "Passwords non-compliant with the password policy will be rejected with an error thrown."
+          ],
+          "type": "string"
+        },
+        "passwordPolicyVersions": {
+          "description": "Must be of length 1. Contains the strength attributes for the password policy.",
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyVersion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyVersion": {
+      "description": "The strength attributes for the password policy on the project.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyVersion",
+      "properties": {
+        "customStrengthOptions": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2CustomStrengthOptions",
+          "description": "The custom strength options enforced by the password policy."
+        },
+        "schemaVersion": {
+          "description": "Output only. schema version number for the password policy",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2357,6 +2716,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudIdentitytoolkitAdminV2ProviderConfig": {
+      "description": "ProviderConfig describes the supported MFA providers along with their configurations.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2ProviderConfig",
+      "properties": {
+        "state": {
+          "description": "Describes the state of the MultiFactor Authentication type.",
+          "enum": [
+            "MFA_STATE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED",
+            "MANDATORY"
+          ],
+          "enumDescriptions": [
+            "Illegal State, should not be used.",
+            "Multi-factor authentication cannot be used for this project.",
+            "Multi-factor authentication can be used for this project.",
+            "Multi-factor authentication is required for this project. Users from this project must authenticate with the second factor."
+          ],
+          "type": "string"
+        },
+        "totpProviderConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2TotpMfaProviderConfig",
+          "description": "TOTP MFA provider config for this project."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIdentitytoolkitAdminV2QuotaConfig": {
       "description": "Configuration related to quotas.",
       "id": "GoogleCloudIdentitytoolkitAdminV2QuotaConfig",
@@ -2364,6 +2750,99 @@
         "signUpQuotaConfig": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2TemporaryQuota",
           "description": "Quota for the Signup endpoint, if overwritten. Signup quota is measured in sign ups per project per hour per IP."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig": {
+      "description": "The reCAPTCHA Enterprise integration config.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig",
+      "properties": {
+        "emailPasswordEnforcementState": {
+          "description": "The reCAPTCHA config for email/password provider, containing the enforcement status. The email/password provider contains all related user flows protected by reCAPTCHA.",
+          "enum": [
+            "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "AUDIT",
+            "ENFORCE"
+          ],
+          "enumDescriptions": [
+            "Enforcement state has not been set.",
+            "Unenforced.",
+            "reCAPTCHA assessment is created, result is not used to enforce.",
+            "reCAPTCHA assessment is created, result is used to enforce."
+          ],
+          "type": "string"
+        },
+        "managedRules": {
+          "description": "The managed rules for authentication action based on reCAPTCHA scores. The rules are shared across providers for a given tenant project.",
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule"
+          },
+          "type": "array"
+        },
+        "recaptchaKeys": {
+          "description": "Output only. The reCAPTCHA keys.",
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaKey"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "useAccountDefender": {
+          "description": "Whether to use the account defender for reCAPTCHA assessment. Defaults to `false`.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2RecaptchaKey": {
+      "description": "The reCAPTCHA key config. reCAPTCHA Enterprise offers different keys for different client platforms.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2RecaptchaKey",
+      "properties": {
+        "key": {
+          "description": "The reCAPTCHA Enterprise key resource name, e.g. \"projects/{project}/keys/{key}\"",
+          "type": "string"
+        },
+        "type": {
+          "description": "The client's platform type.",
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "WEB",
+            "IOS",
+            "ANDROID"
+          ],
+          "enumDescriptions": [
+            "Client type is not specified.",
+            "Client type is web.",
+            "Client type is iOS.",
+            "Client type is Android."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule": {
+      "description": "The config for a reCAPTCHA managed rule. Models a single interval [start_score, end_score]. The start_score is implicit. It is either the closest smaller end_score (if one is available) or 0. Intervals in aggregate span [0, 1] without overlapping.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule",
+      "properties": {
+        "action": {
+          "description": "The action taken if the reCAPTCHA score of a request is within the interval [start_score, end_score].",
+          "enum": [
+            "RECAPTCHA_ACTION_UNSPECIFIED",
+            "BLOCK"
+          ],
+          "enumDescriptions": [
+            "The reCAPTCHA action is not specified.",
+            "The reCAPTCHA-protected request will be blocked."
+          ],
+          "type": "string"
+        },
+        "endScore": {
+          "description": "The end score (inclusive) of the score range for an action. Must be a value between 0.0 and 1.0, at 11 discrete values; e.g. 0, 0.1, 0.2, 0.3, ... 0.9, 1.0. A score of 0.0 indicates the riskiest request (likely a bot), whereas 1.0 indicates the safest request (likely a human). See https://cloud.google.com/recaptcha-enterprise/docs/interpret-assessment.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -2630,6 +3109,10 @@
           "description": "Display name of the tenant.",
           "type": "string"
         },
+        "emailPrivacyConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig",
+          "description": "Configuration for settings related to email privacy and public visibility."
+        },
         "enableAnonymousUser": {
           "description": "Whether to enable anonymous user authentication.",
           "type": "boolean"
@@ -2660,6 +3143,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "passwordPolicyConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig",
+          "description": "The tenant-level password policy config"
+        },
+        "recaptchaConfig": {
+          "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig",
+          "description": "The tenant-level reCAPTCHA config."
+        },
         "smsRegionConfig": {
           "$ref": "GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig",
           "description": "Configures which regions are enabled for SMS verification code sending."
@@ -2670,6 +3161,18 @@
           },
           "description": "A map of pairs that can be used for MFA. The phone number should be in E.164 format (https://www.itu.int/rec/T-REC-E.164/) and a maximum of 10 pairs can be added (error will be thrown once exceeded).",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2TotpMfaProviderConfig": {
+      "description": "TotpMFAProviderConfig represents the TOTP based MFA provider.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2TotpMfaProviderConfig",
+      "properties": {
+        "adjacentIntervals": {
+          "description": "The allowed number of adjacent intervals that will be used for verification to avoid clock skew.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2701,6 +3204,39 @@
       },
       "type": "object"
     },
+    "GoogleCloudIdentitytoolkitV2CustomStrengthOptions": {
+      "description": "Custom strength options to enforce on user passwords.",
+      "id": "GoogleCloudIdentitytoolkitV2CustomStrengthOptions",
+      "properties": {
+        "containsLowercaseCharacter": {
+          "description": "The password must contain a lower case character.",
+          "type": "boolean"
+        },
+        "containsNonAlphanumericCharacter": {
+          "description": "The password must contain a non alpha numeric character.",
+          "type": "boolean"
+        },
+        "containsNumericCharacter": {
+          "description": "The password must contain a number.",
+          "type": "boolean"
+        },
+        "containsUppercaseCharacter": {
+          "description": "The password must contain an upper case character.",
+          "type": "boolean"
+        },
+        "maxPasswordLength": {
+          "description": "Maximum password length. No default max length",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minPasswordLength": {
+          "description": "Minimum password length. Range from 6 to 30",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentRequest": {
       "description": "Finishes enrolling a second factor for the user.",
       "id": "GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentRequest",
@@ -2720,6 +3256,10 @@
         "tenantId": {
           "description": "The ID of the Identity Platform tenant that the user enrolling MFA belongs to. If not set, the user belongs to the default Identity Platform project.",
           "type": "string"
+        },
+        "totpVerificationInfo": {
+          "$ref": "GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentRequestInfo",
+          "description": "Verification information for TOTP."
         }
       },
       "type": "object"
@@ -2739,6 +3279,10 @@
         "refreshToken": {
           "description": "Refresh token updated to reflect MFA enrollment.",
           "type": "string"
+        },
+        "totpAuthInfo": {
+          "$ref": "GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentResponseInfo",
+          "description": "Auxiliary auth info specific to TOTP auth."
         }
       },
       "type": "object"
@@ -2790,6 +3334,10 @@
       "description": "Finalizes sign-in by verifying MFA challenge.",
       "id": "GoogleCloudIdentitytoolkitV2FinalizeMfaSignInRequest",
       "properties": {
+        "mfaEnrollmentId": {
+          "description": "The MFA enrollment ID from the user's list of current MFA enrollments.",
+          "type": "string"
+        },
         "mfaPendingCredential": {
           "description": "Required. Pending credential from first factor sign-in.",
           "type": "string"
@@ -2801,6 +3349,10 @@
         "tenantId": {
           "description": "The ID of the Identity Platform tenant the user is signing in to. If not set, the user will sign in to the default Identity Platform project.",
           "type": "string"
+        },
+        "totpVerificationInfo": {
+          "$ref": "GoogleCloudIdentitytoolkitV2MfaTotpSignInRequestInfo",
+          "description": "Proof of completion of the TOTP based MFA challenge."
         }
       },
       "type": "object"
@@ -2824,6 +3376,184 @@
       },
       "type": "object"
     },
+    "GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentRequestInfo": {
+      "description": "Mfa request info specific to TOTP auth for FinalizeMfa.",
+      "id": "GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentRequestInfo",
+      "properties": {
+        "sessionInfo": {
+          "description": "An opaque string that represents the enrollment session.",
+          "type": "string"
+        },
+        "verificationCode": {
+          "description": "User-entered verification code.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentResponseInfo": {
+      "description": "Mfa response info specific to TOTP auth for FinalizeMfa.",
+      "id": "GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentResponseInfo",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV2MfaTotpSignInRequestInfo": {
+      "description": "TOTP verification info for FinalizeMfaSignInRequest.",
+      "id": "GoogleCloudIdentitytoolkitV2MfaTotpSignInRequestInfo",
+      "properties": {
+        "verificationCode": {
+          "description": "User-entered verification code.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV2PasswordPolicy": {
+      "description": "Configuration for password policy.",
+      "id": "GoogleCloudIdentitytoolkitV2PasswordPolicy",
+      "properties": {
+        "allowedNonAlphanumericCharacters": {
+          "description": "Output only. Allowed characters which satisfy the non_alphanumeric requirement.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "customStrengthOptions": {
+          "$ref": "GoogleCloudIdentitytoolkitV2CustomStrengthOptions",
+          "description": "The custom strength options enforced by the password policy."
+        },
+        "enforcementState": {
+          "description": "Output only. Which enforcement mode to use for the password policy.",
+          "enum": [
+            "ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "ENFORCE"
+          ],
+          "enumDescriptions": [
+            "Enforcement state has not been set.",
+            "Password Policy will not be used on the project.",
+            "Passwords non-compliant with the password policy will be rejected with an error thrown."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "forceUpgradeOnSignin": {
+          "description": "Users must have a password compliant with the password policy to sign-in.",
+          "type": "boolean"
+        },
+        "schemaVersion": {
+          "description": "Output only. schema version number for the password policy",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV2RecaptchaConfig": {
+      "description": "Configuration for reCAPTCHA",
+      "id": "GoogleCloudIdentitytoolkitV2RecaptchaConfig",
+      "properties": {
+        "recaptchaEnforcementState": {
+          "description": "The reCAPTCHA enforcement state for the providers that GCIP supports reCAPTCHA protection.",
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState"
+          },
+          "type": "array"
+        },
+        "recaptchaKey": {
+          "description": "The reCAPTCHA Enterprise key resource name, e.g. \"projects/{project}/keys/{key}\". This will only be returned when the reCAPTCHA enforcement state is AUDIT or ENFORCE on at least one of the reCAPTCHA providers.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState": {
+      "description": "Enforcement states for reCAPTCHA protection.",
+      "id": "GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState",
+      "properties": {
+        "enforcementState": {
+          "description": "The reCAPTCHA enforcement state for the provider.",
+          "enum": [
+            "ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "AUDIT",
+            "ENFORCE"
+          ],
+          "enumDescriptions": [
+            "Enforcement state has not been set.",
+            "Unenforced.",
+            "reCAPTCHA assessment is created, result is not used to enforce.",
+            "reCAPTCHA assessment is created, result is used to enforce."
+          ],
+          "type": "string"
+        },
+        "provider": {
+          "description": "The provider that has reCAPTCHA protection.",
+          "enum": [
+            "RECAPTCHA_PROVIDER_UNSPECIFIED",
+            "EMAIL_PASSWORD_PROVIDER"
+          ],
+          "enumDescriptions": [
+            "reCAPTCHA provider not specified",
+            "Email password provider"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV2RevokeTokenRequest": {
+      "description": "Request message for RevokeToken.",
+      "id": "GoogleCloudIdentitytoolkitV2RevokeTokenRequest",
+      "properties": {
+        "idToken": {
+          "description": "Required. A valid Identity Platform ID token to link the account. If there was a successful token revocation request on the account and no tokens are generated after the revocation, the duplicate requests will be ignored and returned immediately.",
+          "type": "string"
+        },
+        "providerId": {
+          "description": "Required. The idp provider for the token. Currently only supports Apple Idp. The format should be \"apple.com\".",
+          "type": "string"
+        },
+        "redirectUri": {
+          "description": "The redirect URI provided in the initial authorization request made by the client to the IDP. The URI must use the HTTPS protocol, include a domain name, and can't contain an IP address or localhost. Required if token_type is CODE.",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "The ID of the Identity Platform tenant the user is signing in to. If not set, the user will sign in to the default Identity Platform project.",
+          "type": "string"
+        },
+        "token": {
+          "description": "Required. The token to be revoked. If an authorization_code is passed in, the API will first exchange the code for access token and then revoke the token exchanged.",
+          "type": "string"
+        },
+        "tokenType": {
+          "description": "Required. The type of the token to be revoked.",
+          "enum": [
+            "TOKEN_TYPE_UNSPECIFIED",
+            "REFRESH_TOKEN",
+            "ACCESS_TOKEN",
+            "CODE"
+          ],
+          "enumDescriptions": [
+            "Default value, do not use.",
+            "Token type is refresh_token.",
+            "Token type is access_token.",
+            "Token type is authorization_code."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV2RevokeTokenResponse": {
+      "description": "Response message for RevokeToken. Empty for now.",
+      "id": "GoogleCloudIdentitytoolkitV2RevokeTokenResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudIdentitytoolkitV2StartMfaEnrollmentRequest": {
       "description": "Sends MFA enrollment verification SMS for a user.",
       "id": "GoogleCloudIdentitytoolkitV2StartMfaEnrollmentRequest",
@@ -2839,6 +3569,10 @@
         "tenantId": {
           "description": "The ID of the Identity Platform tenant that the user enrolling MFA belongs to. If not set, the user belongs to the default Identity Platform project.",
           "type": "string"
+        },
+        "totpEnrollmentInfo": {
+          "$ref": "GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentRequestInfo",
+          "description": "Sign-in info specific to TOTP auth."
         }
       },
       "type": "object"
@@ -2850,6 +3584,10 @@
         "phoneSessionInfo": {
           "$ref": "GoogleCloudIdentitytoolkitV2StartMfaPhoneResponseInfo",
           "description": "Verification info to authorize sending an SMS for phone verification."
+        },
+        "totpSessionInfo": {
+          "$ref": "GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentResponseInfo",
+          "description": "Enrollment response info specific to TOTP auth."
         }
       },
       "type": "object"
@@ -2872,6 +3610,10 @@
         },
         "phoneNumber": {
           "description": "Required for enrollment. Phone number to be enrolled as MFA.",
+          "type": "string"
+        },
+        "playIntegrityToken": {
+          "description": "Android only. Used to assert application identity in place of a recaptcha token (or safety net token). A Play Integrity Token can be generated via the [PlayIntegrity API] (https://developer.android.com/google/play/integrity) with applying SHA256 to the `phone_number` field as the nonce.",
           "type": "string"
         },
         "recaptchaToken": {
@@ -2926,6 +3668,46 @@
         "phoneResponseInfo": {
           "$ref": "GoogleCloudIdentitytoolkitV2StartMfaPhoneResponseInfo",
           "description": "MultiFactor sign-in session information specific to SMS-type second factors. Along with the one-time code retrieved from the sent SMS, the contents of this session information should be passed to FinalizeMfaSignIn to complete the sign in."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentRequestInfo": {
+      "description": "Mfa request info specific to TOTP auth for StartMfa.",
+      "id": "GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentRequestInfo",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentResponseInfo": {
+      "description": "Mfa response info specific to TOTP auth for StartMfa.",
+      "id": "GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentResponseInfo",
+      "properties": {
+        "finalizeEnrollmentTime": {
+          "description": "The time by which the enrollment must finish.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "hashingAlgorithm": {
+          "description": "The hashing algorithm used to generate the verification code.",
+          "type": "string"
+        },
+        "periodSec": {
+          "description": "Duration in seconds at which the verification code will change.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sessionInfo": {
+          "description": "An encoded string that represents the enrollment session.",
+          "type": "string"
+        },
+        "sharedSecretKey": {
+          "description": "A base 32 encoded string that represents the shared TOTP secret. The base 32 encoding is the one specified by [RFC4648#section-6](https://datatracker.ietf.org/doc/html/rfc4648#section-6). (This is the same as the base 32 encoding from [RFC3548#section-5](https://datatracker.ietf.org/doc/html/rfc3548#section-5).)",
+          "type": "string"
+        },
+        "verificationCodeLength": {
+          "description": "The length of the verification code that needs to be generated.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3021,7 +3803,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
           "items": {
             "type": "string"
           },
@@ -3058,7 +3840,7 @@
       "type": "object"
     },
     "GoogleIamV1Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "GoogleIamV1Policy",
       "properties": {
         "auditConfigs": {

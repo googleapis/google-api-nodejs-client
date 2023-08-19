@@ -224,7 +224,7 @@
                           ],
                           "enumDescriptions": [
                             "The default / unset value.",
-                            "Includes only basic metadata about the execution. Following fields are returned: name, start_time, end_time, state and workflow_revision_id.",
+                            "Includes only basic metadata about the execution. The following fields are returned: name, start_time, end_time, duration, state, and workflow_revision_id.",
                             "Includes all data."
                           ],
                           "location": "query",
@@ -248,6 +248,16 @@
                         "parent"
                       ],
                       "parameters": {
+                        "filter": {
+                          "description": "Optional. Filters applied to the [Executions.ListExecutions] results. The following fields are supported for filtering: executionID, state, startTime, endTime, duration, workflowRevisionID, stepName, and label.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. The ordering applied to the [Executions.ListExecutions] results. By default the ordering is based on descending start time. The following fields are supported for order by: executionID, startTime, endTime, duration, state, and workflowRevisionID.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 1000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.",
                           "format": "int32",
@@ -255,7 +265,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token.",
+                          "description": "A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token. Note that pagination is applied to dynamic data. The list of executions returned can change between page requests.",
                           "location": "query",
                           "type": "string"
                         },
@@ -275,7 +285,7 @@
                           ],
                           "enumDescriptions": [
                             "The default / unset value.",
-                            "Includes only basic metadata about the execution. Following fields are returned: name, start_time, end_time, state and workflow_revision_id.",
+                            "Includes only basic metadata about the execution. The following fields are returned: name, start_time, end_time, duration, state, and workflow_revision_id.",
                             "Includes all data."
                           ],
                           "location": "query",
@@ -299,7 +309,7 @@
       }
     }
   },
-  "revision": "20220908",
+  "revision": "20230725",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -340,13 +350,21 @@
           "enum": [
             "CALL_LOG_LEVEL_UNSPECIFIED",
             "LOG_ALL_CALLS",
-            "LOG_ERRORS_ONLY"
+            "LOG_ERRORS_ONLY",
+            "LOG_NONE"
           ],
           "enumDescriptions": [
-            "No call logging specified.",
+            "No call logging level specified.",
             "Log all call steps within workflows, all call returns, and all exceptions raised.",
-            "Log only exceptions that are raised from call steps within workflows."
+            "Log only exceptions that are raised from call steps within workflows.",
+            "Explicitly log nothing."
           ],
+          "type": "string"
+        },
+        "duration": {
+          "description": "Output only. Measures the duration of the execution.",
+          "format": "google-duration",
+          "readOnly": true,
           "type": "string"
         },
         "endTime": {
@@ -359,6 +377,13 @@
           "$ref": "Error",
           "description": "Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`.",
           "readOnly": true
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels associated with this execution. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores, and dashes. Label keys must start with a letter. International characters are allowed. By default, labels are inherited from the workflow but are overridden by any labels associated with the execution.",
+          "type": "object"
         },
         "name": {
           "description": "Output only. The resource name of the execution. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}",
@@ -383,21 +408,30 @@
             "ACTIVE",
             "SUCCEEDED",
             "FAILED",
-            "CANCELLED"
+            "CANCELLED",
+            "UNAVAILABLE",
+            "QUEUED"
           ],
           "enumDescriptions": [
             "Invalid state.",
             "The execution is in progress.",
             "The execution finished successfully.",
             "The execution failed with an error.",
-            "The execution was stopped intentionally."
+            "The execution was stopped intentionally.",
+            "Execution data is unavailable. See the `state_error` field.",
+            "Request has been placed in the backlog for processing at a later time."
           ],
           "readOnly": true,
           "type": "string"
         },
+        "stateError": {
+          "$ref": "StateError",
+          "description": "Output only. Error regarding the state of the Execution resource. For example, this field will have error details if the execution data is unavailable due to revoked KMS key permissions.",
+          "readOnly": true
+        },
         "status": {
           "$ref": "Status",
-          "description": "Output only. Status tracks the current steps and progress data of this execution. > **Preview:** This field is covered by the > [Pre-GA Offerings Terms](https://cloud.google.com/terms/service-terms) of > the Google Cloud Terms of Service. Pre-GA features might have limited > support, and changes to pre-GA features might not be compatible with > other pre-GA versions. For more information, see the > [launch stage descriptions](https://cloud.google.com/products#product-launch-stages). > This field is usable only if your project has access. See the > [access request page](https://docs.google.com/forms/d/e/1FAIpQLSdgwrSV8Y4xZv_tvI6X2JEGX1-ty9yizv3_EAOVHWVKXvDLEA/viewform).",
+          "description": "Output only. Status tracks the current steps and progress data of this execution.",
           "readOnly": true
         },
         "workflowRevisionId": {
@@ -456,24 +490,24 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.",
+          "description": "Optional. Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.",
           "type": "object"
         },
         "data": {
-          "description": "The message data field. If this field is empty, the message must contain at least one attribute.",
+          "description": "Optional. The message data field. If this field is empty, the message must contain at least one attribute.",
           "format": "byte",
           "type": "string"
         },
         "messageId": {
-          "description": "ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.",
+          "description": "Optional. ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.",
           "type": "string"
         },
         "orderingKey": {
-          "description": "If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).",
+          "description": "Optional. If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).",
           "type": "string"
         },
         "publishTime": {
-          "description": "The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.",
+          "description": "Optional. The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -513,8 +547,31 @@
       },
       "type": "object"
     },
+    "StateError": {
+      "description": "Describes an error related to the current state of the Execution resource.",
+      "id": "StateError",
+      "properties": {
+        "details": {
+          "description": "Provides specifics about the error.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of this state error.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "KMS_ERROR"
+          ],
+          "enumDescriptions": [
+            "No type specified.",
+            "Caused by an issue with KMS."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
-      "description": "> **Preview:** This field is covered by the > [Pre-GA Offerings Terms](https://cloud.google.com/terms/service-terms) of > the Google Cloud Terms of Service. Pre-GA features might have limited > support, and changes to pre-GA features might not be compatible with > other pre-GA versions. For more information, see the > [launch stage descriptions](https://cloud.google.com/products#product-launch-stages). > This field is usable only if your project has access. See the > [access request page](https://docs.google.com/forms/d/e/1FAIpQLSdgwrSV8Y4xZv_tvI6X2JEGX1-ty9yizv3_EAOVHWVKXvDLEA/viewform). Represents the current status of this execution.",
+      "description": "Represents the current status of this execution.",
       "id": "Status",
       "properties": {
         "currentSteps": {
@@ -549,6 +606,11 @@
         "GCPCloudEventsMode": {
           "description": "Required. LINT: LEGACY_NAMES The query parameter value for __GCP_CloudEventsMode, set by the Eventarc service when configuring triggers.",
           "type": "string"
+        },
+        "deliveryAttempt": {
+          "description": "The number of attempts that have been made to deliver this message. This is set by Pub/Sub for subscriptions that have the \"dead letter\" feature enabled, and hence provided here for compatibility, but is ignored by Workflows.",
+          "format": "int32",
+          "type": "integer"
         },
         "message": {
           "$ref": "PubsubMessage",

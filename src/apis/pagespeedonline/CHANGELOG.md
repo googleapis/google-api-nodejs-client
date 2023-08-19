@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/pagespeedonline-v1.1.1...pagespeedonline-v1.1.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **pagespeedonline:** update the API ([fb574b4](https://github.com/googleapis/google-api-nodejs-client/commit/fb574b47407ec2810c5c27c4d1956ec84dd72e13))
+
+## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/pagespeedonline-v1.1.0...pagespeedonline-v1.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **pagespeedonline:** update the API ([fb574b4](https://github.com/googleapis/google-api-nodejs-client/commit/fb574b47407ec2810c5c27c4d1956ec84dd72e13))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/pagespeedonline-v1.0.0...pagespeedonline-v1.1.0) (2023-03-22)
+
+
+### Features
+
+* **pagespeedonline:** update the API ([3927d0d](https://github.com/googleapis/google-api-nodejs-client/commit/3927d0dc48816a9124cdc3cd8b171774067382b5))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/pagespeedonline-v0.4.2...pagespeedonline-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/pagespeedonline-v0.4.1...pagespeedonline-v0.4.2) (2022-09-21)
 
 

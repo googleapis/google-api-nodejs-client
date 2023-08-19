@@ -110,8 +110,10 @@
         "locations": {
           "resources": {
             "instanceOSPoliciesCompliances": {
+              "deprecated": true,
               "methods": {
                 "get": {
+                  "deprecated": true,
                   "description": "Get OS policies compliance data for the specified Compute Engine VM instance.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/instanceOSPoliciesCompliances/{instanceOSPoliciesCompliancesId}",
                   "httpMethod": "GET",
@@ -137,6 +139,7 @@
                   ]
                 },
                 "list": {
+                  "deprecated": true,
                   "description": "List OS policies compliance data for all Compute Engine VM instances in the specified zone.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/instanceOSPoliciesCompliances",
                   "httpMethod": "GET",
@@ -286,7 +289,7 @@
                     "reports": {
                       "methods": {
                         "get": {
-                          "description": "Get the OS policy asssignment report for the specified Compute Engine VM instance.",
+                          "description": "Get the OS policy assignment report for the specified Compute Engine VM instance.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/osPolicyAssignments/{osPolicyAssignmentsId}/report",
                           "httpMethod": "GET",
                           "id": "osconfig.projects.locations.instances.osPolicyAssignments.reports.get",
@@ -311,7 +314,7 @@
                           ]
                         },
                         "list": {
-                          "description": "List OS policy asssignment reports for all Compute Engine VM instances in the specified zone.",
+                          "description": "List OS policy assignment reports for all Compute Engine VM instances in the specified zone.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/osPolicyAssignments/{osPolicyAssignmentsId}/reports",
                           "httpMethod": "GET",
                           "id": "osconfig.projects.locations.instances.osPolicyAssignments.reports.list",
@@ -684,7 +687,7 @@
       }
     }
   },
-  "revision": "20220319",
+  "revision": "20230806",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {
@@ -940,6 +943,7 @@
       "type": "object"
     },
     "InstanceOSPoliciesCompliance": {
+      "deprecated": true,
       "description": "This API resource represents the OS policies compliance data for a Compute Engine virtual machine (VM) instance at a given point in time. A Compute Engine VM can have multiple OS policy assignments, and each assignment can have multiple OS policies. As a result, multiple OS policies could be applied to a single VM. You can use this API resource to determine both the compliance state of your VM as well as the compliance state of an individual OS policy. For more information, see [View compliance](https://cloud.google.com/compute/docs/os-configuration-management/view-compliance).",
       "id": "InstanceOSPoliciesCompliance",
       "properties": {
@@ -1005,6 +1009,7 @@
       "type": "object"
     },
     "InstanceOSPoliciesComplianceOSPolicyCompliance": {
+      "deprecated": true,
       "description": "Compliance data for an OS policy",
       "id": "InstanceOSPoliciesComplianceOSPolicyCompliance",
       "properties": {
@@ -1375,6 +1380,7 @@
       "type": "object"
     },
     "ListInstanceOSPoliciesCompliancesResponse": {
+      "deprecated": true,
       "description": "A response message for listing OS policies compliance data for all Compute Engine VMs in the given location.",
       "id": "ListInstanceOSPoliciesCompliancesResponse",
       "properties": {
@@ -1636,6 +1642,7 @@
           "type": "array"
         },
         "osShortNames": {
+          "deprecated": true,
           "description": "Deprecated. Use the `inventories` field instead. A VM is selected if it's OS short name matches with any of the values provided in this list.",
           "items": {
             "type": "string"
@@ -1955,6 +1962,7 @@
       "type": "object"
     },
     "OSPolicyResourceCompliance": {
+      "deprecated": true,
       "description": "Compliance data for an OS policy resource.",
       "id": "OSPolicyResourceCompliance",
       "properties": {
@@ -1995,6 +2003,7 @@
       "type": "object"
     },
     "OSPolicyResourceComplianceExecResourceOutput": {
+      "deprecated": true,
       "description": "ExecResource specific output.",
       "id": "OSPolicyResourceComplianceExecResourceOutput",
       "properties": {
@@ -2007,6 +2016,7 @@
       "type": "object"
     },
     "OSPolicyResourceConfigStep": {
+      "deprecated": true,
       "description": "Step performed by the OS Config agent for configuring an `OSPolicyResource` to its desired state.",
       "id": "OSPolicyResourceConfigStep",
       "properties": {
@@ -2100,7 +2110,7 @@
           "type": "string"
         },
         "script": {
-          "description": "An inline script. The size of the script is limited to 1024 characters.",
+          "description": "An inline script. The size of the script is limited to 32KiB.",
           "type": "string"
         }
       },
@@ -2169,7 +2179,7 @@
       "id": "OSPolicyResourceFileResource",
       "properties": {
         "content": {
-          "description": "A a file with this content. The size of the content is limited to 1024 characters.",
+          "description": "A a file with this content. The size of the content is limited to 32KiB.",
           "type": "string"
         },
         "file": {
@@ -2216,6 +2226,7 @@
         },
         "osFilter": {
           "$ref": "OSPolicyOSFilter",
+          "deprecated": true,
           "description": "Deprecated. Use the `inventory_filters` field instead. Used to specify the OS filter for a resource group"
         },
         "resources": {
@@ -2528,7 +2539,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -2592,6 +2603,7 @@
       "id": "VulnerabilityReportVulnerability",
       "properties": {
         "availableInventoryItemIds": {
+          "deprecated": true,
           "description": "Corresponds to the `AVAILABLE_PACKAGE` inventory item on the VM. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. If there is no available fix, the field is empty. The `inventory_item` value specifies the latest `SoftwarePackage` available to the VM that fixes the vulnerability.",
           "items": {
             "type": "string"
@@ -2608,6 +2620,7 @@
           "description": "Contains metadata as per the upstream feed of the operating system and NVD."
         },
         "installedInventoryItemIds": {
+          "deprecated": true,
           "description": "Corresponds to the `INSTALLED_PACKAGE` inventory item on the VM. This field displays the inventory items affected by this vulnerability. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. For some distros, this field may be empty.",
           "items": {
             "type": "string"

@@ -27,7 +27,7 @@ export function firebasedynamiclinks(
   options: firebasedynamiclinks_v1.Options
 ): firebasedynamiclinks_v1.Firebasedynamiclinks;
 export function firebasedynamiclinks<
-  T = firebasedynamiclinks_v1.Firebasedynamiclinks
+  T = firebasedynamiclinks_v1.Firebasedynamiclinks,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | firebasedynamiclinks_v1.Options

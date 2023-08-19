@@ -27,7 +27,7 @@ export function acceleratedmobilepageurl(
   options: acceleratedmobilepageurl_v1.Options
 ): acceleratedmobilepageurl_v1.Acceleratedmobilepageurl;
 export function acceleratedmobilepageurl<
-  T = acceleratedmobilepageurl_v1.Acceleratedmobilepageurl
+  T = acceleratedmobilepageurl_v1.Acceleratedmobilepageurl,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | acceleratedmobilepageurl_v1.Options

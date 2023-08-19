@@ -1,5 +1,165 @@
 # Changelog
 
+## [10.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v10.0.1...chromemanagement-v10.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([fd29c85](https://github.com/googleapis/google-api-nodejs-client/commit/fd29c85f37723e4c631379eb3335abcbfeeb0ca7))
+
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v10.0.0...chromemanagement-v10.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([fd29c85](https://github.com/googleapis/google-api-nodejs-client/commit/fd29c85f37723e4c631379eb3335abcbfeeb0ca7))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v9.0.0...chromemanagement-v10.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **chromemanagement:** update the API ([0682fa7](https://github.com/googleapis/google-api-nodejs-client/commit/0682fa72414d5895360a19187525ac963013ef67))
+* **chromemanagement:** update the API ([1c18b16](https://github.com/googleapis/google-api-nodejs-client/commit/1c18b1665587b2d59e7bec78acb695017424aa9f))
+* **chromemanagement:** update the API ([3368e8d](https://github.com/googleapis/google-api-nodejs-client/commit/3368e8dd0e6b92d05fdaf43069758d2c0c01a3f6))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3226](https://github.com/googleapis/google-api-nodejs-client/issues/3226)) ([64731b3](https://github.com/googleapis/google-api-nodejs-client/commit/64731b38b8b60b082da5456914546850d152d677))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([b11e7ce](https://github.com/googleapis/google-api-nodejs-client/commit/b11e7ceeb62fd694aab0b6dc8f974a977edbea9f))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v8.0.0...chromemanagement-v9.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **chromemanagement:** update the API ([0682fa7](https://github.com/googleapis/google-api-nodejs-client/commit/0682fa72414d5895360a19187525ac963013ef67))
+* **chromemanagement:** update the API ([1c18b16](https://github.com/googleapis/google-api-nodejs-client/commit/1c18b1665587b2d59e7bec78acb695017424aa9f))
+* **chromemanagement:** update the API ([3368e8d](https://github.com/googleapis/google-api-nodejs-client/commit/3368e8dd0e6b92d05fdaf43069758d2c0c01a3f6))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3226](https://github.com/googleapis/google-api-nodejs-client/issues/3226)) ([64731b3](https://github.com/googleapis/google-api-nodejs-client/commit/64731b38b8b60b082da5456914546850d152d677))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([b11e7ce](https://github.com/googleapis/google-api-nodejs-client/commit/b11e7ceeb62fd694aab0b6dc8f974a977edbea9f))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v7.0.0...chromemanagement-v8.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v6.0.0...chromemanagement-v7.0.0) (2023-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3226](https://github.com/googleapis/google-api-nodejs-client/issues/3226)) ([64731b3](https://github.com/googleapis/google-api-nodejs-client/commit/64731b38b8b60b082da5456914546850d152d677))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v5.1.1...chromemanagement-v6.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+
+## [5.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v5.1.0...chromemanagement-v5.1.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([b11e7ce](https://github.com/googleapis/google-api-nodejs-client/commit/b11e7ceeb62fd694aab0b6dc8f974a977edbea9f))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v5.0.0...chromemanagement-v5.1.0) (2023-03-13)
+
+
+### Features
+
+* **chromemanagement:** update the API ([0682fa7](https://github.com/googleapis/google-api-nodejs-client/commit/0682fa72414d5895360a19187525ac963013ef67))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v4.0.0...chromemanagement-v5.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **chromemanagement:** This release has breaking changes.
+
+### Features
+
+* **chromemanagement:** update the API ([1c18b16](https://github.com/googleapis/google-api-nodejs-client/commit/1c18b1665587b2d59e7bec78acb695017424aa9f))
+* **chromemanagement:** update the API ([3368e8d](https://github.com/googleapis/google-api-nodejs-client/commit/3368e8dd0e6b92d05fdaf43069758d2c0c01a3f6))
+* **chromemanagement:** update the API ([76eea6c](https://github.com/googleapis/google-api-nodejs-client/commit/76eea6cdcb93e4c67e70573e729332dc6bff619d))
+* **chromemanagement:** update the API ([bf3db6d](https://github.com/googleapis/google-api-nodejs-client/commit/bf3db6d9b105e954b4e180766747877d215e7ee8))
+* regenerate index files ([bb9d246](https://github.com/googleapis/google-api-nodejs-client/commit/bb9d246d1e0c7c22e2ff2b4c40ed5df4fa410e12))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v3.1.0...chromemanagement-v4.0.0) (2023-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chromemanagement:** This release has breaking changes.
+
+### Features
+
+* **chromemanagement:** update the API ([3368e8d](https://github.com/googleapis/google-api-nodejs-client/commit/3368e8dd0e6b92d05fdaf43069758d2c0c01a3f6))
+* **chromemanagement:** update the API ([76eea6c](https://github.com/googleapis/google-api-nodejs-client/commit/76eea6cdcb93e4c67e70573e729332dc6bff619d))
+
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v3.0.0...chromemanagement-v3.1.0) (2022-12-22)
+
+
+### Features
+
+* **chromemanagement:** update the API ([bf3db6d](https://github.com/googleapis/google-api-nodejs-client/commit/bf3db6d9b105e954b4e180766747877d215e7ee8))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v2.3.0...chromemanagement-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v2.2.0...chromemanagement-v2.3.0) (2022-09-21)
 
 

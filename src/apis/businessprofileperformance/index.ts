@@ -27,7 +27,7 @@ export function businessprofileperformance(
   options: businessprofileperformance_v1.Options
 ): businessprofileperformance_v1.Businessprofileperformance;
 export function businessprofileperformance<
-  T = businessprofileperformance_v1.Businessprofileperformance
+  T = businessprofileperformance_v1.Businessprofileperformance,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | businessprofileperformance_v1.Options

@@ -51,7 +51,7 @@ export function gkehub<
     | gkehub_v1alpha2.Gkehub
     | gkehub_v1beta.Gkehub
     | gkehub_v1beta1.Gkehub
-    | gkehub_v2alpha.Gkehub
+    | gkehub_v2alpha.Gkehub,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

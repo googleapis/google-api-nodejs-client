@@ -972,7 +972,7 @@ export namespace jobs_v3 {
      */
     conditionallyForcedExpTags?: string[] | null;
     /**
-     * If true, disable automatic enrollment selection (at all diversion points). Automatic enrollment selection means experiment selection process based on the experiment's automatic enrollment condition. This does not disable selection of forced experiments. Setting this filed to false does not change anything in experiment selection process.
+     * If true, disable automatic enrollment selection (at all diversion points). Automatic enrollment selection means experiment selection process based on the experiment's automatic enrollment condition. This does not disable selection of forced experiments. Setting this field to false does not change anything in the experiment selection process.
      */
     disableAutomaticEnrollmentSelection?: boolean | null;
     /**
@@ -988,11 +988,11 @@ export namespace jobs_v3 {
      */
     disableExpTags?: string[] | null;
     /**
-     * If true, disable manual enrollment selection (at all diversion points). Manual enrollment selection means experiment selection process based on the request's manual enrollment states (a.k.a. opt-in experiments). This does not disable selection of forced experiments. Setting this filed to false does not change anything in experiment selection process.
+     * If true, disable manual enrollment selection (at all diversion points). Manual enrollment selection means experiment selection process based on the request's manual enrollment states (a.k.a. opt-in experiments). This does not disable selection of forced experiments. Setting this field to false does not change anything in the experiment selection process.
      */
     disableManualEnrollmentSelection?: boolean | null;
     /**
-     * If true, disable organic experiment selection (at all diversion points). Organic selection means experiment selection process based on traffic allocation and diversion condition evaluation. This does not disable selection of forced experiments. This is useful in cases when it is not known whether experiment selection behavior is responsible for a error or breakage. Disabling organic selection may help to isolate the cause of a given problem. Setting this filed to false does not change anything in experiment selection process.
+     * If true, disable organic experiment selection (at all diversion points). Organic selection means experiment selection process based on traffic allocation and diversion condition evaluation. This does not disable selection of forced experiments. This is useful in cases when it is not known whether experiment selection behavior is responsible for a error or breakage. Disabling organic selection may help to isolate the cause of a given problem. Setting this field to false does not change anything in the experiment selection process.
      */
     disableOrganicSelection?: boolean | null;
     /**
@@ -1004,7 +1004,7 @@ export namespace jobs_v3 {
      */
     forcedRollouts?: {[key: string]: boolean} | null;
     /**
-     * If set to ALL_OFF, organic selection will be disabled; if set to ALL_ON, organic selection will be disabled, and only select launch experiments will receive traffic. See go/mendel-aoao-runtime-design.
+     * Sets different testing modes. See the documentation in the TestingMode message for more information.
      */
     testingMode?: string | null;
   }
@@ -1316,66 +1316,6 @@ export namespace jobs_v3 {
 
     /**
      * Completes the specified prefix with keyword suggestions. Intended for use by a job search auto-complete search box.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.complete({
-     *     // Optional. If provided, restricts completion to specified company. The format is "projects/{project_id\}/companies/{company_id\}", for example, "projects/api-test-project/companies/foo".
-     *     companyName: 'placeholder-value',
-     *     // Deprecated. Use language_codes instead. Optional. The language of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). For CompletionType.JOB_TITLE type, only open jobs with the same language_code are returned. For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_code are returned. For CompletionType.COMBINED type, only open jobs with the same language_code or companies having open jobs with the same language_code are returned. The maximum number of allowed characters is 255.
-     *     languageCode: 'placeholder-value',
-     *     // Optional. The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). For CompletionType.JOB_TITLE type, only open jobs with the same language_codes are returned. For CompletionType.COMPANY_NAME type, only companies having open jobs with the same language_codes are returned. For CompletionType.COMBINED type, only open jobs with the same language_codes or companies having open jobs with the same language_codes are returned. The maximum number of allowed characters is 255.
-     *     languageCodes: 'placeholder-value',
-     *     // Required. Resource name of project the completion is performed within. The format is "projects/{project_id\}", for example, "projects/api-test-project".
-     *     name: 'projects/my-project',
-     *     // Required. Completion result count. The maximum allowed page size is 10.
-     *     pageSize: 'placeholder-value',
-     *     // Required. The query used to generate suggestions. The maximum number of allowed characters is 255.
-     *     query: 'placeholder-value',
-     *     // Optional. The scope of the completion. The defaults is CompletionScope.PUBLIC.
-     *     scope: 'placeholder-value',
-     *     // Optional. The completion topic. The default is CompletionType.COMBINED.
-     *     type: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "completionResults": [],
-     *   //   "metadata": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1513,64 +1453,6 @@ export namespace jobs_v3 {
 
     /**
      * Report events issued when end user interacts with customer's application that uses Cloud Talent Solution. You may inspect the created events in [self service tools](https://console.cloud.google.com/talent-solution/overview). [Learn more](https://cloud.google.com/talent-solution/docs/management-tools) about self service tools.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.clientEvents.create({
-     *     // Parent project name.
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clientEvent": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "eventId": "my_eventId",
-     *   //   "extraInfo": {},
-     *   //   "jobEvent": {},
-     *   //   "parentEventId": "my_parentEventId",
-     *   //   "requestId": "my_requestId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1678,71 +1560,6 @@ export namespace jobs_v3 {
 
     /**
      * Creates a new company entity.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.companies.create({
-     *     // Required. Resource name of the project under which the company is created. The format is "projects/{project_id\}", for example, "projects/api-test-project".
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "company": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "careerSiteUri": "my_careerSiteUri",
-     *   //   "derivedInfo": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "eeoText": "my_eeoText",
-     *   //   "externalId": "my_externalId",
-     *   //   "headquartersAddress": "my_headquartersAddress",
-     *   //   "hiringAgency": false,
-     *   //   "imageUri": "my_imageUri",
-     *   //   "keywordSearchableJobCustomAttributes": [],
-     *   //   "name": "my_name",
-     *   //   "size": "my_size",
-     *   //   "suspended": false,
-     *   //   "websiteUri": "my_websiteUri"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1830,49 +1647,6 @@ export namespace jobs_v3 {
 
     /**
      * Deletes specified company. Prerequisite: The company has no jobs associated with it.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.companies.delete({
-     *     // Required. The resource name of the company to be deleted. The format is "projects/{project_id\}/companies/{company_id\}", for example, "projects/api-test-project/companies/foo".
-     *     name: 'projects/my-project/companies/my-companie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1957,63 +1731,6 @@ export namespace jobs_v3 {
 
     /**
      * Retrieves specified company.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.companies.get({
-     *     // Required. The resource name of the company to be retrieved. The format is "projects/{project_id\}/companies/{company_id\}", for example, "projects/api-test-project/companies/foo".
-     *     name: 'projects/my-project/companies/my-companie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "careerSiteUri": "my_careerSiteUri",
-     *   //   "derivedInfo": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "eeoText": "my_eeoText",
-     *   //   "externalId": "my_externalId",
-     *   //   "headquartersAddress": "my_headquartersAddress",
-     *   //   "hiringAgency": false,
-     *   //   "imageUri": "my_imageUri",
-     *   //   "keywordSearchableJobCustomAttributes": [],
-     *   //   "name": "my_name",
-     *   //   "size": "my_size",
-     *   //   "suspended": false,
-     *   //   "websiteUri": "my_websiteUri"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2098,59 +1815,6 @@ export namespace jobs_v3 {
 
     /**
      * Lists all companies associated with the service account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.companies.list({
-     *     // Optional. The maximum number of companies to be returned, at most 100. Default is 100 if a non-positive number is provided.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. The starting indicator from which to return results.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the project under which the company is created. The format is "projects/{project_id\}", for example, "projects/api-test-project".
-     *     parent: 'projects/my-project',
-     *     // Optional. Set to true if the companies requested must have open jobs. Defaults to false. If true, at most page_size of companies are fetched, among which only those with open jobs are returned.
-     *     requireOpenJobs: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "companies": [],
-     *   //   "metadata": {},
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2243,72 +1907,6 @@ export namespace jobs_v3 {
 
     /**
      * Updates specified company. Company names can't be updated. To update a company name, delete the company and all jobs associated with it, and only then re-create them.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.companies.patch({
-     *     // Required during company update. The resource name for a company. This is generated by the service when a company is created. The format is "projects/{project_id\}/companies/{company_id\}", for example, "projects/api-test-project/companies/foo".
-     *     name: 'projects/my-project/companies/my-companie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "company": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "careerSiteUri": "my_careerSiteUri",
-     *   //   "derivedInfo": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "eeoText": "my_eeoText",
-     *   //   "externalId": "my_externalId",
-     *   //   "headquartersAddress": "my_headquartersAddress",
-     *   //   "hiringAgency": false,
-     *   //   "imageUri": "my_imageUri",
-     *   //   "keywordSearchableJobCustomAttributes": [],
-     *   //   "name": "my_name",
-     *   //   "size": "my_size",
-     *   //   "suspended": false,
-     *   //   "websiteUri": "my_websiteUri"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2458,57 +2056,6 @@ export namespace jobs_v3 {
 
     /**
      * Deletes a list of Jobs by filter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.jobs.batchDelete({
-     *     // Required. The resource name of the project under which the job is created. The format is "projects/{project_id\}", for example, "projects/api-test-project".
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "filter": "my_filter"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2596,88 +2143,6 @@ export namespace jobs_v3 {
 
     /**
      * Creates a new job. Typically, the job becomes searchable within 10 seconds, but it may take up to 5 minutes.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.jobs.create({
-     *     // Required. The resource name of the project under which the job is created. The format is "projects/{project_id\}", for example, "projects/api-test-project".
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "job": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "addresses": [],
-     *   //   "applicationInfo": {},
-     *   //   "companyDisplayName": "my_companyDisplayName",
-     *   //   "companyName": "my_companyName",
-     *   //   "compensationInfo": {},
-     *   //   "customAttributes": {},
-     *   //   "degreeTypes": [],
-     *   //   "department": "my_department",
-     *   //   "derivedInfo": {},
-     *   //   "description": "my_description",
-     *   //   "employmentTypes": [],
-     *   //   "incentives": "my_incentives",
-     *   //   "jobBenefits": [],
-     *   //   "jobEndTime": "my_jobEndTime",
-     *   //   "jobLevel": "my_jobLevel",
-     *   //   "jobStartTime": "my_jobStartTime",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "postingCreateTime": "my_postingCreateTime",
-     *   //   "postingExpireTime": "my_postingExpireTime",
-     *   //   "postingPublishTime": "my_postingPublishTime",
-     *   //   "postingRegion": "my_postingRegion",
-     *   //   "postingUpdateTime": "my_postingUpdateTime",
-     *   //   "processingOptions": {},
-     *   //   "promotionValue": 0,
-     *   //   "qualifications": "my_qualifications",
-     *   //   "requisitionId": "my_requisitionId",
-     *   //   "responsibilities": "my_responsibilities",
-     *   //   "title": "my_title",
-     *   //   "visibility": "my_visibility"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2762,49 +2227,6 @@ export namespace jobs_v3 {
 
     /**
      * Deletes the specified job. Typically, the job becomes unsearchable within 10 seconds, but it may take up to 5 minutes.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.jobs.delete({
-     *     // Required. The resource name of the job to be deleted. The format is "projects/{project_id\}/jobs/{job_id\}", for example, "projects/api-test-project/jobs/1234".
-     *     name: 'projects/my-project/jobs/my-job',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2889,80 +2311,6 @@ export namespace jobs_v3 {
 
     /**
      * Retrieves the specified job, whose status is OPEN or recently EXPIRED within the last 90 days.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.jobs.get({
-     *     // Required. The resource name of the job to retrieve. The format is "projects/{project_id\}/jobs/{job_id\}", for example, "projects/api-test-project/jobs/1234".
-     *     name: 'projects/my-project/jobs/my-job',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "addresses": [],
-     *   //   "applicationInfo": {},
-     *   //   "companyDisplayName": "my_companyDisplayName",
-     *   //   "companyName": "my_companyName",
-     *   //   "compensationInfo": {},
-     *   //   "customAttributes": {},
-     *   //   "degreeTypes": [],
-     *   //   "department": "my_department",
-     *   //   "derivedInfo": {},
-     *   //   "description": "my_description",
-     *   //   "employmentTypes": [],
-     *   //   "incentives": "my_incentives",
-     *   //   "jobBenefits": [],
-     *   //   "jobEndTime": "my_jobEndTime",
-     *   //   "jobLevel": "my_jobLevel",
-     *   //   "jobStartTime": "my_jobStartTime",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "postingCreateTime": "my_postingCreateTime",
-     *   //   "postingExpireTime": "my_postingExpireTime",
-     *   //   "postingPublishTime": "my_postingPublishTime",
-     *   //   "postingRegion": "my_postingRegion",
-     *   //   "postingUpdateTime": "my_postingUpdateTime",
-     *   //   "processingOptions": {},
-     *   //   "promotionValue": 0,
-     *   //   "qualifications": "my_qualifications",
-     *   //   "requisitionId": "my_requisitionId",
-     *   //   "responsibilities": "my_responsibilities",
-     *   //   "title": "my_title",
-     *   //   "visibility": "my_visibility"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3047,61 +2395,6 @@ export namespace jobs_v3 {
 
     /**
      * Lists jobs by filter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.jobs.list({
-     *     // Required. The filter string specifies the jobs to be enumerated. Supported operator: =, AND The fields eligible for filtering are: * `companyName` * `requisitionId` * `status` Available values: OPEN, EXPIRED, ALL. Defaults to OPEN if no value is specified. At least one of `companyName` and `requisitionId` must present or an INVALID_ARGUMENT error is thrown. Sample Query: * companyName = "projects/api-test-project/companies/123" * companyName = "projects/api-test-project/companies/123" AND requisitionId = "req-1" * companyName = "projects/api-test-project/companies/123" AND status = "EXPIRED" * requisitionId = "req-1" * requisitionId = "req-1" AND status = "EXPIRED"
-     *     filter: 'placeholder-value',
-     *     // Optional. The desired job attributes returned for jobs in the search response. Defaults to JobView.JOB_VIEW_FULL if no value is specified.
-     *     jobView: 'placeholder-value',
-     *     // Optional. The maximum number of jobs to be returned per page of results. If job_view is set to JobView.JOB_VIEW_ID_ONLY, the maximum allowed page size is 1000. Otherwise, the maximum allowed page size is 100. Default is 100 if empty or a number < 1 is specified.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. The starting point of a query result.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the project under which the job is created. The format is "projects/{project_id\}", for example, "projects/api-test-project".
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "jobs": [],
-     *   //   "metadata": {},
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3186,89 +2479,6 @@ export namespace jobs_v3 {
 
     /**
      * Updates specified job. Typically, updated contents become visible in search results within 10 seconds, but it may take up to 5 minutes.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.jobs.patch({
-     *     // Required during job update. The resource name for the job. This is generated by the service when a job is created. The format is "projects/{project_id\}/jobs/{job_id\}", for example, "projects/api-test-project/jobs/1234". Use of this field in job queries and API calls is preferred over the use of requisition_id since this value is unique.
-     *     name: 'projects/my-project/jobs/my-job',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "job": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "addresses": [],
-     *   //   "applicationInfo": {},
-     *   //   "companyDisplayName": "my_companyDisplayName",
-     *   //   "companyName": "my_companyName",
-     *   //   "compensationInfo": {},
-     *   //   "customAttributes": {},
-     *   //   "degreeTypes": [],
-     *   //   "department": "my_department",
-     *   //   "derivedInfo": {},
-     *   //   "description": "my_description",
-     *   //   "employmentTypes": [],
-     *   //   "incentives": "my_incentives",
-     *   //   "jobBenefits": [],
-     *   //   "jobEndTime": "my_jobEndTime",
-     *   //   "jobLevel": "my_jobLevel",
-     *   //   "jobStartTime": "my_jobStartTime",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "name": "my_name",
-     *   //   "postingCreateTime": "my_postingCreateTime",
-     *   //   "postingExpireTime": "my_postingExpireTime",
-     *   //   "postingPublishTime": "my_postingPublishTime",
-     *   //   "postingRegion": "my_postingRegion",
-     *   //   "postingUpdateTime": "my_postingUpdateTime",
-     *   //   "processingOptions": {},
-     *   //   "promotionValue": 0,
-     *   //   "qualifications": "my_qualifications",
-     *   //   "requisitionId": "my_requisitionId",
-     *   //   "responsibilities": "my_responsibilities",
-     *   //   "title": "my_title",
-     *   //   "visibility": "my_visibility"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3353,79 +2563,6 @@ export namespace jobs_v3 {
 
     /**
      * Searches for jobs using the provided SearchJobsRequest. This call constrains the visibility of jobs present in the database, and only returns jobs that the caller has permission to search against.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.jobs.search({
-     *     // Required. The resource name of the project to search within. The format is "projects/{project_id\}", for example, "projects/api-test-project".
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "disableKeywordMatch": false,
-     *       //   "diversificationLevel": "my_diversificationLevel",
-     *       //   "enableBroadening": false,
-     *       //   "histogramFacets": {},
-     *       //   "jobQuery": {},
-     *       //   "jobView": "my_jobView",
-     *       //   "offset": 0,
-     *       //   "orderBy": "my_orderBy",
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken",
-     *       //   "requestMetadata": {},
-     *       //   "requirePreciseResultSize": false,
-     *       //   "searchMode": "my_searchMode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "broadenedQueryJobsCount": 0,
-     *   //   "estimatedTotalSize": 0,
-     *   //   "histogramResults": {},
-     *   //   "locationFilters": [],
-     *   //   "matchingJobs": [],
-     *   //   "metadata": {},
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "spellCorrection": {},
-     *   //   "totalSize": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3516,79 +2653,6 @@ export namespace jobs_v3 {
 
     /**
      * Searches for jobs using the provided SearchJobsRequest. This API call is intended for the use case of targeting passive job seekers (for example, job seekers who have signed up to receive email alerts about potential job opportunities), and has different algorithmic adjustments that are targeted to passive job seekers. This call constrains the visibility of jobs present in the database, and only returns jobs the caller has permission to search against.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/jobs.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const jobs = google.jobs('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/jobs',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await jobs.projects.jobs.searchForAlert({
-     *     // Required. The resource name of the project to search within. The format is "projects/{project_id\}", for example, "projects/api-test-project".
-     *     parent: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "disableKeywordMatch": false,
-     *       //   "diversificationLevel": "my_diversificationLevel",
-     *       //   "enableBroadening": false,
-     *       //   "histogramFacets": {},
-     *       //   "jobQuery": {},
-     *       //   "jobView": "my_jobView",
-     *       //   "offset": 0,
-     *       //   "orderBy": "my_orderBy",
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken",
-     *       //   "requestMetadata": {},
-     *       //   "requirePreciseResultSize": false,
-     *       //   "searchMode": "my_searchMode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "broadenedQueryJobsCount": 0,
-     *   //   "estimatedTotalSize": 0,
-     *   //   "histogramResults": {},
-     *   //   "locationFilters": [],
-     *   //   "matchingJobs": [],
-     *   //   "metadata": {},
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "spellCorrection": {},
-     *   //   "totalSize": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -112,9 +112,7 @@ export namespace chat_v1 {
    */
   export class Chat {
     context: APIRequestContext;
-    dms: Resource$Dms;
     media: Resource$Media;
-    rooms: Resource$Rooms;
     spaces: Resource$Spaces;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -123,15 +121,13 @@ export namespace chat_v1 {
         google,
       };
 
-      this.dms = new Resource$Dms(this.context);
       this.media = new Resource$Media(this.context);
-      this.rooms = new Resource$Rooms(this.context);
       this.spaces = new Resource$Spaces(this.context);
     }
   }
 
   /**
-   * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze 1 day, snooze next week. You might use action method = snooze(), passing the snooze type and snooze time in the list of string parameters.
+   * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze one day, snooze next week. You might use `action method = snooze()`, passing the snooze type and snooze time in the list of string parameters.
    */
   export interface Schema$ActionParameter {
     /**
@@ -144,7 +140,7 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * Parameters that a Chat app can use to configure how it's response is posted.
+   * Parameters that a Chat app can use to configure how its response is posted.
    */
   export interface Schema$ActionResponse {
     /**
@@ -156,7 +152,7 @@ export namespace chat_v1 {
      */
     type?: string | null;
     /**
-     * Input only. URL for users to auth or config. (Only for REQUEST_CONFIG response types.)
+     * Input only. URL for users to authenticate or configure. (Only for `REQUEST_CONFIG` response types.)
      */
     url?: string | null;
   }
@@ -174,7 +170,7 @@ export namespace chat_v1 {
     userFacingMessage?: string | null;
   }
   /**
-   * Annotations associated with the plain-text body of the message. Example plain-text message body: ``` Hello @FooBot how are you!" ``` The corresponding annotations metadata: ``` "annotations":[{ "type":"USER_MENTION", "startIndex":6, "length":7, "userMention": { "user": { "name":"users/107946847022116401880", "displayName":"FooBot", "avatarUrl":"https://goo.gl/aeDtrS", "type":"BOT" \}, "type":"MENTION" \} \}] ```
+   * Annotations associated with the plain-text body of the message. Example plain-text message body: ``` Hello @FooBot how are you!" ``` The corresponding annotations metadata: ``` "annotations":[{ "type":"USER_MENTION", "startIndex":6, "length":7, "userMention": { "user": { "name":"users/{user\}", "displayName":"FooBot", "avatarUrl":"https://goo.gl/aeDtrS", "type":"BOT" \}, "type":"MENTION" \} \}] ```
    */
   export interface Schema$Annotation {
     /**
@@ -199,48 +195,58 @@ export namespace chat_v1 {
     userMention?: Schema$UserMentionMetadata;
   }
   /**
+   * A GIF image that's specified by a URL.
+   */
+  export interface Schema$AttachedGif {
+    /**
+     * Output only. The URL that hosts the GIF image.
+     */
+    uri?: string | null;
+  }
+  /**
    * An attachment in Google Chat.
    */
   export interface Schema$Attachment {
     /**
-     * A reference to the attachment data. This is used with the media API to download the attachment data.
+     * A reference to the attachment data. This field is used with the media API to download the attachment data.
      */
     attachmentDataRef?: Schema$AttachmentDataRef;
     /**
-     * The original file name for the content, not the full path.
+     * Output only. The original file name for the content, not the full path.
      */
     contentName?: string | null;
     /**
-     * The content type (MIME type) of the file.
+     * Output only. The content type (MIME type) of the file.
      */
     contentType?: string | null;
     /**
-     * Output only. The download URL which should be used to allow a human user to download the attachment. Chat apps should not use this URL to download attachment content.
+     * Output only. The download URL which should be used to allow a human user to download the attachment. Chat apps shouldn't use this URL to download attachment content.
      */
     downloadUri?: string | null;
     /**
-     * A reference to the drive attachment. This is used with the Drive API.
+     * Output only. A reference to the Google Drive attachment. This field is used with the Google Drive API.
      */
     driveDataRef?: Schema$DriveDataRef;
     /**
-     * Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
+     * Resource name of the attachment, in the form `spaces/x/messages/x/attachments/x`.
      */
     name?: string | null;
     /**
-     * The source of the attachment.
+     * Output only. The source of the attachment.
      */
     source?: string | null;
     /**
-     * Output only. The thumbnail URL which should be used to preview the attachment to a human user. Chat apps should not use this URL to download attachment content.
+     * Output only. The thumbnail URL which should be used to preview the attachment to a human user. Chat apps shouldn't use this URL to download attachment content.
      */
     thumbnailUri?: string | null;
   }
-  /**
-   * A reference to the data of an attachment.
-   */
   export interface Schema$AttachmentDataRef {
     /**
-     * The resource name of the attachment data. This is used with the media API to download the attachment data.
+     * Opaque token containing a reference to an uploaded attachment. Treated by clients as an opaque string and used to create or update Chat messages with attachments.
+     */
+    attachmentUploadToken?: string | null;
+    /**
+     * The resource name of the attachment data. This field is used with the media API to download the attachment data.
      */
     resourceName?: string | null;
   }
@@ -249,16 +255,16 @@ export namespace chat_v1 {
    */
   export interface Schema$Button {
     /**
-     * A button with image and onclick action.
+     * A button with image and `onclick` action.
      */
     imageButton?: Schema$ImageButton;
     /**
-     * A button with text and onclick action.
+     * A button with text and `onclick` action.
      */
     textButton?: Schema$TextButton;
   }
   /**
-   * A card is a UI element that can contain UI widgets such as texts, images.
+   * A card is a UI element that can contain UI widgets such as text and images.
    */
   export interface Schema$Card {
     /**
@@ -293,7 +299,7 @@ export namespace chat_v1 {
   }
   export interface Schema$CardHeader {
     /**
-     * The image's type (e.g. square border or circular border).
+     * The image's type (for example, square border or circular border).
      */
     imageStyle?: string | null;
     /**
@@ -305,7 +311,7 @@ export namespace chat_v1 {
      */
     subtitle?: string | null;
     /**
-     * The title must be specified. The header has a fixed height: if both a title and subtitle is specified, each will take up 1 line. If only the title is specified, it will take up both lines.
+     * The title must be specified. The header has a fixed height: if both a title and subtitle is specified, each takes up one line. If only the title is specified, it takes up both lines.
      */
     title?: string | null;
   }
@@ -314,7 +320,7 @@ export namespace chat_v1 {
    */
   export interface Schema$CardWithId {
     /**
-     * Card proto that allows Chat apps to specify UI elements and editable widgets.
+     * Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use this card to present detailed information, gather information from users, and guide users to take a next step.
      */
     card?: Schema$GoogleAppsCardV1Card;
     /**
@@ -340,7 +346,16 @@ export namespace chat_v1 {
     error?: Schema$Status;
   }
   /**
-   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
+   * Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, a data source from Google Chat. For example, a list of Google Chat spaces of which the user is a member. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$ChatClientDataSourceMarkup {
+    /**
+     * A data source representing a Google Chat space. Format: spaces/{space\} [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    spaceDataSource?: Schema$SpaceDataSource;
+  }
+  /**
+   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
    */
   export interface Schema$Color {
     /**
@@ -385,16 +400,25 @@ export namespace chat_v1 {
      */
     platform?: string | null;
     /**
-     * The timezone ID and offset from Coordinated Universal Time (UTC).
+     * The timezone ID and offset from Coordinated Universal Time (UTC). Only supported for the event types [`CARD_CLICKED`](https://developers.google.com/chat/api/reference/rest/v1/EventType#ENUM_VALUES.CARD_CLICKED) and [`SUBMIT_DIALOG`](https://developers.google.com/chat/api/reference/rest/v1/DialogEventType#ENUM_VALUES.SUBMIT_DIALOG).
      */
     timeZone?: Schema$TimeZone;
     /**
-     * The full `locale.displayName` in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as "en-US". Not supported by Chat apps.
+     * The full `locale.displayName` in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as "en-US".
      */
     userLocale?: string | null;
   }
   /**
-   * Date input values. Not supported by Chat apps.
+   * Represents a custom emoji.
+   */
+  export interface Schema$CustomEmoji {
+    /**
+     * Unique key for the custom emoji resource.
+     */
+    uid?: string | null;
+  }
+  /**
+   * Date input values.
    */
   export interface Schema$DateInput {
     /**
@@ -403,7 +427,7 @@ export namespace chat_v1 {
     msSinceEpoch?: string | null;
   }
   /**
-   * Date and time input values. Not supported by Chat apps.
+   * Date and time input values.
    */
   export interface Schema$DateTimeInput {
     /**
@@ -420,7 +444,16 @@ export namespace chat_v1 {
     msSinceEpoch?: string | null;
   }
   /**
-   * Google Chat events.
+   * Information about a deleted message. A message is deleted when `delete_time` is set.
+   */
+  export interface Schema$DeletionMetadata {
+    /**
+     * Indicates who deleted the message.
+     */
+    deletionType?: string | null;
+  }
+  /**
+   * Google Chat events. To learn how to use events, see [Receive and respond to Google Chat events](https://developers.google.com/chat/api/guides/message-formats).
    */
   export interface Schema$DeprecatedEvent {
     /**
@@ -432,7 +465,7 @@ export namespace chat_v1 {
      */
     common?: Schema$CommonEventObject;
     /**
-     * The URL the Chat app should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. See the [Authorizing access to 3p services guide](/chat/how-tos/auth-3p) for more information.
+     * The URL the Chat app should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. For more information, see [Connect a Chat app with other services & tools](https://developers.google.com/chat/how-tos/connect-web-services-tools).
      */
     configCompleteRedirectUrl?: string | null;
     /**
@@ -456,7 +489,7 @@ export namespace chat_v1 {
      */
     space?: Schema$Space;
     /**
-     * The Chat app-defined key for the thread related to the event. See the thread_key field of the `spaces.message.create` request for more information.
+     * The Chat app-defined key for the thread related to the event. See [`spaces.messages.thread.threadKey`](/chat/api/reference/rest/v1/spaces.messages#Thread.FIELDS.thread_key) for more information.
      */
     threadKey?: string | null;
     /**
@@ -477,7 +510,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Dialog {
     /**
-     * Input only. Body of the dialog, which is rendered in a modal. Google Chat apps do not support the following card entities: `DateTimePicker`, `OnChangeAction`.
+     * Input only. Body of the dialog, which is rendered in a modal. Google Chat apps don't support the following card entities: `DateTimePicker`, `OnChangeAction`.
      */
     body?: Schema$GoogleAppsCardV1Card;
   }
@@ -499,20 +532,46 @@ export namespace chat_v1 {
    */
   export interface Schema$DriveDataRef {
     /**
-     * The id for the drive file, for use with the Drive API.
+     * The ID for the drive file. Use with the Drive API.
      */
     driveFileId?: string | null;
+  }
+  /**
+   * An emoji that is used as a reaction to a message.
+   */
+  export interface Schema$Emoji {
+    /**
+     * Output only. A custom emoji.
+     */
+    customEmoji?: Schema$CustomEmoji;
+    /**
+     * A basic emoji represented by a unicode string.
+     */
+    unicode?: string | null;
+  }
+  /**
+   * The number of people who reacted to a message with a specific emoji.
+   */
+  export interface Schema$EmojiReactionSummary {
+    /**
+     * Emoji associated with the reactions.
+     */
+    emoji?: Schema$Emoji;
+    /**
+     * The total number of reactions using the associated emoji.
+     */
+    reactionCount?: number | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
-   * A form action describes the behavior when the form is submitted. For example, an Apps Script can be invoked to handle the form.
+   * A form action describes the behavior when the form is submitted. For example, you can invoke Apps Script to handle the form.
    */
   export interface Schema$FormAction {
     /**
-     * The method name is used to identify which part of the form triggered the form submission. This information is echoed back to the Chat app as part of the card click event. The same method name can be used for several elements that trigger a common behavior if desired.
+     * The method name is used to identify which part of the form triggered the form submission. This information is echoed back to the Chat app as part of the card click event. You can use the same method name for several elements that trigger a common behavior.
      */
     actionMethodName?: string | null;
     /**
@@ -521,13 +580,17 @@ export namespace chat_v1 {
     parameters?: Schema$ActionParameter[];
   }
   /**
-   * An action that describes the behavior when the form is submitted. For example, an Apps Script can be invoked to handle the form.
+   * An action that describes the behavior when the form is submitted. For example, you can invoke an Apps Script script to handle the form. If the action is triggered, the form values are sent to the server.
    */
   export interface Schema$GoogleAppsCardV1Action {
     /**
-     * Apps Script function to invoke when the containing element is clicked/activated.
+     * A custom function to invoke when the containing element is clicked or othrwise activated. For example usage, see [Create interactive cards](https://developers.google.com/chat/how-tos/cards-onclick).
      */
     function?: string | null;
+    /**
+     * Optional. Required when opening a [dialog](https://developers.google.com/chat/how-tos/dialogs). What to do in response to an interaction with a user, such as a user clicking a button in a card message. If unspecified, the app responds by executing an `action`—like opening a link or running a function—as normal. By specifying an `interaction`, the app can respond in special interactive ways. For example, by setting `interaction` to `OPEN_DIALOG`, the app can open a [dialog](https://developers.google.com/chat/how-tos/dialogs). When specified, a loading indicator isn't shown. Supported by Chat apps, but not Google Workspace Add-ons. If specified for an add-on, the entire card is stripped and nothing is shown in the client.
+     */
+    interaction?: string | null;
     /**
      * Specifies the loading indicator that the action displays while making the call to the action.
      */
@@ -537,12 +600,12 @@ export namespace chat_v1 {
      */
     parameters?: Schema$GoogleAppsCardV1ActionParameter[];
     /**
-     * Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. When using [LoadIndicator.NONE](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for actions, `persist_values` = `true`is recommended, as it ensures that any changes made by the user after form or on change actions are sent to the server are not overwritten by the response. If `false`, the form values are cleared when the action is triggered. When `persist_values` is set to `false`, it is strongly recommended that the card use [LoadIndicator.SPINNER](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) for all actions, as this locks the UI to ensure no changes are made by the user while the action is being processed. Not supported by Google Chat apps.
+     * Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. To let the user make changes while the action is being processed, set [`LoadIndicator`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) to `NONE`. For [card messages](https://developers.google.com/chat/api/guides/message-formats/cards) in Chat apps, you must also set the action's [`ResponseType`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#responsetype) to `UPDATE_MESSAGE` and use the same [`card_id`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#CardWithId) from the card that contained the action. If `false`, the form values are cleared when the action is triggered. To prevent the user from making changes while the action is being processed, set [`LoadIndicator`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) to `SPINNER`.
      */
     persistValues?: boolean | null;
   }
   /**
-   * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze 1 day, snooze next week. You might use action method = snooze(), passing the snooze type and snooze time in the list of string parameters.
+   * List of string parameters to supply when the action method is invoked. For example, consider three snooze buttons: snooze now, snooze one day, or snooze next week. You might use `action method = snooze()`, passing the snooze type and snooze time in the list of string parameters. To learn more, see [`CommonEventObject`](https://developers.google.com/chat/api/reference/rest/v1/Event#commoneventobject).
    */
   export interface Schema$GoogleAppsCardV1ActionParameter {
     /**
@@ -555,7 +618,7 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * Represents the complete border style applied to widgets.
+   * The style options for the border of a card or widget, including the border type and color.
    */
   export interface Schema$GoogleAppsCardV1BorderStyle {
     /**
@@ -572,36 +635,36 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
-   * A button. Can be a text button or an image button.
+   * A text, icon, or text and icon button that users can click. For an example in Google Chat apps, see [Button list](https://developers.google.com/chat/ui/widgets/button-list). To make an image a clickable button, specify an `Image` (not an `ImageComponent`) and set an `onClick` action.
    */
   export interface Schema$GoogleAppsCardV1Button {
     /**
-     * The alternative text used for accessibility. Has no effect when an icon is set; use `icon.alt_text` instead.
+     * The alternative text that's used for accessibility. Set descriptive text that lets users know what the button does. For example, if a button opens a hyperlink, you might write: "Opens a new browser tab and navigates to the Google Chat developer documentation at https://developers.google.com/chat".
      */
     altText?: string | null;
     /**
-     * If set, the button is filled with a solid background.
+     * If set, the button is filled with a solid background color and the font color changes to maintain contrast with the background color. For example, setting a blue background likely results in white text. If unset, the image background is white and the font color is blue. For red, green, and blue, the value of each field is a `float` number that you can express in either of two ways: as a number between 0 and 255 divided by 255 (153/255), or as a value between 0 and 1 (0.6). 0 represents the absence of a color and 1 or 255/255 represent the full presence of that color on the RGB scale. Optionally set `alpha`, which sets a level of transparency using this equation: ``` pixel color = alpha * (this color) + (1.0 - alpha) * (background color) ``` For `alpha`, a value of `1` corresponds with a solid color, and a value of `0` corresponds with a completely transparent color. For example, the following color represents a half transparent red: ``` "color": { "red": 1, "green": 0, "blue": 0, "alpha": 0.5 \} ```
      */
     color?: Schema$Color;
     /**
-     * If `true`, the button is displayed in a disabled state and doesn't respond to user actions.
+     * If `true`, the button is displayed in an inactive state and doesn't respond to user actions.
      */
     disabled?: boolean | null;
     /**
-     * The icon image.
+     * The icon image. If both `icon` and `text` are set, then the icon appears before the text.
      */
     icon?: Schema$GoogleAppsCardV1Icon;
     /**
-     * The action to perform when the button is clicked.
+     * Required. The action to perform when a user clicks the button, such as opening a hyperlink or running a custom function.
      */
     onClick?: Schema$GoogleAppsCardV1OnClick;
     /**
-     * The text of the button.
+     * The text displayed inside the button.
      */
     text?: string | null;
   }
   /**
-   * A list of buttons layed out horizontally.
+   * A list of buttons layed out horizontally. For an example in Google Chat apps, see [Button list](https://developers.google.com/chat/ui/widgets/button-list).
    */
   export interface Schema$GoogleAppsCardV1ButtonList {
     /**
@@ -610,40 +673,44 @@ export namespace chat_v1 {
     buttons?: Schema$GoogleAppsCardV1Button[];
   }
   /**
-   * Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. In Google Chat, cards appear in several places: - As stand-alone messages. - Accompanying a text message, just beneath the text message. - As a [dialog](https://developers.google.com/chat/how-tos/dialogs). The following example JSON creates a "contact card" that features: - A header with the contact's name, job title, avatar picture. - A section with the contact information, including formatted text. - Buttons that users can click to share the contact or see more or less info. ![Example contact card](/chat/images/card_api_reference.png) ``` { "cardsV2": [ { "cardId": "unique-card-id", "card": { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "Avatar for Sasha", \}, "sections": [ { "header": "Contact Info", "collapsible": true, "uncollapsibleWidgetsCount": 1, "widgets": [ { "decoratedText": { "startIcon": { "knownIcon": "EMAIL", \}, "text": "sasha@example.com", \} \}, { "decoratedText": { "startIcon": { "knownIcon": "PERSON", \}, "text": "Online", \}, \}, { "decoratedText": { "startIcon": { "knownIcon": "PHONE", \}, "text": "+1 (555) 555-1234", \} \}, { "buttonList": { "buttons": [ { "text": "Share", "onClick": { "openLink": { "url": "https://example.com/share", \} \} \}, { "text": "Edit", "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT", \} ], \} \} \}, ], \} \}, ], \}, ], \}, \} ], \} ```
+   * Cards support a defined layout, interactive UI elements like buttons, and rich media like images. Use cards to present detailed information, gather information from users, and guide users to take a next step. In Google Chat, cards appear in several places: - As stand-alone messages. - Accompanying a text message, just beneath the text message. - As a [dialog](https://developers.google.com/chat/how-tos/dialogs). The following example JSON creates a "contact card" that features: - A header with the contact's name, job title, and avatar picture. - A section with the contact information, including formatted text. - Buttons that users can click to share the contact, or see more or less information. For more examples, see [Design dynamic, interactive, and consistent UIs with cards](https://developers.google.com/chat/ui). ![Example contact card](https://developers.google.com/chat/images/card_api_reference.png) ``` { "cardsV2": [ { "cardId": "unique-card-id", "card": { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png", "imageType": "CIRCLE", "imageAltText": "Avatar for Sasha", \}, "sections": [ { "header": "Contact Info", "collapsible": true, "uncollapsibleWidgetsCount": 1, "widgets": [ { "decoratedText": { "startIcon": { "knownIcon": "EMAIL", \}, "text": "sasha@example.com", \} \}, { "decoratedText": { "startIcon": { "knownIcon": "PERSON", \}, "text": "Online", \}, \}, { "decoratedText": { "startIcon": { "knownIcon": "PHONE", \}, "text": "+1 (555) 555-1234", \} \}, { "buttonList": { "buttons": [ { "text": "Share", "onClick": { "openLink": { "url": "https://example.com/share", \} \} \}, { "text": "Edit", "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT", \} ], \} \} \}, ], \} \}, ], \}, ], \}, \} ], \} ```
    */
   export interface Schema$GoogleAppsCardV1Card {
     /**
-     * The card's actions. Actions are added to the card's generated toolbar menu. Not supported by Google Chat apps. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` "card_actions": [ { "actionLabel": "Settings", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key": "viewType", "value": "SETTING" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \}, { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ] ```
+     * The card's actions. Actions are added to the card's toolbar menu. Because Chat app cards have no toolbar, `cardActions[]` isn't supported by Chat apps. For example, the following JSON constructs a card action menu with `Settings` and `Send Feedback` options: ``` "card_actions": [ { "actionLabel": "Settings", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key": "viewType", "value": "SETTING" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \}, { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ] ```
      */
     cardActions?: Schema$GoogleAppsCardV1CardAction[];
     /**
-     * The `peekCardHeader` display style for. Not supported by Google Chat apps.
+     * In Google Workspace add-ons, sets the display properties of the `peekCardHeader`. Not supported by Chat apps.
      */
     displayStyle?: string | null;
     /**
-     * The fixed footer shown at the bottom of this card.
+     * The fixed footer shown at the bottom of this card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).
      */
     fixedFooter?: Schema$GoogleAppsCardV1CardFixedFooter;
     /**
-     * The header of the card. A header usually contains a title and an image.
+     * The header of the card. A header usually contains a leading image and a title. Headers always appear at the top of a card.
      */
     header?: Schema$GoogleAppsCardV1CardHeader;
     /**
-     * Name of the card. Used as a card identifier in card navigation.
+     * Name of the card. Used as a card identifier in card navigation. Because Chat apps don't support card navigation, they ignore this field.
      */
     name?: string | null;
     /**
-     * When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards. Not supported by Google Chat apps.
+     * When displaying contextual content, the peek card header acts as a placeholder so that the user can navigate forward between the homepage cards and the contextual cards. Not supported by Chat apps.
      */
     peekCardHeader?: Schema$GoogleAppsCardV1CardHeader;
     /**
-     * Sections are separated by a line divider.
+     * The divider style between sections.
+     */
+    sectionDividerStyle?: string | null;
+    /**
+     * Contains a collection of widgets. Each section has its own, optional header. Sections are visually separated by a line divider. For an example in Google Chat apps, see [Card section](https://developers.google.com/chat/ui/widgets/card-section).
      */
     sections?: Schema$GoogleAppsCardV1Section[];
   }
   /**
-   * A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser. Not supported by Google Chat apps.
+   * A card action is the action associated with the card. For example, an invoice card might include actions such as delete invoice, email invoice, or open the invoice in a browser. Not supported by Chat apps.
    */
   export interface Schema$GoogleAppsCardV1CardAction {
     /**
@@ -656,7 +723,7 @@ export namespace chat_v1 {
     onClick?: Schema$GoogleAppsCardV1OnClick;
   }
   /**
-   * A persistent (sticky) footer that is added to the bottom of the card.
+   * A persistent (sticky) footer that that appears at the bottom of the card. For an example in Google Chat apps, see [Card footer](https://developers.google.com/chat/ui/widgets/card-fixed-footer). Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).
    */
   export interface Schema$GoogleAppsCardV1CardFixedFooter {
     /**
@@ -664,28 +731,28 @@ export namespace chat_v1 {
      */
     primaryButton?: Schema$GoogleAppsCardV1Button;
     /**
-     * The secondary button of the fixed footer. The button must be a text button with text and color set. `primaryButton` must be set if `secondaryButton` is set.
+     * The secondary button of the fixed footer. The button must be a text button with text and color set. If `secondaryButton` is set, you must also set `primaryButton`.
      */
     secondaryButton?: Schema$GoogleAppsCardV1Button;
   }
   /**
-   * Represents a card header.
+   * Represents a card header. For an example in Google Chat apps, see [Card header](https://developers.google.com/chat/ui/widgets/card-header).
    */
   export interface Schema$GoogleAppsCardV1CardHeader {
     /**
-     * The alternative text of this image which is used for accessibility.
+     * The alternative text of this image that's used for accessibility.
      */
     imageAltText?: string | null;
     /**
-     * The image's type.
+     * The shape used to crop the image.
      */
     imageType?: string | null;
     /**
-     * The URL of the image in the card header.
+     * The HTTPS URL of the image in the card header.
      */
     imageUrl?: string | null;
     /**
-     * The subtitle of the card header.
+     * The subtitle of the card header. If specified, appears on its own line below the `title`.
      */
     subtitle?: string | null;
     /**
@@ -694,56 +761,86 @@ export namespace chat_v1 {
     title?: string | null;
   }
   /**
-   * The widget that lets users to specify a date and time. Not supported by Google Chat apps.
+   * A column.
+   */
+  export interface Schema$GoogleAppsCardV1Column {
+    /**
+     * Specifies whether widgets align to the left, right, or center of a column.
+     */
+    horizontalAlignment?: string | null;
+    /**
+     * Specifies how a column fills the width of the card.
+     */
+    horizontalSizeStyle?: string | null;
+    /**
+     * Specifies whether widgets align to the top, bottom, or center of a column.
+     */
+    verticalAlignment?: string | null;
+    /**
+     * An array of widgets included in a column. Widgets appear in the order that they are specified.
+     */
+    widgets?: Schema$GoogleAppsCardV1Widgets[];
+  }
+  /**
+   * The `Columns` widget displays up to 2 columns in a card message or dialog. You can add widgets to each column; the widgets appear in the order that they are specified. For an example in Google Chat apps, see [Columns](https://developers.google.com/chat/ui/widgets/columns). The height of each column is determined by the taller column. For example, if the first column is taller than the second column, both columns have the height of the first column. Because each column can contain a different number of widgets, you can't define rows or align widgets between the columns. Columns are displayed side-by-side. You can customize the width of each column using the `HorizontalSizeStyle` field. If the user's screen width is too narrow, the second column wraps below the first: * On web, the second column wraps if the screen width is less than or equal to 480 pixels. * On iOS devices, the second column wraps if the screen width is less than or equal to 300 pt. * On Android devices, the second column wraps if the screen width is less than or equal to 320 dp. To include more than 2 columns, or to use rows, use the `Grid` widget. Supported by Chat apps, but not Google Workspace Add-ons.
+   */
+  export interface Schema$GoogleAppsCardV1Columns {
+    /**
+     * An array of columns. You can include up to 2 columns in a card or dialog.
+     */
+    columnItems?: Schema$GoogleAppsCardV1Column[];
+  }
+  /**
+   * Lets users input a date, a time, or both a date and a time. For an example in Google Chat apps, see [Date time picker](https://developers.google.com/chat/ui/widgets/date-time-picker). Users can input text or use the picker to select dates and times. If users input an invalid date or time, the picker shows an error that prompts users to input the information correctly.
    */
   export interface Schema$GoogleAppsCardV1DateTimePicker {
     /**
-     * The label for the field that displays to the user.
+     * The text that prompts users to input a date, a time, or a date and time. For example, if users are scheduling an appointment, use a label such as `Appointment date` or `Appointment date and time`.
      */
     label?: string | null;
     /**
-     * The name of the text input that's used in `formInput`, and uniquely identifies this input.
+     * The name by which the `DateTimePicker` is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     name?: string | null;
     /**
-     * Triggered when the user clicks Save or Clear from the date/time picker dialog. This is only triggered if the value changed as a result of the Save/Clear operation.
+     * Triggered when the user clicks **Save** or **Clear** from the `DateTimePicker` interface.
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * The number representing the time zone offset from UTC, in minutes. If set, the `value_ms_epoch` is displayed in the specified time zone. If not set, it uses the user's time zone setting on the client side.
+     * The number representing the time zone offset from UTC, in minutes. If set, the `value_ms_epoch` is displayed in the specified time zone. If unset, the value defaults to the user's time zone setting.
      */
     timezoneOffsetDate?: number | null;
     /**
-     * The type of the date/time picker.
+     * Whether the widget supports inputting a date, a time, or the date and time.
      */
     type?: string | null;
     /**
-     * The value to display as the default value before user input or previous user input. It is represented in milliseconds (Epoch time). For `DATE_AND_TIME` type, the full epoch value is used. For `DATE_ONLY` type, only date of the epoch time is used. For `TIME_ONLY` type, only time of the epoch time is used. For example, you can set epoch time to `3 * 60 * 60 * 1000` to represent 3am.
+     * The default value displayed in the widget, in milliseconds since [Unix epoch time](https://en.wikipedia.org/wiki/Unix_time). Specify the value based on the type of picker (`DateTimePickerType`): * `DATE_AND_TIME`: a calendar date and time in UTC. For example, to represent January 1, 2023 at 12:00 PM UTC, use `1672574400000`. * `DATE_ONLY`: a calendar date at 00:00:00 UTC. For example, to represent January 1, 2023, use `1672531200000`. * `TIME_ONLY`: a time in UTC. For example, to represent 12:00 PM, use `43200000` (or `12 * 60 * 60 * 1000`).
      */
     valueMsEpoch?: string | null;
   }
   /**
-   * A widget that displays text with optional decorations such as a label above or below the text, an icon in front of the text, a selection widget or a button after the text.
+   * A widget that displays text with optional decorations such as a label above or below the text, an icon in front of the text, a selection widget, or a button after the text. For an example in Google Chat apps, see [Decorated text](https://developers.google.com/chat/ui/widgets/decorated-text).
    */
   export interface Schema$GoogleAppsCardV1DecoratedText {
     /**
-     * The formatted text label that shows below the main text.
+     * The text that appears below `text`. Always wraps.
      */
     bottomLabel?: string | null;
     /**
-     * A button that can be clicked to trigger an action.
+     * A button that a user can click to trigger an action.
      */
     button?: Schema$GoogleAppsCardV1Button;
     /**
-     * An icon displayed after the text.
+     * An icon displayed after the text. Supports [built-in](https://developers.google.com/chat/api/guides/message-formats/cards#builtinicons) and [custom](https://developers.google.com/chat/api/guides/message-formats/cards#customicons) icons.
      */
     endIcon?: Schema$GoogleAppsCardV1Icon;
     /**
-     * Deprecated in favor of start_icon.
+     * Deprecated in favor of `startIcon`.
      */
     icon?: Schema$GoogleAppsCardV1Icon;
     /**
-     * Only the top and bottom label and content region are clickable.
+     * This action is triggered when users click `topLabel` or `bottomLabel`.
      */
     onClick?: Schema$GoogleAppsCardV1OnClick;
     /**
@@ -751,28 +848,28 @@ export namespace chat_v1 {
      */
     startIcon?: Schema$GoogleAppsCardV1Icon;
     /**
-     * A switch widget can be clicked to change its state or trigger an action.
+     * A switch widget that a user can click to change its state and trigger an action.
      */
     switchControl?: Schema$GoogleAppsCardV1SwitchControl;
     /**
-     * Required. The main widget formatted text. See Text formatting for details.
+     * Required. The primary text. Supports simple formatting. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      */
     text?: string | null;
     /**
-     * The formatted text label that shows above the main text.
+     * The text that appears above `text`. Always truncates.
      */
     topLabel?: string | null;
     /**
-     * The wrap text setting. If `true`, the text is wrapped and displayed in multiline. Otherwise, the text is truncated.
+     * The wrap text setting. If `true`, the text wraps and displays on multiple lines. Otherwise, the text is truncated. Only applies to `text`, not `topLabel` and `bottomLabel`.
      */
     wrapText?: boolean | null;
   }
   /**
-   * A divider that appears in between widgets.
+   * Displays a divider between widgets as a horizontal line. For an example in Google Chat apps, see [Divider](https://developers.google.com/chat/ui/widgets/divider). For example, the following JSON creates a divider: ``` "divider": {\} ```
    */
   export interface Schema$GoogleAppsCardV1Divider {}
   /**
-   * Represents a Grid widget that displays items in a configurable grid layout.
+   * Displays a grid with a collection of items. Items can only include text or images. For responsive columns, or to include more than text or images, use `Columns`. For an example in Google Chat apps, see [Grid](https://developers.google.com/chat/ui/widgets/grid). A grid supports any number of columns and items. The number of rows is determined by items divided by columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "columnCount": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4 \}, "items": [ { "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" \} ], "onClick": { "openLink": { "url": "https://www.example.com" \} \} \} ```
    */
   export interface Schema$GoogleAppsCardV1Grid {
     /**
@@ -797,11 +894,11 @@ export namespace chat_v1 {
     title?: string | null;
   }
   /**
-   * Represents a single item in the grid layout.
+   * Represents an item in a grid layout. Items can contain text, an image, or both text and an image.
    */
   export interface Schema$GoogleAppsCardV1GridItem {
     /**
-     * A user-specified identifier for this grid item. This identifier is returned in the parent Grid's onClick callback parameters.
+     * A user-specified identifier for this grid item. This identifier is returned in the parent grid's `onClick` callback parameters.
      */
     id?: string | null;
     /**
@@ -817,46 +914,45 @@ export namespace chat_v1 {
      */
     subtitle?: string | null;
     /**
-     * The horizontal alignment of the grid item's text.
-     */
-    textAlignment?: string | null;
-    /**
      * The grid item's title.
      */
     title?: string | null;
   }
+  /**
+   * An icon displayed in a widget on a card. For an example in Google Chat apps, see [Icon](https://developers.google.com/chat/ui/widgets/icon). Supports [built-in](https://developers.google.com/chat/api/guides/message-formats/cards#builtinicons) and [custom](https://developers.google.com/chat/api/guides/message-formats/cards#customicons) icons.
+   */
   export interface Schema$GoogleAppsCardV1Icon {
     /**
-     * The description of the icon, used for accessibility. The default value is provided if you don't specify one.
+     * Optional. A description of the icon used for accessibility. If unspecified, the default value `Button` is provided. As a best practice, you should set a helpful description for what the icon displays, and if applicable, what it does. For example, `A user's account portrait`, or `Opens a new browser tab and navigates to the Google Chat developer documentation at https://developers.google.com/chat`. If the icon is set in a `Button`, the `altText` appears as helper text when the user hovers over the button. However, if the button also sets `text`, the icon's `altText` is ignored.
      */
     altText?: string | null;
     /**
-     * The icon specified by a URL.
+     * Display a custom icon hosted at an HTTPS URL. For example: ``` "iconUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png" ``` Supported file types include `.png` and `.jpg`.
      */
     iconUrl?: string | null;
     /**
-     * The crop style applied to the image. In some cases, applying a `CIRCLE` crop causes the image to be drawn larger than a standard icon.
+     * The crop style applied to the image. In some cases, applying a `CIRCLE` crop causes the image to be drawn larger than a built-in icon.
      */
     imageType?: string | null;
     /**
-     * The icon specified by the string name of a list of known icons.
+     * Display one of the built-in icons provided by Google Workspace. For example, to display an airplane icon, specify `AIRPLANE`. For a bus, specify `BUS`. For a full list of supported icons, see [built-in icons](https://developers.google.com/chat/api/guides/message-formats/cards#builtinicons).
      */
     knownIcon?: string | null;
   }
   /**
-   * An image that is specified by a URL and can have an `onClick` action.
+   * An image that is specified by a URL and can have an `onClick` action. For an example, see [Image](https://developers.google.com/chat/ui/widgets/image).
    */
   export interface Schema$GoogleAppsCardV1Image {
     /**
-     * The alternative text of this image, used for accessibility.
+     * The alternative text of this image that's used for accessibility.
      */
     altText?: string | null;
     /**
-     * An image URL.
+     * The HTTPS URL that hosts the image. For example: ``` https://developers.google.com/chat/images/quickstart-app-avatar.png ```
      */
     imageUrl?: string | null;
     /**
-     * The action triggered by an `onClick` event.
+     * When a user clicks the image, the click triggers this action.
      */
     onClick?: Schema$GoogleAppsCardV1OnClick;
   }
@@ -882,11 +978,11 @@ export namespace chat_v1 {
     imageUri?: string | null;
   }
   /**
-   * Represents the crop style applied to an image.
+   * Represents the crop style applied to an image. For example, here's how to apply a 16:9 aspect ratio: ``` cropStyle { "type": "RECTANGLE_CUSTOM", "aspectRatio": 16/9 \} ```
    */
   export interface Schema$GoogleAppsCardV1ImageCropStyle {
     /**
-     * The aspect ratio to use if the crop type is `RECTANGLE_CUSTOM`.
+     * The aspect ratio to use if the crop type is `RECTANGLE_CUSTOM`. For example, here's how to apply a 16:9 aspect ratio: ``` cropStyle { "type": "RECTANGLE_CUSTOM", "aspectRatio": 16/9 \} ```
      */
     aspectRatio?: number | null;
     /**
@@ -895,7 +991,7 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
-   * Represents the response to an `onClick` event.
+   * Represents how to respond when users click an interactive element on a card, such as a button.
    */
   export interface Schema$GoogleAppsCardV1OnClick {
     /**
@@ -903,11 +999,11 @@ export namespace chat_v1 {
      */
     action?: Schema$GoogleAppsCardV1Action;
     /**
-     * A new card is pushed to the card stack after clicking if specified.
+     * A new card is pushed to the card stack after clicking if specified. Supported by Google Workspace Add-ons, but not Chat apps.
      */
     card?: Schema$GoogleAppsCardV1Card;
     /**
-     * An add-on triggers this action when the action needs to open a link. This differs from the `open_link` above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back.
+     * An add-on triggers this action when the action needs to open a link. This differs from the `open_link` above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back. Supported by Google Workspace Add-ons, but not Google Chat apps.
      */
     openDynamicLinkAction?: Schema$GoogleAppsCardV1Action;
     /**
@@ -933,150 +1029,187 @@ export namespace chat_v1 {
     url?: string | null;
   }
   /**
-   * A section contains a collection of widgets that are rendered vertically in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there is currently no need for layout properties, for example, float.
+   * Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, the data from a [Google Workspace host application](https://developers.google.com/chat/api/reference/rest/v1/HostApp). Used to populate the items in the multi-select menu. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$GoogleAppsCardV1PlatformDataSource {
+    /**
+     * For a `SelectionInput` widget that uses a multi-select menu, a data source shared by all Google Workspace host applications, such as users in a Google Workspace organization. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    commonDataSource?: string | null;
+    /**
+     * A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    hostAppDataSource?: Schema$HostAppDataSourceMarkup;
+  }
+  /**
+   * A section contains a collection of widgets that are rendered vertically in the order that they're specified.
    */
   export interface Schema$GoogleAppsCardV1Section {
     /**
-     * Indicates whether this section is collapsible. If a section is collapsible, the description must be given.
+     * Indicates whether this section is collapsible. Collapsible sections hide some or all widgets, but users can expand the section to reveal the hidden widgets by clicking **Show more**. Users can hide the widgets again by clicking **Show less**. To determine which widgets are hidden, specify `uncollapsibleWidgetsCount`.
      */
     collapsible?: boolean | null;
     /**
-     * The header of the section. Formatted text is supported.
+     * Text that appears at the top of a section. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      */
     header?: string | null;
     /**
-     * The number of uncollapsible widgets. For example, when a section contains five widgets and the `uncollapsibleWidgetsCount` is set to `2`, the first two widgets are always shown and the last three are collapsed as default. The `uncollapsibleWidgetsCount` is taken into account only when `collapsible` is `true`.
+     * The number of uncollapsible widgets which remain visible even when a section is collapsed. For example, when a section contains five widgets and the `uncollapsibleWidgetsCount` is set to `2`, the first two widgets are always shown and the last three are collapsed by default. The `uncollapsibleWidgetsCount` is taken into account only when `collapsible` is `true`.
      */
     uncollapsibleWidgetsCount?: number | null;
     /**
-     * A section must contain at least 1 widget.
+     * All the widgets in the section. Must contain at least one widget.
      */
     widgets?: Schema$GoogleAppsCardV1Widget[];
   }
   /**
-   * A widget that creates a UI item with options for users to select. For example, a dropdown menu.
+   * A widget that creates one or more UI items that users can select. For example, a dropdown menu or checkboxes. You can use this widget to collect data that can be predicted or enumerated. For an example in Google Chat apps, see [Selection input](https://developers.google.com/chat/ui/widgets/selection-input). Chat apps can process the value of items that users select or input. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data). To collect undefined or abstract data from users, use the TextInput widget.
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
     /**
-     * An array of the selected items.
+     * An external data source, such as a relational data base. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    externalDataSource?: Schema$GoogleAppsCardV1Action;
+    /**
+     * An array of selectable items. For example, an array of radio buttons or checkboxes. Supports up to 100 items.
      */
     items?: Schema$GoogleAppsCardV1SelectionItem[];
     /**
-     * The label displayed ahead of the switch control.
+     * The text that appears above the selection input field in the user interface. Specify text that helps the user enter the information your app needs. For example, if users are selecting the urgency of a work ticket from a drop-down menu, the label might be "Urgency" or "Select urgency".
      */
     label?: string | null;
     /**
-     * The name of the text input which is used in `formInput`.
+     * For multi-select menus, the maximum number of items that a user can select. Minimum value is 1 item. If unspecified, set to 3 items. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    multiSelectMaxSelectedItems?: number | null;
+    /**
+     * For multi-select menus, the number of text characters that a user inputs before the Chat app queries autocomplete and displays suggested items on the card. If unspecified, set to 0 characters for static data sources and 3 characters for external data sources. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    multiSelectMinQueryLength?: number | null;
+    /**
+     * The name that identifies the selection input in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     name?: string | null;
     /**
-     * If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button.
+     * If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button that submits the form. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * The type of the selection.
+     * A data source from a [Google Workspace host application](https://developers.google.com/chat/api/reference/rest/v1/HostApp). [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    platformDataSource?: Schema$GoogleAppsCardV1PlatformDataSource;
+    /**
+     * The type of items that are displayed to users in a `SelectionInput` widget. Selection types support different types of interactions. For example, users can select one or more checkboxes, but they can only select one value from a dropdown menu.
      */
     type?: string | null;
   }
   /**
-   * A selectable item in the switch control.
+   * An item that users can select in a selection input, such as a checkbox or switch.
    */
   export interface Schema$GoogleAppsCardV1SelectionItem {
     /**
-     * If more than one item is selected for `RADIO_BUTTON` and `DROPDOWN`, the first selected item is treated as selected and the ones after are ignored.
+     * For multi-select menus, a text description or label that's displayed below the item's `text` field. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    bottomText?: string | null;
+    /**
+     * Whether the item is selected by default. If the selection input only accepts one value (such as for radio buttons or a dropdown menu), only set this field for one item.
      */
     selected?: boolean | null;
     /**
-     * The text to be displayed.
+     * For multi-select menus, the URL for the icon displayed next to the item's `text` field. Supports PNG and JPEG files. Must be an `HTTPS` URL. For example, `https://developers.google.com/chat/images/quickstart-app-avatar.png`. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    startIconUri?: string | null;
+    /**
+     * The text that identifies or describes the item to users.
      */
     text?: string | null;
     /**
-     * The value associated with this item. The client should use this as a form input value.
+     * The value associated with this item. The client should use this as a form input value. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     value?: string | null;
   }
   /**
-   * A suggestion item.
+   * One suggested value that users can enter in a text input field.
    */
   export interface Schema$GoogleAppsCardV1SuggestionItem {
     /**
-     * The suggested autocomplete result.
+     * The value of a suggested input to a text input field. This is equivalent to what users enter themselves.
      */
     text?: string | null;
   }
   /**
-   * A container wrapping elements necessary for showing suggestion items used in text input autocomplete.
+   * Suggested values that users can enter. These values appear when users click inside the text input field. As users type, the suggested values dynamically filter to match what the users have typed. For example, a text input field for programming language might suggest Java, JavaScript, Python, and C++. When users start typing `Jav`, the list of suggestions filters to show `Java` and `JavaScript`. Suggested values help guide users to enter values that your app can make sense of. When referring to JavaScript, some users might enter `javascript` and others `java script`. Suggesting `JavaScript` can standardize how users interact with your app. When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set to `MULTIPLE_LINE`.
    */
   export interface Schema$GoogleAppsCardV1Suggestions {
     /**
-     * A list of suggestions used for autocomplete recommendations.
+     * A list of suggestions used for autocomplete recommendations in text input fields.
      */
     items?: Schema$GoogleAppsCardV1SuggestionItem[];
   }
   /**
-   * Either a toggle-style switch or a checkbox.
+   * Either a toggle-style switch or a checkbox inside a `decoratedText` widget. Only supported in the `decoratedText` widget.
    */
   export interface Schema$GoogleAppsCardV1SwitchControl {
     /**
-     * The control type, either switch or checkbox.
+     * How the switch appears in the user interface.
      */
     controlType?: string | null;
     /**
-     * The name of the switch widget that's used in `formInput`.
+     * The name by which the switch widget is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     name?: string | null;
     /**
-     * The action when the switch state is changed.
+     * The action to perform when the switch state is changed, such as what function to run.
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * If the switch is selected.
+     * When `true`, the switch is selected.
      */
     selected?: boolean | null;
     /**
-     * The value is what is passed back in the callback.
+     * The value entered by a user, returned as part of a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     value?: string | null;
   }
   /**
-   * A text input is a UI item where users can input text. A text input can also have an onChange action and suggestions.
+   * A field in which users can enter text. Supports suggestions and on-change actions. For an example in Google Chat apps, see [Text input](https://developers.google.com/chat/ui/widgets/text-input). Chat apps receive and can process the value of entered text during form input events. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data). When you need to collect undefined or abstract data from users, use a text input. To collect defined or enumerated data from users, use the SelectionInput widget.
    */
   export interface Schema$GoogleAppsCardV1TextInput {
     /**
-     * The refresh function that returns suggestions based on the user's input text. If the callback is not specified, autocomplete is done in client side based on the initial suggestion items.
+     * Optional. Specify what action to take when the text input field provides suggestions to users who interact with it. If unspecified, the suggestions are set by `initialSuggestions` and are processed by the client. If specified, the app takes the action specified here, such as running a custom function. Supported by Google Workspace Add-ons, but not Chat apps.
      */
     autoCompleteAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * The hint text.
+     * Text that appears below the text input field meant to assist users by prompting them to enter a certain value. This text is always visible. Required if `label` is unspecified. Otherwise, optional.
      */
     hintText?: string | null;
     /**
-     * The initial suggestions made before any user input.
+     * Suggested values that users can enter. These values appear when users click inside the text input field. As users type, the suggested values dynamically filter to match what the users have typed. For example, a text input field for programming language might suggest Java, JavaScript, Python, and C++. When users start typing `Jav`, the list of suggestions filters to show just `Java` and `JavaScript`. Suggested values help guide users to enter values that your app can make sense of. When referring to JavaScript, some users might enter `javascript` and others `java script`. Suggesting `JavaScript` can standardize how users interact with your app. When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set to `MULTIPLE_LINE`.
      */
     initialSuggestions?: Schema$GoogleAppsCardV1Suggestions;
     /**
-     * At least one of label and hintText must be specified.
+     * The text that appears above the text input field in the user interface. Specify text that helps the user enter the information your app needs. For example, if you are asking someone's name, but specifically need their surname, write `surname` instead of `name`. Required if `hintText` is unspecified. Otherwise, optional.
      */
     label?: string | null;
     /**
-     * The name of the text input which is used in `formInput`.
+     * The name by which the text input is identified in a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     name?: string | null;
     /**
-     * The onChange action, for example, invoke a function.
+     * What to do when a change occurs in the text input field. For example, a user adding to the field or deleting text. Examples of actions to take include running a custom function or opening a [dialog](https://developers.google.com/chat/how-tos/dialogs) in Google Chat.
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * The style of the text, for example, a single line or multiple lines.
+     * How a text input field appears in the user interface. For example, whether the field is single or multi-line.
      */
     type?: string | null;
     /**
-     * The default value when there is no input from the user.
+     * The value entered by a user, returned as part of a form input event. For details about working with form inputs, see [Receive form data](https://developers.google.com/chat/ui/read-form-data).
      */
     value?: string | null;
   }
   /**
-   * A paragraph of text that supports formatting. See [Text formatting](https://developers.google.com/workspace/add-ons/concepts/widgets#text_formatting) for details.
+   * A paragraph of text that supports formatting. For an example in Google Chat apps, see [Text paragraph](https://developers.google.com/chat/ui/widgets/text-paragraph). For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards##card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
    */
   export interface Schema$GoogleAppsCardV1TextParagraph {
     /**
@@ -1085,56 +1218,102 @@ export namespace chat_v1 {
     text?: string | null;
   }
   /**
-   * A widget is a UI element that presents texts, images, etc.
+   * Each card is made up of widgets. A widget is a composite object that can represent one of text, images, buttons, and other object types.
    */
   export interface Schema$GoogleAppsCardV1Widget {
     /**
-     * A list of buttons. For example, the following JSON creates two buttons. The first is a filled text button and the second is an image button that opens a link: ``` "buttonList": { "buttons": [ "button": { "text": "Edit", "Color": { "Red": 255 "Green": 255 "Blue": 255 \} "disabled": true \}, "button": { "icon": { "knownIcon": "INVITE" "altText": "check calendar" \}, "onClick": { "openLink": { "url": "https://example.com/calendar" \} \} \}, ] \} ```
+     * A list of buttons. For example, the following JSON creates two buttons. The first is a blue text button and the second is an image button that opens a link: ``` "buttonList": { "buttons": [ { "text": "Edit", "color": { "red": 0, "green": 0, "blue": 1, "alpha": 1 \}, "disabled": true, \}, { "icon": { "knownIcon": "INVITE", "altText": "check calendar" \}, "onClick": { "openLink": { "url": "https://example.com/calendar" \} \} \} ] \} ```
      */
     buttonList?: Schema$GoogleAppsCardV1ButtonList;
     /**
-     * Displays a selection/input widget for date/time. For example, the following JSON creates a date/time picker for an appointment time: ``` "date_time_picker": { "name": "appointment_time", "label": "Book your appointment at:", "type": "DateTimePickerType.DATE_AND_TIME", "valueMsEpoch": "796435200000" \} ```
+     * Displays up to 2 columns. To include more than 2 columns, or to use rows, use the `Grid` widget. For example, the following JSON creates 2 columns that each contain text paragraphs: ``` "columns": { "columnItems": [ { "horizontalSizeStyle": "FILL_AVAILABLE_SPACE", "horizontalAlignment": "CENTER", "verticalAlignment": "CENTER", "widgets": [ { "textParagraph": { "text": "First column text paragraph" \} \} ] \}, { "horizontalSizeStyle": "FILL_AVAILABLE_SPACE", "horizontalAlignment": "CENTER", "verticalAlignment": "CENTER", "widgets": [ { "textParagraph": { "text": "Second column text paragraph" \} \} ] \} ] \} ```
+     */
+    columns?: Schema$GoogleAppsCardV1Columns;
+    /**
+     * Displays a widget that lets users input a date, time, or date and time. For example, the following JSON creates a date time picker to schedule an appointment: ``` "dateTimePicker": { "name": "appointment_time", "label": "Book your appointment at:", "type": "DATE_AND_TIME", "valueMsEpoch": "796435200000" \} ```
      */
     dateTimePicker?: Schema$GoogleAppsCardV1DateTimePicker;
     /**
-     * Displays a decorated text item in this widget. For example, the following JSON creates a decorated text widget showing email address: ``` "decoratedText": { "icon": { "knownIcon": "EMAIL" \}, "topLabel": "Email Address", "content": "sasha@example.com", "bottomLabel": "This is a new Email address!", "switchWidget": { "name": "has_send_welcome_email_to_sasha", "selected": false, "controlType": "ControlType.CHECKBOX" \} \} ```
+     * Displays a decorated text item. For example, the following JSON creates a decorated text widget showing email address: ``` "decoratedText": { "icon": { "knownIcon": "EMAIL" \}, "topLabel": "Email Address", "text": "sasha@example.com", "bottomLabel": "This is a new Email address!", "switchControl": { "name": "has_send_welcome_email_to_sasha", "selected": false, "controlType": "CHECKBOX" \} \} ```
      */
     decoratedText?: Schema$GoogleAppsCardV1DecoratedText;
     /**
-     * Displays a divider. For example, the following JSON creates a divider: ``` "divider": { \} ```
+     * Displays a horizontal line divider between widgets. For example, the following JSON creates a divider: ``` "divider": { \} ```
      */
     divider?: Schema$GoogleAppsCardV1Divider;
     /**
-     * Displays a grid with a collection of items. For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "numColumns": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4.0 \}, "items": [ "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" ], "onClick": { "openLink": { "url":"https://www.example.com" \} \} \} ```
+     * Displays a grid with a collection of items. A grid supports any number of columns and items. The number of rows is determined by the upper bounds of the number items divided by the number of columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "columnCount": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4 \}, "items": [ { "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" \} ], "onClick": { "openLink": { "url": "https://www.example.com" \} \} \} ```
      */
     grid?: Schema$GoogleAppsCardV1Grid;
     /**
-     * The horizontal alignment of this widget.
+     * Specifies whether widgets align to the left, right, or center of a column.
      */
     horizontalAlignment?: string | null;
     /**
-     * Displays an image in this widget. For example, the following JSON creates an image with alternative text: ``` "image": { "imageUrl": "https://example.com/sasha.png" "altText": "Avatar for Sasha" \} ```
+     * Displays an image. For example, the following JSON creates an image with alternative text: ``` "image": { "imageUrl": "https://developers.google.com/chat/images/quickstart-app-avatar.png", "altText": "Chat app avatar" \} ```
      */
     image?: Schema$GoogleAppsCardV1Image;
     /**
-     * Displays a switch control in this widget. For example, the following JSON creates a dropdown selection for size: ``` "switchControl": { "name": "size", "label": "Size" "type": "SelectionType.DROPDOWN", "items": [ { "text": "S", "value": "small", "selected": false \}, { "text": "M", "value": "medium", "selected": true \}, { "text": "L", "value": "large", "selected": false \}, { "text": "XL", "value": "extra_large", "selected": false \} ] \} ```
+     * Displays a selection control that lets users select items. Selection controls can be checkboxes, radio buttons, switches, or dropdown menus. For example, the following JSON creates a dropdown menu that lets users choose a size: ``` "selectionInput": { "name": "size", "label": "Size" "type": "DROPDOWN", "items": [ { "text": "S", "value": "small", "selected": false \}, { "text": "M", "value": "medium", "selected": true \}, { "text": "L", "value": "large", "selected": false \}, { "text": "XL", "value": "extra_large", "selected": false \} ] \} ```
      */
     selectionInput?: Schema$GoogleAppsCardV1SelectionInput;
     /**
-     * Displays a text input in this widget. For example, the following JSON creates a text input for mail address: ``` "textInput": { "name": "mailing_address", "label": "Mailing Address" \} ``` As another example, the following JSON creates a text input for programming language with static suggestions: ``` "textInput": { "name": "preferred_programing_language", "label": "Preferred Language", "initialSuggestions": { "items": [ { "text": "C++" \}, { "text": "Java" \}, { "text": "JavaScript" \}, { "text": "Python" \} ] \} \} ```
+     * Displays a text box that users can type into. For example, the following JSON creates a text input for an email address: ``` "textInput": { "name": "mailing_address", "label": "Mailing Address" \} ``` As another example, the following JSON creates a text input for a programming language with static suggestions: ``` "textInput": { "name": "preferred_programing_language", "label": "Preferred Language", "initialSuggestions": { "items": [ { "text": "C++" \}, { "text": "Java" \}, { "text": "JavaScript" \}, { "text": "Python" \} ] \} \} ```
      */
     textInput?: Schema$GoogleAppsCardV1TextInput;
     /**
-     * Displays a text paragraph in this widget. For example, the following JSON creates a bolded text: ``` "textParagraph": { "text": " *bold text*" \} ```
+     * Displays a text paragraph. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` "textParagraph": { "text": " *bold text*" \} ```
      */
     textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
   }
   /**
-   * An image that is specified by a URL and can have an onclick action.
+   * The supported widgets that you can include in a column.
+   */
+  export interface Schema$GoogleAppsCardV1Widgets {
+    /**
+     * ButtonList widget.
+     */
+    buttonList?: Schema$GoogleAppsCardV1ButtonList;
+    /**
+     * DateTimePicker widget.
+     */
+    dateTimePicker?: Schema$GoogleAppsCardV1DateTimePicker;
+    /**
+     * DecoratedText widget.
+     */
+    decoratedText?: Schema$GoogleAppsCardV1DecoratedText;
+    /**
+     * Image widget.
+     */
+    image?: Schema$GoogleAppsCardV1Image;
+    /**
+     * SelectionInput widget.
+     */
+    selectionInput?: Schema$GoogleAppsCardV1SelectionInput;
+    /**
+     * TextInput widget.
+     */
+    textInput?: Schema$GoogleAppsCardV1TextInput;
+    /**
+     * TextParagraph widget.
+     */
+    textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
+  }
+  /**
+   * Chat apps only. For a `SelectionInput` widget that uses a multi-select menu, a data source from a Google Workspace host application. [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$HostAppDataSourceMarkup {
+    /**
+     * The data source is Google Chat. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    chatDataSource?: Schema$ChatClientDataSourceMarkup;
+  }
+  /**
+   * An image that's specified by a URL and can have an `onclick` action.
    */
   export interface Schema$Image {
     /**
-     * The aspect ratio of this image (width/height). This field allows clients to reserve the right height for the image while waiting for it to load. It's not meant to override the native aspect ratio of the image. If unset, the server fills it by prefetching the image.
+     * The aspect ratio of this image (width and height). This field lets you reserve the right height for the image while waiting for it to load. It's not meant to override the built-in aspect ratio of the image. If unset, the server fills it by prefetching the image.
      */
     aspectRatio?: number | null;
     /**
@@ -1142,16 +1321,16 @@ export namespace chat_v1 {
      */
     imageUrl?: string | null;
     /**
-     * The onclick action.
+     * The `onclick` action.
      */
     onClick?: Schema$OnClick;
   }
   /**
-   * An image button with an onclick action.
+   * An image button with an `onclick` action.
    */
   export interface Schema$ImageButton {
     /**
-     * The icon specified by an enum that indices to an icon provided by Chat API.
+     * The icon specified by an `enum` that indices to an icon provided by Chat API.
      */
     icon?: string | null;
     /**
@@ -1159,11 +1338,11 @@ export namespace chat_v1 {
      */
     iconUrl?: string | null;
     /**
-     * The name of this image_button which will be used for accessibility. Default value will be provided if developers don't specify.
+     * The name of this `image_button` that's used for accessibility. Default value is provided if this name isn't specified.
      */
     name?: string | null;
     /**
-     * The onclick action.
+     * The `onclick` action.
      */
     onClick?: Schema$OnClick;
   }
@@ -1172,11 +1351,11 @@ export namespace chat_v1 {
    */
   export interface Schema$Inputs {
     /**
-     * Date input values. Not supported by Chat apps.
+     * Date input values.
      */
     dateInput?: Schema$DateInput;
     /**
-     * Date and time input values. Not supported by Chat apps.
+     * Date and time input values.
      */
     dateTimeInput?: Schema$DateTimeInput;
     /**
@@ -1184,16 +1363,16 @@ export namespace chat_v1 {
      */
     stringInputs?: Schema$StringInputs;
     /**
-     * Time input values. Not supported by Chat apps.
+     * Time input values.
      */
     timeInput?: Schema$TimeInput;
   }
   /**
-   * A UI element contains a key (label) and a value (content). And this element may also contain some actions such as onclick button.
+   * A UI element contains a key (label) and a value (content). This element can also contain some actions such as `onclick` button.
    */
   export interface Schema$KeyValue {
     /**
-     * The text of the bottom label. Formatted text supported.
+     * The text of the bottom label. Formatted text supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      */
     bottomLabel?: string | null;
     /**
@@ -1201,7 +1380,7 @@ export namespace chat_v1 {
      */
     button?: Schema$Button;
     /**
-     * The text of the content. Formatted text supported and always required.
+     * The text of the content. Formatted text supported and always required. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      */
     content?: string | null;
     /**
@@ -1209,7 +1388,7 @@ export namespace chat_v1 {
      */
     contentMultiline?: boolean | null;
     /**
-     * An enum value that will be replaced by the Chat API with the corresponding icon image.
+     * An enum value that's replaced by the Chat API with the corresponding icon image.
      */
     icon?: string | null;
     /**
@@ -1217,11 +1396,11 @@ export namespace chat_v1 {
      */
     iconUrl?: string | null;
     /**
-     * The onclick action. Only the top label, bottom label and content region are clickable.
+     * The `onclick` action. Only the top label, bottom label, and content region are clickable.
      */
     onClick?: Schema$OnClick;
     /**
-     * The text of the top label. Formatted text supported.
+     * The text of the top label. Formatted text supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      */
     topLabel?: string | null;
   }
@@ -1231,13 +1410,33 @@ export namespace chat_v1 {
      */
     memberships?: Schema$Membership[];
     /**
-     * A token that can be sent as `pageToken` to retrieve the next page of results. If empty, there are no subsequent pages.
+     * A token that you can send as `pageToken` to retrieve the next page of results. If empty, there are no subsequent pages.
      */
     nextPageToken?: string | null;
   }
+  export interface Schema$ListMessagesResponse {
+    /**
+     * List of messages.
+     */
+    messages?: Schema$Message[];
+    /**
+     * You can send a token as `pageToken` to retrieve the next page of results. If empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  export interface Schema$ListReactionsResponse {
+    /**
+     * Continuation token to retrieve the next page of results. It's empty for the last page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of reactions in the requested (or first) page.
+     */
+    reactions?: Schema$Reaction[];
+  }
   export interface Schema$ListSpacesResponse {
     /**
-     * A token that can be sent as `pageToken` to retrieve the next page of results. If empty, there are no subsequent pages.
+     * You can send a token as `pageToken` to retrieve the next page of results. If empty, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -1246,11 +1445,11 @@ export namespace chat_v1 {
     spaces?: Schema$Space[];
   }
   /**
-   * A matched url in a Chat message. Chat apps can preview matched URLs. For more information, refer to [Preview links](https://developers.google.com/chat/how-tos/preview-links).
+   * A matched URL in a Chat message. Chat apps can preview matched URLs. For more information, see [Preview links](https://developers.google.com/chat/how-tos/preview-links).
    */
   export interface Schema$MatchedUrl {
     /**
-     * Output only. The url that was matched.
+     * Output only. The URL that was matched.
      */
     url?: string | null;
   }
@@ -1272,11 +1471,11 @@ export namespace chat_v1 {
      */
     createTime?: string | null;
     /**
-     * A Google Chat user or app. Format: `users/{user\}` or `users/app` When `users/{user\}`, represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. When `users/app`, represents a Chat app creating membership for itself.
+     * The Google Chat user or app the membership corresponds to. If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the output populates the [user](https://developers.google.com/chat/api/reference/rest/v1/User) `name` and `type`.
      */
     member?: Schema$User;
     /**
-     * Resource name of the membership. Format: spaces/{space\}/members/{member\}
+     * Resource name of the membership, assigned by the server. Format: `spaces/{space\}/members/{member\}`
      */
     name?: string | null;
     /**
@@ -1297,35 +1496,51 @@ export namespace chat_v1 {
      */
     actionResponse?: Schema$ActionResponse;
     /**
-     * Output only. Annotations associated with the text in this message.
+     * Output only. Annotations associated with the `text` in this message.
      */
     annotations?: Schema$Annotation[];
     /**
-     * Plain-text body of the message with all Chat app mentions stripped out.
+     * Output only. Plain-text body of the message with all Chat app mentions stripped out.
      */
     argumentText?: string | null;
     /**
-     * User uploaded attachment.
+     * Output only. GIF images that are attached to the message.
+     */
+    attachedGifs?: Schema$AttachedGif[];
+    /**
+     * User-uploaded attachment.
      */
     attachment?: Schema$Attachment[];
     /**
-     * Deprecated: Use `cards_v2` instead. Rich, formatted and interactive cards that can be used to display UI elements such as: formatted texts, buttons, clickable images. Cards are normally displayed below the plain-text body of the message.
+     * Deprecated: Use `cards_v2` instead. Rich, formatted, and interactive cards that you can use to display UI elements such as: formatted texts, buttons, and clickable images. Cards are normally displayed below the plain-text body of the message. `cards` and `cards_v2` can have a maximum size of 32 KB.
      */
     cards?: Schema$Card[];
     /**
-     * Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text-body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList` - `Divider`
+     * Richly formatted and interactive cards that display UI elements and editable widgets, such as: - Formatted text - Buttons - Clickable images - Checkboxes - Radio buttons - Input widgets. Cards are usually displayed below the text body of a Chat message, but can situationally appear other places, such as [dialogs](https://developers.google.com/chat/how-tos/dialogs). Each card can have a maximum size of 32 KB. The `cardId` is a unique identifier among cards in the same message and for identifying user input values. Currently supported widgets include: - `TextParagraph` - `DecoratedText` - `Image` - `ButtonList` - `Divider` - `TextInput` - `SelectionInput` - `Grid`
      */
     cardsV2?: Schema$CardWithId[];
     /**
-     * A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     * A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. Assigning a custom name lets a Chat app recall the message without saving the message `name` from the [response body](/chat/api/reference/rest/v1/spaces.messages/get#response-body) returned when creating the message. Assigning a custom name doesn't replace the generated `name` field, the message's resource name. Instead, it sets the custom name as the `clientAssignedMessageId` field, which you can reference while processing later operations, like updating or deleting the message. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
      */
     clientAssignedMessageId?: string | null;
     /**
-     * Output only. The time at which the message was created in Google Chat server.
+     * For spaces created in Chat, the time at which the message was created. This field is output only, except when used in imported spaces. [Developer Preview](https://developers.google.com/workspace/preview): For imported spaces, set this field to the historical timestamp at which the message was created in the source in order to preserve the original creation time.
      */
     createTime?: string | null;
     /**
-     * A plain-text description of the message's cards, used when the actual cards cannot be displayed (e.g. mobile notifications).
+     * Output only. The time at which the message was deleted in Google Chat. If the message is never deleted, this field is empty.
+     */
+    deleteTime?: string | null;
+    /**
+     * Output only. Information about a deleted message. A message is deleted when `delete_time` is set.
+     */
+    deletionMetadata?: Schema$DeletionMetadata;
+    /**
+     * Output only. The list of emoji reaction summaries on the message.
+     */
+    emojiReactionSummaries?: Schema$EmojiReactionSummary[];
+    /**
+     * A plain-text description of the message's cards, used when the actual cards can't be displayed—for example, mobile notifications.
      */
     fallbackText?: string | null;
     /**
@@ -1333,7 +1548,7 @@ export namespace chat_v1 {
      */
     lastUpdateTime?: string | null;
     /**
-     * Output only. A URL in `spaces.messages.text` that matches a link preview pattern. For more information, refer to [Preview links](https://developers.google.com/chat/how-tos/preview-links).
+     * Output only. A URL in `spaces.messages.text` that matches a link preview pattern. For more information, see [Preview links](https://developers.google.com/chat/how-tos/preview-links).
      */
     matchedUrl?: Schema$MatchedUrl;
     /**
@@ -1341,7 +1556,11 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * Output only. The user who created the message.
+     * Output only. Information about a message that's quoted by a Google Chat user in a space. Google Chat users can quote a message to reply to it.
+     */
+    quotedMessageMetadata?: Schema$QuotedMessageMetadata;
+    /**
+     * Output only. The user who created the message. If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the output populates the [user](https://developers.google.com/chat/api/reference/rest/v1/User) `name` and `type`.
      */
     sender?: Schema$User;
     /**
@@ -1349,15 +1568,15 @@ export namespace chat_v1 {
      */
     slashCommand?: Schema$SlashCommand;
     /**
-     * The space the message belongs to. When accessed with [user authentication](https://developers.google.com/chat/api/guides/auth/users), only the name of the Space is populated.
+     * If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the output populates the [space](https://developers.google.com/chat/api/reference/rest/v1/spaces) `name`.
      */
     space?: Schema$Space;
     /**
-     * Plain-text body of the message. The first link to an image, video, web page, or other preview-able item generates a preview chip.
+     * Plain-text body of the message. The first link to an image, video, or web page generates a preview chip. You can also @mention a Google Chat user, or everyone in the space. To learn about creating text messages, see [Create a text message](https://developers.google.com/chat/api/guides/message-formats/text).
      */
     text?: string | null;
     /**
-     * The thread the message belongs to. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
+     * The thread the message belongs to. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     thread?: Schema$Thread;
     /**
@@ -1366,15 +1585,15 @@ export namespace chat_v1 {
     threadReply?: boolean | null;
   }
   /**
-   * An onclick action (e.g. open a link).
+   * An `onclick` action (for example, open a link).
    */
   export interface Schema$OnClick {
     /**
-     * A form action will be triggered by this onclick if specified.
+     * A form action is triggered by this `onclick` action if specified.
      */
     action?: Schema$FormAction;
     /**
-     * This onclick triggers an open link action if specified.
+     * This `onclick` action triggers an open link action if specified.
      */
     openLink?: Schema$OpenLink;
   }
@@ -1388,24 +1607,68 @@ export namespace chat_v1 {
     url?: string | null;
   }
   /**
-   * A section contains a collection of widgets that are rendered (vertically) in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there is currently no need for layout properties (e.g. float).
+   * Information about a quoted message.
+   */
+  export interface Schema$QuotedMessageMetadata {
+    /**
+     * Output only. The timestamp when the quoted message was created or when the quoted message was last updated.
+     */
+    lastUpdateTime?: string | null;
+    /**
+     * Output only. Resource name of the quoted message. Format: `spaces/{space\}/messages/{message\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * A reaction to a message.
+   */
+  export interface Schema$Reaction {
+    /**
+     * The emoji used in the reaction.
+     */
+    emoji?: Schema$Emoji;
+    /**
+     * The resource name of the reaction. Format: `spaces/{space\}/messages/{message\}/reactions/{reaction\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The user who created the reaction.
+     */
+    user?: Schema$User;
+  }
+  /**
+   * A section contains a collection of widgets that are rendered (vertically) in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there's currently no need for layout properties (for example, float).
    */
   export interface Schema$Section {
     /**
-     * The header of the section, text formatted supported.
+     * The header of the section. Formatted text is supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
      */
     header?: string | null;
     /**
-     * A section must contain at least 1 widget.
+     * A section must contain at least one widget.
      */
     widgets?: Schema$WidgetMarkup[];
+  }
+  export interface Schema$SetUpSpaceRequest {
+    /**
+     * Optional. The Google Chat users to invite to join the space. Omit the calling user, as they are added automatically. The set currently allows up to 20 memberships (in addition to the caller). The `Membership.member` field must contain a `user` with `name` populated (format: `users/{user\}`) and `type` set to `User.Type.HUMAN`. You can only add human users when setting up a space (adding Chat apps is only supported for direct message setup with the calling app). You can also add members using the user's email as an alias for {user\}. For example, the `user.name` can be `users/example@gmail.com`." To invite Gmail users or users from external Google Workspace domains, user's email must be used for `{user\}`. Optional when setting `Space.spaceType` to `SPACE`. Required when setting `Space.spaceType` to `GROUP_CHAT`, along with at least two memberships. Required when setting `Space.spaceType` to `DIRECT_MESSAGE` with a human user, along with exactly one membership. Must be empty when creating a 1:1 conversation between a human and the calling Chat app (when setting `Space.spaceType` to `DIRECT_MESSAGE` and `Space.singleUserBotDm` to `true`).
+     */
+    memberships?: Schema$Membership[];
+    /**
+     * Optional. A unique identifier for this request. A random UUID is recommended. Specifying an existing request ID returns the space created with that ID instead of creating a new space. Specifying an existing request ID from the same Chat app with a different authenticated user returns an error.
+     */
+    requestId?: string | null;
+    /**
+     * Required. The `Space.spaceType` field is required. To create a space, set `Space.spaceType` to `SPACE` and set `Space.displayName`. If you receive the error message `ALREADY_EXISTS` when setting up a space, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. To create a group chat, set `Space.spaceType` to `GROUP_CHAT`. Don't set `Space.displayName`. To create a 1:1 conversation between humans, set `Space.spaceType` to `DIRECT_MESSAGE` and set `Space.singleUserBotDm` to `false`. Don't set `Space.displayName` or `Space.spaceDetails`. To create an 1:1 conversation between a human and the calling Chat app, set `Space.spaceType` to `DIRECT_MESSAGE` and `Space.singleUserBotDm` to `true`. Don't set `Space.displayName` or `Space.spaceDetails`. If a `DIRECT_MESSAGE` space already exists, that space is returned instead of creating a new space.
+     */
+    space?: Schema$Space;
   }
   /**
    * A [slash command](https://developers.google.com/chat/how-tos/slash-commands) in Google Chat.
    */
   export interface Schema$SlashCommand {
     /**
-     * The id of the slash command invoked.
+     * The ID of the slash command invoked.
      */
     commandId?: string | null;
   }
@@ -1418,7 +1681,7 @@ export namespace chat_v1 {
      */
     bot?: Schema$User;
     /**
-     * The command id of the invoked slash command.
+     * The command ID of the invoked slash command.
      */
     commandId?: string | null;
     /**
@@ -1426,7 +1689,7 @@ export namespace chat_v1 {
      */
     commandName?: string | null;
     /**
-     * Indicating whether the slash command is for a dialog.
+     * Indicates whether the slash command is for a dialog.
      */
     triggersDialog?: boolean | null;
     /**
@@ -1439,11 +1702,19 @@ export namespace chat_v1 {
    */
   export interface Schema$Space {
     /**
-     * The space's display name. For direct messages between humans, this field might be empty.
+     * Output only. Whether the Chat app was installed by a Google Workspace administrator. Administrators can install a Chat app for their domain, organizational unit, or a group of users. Administrators can only install Chat apps for direct messaging between users and the app. To support admin install, your app must feature direct messaging.
+     */
+    adminInstalled?: boolean | null;
+    /**
+     * The space's display name. Required when [creating a space](https://developers.google.com/chat/api/reference/rest/v1/spaces/create). If you receive the error message `ALREADY_EXISTS` when creating a space or updating the `displayName`, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. For direct messages, this field might be empty. Supports up to 128 characters.
      */
     displayName?: string | null;
     /**
-     * Resource name of the space. Format: spaces/{space\}
+     * Immutable. Whether this space permits any Google Chat user as a member. Input when creating a space in a Google Workspace organization. For Google Chat users that use a Google Account, omit this field when creating a space (By default, the space permits any Google Chat user). For existing spaces, this field is output only.
+     */
+    externalUserAllowed?: boolean | null;
+    /**
+     * Resource name of the space. Format: `spaces/{space\}`
      */
     name?: string | null;
     /**
@@ -1455,28 +1726,45 @@ export namespace chat_v1 {
      */
     spaceDetails?: Schema$SpaceDetails;
     /**
+     * The message history state for messages and threads in this space.
+     */
+    spaceHistoryState?: string | null;
+    /**
      * Output only. The threading state in the Chat space.
      */
     spaceThreadingState?: string | null;
+    /**
+     * The type of space. Required when creating a space or updating the space type of a space. Output only for other usage.
+     */
+    spaceType?: string | null;
     /**
      * Output only. Deprecated: Use `spaceThreadingState` instead. Whether messages are threaded in this space.
      */
     threaded?: boolean | null;
     /**
-     * Output only. Deprecated: Use `singleUserBotDm` or `spaceType` (developer preview) instead. The type of a space.
+     * Output only. Deprecated: Use `space_type` instead. The type of a space.
      */
     type?: string | null;
+  }
+  /**
+   * A data source representing a Google Chat space. Format: spaces/{space\} [Developer Preview](https://developers.google.com/workspace/preview).
+   */
+  export interface Schema$SpaceDataSource {
+    /**
+     * When `true`, uses the card's Google Chat space as the default selection. The default value is `false`. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    defaultToCurrentSpace?: boolean | null;
   }
   /**
    * Details about the space including description and rules.
    */
   export interface Schema$SpaceDetails {
     /**
-     * Optional. A description of the space. It could describe the space's discussion topic, functional purpose, or participants.
+     * Optional. A description of the space. For example, describe the space's discussion topic, functional purpose, or participants. Supports up to 150 characters.
      */
     description?: string | null;
     /**
-     * Optional. The space's rules, expectations, and etiquette.
+     * Optional. The space's rules, expectations, and etiquette. Supports up to 5,000 characters.
      */
     guidelines?: string | null;
   }
@@ -1507,11 +1795,11 @@ export namespace chat_v1 {
     value?: string[] | null;
   }
   /**
-   * A button with text and onclick action.
+   * A button with text and `onclick` action.
    */
   export interface Schema$TextButton {
     /**
-     * The onclick action of the button.
+     * The `onclick` action of the button.
      */
     onClick?: Schema$OnClick;
     /**
@@ -1520,26 +1808,26 @@ export namespace chat_v1 {
     text?: string | null;
   }
   /**
-   * A paragraph of text. Formatted text supported.
+   * A paragraph of text. Formatted text supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
    */
   export interface Schema$TextParagraph {
     text?: string | null;
   }
   /**
-   * A thread in Google Chat.
+   * A thread in a Google Chat space. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
    */
   export interface Schema$Thread {
     /**
-     * Resource name of the thread. Example: spaces/{space\}/threads/{thread\}
+     * Resource name of the thread. Example: `spaces/{space\}/threads/{thread\}`
      */
     name?: string | null;
     /**
-     * Optional. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread). For other requests, this is an output only field.
+     * Optional. ID for the thread. Supports up to 4000 characters. Input for creating or updating a thread. Otherwise, output only.
      */
     threadKey?: string | null;
   }
   /**
-   * Time input values. Not supported by Chat apps.
+   * Time input values.
    */
   export interface Schema$TimeInput {
     /**
@@ -1552,7 +1840,7 @@ export namespace chat_v1 {
     minutes?: number | null;
   }
   /**
-   * The timezone ID and offset from Coordinated Universal Time (UTC). Not supported by Chat apps.
+   * The timezone ID and offset from Coordinated Universal Time (UTC). Only supported for the event types [`CARD_CLICKED`](https://developers.google.com/chat/api/reference/rest/v1/EventType#ENUM_VALUES.CARD_CLICKED) and [`SUBMIT_DIALOG`](https://developers.google.com/chat/api/reference/rest/v1/DialogEventType#ENUM_VALUES.SUBMIT_DIALOG).
    */
   export interface Schema$TimeZone {
     /**
@@ -1564,8 +1852,20 @@ export namespace chat_v1 {
      */
     offset?: number | null;
   }
+  export interface Schema$UploadAttachmentRequest {
+    /**
+     * Required. The filename of the attachment, including the file extension.
+     */
+    filename?: string | null;
+  }
+  export interface Schema$UploadAttachmentResponse {
+    /**
+     * Reference to the uploaded attachment.
+     */
+    attachmentDataRef?: Schema$AttachmentDataRef;
+  }
   /**
-   * A user in Google Chat.
+   * A user in Google Chat. When returned as an output from a request, if your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the output for a `User` resource only populates the user's `name` and `type`.
    */
   export interface Schema$User {
     /**
@@ -1581,7 +1881,7 @@ export namespace chat_v1 {
      */
     isAnonymous?: boolean | null;
     /**
-     * Resource name for a Google Chat user. For human users, represents a person in the People API or a user in the Admin SDK Directory API. Format: `users/{user\}`
+     * Resource name for a Google Chat user. Format: `users/{user\}`. `users/app` can be used as an alias for the calling app bot user. For human users, `{user\}` is the same user identifier as: - the `{person_id`\} for the [Person](https://developers.google.com/people/api/rest/v1/people) in the People API, where the Person `resource_name` is `people/{person_id\}`. For example, `users/123456789` in Chat API represents the same person as `people/123456789` in People API. - the `id` for a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API.
      */
     name?: string | null;
     /**
@@ -1603,11 +1903,11 @@ export namespace chat_v1 {
     user?: Schema$User;
   }
   /**
-   * A widget is a UI element that presents texts, images, etc.
+   * A widget is a UI element that presents text and images.
    */
   export interface Schema$WidgetMarkup {
     /**
-     * A list of buttons. Buttons is also oneof data and only one of these fields should be set.
+     * A list of buttons. Buttons is also `oneof data` and only one of these fields should be set.
      */
     buttons?: Schema$Button[];
     /**
@@ -1624,641 +1924,6 @@ export namespace chat_v1 {
     textParagraph?: Schema$TextParagraph;
   }
 
-  export class Resource$Dms {
-    context: APIRequestContext;
-    conversations: Resource$Dms$Conversations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.conversations = new Resource$Dms$Conversations(this.context);
-    }
-
-    /**
-     * Legacy path for creating message. Calling these will result in a BadRequest response.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.dms.messages({
-     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     *     messageId: 'placeholder-value',
-     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     *     messageReplyOption: 'placeholder-value',
-     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     *     parent: 'dms/my-dm',
-     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     *     requestId: 'placeholder-value',
-     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     *     threadKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "actionResponse": {},
-     *       //   "annotations": [],
-     *       //   "argumentText": "my_argumentText",
-     *       //   "attachment": [],
-     *       //   "cards": [],
-     *       //   "cardsV2": [],
-     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *       //   "createTime": "my_createTime",
-     *       //   "fallbackText": "my_fallbackText",
-     *       //   "lastUpdateTime": "my_lastUpdateTime",
-     *       //   "matchedUrl": {},
-     *       //   "name": "my_name",
-     *       //   "sender": {},
-     *       //   "slashCommand": {},
-     *       //   "space": {},
-     *       //   "text": "my_text",
-     *       //   "thread": {},
-     *       //   "threadReply": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "actionResponse": {},
-     *   //   "annotations": [],
-     *   //   "argumentText": "my_argumentText",
-     *   //   "attachment": [],
-     *   //   "cards": [],
-     *   //   "cardsV2": [],
-     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *   //   "createTime": "my_createTime",
-     *   //   "fallbackText": "my_fallbackText",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "matchedUrl": {},
-     *   //   "name": "my_name",
-     *   //   "sender": {},
-     *   //   "slashCommand": {},
-     *   //   "space": {},
-     *   //   "text": "my_text",
-     *   //   "thread": {},
-     *   //   "threadReply": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    messages(
-      params: Params$Resource$Dms$Messages,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    messages(
-      params?: Params$Resource$Dms$Messages,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
-    messages(
-      params: Params$Resource$Dms$Messages,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    messages(
-      params: Params$Resource$Dms$Messages,
-      options: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    messages(
-      params: Params$Resource$Dms$Messages,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    messages(callback: BodyResponseCallback<Schema$Message>): void;
-    messages(
-      paramsOrCallback?:
-        | Params$Resource$Dms$Messages
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Dms$Messages;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Dms$Messages;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/messages').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Message>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Message>(parameters);
-      }
-    }
-
-    /**
-     * Legacy path for creating message. Calling these will result in a BadRequest response.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.dms.webhooks({
-     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     *     messageId: 'placeholder-value',
-     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     *     messageReplyOption: 'placeholder-value',
-     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     *     parent: 'dms/my-dm',
-     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     *     requestId: 'placeholder-value',
-     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     *     threadKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "actionResponse": {},
-     *       //   "annotations": [],
-     *       //   "argumentText": "my_argumentText",
-     *       //   "attachment": [],
-     *       //   "cards": [],
-     *       //   "cardsV2": [],
-     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *       //   "createTime": "my_createTime",
-     *       //   "fallbackText": "my_fallbackText",
-     *       //   "lastUpdateTime": "my_lastUpdateTime",
-     *       //   "matchedUrl": {},
-     *       //   "name": "my_name",
-     *       //   "sender": {},
-     *       //   "slashCommand": {},
-     *       //   "space": {},
-     *       //   "text": "my_text",
-     *       //   "thread": {},
-     *       //   "threadReply": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "actionResponse": {},
-     *   //   "annotations": [],
-     *   //   "argumentText": "my_argumentText",
-     *   //   "attachment": [],
-     *   //   "cards": [],
-     *   //   "cardsV2": [],
-     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *   //   "createTime": "my_createTime",
-     *   //   "fallbackText": "my_fallbackText",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "matchedUrl": {},
-     *   //   "name": "my_name",
-     *   //   "sender": {},
-     *   //   "slashCommand": {},
-     *   //   "space": {},
-     *   //   "text": "my_text",
-     *   //   "thread": {},
-     *   //   "threadReply": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    webhooks(
-      params: Params$Resource$Dms$Webhooks,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    webhooks(
-      params?: Params$Resource$Dms$Webhooks,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
-    webhooks(
-      params: Params$Resource$Dms$Webhooks,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    webhooks(
-      params: Params$Resource$Dms$Webhooks,
-      options: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    webhooks(
-      params: Params$Resource$Dms$Webhooks,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    webhooks(callback: BodyResponseCallback<Schema$Message>): void;
-    webhooks(
-      paramsOrCallback?:
-        | Params$Resource$Dms$Webhooks
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Dms$Webhooks;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Dms$Webhooks;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/webhooks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Message>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Message>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Dms$Messages extends StandardParameters {
-    /**
-     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     */
-    messageId?: string;
-    /**
-     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     */
-    messageReplyOption?: string;
-    /**
-     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     */
-    parent?: string;
-    /**
-     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     */
-    requestId?: string;
-    /**
-     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     */
-    threadKey?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Message;
-  }
-  export interface Params$Resource$Dms$Webhooks extends StandardParameters {
-    /**
-     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     */
-    messageId?: string;
-    /**
-     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     */
-    messageReplyOption?: string;
-    /**
-     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     */
-    parent?: string;
-    /**
-     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     */
-    requestId?: string;
-    /**
-     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     */
-    threadKey?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Message;
-  }
-
-  export class Resource$Dms$Conversations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Legacy path for creating message. Calling these will result in a BadRequest response.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.dms.conversations.messages({
-     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     *     messageId: 'placeholder-value',
-     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     *     messageReplyOption: 'placeholder-value',
-     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     *     parent: 'dms/my-dm/conversations/my-conversation',
-     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     *     requestId: 'placeholder-value',
-     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     *     threadKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "actionResponse": {},
-     *       //   "annotations": [],
-     *       //   "argumentText": "my_argumentText",
-     *       //   "attachment": [],
-     *       //   "cards": [],
-     *       //   "cardsV2": [],
-     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *       //   "createTime": "my_createTime",
-     *       //   "fallbackText": "my_fallbackText",
-     *       //   "lastUpdateTime": "my_lastUpdateTime",
-     *       //   "matchedUrl": {},
-     *       //   "name": "my_name",
-     *       //   "sender": {},
-     *       //   "slashCommand": {},
-     *       //   "space": {},
-     *       //   "text": "my_text",
-     *       //   "thread": {},
-     *       //   "threadReply": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "actionResponse": {},
-     *   //   "annotations": [],
-     *   //   "argumentText": "my_argumentText",
-     *   //   "attachment": [],
-     *   //   "cards": [],
-     *   //   "cardsV2": [],
-     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *   //   "createTime": "my_createTime",
-     *   //   "fallbackText": "my_fallbackText",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "matchedUrl": {},
-     *   //   "name": "my_name",
-     *   //   "sender": {},
-     *   //   "slashCommand": {},
-     *   //   "space": {},
-     *   //   "text": "my_text",
-     *   //   "thread": {},
-     *   //   "threadReply": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    messages(
-      params: Params$Resource$Dms$Conversations$Messages,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    messages(
-      params?: Params$Resource$Dms$Conversations$Messages,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
-    messages(
-      params: Params$Resource$Dms$Conversations$Messages,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    messages(
-      params: Params$Resource$Dms$Conversations$Messages,
-      options: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    messages(
-      params: Params$Resource$Dms$Conversations$Messages,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    messages(callback: BodyResponseCallback<Schema$Message>): void;
-    messages(
-      paramsOrCallback?:
-        | Params$Resource$Dms$Conversations$Messages
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Dms$Conversations$Messages;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Dms$Conversations$Messages;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/messages').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Message>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Message>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Dms$Conversations$Messages
-    extends StandardParameters {
-    /**
-     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     */
-    messageId?: string;
-    /**
-     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     */
-    messageReplyOption?: string;
-    /**
-     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     */
-    parent?: string;
-    /**
-     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     */
-    requestId?: string;
-    /**
-     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     */
-    threadKey?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Message;
-  }
-
   export class Resource$Media {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -2267,48 +1932,6 @@ export namespace chat_v1 {
 
     /**
      * Downloads media. Download is supported on the URI `/v1/media/{+name\}?alt=media`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.media.download({
-     *     // Name of the media that is being downloaded. See ReadRequest.resource_name.
-     *     resourceName: '.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "resourceName": "my_resourceName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2392,6 +2015,103 @@ export namespace chat_v1 {
         return createAPIRequest<Schema$Media>(parameters);
       }
     }
+
+    /**
+     * Uploads an attachment. For an example, see [Upload media as a file attachment](https://developers.google.com/chat/api/guides/v1/media-and-attachments/upload). Requires user [authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.messages` or `chat.messages.create` authorization scope. You can upload attachments up to 200 MB. Certain file types aren't supported. For details, see [File types blocked by Google Chat](https://support.google.com/chat/answer/7651457?&co=GENIE.Platform%3DDesktop#File%20types%20blocked%20in%20Google%20Chat).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Media$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadAttachmentResponse>;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadAttachmentResponse>,
+      callback: BodyResponseCallback<Schema$UploadAttachmentResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      callback: BodyResponseCallback<Schema$UploadAttachmentResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$UploadAttachmentResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Media$Upload
+        | BodyResponseCallback<Schema$UploadAttachmentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadAttachmentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadAttachmentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadAttachmentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Media$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/attachments:upload').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (rootUrl + '/upload/v1/{+parent}/attachments:upload').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadAttachmentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadAttachmentResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Media$Download extends StandardParameters {
@@ -2400,640 +2120,31 @@ export namespace chat_v1 {
      */
     resourceName?: string;
   }
-
-  export class Resource$Rooms {
-    context: APIRequestContext;
-    conversations: Resource$Rooms$Conversations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.conversations = new Resource$Rooms$Conversations(this.context);
-    }
-
+  export interface Params$Resource$Media$Upload extends StandardParameters {
     /**
-     * Legacy path for creating message. Calling these will result in a BadRequest response.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.rooms.messages({
-     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     *     messageId: 'placeholder-value',
-     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     *     messageReplyOption: 'placeholder-value',
-     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     *     parent: 'rooms/my-room',
-     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     *     requestId: 'placeholder-value',
-     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     *     threadKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "actionResponse": {},
-     *       //   "annotations": [],
-     *       //   "argumentText": "my_argumentText",
-     *       //   "attachment": [],
-     *       //   "cards": [],
-     *       //   "cardsV2": [],
-     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *       //   "createTime": "my_createTime",
-     *       //   "fallbackText": "my_fallbackText",
-     *       //   "lastUpdateTime": "my_lastUpdateTime",
-     *       //   "matchedUrl": {},
-     *       //   "name": "my_name",
-     *       //   "sender": {},
-     *       //   "slashCommand": {},
-     *       //   "space": {},
-     *       //   "text": "my_text",
-     *       //   "thread": {},
-     *       //   "threadReply": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "actionResponse": {},
-     *   //   "annotations": [],
-     *   //   "argumentText": "my_argumentText",
-     *   //   "attachment": [],
-     *   //   "cards": [],
-     *   //   "cardsV2": [],
-     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *   //   "createTime": "my_createTime",
-     *   //   "fallbackText": "my_fallbackText",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "matchedUrl": {},
-     *   //   "name": "my_name",
-     *   //   "sender": {},
-     *   //   "slashCommand": {},
-     *   //   "space": {},
-     *   //   "text": "my_text",
-     *   //   "thread": {},
-     *   //   "threadReply": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    messages(
-      params: Params$Resource$Rooms$Messages,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    messages(
-      params?: Params$Resource$Rooms$Messages,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
-    messages(
-      params: Params$Resource$Rooms$Messages,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    messages(
-      params: Params$Resource$Rooms$Messages,
-      options: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    messages(
-      params: Params$Resource$Rooms$Messages,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    messages(callback: BodyResponseCallback<Schema$Message>): void;
-    messages(
-      paramsOrCallback?:
-        | Params$Resource$Rooms$Messages
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Messages;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Rooms$Messages;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/messages').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Message>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Message>(parameters);
-      }
-    }
-
-    /**
-     * Legacy path for creating message. Calling these will result in a BadRequest response.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.rooms.webhooks({
-     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     *     messageId: 'placeholder-value',
-     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     *     messageReplyOption: 'placeholder-value',
-     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     *     parent: 'rooms/my-room',
-     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     *     requestId: 'placeholder-value',
-     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     *     threadKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "actionResponse": {},
-     *       //   "annotations": [],
-     *       //   "argumentText": "my_argumentText",
-     *       //   "attachment": [],
-     *       //   "cards": [],
-     *       //   "cardsV2": [],
-     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *       //   "createTime": "my_createTime",
-     *       //   "fallbackText": "my_fallbackText",
-     *       //   "lastUpdateTime": "my_lastUpdateTime",
-     *       //   "matchedUrl": {},
-     *       //   "name": "my_name",
-     *       //   "sender": {},
-     *       //   "slashCommand": {},
-     *       //   "space": {},
-     *       //   "text": "my_text",
-     *       //   "thread": {},
-     *       //   "threadReply": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "actionResponse": {},
-     *   //   "annotations": [],
-     *   //   "argumentText": "my_argumentText",
-     *   //   "attachment": [],
-     *   //   "cards": [],
-     *   //   "cardsV2": [],
-     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *   //   "createTime": "my_createTime",
-     *   //   "fallbackText": "my_fallbackText",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "matchedUrl": {},
-     *   //   "name": "my_name",
-     *   //   "sender": {},
-     *   //   "slashCommand": {},
-     *   //   "space": {},
-     *   //   "text": "my_text",
-     *   //   "thread": {},
-     *   //   "threadReply": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    webhooks(
-      params: Params$Resource$Rooms$Webhooks,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    webhooks(
-      params?: Params$Resource$Rooms$Webhooks,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
-    webhooks(
-      params: Params$Resource$Rooms$Webhooks,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    webhooks(
-      params: Params$Resource$Rooms$Webhooks,
-      options: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    webhooks(
-      params: Params$Resource$Rooms$Webhooks,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    webhooks(callback: BodyResponseCallback<Schema$Message>): void;
-    webhooks(
-      paramsOrCallback?:
-        | Params$Resource$Rooms$Webhooks
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Webhooks;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Rooms$Webhooks;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/webhooks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Message>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Message>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Rooms$Messages extends StandardParameters {
-    /**
-     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     */
-    messageId?: string;
-    /**
-     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     */
-    messageReplyOption?: string;
-    /**
-     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
+     * Required. Resource name of the Chat space in which the attachment is uploaded. Format "spaces/{space\}".
      */
     parent?: string;
-    /**
-     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     */
-    requestId?: string;
-    /**
-     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     */
-    threadKey?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$Message;
-  }
-  export interface Params$Resource$Rooms$Webhooks extends StandardParameters {
-    /**
-     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     */
-    messageId?: string;
-    /**
-     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     */
-    messageReplyOption?: string;
-    /**
-     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     */
-    parent?: string;
-    /**
-     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     */
-    requestId?: string;
-    /**
-     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     */
-    threadKey?: string;
+    requestBody?: Schema$UploadAttachmentRequest;
 
     /**
-     * Request body metadata
+     * Media metadata
      */
-    requestBody?: Schema$Message;
-  }
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
 
-  export class Resource$Rooms$Conversations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Legacy path for creating message. Calling these will result in a BadRequest response.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.rooms.conversations.messages({
-     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     *     messageId: 'placeholder-value',
-     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     *     messageReplyOption: 'placeholder-value',
-     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     *     parent: 'rooms/my-room/conversations/my-conversation',
-     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     *     requestId: 'placeholder-value',
-     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     *     threadKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "actionResponse": {},
-     *       //   "annotations": [],
-     *       //   "argumentText": "my_argumentText",
-     *       //   "attachment": [],
-     *       //   "cards": [],
-     *       //   "cardsV2": [],
-     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *       //   "createTime": "my_createTime",
-     *       //   "fallbackText": "my_fallbackText",
-     *       //   "lastUpdateTime": "my_lastUpdateTime",
-     *       //   "matchedUrl": {},
-     *       //   "name": "my_name",
-     *       //   "sender": {},
-     *       //   "slashCommand": {},
-     *       //   "space": {},
-     *       //   "text": "my_text",
-     *       //   "thread": {},
-     *       //   "threadReply": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "actionResponse": {},
-     *   //   "annotations": [],
-     *   //   "argumentText": "my_argumentText",
-     *   //   "attachment": [],
-     *   //   "cards": [],
-     *   //   "cardsV2": [],
-     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *   //   "createTime": "my_createTime",
-     *   //   "fallbackText": "my_fallbackText",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "matchedUrl": {},
-     *   //   "name": "my_name",
-     *   //   "sender": {},
-     *   //   "slashCommand": {},
-     *   //   "space": {},
-     *   //   "text": "my_text",
-     *   //   "thread": {},
-     *   //   "threadReply": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    messages(
-      params: Params$Resource$Rooms$Conversations$Messages,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    messages(
-      params?: Params$Resource$Rooms$Conversations$Messages,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
-    messages(
-      params: Params$Resource$Rooms$Conversations$Messages,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    messages(
-      params: Params$Resource$Rooms$Conversations$Messages,
-      options: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    messages(
-      params: Params$Resource$Rooms$Conversations$Messages,
-      callback: BodyResponseCallback<Schema$Message>
-    ): void;
-    messages(callback: BodyResponseCallback<Schema$Message>): void;
-    messages(
-      paramsOrCallback?:
-        | Params$Resource$Rooms$Conversations$Messages
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Message>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Rooms$Conversations$Messages;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Rooms$Conversations$Messages;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/messages').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Message>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Message>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Rooms$Conversations$Messages
-    extends StandardParameters {
-    /**
-     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     */
-    messageId?: string;
-    /**
-     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     */
-    messageReplyOption?: string;
-    /**
-     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     */
-    parent?: string;
-    /**
-     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     */
-    requestId?: string;
-    /**
-     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     */
-    threadKey?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Message;
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Spaces {
@@ -3047,55 +2158,260 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns a space. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
+     * Creates a named space. Spaces grouped by topics aren't supported. For an example, see [Create a space](https://developers.google.com/chat/api/guides/v1/spaces/create). If you receive the error message `ALREADY_EXISTS` when creating a space, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.spaces.create` or `chat.spaces` scope.
      *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Spaces$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Spaces$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Space>;
+    create(
+      params: Params$Resource$Spaces$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Spaces$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Space>,
+      callback: BodyResponseCallback<Schema$Space>
+    ): void;
+    create(
+      params: Params$Resource$Spaces$Create,
+      callback: BodyResponseCallback<Schema$Space>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Space>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Create
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Space> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/spaces').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Space>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Space>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a named space. Always performs a cascading delete, which means that the space's child resources—like messages posted in the space and memberships in the space—are also deleted. For an example, see [Delete a space](https://developers.google.com/chat/api/guides/v1/spaces/delete). Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) from a user who has permission to delete the space, and the `chat.delete` scope.
      *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Spaces$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Spaces$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Spaces$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Spaces$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Spaces$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns the existing direct message with the specified user. If no direct message space is found, returns a `404 NOT_FOUND` error. For an example, see [Find a direct message](/chat/api/guides/v1/spaces/find-direct-message). With [user authentication](https://developers.google.com/chat/api/guides/auth/users), returns the direct message space between the specified user and the authenticated user. With [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), returns the direct message space between the specified user and the calling Chat app. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) or [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.spaces.get({
-     *     // Required. Resource name of the space, in the form "spaces/x". Format: spaces/{space\}
-     *     name: 'spaces/my-space',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "singleUserBotDm": false,
-     *   //   "spaceDetails": {},
-     *   //   "spaceThreadingState": "my_spaceThreadingState",
-     *   //   "threaded": false,
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    findDirectMessage(
+      params: Params$Resource$Spaces$Finddirectmessage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    findDirectMessage(
+      params?: Params$Resource$Spaces$Finddirectmessage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Space>;
+    findDirectMessage(
+      params: Params$Resource$Spaces$Finddirectmessage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    findDirectMessage(
+      params: Params$Resource$Spaces$Finddirectmessage,
+      options: MethodOptions | BodyResponseCallback<Schema$Space>,
+      callback: BodyResponseCallback<Schema$Space>
+    ): void;
+    findDirectMessage(
+      params: Params$Resource$Spaces$Finddirectmessage,
+      callback: BodyResponseCallback<Schema$Space>
+    ): void;
+    findDirectMessage(callback: BodyResponseCallback<Schema$Space>): void;
+    findDirectMessage(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Finddirectmessage
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Space> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Finddirectmessage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Finddirectmessage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/spaces:findDirectMessage').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Space>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Space>(parameters);
+      }
+    }
+
+    /**
+     * Returns details about a space. For an example, see [Get a space](https://developers.google.com/chat/api/guides/v1/spaces/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.spaces` or `chat.spaces.readonly` authorization scope.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3178,52 +2494,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists spaces the caller is a member of. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.spaces.list({
-     *     // Optional. The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous list spaces call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "spaces": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists spaces the caller is a member of. Group chats and DMs aren't listed until the first message is sent. For an example, see [List spaces](https://developers.google.com/chat/api/guides/v1/spaces/list). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.spaces` or `chat.spaces.readonly` authorization scope. Lists spaces visible to the caller or authenticated user. Group chats and DMs aren't listed until the first message is sent.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3309,148 +2580,56 @@ export namespace chat_v1 {
     }
 
     /**
-     * Legacy path for creating message. Calling these will result in a BadRequest response.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.spaces.webhooks({
-     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     *     messageId: 'placeholder-value',
-     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     *     messageReplyOption: 'placeholder-value',
-     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     *     parent: 'spaces/my-space',
-     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     *     requestId: 'placeholder-value',
-     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     *     threadKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "actionResponse": {},
-     *       //   "annotations": [],
-     *       //   "argumentText": "my_argumentText",
-     *       //   "attachment": [],
-     *       //   "cards": [],
-     *       //   "cardsV2": [],
-     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *       //   "createTime": "my_createTime",
-     *       //   "fallbackText": "my_fallbackText",
-     *       //   "lastUpdateTime": "my_lastUpdateTime",
-     *       //   "matchedUrl": {},
-     *       //   "name": "my_name",
-     *       //   "sender": {},
-     *       //   "slashCommand": {},
-     *       //   "space": {},
-     *       //   "text": "my_text",
-     *       //   "thread": {},
-     *       //   "threadReply": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "actionResponse": {},
-     *   //   "annotations": [],
-     *   //   "argumentText": "my_argumentText",
-     *   //   "attachment": [],
-     *   //   "cards": [],
-     *   //   "cardsV2": [],
-     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *   //   "createTime": "my_createTime",
-     *   //   "fallbackText": "my_fallbackText",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "matchedUrl": {},
-     *   //   "name": "my_name",
-     *   //   "sender": {},
-     *   //   "slashCommand": {},
-     *   //   "space": {},
-     *   //   "text": "my_text",
-     *   //   "thread": {},
-     *   //   "threadReply": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Updates a space. For an example, see [Update a space](https://developers.google.com/chat/api/guides/v1/spaces/update). If you're updating the `displayName` field and receive the error message `ALREADY_EXISTS`, try a different display name.. An existing space within the Google Workspace organization might already use this display name. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.spaces` scope.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    webhooks(
-      params: Params$Resource$Spaces$Webhooks,
+    patch(
+      params: Params$Resource$Spaces$Patch,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    webhooks(
-      params?: Params$Resource$Spaces$Webhooks,
+    patch(
+      params?: Params$Resource$Spaces$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Message>;
-    webhooks(
-      params: Params$Resource$Spaces$Webhooks,
+    ): GaxiosPromise<Schema$Space>;
+    patch(
+      params: Params$Resource$Spaces$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    webhooks(
-      params: Params$Resource$Spaces$Webhooks,
-      options: MethodOptions | BodyResponseCallback<Schema$Message>,
-      callback: BodyResponseCallback<Schema$Message>
+    patch(
+      params: Params$Resource$Spaces$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Space>,
+      callback: BodyResponseCallback<Schema$Space>
     ): void;
-    webhooks(
-      params: Params$Resource$Spaces$Webhooks,
-      callback: BodyResponseCallback<Schema$Message>
+    patch(
+      params: Params$Resource$Spaces$Patch,
+      callback: BodyResponseCallback<Schema$Space>
     ): void;
-    webhooks(callback: BodyResponseCallback<Schema$Message>): void;
-    webhooks(
+    patch(callback: BodyResponseCallback<Schema$Space>): void;
+    patch(
       paramsOrCallback?:
-        | Params$Resource$Spaces$Webhooks
-        | BodyResponseCallback<Schema$Message>
+        | Params$Resource$Spaces$Patch
+        | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Schema$Space>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Webhooks;
+    ): void | GaxiosPromise<Schema$Space> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Spaces$Webhooks;
+        params = {} as Params$Resource$Spaces$Patch;
         options = {};
       }
 
@@ -3463,7 +2642,247 @@ export namespace chat_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/webhooks').replace(
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Space>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Space>(parameters);
+      }
+    }
+
+    /**
+     * Creates a space and adds specified users to it. The calling user is automatically added to the space, and shouldn't be specified as a membership in the request. For an example, see [Set up a space](https://developers.google.com/chat/api/guides/v1/spaces/set-up). To specify the human members to add, add memberships with the appropriate `member.name` in the `SetUpSpaceRequest`. To add a human user, use `users/{user\}`, where `{user\}` can be the email address for the user. For users in the same Workspace organization `{user\}` can also be the `{person_id\}` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person `resourceName` for `user@example.com` is `people/123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`. For a space or group chat, if the caller blocks or is blocked by some members, then those members aren't added to the created space. To create a direct message (DM) between the calling user and another human user, specify exactly one membership to represent the human user. If one user blocks the other, the request fails and the DM isn't created. To create a DM between the calling user and the calling app, set `Space.singleUserBotDm` to `true` and don't specify any memberships. You can only use this method to set up a DM with the calling app. To add the calling app as a member of a space or an existing DM between two human users, see [create a membership](https://developers.google.com/chat/api/guides/v1/members/create). If a DM already exists between two users, even when one user blocks the other at the time a request is made, then the existing DM is returned. Spaces with threaded replies aren't supported. If you receive the error message `ALREADY_EXISTS` when setting up a space, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.spaces.create` or `chat.spaces` scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setup(
+      params: Params$Resource$Spaces$Setup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setup(
+      params?: Params$Resource$Spaces$Setup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Space>;
+    setup(
+      params: Params$Resource$Spaces$Setup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setup(
+      params: Params$Resource$Spaces$Setup,
+      options: MethodOptions | BodyResponseCallback<Schema$Space>,
+      callback: BodyResponseCallback<Schema$Space>
+    ): void;
+    setup(
+      params: Params$Resource$Spaces$Setup,
+      callback: BodyResponseCallback<Schema$Space>
+    ): void;
+    setup(callback: BodyResponseCallback<Schema$Space>): void;
+    setup(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Setup
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Space>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Space> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Setup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Setup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/spaces:setup').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Space>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Space>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Spaces$Create extends StandardParameters {
+    /**
+     * Optional. A unique identifier for this request. A random UUID is recommended. Specifying an existing request ID returns the space created with that ID instead of creating a new space. Specifying an existing request ID from the same Chat app with a different authenticated user returns an error.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Space;
+  }
+  export interface Params$Resource$Spaces$Delete extends StandardParameters {
+    /**
+     * Required. Resource name of the space to delete. Format: `spaces/{space\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Spaces$Finddirectmessage
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the user to find direct message with. Format: `users/{user\}`, where `{user\}` is either the `{person_id\}` for the [person](https://developers.google.com/people/api/rest/v1/people) from the People API, or the `id` for the [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Directory API. For example, if the People API `Person.resourceName` is `people/123456789`, you can find a direct message with that person by using `users/123456789` as the `name`. When [authenticated as a user](https://developers.google.com/chat/api/guides/auth/users), you can use the email as an alias for `{user\}`. For example, `users/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Spaces$Get extends StandardParameters {
+    /**
+     * Required. Resource name of the space, in the form "spaces/x". Format: `spaces/{space\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Spaces$List extends StandardParameters {
+    /**
+     * Optional. A query filter. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users). You can filter spaces by the space type ([`space_type`](https://developers.google.com/chat/api/reference/rest/v1/spaces#spacetype)). To filter by space type, you must specify valid enum value, such as `SPACE` or `GROUP_CHAT` (the `space_type` can't be `SPACE_TYPE_UNSPECIFIED`). To query for multiple space types, use the `OR` operator. For example, the following queries are valid: ``` space_type = "SPACE" spaceType = "GROUP_CHAT" OR spaceType = "DIRECT_MESSAGE" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error. With [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts), this field is ignored and the query always returns all spaces. But the Chat API still validates the query syntax with service accounts, so invalid queries are still rejected.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of spaces to return. The service might return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1,000. If you use a value more than 1,000, it's automatically changed to 1,000. Negative values return an `INVALID_ARGUMENT` error.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous list spaces call. Provide this parameter to retrieve the subsequent page. When paginating, the filter value should match the call that provided the page token. Passing a different value may lead to unexpected results.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Spaces$Patch extends StandardParameters {
+    /**
+     * Resource name of the space. Format: `spaces/{space\}`
+     */
+    name?: string;
+    /**
+     * Required. The updated field paths, comma separated if there are multiple. Currently supported field paths: - `display_name` (Only supports changing the display name of a space with the `SPACE` type, or when also including the `space_type` mask to change a `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument error. If you receive the error message `ALREADY_EXISTS` when updating the `displayName`, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name.) - `space_type` (Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error). - `space_details` - `space_history_state` (Supports [turning history on or off for the space](https://support.google.com/chat/answer/7664687) if [the organization allows users to change their history setting](https://support.google.com/a/answer/7664184). Warning: mutually exclusive with all other field paths.)
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Space;
+  }
+  export interface Params$Resource$Spaces$Setup extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetUpSpaceRequest;
+  }
+
+  export class Resource$Spaces$Members {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a human membership or app membership for the calling app. Creating memberships for other apps isn't supported. For an example, see [ Create a membership](https://developers.google.com/chat/api/guides/v1/members/create). When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.memberships` (for human membership) or `chat.memberships.app` (for app membership) scope. To specify the member to add, set the `membership.member.name` in the `CreateMembershipRequest`: - To add the calling app to a space or a direct message between two human users, use `users/app`. Unable to add other apps to the space. - To add a human user, use `users/{user\}`, where `{user\}` can be the email address for the user. For users in the same Workspace organization `{user\}` can also be the `{person_id\}` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person `resourceName` for `user@example.com` is `people/123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Spaces$Members$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Spaces$Members$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Membership>;
+    create(
+      params: Params$Resource$Spaces$Members$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Spaces$Members$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Membership>,
+      callback: BodyResponseCallback<Schema$Membership>
+    ): void;
+    create(
+      params: Params$Resource$Spaces$Members$Create,
+      callback: BodyResponseCallback<Schema$Membership>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Membership>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Members$Create
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Membership> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Members$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Members$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/members').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3477,114 +2896,101 @@ export namespace chat_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Message>(
+        createAPIRequest<Schema$Membership>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Message>(parameters);
+        return createAPIRequest<Schema$Membership>(parameters);
       }
     }
-  }
-
-  export interface Params$Resource$Spaces$Get extends StandardParameters {
-    /**
-     * Required. Resource name of the space, in the form "spaces/x". Format: spaces/{space\}
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Spaces$List extends StandardParameters {
-    /**
-     * Optional. The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A page token, received from a previous list spaces call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
-     */
-    pageToken?: string;
-  }
-  export interface Params$Resource$Spaces$Webhooks extends StandardParameters {
-    /**
-     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     */
-    messageId?: string;
-    /**
-     * Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     */
-    messageReplyOption?: string;
-    /**
-     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     */
-    parent?: string;
-    /**
-     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     */
-    requestId?: string;
-    /**
-     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     */
-    threadKey?: string;
 
     /**
-     * Request body metadata
+     * Deletes a membership. For an example, see [Delete a membership](https://developers.google.com/chat/api/guides/v1/members/delete). Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.memberships` or `chat.memberships.app` authorization scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
-    requestBody?: Schema$Message;
-  }
+    delete(
+      params: Params$Resource$Spaces$Members$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Spaces$Members$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Membership>;
+    delete(
+      params: Params$Resource$Spaces$Members$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Spaces$Members$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Membership>,
+      callback: BodyResponseCallback<Schema$Membership>
+    ): void;
+    delete(
+      params: Params$Resource$Spaces$Members$Delete,
+      callback: BodyResponseCallback<Schema$Membership>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Membership>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Members$Delete
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Membership>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Membership> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Members$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
 
-  export class Resource$Spaces$Members {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Members$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Membership>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Membership>(parameters);
+      }
     }
 
     /**
-     * Returns a membership. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chat.memberships'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.spaces.members.get({
-     *     // Required. Resource name of the membership to retrieve. Format: spaces/{space\}/members/{member\}
-     *     name: 'spaces/my-space/members/my-member',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "member": {},
-     *   //   "name": "my_name",
-     *   //   "role": "my_role",
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Returns details about a membership. For an example, see [Get a membership](https://developers.google.com/chat/api/guides/v1/members/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.memberships` or `chat.memberships.readonly` authorization scope.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3668,54 +3074,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists human memberships in a space for joined members. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chat.memberships'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.spaces.members.list({
-     *     // The maximum number of memberships to return. The service may return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous list memberships call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the space for which to fetch a membership list. Format: spaces/{space\}
-     *     parent: 'spaces/my-space',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "memberships": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists memberships in a space. For an example, see [List memberships](https://developers.google.com/chat/api/guides/v1/members/list). Listing memberships with [app authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) lists memberships in spaces that the Chat app has access to, but excludes Chat app memberships, including its own. Listing memberships with [User authentication](https://developers.google.com/chat/api/guides/auth/users) lists memberships in spaces that the authenticated user has access to. Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.memberships` or `chat.memberships.readonly` authorization scope.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3807,131 +3166,68 @@ export namespace chat_v1 {
     }
   }
 
+  export interface Params$Resource$Spaces$Members$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the space for which to create the membership. Format: spaces/{space\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Membership;
+  }
+  export interface Params$Resource$Spaces$Members$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the membership to delete. Chat apps can delete human users' or their own memberships. Chat apps can't delete other apps' memberships. When deleting a human membership, requires the `chat.memberships` scope and `spaces/{space\}/members/{member\}` format. You can use the email as an alias for `{member\}`. For example, `spaces/{space\}/members/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user. When deleting an app membership, requires the `chat.memberships.app` scope and `spaces/{space\}/members/app` format. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Spaces$Members$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the membership to retrieve. Format: spaces/{space\}/members/{member\}
+     * Required. Resource name of the membership to retrieve. To get the app's own membership, you can optionally use `spaces/{space\}/members/app`. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app` When [authenticated as a user](https://developers.google.com/chat/api/guides/auth/users), you can use the user's email as an alias for `{member\}`. For example, `spaces/{space\}/members/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Members$List
     extends StandardParameters {
     /**
-     * The maximum number of memberships to return. The service may return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1000; values above 1000 are coerced to 1000. Negative values return an INVALID_ARGUMENT error.
+     * Optional. A query filter. You can filter memberships by a member's role ([`role`](https://developers.google.com/chat/api/reference/rest/v1/spaces.members#membershiprole)) and type ([`member.type`](https://developers.google.com/chat/api/reference/rest/v1/User#type)). To filter by role, set `role` to `ROLE_MEMBER` or `ROLE_MANAGER`. To filter by type, set `member.type` to `HUMAN` or `BOT`. To filter by both role and type, use the `AND` operator. To filter by either role or type, use the `OR` operator. For example, the following queries are valid: ``` role = "ROLE_MANAGER" OR role = "ROLE_MEMBER" member.type = "HUMAN" AND role = "ROLE_MANAGER" ``` The following queries are invalid: ``` member.type = "HUMAN" AND member.type = "BOT" role = "ROLE_MANAGER" AND role = "ROLE_MEMBER" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of memberships to return. The service might return fewer than this value. If unspecified, at most 100 memberships are returned. The maximum value is 1,000. If you use a value more than 1,000, it's automatically changed to 1,000. Negative values return an `INVALID_ARGUMENT` error.
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous list memberships call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided must match the call that provided the page token.
+     * Optional. A page token, received from a previous call to list memberships. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
      */
     pageToken?: string;
     /**
      * Required. The resource name of the space for which to fetch a membership list. Format: spaces/{space\}
      */
     parent?: string;
+    /**
+     * Optional. When `true`, also returns memberships associated with invited members, in addition to other types of memberships. If a filter is set, invited memberships that don't match the filter criteria aren't returned. Currently requires [user authentication](https://developers.google.com/chat/api/guides/auth/users).
+     */
+    showInvited?: boolean;
   }
 
   export class Resource$Spaces$Messages {
     context: APIRequestContext;
     attachments: Resource$Spaces$Messages$Attachments;
+    reactions: Resource$Spaces$Messages$Reactions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.attachments = new Resource$Spaces$Messages$Attachments(this.context);
+      this.reactions = new Resource$Spaces$Messages$Reactions(this.context);
     }
 
     /**
-     * Creates a message. For example usage, see [Create a message](https://developers.google.com/chat/api/guides/crudl/messages#create_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` or `chat.messages.create` authorization scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.spaces.messages.create({
-     *     // Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     *     messageId: 'placeholder-value',
-     *     // Optional. Specifies whether a message starts a thread or replies to one. Only supported in named spaces.
-     *     messageReplyOption: 'placeholder-value',
-     *     // Required. The resource name of the space in which to create a message. Format: spaces/{space\}
-     *     parent: 'spaces/my-space',
-     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
-     *     requestId: 'placeholder-value',
-     *     // Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
-     *     threadKey: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "actionResponse": {},
-     *       //   "annotations": [],
-     *       //   "argumentText": "my_argumentText",
-     *       //   "attachment": [],
-     *       //   "cards": [],
-     *       //   "cardsV2": [],
-     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *       //   "createTime": "my_createTime",
-     *       //   "fallbackText": "my_fallbackText",
-     *       //   "lastUpdateTime": "my_lastUpdateTime",
-     *       //   "matchedUrl": {},
-     *       //   "name": "my_name",
-     *       //   "sender": {},
-     *       //   "slashCommand": {},
-     *       //   "space": {},
-     *       //   "text": "my_text",
-     *       //   "thread": {},
-     *       //   "threadReply": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "actionResponse": {},
-     *   //   "annotations": [],
-     *   //   "argumentText": "my_argumentText",
-     *   //   "attachment": [],
-     *   //   "cards": [],
-     *   //   "cardsV2": [],
-     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *   //   "createTime": "my_createTime",
-     *   //   "fallbackText": "my_fallbackText",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "matchedUrl": {},
-     *   //   "name": "my_name",
-     *   //   "sender": {},
-     *   //   "slashCommand": {},
-     *   //   "space": {},
-     *   //   "text": "my_text",
-     *   //   "thread": {},
-     *   //   "threadReply": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a message. For an example, see [Create a message](https://developers.google.com/chat/api/guides/crudl/messages#create_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Creating a text message supports both [user authentication](https://developers.google.com/chat/api/guides/auth/users) and [app authentication] (https://developers.google.com/chat/api/guides/auth/service-accounts). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` or `chat.messages.create` authorization scope. Creating a card message only supports and requires [app authentication] (https://developers.google.com/chat/api/guides/auth/service-accounts). Because Chat provides authentication for [webhooks](https://developers.google.com/chat/how-tos/webhooks) as part of the URL that's generated when a webhook is registered, webhooks can create messages without a service account or user authentication.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4018,47 +3314,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Deletes a message. For example usage, see [Delete a message](https://developers.google.com/chat/api/guides/crudl/messages#delete_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.spaces.messages.delete({
-     *     // Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x" Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB
-     *     name: 'spaces/my-space/messages/my-message',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deletes a message. For an example, see [Delete a message](https://developers.google.com/chat/api/guides/v1/messages/delete). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope. Requests authenticated with service accounts can only delete messages created by the calling Chat app.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4142,66 +3398,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns a message. For example usage, see [Read a message](https://developers.google.com/chat/api/guides/crudl/messages#read_a_message). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [Service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts). Supports [user authentication](https://developers.google.com/chat/api/guides/auth/users) as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), which grants early access to certain features. [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` or `chat.messages.readonly` authorization scope. Note: Might return a message from a blocked member or space.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.spaces.messages.get({
-     *     // Required. Resource name of the message to retrieve. Format: spaces/{space\}/messages/{message\} If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
-     *     name: 'spaces/my-space/messages/my-message',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "actionResponse": {},
-     *   //   "annotations": [],
-     *   //   "argumentText": "my_argumentText",
-     *   //   "attachment": [],
-     *   //   "cards": [],
-     *   //   "cardsV2": [],
-     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *   //   "createTime": "my_createTime",
-     *   //   "fallbackText": "my_fallbackText",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "matchedUrl": {},
-     *   //   "name": "my_name",
-     *   //   "sender": {},
-     *   //   "slashCommand": {},
-     *   //   "space": {},
-     *   //   "text": "my_text",
-     *   //   "thread": {},
-     *   //   "threadReply": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Returns details about a message. For an example, see [Read a message](https://developers.google.com/chat/api/guides/v1/messages/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` or `chat.messages.readonly` authorization scope. Note: Might return a message from a blocked member or space.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4285,95 +3482,183 @@ export namespace chat_v1 {
     }
 
     /**
-     * Updates a message. For example usage, see [Update a message](https://developers.google.com/chat/api/guides/crudl/messages#update_a_message). Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
+     * Lists messages in a space that the caller is a member of, including messages from blocked members and spaces. For an example, see [List messages](/chat/api/guides/v1/messages/list). Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.messages` or `chat.messages.readonly` authorization scope.
      *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Spaces$Messages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Spaces$Messages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMessagesResponse>;
+    list(
+      params: Params$Resource$Spaces$Messages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Spaces$Messages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMessagesResponse>,
+      callback: BodyResponseCallback<Schema$ListMessagesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Spaces$Messages$List,
+      callback: BodyResponseCallback<Schema$ListMessagesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMessagesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$List
+        | BodyResponseCallback<Schema$ListMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMessagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Messages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMessagesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope. Requests authenticated with service accounts can only update messages created by the calling Chat app.
      *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.spaces.messages.update({
-     *     // Optional. If `true` and the message is not found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.
-     *     allowMissing: 'placeholder-value',
-     *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
-     *     name: 'spaces/my-space/messages/my-message',
-     *     // Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - cards_v2
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "actionResponse": {},
-     *       //   "annotations": [],
-     *       //   "argumentText": "my_argumentText",
-     *       //   "attachment": [],
-     *       //   "cards": [],
-     *       //   "cardsV2": [],
-     *       //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *       //   "createTime": "my_createTime",
-     *       //   "fallbackText": "my_fallbackText",
-     *       //   "lastUpdateTime": "my_lastUpdateTime",
-     *       //   "matchedUrl": {},
-     *       //   "name": "my_name",
-     *       //   "sender": {},
-     *       //   "slashCommand": {},
-     *       //   "space": {},
-     *       //   "text": "my_text",
-     *       //   "thread": {},
-     *       //   "threadReply": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "actionResponse": {},
-     *   //   "annotations": [],
-     *   //   "argumentText": "my_argumentText",
-     *   //   "attachment": [],
-     *   //   "cards": [],
-     *   //   "cardsV2": [],
-     *   //   "clientAssignedMessageId": "my_clientAssignedMessageId",
-     *   //   "createTime": "my_createTime",
-     *   //   "fallbackText": "my_fallbackText",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "matchedUrl": {},
-     *   //   "name": "my_name",
-     *   //   "sender": {},
-     *   //   "slashCommand": {},
-     *   //   "space": {},
-     *   //   "text": "my_text",
-     *   //   "thread": {},
-     *   //   "threadReply": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Spaces$Messages$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Spaces$Messages$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
+    patch(
+      params: Params$Resource$Spaces$Messages$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Spaces$Messages$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    patch(
+      params: Params$Resource$Spaces$Messages$Patch,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Message>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Patch
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Messages$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Message>(parameters);
+      }
+    }
+
+    /**
+     * Updates a message. There's a difference between the `patch` and `update` methods. The `patch` method uses a `patch` request while the `update` method uses a `put` request. We recommend using the `patch` method. For an example, see [Update a message](https://developers.google.com/chat/api/guides/v1/messages/update). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users) requires the `chat.messages` authorization scope. Requests authenticated with service accounts can only update messages created by the calling Chat app.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4460,7 +3745,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Create
     extends StandardParameters {
     /**
-     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     * Optional. A custom name for a Chat message assigned at creation. Must start with `client-` and contain only lowercase letters, numbers, and hyphens up to 63 characters in length. Specify this field to get, update, or delete the message with the specified value. Assigning a custom name lets a a Chat app recall the message without saving the message `name` from the [response body](/chat/api/reference/rest/v1/spaces.messages/get#response-body) returned when creating the message. Assigning a custom name doesn't replace the generated `name` field, the message's resource name. Instead, it sets the custom name as the `clientAssignedMessageId` field, which you can reference while processing later operations, like updating or deleting the message. For example usage, see [Name a created message](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
      */
     messageId?: string;
     /**
@@ -4468,7 +3753,7 @@ export namespace chat_v1 {
      */
     messageReplyOption?: string;
     /**
-     * Required. The resource name of the space in which to create a message. Format: spaces/{space\}
+     * Required. The resource name of the space in which to create a message. Format: `spaces/{space\}`
      */
     parent?: string;
     /**
@@ -4476,7 +3761,7 @@ export namespace chat_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Deprecated: Use thread.thread_key instead. Opaque thread identifier. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
+     * Optional. Deprecated: Use thread.thread_key instead. ID for the thread. Supports up to 4000 characters. To start or add to a thread, create a message and specify a `threadKey` or the thread.name. For example usage, see [Start or reply to a message thread](https://developers.google.com/chat/api/guides/crudl/messages#start_or_reply_to_a_message_thread).
      */
     threadKey?: string;
 
@@ -4488,21 +3773,52 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x" Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB
+     * When `true`, deleting a message also deletes its threaded replies. When `false`, if a message has threaded replies, deletion fails. Only applies when [authenticating as a user](https://developers.google.com/chat/api/guides/auth/users). Has no effect when [authenticating with a service account] (https://developers.google.com/chat/api/guides/auth/service-accounts).
+     */
+    force?: boolean;
+    /**
+     * Required. Resource name of the message that you want to delete, in the form `spaces/x/messages/x` Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Messages$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the message to retrieve. Format: spaces/{space\}/messages/{message\} If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message).
+     * Required. Resource name of the message to retrieve. Format: `spaces/{space\}/messages/{message\}` If the message begins with `client-`, then it has a custom name assigned by a Chat app that created it with the Chat REST API. That Chat app (but not others) can pass the custom name to get, update, or delete the message. To learn more, see [create and name a message] (https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message).
      */
     name?: string;
   }
-  export interface Params$Resource$Spaces$Messages$Update
+  export interface Params$Resource$Spaces$Messages$List
     extends StandardParameters {
     /**
-     * Optional. If `true` and the message is not found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/crudl/messages#name_a_created_message) or the request fails.
+     * A query filter. You can filter messages by date (`create_time`) and thread (`thread.name`). To filter messages by the date they were created, specify the `create_time` with a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and double quotation marks. For example, `"2023-04-21T11:30:00-04:00"`. You can use the greater than operator `\>` to list messages that were created after a timestamp, or the less than operator `<` to list messages that were created before a timestamp. To filter messages within a time interval, use the `AND` operator between two timestamps. To filter by thread, specify the `thread.name`, formatted as `spaces/{space\}/threads/{thread\}`. You can only specify one `thread.name` per query. To filter by both thread and date, use the `AND` operator in your query. For example, the following queries are valid: ``` create_time \> "2012-04-21T11:30:00-04:00" create_time \> "2012-04-21T11:30:00-04:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 create_time \> "2012-04-21T11:30:00+00:00" AND create_time < "2013-01-01T00:00:00+00:00" AND thread.name = spaces/AAAAAAAAAAA/threads/123 thread.name = spaces/AAAAAAAAAAA/threads/123 ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
+     */
+    filter?: string;
+    /**
+     * Optional, if resuming from a previous query. How the list of messages is ordered. Specify a value to order by an ordering operation. Valid ordering operation values are as follows: - `ASC` for ascending. - `DESC` for descending. The default ordering is `create_time ASC`.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of messages returned. The service might return fewer messages than this value. If unspecified, at most 25 are returned. The maximum value is 1,000. If you use a value more than 1,000, it's automatically changed to 1,000. Negative values return an `INVALID_ARGUMENT` error.
+     */
+    pageSize?: number;
+    /**
+     * Optional, if resuming from a previous query. A page token received from a previous list messages call. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the space to list messages from. Format: `spaces/{space\}`
+     */
+    parent?: string;
+    /**
+     * Whether to include deleted messages. Deleted messages include deleted time and metadata about their deletion, but message content is unavailable.
+     */
+    showDeleted?: boolean;
+  }
+  export interface Params$Resource$Spaces$Messages$Patch
+    extends StandardParameters {
+    /**
+     * Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message) or the request fails.
      */
     allowMissing?: boolean;
     /**
@@ -4510,7 +3826,27 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - text - cards (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - cards_v2
+     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).)
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Message;
+  }
+  export interface Params$Resource$Spaces$Messages$Update
+    extends StandardParameters {
+    /**
+     * Optional. If `true` and the message isn't found, a new message is created and `updateMask` is ignored. The specified message ID must be [client-assigned](https://developers.google.com/chat/api/guides/v1/messages/create#name_a_created_message) or the request fails.
+     */
+    allowMissing?: boolean;
+    /**
+     * Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
+     */
+    name?: string;
+    /**
+     * Required. The field paths to update. Separate multiple values with commas. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [service account authentication](/chat/api/guides/auth/service-accounts).)
      */
     updateMask?: string;
 
@@ -4527,56 +3863,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Gets the metadata of a message attachment. The attachment data is fetched using the media API. Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chat = google.chat('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chat.spaces.messages.attachments.get({
-     *     // Required. Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
-     *     name: 'spaces/my-space/messages/my-message/attachments/my-attachment',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attachmentDataRef": {},
-     *   //   "contentName": "my_contentName",
-     *   //   "contentType": "my_contentType",
-     *   //   "downloadUri": "my_downloadUri",
-     *   //   "driveDataRef": {},
-     *   //   "name": "my_name",
-     *   //   "source": "my_source",
-     *   //   "thumbnailUri": "my_thumbnailUri"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Gets the metadata of a message attachment. The attachment data is fetched using the [media API](https://developers.google.com/chat/api/reference/rest/v1/media/download). For an example, see [Get a message attachment](https://developers.google.com/chat/api/guides/v1/media-and-attachments/get). Requires [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4663,8 +3950,317 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Attachments$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
+     * Required. Resource name of the attachment, in the form `spaces/x/messages/x/attachments/x`.
      */
     name?: string;
+  }
+
+  export class Resource$Spaces$Messages$Reactions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a reaction and adds it to a message. For an example, see [Create a reaction](https://developers.google.com/chat/api/guides/v1/reactions/create). Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.messages`, `chat.messages.reactions`, or `chat.messages.reactions.create` scope. Only unicode emoji are supported.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Spaces$Messages$Reactions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Spaces$Messages$Reactions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Reaction>;
+    create(
+      params: Params$Resource$Spaces$Messages$Reactions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Spaces$Messages$Reactions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Reaction>,
+      callback: BodyResponseCallback<Schema$Reaction>
+    ): void;
+    create(
+      params: Params$Resource$Spaces$Messages$Reactions$Create,
+      callback: BodyResponseCallback<Schema$Reaction>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Reaction>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Reactions$Create
+        | BodyResponseCallback<Schema$Reaction>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reaction>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reaction>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reaction> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Reactions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Messages$Reactions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/reactions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Reaction>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Reaction>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a reaction to a message. For an example, see [Delete a reaction](https://developers.google.com/chat/api/guides/v1/reactions/delete). Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and the `chat.messages` or `chat.messages.reactions` scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Spaces$Messages$Reactions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Spaces$Messages$Reactions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Spaces$Messages$Reactions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Spaces$Messages$Reactions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Spaces$Messages$Reactions$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Reactions$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Reactions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Messages$Reactions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Lists reactions to a message. For an example, see [List reactions](https://developers.google.com/chat/api/guides/v1/reactions/list). Requires [user authentication](https://developers.google.com/chat/api/guides/auth/users) and `chat.messages`, `chat.messages.readonly`, `chat.messages.reactions`, or `chat.messages.reactions.readonly` scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Spaces$Messages$Reactions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Spaces$Messages$Reactions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReactionsResponse>;
+    list(
+      params: Params$Resource$Spaces$Messages$Reactions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Spaces$Messages$Reactions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReactionsResponse>,
+      callback: BodyResponseCallback<Schema$ListReactionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Spaces$Messages$Reactions$List,
+      callback: BodyResponseCallback<Schema$ListReactionsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListReactionsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Messages$Reactions$List
+        | BodyResponseCallback<Schema$ListReactionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReactionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReactionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReactionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Spaces$Messages$Reactions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Messages$Reactions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/reactions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReactionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListReactionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Spaces$Messages$Reactions$Create
+    extends StandardParameters {
+    /**
+     * Required. The message where the reaction is created. Format: `spaces/{space\}/messages/{message\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Reaction;
+  }
+  export interface Params$Resource$Spaces$Messages$Reactions$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the reaction to delete. Format: `spaces/{space\}/messages/{message\}/reactions/{reaction\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Spaces$Messages$Reactions$List
+    extends StandardParameters {
+    /**
+     * Optional. A query filter. You can filter reactions by [emoji](https://developers.google.com/chat/api/reference/rest/v1/Emoji) (either `emoji.unicode` or `emoji.custom_emoji.uid`) and [user](https://developers.google.com/chat/api/reference/rest/v1/User) (`user.name`). To filter reactions for multiple emojis or users, join similar fields with the `OR` operator, such as `emoji.unicode = "🙂" OR emoji.unicode = "👍"` and `user.name = "users/AAAAAA" OR user.name = "users/BBBBBB"`. To filter reactions by emoji and user, use the `AND` operator, such as `emoji.unicode = "🙂" AND user.name = "users/AAAAAA"`. If your query uses both `AND` and `OR`, group them with parentheses. For example, the following queries are valid: ``` user.name = "users/{user\}" emoji.unicode = "🙂" emoji.custom_emoji.uid = "{uid\}" emoji.unicode = "🙂" OR emoji.unicode = "👍" emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid\}" emoji.unicode = "🙂" AND user.name = "users/{user\}" (emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid\}") AND user.name = "users/{user\}" ``` The following queries are invalid: ``` emoji.unicode = "🙂" AND emoji.unicode = "👍" emoji.unicode = "🙂" AND emoji.custom_emoji.uid = "{uid\}" emoji.unicode = "🙂" OR user.name = "users/{user\}" emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid\}" OR user.name = "users/{user\}" emoji.unicode = "🙂" OR emoji.custom_emoji.uid = "{uid\}" AND user.name = "users/{user\}" ``` Invalid queries are rejected by the server with an `INVALID_ARGUMENT` error.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of reactions returned. The service can return fewer reactions than this value. If unspecified, the default value is 25. The maximum value is 200; values above 200 are changed to 200.
+     */
+    pageSize?: number;
+    /**
+     * Optional. (If resuming from a previous query.) A page token received from a previous list reactions call. Provide this to retrieve the subsequent page. When paginating, the filter value should match the call that provided the page token. Passing a different value might lead to unexpected results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The message users reacted to. Format: `spaces/{space\}/messages/{message\}`
+     */
+    parent?: string;
   }
 }

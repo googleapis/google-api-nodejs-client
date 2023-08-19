@@ -524,7 +524,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "datastream.projects.locations.operations.list",
@@ -577,6 +577,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, will skip validations.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "parent": {
                       "description": "Required. The parent that owns the collection of PrivateConnections.",
                       "location": "path",
@@ -1019,6 +1024,17 @@
                     "name"
                   ],
                   "parameters": {
+                    "cdcStrategy.specificStartPosition.mysqlLogPosition.logFile": {
+                      "description": "The binary log file name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "cdcStrategy.specificStartPosition.mysqlLogPosition.logPosition": {
+                      "description": "The position within the binary log file. Default is head of file.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
                     "force": {
                       "description": "Optional. Update the stream without validating it.",
                       "location": "query",
@@ -1051,6 +1067,34 @@
                   "path": "v1/{+name}",
                   "request": {
                     "$ref": "Stream"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "run": {
+                  "description": "Use this method to start, resume or recover a stream with a non default CDC strategy. NOTE: This feature is currently experimental.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}:run",
+                  "httpMethod": "POST",
+                  "id": "datastream.projects.locations.streams.run",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the stream resource to start, in the format: projects/{project_id}/locations/{location}/streams/{stream_name}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/streams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:run",
+                  "request": {
+                    "$ref": "RunStreamRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1217,7 +1261,7 @@
       }
     }
   },
-  "revision": "20221019",
+  "revision": "20230802",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -1270,7 +1314,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Backfill job state.",
+          "description": "Output only. Backfill job state.",
           "enum": [
             "STATE_UNSPECIFIED",
             "NOT_STARTED",
@@ -1291,6 +1335,7 @@
             "Backfill completed successfully.",
             "Backfill job failed since the table structure is currently unsupported for backfill."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "trigger": {
@@ -1317,6 +1362,7 @@
       "type": "object"
     },
     "BigQueryDestinationConfig": {
+      "description": "BigQuery destination configuration",
       "id": "BigQueryDestinationConfig",
       "properties": {
         "dataFreshness": {
@@ -1345,6 +1391,25 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CdcStrategy": {
+      "description": "The strategy that the stream uses for CDC replication.",
+      "id": "CdcStrategy",
+      "properties": {
+        "mostRecentStartPosition": {
+          "$ref": "MostRecentStartPosition",
+          "description": "Optional. Start replicating from the most recent position in the source."
+        },
+        "nextAvailableStartPosition": {
+          "$ref": "NextAvailableStartPosition",
+          "description": "Optional. Resume replication from the next available position in the source."
+        },
+        "specificStartPosition": {
+          "$ref": "SpecificStartPosition",
+          "description": "Optional. Start replicating from a specific position in the source."
+        }
+      },
       "type": "object"
     },
     "ConnectionProfile": {
@@ -1605,7 +1670,7 @@
           "description": "AVRO file format configuration."
         },
         "fileRotationInterval": {
-          "description": "The maximum duration for which new events are added before a file is closed and a new file is created.",
+          "description": "The maximum duration for which new events are added before a file is closed and a new file is created. Values within the range of 15-60 seconds are allowed.",
           "format": "google-duration",
           "type": "string"
         },
@@ -1830,7 +1895,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -1874,6 +1939,12 @@
       },
       "type": "object"
     },
+    "MostRecentStartPosition": {
+      "description": "CDC strategy to start replicating from the most recent position in the source.",
+      "id": "MostRecentStartPosition",
+      "properties": {},
+      "type": "object"
+    },
     "MysqlColumn": {
       "description": "MySQL Column.",
       "id": "MysqlColumn",
@@ -1904,9 +1975,19 @@
           "format": "int32",
           "type": "integer"
         },
+        "precision": {
+          "description": "Column precision.",
+          "format": "int32",
+          "type": "integer"
+        },
         "primaryKey": {
           "description": "Whether or not the column represents a primary key.",
           "type": "boolean"
+        },
+        "scale": {
+          "description": "Column scale.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1925,6 +2006,22 @@
             "$ref": "MysqlTable"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MysqlLogPosition": {
+      "description": "MySQL log position",
+      "id": "MysqlLogPosition",
+      "properties": {
+        "logFile": {
+          "description": "The binary log file name.",
+          "type": "string"
+        },
+        "logPosition": {
+          "description": "The position within the binary log file. Default is head of file.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1998,6 +2095,11 @@
           "$ref": "MysqlRdbms",
           "description": "MySQL objects to retrieve from the source."
         },
+        "maxConcurrentBackfillTasks": {
+          "description": "Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.",
+          "format": "int32",
+          "type": "integer"
+        },
         "maxConcurrentCdcTasks": {
           "description": "Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.",
           "format": "int32",
@@ -2058,6 +2160,12 @@
       },
       "type": "object"
     },
+    "NextAvailableStartPosition": {
+      "description": "CDC strategy to resume replication from the next available position in the source.",
+      "id": "NextAvailableStartPosition",
+      "properties": {},
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -2087,7 +2195,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -2287,8 +2395,13 @@
           "$ref": "OracleRdbms",
           "description": "Oracle objects to include in the stream."
         },
+        "maxConcurrentBackfillTasks": {
+          "description": "Maximum number of concurrent backfill tasks. The number should be non-negative. If not set (or set to 0), the system's default value is used.",
+          "format": "int32",
+          "type": "integer"
+        },
         "maxConcurrentCdcTasks": {
-          "description": "Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.",
+          "description": "Maximum number of concurrent CDC tasks. The number should be non-negative. If not set (or set to 0), the system's default value is used.",
           "format": "int32",
           "type": "integer"
         },
@@ -2447,6 +2560,11 @@
           "$ref": "PostgresqlRdbms",
           "description": "PostgreSQL objects to include in the stream."
         },
+        "maxConcurrentBackfillTasks": {
+          "description": "Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.",
+          "format": "int32",
+          "type": "integer"
+        },
         "publication": {
           "description": "Required. The name of the publication that includes the set of all tables that are defined in the stream's include_objects.",
           "type": "string"
@@ -2596,11 +2714,23 @@
       },
       "type": "object"
     },
+    "RunStreamRequest": {
+      "description": "Request message for running a stream.",
+      "id": "RunStreamRequest",
+      "properties": {
+        "cdcStrategy": {
+          "$ref": "CdcStrategy",
+          "description": "Optional. The CDC strategy of the stream. If not set, the system's default value will be used."
+        }
+      },
+      "type": "object"
+    },
     "SingleTargetDataset": {
       "description": "A single target dataset to which all data will be streamed.",
       "id": "SingleTargetDataset",
       "properties": {
         "datasetId": {
+          "description": "The dataset ID of the target dataset. DatasetIds allowed characters: https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets#datasetreference.",
           "type": "string"
         }
       },
@@ -2634,7 +2764,8 @@
       "id": "SourceHierarchyDatasets",
       "properties": {
         "datasetTemplate": {
-          "$ref": "DatasetTemplate"
+          "$ref": "DatasetTemplate",
+          "description": "The dataset template to use for dynamic dataset creation."
         }
       },
       "type": "object"
@@ -2658,6 +2789,17 @@
       },
       "type": "object"
     },
+    "SpecificStartPosition": {
+      "description": "CDC strategy to start replicating from a specific position in the source.",
+      "id": "SpecificStartPosition",
+      "properties": {
+        "mysqlLogPosition": {
+          "$ref": "MysqlLogPosition",
+          "description": "MySQL specific log position to start replicating from."
+        }
+      },
+      "type": "object"
+    },
     "StartBackfillJobRequest": {
       "description": "Request for manually initiating a backfill job for a specific stream object.",
       "id": "StartBackfillJobRequest",
@@ -2676,7 +2818,7 @@
       "type": "object"
     },
     "StaticServiceIpConnectivity": {
-      "description": "Static IP address connectivity.",
+      "description": "Static IP address connectivity. Used when the source database is configured to allow incoming connections from the Datastream public IP addresses for the region specified in the connection profile.",
       "id": "StaticServiceIpConnectivity",
       "properties": {},
       "type": "object"
@@ -2884,7 +3026,7 @@
           "type": "array"
         },
         "state": {
-          "description": "Validation execution status.",
+          "description": "Output only. Validation execution status.",
           "enum": [
             "STATE_UNSPECIFIED",
             "NOT_EXECUTED",
@@ -2897,6 +3039,7 @@
             "Validation failed.",
             "Validation passed."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },

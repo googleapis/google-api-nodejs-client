@@ -102,7 +102,7 @@ export namespace playintegrity_v1 {
   /**
    * Google Play Integrity API
    *
-   * Play Integrity
+   * The Play Integrity API helps you check that you&#39;re interacting with your genuine app on a genuine Android device powered by Google Play services. The Play Integrity API has replaced SafetyNet Attestation and Android Device Verification.
    *
    * @example
    * ```js
@@ -195,13 +195,26 @@ export namespace playintegrity_v1 {
     deviceRecognitionVerdict?: string[] | null;
   }
   /**
+   * Contains guidance details about the Integrity API response, providing additional context to the integrity verdicts.
+   */
+  export interface Schema$GuidanceDetails {
+    /**
+     * This shows when there is an issue with at least one of the integrity verdicts, and provides user remediation guidance.
+     */
+    userRemediation?: string[] | null;
+  }
+  /**
    * Contains the integrity request information.
    */
   export interface Schema$RequestDetails {
     /**
-     * Required. Nonce that was provided in the request (which is base64 web-safe no-wrap).
+     * Nonce that was provided in the request (which is base64 web-safe no-wrap).
      */
     nonce?: string | null;
+    /**
+     * Request hash that was provided in the request.
+     */
+    requestHash?: string | null;
     /**
      * Required. Application package name this attestation was requested for. Note: This field makes no guarantees or promises on the caller integrity. For details on application integrity, check application_integrity.
      */
@@ -237,6 +250,10 @@ export namespace playintegrity_v1 {
      */
     deviceIntegrity?: Schema$DeviceIntegrity;
     /**
+     * Additional guidance related to the integrity API response.
+     */
+    guidanceDetails?: Schema$GuidanceDetails;
+    /**
      * Required. Details about the integrity request.
      */
     requestDetails?: Schema$RequestDetails;
@@ -254,56 +271,6 @@ export namespace playintegrity_v1 {
 
     /**
      * Decodes the integrity token and returns the token payload.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/playintegrity.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const playintegrity = google.playintegrity('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/playintegrity'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await playintegrity.decodeIntegrityToken({
-     *     //  Package name of the app the attached integrity token belongs to.
-     *     packageName: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "integrityToken": "my_integrityToken"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "tokenPayloadExternal": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

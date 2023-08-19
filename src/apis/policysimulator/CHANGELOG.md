@@ -1,5 +1,59 @@
 # Changelog
 
+## [5.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v5.1.0...policysimulator-v5.1.1) (2023-08-15)
+
+
+### Bug Fixes
+
+* **policysimulator:** update the API ([337d6d9](https://github.com/googleapis/google-api-nodejs-client/commit/337d6d9bc255bc13cc6ae33c68a662c45c375f4f))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v5.0.0...policysimulator-v5.1.0) (2023-08-09)
+
+
+### Features
+
+* **policysimulator:** update the API ([7c67951](https://github.com/googleapis/google-api-nodejs-client/commit/7c6795150e254863a3f1be9491863ada804dccc5))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v4.0.0...policysimulator-v5.0.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **policysimulator:** This release has breaking changes.
+
+### Features
+
+* **policysimulator:** update the API ([c25890d](https://github.com/googleapis/google-api-nodejs-client/commit/c25890d2db022ea5e85223787e1d8e6539996606))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v3.1.0...policysimulator-v4.0.0) (2023-03-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **policysimulator:** This release has breaking changes.
+
+### Features
+
+* **policysimulator:** update the API ([dd29268](https://github.com/googleapis/google-api-nodejs-client/commit/dd292683e0cf42bd939d12186c2282ad90c2ab1f))
+
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v3.0.0...policysimulator-v3.1.0) (2022-12-22)
+
+
+### Features
+
+* **policysimulator:** update the API ([0db14b6](https://github.com/googleapis/google-api-nodejs-client/commit/0db14b65d43d1d26657263615811354b46398c81))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v2.2.0...policysimulator-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v2.1.4...policysimulator-v2.2.0) (2022-09-21)
 
 

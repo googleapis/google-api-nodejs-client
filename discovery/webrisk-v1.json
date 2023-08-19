@@ -228,7 +228,7 @@
               ]
             },
             "list": {
-              "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+              "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
               "flatPath": "v1/projects/{projectsId}/operations",
               "httpMethod": "GET",
               "id": "webrisk.projects.operations.list",
@@ -292,38 +292,6 @@
               },
               "response": {
                 "$ref": "GoogleCloudWebriskV1Submission"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
-            }
-          }
-        },
-        "uris": {
-          "methods": {
-            "submit": {
-              "description": "Submits a URI suspected of containing malicious content to be reviewed. Returns a google.longrunning.Operation which, once the review is complete, is updated with its result. You can use the [Pub/Sub API] (https://cloud.google.com/pubsub) to receive notifications for the returned Operation. If the result verifies the existence of malicious content, the site will be added to the [Google's Social Engineering lists] (https://support.google.com/webmasters/answer/6350487/) in order to protect users that could get exposed to this threat in the future. Only allowlisted projects can use this method during Early Access. Please reach out to Sales or your customer engineer to obtain access.",
-              "flatPath": "v1/projects/{projectsId}/uris:submit",
-              "httpMethod": "POST",
-              "id": "webrisk.projects.uris.submit",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The name of the project that is making the submission. This string is in the format \"projects/{project_number}\".",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1/{+parent}/uris:submit",
-              "request": {
-                "$ref": "GoogleCloudWebriskV1SubmitUriRequest"
-              },
-              "response": {
-                "$ref": "GoogleLongrunningOperation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -452,7 +420,7 @@
       }
     }
   },
-  "revision": "20221023",
+  "revision": "20230806",
   "rootUrl": "https://webrisk.googleapis.com/",
   "schemas": {
     "GoogleCloudWebriskV1ComputeThreatListDiffResponse": {
@@ -671,78 +639,9 @@
       "description": "Wraps a URI that might be displaying malicious content.",
       "id": "GoogleCloudWebriskV1Submission",
       "properties": {
-        "threatTypes": {
-          "description": "ThreatTypes found to be associated with the submitted URI after reviewing it. This might be empty if the URI was not added to any list.",
-          "items": {
-            "enum": [
-              "THREAT_TYPE_UNSPECIFIED",
-              "MALWARE",
-              "SOCIAL_ENGINEERING",
-              "UNWANTED_SOFTWARE",
-              "SOCIAL_ENGINEERING_EXTENDED_COVERAGE"
-            ],
-            "enumDescriptions": [
-              "No entries should match this threat type. This threat type is unused.",
-              "Malware targeting any platform.",
-              "Social engineering targeting any platform.",
-              "Unwanted software targeting any platform.",
-              "A list of extended coverage social engineering URIs targeting any platform."
-            ],
-            "type": "string"
-          },
-          "type": "array"
-        },
         "uri": {
           "description": "Required. The URI that is being reported for malicious content to be analyzed.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudWebriskV1SubmitUriMetadata": {
-      "description": "Metadata for the Submit URI long-running operation.",
-      "id": "GoogleCloudWebriskV1SubmitUriMetadata",
-      "properties": {
-        "createTime": {
-          "description": "Creation time of the operation.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "state": {
-          "description": "The state of the operation.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "RUNNING",
-            "SUCCEEDED",
-            "CANCELLED",
-            "FAILED",
-            "CLOSED"
-          ],
-          "enumDescriptions": [
-            "Default unspecified state.",
-            "The operation is currently running.",
-            "The operation finished with a success status.",
-            "The operation was cancelled.",
-            "The operation finished with a failure status.",
-            "The operation was closed with no action taken."
-          ],
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Latest update time of the operation.",
-          "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudWebriskV1SubmitUriRequest": {
-      "description": "Request to send a potentially malicious URI to WebRisk.",
-      "id": "GoogleCloudWebriskV1SubmitUriRequest",
-      "properties": {
-        "submission": {
-          "$ref": "GoogleCloudWebriskV1Submission",
-          "description": "Required. The submission that contains the URI to be scanned."
         }
       },
       "type": "object"
@@ -833,7 +732,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },

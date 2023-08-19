@@ -158,6 +158,10 @@ export namespace workflowexecutions_v1 {
      */
     callLogLevel?: string | null;
     /**
+     * Output only. Measures the duration of the execution.
+     */
+    duration?: string | null;
+    /**
      * Output only. Marks the end of execution, successful or not.
      */
     endTime?: string | null;
@@ -165,6 +169,10 @@ export namespace workflowexecutions_v1 {
      * Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`.
      */
     error?: Schema$Error;
+    /**
+     * Labels associated with this execution. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores, and dashes. Label keys must start with a letter. International characters are allowed. By default, labels are inherited from the workflow but are overridden by any labels associated with the execution.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Output only. The resource name of the execution. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      */
@@ -182,7 +190,11 @@ export namespace workflowexecutions_v1 {
      */
     state?: string | null;
     /**
-     * Output only. Status tracks the current steps and progress data of this execution. \> **Preview:** This field is covered by the \> [Pre-GA Offerings Terms](https://cloud.google.com/terms/service-terms) of \> the Google Cloud Terms of Service. Pre-GA features might have limited \> support, and changes to pre-GA features might not be compatible with \> other pre-GA versions. For more information, see the \> [launch stage descriptions](https://cloud.google.com/products#product-launch-stages). \> This field is usable only if your project has access. See the \> [access request page](https://docs.google.com/forms/d/e/1FAIpQLSdgwrSV8Y4xZv_tvI6X2JEGX1-ty9yizv3_EAOVHWVKXvDLEA/viewform).
+     * Output only. Error regarding the state of the Execution resource. For example, this field will have error details if the execution data is unavailable due to revoked KMS key permissions.
+     */
+    stateError?: Schema$StateError;
+    /**
+     * Output only. Status tracks the current steps and progress data of this execution.
      */
     status?: Schema$Status;
     /**
@@ -225,23 +237,23 @@ export namespace workflowexecutions_v1 {
    */
   export interface Schema$PubsubMessage {
     /**
-     * Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.
+     * Optional. Attributes for this message. If this field is empty, the message must contain non-empty data. This can be used to filter messages on the subscription.
      */
     attributes?: {[key: string]: string} | null;
     /**
-     * The message data field. If this field is empty, the message must contain at least one attribute.
+     * Optional. The message data field. If this field is empty, the message must contain at least one attribute.
      */
     data?: string | null;
     /**
-     * ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
+     * Optional. ID of this message, assigned by the server when the message is published. Guaranteed to be unique within the topic. This value may be read by a subscriber that receives a `PubsubMessage` via a `Pull` call or a push delivery. It must not be populated by the publisher in a `Publish` call.
      */
     messageId?: string | null;
     /**
-     * If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).
+     * Optional. If non-empty, identifies related messages for which publish order should be respected. If a `Subscription` has `enable_message_ordering` set to `true`, messages published with the same non-empty `ordering_key` value will be delivered to subscribers in the order in which they are received by the Pub/Sub system. All `PubsubMessage`s published in a given `PublishRequest` must specify the same `ordering_key` value. For more information, see [ordering messages](https://cloud.google.com/pubsub/docs/ordering).
      */
     orderingKey?: string | null;
     /**
-     * The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
+     * Optional. The time at which the message was published, populated by the server when it receives the `Publish` call. It must not be populated by the publisher in a `Publish` call.
      */
     publishTime?: string | null;
   }
@@ -272,7 +284,20 @@ export namespace workflowexecutions_v1 {
     step?: string | null;
   }
   /**
-   * \> **Preview:** This field is covered by the \> [Pre-GA Offerings Terms](https://cloud.google.com/terms/service-terms) of \> the Google Cloud Terms of Service. Pre-GA features might have limited \> support, and changes to pre-GA features might not be compatible with \> other pre-GA versions. For more information, see the \> [launch stage descriptions](https://cloud.google.com/products#product-launch-stages). \> This field is usable only if your project has access. See the \> [access request page](https://docs.google.com/forms/d/e/1FAIpQLSdgwrSV8Y4xZv_tvI6X2JEGX1-ty9yizv3_EAOVHWVKXvDLEA/viewform). Represents the current status of this execution.
+   * Describes an error related to the current state of the Execution resource.
+   */
+  export interface Schema$StateError {
+    /**
+     * Provides specifics about the error.
+     */
+    details?: string | null;
+    /**
+     * The type of this state error.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents the current status of this execution.
    */
   export interface Schema$Status {
     /**
@@ -297,6 +322,10 @@ export namespace workflowexecutions_v1 {
    * Request for the TriggerPubsubExecution method.
    */
   export interface Schema$TriggerPubsubExecutionRequest {
+    /**
+     * The number of attempts that have been made to deliver this message. This is set by Pub/Sub for subscriptions that have the "dead letter" feature enabled, and hence provided here for compatibility, but is ignored by Workflows.
+     */
+    deliveryAttempt?: number | null;
     /**
      * Required. LINT: LEGACY_NAMES The query parameter value for __GCP_CloudEventsMode, set by the Eventarc service when configuring triggers.
      */
@@ -341,71 +370,6 @@ export namespace workflowexecutions_v1 {
 
     /**
      * Triggers a new execution using the latest revision of the given workflow by a Pub/Sub push notification.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const workflowexecutions = google.workflowexecutions('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await workflowexecutions.projects.locations.workflows.triggerPubsubExecution(
-     *       {
-     *         // Required. Name of the workflow for which an execution should be created. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
-     *         workflow:
-     *           'projects/my-project/locations/my-location/workflows/my-workflow',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "GCPCloudEventsMode": "my_GCPCloudEventsMode",
-     *           //   "message": {},
-     *           //   "subscription": "my_subscription"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "argument": "my_argument",
-     *   //   "callLogLevel": "my_callLogLevel",
-     *   //   "endTime": "my_endTime",
-     *   //   "error": {},
-     *   //   "name": "my_name",
-     *   //   "result": "my_result",
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "status": {},
-     *   //   "workflowRevisionId": "my_workflowRevisionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -517,64 +481,6 @@ export namespace workflowexecutions_v1 {
 
     /**
      * Cancels an execution of the given name.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const workflowexecutions = google.workflowexecutions('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await workflowexecutions.projects.locations.workflows.executions.cancel({
-     *       // Required. Name of the execution to be cancelled. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
-     *       name: 'projects/my-project/locations/my-location/workflows/my-workflow/executions/my-execution',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "argument": "my_argument",
-     *   //   "callLogLevel": "my_callLogLevel",
-     *   //   "endTime": "my_endTime",
-     *   //   "error": {},
-     *   //   "name": "my_name",
-     *   //   "result": "my_result",
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "status": {},
-     *   //   "workflowRevisionId": "my_workflowRevisionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -661,75 +567,6 @@ export namespace workflowexecutions_v1 {
 
     /**
      * Creates a new execution using the latest revision of the given workflow.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const workflowexecutions = google.workflowexecutions('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await workflowexecutions.projects.locations.workflows.executions.create({
-     *       // Required. Name of the workflow for which an execution should be created. Format: projects/{project\}/locations/{location\}/workflows/{workflow\} The latest revision of the workflow will be used.
-     *       parent: 'projects/my-project/locations/my-location/workflows/my-workflow',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "argument": "my_argument",
-     *         //   "callLogLevel": "my_callLogLevel",
-     *         //   "endTime": "my_endTime",
-     *         //   "error": {},
-     *         //   "name": "my_name",
-     *         //   "result": "my_result",
-     *         //   "startTime": "my_startTime",
-     *         //   "state": "my_state",
-     *         //   "status": {},
-     *         //   "workflowRevisionId": "my_workflowRevisionId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "argument": "my_argument",
-     *   //   "callLogLevel": "my_callLogLevel",
-     *   //   "endTime": "my_endTime",
-     *   //   "error": {},
-     *   //   "name": "my_name",
-     *   //   "result": "my_result",
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "status": {},
-     *   //   "workflowRevisionId": "my_workflowRevisionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -819,60 +656,6 @@ export namespace workflowexecutions_v1 {
 
     /**
      * Returns an execution of the given name.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const workflowexecutions = google.workflowexecutions('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await workflowexecutions.projects.locations.workflows.executions.get({
-     *       // Required. Name of the execution to be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
-     *       name: 'projects/my-project/locations/my-location/workflows/my-workflow/executions/my-execution',
-     *       // Optional. A view defining which fields should be filled in the returned execution. The API will default to the FULL view.
-     *       view: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "argument": "my_argument",
-     *   //   "callLogLevel": "my_callLogLevel",
-     *   //   "endTime": "my_endTime",
-     *   //   "error": {},
-     *   //   "name": "my_name",
-     *   //   "result": "my_result",
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "status": {},
-     *   //   "workflowRevisionId": "my_workflowRevisionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -959,56 +742,6 @@ export namespace workflowexecutions_v1 {
 
     /**
      * Returns a list of executions which belong to the workflow with the given name. The method returns executions of all workflow revisions. Returned executions are ordered by their start time (newest first).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const workflowexecutions = google.workflowexecutions('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await workflowexecutions.projects.locations.workflows.executions.list({
-     *       // Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 1000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
-     *       pageSize: 'placeholder-value',
-     *       // A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Name of the workflow for which the executions should be listed. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
-     *       parent: 'projects/my-project/locations/my-location/workflows/my-workflow',
-     *       // Optional. A view defining which fields should be filled in the returned executions. The API will default to the BASIC view.
-     *       view: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1140,11 +873,19 @@ export namespace workflowexecutions_v1 {
   export interface Params$Resource$Projects$Locations$Workflows$Executions$List
     extends StandardParameters {
     /**
+     * Optional. Filters applied to the [Executions.ListExecutions] results. The following fields are supported for filtering: executionID, state, startTime, endTime, duration, workflowRevisionID, stepName, and label.
+     */
+    filter?: string;
+    /**
+     * Optional. The ordering applied to the [Executions.ListExecutions] results. By default the ordering is based on descending start time. The following fields are supported for order by: executionID, startTime, endTime, duration, state, and workflowRevisionID.
+     */
+    orderBy?: string;
+    /**
      * Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 1000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token.
+     * A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token. Note that pagination is applied to dynamic data. The list of executions returned can change between page requests.
      */
     pageToken?: string;
     /**

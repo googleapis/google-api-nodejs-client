@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/plus-v1.0.0...plus-v1.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **plus:** update the API ([ecac7a8](https://github.com/googleapis/google-api-nodejs-client/commit/ecac7a88cdd17e2274446ae78ac048cf1a0760e7))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/plus-v0.3.1...plus-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/plus-v0.3.0...plus-v0.3.1) (2022-09-21)
 
 

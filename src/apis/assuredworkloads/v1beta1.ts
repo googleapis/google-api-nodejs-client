@@ -113,7 +113,6 @@ export namespace assuredworkloads_v1beta1 {
   export class Assuredworkloads {
     context: APIRequestContext;
     organizations: Resource$Organizations;
-    projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -122,14 +121,17 @@ export namespace assuredworkloads_v1beta1 {
       };
 
       this.organizations = new Resource$Organizations(this.context);
-      this.projects = new Resource$Projects(this.context);
     }
   }
 
   /**
-   * Request for acknowledging the violation Next Id: 4
+   * Request for acknowledging the violation Next Id: 5
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest {
+    /**
+     * Optional. Acknowledge type of specified violation.
+     */
+    acknowledgeType?: string | null;
     /**
      * Required. Business justification explaining the need for violation acknowledgement
      */
@@ -144,14 +146,68 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse {}
   /**
-   * A response that includes the analysis of the hypothetical resource move.
+   * Response containing the analysis results for the hypothetical resource move.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse {
     /**
-     * A list of blockers that should be addressed before moving the source project or project-based workload to the destination folder-based workload.
+     * List of analysis results for each asset in scope.
+     */
+    assetMoveAnalyses?: Schema$GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis[];
+    /**
+     * A list of blockers that should be addressed before moving the source project or project-based workload to the destination folder-based workload. This field is now deprecated.
      */
     blockers?: string[] | null;
+    /**
+     * The next page token. Is empty if the last page is reached.
+     */
+    nextPageToken?: string | null;
   }
+  /**
+   * Represents move analysis results for an asset.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis {
+    /**
+     * List of eligible analyses performed for the asset.
+     */
+    analysisGroups?: Schema$GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup[];
+    /**
+     * The full resource name of the asset being analyzed. Example: //compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1
+     */
+    asset?: string | null;
+    /**
+     * Type of the asset being analyzed. Possible values will be among the ones listed [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     */
+    assetType?: string | null;
+  }
+  /**
+   * Operation metadata to give request details of CreateWorkload.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata {
+    /**
+     * Optional. Compliance controls that should be applied to the resources managed by the workload.
+     */
+    complianceRegime?: string | null;
+    /**
+     * Optional. Time when the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The display name of the workload.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. The parent of the workload.
+     */
+    parent?: string | null;
+    /**
+     * Optional. Resource properties in the input that are used for creating/customizing workload resources.
+     */
+    resourceSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings[];
+  }
+  /**
+   * Response for EnableResourceMonitoring endpoint.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse {}
   /**
    * Response of ListViolations endpoint.
    */
@@ -179,6 +235,45 @@ export namespace assuredworkloads_v1beta1 {
     workloads?: Schema$GoogleCloudAssuredworkloadsV1beta1Workload[];
   }
   /**
+   * Represents a logical group of checks performed for an asset. If successful, the group contains the analysis result, otherwise it contains an error with the failure reason.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup {
+    /**
+     * Result of a successful analysis.
+     */
+    analysisResult?: Schema$GoogleCloudAssuredworkloadsV1beta1MoveAnalysisResult;
+    /**
+     * Name of the analysis group.
+     */
+    displayName?: string | null;
+    /**
+     * Error details for a failed analysis.
+     */
+    error?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * Represents the successful move analysis results for a group.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1MoveAnalysisResult {
+    /**
+     * List of blockers. If not resolved, these will result in compliance violations in the target.
+     */
+    blockers?: Schema$GoogleCloudAssuredworkloadsV1beta1MoveImpact[];
+    /**
+     * List of warnings. These are risks that may or may not result in compliance violations.
+     */
+    warnings?: Schema$GoogleCloudAssuredworkloadsV1beta1MoveImpact[];
+  }
+  /**
+   * Represents the impact of moving the asset to the target.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1MoveImpact {
+    /**
+     * Explanation of the impact.
+     */
+    detail?: string | null;
+  }
+  /**
    * Request for restricting list of available resources in Workload environment.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest {
@@ -192,7 +287,7 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse {}
   /**
-   * Workload monitoring Violation.
+   * Workload monitoring Violation. Next Id: 28
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1Violation {
     /**
@@ -200,9 +295,13 @@ export namespace assuredworkloads_v1beta1 {
      */
     acknowledged?: boolean | null;
     /**
-     * Optional. Timestamp when this violation was acknowledged last. This will be absent when acknowledged field is marked as false.
+     * Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false.
      */
     acknowledgementTime?: string | null;
+    /**
+     * Optional. Output only. Violation Id of the org-policy violation due to which the resource violation is caused. Empty for org-policy violations.
+     */
+    associatedOrgPolicyViolationId?: string | null;
     /**
      * Output only. Immutable. Audit Log Link for violated resource Format: https://console.cloud.google.com/logs/query;query={logName\}{protoPayload.resourceName\}{timeRange\}{folder\}
      */
@@ -224,6 +323,10 @@ export namespace assuredworkloads_v1beta1 {
      */
     exceptionAuditLogLink?: string | null;
     /**
+     * Output only. List of all the exception detail added for the violation.
+     */
+    exceptionContexts?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext[];
+    /**
      * Output only. Immutable. Name of the Violation. Format: organizations/{organization\}/locations/{location\}/workloads/{workload_id\}/violations/{violations_id\}
      */
     name?: string | null;
@@ -236,6 +339,10 @@ export namespace assuredworkloads_v1beta1 {
      */
     orgPolicyConstraint?: string | null;
     /**
+     * Optional. Output only. Parent project number where resource is present. Empty for org-policy violations.
+     */
+    parentProjectNumber?: string | null;
+    /**
      * Output only. Compliance violation remediation
      */
     remediation?: Schema$GoogleCloudAssuredworkloadsV1beta1ViolationRemediation;
@@ -244,6 +351,14 @@ export namespace assuredworkloads_v1beta1 {
      */
     resolveTime?: string | null;
     /**
+     * Optional. Output only. Name of the resource like //storage.googleapis.com/myprojectxyz-testbucket. Empty for org-policy violations.
+     */
+    resourceName?: string | null;
+    /**
+     * Optional. Output only. Type of the resource like compute.googleapis.com/Disk, etc. Empty for org-policy violations.
+     */
+    resourceType?: string | null;
+    /**
      * Output only. State of the violation
      */
     state?: string | null;
@@ -251,6 +366,27 @@ export namespace assuredworkloads_v1beta1 {
      * Output only. The last time when the Violation record was updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. Type of the violation
+     */
+    violationType?: string | null;
+  }
+  /**
+   * Violation exception detail. Next Id: 6
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext {
+    /**
+     * Timestamp when the violation was acknowledged.
+     */
+    acknowledgementTime?: string | null;
+    /**
+     * Business justification provided towards the acknowledgement of the violation.
+     */
+    comment?: string | null;
+    /**
+     * Name of the user (or service account) who acknowledged the violation.
+     */
+    userName?: string | null;
   }
   /**
    * Represents remediation guidance to resolve compliance violation for AssuredWorkload
@@ -349,6 +485,10 @@ export namespace assuredworkloads_v1beta1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Represents the Ekm Provisioning State of the given workload.
+     */
+    ekmProvisioningResponse?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadEkmProvisioningResponse;
+    /**
      * Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.
      */
     enableSovereignControls?: boolean | null;
@@ -385,13 +525,21 @@ export namespace assuredworkloads_v1beta1 {
      */
     name?: string | null;
     /**
-     * Optional. Compliance Regime associated with this workload.
+     * Optional. Partner regime associated with this workload.
      */
     partner?: string | null;
+    /**
+     * Optional. Permissions granted to the AW Partner SA account for the customer workload
+     */
+    partnerPermissions?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions;
     /**
      * Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id\}
      */
     provisionedResourcesParent?: string | null;
+    /**
+     * Output only. Indicates whether resource monitoring is enabled for workload or not. It is true when Resource feed is subscribed to AWM topic and AWM Service Agent Role is binded to AW Service Account for resource Assured workload.
+     */
+    resourceMonitoringEnabled?: boolean | null;
     /**
      * Output only. The resources associated with this workload. These resources will be created when creating the workload. If any of the projects already exist, the workload creation will fail. Always read only.
      */
@@ -404,6 +552,10 @@ export namespace assuredworkloads_v1beta1 {
      * Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.
      */
     saaEnrollmentResponse?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse;
+    /**
+     * Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload.
+     */
+    violationNotificationsEnabled?: boolean | null;
   }
   /**
    * Settings specific to resources needed for CJIS.
@@ -419,13 +571,38 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus {
     /**
-     * Count of active Violations which are acknowledged in the Workload.
+     * Number of current resource violations which are not acknowledged.
+     */
+    acknowledgedResourceViolationCount?: number | null;
+    /**
+     * Number of current orgPolicy violations which are acknowledged.
      */
     acknowledgedViolationCount?: number | null;
     /**
-     * Count of active Violations which haven't been acknowledged.
+     * Number of current resource violations which are acknowledged.
+     */
+    activeResourceViolationCount?: number | null;
+    /**
+     * Number of current orgPolicy violations which are not acknowledged.
      */
     activeViolationCount?: number | null;
+  }
+  /**
+   * External key management systems(EKM) Provisioning response
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadEkmProvisioningResponse {
+    /**
+     * Indicates Ekm provisioning error if any.
+     */
+    ekmProvisioningErrorDomain?: string | null;
+    /**
+     * Detailed error message if Ekm provisioning fails
+     */
+    ekmProvisioningErrorMapping?: string | null;
+    /**
+     * Indicates Ekm enrollment Provisioning of a given workload.
+     */
+    ekmProvisioningState?: string | null;
   }
   /**
    * Settings specific to resources needed for FedRAMP High.
@@ -466,6 +643,23 @@ export namespace assuredworkloads_v1beta1 {
      * Required. Input only. Immutable. [next_rotation_time] will be advanced by this period when the Key Management Service automatically rotates a key. Must be at least 24 hours and at most 876,000 hours.
      */
     rotationPeriod?: string | null;
+  }
+  /**
+   * Permissions granted to the AW Partner SA account for the customer workload
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions {
+    /**
+     * Optional. Allow partner to view violation alerts.
+     */
+    assuredWorkloadsMonitoring?: boolean | null;
+    /**
+     * Allow the partner to view inspectability logs and monitoring violations.
+     */
+    dataLogsViewer?: boolean | null;
+    /**
+     * Optional. Allow partner to view access approval logs.
+     */
+    serviceAccessApprover?: boolean | null;
   }
   /**
    * Represent the resources that are children of this Workload.
@@ -544,7 +738,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -602,52 +796,6 @@ export namespace assuredworkloads_v1beta1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -739,56 +887,7 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'organizations/my-organization/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -914,96 +1013,113 @@ export namespace assuredworkloads_v1beta1 {
 
   export class Resource$Organizations$Locations$Workloads {
     context: APIRequestContext;
-    organizations: Resource$Organizations$Locations$Workloads$Organizations;
     violations: Resource$Organizations$Locations$Workloads$Violations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.organizations =
-        new Resource$Organizations$Locations$Workloads$Organizations(
-          this.context
-        );
       this.violations =
         new Resource$Organizations$Locations$Workloads$Violations(this.context);
     }
 
     /**
+     * Analyzes a hypothetical move of a source resource to a target(destination) folder-based workload to surface compliance risks.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeWorkloadMove(
+      params: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeWorkloadMove(
+      params?: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>;
+    analyzeWorkloadMove(
+      params: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeWorkloadMove(
+      params: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+    ): void;
+    analyzeWorkloadMove(
+      params: Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+    ): void;
+    analyzeWorkloadMove(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+    ): void;
+    analyzeWorkloadMove(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+target}:analyzeWorkloadMove').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['target'],
+        pathParams: ['target'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Creates Assured Workload.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.workloads.create({
-     *     // Optional. A identifier associated with the workload and underlying projects which allows for the break down of billing costs for a workload. The value provided for the identifier will add a label to the workload and contained projects with the identifier as the value.
-     *     externalId: 'placeholder-value',
-     *     // Required. The resource name of the new Workload's parent. Must be of the form `organizations/{org_id\}/locations/{location_id\}`.
-     *     parent: 'organizations/my-organization/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "billingAccount": "my_billingAccount",
-     *       //   "cjisSettings": {},
-     *       //   "complianceRegime": "my_complianceRegime",
-     *       //   "complianceStatus": {},
-     *       //   "compliantButDisallowedServices": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "enableSovereignControls": false,
-     *       //   "etag": "my_etag",
-     *       //   "fedrampHighSettings": {},
-     *       //   "fedrampModerateSettings": {},
-     *       //   "il4Settings": {},
-     *       //   "kajEnrollmentState": "my_kajEnrollmentState",
-     *       //   "kmsSettings": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "partner": "my_partner",
-     *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
-     *       //   "resourceSettings": [],
-     *       //   "resources": [],
-     *       //   "saaEnrollmentResponse": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1099,48 +1215,6 @@ export namespace assuredworkloads_v1beta1 {
 
     /**
      * Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error. In addition to assuredworkloads.workload.delete permission, the user should also have orgpolicy.policy.set permission on the deleted folder to remove Assured Workloads OrgPolicies.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.workloads.delete({
-     *     // Optional. The etag of the workload. If this is provided, it must match the server's etag.
-     *     etag: 'placeholder-value',
-     *     // Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
-     *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1228,69 +1302,104 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
+     * Enable resource violation monitoring for a workload.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enableResourceMonitoring(
+      params?: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>;
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+    ): void;
+    enableResourceMonitoring(
+      params: Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+    ): void;
+    enableResourceMonitoring(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+    ): void;
+    enableResourceMonitoring(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+name}:enableResourceMonitoring'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets Assured Workload associated with a CRM Node
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.workloads.get({
-     *     // Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
-     *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "billingAccount": "my_billingAccount",
-     *   //   "cjisSettings": {},
-     *   //   "complianceRegime": "my_complianceRegime",
-     *   //   "complianceStatus": {},
-     *   //   "compliantButDisallowedServices": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "enableSovereignControls": false,
-     *   //   "etag": "my_etag",
-     *   //   "fedrampHighSettings": {},
-     *   //   "fedrampModerateSettings": {},
-     *   //   "il4Settings": {},
-     *   //   "kajEnrollmentState": "my_kajEnrollmentState",
-     *   //   "kmsSettings": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "partner": "my_partner",
-     *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
-     *   //   "resourceSettings": [],
-     *   //   "resources": [],
-     *   //   "saaEnrollmentResponse": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1385,55 +1494,6 @@ export namespace assuredworkloads_v1beta1 {
 
     /**
      * Lists Assured Workloads under a CRM Node.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.workloads.list({
-     *     // A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.
-     *     filter: 'placeholder-value',
-     *     // Page size.
-     *     pageSize: 'placeholder-value',
-     *     // Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id\}/locations/{location\}`.
-     *     parent: 'organizations/my-organization/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "workloads": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1531,98 +1591,6 @@ export namespace assuredworkloads_v1beta1 {
 
     /**
      * Updates an existing workload. Currently allows updating of workload display_name and labels. For force updates don't set etag field in the Workload. Only one update operation per workload can be in progress.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await assuredworkloads.organizations.locations.workloads.patch({
-     *     // Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
-     *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *     // Required. The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "billingAccount": "my_billingAccount",
-     *       //   "cjisSettings": {},
-     *       //   "complianceRegime": "my_complianceRegime",
-     *       //   "complianceStatus": {},
-     *       //   "compliantButDisallowedServices": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "enableSovereignControls": false,
-     *       //   "etag": "my_etag",
-     *       //   "fedrampHighSettings": {},
-     *       //   "fedrampModerateSettings": {},
-     *       //   "il4Settings": {},
-     *       //   "kajEnrollmentState": "my_kajEnrollmentState",
-     *       //   "kmsSettings": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "partner": "my_partner",
-     *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
-     *       //   "resourceSettings": [],
-     *       //   "resources": [],
-     *       //   "saaEnrollmentResponse": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "billingAccount": "my_billingAccount",
-     *   //   "cjisSettings": {},
-     *   //   "complianceRegime": "my_complianceRegime",
-     *   //   "complianceStatus": {},
-     *   //   "compliantButDisallowedServices": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "enableSovereignControls": false,
-     *   //   "etag": "my_etag",
-     *   //   "fedrampHighSettings": {},
-     *   //   "fedrampModerateSettings": {},
-     *   //   "il4Settings": {},
-     *   //   "kajEnrollmentState": "my_kajEnrollmentState",
-     *   //   "kmsSettings": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "partner": "my_partner",
-     *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
-     *   //   "resourceSettings": [],
-     *   //   "resources": [],
-     *   //   "saaEnrollmentResponse": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1717,57 +1685,6 @@ export namespace assuredworkloads_v1beta1 {
 
     /**
      * Restrict the list of resources allowed in the Workload environment. The current list of allowed products can be found at https://cloud.google.com/assured-workloads/docs/supported-products In addition to assuredworkloads.workload.update permission, the user should also have orgpolicy.policy.set permission on the folder resource to use this functionality.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.workloads.restrictAllowedResources(
-     *       {
-     *         // Required. The resource name of the Workload. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
-     *         name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "restrictionType": "my_restrictionType"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1864,6 +1781,33 @@ export namespace assuredworkloads_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove
+    extends StandardParameters {
+    /**
+     * Optional. Indicates if all child assets of the source resource should also be analyzed in addition to the source.
+     */
+    analyzeChildAssets?: boolean;
+    /**
+     * Optional. Page size. If a value is not specified, the default value of 10 is used.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token from the previous response. It needs to be passed in the second and following requests.
+     */
+    pageToken?: string;
+    /**
+     * The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
+     */
+    project?: string;
+    /**
+     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated.
+     */
+    source?: string;
+    /**
+     * Required. The resource ID of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
+     */
+    target?: string;
+  }
   export interface Params$Resource$Organizations$Locations$Workloads$Create
     extends StandardParameters {
     /**
@@ -1886,6 +1830,13 @@ export namespace assuredworkloads_v1beta1 {
      * Optional. The etag of the workload. If this is provided, it must match the server's etag.
      */
     etag?: string;
+    /**
+     * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Workloads$Enableresourcemonitoring
+    extends StandardParameters {
     /**
      * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
      */
@@ -1946,201 +1897,6 @@ export namespace assuredworkloads_v1beta1 {
     requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest;
   }
 
-  export class Resource$Organizations$Locations$Workloads$Organizations {
-    context: APIRequestContext;
-    locations: Resource$Organizations$Locations$Workloads$Organizations$Locations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.locations =
-        new Resource$Organizations$Locations$Workloads$Organizations$Locations(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Organizations$Locations$Workloads$Organizations$Locations {
-    context: APIRequestContext;
-    workloads: Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.workloads =
-        new Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Analyzes a hypothetical move of a source project or project-based workload to a target (destination) folder-based workload.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.workloads.organizations.locations.workloads.analyzeWorkloadMove(
-     *       {
-     *         // The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
-     *         project: 'placeholder-value',
-     *         // The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1"
-     *         source:
-     *           'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *         // Required. The resource ID of the folder-based destination workload. This workload is where the source project will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
-     *         target:
-     *           'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "blockers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    analyzeWorkloadMove(
-      params: Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    analyzeWorkloadMove(
-      params?: Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>;
-    analyzeWorkloadMove(
-      params: Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    analyzeWorkloadMove(
-      params: Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      params: Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+source}/{+target}:analyzeWorkloadMove'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['source', 'target'],
-        pathParams: ['source', 'target'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Workloads$Organizations$Locations$Workloads$Analyzeworkloadmove
-    extends StandardParameters {
-    /**
-     * The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
-     */
-    project?: string;
-    /**
-     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1"
-     */
-    source?: string;
-    /**
-     * Required. The resource ID of the folder-based destination workload. This workload is where the source project will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
-     */
-    target?: string;
-  }
-
   export class Resource$Organizations$Locations$Workloads$Violations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -2149,58 +1905,6 @@ export namespace assuredworkloads_v1beta1 {
 
     /**
      * Acknowledges an existing violation. By acknowledging a violation, users acknowledge the existence of a compliance violation in their workload and decide to ignore it due to a valid business justification. Acknowledgement is a permanent operation and it cannot be reverted.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.workloads.violations.acknowledge(
-     *       {
-     *         // Required. The resource name of the Violation to acknowledge. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
-     *         name: 'organizations/my-organization/locations/my-location/workloads/my-workload/violations/my-violation',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "comment": "my_comment",
-     *           //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2299,62 +2003,6 @@ export namespace assuredworkloads_v1beta1 {
 
     /**
      * Retrieves Assured Workload Violation based on ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.workloads.violations.get({
-     *       // Required. The resource name of the Violation to fetch (ie. Violation.name). Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/violations/{violation\}
-     *       name: 'organizations/my-organization/locations/my-location/workloads/my-workload/violations/my-violation',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acknowledged": false,
-     *   //   "acknowledgementTime": "my_acknowledgementTime",
-     *   //   "auditLogLink": "my_auditLogLink",
-     *   //   "beginTime": "my_beginTime",
-     *   //   "category": "my_category",
-     *   //   "description": "my_description",
-     *   //   "exceptionAuditLogLink": "my_exceptionAuditLogLink",
-     *   //   "name": "my_name",
-     *   //   "nonCompliantOrgPolicy": "my_nonCompliantOrgPolicy",
-     *   //   "orgPolicyConstraint": "my_orgPolicyConstraint",
-     *   //   "remediation": {},
-     *   //   "resolveTime": "my_resolveTime",
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2450,61 +2098,6 @@ export namespace assuredworkloads_v1beta1 {
 
     /**
      * Lists the Violations in the AssuredWorkload Environment. Callers may also choose to read across multiple Workloads as per [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash character) as a wildcard character instead of workload-id in the parent. Format `organizations/{org_id\}/locations/{location\}/workloads/-`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.organizations.locations.workloads.violations.list({
-     *       // Optional. A custom filter for filtering by the Violations properties.
-     *       filter: 'placeholder-value',
-     *       // The end of the time window.
-     *       'interval.endTime': 'placeholder-value',
-     *       // The start of the time window.
-     *       'interval.startTime': 'placeholder-value',
-     *       // Optional. Page size.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Page token returned from previous request.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The Workload name. Format `organizations/{org_id\}/locations/{location\}/workloads/{workload\}`.
-     *       parent:
-     *         'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "violations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2647,206 +2240,5 @@ export namespace assuredworkloads_v1beta1 {
      * Required. The Workload name. Format `organizations/{org_id\}/locations/{location\}/workloads/{workload\}`.
      */
     parent?: string;
-  }
-
-  export class Resource$Projects {
-    context: APIRequestContext;
-    organizations: Resource$Projects$Organizations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.organizations = new Resource$Projects$Organizations(this.context);
-    }
-  }
-
-  export class Resource$Projects$Organizations {
-    context: APIRequestContext;
-    locations: Resource$Projects$Organizations$Locations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.locations = new Resource$Projects$Organizations$Locations(
-        this.context
-      );
-    }
-  }
-
-  export class Resource$Projects$Organizations$Locations {
-    context: APIRequestContext;
-    workloads: Resource$Projects$Organizations$Locations$Workloads;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.workloads = new Resource$Projects$Organizations$Locations$Workloads(
-        this.context
-      );
-    }
-  }
-
-  export class Resource$Projects$Organizations$Locations$Workloads {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Analyzes a hypothetical move of a source project or project-based workload to a target (destination) folder-based workload.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const assuredworkloads = google.assuredworkloads('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await assuredworkloads.projects.organizations.locations.workloads.analyzeWorkloadMove(
-     *       {
-     *         // The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
-     *         project: 'projects/my-project',
-     *         // The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1"
-     *         source: 'placeholder-value',
-     *         // Required. The resource ID of the folder-based destination workload. This workload is where the source project will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
-     *         target:
-     *           'organizations/my-organization/locations/my-location/workloads/my-workload',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "blockers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    analyzeWorkloadMove(
-      params: Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    analyzeWorkloadMove(
-      params?: Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>;
-    analyzeWorkloadMove(
-      params: Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    analyzeWorkloadMove(
-      params: Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      params: Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove,
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-    ): void;
-    analyzeWorkloadMove(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1beta1/{+project}/{+target}:analyzeWorkloadMove'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['project', 'target'],
-        pathParams: ['project', 'target'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Organizations$Locations$Workloads$Analyzeworkloadmove
-    extends StandardParameters {
-    /**
-     * The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
-     */
-    project?: string;
-    /**
-     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1"
-     */
-    source?: string;
-    /**
-     * Required. The resource ID of the folder-based destination workload. This workload is where the source project will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
-     */
-    target?: string;
   }
 }

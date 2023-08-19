@@ -3,7 +3,7 @@
   "baseUrl": "https://mybusinessaccountmanagement.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "My Business Account Management",
-  "description": "The My Business Account Management API provides an interface for managing access to a location on Google.",
+  "description": "The My Business Account Management API provides an interface for managing access to a location on Google. Note - If you have a quota of 0 after enabling the API, please request for GBP API access.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/my-business/",
   "fullyEncodeReservedExpansion": true,
@@ -530,7 +530,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20230201",
   "rootUrl": "https://mybusinessaccountmanagement.googleapis.com/",
   "schemas": {
     "AcceptInvitationRequest": {
@@ -577,7 +577,7 @@
           "type": "string"
         },
         "primaryOwner": {
-          "description": "Required. Input only. The resource name of the account which will be the primary owner of the account being created. It should be of the form `accounts/{account_id}/`.",
+          "description": "Required. Input only. The resource name of the account which will be the primary owner of the account being created. It should be of the form `accounts/{account_id}`.",
           "type": "string"
         },
         "role": {

@@ -321,6 +321,13 @@
                 "medium",
                 "off"
               ],
+              "enumDeprecated": [
+                false,
+                false,
+                true,
+                true,
+                false
+              ],
               "enumDescriptions": [
                 "SafeSearch mode unspecified. (Falls back to engine's configuration.)",
                 "Turn SafeSearch on.",
@@ -609,6 +616,13 @@
                     "medium",
                     "off"
                   ],
+                  "enumDeprecated": [
+                    false,
+                    false,
+                    true,
+                    true,
+                    false
+                  ],
                   "enumDescriptions": [
                     "SafeSearch mode unspecified. (Falls back to engine's configuration.)",
                     "Turn SafeSearch on.",
@@ -674,7 +688,7 @@
       }
     }
   },
-  "revision": "20210921",
+  "revision": "20230705",
   "rootUrl": "https://customsearch.googleapis.com/",
   "schemas": {
     "Promotion": {
@@ -782,7 +796,7 @@
           "description": "Image belonging to a custom search result.",
           "properties": {
             "byteSize": {
-              "description": "The size of the image, in pixels.",
+              "description": "The size of the image, in bytes.",
               "format": "int32",
               "type": "integer"
             },

@@ -1,5 +1,86 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v5.0.1...testing-v5.1.0) (2023-08-17)
+
+
+### Features
+
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+* **testing:** update the API ([9c06a45](https://github.com/googleapis/google-api-nodejs-client/commit/9c06a45890548f296edcf35d6858651a1ad334cd))
+
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v5.0.0...testing-v5.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **testing:** update the API ([fd787ed](https://github.com/googleapis/google-api-nodejs-client/commit/fd787ed8f22684691e8300fefafc1553ca545652))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v4.0.0...testing-v5.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v3.0.0...testing-v4.0.0) (2023-04-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v2.3.0...testing-v3.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+
+## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v2.2.0...testing-v2.3.0) (2023-02-24)
+
+
+### Features
+
+* **testing:** update the API ([f7aa8c8](https://github.com/googleapis/google-api-nodejs-client/commit/f7aa8c877911e020068e6347568392aff48b9403))
+* **testing:** update the API ([2769006](https://github.com/googleapis/google-api-nodejs-client/commit/2769006f49528c830d5396977ed8321035ea58dd))
+
+## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v2.1.0...testing-v2.2.0) (2023-02-10)
+
+
+### Features
+
+* **testing:** update the API ([f7aa8c8](https://github.com/googleapis/google-api-nodejs-client/commit/f7aa8c877911e020068e6347568392aff48b9403))
+
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v2.0.0...testing-v2.1.0) (2022-12-22)
+
+
+### Features
+
+* **testing:** update the API ([2769006](https://github.com/googleapis/google-api-nodejs-client/commit/2769006f49528c830d5396977ed8321035ea58dd))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v1.2.0...testing-v2.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v1.1.4...testing-v1.2.0) (2022-09-21)
 
 

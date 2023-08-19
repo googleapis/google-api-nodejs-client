@@ -557,12 +557,19 @@
       }
     }
   },
-  "revision": "20221021",
+  "revision": "20230807",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
       "id": "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle",
       "properties": {
+        "deprecatedInFavorOf": {
+          "description": "In the event that this policy was deprecated in favor of another policy, the fully qualified namespace(s) of the new policies as they will show in PolicyAPI.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "description": {
           "description": "Description about current life cycle.",
           "type": "string"
@@ -787,6 +794,17 @@
       },
       "type": "object"
     },
+    "GoogleChromePolicyVersionsV1FieldConstraints": {
+      "description": "Information about any range constraints.",
+      "id": "GoogleChromePolicyVersionsV1FieldConstraints",
+      "properties": {
+        "numericRangeConstraint": {
+          "$ref": "GoogleChromePolicyVersionsV1NumericRangeConstraint",
+          "description": "The allowed range for numeric fields."
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest": {
       "description": "Request parameters for inheriting policy value of a specific org unit target from the policy value of its parent org unit.",
       "id": "GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest",
@@ -807,7 +825,11 @@
       "id": "GoogleChromePolicyVersionsV1ListGroupPriorityOrderingRequest",
       "properties": {
         "policyNamespace": {
-          "description": "Required. The namespace of the policy type for the request.",
+          "description": "The namespace of the policy type for the request.",
+          "type": "string"
+        },
+        "policySchema": {
+          "description": "The schema name of the policy for the request.",
           "type": "string"
         },
         "policyTargetKey": {
@@ -831,6 +853,11 @@
         },
         "policyNamespace": {
           "description": "Output only. The namespace of the policy type of the group IDs.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "policySchema": {
+          "description": "Output only. The schema name of the policy for the group IDs.",
           "readOnly": true,
           "type": "string"
         },
@@ -919,6 +946,71 @@
       },
       "type": "object"
     },
+    "GoogleChromePolicyVersionsV1NumericRangeConstraint": {
+      "description": "A constraint on upper and/or lower bounds, with at least one being set.",
+      "id": "GoogleChromePolicyVersionsV1NumericRangeConstraint",
+      "properties": {
+        "maximum": {
+          "description": "Maximum value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minimum": {
+          "description": "Minimum value.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyVersionsV1PolicyModificationError": {
+      "description": "Error information for a modification request of a specific policy on a specific target.",
+      "id": "GoogleChromePolicyVersionsV1PolicyModificationError",
+      "properties": {
+        "errors": {
+          "description": "Output only. The non-field errors related to the modification.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "fieldErrors": {
+          "description": "Output only. The error messages related to the modification.",
+          "items": {
+            "$ref": "GoogleChromePolicyVersionsV1PolicyModificationFieldError"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "policySchema": {
+          "description": "Output only. The specific policy schema modification that had an error.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "policyTargetKey": {
+          "$ref": "GoogleChromePolicyVersionsV1PolicyTargetKey",
+          "description": "Output only. The specific policy target modification that had error.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyVersionsV1PolicyModificationErrorDetails": {
+      "description": "Details of the errors encountered during a policy modification request. This message will be returned as part of the details of a google.rpc.Status returned to the user when there is an error in their request.",
+      "id": "GoogleChromePolicyVersionsV1PolicyModificationErrorDetails",
+      "properties": {
+        "modificationErrors": {
+          "description": "Output only. List of specific policy modifications errors that may have occurred during a modifying request.",
+          "items": {
+            "$ref": "GoogleChromePolicyVersionsV1PolicyModificationError"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromePolicyVersionsV1PolicyModificationFieldError": {
       "description": "Error information for a modification request of a specific field on a specific policy.",
       "id": "GoogleChromePolicyVersionsV1PolicyModificationFieldError",
@@ -965,7 +1057,7 @@
           "description": "Schema definition using proto descriptor."
         },
         "fieldDescriptions": {
-          "description": "Output only. Detailed description of each field that is part of the schema.",
+          "description": "Output only. Detailed description of each field that is part of the schema. Fields are suggested to be displayed by the ordering in this list, not by field number.",
           "items": {
             "$ref": "GoogleChromePolicyVersionsV1PolicySchemaFieldDescription"
           },
@@ -988,10 +1080,6 @@
           "$ref": "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle",
           "description": "Output only. Current lifecycle information.",
           "readOnly": true
-        },
-        "policyApiLifeycle": {
-          "$ref": "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle",
-          "description": "Deprecated field because of typo."
         },
         "policyDescription": {
           "description": "Output only. Description about the policy schema for user consumption.",
@@ -1054,6 +1142,7 @@
           "type": "any"
         },
         "description": {
+          "deprecated": true,
           "description": "Deprecated. Use name and field_description instead. The description for the field.",
           "type": "string"
         },
@@ -1061,6 +1150,11 @@
           "description": "Output only. The name of the field for associated with this description.",
           "readOnly": true,
           "type": "string"
+        },
+        "fieldConstraints": {
+          "$ref": "GoogleChromePolicyVersionsV1FieldConstraints",
+          "description": "Output only. Information on any input constraints associated on the values for the field.",
+          "readOnly": true
         },
         "fieldDependencies": {
           "description": "Output only. Provides a list of fields and values. At least one of the fields must have the corresponding value in order for this field to be allowed to be set.",
@@ -1094,7 +1188,7 @@
           "type": "string"
         },
         "nestedFieldDescriptions": {
-          "description": "Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields.",
+          "description": "Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields. Fields are suggested to be displayed by the ordering in this list, not by field number.",
           "items": {
             "$ref": "GoogleChromePolicyVersionsV1PolicySchemaFieldDescription"
           },
@@ -1120,6 +1214,14 @@
           "description": "Output only. Additional description for this value.",
           "readOnly": true,
           "type": "string"
+        },
+        "fieldDependencies": {
+          "description": "Output only. Field conditions required for this value to be valid.",
+          "items": {
+            "$ref": "GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "value": {
           "description": "Output only. The string represenstation of the value that can be set for the field.",
@@ -1285,12 +1387,12 @@
           "type": "string"
         },
         "policySchemaFilter": {
-          "description": "The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/policy/guides/policy-schemas for details on schema namespaces. For example: Valid: \"chrome.users.*\", \"chrome.users.apps.*\", \"chrome.printers.*\" Invalid: \"*\", \"*.users\", \"chrome.*\", \"chrome.*.apps.*\"",
+          "description": "Required. The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/policy/guides/policy-schemas for details on schema namespaces. For example: Valid: \"chrome.users.*\", \"chrome.users.apps.*\", \"chrome.printers.*\" Invalid: \"*\", \"*.users\", \"chrome.*\", \"chrome.*.apps.*\"",
           "type": "string"
         },
         "policyTargetKey": {
           "$ref": "GoogleChromePolicyVersionsV1PolicyTargetKey",
-          "description": "Required. The key of the target resource on which the policies should be resolved. The target resource must point to an Org Unit."
+          "description": "Required. The key of the target resource on which the policies should be resolved."
         }
       },
       "type": "object"
@@ -1352,7 +1454,11 @@
           "type": "array"
         },
         "policyNamespace": {
-          "description": "Required. The namespace of the policy type for the request.",
+          "description": "The namespace of the policy type for the request.",
+          "type": "string"
+        },
+        "policySchema": {
+          "description": "The schema name of the policy for the request.",
           "type": "string"
         },
         "policyTargetKey": {

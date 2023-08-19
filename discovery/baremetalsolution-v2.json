@@ -176,65 +176,8 @@
             }
           },
           "resources": {
-            "instanceProvisioningSettings": {
-              "methods": {
-                "fetch": {
-                  "description": "Get instance provisioning settings for a given project. This is hidden method used by UI only.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instanceProvisioningSettings:fetch",
-                  "httpMethod": "GET",
-                  "id": "baremetalsolution.projects.locations.instanceProvisioningSettings.fetch",
-                  "parameterOrder": [
-                    "location"
-                  ],
-                  "parameters": {
-                    "location": {
-                      "description": "Required. The parent project and location containing the ProvisioningSettings.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2/{+location}/instanceProvisioningSettings:fetch",
-                  "response": {
-                    "$ref": "FetchInstanceProvisioningSettingsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                }
-              }
-            },
             "instances": {
               "methods": {
-                "create": {
-                  "description": "Create an Instance.",
-                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances",
-                  "httpMethod": "POST",
-                  "id": "baremetalsolution.projects.locations.instances.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The parent project and location.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v2/{+parent}/instances",
-                  "request": {
-                    "$ref": "Instance"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "detachLun": {
                   "description": "Detach LUN from Instance.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:detachLun",
@@ -414,6 +357,34 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "rename": {
+                  "description": "RenameInstance sets a new name for an instance. Use with caution, previous names become immediately invalidated.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:rename",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.instances.rename",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the instance. Format: projects/{project}/locations/{location}/instances/{instance}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:rename",
+                  "request": {
+                    "$ref": "RenameInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Instance"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -631,6 +602,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "rename": {
+                  "description": "RenameNetwork sets a new name for a network. Use with caution, previous names become immediately invalidated.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/networks/{networksId}:rename",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.networks.rename",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the network. Format: projects/{project}/locations/{location}/networks/{network}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/networks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:rename",
+                  "request": {
+                    "$ref": "RenameNetworkRequest"
+                  },
+                  "response": {
+                    "$ref": "Network"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -788,13 +787,41 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "rename": {
+                  "description": "RenameNfsShare sets a new name for an nfsshare. Use with caution, previous names become immediately invalidated.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/nfsShares/{nfsSharesId}:rename",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.nfsShares.rename",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the nfsshare. Format: projects/{project}/locations/{location}/nfsshares/{nfsshare}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/nfsShares/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:rename",
+                  "request": {
+                    "$ref": "RenameNfsShareRequest"
+                  },
+                  "response": {
+                    "$ref": "NfsShare"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
             "operations": {
               "methods": {
                 "get": {
-                  "description": "Get details about an operation. This method used only to work around CCFE lack of passthrough LRO support (b/221498758).",
+                  "description": "Get details about an operation.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "baremetalsolution.projects.locations.operations.get",
@@ -813,6 +840,46 @@
                   "path": "v2/{+name}",
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "osImages": {
+              "methods": {
+                "list": {
+                  "description": "Retrieves the list of OS images which are currently approved.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/osImages",
+                  "httpMethod": "GET",
+                  "id": "baremetalsolution.projects.locations.osImages.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Requested page size. The server might return fewer items than requested. If unspecified, server will pick an appropriate default. Notice that page_size field is not supported and won't be respected in the API request for now, will be updated when pagination is supported.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results from the server.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListProvisioningQuotasRequest.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/osImages",
+                  "response": {
+                    "$ref": "ListOSImagesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1089,6 +1156,34 @@
             },
             "volumes": {
               "methods": {
+                "evict": {
+                  "description": "Skips volume's cooloff and deletes it now. Volume must be in cooloff state.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:evict",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.volumes.evict",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Volume.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:evict",
+                  "request": {
+                    "$ref": "EvictVolumeRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Get details of a single storage volume.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}",
@@ -1189,6 +1284,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "rename": {
+                  "description": "RenameVolume sets a new name for a volume. Use with caution, previous names become immediately invalidated.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:rename",
+                  "httpMethod": "POST",
+                  "id": "baremetalsolution.projects.locations.volumes.rename",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the volume. Format: projects/{project}/locations/{location}/volumes/{volume}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:rename",
+                  "request": {
+                    "$ref": "RenameVolumeRequest"
+                  },
+                  "response": {
+                    "$ref": "Volume"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "resize": {
                   "description": "Emergency Volume resize.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:resize",
@@ -1221,6 +1344,34 @@
               "resources": {
                 "luns": {
                   "methods": {
+                    "evict": {
+                      "description": "Skips lun's cooloff and deletes it now. Lun must be in cooloff state.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/luns/{lunsId}:evict",
+                      "httpMethod": "POST",
+                      "id": "baremetalsolution.projects.locations.volumes.luns.evict",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the lun.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+/luns/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}:evict",
+                      "request": {
+                        "$ref": "EvictLunRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Get details of a single storage logical unit number(LUN).",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/luns/{lunsId}",
@@ -1437,7 +1588,7 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20230814",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1512,6 +1663,12 @@
       "properties": {},
       "type": "object"
     },
+    "DisableInteractiveSerialConsoleResponse": {
+      "description": "Message for response of DisableInteractiveSerialConsole.",
+      "id": "DisableInteractiveSerialConsoleResponse",
+      "properties": {},
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -1524,18 +1681,22 @@
       "properties": {},
       "type": "object"
     },
-    "FetchInstanceProvisioningSettingsResponse": {
-      "description": "Response with all provisioning settings.",
-      "id": "FetchInstanceProvisioningSettingsResponse",
-      "properties": {
-        "images": {
-          "description": "The OS images available.",
-          "items": {
-            "$ref": "OSImage"
-          },
-          "type": "array"
-        }
-      },
+    "EnableInteractiveSerialConsoleResponse": {
+      "description": "Message for response of EnableInteractiveSerialConsole.",
+      "id": "EnableInteractiveSerialConsoleResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "EvictLunRequest": {
+      "description": "Request for skip lun cooloff and delete it.",
+      "id": "EvictLunRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "EvictVolumeRequest": {
+      "description": "Request for skip volume cooloff and delete it.",
+      "id": "EvictVolumeRequest",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudBaremetalsolutionV2LogicalInterface": {
@@ -1543,6 +1704,7 @@
       "id": "GoogleCloudBaremetalsolutionV2LogicalInterface",
       "properties": {
         "interfaceIndex": {
+          "deprecated": true,
           "description": "The index of the logical interface mapping to the index of the hardware bond or nic on the chosen network template. This field is deprecated.",
           "format": "int32",
           "type": "integer"
@@ -1597,6 +1759,11 @@
         "createTime": {
           "description": "Output only. Create a time stamp.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "firmwareVersion": {
+          "description": "Output only. The firmware version for the instance.",
           "readOnly": true,
           "type": "string"
         },
@@ -1705,6 +1872,20 @@
             "$ref": "Volume"
           },
           "type": "array"
+        },
+        "workloadProfile": {
+          "description": "The workload profile for the instance.",
+          "enum": [
+            "WORKLOAD_PROFILE_UNSPECIFIED",
+            "WORKLOAD_PROFILE_GENERIC",
+            "WORKLOAD_PROFILE_HANA"
+          ],
+          "enumDescriptions": [
+            "The workload profile is in an unknown state.",
+            "The workload profile is generic.",
+            "The workload profile is hana."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1719,6 +1900,7 @@
         },
         "clientNetwork": {
           "$ref": "NetworkAddress",
+          "deprecated": true,
           "description": "Client network address. Filled if InstanceConfig.multivlan_config is false."
         },
         "hyperthreading": {
@@ -1769,7 +1951,15 @@
         },
         "privateNetwork": {
           "$ref": "NetworkAddress",
+          "deprecated": true,
           "description": "Private network address, if any. Filled if InstanceConfig.multivlan_config is false."
+        },
+        "sshKeyNames": {
+          "description": "List of names of ssh keys used to provision the instance.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "userNote": {
           "description": "User note field, it can be used by customers to add additional information for the BMS Ops team .",
@@ -1792,6 +1982,7 @@
           "type": "string"
         },
         "instanceType": {
+          "deprecated": true,
           "description": "Instance type. Deprecated: use gcp_service.",
           "type": "string"
         },
@@ -1954,6 +2145,24 @@
       },
       "type": "object"
     },
+    "ListOSImagesResponse": {
+      "description": "Request for getting all available OS images.",
+      "id": "ListOSImagesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "osImages": {
+          "description": "The OS images available.",
+          "items": {
+            "$ref": "OSImage"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListProvisioningQuotasResponse": {
       "description": "Response message for the list of provisioning quotas.",
       "id": "ListProvisioningQuotasResponse",
@@ -2041,7 +2250,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -2119,9 +2328,23 @@
           "description": "Display if this LUN is a boot LUN.",
           "type": "boolean"
         },
+        "expireTime": {
+          "description": "Output only. Time after which LUN will be fully deleted. It is filled only for LUNs in COOL_OFF state.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "id": {
           "description": "An identifier for the LUN, generated by the backend.",
           "type": "string"
+        },
+        "instances": {
+          "description": "Output only. Instances this Lun is attached to.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "multiprotocolType": {
           "description": "The LUN multiprotocol type ensures the characteristics of the LUN are optimized for each operating system.",
@@ -2156,14 +2379,16 @@
             "CREATING",
             "UPDATING",
             "READY",
-            "DELETING"
+            "DELETING",
+            "COOL_OFF"
           ],
           "enumDescriptions": [
             "The LUN is in an unknown state.",
             "The LUN is being created.",
             "The LUN is being updated.",
             "The LUN is ready for use.",
-            "The LUN has been requested to be deleted."
+            "The LUN has been requested to be deleted.",
+            "The LUN is in cool off state. It will be deleted after `expire_time`."
           ],
           "type": "string"
         },
@@ -2641,7 +2866,7 @@
         "supportedNetworkTemplates": {
           "description": "Network templates that can be used with this OS Image.",
           "items": {
-            "$ref": "ServerNetworkTemplate"
+            "type": "string"
           },
           "type": "array"
         }
@@ -2677,52 +2902,8 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "OperationMetadata": {
-      "description": "Represents the metadata from a long-running operation.",
-      "id": "OperationMetadata",
-      "properties": {
-        "apiVersion": {
-          "description": "Output only. API version used with the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "createTime": {
-          "description": "Output only. The time the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. The time the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "requestedCancellation": {
-          "description": "Output only. Identifies whether the user requested the cancellation of the operation. Operations that have been successfully cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "statusMessage": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the action executed by the operation.",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
@@ -2741,6 +2922,7 @@
           "type": "string"
         },
         "email": {
+          "deprecated": true,
           "description": "Email provided to send a confirmation with provisioning config to. Deprecated in favour of email field in request messages.",
           "type": "string"
         },
@@ -2896,9 +3078,59 @@
       },
       "type": "object"
     },
+    "RenameInstanceRequest": {
+      "description": "Message requesting rename of a server.",
+      "id": "RenameInstanceRequest",
+      "properties": {
+        "newInstanceId": {
+          "description": "Required. The new `id` of the instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RenameNetworkRequest": {
+      "description": "Message requesting rename of a server.",
+      "id": "RenameNetworkRequest",
+      "properties": {
+        "newNetworkId": {
+          "description": "Required. The new `id` of the network.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RenameNfsShareRequest": {
+      "description": "Message requesting rename of a server.",
+      "id": "RenameNfsShareRequest",
+      "properties": {
+        "newNfsshareId": {
+          "description": "Required. The new `id` of the nfsshare.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RenameVolumeRequest": {
+      "description": "Message requesting rename of a server.",
+      "id": "RenameVolumeRequest",
+      "properties": {
+        "newVolumeId": {
+          "description": "Required. The new `id` of the volume.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ResetInstanceRequest": {
       "description": "Message requesting to reset a server.",
       "id": "ResetInstanceRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "ResetInstanceResponse": {
+      "description": "Response message from resetting a server.",
+      "id": "ResetInstanceResponse",
       "properties": {},
       "type": "object"
     },
@@ -2995,6 +3227,12 @@
       "properties": {},
       "type": "object"
     },
+    "StartInstanceResponse": {
+      "description": "Response message from starting a server.",
+      "id": "StartInstanceResponse",
+      "properties": {},
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -3025,6 +3263,12 @@
     "StopInstanceRequest": {
       "description": "Message requesting to stop a server.",
       "id": "StopInstanceRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "StopInstanceResponse": {
+      "description": "Response message from stopping a server.",
+      "id": "StopInstanceResponse",
       "properties": {},
       "type": "object"
     },
@@ -3098,6 +3342,10 @@
           "description": "Immutable. The identifier of the attachment within vrf.",
           "type": "string"
         },
+        "interconnectAttachment": {
+          "description": "Optional. The name of the vlan attachment within vrf. This is of the form projects/{project_number}/regions/{region}/interconnectAttachments/{interconnect_attachment}",
+          "type": "string"
+        },
         "pairingKey": {
           "description": "Input only. Pairing key.",
           "type": "string"
@@ -3126,6 +3374,11 @@
       "description": "A storage volume.",
       "id": "Volume",
       "properties": {
+        "attached": {
+          "description": "Output only. Is the Volume attached at at least one instance. This field is a lightweight counterpart of `instances` field. It is filled in List responses as well.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "autoGrownSizeGib": {
           "description": "The size, in GiB, that this storage volume has expanded as a result of an auto grow policy. In the absence of auto-grow, the value is 0.",
           "format": "int64",
@@ -3146,9 +3399,23 @@
           "format": "int64",
           "type": "string"
         },
+        "expireTime": {
+          "description": "Output only. Time after which volume will be fully deleted. It is filled only for volumes in COOLOFF state.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "id": {
           "description": "An identifier for the `Volume`, generated by the backend.",
           "type": "string"
+        },
+        "instances": {
+          "description": "Output only. Instances this Volume is attached to. This field is set only in Get requests.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "labels": {
           "additionalProperties": {
@@ -3245,10 +3512,6 @@
           "$ref": "SnapshotReservationDetail",
           "description": "Details about snapshot space reservation and usage on the storage volume."
         },
-        "snapshotSchedulePolicy": {
-          "description": "The name of the snapshot schedule policy in use for this volume, if any.",
-          "type": "string"
-        },
         "state": {
           "description": "The state of this storage volume.",
           "enum": [
@@ -3256,14 +3519,16 @@
             "CREATING",
             "READY",
             "DELETING",
-            "UPDATING"
+            "UPDATING",
+            "COOL_OFF"
           ],
           "enumDescriptions": [
             "The storage volume is in an unknown state.",
             "The storage volume is being created.",
             "The storage volume is ready for use.",
             "The storage volume has been requested to be deleted.",
-            "The storage volume is being updated."
+            "The storage volume is being updated.",
+            "The storage volume is in cool off state. It will be deleted after `expire_time`."
           ],
           "type": "string"
         },
@@ -3278,6 +3543,20 @@
             "The storage type for this volume is unknown.",
             "The storage type for this volume is SSD.",
             "This storage type for this volume is HDD."
+          ],
+          "type": "string"
+        },
+        "workloadProfile": {
+          "description": "The workload profile for the volume.",
+          "enum": [
+            "WORKLOAD_PROFILE_UNSPECIFIED",
+            "GENERIC",
+            "HANA"
+          ],
+          "enumDescriptions": [
+            "The workload profile is in an unknown state.",
+            "The workload profile is generic.",
+            "The workload profile is hana."
           ],
           "type": "string"
         }

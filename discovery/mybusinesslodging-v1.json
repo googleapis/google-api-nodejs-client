@@ -3,7 +3,7 @@
   "baseUrl": "https://mybusinesslodging.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "My Business Lodging",
-  "description": "The My Business Lodging API enables managing lodging business information on Google.",
+  "description": "The My Business Lodging API enables managing lodging business information on Google. Note - If you have a quota of 0 after enabling the API, please request for GBP API access.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/my-business/",
   "fullyEncodeReservedExpansion": true,
@@ -171,7 +171,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Google identifier for this location in the form: `accounts/{account_id}/locations/{location_id}/lodging`",
+                  "description": "Required. Google identifier for this location in the form: `locations/{location_id}/lodging`",
                   "location": "path",
                   "pattern": "^locations/[^/]+/lodging$",
                   "required": true,
@@ -194,7 +194,7 @@
       }
     }
   },
-  "revision": "20220919",
+  "revision": "20230705",
   "rootUrl": "https://mybusinesslodging.googleapis.com/",
   "schemas": {
     "Accessibility": {
@@ -1203,6 +1203,26 @@
         },
         "kidsClubException": {
           "description": "Kids club exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "kidsFriendly": {
+          "description": "Kids friendly. The hotel has one or more special features for families with children, such as reduced rates, child-sized beds, kids' club, babysitting service, or suitable place to play on premises.",
+          "type": "boolean"
+        },
+        "kidsFriendlyException": {
+          "description": "Kids friendly exception.",
           "enum": [
             "EXCEPTION_UNSPECIFIED",
             "UNDER_CONSTRUCTION",
@@ -4982,6 +5002,7 @@
           "type": "array"
         },
         "leedCertification": {
+          "deprecated": true,
           "description": "LEED certification. Deprecated: this field is no longer populated. LEED certification status is now provided directly by USGBC.",
           "enum": [
             "LEED_CERTIFICATION_UNSPECIFIED",
@@ -5002,6 +5023,7 @@
           "type": "string"
         },
         "leedCertificationException": {
+          "deprecated": true,
           "description": "LEED certification exception. Deprecated: this field is no longer populated. LEED certification status is now provided directly by USGBC.",
           "enum": [
             "EXCEPTION_UNSPECIFIED",

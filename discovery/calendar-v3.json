@@ -1087,6 +1087,12 @@
               "required": true,
               "type": "string"
             },
+            "eventTypes": {
+              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field: \n- [\"default\", \"focusTime\", \"outOfOffice\"] This value is the default.\n\nIf you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the \"workingLocation\" event type: \n- [\"default\", \"focusTime\", \"outOfOffice\", \"workingLocation\"] \n- [\"workingLocation\"] Additional combinations of these four event types will be made available in later releases. Developer Preview.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
             "iCalUID": {
               "description": "Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.",
               "location": "query",
@@ -1158,7 +1164,7 @@
               "type": "boolean"
             },
             "syncToken": {
-              "description": "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.\nThere are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.\n\nThese are: \n- iCalUID \n- orderBy \n- privateExtendedProperty \n- q \n- sharedExtendedProperty \n- timeMin \n- timeMax \n- updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.\nLearn more about incremental synchronization.\nOptional. The default is to return all entries.",
+              "description": "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.\nThere are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.\n\nThese are: \n- iCalUID \n- orderBy \n- privateExtendedProperty \n- q \n- sharedExtendedProperty \n- timeMin \n- timeMax \n- updatedMin All other query parameters should be the same as for the initial synchronization to avoid undefined behavior. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.\nLearn more about incremental synchronization.\nOptional. The default is to return all entries.",
               "location": "query",
               "type": "string"
             },
@@ -1484,6 +1490,12 @@
               "required": true,
               "type": "string"
             },
+            "eventTypes": {
+              "description": "Event types to return. Optional. Possible values are: \n- \"default\" \n- \"focusTime\" \n- \"outOfOffice\"This parameter can be repeated multiple times to return events of different types. Currently, this is the only allowed value for this field: \n- [\"default\", \"focusTime\", \"outOfOffice\"] This value is the default.\n\nIf you're enrolled in the Working Location developer preview program, in addition to the default value above you can also set the \"workingLocation\" event type: \n- [\"default\", \"focusTime\", \"outOfOffice\", \"workingLocation\"] \n- [\"workingLocation\"] Additional combinations of these four event types will be made available in later releases. Developer Preview.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
             "iCalUID": {
               "description": "Specifies an event ID in the iCalendar format to be provided in the response. Optional. Use this if you want to search for an event by its iCalendar ID.",
               "location": "query",
@@ -1555,7 +1567,7 @@
               "type": "boolean"
             },
             "syncToken": {
-              "description": "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.\nThere are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.\n\nThese are: \n- iCalUID \n- orderBy \n- privateExtendedProperty \n- q \n- sharedExtendedProperty \n- timeMin \n- timeMax \n- updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.\nLearn more about incremental synchronization.\nOptional. The default is to return all entries.",
+              "description": "Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.\nThere are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.\n\nThese are: \n- iCalUID \n- orderBy \n- privateExtendedProperty \n- q \n- sharedExtendedProperty \n- timeMin \n- timeMax \n- updatedMin All other query parameters should be the same as for the initial synchronization to avoid undefined behavior. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.\nLearn more about incremental synchronization.\nOptional. The default is to return all entries.",
               "location": "query",
               "type": "string"
             },
@@ -1723,7 +1735,7 @@
       }
     }
   },
-  "revision": "20220812",
+  "revision": "20230802",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2380,7 +2392,7 @@
         },
         "eventType": {
           "default": "default",
-          "description": "Specific type of the event. Read-only. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event. \n- \"focusTime\" - A focus-time event.",
+          "description": "Specific type of the event. Read-only. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event. \n- \"focusTime\" - A focus-time event. \n- \"workingLocation\" - A working location event. Developer Preview.",
           "type": "string"
         },
         "extendedProperties": {
@@ -2611,6 +2623,10 @@
           "default": "default",
           "description": "Visibility of the event. Optional. Possible values are:  \n- \"default\" - Uses the default visibility for events on the calendar. This is the default value. \n- \"public\" - The event is public and event details are visible to all readers of the calendar. \n- \"private\" - The event is private and only event attendees may view event details. \n- \"confidential\" - The event is private. This value is provided for compatibility reasons.",
           "type": "string"
+        },
+        "workingLocationProperties": {
+          "$ref": "EventWorkingLocationProperties",
+          "description": "Working Location event data. Developer Preview."
         }
       },
       "type": "object"
@@ -2723,6 +2739,56 @@
           "description": "Number of minutes before the start of the event when the reminder should trigger. Valid values are between 0 and 40320 (4 weeks in minutes).\nRequired when adding a reminder.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EventWorkingLocationProperties": {
+      "id": "EventWorkingLocationProperties",
+      "properties": {
+        "customLocation": {
+          "description": "If present, specifies that the user is working from a custom location.",
+          "properties": {
+            "label": {
+              "description": "An optional extra label for additional information.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "homeOffice": {
+          "description": "If present, specifies that the user is working at home.",
+          "type": "any"
+        },
+        "officeLocation": {
+          "description": "If present, specifies that the user is working from an office.",
+          "properties": {
+            "buildingId": {
+              "description": "An optional building identifier. This should reference a building ID in the organization's Resources database.",
+              "type": "string"
+            },
+            "deskId": {
+              "description": "An optional arbitrary desk identifier.",
+              "type": "string"
+            },
+            "floorId": {
+              "description": "An optional arbitrary floor identifier.",
+              "type": "string"
+            },
+            "floorSectionId": {
+              "description": "An optional arbitrary floor section identifier.",
+              "type": "string"
+            },
+            "label": {
+              "description": "An optional extra label for additional information.",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": {
+          "description": "Indicates what kind of location this is. Any details are specified in a sub-field of the specified name (but which may be missing if empty). Any other fields are ignored.",
+          "type": "string"
         }
       },
       "type": "object"

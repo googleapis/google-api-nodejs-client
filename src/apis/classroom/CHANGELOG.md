@@ -1,5 +1,102 @@
 # Changelog
 
+## [4.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v4.0.1...classroom-v4.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([7603333](https://github.com/googleapis/google-api-nodejs-client/commit/760333357550599a3059ed2d24378a2e0e5e324f))
+
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v4.0.0...classroom-v4.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([7603333](https://github.com/googleapis/google-api-nodejs-client/commit/760333357550599a3059ed2d24378a2e0e5e324f))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v3.0.0...classroom-v4.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([7258c0c](https://github.com/googleapis/google-api-nodejs-client/commit/7258c0c8ef4b536b5a7a8b8bfc45830a012bb550))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v2.0.0...classroom-v3.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([7258c0c](https://github.com/googleapis/google-api-nodejs-client/commit/7258c0c8ef4b536b5a7a8b8bfc45830a012bb550))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v1.0.4...classroom-v2.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v1.0.3...classroom-v1.0.4) (2023-03-22)
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([7258c0c](https://github.com/googleapis/google-api-nodejs-client/commit/7258c0c8ef4b536b5a7a8b8bfc45830a012bb550))
+
+## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v1.0.2...classroom-v1.0.3) (2023-02-24)
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([55e7f4b](https://github.com/googleapis/google-api-nodejs-client/commit/55e7f4bb47fa2fb5da46947ff108204b63aa4fc8))
+* **classroom:** update the API ([673688a](https://github.com/googleapis/google-api-nodejs-client/commit/673688a767076104a17891b2497f7aee0108200e))
+
+## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v1.0.1...classroom-v1.0.2) (2023-02-10)
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([55e7f4b](https://github.com/googleapis/google-api-nodejs-client/commit/55e7f4bb47fa2fb5da46947ff108204b63aa4fc8))
+
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v1.0.0...classroom-v1.0.1) (2022-12-22)
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([673688a](https://github.com/googleapis/google-api-nodejs-client/commit/673688a767076104a17891b2497f7aee0108200e))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v0.4.5...classroom-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.4.5](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v0.4.4...classroom-v0.4.5) (2022-09-21)
 
 

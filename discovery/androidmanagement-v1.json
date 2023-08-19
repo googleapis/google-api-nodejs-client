@@ -108,13 +108,14 @@
     "enterprises": {
       "methods": {
         "create": {
-          "description": "Creates an enterprise. This is the last step in the enterprise signup flow.",
+          "description": "Creates an enterprise. This is the last step in the enterprise signup flow. See also: SigninDetail",
           "flatPath": "v1/enterprises",
           "httpMethod": "POST",
           "id": "androidmanagement.enterprises.create",
           "parameterOrder": [],
           "parameters": {
             "agreementAccepted": {
+              "deprecated": true,
               "description": "Whether the enterprise admin has seen and agreed to the managed Google Play Agreement (https://www.android.com/enterprise/terms/). Do not set this field for any customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises). Set this to field to true for all EMM-managed enterprises (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).",
               "location": "query",
               "type": "boolean"
@@ -242,7 +243,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an enterprise.",
+          "description": "Updates an enterprise. See also: SigninDetail",
           "flatPath": "v1/enterprises/{enterprisesId}",
           "httpMethod": "PATCH",
           "id": "androidmanagement.enterprises.patch",
@@ -562,7 +563,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/*/operations. To override the binding, API services can add a binding such as \"/v1/{name=users/*}/operations\" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.",
                   "flatPath": "v1/enterprises/{enterprisesId}/devices/{devicesId}/operations",
                   "httpMethod": "GET",
                   "id": "androidmanagement.enterprises.devices.operations.list",
@@ -1034,6 +1035,35 @@
         }
       }
     },
+    "provisioningInfo": {
+      "methods": {
+        "get": {
+          "description": "Get the device provisioning information by the identifier provided in the sign-in url.",
+          "flatPath": "v1/provisioningInfo/{provisioningInfoId}",
+          "httpMethod": "GET",
+          "id": "androidmanagement.provisioningInfo.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The identifier that Android Device Policy passes to the 3P sign-in page in the form of provisioningInfo/{provisioning_info}.",
+              "location": "path",
+              "pattern": "^provisioningInfo/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "ProvisioningInfo"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidmanagement"
+          ]
+        }
+      }
+    },
     "signupUrls": {
       "methods": {
         "create": {
@@ -1065,7 +1095,7 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20230807",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1173,6 +1203,7 @@
       "type": "object"
     },
     "ApiLevelCondition": {
+      "deprecated": true,
       "description": "A compliance rule condition which is satisfied if the Android Framework API level on the device doesn't meet a minimum requirement. There can only be one rule with this type of condition per policy.",
       "id": "ApiLevelCondition",
       "properties": {
@@ -1503,7 +1534,7 @@
       "type": "object"
     },
     "ApplicationPolicy": {
-      "description": "Policy for an individual app.",
+      "description": "Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled.",
       "id": "ApplicationPolicy",
       "properties": {
         "accessibleTrackIds": {
@@ -1633,7 +1664,8 @@
           "type": "string"
         },
         "lockTaskAllowed": {
-          "description": "Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to to configure a dedicated device.",
+          "deprecated": true,
+          "description": "Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to configure a dedicated device.",
           "type": "boolean"
         },
         "managedConfiguration": {
@@ -1663,6 +1695,20 @@
             "$ref": "PermissionGrant"
           },
           "type": "array"
+        },
+        "workProfileWidgets": {
+          "description": "Specifies whether the app installed in the work profile is allowed to add widgets to the home screen.",
+          "enum": [
+            "WORK_PROFILE_WIDGETS_UNSPECIFIED",
+            "WORK_PROFILE_WIDGETS_ALLOWED",
+            "WORK_PROFILE_WIDGETS_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to work_profile_widgets_default",
+            "Work profile widgets are allowed. This means the application will be able to add widgets to the home screen.",
+            "Work profile widgets are disallowed. This means the application will not be able to add widgets to the home screen."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1692,7 +1738,7 @@
           "type": "string"
         },
         "events": {
-          "description": "List of app events. The most recent 20 events are stored in the list.",
+          "description": "The list of app events which have occurred in the last 30 hours.",
           "items": {
             "$ref": "ApplicationEvent"
           },
@@ -1735,6 +1781,20 @@
             "App state is unspecified",
             "App was removed from the device",
             "App is installed on the device"
+          ],
+          "type": "string"
+        },
+        "userFacingType": {
+          "description": "Whether the app is user facing.",
+          "enum": [
+            "USER_FACING_TYPE_UNSPECIFIED",
+            "NOT_USER_FACING",
+            "USER_FACING"
+          ],
+          "enumDescriptions": [
+            "App user facing type is unspecified.",
+            "App is not user facing.",
+            "App is user facing."
           ],
           "type": "string"
         },
@@ -1981,6 +2041,24 @@
           },
           "type": "array"
         },
+        "startLostModeParams": {
+          "$ref": "StartLostModeParams",
+          "description": "Parameters for the START_LOST_MODE command to put the device into lost mode. See StartLostModeParams. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to START_LOST_MODE. It is also acceptable to explicitly set type to START_LOST_MODE."
+        },
+        "startLostModeStatus": {
+          "$ref": "StartLostModeStatus",
+          "description": "Output only. Status of the START_LOST_MODE command to put the device into lost mode. See StartLostModeStatus.",
+          "readOnly": true
+        },
+        "stopLostModeParams": {
+          "$ref": "StopLostModeParams",
+          "description": "Parameters for the STOP_LOST_MODE command to take the device out of lost mode. See StopLostModeParams. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to STOP_LOST_MODE. It is also acceptable to explicitly set type to STOP_LOST_MODE."
+        },
+        "stopLostModeStatus": {
+          "$ref": "StopLostModeStatus",
+          "description": "Output only. Status of the STOP_LOST_MODE command to take the device out of lost mode. See StopLostModeStatus.",
+          "readOnly": true
+        },
         "type": {
           "description": "The type of the command.",
           "enum": [
@@ -1989,7 +2067,9 @@
             "RESET_PASSWORD",
             "REBOOT",
             "RELINQUISH_OWNERSHIP",
-            "CLEAR_APP_DATA"
+            "CLEAR_APP_DATA",
+            "START_LOST_MODE",
+            "STOP_LOST_MODE"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
@@ -1997,7 +2077,9 @@
             "Reset the user's password.",
             "Reboot the device. Only supported on fully managed devices running Android 7.0 (API level 24) or higher.",
             "Removes the work profile and all policies from a company-owned Android 8.0+ device, relinquishing the device for personal use. Apps and data associated with the personal profile(s) are preserved. The device will be deleted from the server after it acknowledges the command.",
-            "Clears the application data of specified apps. This is supported on Android 9 and above. Note that an application can store data outside of its application data, for example in external storage or in a user dictionary. See also clear_apps_data_params."
+            "Clears the application data of specified apps. This is supported on Android 9 and above. Note that an application can store data outside of its application data, for example in external storage or in a user dictionary. See also clear_apps_data_params.",
+            "Puts the device into lost mode. Only supported on fully managed devices or organization-owned devices with a managed profile. See also start_lost_mode_params.",
+            "Takes the device out of lost mode. Only supported on fully managed devices or organization-owned devices with a managed profile. See also stop_lost_mode_params."
           ],
           "type": "string"
         },
@@ -2030,6 +2112,7 @@
       "type": "object"
     },
     "ComplianceRule": {
+      "deprecated": true,
       "description": "A rule declaring which mitigating actions to take when a device is not compliant with its policy. For every rule, there is always an implicit mitigating action to set policy_compliant to false for the Device resource, and display a message on the device indicating that the device is not compliant with its policy. Other mitigating actions may optionally be taken as well, depending on the field values in the rule.",
       "id": "ComplianceRule",
       "properties": {
@@ -2133,7 +2216,7 @@
       "type": "object"
     },
     "CrossProfilePolicies": {
-      "description": "Cross-profile policies applied on the device.",
+      "description": "Controls the data from the work profile that can be accessed from the personal profile and vice versa. A nonComplianceDetail with MANAGEMENT_MODE is reported if the device does not have a work profile.",
       "id": "CrossProfilePolicies",
       "properties": {
         "crossProfileCopyPaste": {
@@ -2177,6 +2260,20 @@
             "Unspecified. Defaults to SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED.",
             "Prevents work profile contacts from appearing in personal profile contact searches and incoming calls",
             "Default. Allows work profile contacts to appear in personal profile contact searches and incoming calls"
+          ],
+          "type": "string"
+        },
+        "workProfileWidgetsDefault": {
+          "description": "Specifies the default behaviour for work profile widgets. If the policy does not specify work_profile_widgets for a specific application, it will behave according to the value specified here.",
+          "enum": [
+            "WORK_PROFILE_WIDGETS_DEFAULT_UNSPECIFIED",
+            "WORK_PROFILE_WIDGETS_DEFAULT_ALLOWED",
+            "WORK_PROFILE_WIDGETS_DEFAULT_DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to WORK_PROFILE_WIDGETS_DEFAULT_DISALLOWED.",
+            "Work profile widgets are allowed by default. This means that if the policy does not specify work_profile_widgets as WORK_PROFILE_WIDGETS_DISALLOWED for the application, it will be able to add widgets to the home screen.",
+            "Work profile widgets are disallowed by default. This means that if the policy does not specify work_profile_widgets as WORK_PROFILE_WIDGETS_ALLOWED for the application, it will be unable to add widgets to the home screen."
           ],
           "type": "string"
         }
@@ -2255,14 +2352,16 @@
             "ACTIVE",
             "DISABLED",
             "DELETED",
-            "PROVISIONING"
+            "PROVISIONING",
+            "LOST"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
             "The device is active.",
             "The device is disabled.",
             "The device was deleted. This state is never returned by an API call, but is used in the final status report when the device acknowledges the deletion. If the device is deleted via the API call, this state is published to Pub/Sub. If the user deletes the work profile or resets the device, the device state will remain unknown to the server.",
-            "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied."
+            "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied.",
+            "The device is lost. This state is only possible on organization-owned devices."
           ],
           "type": "string"
         },
@@ -2310,6 +2409,7 @@
           "type": "array"
         },
         "lastPolicyComplianceReportTime": {
+          "deprecated": true,
           "description": "Deprecated.",
           "format": "google-datetime",
           "type": "string"
@@ -2415,14 +2515,16 @@
             "ACTIVE",
             "DISABLED",
             "DELETED",
-            "PROVISIONING"
+            "PROVISIONING",
+            "LOST"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
             "The device is active.",
             "The device is disabled.",
             "The device was deleted. This state is never returned by an API call, but is used in the final status report when the device acknowledges the deletion. If the device is deleted via the API call, this state is published to Pub/Sub. If the user deletes the work profile or resets the device, the device state will remain unknown to the server.",
-            "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied."
+            "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied.",
+            "The device is lost. This state is only possible on organization-owned devices."
           ],
           "type": "string"
         },
@@ -2439,6 +2541,112 @@
         },
         "userName": {
           "description": "The resource name of the user that owns this device in the form enterprises/{enterpriseId}/users/{userId}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeviceConnectivityManagement": {
+      "description": "Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.",
+      "id": "DeviceConnectivityManagement",
+      "properties": {
+        "configureWifi": {
+          "description": "Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.",
+          "enum": [
+            "CONFIGURE_WIFI_UNSPECIFIED",
+            "ALLOW_CONFIGURING_WIFI",
+            "DISALLOW_ADD_WIFI_CONFIG",
+            "DISALLOW_CONFIGURING_WIFI"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ALLOW_CONFIGURING_WIFI unless wifiConfigDisabled is set to true. If wifiConfigDisabled is set to true, this is equivalent to DISALLOW_CONFIGURING_WIFI.",
+            "The user is allowed to configure Wi-Fi. wifiConfigDisabled is ignored.",
+            "Adding new Wi-Fi configurations is disallowed. The user is only able to switch between already configured networks. Supported on Android 13 and above, on fully managed devices and work profiles on company-owned devices. If the setting is not supported, ALLOW_CONFIGURING_WIFI is set. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13. wifiConfigDisabled is ignored.",
+            "Disallows configuring Wi-Fi networks. The setting wifiConfigDisabled is ignored when this value is set. Supported on fully managed devices and work profile on company-owned devices, on all supported API levels. For fully managed devices, setting this removes all configured networks and retains only the networks configured using openNetworkConfiguration policy. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled)."
+          ],
+          "type": "string"
+        },
+        "tetheringSettings": {
+          "description": "Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.",
+          "enum": [
+            "TETHERING_SETTINGS_UNSPECIFIED",
+            "ALLOW_ALL_TETHERING",
+            "DISALLOW_WIFI_TETHERING",
+            "DISALLOW_ALL_TETHERING"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ALLOW_ALL_TETHERING unless tetheringConfigDisabled is set to true. If tetheringConfigDisabled is set to true, this is equivalent to DISALLOW_ALL_TETHERING.",
+            "Allows configuration and use of all forms of tethering. tetheringConfigDisabled is ignored.",
+            "Disallows the user from using Wi-Fi tethering. Supported on company owned devices running Android 13 and above. If the setting is not supported, ALLOW_ALL_TETHERING will be set. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13. tetheringConfigDisabled is ignored.",
+            "Disallows all forms of tethering. Supported on fully managed devices and work profile on company-owned devices, on all supported android versions. The setting tetheringConfigDisabled is ignored."
+          ],
+          "type": "string"
+        },
+        "usbDataAccess": {
+          "description": "Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.",
+          "enum": [
+            "USB_DATA_ACCESS_UNSPECIFIED",
+            "ALLOW_USB_DATA_TRANSFER",
+            "DISALLOW_USB_FILE_TRANSFER",
+            "DISALLOW_USB_DATA_TRANSFER"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ALLOW_USB_DATA_TRANSFER, unless usbFileTransferDisabled is set to true. If usbFileTransferDisabled is set to true, this is equivalent to DISALLOW_USB_FILE_TRANSFER.",
+            "All types of USB data transfers are allowed. usbFileTransferDisabled is ignored.",
+            "Transferring files over USB is disallowed. Other types of USB data connections, such as mouse and keyboard connection, are allowed. usbFileTransferDisabled is ignored.",
+            "When set, all types of USB data transfers are prohibited. Supported for devices running Android 12 or above with USB HAL 1.3 or above. If the setting is not supported, DISALLOW_USB_FILE_TRANSFER will be set. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 12. A nonComplianceDetail with DEVICE_INCOMPATIBLE is reported if the device does not have USB HAL 1.3 or above. usbFileTransferDisabled is ignored."
+          ],
+          "type": "string"
+        },
+        "wifiDirectSettings": {
+          "description": "Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.",
+          "enum": [
+            "WIFI_DIRECT_SETTINGS_UNSPECIFIED",
+            "ALLOW_WIFI_DIRECT",
+            "DISALLOW_WIFI_DIRECT"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ALLOW_WIFI_DIRECT",
+            "The user is allowed to use Wi-Fi direct.",
+            "The user is not allowed to use Wi-Fi direct. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeviceRadioState": {
+      "description": "Controls for device radio settings.",
+      "id": "DeviceRadioState",
+      "properties": {
+        "airplaneModeState": {
+          "description": "Controls whether airplane mode can be toggled by the user or not",
+          "enum": [
+            "AIRPLANE_MODE_STATE_UNSPECIFIED",
+            "AIRPLANE_MODE_USER_CHOICE",
+            "AIRPLANE_MODE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to AIRPLANE_MODE_USER_CHOICE",
+            "The user is allowed to toggle airplane mode on or off.",
+            "Airplane mode is disabled. The user is not allowed to toggle airplane mode on. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 9."
+          ],
+          "type": "string"
+        },
+        "wifiState": {
+          "description": "Controls current state of Wi-Fi and if user can change its state.",
+          "enum": [
+            "WIFI_STATE_UNSPECIFIED",
+            "WIFI_STATE_USER_CHOICE",
+            "WIFI_ENABLED",
+            "WIFI_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to WIFI_STATE_USER_CHOICE",
+            "User is allowed to enable/disable Wi-Fi.",
+            "Wi-Fi is on and the user is not allowed to turn it off. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13.",
+            "Wi-Fi is off and the user is not allowed to turn it on. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 13."
+          ],
           "type": "string"
         }
       },
@@ -2584,6 +2792,12 @@
       "properties": {},
       "type": "object"
     },
+    "EnrollmentCompleteEvent": {
+      "description": "Represents that the device has completed enrollment. User should be in the launcher at this point, device at this point will be compliant and all setup steps have been completed. Intentionally empty.",
+      "id": "EnrollmentCompleteEvent",
+      "properties": {},
+      "type": "object"
+    },
     "EnrollmentToken": {
       "description": "An enrollment token.",
       "id": "EnrollmentToken",
@@ -2648,6 +2862,7 @@
       "id": "Enterprise",
       "properties": {
         "appAutoApprovalEnabled": {
+          "deprecated": true,
           "description": "Deprecated and unused.",
           "type": "boolean"
         },
@@ -2666,6 +2881,14 @@
               "COMMAND",
               "USAGE_LOGS"
             ],
+            "enumDeprecated": [
+              false,
+              false,
+              true,
+              false,
+              false,
+              false
+            ],
             "enumDescriptions": [
               "This value is ignored.",
               "A notification sent when a device enrolls.",
@@ -2679,7 +2902,7 @@
           "type": "array"
         },
         "enterpriseDisplayName": {
-          "description": "The name of the enterprise displayed to users.",
+          "description": "The name of the enterprise displayed to users. This field has a maximum length of 100 characters.",
           "type": "string"
         },
         "logo": {
@@ -2717,7 +2940,7 @@
       "type": "object"
     },
     "ExtensionConfig": {
-      "description": "Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline.",
+      "description": "Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 13 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command (https://developer.android.com/management/reference/rest/v1/enterprises.devices/issueCommand#CommandType) on extension apps if needed for Android 13 and above.",
       "id": "ExtensionConfig",
       "properties": {
         "notificationReceiver": {
@@ -3298,6 +3521,23 @@
       },
       "type": "object"
     },
+    "Location": {
+      "description": "The device location containing the latitude and longitude.",
+      "id": "Location",
+      "properties": {
+        "latitude": {
+          "description": "The latitude position of the location",
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "description": "The longitude position of the location",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "LogBufferSizeCriticalEvent": {
       "description": "The usageLog buffer on the device has reached 90% of its capacity, therefore older events may be dropped. Intentionally empty.",
       "id": "LogBufferSizeCriticalEvent",
@@ -3313,6 +3553,28 @@
     "LoggingStoppedEvent": {
       "description": "usageLog policy has been disabled. Intentionally empty.",
       "id": "LoggingStoppedEvent",
+      "properties": {},
+      "type": "object"
+    },
+    "LostModeLocationEvent": {
+      "description": "A lost mode event containing the device location and battery level as a percentage.",
+      "id": "LostModeLocationEvent",
+      "properties": {
+        "batteryLevel": {
+          "description": "The battery level as a number between 0 and 100 inclusive",
+          "format": "int32",
+          "type": "integer"
+        },
+        "location": {
+          "$ref": "Location",
+          "description": "The device location"
+        }
+      },
+      "type": "object"
+    },
+    "LostModeOutgoingPhoneCallEvent": {
+      "description": "An event indicating an outgoing phone call has been made when a device is in lost mode. Intentionally empty.",
+      "id": "LostModeOutgoingPhoneCallEvent",
       "properties": {},
       "type": "object"
     },
@@ -3509,6 +3771,7 @@
           "type": "string"
         },
         "networkOperatorName": {
+          "deprecated": true,
           "description": "Alphabetic name of current registered operator. For example, Vodafone.",
           "type": "string"
         },
@@ -3581,7 +3844,8 @@
             "APP_INSTALLED",
             "PENDING",
             "APP_INCOMPATIBLE",
-            "APP_NOT_UPDATED"
+            "APP_NOT_UPDATED",
+            "DEVICE_INCOMPATIBLE"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
@@ -3594,7 +3858,8 @@
             "A blocked app is installed.",
             "The setting hasn't been applied at the time of the report, but is expected to be applied shortly.",
             "The setting can't be applied to the app because the app doesn't support it, for example because its target SDK version is not high enough.",
-            "The app is installed, but it hasn't been updated to the minimum version code specified by policy."
+            "The app is installed, but it hasn't been updated to the minimum version code specified by policy.",
+            "The device is incompatible with the policy requirements."
           ],
           "type": "string"
         },
@@ -3618,7 +3883,8 @@
             "PASSWORD_POLICIES_PASSWORD_EXPIRED",
             "PASSWORD_POLICIES_PASSWORD_NOT_SUFFICIENT",
             "ONC_WIFI_INVALID_VALUE",
-            "ONC_WIFI_API_LEVEL"
+            "ONC_WIFI_API_LEVEL",
+            "ONC_WIFI_INVALID_ENTERPRISE_CONFIG"
           ],
           "enumDescriptions": [
             "Specific non-compliance reason is not specified. Fields in specific_non_compliance_context are not set.",
@@ -3626,7 +3892,8 @@
             "The device or profile password has expired. passwordPoliciesContext is set. nonComplianceReason is set to USER_ACTION.",
             "The device password does not satisfy password requirements. passwordPoliciesContext is set. nonComplianceReason is set to USER_ACTION.",
             "There is an incorrect value in ONC Wi-Fi configuration. fieldPath specifies which field value is incorrect. oncWifiContext is set. nonComplianceReason is set to INVALID_VALUE.",
-            "The ONC Wi-Fi setting is not supported in the API level of the Android version running on the device. fieldPath specifies which field value is not supported. oncWifiContext is set. nonComplianceReason is set to API_LEVEL."
+            "The ONC Wi-Fi setting is not supported in the API level of the Android version running on the device. fieldPath specifies which field value is not supported. oncWifiContext is set. nonComplianceReason is set to API_LEVEL.",
+            "The enterprise Wi-Fi network is missing either the root CA or domain name. nonComplianceReason is set to INVALID_VALUE."
           ],
           "type": "string"
         }
@@ -3634,6 +3901,7 @@
       "type": "object"
     },
     "NonComplianceDetailCondition": {
+      "deprecated": true,
       "description": "A compliance rule condition which is satisfied if there exists any matching NonComplianceDetail for the device. A NonComplianceDetail matches a NonComplianceDetailCondition if all the fields which are set within the NonComplianceDetailCondition match the corresponding NonComplianceDetail fields.",
       "id": "NonComplianceDetailCondition",
       "properties": {
@@ -3650,7 +3918,8 @@
             "APP_INSTALLED",
             "PENDING",
             "APP_INCOMPATIBLE",
-            "APP_NOT_UPDATED"
+            "APP_NOT_UPDATED",
+            "DEVICE_INCOMPATIBLE"
           ],
           "enumDescriptions": [
             "This value is disallowed.",
@@ -3663,7 +3932,8 @@
             "A blocked app is installed.",
             "The setting hasn't been applied at the time of the report, but is expected to be applied shortly.",
             "The setting can't be applied to the app because the app doesn't support it, for example because its target SDK version is not high enough.",
-            "The app is installed, but it hasn't been updated to the minimum version code specified by policy."
+            "The app is installed, but it hasn't been updated to the minimum version code specified by policy.",
+            "The device is incompatible with the policy requirements."
           ],
           "type": "string"
         },
@@ -3736,7 +4006,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.",
           "type": "object"
         }
       },
@@ -4088,6 +4358,12 @@
             "BLOCKLIST",
             "ALLOWLIST"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Unspecified. Defaults to BLOCKLIST.",
             "All Play Store apps are available for installation in the personal profile, except those whose installType is BLOCKED in personalApplications.",
@@ -4148,7 +4424,7 @@
           "type": "array"
         },
         "appAutoUpdatePolicy": {
-          "description": "Deprecated. Use autoUpdateMode instead.When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, this field has no effect.The app auto update policy, which controls when automatic app updates can be applied.",
+          "description": "Recommended alternative: autoUpdateMode which is set per app, provides greater flexibility around update frequency.When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, this field has no effect.The app auto update policy, which controls when automatic app updates can be applied.",
           "enum": [
             "APP_AUTO_UPDATE_POLICY_UNSPECIFIED",
             "CHOICE_TO_THE_USER",
@@ -4187,10 +4463,12 @@
           "type": "string"
         },
         "autoTimeRequired": {
+          "deprecated": true,
           "description": "Whether auto time is required, which prevents the user from manually setting the date and time. If autoDateAndTimeZone is set, this field is ignored.",
           "type": "boolean"
         },
         "blockApplicationsEnabled": {
+          "deprecated": true,
           "description": "Whether applications other than the ones configured in applications are blocked from being installed. When set, applications that were installed under a previous policy but no longer appear in the policy are automatically uninstalled.",
           "type": "boolean"
         },
@@ -4223,6 +4501,7 @@
           "type": "string"
         },
         "cameraDisabled": {
+          "deprecated": true,
           "description": "If camera_access is set to any value other than CAMERA_ACCESS_UNSPECIFIED, this has no effect. Otherwise this field controls whether cameras are disabled: If true, all cameras are disabled, otherwise they are available. For fully managed devices this field applies for all apps on the device. For work profiles, this field applies only to apps in the work profile, and the camera access of apps outside the work profile is unaffected.",
           "type": "boolean"
         },
@@ -4238,6 +4517,7 @@
           "type": "array"
         },
         "complianceRules": {
+          "deprecated": true,
           "description": "Rules declaring which mitigating actions to take when a device is not compliant with its policy. When the conditions for multiple rules are satisfied, all of the mitigating actions for the rules are taken. There is a maximum limit of 100 rules. Use policy enforcement rules instead.",
           "items": {
             "$ref": "ComplianceRule"
@@ -4261,6 +4541,7 @@
           "type": "boolean"
         },
         "debuggingFeaturesAllowed": {
+          "deprecated": true,
           "description": "Whether the user is allowed to enable debugging features.",
           "type": "boolean"
         },
@@ -4280,9 +4561,17 @@
           ],
           "type": "string"
         },
+        "deviceConnectivityManagement": {
+          "$ref": "DeviceConnectivityManagement",
+          "description": "Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more."
+        },
         "deviceOwnerLockScreenInfo": {
           "$ref": "UserFacingMessage",
           "description": "The device owner information to be shown on the lock screen."
+        },
+        "deviceRadioState": {
+          "$ref": "DeviceRadioState",
+          "description": "Covers controls for radio state such as Wi-Fi, bluetooth, and more."
         },
         "encryptionPolicy": {
           "description": "Whether encryption is enabled",
@@ -4299,6 +4588,7 @@
           "type": "string"
         },
         "ensureVerifyAppsEnabled": {
+          "deprecated": true,
           "description": "Whether app verification is force-enabled.",
           "type": "boolean"
         },
@@ -4322,6 +4612,7 @@
           "type": "boolean"
         },
         "installUnknownSourcesAllowed": {
+          "deprecated": true,
           "description": "This field has no effect.",
           "type": "boolean"
         },
@@ -4382,6 +4673,16 @@
             "LOCATION_ENFORCED",
             "LOCATION_DISABLED"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Defaults to LOCATION_USER_CHOICE.",
             "On Android 8 and below, all location detection methods are enabled, including GPS, networks, and other sensors. On Android 9 and above, this is equivalent to LOCATION_ENFORCED.",
@@ -4441,7 +4742,7 @@
           "type": "string"
         },
         "networkEscapeHatchEnabled": {
-          "description": "Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.Note: Setting wifiConfigDisabled to true will override this setting under specific circumstances. Please see wifiConfigDisabled for further details.",
+          "description": "Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.Note: Setting wifiConfigDisabled to true will override this setting under specific circumstances. Please see wifiConfigDisabled for further details. Setting configureWifi to DISALLOW_CONFIGURING_WIFI will override this setting under specific circumstances. Please see DISALLOW_CONFIGURING_WIFI for further details.",
           "type": "boolean"
         },
         "networkResetDisabled": {
@@ -4480,6 +4781,7 @@
         },
         "passwordRequirements": {
           "$ref": "PasswordRequirements",
+          "deprecated": true,
           "description": "Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use passwordPolicies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here. unified_lock_settings cannot be used here."
         },
         "permissionGrants": {
@@ -4556,6 +4858,7 @@
           "type": "boolean"
         },
         "safeBootDisabled": {
+          "deprecated": true,
           "description": "Whether rebooting the device into safe boot is disabled.",
           "type": "boolean"
         },
@@ -4595,6 +4898,7 @@
           "type": "boolean"
         },
         "statusBarDisabled": {
+          "deprecated": true,
           "description": "Whether the status bar is disabled. This disables notifications, quick settings, and other screen overlays that allow escape from full-screen mode. DEPRECATED. To disable the status bar on a kiosk device, use InstallType KIOSK or kioskCustomLauncherEnabled.",
           "type": "boolean"
         },
@@ -4626,7 +4930,8 @@
           "description": "The system update policy, which controls how OS updates are applied. If the update type is WINDOWED, the update window will automatically apply to Play app updates as well."
         },
         "tetheringConfigDisabled": {
-          "description": "Whether configuring tethering and portable hotspots is disabled.",
+          "deprecated": true,
+          "description": "Whether configuring tethering and portable hotspots is disabled. If tetheringSettings is set to anything other than TETHERING_SETTINGS_UNSPECIFIED, this setting is ignored.",
           "type": "boolean"
         },
         "uninstallAppsDisabled": {
@@ -4634,6 +4939,7 @@
           "type": "boolean"
         },
         "unmuteMicrophoneDisabled": {
+          "deprecated": true,
           "description": "If microphone_access is set to any value other than MICROPHONE_ACCESS_UNSPECIFIED, this has no effect. Otherwise this field controls whether microphones are disabled: If true, all microphones are disabled, otherwise they are available. This is available only on fully managed devices.",
           "type": "boolean"
         },
@@ -4642,10 +4948,12 @@
           "description": "Configuration of device activity logging."
         },
         "usbFileTransferDisabled": {
+          "deprecated": true,
           "description": "Whether transferring files over USB is disabled. This is supported only on company-owned devices.",
           "type": "boolean"
         },
         "usbMassStorageEnabled": {
+          "deprecated": true,
           "description": "Whether USB storage is enabled. Deprecated.",
           "type": "boolean"
         },
@@ -4659,10 +4967,12 @@
           "type": "boolean"
         },
         "wifiConfigDisabled": {
-          "description": "Whether configuring Wi-Fi access points is disabled. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
+          "deprecated": true,
+          "description": "Whether configuring Wi-Fi networks is disabled. Supported on fully managed devices and work profiles on company-owned devices. For fully managed devices, setting this to true removes all configured networks and retains only the networks configured using openNetworkConfiguration. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. If configureWifi is set to anything other than CONFIGURE_WIFI_UNSPECIFIED, this setting is ignored. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
           "type": "boolean"
         },
         "wifiConfigsLockdownEnabled": {
+          "deprecated": true,
           "description": "DEPRECATED - Use wifi_config_disabled.",
           "type": "boolean"
         }
@@ -4670,7 +4980,7 @@
       "type": "object"
     },
     "PolicyEnforcementRule": {
-      "description": "A rule that defines the actions to take if a device or work profile is not compliant with the policy specified in settingName.",
+      "description": "A rule that defines the actions to take if a device or work profile is not compliant with the policy specified in settingName. In the case of multiple matching or multiple triggered enforcement rules, a merge will occur with the most severe action being taken. However, all triggered rules are still kept track of: this includes initial trigger time and all associated non-compliance details. In the situation where the most severe enforcement rule is satisfied, the next most appropriate action is applied.",
       "id": "PolicyEnforcementRule",
       "properties": {
         "blockAction": {
@@ -4753,6 +5063,62 @@
             "The device exited low-power mode.",
             "The device booted.",
             "The device shut down."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProvisioningInfo": {
+      "description": "Information about a device that is available during setup.",
+      "id": "ProvisioningInfo",
+      "properties": {
+        "apiLevel": {
+          "description": "The API level of the Android platform version running on the device.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "brand": {
+          "description": "The brand of the device. For example, Google.",
+          "type": "string"
+        },
+        "enterprise": {
+          "description": "The name of the enterprise in the form enterprises/{enterprise}.",
+          "type": "string"
+        },
+        "managementMode": {
+          "description": "The management mode of the device or profile.",
+          "enum": [
+            "MANAGEMENT_MODE_UNSPECIFIED",
+            "DEVICE_OWNER",
+            "PROFILE_OWNER"
+          ],
+          "enumDescriptions": [
+            "This value is disallowed.",
+            "Device owner. Android Device Policy has full control over the device.",
+            "Profile owner. Android Device Policy has control over a managed profile on the device."
+          ],
+          "type": "string"
+        },
+        "model": {
+          "description": "The model of the device. For example, Asus Nexus 7.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of this resource in the form provisioningInfo/{provisioning_info}.",
+          "type": "string"
+        },
+        "ownership": {
+          "description": "Ownership of the managed device.",
+          "enum": [
+            "OWNERSHIP_UNSPECIFIED",
+            "COMPANY_OWNED",
+            "PERSONALLY_OWNED"
+          ],
+          "enumDescriptions": [
+            "Ownership is unspecified.",
+            "Device is company-owned.",
+            "Device is personally-owned."
           ],
           "type": "string"
         }
@@ -4847,7 +5213,7 @@
         },
         "launchApp": {
           "$ref": "LaunchAppAction",
-          "description": "An action to launch an app. The app will be launched with an intent containing an extra with key com.google.android.apps.work.clouddpc.EXTRA_LAUNCHED_AS_SETUP_ACTION set to the boolean value true to indicate that this is a setup action flow."
+          "description": "An action to launch an app. The app will be launched with an intent containing an extra with key com.google.android.apps.work.clouddpc.EXTRA_LAUNCHED_AS_SETUP_ACTION set to the boolean value true to indicate that this is a setup action flow. If SetupAction references an app, the corresponding installType in the application policy must be set as REQUIRED_FOR_SETUP or said setup will fail."
         },
         "title": {
           "$ref": "UserFacingMessage",
@@ -4972,6 +5338,58 @@
       },
       "type": "object"
     },
+    "StartLostModeParams": {
+      "description": "Parameters associated with the START_LOST_MODE command to put the device into lost mode. At least one of the parameters, not including the organization name, must be provided in order for the device to be put into lost mode.",
+      "id": "StartLostModeParams",
+      "properties": {
+        "lostEmailAddress": {
+          "description": "The email address displayed to the user when the device is in lost mode.",
+          "type": "string"
+        },
+        "lostMessage": {
+          "$ref": "UserFacingMessage",
+          "description": "The message displayed to the user when the device is in lost mode."
+        },
+        "lostOrganization": {
+          "$ref": "UserFacingMessage",
+          "description": "The organization name displayed to the user when the device is in lost mode."
+        },
+        "lostPhoneNumber": {
+          "$ref": "UserFacingMessage",
+          "description": "The phone number displayed to the user when the device is in lost mode."
+        },
+        "lostStreetAddress": {
+          "$ref": "UserFacingMessage",
+          "description": "The street address displayed to the user when the device is in lost mode."
+        }
+      },
+      "type": "object"
+    },
+    "StartLostModeStatus": {
+      "description": "Status of the START_LOST_MODE command to put the device into lost mode.",
+      "id": "StartLostModeStatus",
+      "properties": {
+        "status": {
+          "description": "The status. See StartLostModeStatus.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "RESET_PASSWORD_RECENTLY",
+            "USER_EXIT_LOST_MODE_RECENTLY",
+            "ALREADY_IN_LOST_MODE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is not used.",
+            "The device was put into lost mode.",
+            "The device could not be put into lost mode because the admin reset the device's password recently.",
+            "The device could not be put into lost mode because the user exited lost mode recently.",
+            "The device is already in lost mode."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -5046,6 +5464,54 @@
         "systemPropertiesEnabled": {
           "description": "Whether system properties reporting is enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "StopLostModeParams": {
+      "description": "Parameters associated with the STOP_LOST_MODE command to take the device out of lost mode.",
+      "id": "StopLostModeParams",
+      "properties": {},
+      "type": "object"
+    },
+    "StopLostModeStatus": {
+      "description": "Status of the STOP_LOST_MODE command to take the device out of lost mode.",
+      "id": "StopLostModeStatus",
+      "properties": {
+        "status": {
+          "description": "The status. See StopLostModeStatus.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "NOT_IN_LOST_MODE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. This value is not used.",
+            "The device was taken out of lost mode.",
+            "The device is not in lost mode."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StopLostModeUserAttemptEvent": {
+      "description": "A lost mode event indicating the user has attempted to stop lost mode.",
+      "id": "StopLostModeUserAttemptEvent",
+      "properties": {
+        "status": {
+          "description": "The status of the attempt to stop lost mode.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "ATTEMPT_SUCCEEDED",
+            "ATTEMPT_FAILED"
+          ],
+          "enumDescriptions": [
+            "This value is not used.",
+            "Indicates that the user successfully stopped lost mode.",
+            "Indicates that the user's attempt to stop lost mode failed."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -5231,6 +5697,10 @@
           "$ref": "DnsEvent",
           "description": "A DNS lookup event was initiated through the standard network stack. Part of NETWORK_ACTIVITY_LOGS."
         },
+        "enrollmentCompleteEvent": {
+          "$ref": "EnrollmentCompleteEvent",
+          "description": "Device has completed enrollment. Part of AMAPI_LOGS."
+        },
         "eventId": {
           "description": "Unique id of the event.",
           "format": "int64",
@@ -5271,7 +5741,11 @@
             "REMOTE_LOCK",
             "WIPE_FAILURE",
             "CONNECT",
-            "DNS"
+            "DNS",
+            "STOP_LOST_MODE_USER_ATTEMPT",
+            "LOST_MODE_OUTGOING_PHONE_CALL",
+            "LOST_MODE_LOCATION",
+            "ENROLLMENT_COMPLETE"
           ],
           "enumDescriptions": [
             "This value is not used",
@@ -5301,7 +5775,11 @@
             "Indicates remote_lock_event has been set.",
             "Indicates wipe_failure_event has been set.",
             "Indicates connect_event has been set.",
-            "Indicates dns_event has been set."
+            "Indicates dns_event has been set.",
+            "Indicates stopLostModeUserAttemptEvent has been set.",
+            "Indicates lostModeOutgoingPhoneCallEvent has been set.",
+            "Indicates lostModeLocationEvent has been set.",
+            "Indicates enrollment_complete_event has been set."
           ],
           "type": "string"
         },
@@ -5353,6 +5831,14 @@
           "$ref": "LoggingStoppedEvent",
           "description": "usageLog policy has been disabled. Part of SECURITY_LOGS."
         },
+        "lostModeLocationEvent": {
+          "$ref": "LostModeLocationEvent",
+          "description": "A lost mode location update when a device in lost mode."
+        },
+        "lostModeOutgoingPhoneCallEvent": {
+          "$ref": "LostModeOutgoingPhoneCallEvent",
+          "description": "An outgoing phone call has been made when a device in lost mode."
+        },
         "mediaMountEvent": {
           "$ref": "MediaMountEvent",
           "description": "Removable media was mounted. Part of SECURITY_LOGS."
@@ -5372,6 +5858,10 @@
         "remoteLockEvent": {
           "$ref": "RemoteLockEvent",
           "description": "The device or profile has been remotely locked via the LOCK command. Part of SECURITY_LOGS."
+        },
+        "stopLostModeUserAttemptEvent": {
+          "$ref": "StopLostModeUserAttemptEvent",
+          "description": "An attempt to take a device out of lost mode."
         },
         "wipeFailureEvent": {
           "$ref": "WipeFailureEvent",
@@ -5505,6 +5995,7 @@
           "type": "string"
         },
         "permissions": {
+          "deprecated": true,
           "description": "Permissions available to an admin in the embedded UI. An admin must have all of these permissions in order to view the UI. This field is deprecated.",
           "items": {
             "enum": [

@@ -1,5 +1,54 @@
 # Changelog
 
+## [1.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v1.2.1...chromeuxreport-v1.2.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **chromeuxreport:** update the API ([fd7db9e](https://github.com/googleapis/google-api-nodejs-client/commit/fd7db9edc4fc6170e13c5cbd794f4f00f1c676db))
+
+## [1.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v1.2.0...chromeuxreport-v1.2.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **chromeuxreport:** update the API ([fd7db9e](https://github.com/googleapis/google-api-nodejs-client/commit/fd7db9edc4fc6170e13c5cbd794f4f00f1c676db))
+
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v1.1.0...chromeuxreport-v1.2.0) (2023-02-24)
+
+
+### Features
+
+* **chromeuxreport:** update the API ([40f2c0d](https://github.com/googleapis/google-api-nodejs-client/commit/40f2c0d885a39ba10e94f3f9e117d95ce28cc503))
+
+
+### Bug Fixes
+
+* **chromeuxreport:** update the API ([4b307dc](https://github.com/googleapis/google-api-nodejs-client/commit/4b307dc7bd9855bee38b2c6f365a5a7f7ae792c5))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v1.0.0...chromeuxreport-v1.1.0) (2023-02-10)
+
+
+### Features
+
+* **chromeuxreport:** update the API ([40f2c0d](https://github.com/googleapis/google-api-nodejs-client/commit/40f2c0d885a39ba10e94f3f9e117d95ce28cc503))
+
+
+### Bug Fixes
+
+* **chromeuxreport:** update the API ([4b307dc](https://github.com/googleapis/google-api-nodejs-client/commit/4b307dc7bd9855bee38b2c6f365a5a7f7ae792c5))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v0.4.0...chromeuxreport-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v0.3.3...chromeuxreport-v0.4.0) (2022-09-21)
 
 

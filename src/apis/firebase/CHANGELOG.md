@@ -1,5 +1,65 @@
 # Changelog
 
+## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v6.1.0...firebase-v6.2.0) (2023-08-17)
+
+
+### Features
+
+* **firebase:** update the API ([fdafcaa](https://github.com/googleapis/google-api-nodejs-client/commit/fdafcaa9692d6829a4bb67fa98a796a182d700c3))
+
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v6.0.0...firebase-v6.1.0) (2023-08-09)
+
+
+### Features
+
+* **firebase:** update the API ([fdafcaa](https://github.com/googleapis/google-api-nodejs-client/commit/fdafcaa9692d6829a4bb67fa98a796a182d700c3))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v5.3.0...firebase-v6.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+
+## [5.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v5.2.0...firebase-v5.3.0) (2023-02-24)
+
+
+### Features
+
+* **firebase:** update the API ([873a7d7](https://github.com/googleapis/google-api-nodejs-client/commit/873a7d7a73813a9405418016f054ea39909c62f9))
+* **firebase:** update the API ([e1a3797](https://github.com/googleapis/google-api-nodejs-client/commit/e1a3797639ac080d45b762c047a917f41e88d91f))
+* **firebase:** update the API ([acf51c4](https://github.com/googleapis/google-api-nodejs-client/commit/acf51c426cbfcedeff9906eb63cb5db9d32f917c))
+
+## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v5.1.0...firebase-v5.2.0) (2023-02-10)
+
+
+### Features
+
+* **firebase:** update the API ([873a7d7](https://github.com/googleapis/google-api-nodejs-client/commit/873a7d7a73813a9405418016f054ea39909c62f9))
+* **firebase:** update the API ([e1a3797](https://github.com/googleapis/google-api-nodejs-client/commit/e1a3797639ac080d45b762c047a917f41e88d91f))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v5.0.0...firebase-v5.1.0) (2022-12-22)
+
+
+### Features
+
+* **firebase:** update the API ([acf51c4](https://github.com/googleapis/google-api-nodejs-client/commit/acf51c426cbfcedeff9906eb63cb5db9d32f917c))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v4.3.0...firebase-v5.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [4.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v4.2.0...firebase-v4.3.0) (2022-09-21)
 
 

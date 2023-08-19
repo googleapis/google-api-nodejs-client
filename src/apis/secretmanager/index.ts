@@ -33,7 +33,7 @@ export function secretmanager(
   options: secretmanager_v1beta1.Options
 ): secretmanager_v1beta1.Secretmanager;
 export function secretmanager<
-  T = secretmanager_v1.Secretmanager | secretmanager_v1beta1.Secretmanager
+  T = secretmanager_v1.Secretmanager | secretmanager_v1beta1.Secretmanager,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

@@ -632,7 +632,7 @@
                 "accept": [
                   "application/octet-stream"
                 ],
-                "maxSize": "629145600",
+                "maxSize": "1258291200",
                 "protocols": {
                   "resumable": {
                     "multipart": true,
@@ -1713,7 +1713,7 @@
                   "type": "string"
                 },
                 "track": {
-                  "description": "Identifier of the track.",
+                  "description": "Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1782,7 +1782,7 @@
                   "type": "string"
                 },
                 "track": {
-                  "description": "Identifier of the track.",
+                  "description": "Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1823,7 +1823,7 @@
                   "type": "string"
                 },
                 "track": {
-                  "description": "Identifier of the track.",
+                  "description": "Identifier of the track. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1841,6 +1841,96 @@
               ]
             }
           }
+        }
+      }
+    },
+    "externaltransactions": {
+      "methods": {
+        "createexternaltransaction": {
+          "description": "Creates a new external transaction.",
+          "flatPath": "androidpublisher/v3/applications/{applicationsId}/externalTransactions",
+          "httpMethod": "POST",
+          "id": "androidpublisher.externaltransactions.createexternaltransaction",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "externalTransactionId": {
+              "description": "Required. The id to use for the external transaction. Must be unique across all other transactions for the app. This value should be 1-63 characters and valid characters are /a-z0-9_-/. Do not use this field to store any Personally Identifiable Information (PII) such as emails. Attempting to store PII in this field may result in requests being blocked.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The parent resource where this external transaction will be created. Format: applications/{package_name}",
+              "location": "path",
+              "pattern": "^applications/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/{+parent}/externalTransactions",
+          "request": {
+            "$ref": "ExternalTransaction"
+          },
+          "response": {
+            "$ref": "ExternalTransaction"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "getexternaltransaction": {
+          "description": "Gets an existing external transaction.",
+          "flatPath": "androidpublisher/v3/applications/{applicationsId}/externalTransactions/{externalTransactionsId}",
+          "httpMethod": "GET",
+          "id": "androidpublisher.externaltransactions.getexternaltransaction",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the external transaction to retrieve. Format: applications/{package_name}/externalTransactions/{external_transaction}",
+              "location": "path",
+              "pattern": "^applications/[^/]+/externalTransactions/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/{+name}",
+          "response": {
+            "$ref": "ExternalTransaction"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "refundexternaltransaction": {
+          "description": "Refunds or partially refunds an existing external transaction.",
+          "flatPath": "androidpublisher/v3/applications/{applicationsId}/externalTransactions/{externalTransactionsId}:refund",
+          "httpMethod": "POST",
+          "id": "androidpublisher.externaltransactions.refundexternaltransaction",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the external transaction that will be refunded. Format: applications/{package_name}/externalTransactions/{external_transaction}",
+              "location": "path",
+              "pattern": "^applications/[^/]+/externalTransactions/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/{+name}:refund",
+          "request": {
+            "$ref": "RefundExternalTransactionRequest"
+          },
+          "response": {
+            "$ref": "ExternalTransaction"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
         }
       }
     },
@@ -2009,7 +2099,7 @@
     "inappproducts": {
       "methods": {
         "delete": {
-          "description": "Deletes an in-app product (i.e. a managed product or a subscriptions).",
+          "description": "Deletes an in-app product (a managed product or a subscription). This method should no longer be used to delete subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
           "httpMethod": "DELETE",
           "id": "androidpublisher.inappproducts.delete",
@@ -2037,7 +2127,7 @@
           ]
         },
         "get": {
-          "description": "Gets an in-app product, which can be a managed product or a subscription.",
+          "description": "Gets an in-app product, which can be a managed product or a subscription. This method should no longer be used to retrieve subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
           "httpMethod": "GET",
           "id": "androidpublisher.inappproducts.get",
@@ -2068,7 +2158,7 @@
           ]
         },
         "insert": {
-          "description": "Creates an in-app product (i.e. a managed product or a subscriptions).",
+          "description": "Creates an in-app product (a managed product or a subscription). This method should no longer be used to create subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts",
           "httpMethod": "POST",
           "id": "androidpublisher.inappproducts.insert",
@@ -2100,7 +2190,7 @@
           ]
         },
         "list": {
-          "description": "Lists all in-app products - both managed products and subscriptions. If an app has a large number of in-app products, the response may be paginated. In this case the response field `tokenPagination.nextPageToken` will be set and the caller should provide its value as a `token` request parameter to retrieve the next page.",
+          "description": "Lists all in-app products - both managed products and subscriptions. If an app has a large number of in-app products, the response may be paginated. In this case the response field `tokenPagination.nextPageToken` will be set and the caller should provide its value as a `token` request parameter to retrieve the next page. This method should no longer be used to retrieve subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts",
           "httpMethod": "GET",
           "id": "androidpublisher.inappproducts.list",
@@ -2109,6 +2199,7 @@
           ],
           "parameters": {
             "maxResults": {
+              "deprecated": true,
               "description": "Deprecated and ignored. The page size is determined by the server.",
               "format": "uint32",
               "location": "query",
@@ -2121,7 +2212,8 @@
               "type": "string"
             },
             "startIndex": {
-              "description": "Deprecated and ignored. Set the `token` parameter to rertieve the next page.",
+              "deprecated": true,
+              "description": "Deprecated and ignored. Set the `token` parameter to retrieve the next page.",
               "format": "uint32",
               "location": "query",
               "type": "integer"
@@ -2141,7 +2233,7 @@
           ]
         },
         "patch": {
-          "description": "Patches an in-app product (i.e. a managed product or a subscriptions).",
+          "description": "Patches an in-app product (a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
           "httpMethod": "PATCH",
           "id": "androidpublisher.inappproducts.patch",
@@ -2180,7 +2272,7 @@
           ]
         },
         "update": {
-          "description": "Updates an in-app product (i.e. a managed product or a subscriptions).",
+          "description": "Updates an in-app product (a managed product or a subscription). This method should no longer be used to update subscriptions. See [this article](https://android-developers.googleblog.com/2023/06/changes-to-google-play-developer-api-june-2023.html) for more information.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/inappproducts/{sku}",
           "httpMethod": "PUT",
           "id": "androidpublisher.inappproducts.update",
@@ -2400,7 +2492,7 @@
                   "type": "string"
                 },
                 "regionsVersion.version": {
-                  "description": "Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.",
+                  "description": "Required. The latest version is 2022/02.",
                   "location": "query",
                   "type": "string"
                 }
@@ -2538,7 +2630,7 @@
                   "type": "string"
                 },
                 "regionsVersion.version": {
-                  "description": "Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.",
+                  "description": "Required. The latest version is 2022/02.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2809,7 +2901,7 @@
                           "type": "string"
                         },
                         "regionsVersion.version": {
-                          "description": "Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.",
+                          "description": "Required. The latest version is 2022/02.",
                           "location": "query",
                           "type": "string"
                         }
@@ -2972,7 +3064,7 @@
                       ],
                       "parameters": {
                         "basePlanId": {
-                          "description": "Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription.",
+                          "description": "Required. The parent base plan (ID) for which the offers should be read. May be specified as '-' to read all offers under a subscription or an app. Must be specified as '-' if product_id is specified as '-'.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -2995,7 +3087,7 @@
                           "type": "string"
                         },
                         "productId": {
-                          "description": "Required. The parent subscription (ID) for which the offers should be read.",
+                          "description": "Required. The parent subscription (ID) for which the offers should be read. May be specified as '-' to read all offers under an app.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -3046,7 +3138,7 @@
                           "type": "string"
                         },
                         "regionsVersion.version": {
-                          "description": "Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.",
+                          "description": "Required. The latest version is 2022/02.",
                           "location": "query",
                           "type": "string"
                         },
@@ -3151,6 +3243,41 @@
               "request": {
                 "$ref": "ProductPurchasesAcknowledgeRequest"
               },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "consume": {
+              "description": "Consumes a purchase for an inapp item.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:consume",
+              "httpMethod": "POST",
+              "id": "androidpublisher.purchases.products.consume",
+              "parameterOrder": [
+                "packageName",
+                "productId",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application the inapp product was sold in (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "productId": {
+                  "description": "The inapp product SKU (for example, 'com.some.thing.inapp1').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the inapp product was purchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/products/{productId}/tokens/{token}:consume",
               "scopes": [
                 "https://www.googleapis.com/auth/androidpublisher"
               ]
@@ -3920,9 +4047,57 @@
       }
     }
   },
-  "revision": "20221027",
+  "revision": "20230816",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
+    "Abi": {
+      "description": "Represents an Abi.",
+      "id": "Abi",
+      "properties": {
+        "alias": {
+          "description": "Alias for an abi.",
+          "enum": [
+            "UNSPECIFIED_CPU_ARCHITECTURE",
+            "ARMEABI",
+            "ARMEABI_V7A",
+            "ARM64_V8A",
+            "X86",
+            "X86_64"
+          ],
+          "enumDescriptions": [
+            "Unspecified abi.",
+            "ARMEABI abi.",
+            "ARMEABI_V7A abi.",
+            "ARM64_V8A abi.",
+            "X86 abi.",
+            "X86_64 abi."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AbiTargeting": {
+      "description": "Targeting based on Abi.",
+      "id": "AbiTargeting",
+      "properties": {
+        "alternatives": {
+          "description": "Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits.",
+          "items": {
+            "$ref": "Abi"
+          },
+          "type": "array"
+        },
+        "value": {
+          "description": "Value of an abi.",
+          "items": {
+            "$ref": "Abi"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "AcquisitionTargetingRule": {
       "description": "Represents a targeting rule of the form: User never had {scope} before.",
       "id": "AcquisitionTargetingRule",
@@ -3973,6 +4148,86 @@
         "sha256": {
           "description": "A sha256 hash of the APK payload, encoded as a hex string and matching the output of the sha256sum command.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApkDescription": {
+      "description": "Description of the created apks.",
+      "id": "ApkDescription",
+      "properties": {
+        "assetSliceMetadata": {
+          "$ref": "SplitApkMetadata",
+          "description": "Set only for asset slices."
+        },
+        "instantApkMetadata": {
+          "$ref": "SplitApkMetadata",
+          "description": "Set only for Instant split APKs."
+        },
+        "path": {
+          "description": "Path of the Apk, will be in the following format: .apk where DownloadId is the ID used to download the apk using GeneratedApks.Download API.",
+          "type": "string"
+        },
+        "splitApkMetadata": {
+          "$ref": "SplitApkMetadata",
+          "description": "Set only for Split APKs."
+        },
+        "standaloneApkMetadata": {
+          "$ref": "StandaloneApkMetadata",
+          "description": "Set only for standalone APKs."
+        },
+        "targeting": {
+          "$ref": "ApkTargeting",
+          "description": "Apk-level targeting."
+        }
+      },
+      "type": "object"
+    },
+    "ApkSet": {
+      "description": "A set of apks representing a module.",
+      "id": "ApkSet",
+      "properties": {
+        "apkDescription": {
+          "description": "Description of the generated apks.",
+          "items": {
+            "$ref": "ApkDescription"
+          },
+          "type": "array"
+        },
+        "moduleMetadata": {
+          "$ref": "ModuleMetadata",
+          "description": "Metadata about the module represented by this ApkSet"
+        }
+      },
+      "type": "object"
+    },
+    "ApkTargeting": {
+      "description": "Represents a set of apk-level targetings.",
+      "id": "ApkTargeting",
+      "properties": {
+        "abiTargeting": {
+          "$ref": "AbiTargeting",
+          "description": "The abi that the apk targets"
+        },
+        "languageTargeting": {
+          "$ref": "LanguageTargeting",
+          "description": "The language that the apk targets"
+        },
+        "multiAbiTargeting": {
+          "$ref": "MultiAbiTargeting",
+          "description": "Multi-api-level targeting."
+        },
+        "screenDensityTargeting": {
+          "$ref": "ScreenDensityTargeting",
+          "description": "The screen density that this apk supports."
+        },
+        "sdkVersionTargeting": {
+          "$ref": "SdkVersionTargeting",
+          "description": "The sdk version that the apk targets"
+        },
+        "textureCompressionFormatTargeting": {
+          "$ref": "TextureCompressionFormatTargeting",
+          "description": "Texture-compression-format-level targeting"
         }
       },
       "type": "object"
@@ -4063,6 +4318,51 @@
       "properties": {},
       "type": "object"
     },
+    "AssetModuleMetadata": {
+      "description": "Metadata of an asset module.",
+      "id": "AssetModuleMetadata",
+      "properties": {
+        "deliveryType": {
+          "description": "Indicates the delivery type for persistent install.",
+          "enum": [
+            "UNKNOWN_DELIVERY_TYPE",
+            "INSTALL_TIME",
+            "ON_DEMAND",
+            "FAST_FOLLOW"
+          ],
+          "enumDescriptions": [
+            "Unspecified delivery type.",
+            "This module will always be downloaded as part of the initial install of the app.",
+            "This module is requested on-demand, which means it will not be part of the initial install, and will only be sent when requested by the client.",
+            "This module will be downloaded immediately after initial install finishes. The app can be opened before these modules are downloaded."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Module name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssetSliceSet": {
+      "description": "Set of asset slices belonging to a single asset module.",
+      "id": "AssetSliceSet",
+      "properties": {
+        "apkDescription": {
+          "description": "Asset slices.",
+          "items": {
+            "$ref": "ApkDescription"
+          },
+          "type": "array"
+        },
+        "assetModuleMetadata": {
+          "$ref": "AssetModuleMetadata",
+          "description": "Module level metadata."
+        }
+      },
+      "type": "object"
+    },
     "AutoRenewingBasePlanType": {
       "description": "Represents a base plan that automatically renews at the end of its subscription period.",
       "id": "AutoRenewingBasePlanType",
@@ -4121,6 +4421,10 @@
         "autoRenewEnabled": {
           "description": "If the subscription is currently set to auto-renew, e.g. the user has not canceled the subscription",
           "type": "boolean"
+        },
+        "priceChangeDetails": {
+          "$ref": "SubscriptionItemPriceChangeDetails",
+          "description": "The information of the last price change for the item since subscription signup."
         }
       },
       "type": "object"
@@ -4379,6 +4683,17 @@
       "properties": {},
       "type": "object"
     },
+    "DeferredItemReplacement": {
+      "description": "Information related to deferred item replacement.",
+      "id": "DeferredItemReplacement",
+      "properties": {
+        "productId": {
+          "description": "The product_id going to replace the existing product_id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeobfuscationFile": {
       "description": "Represents a deobfuscation file.",
       "id": "DeobfuscationFile",
@@ -4432,8 +4747,35 @@
       "properties": {},
       "type": "object"
     },
+    "DeviceFeature": {
+      "description": "Represents a device feature.",
+      "id": "DeviceFeature",
+      "properties": {
+        "featureName": {
+          "description": "Name of the feature.",
+          "type": "string"
+        },
+        "featureVersion": {
+          "description": "The feature version specified by android:glEsVersion or android:version in in the AndroidManifest.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DeviceFeatureTargeting": {
+      "description": "Targeting for a device feature.",
+      "id": "DeviceFeatureTargeting",
+      "properties": {
+        "requiredFeature": {
+          "$ref": "DeviceFeature",
+          "description": "Feature of the device."
+        }
+      },
+      "type": "object"
+    },
     "DeviceGroup": {
-      "description": "LINT.IfChange A group of devices. A group is defined by a set of device selectors. A device belongs to the group if it matches any selector (logical OR).",
+      "description": "A group of devices. A group is defined by a set of device selectors. A device belongs to the group if it matches any selector (logical OR).",
       "id": "DeviceGroup",
       "properties": {
         "deviceSelectors": {
@@ -4623,7 +4965,7 @@
       "type": "object"
     },
     "DeviceTierConfig": {
-      "description": "LINT.IfChange Configuration describing device targeting criteria for the content of an app.",
+      "description": "Configuration describing device targeting criteria for the content of an app.",
       "id": "DeviceTierConfig",
       "properties": {
         "deviceGroups": {
@@ -4642,6 +4984,13 @@
         "deviceTierSet": {
           "$ref": "DeviceTierSet",
           "description": "Definition of the set of device tiers for the app."
+        },
+        "userCountrySets": {
+          "description": "Definition of user country sets for the app.",
+          "items": {
+            "$ref": "UserCountrySet"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4705,6 +5054,122 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ExternalSubscription": {
+      "description": "Details of an external subscription.",
+      "id": "ExternalSubscription",
+      "properties": {
+        "subscriptionType": {
+          "description": "Required. The type of the external subscription.",
+          "enum": [
+            "SUBSCRIPTION_TYPE_UNSPECIFIED",
+            "RECURRING",
+            "PREPAID"
+          ],
+          "enumDescriptions": [
+            "Unspecified, do not use.",
+            "This is a recurring subscription where the user is charged every billing cycle.",
+            "This is a prepaid subscription where the user pays up front."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExternalTransaction": {
+      "description": "The details of an external transaction.",
+      "id": "ExternalTransaction",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when this transaction was created. This is the time when Google was notified of the transaction.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "currentPreTaxAmount": {
+          "$ref": "Price",
+          "description": "Output only. The current transaction amount before tax. This represents the current pre-tax amount including any refunds that may have been applied to this transaction.",
+          "readOnly": true
+        },
+        "currentTaxAmount": {
+          "$ref": "Price",
+          "description": "Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction.",
+          "readOnly": true
+        },
+        "externalTransactionId": {
+          "description": "Output only. The id of this transaction. All transaction ids under the same package name must be unique. Set when creating the external transaction.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "oneTimeTransaction": {
+          "$ref": "OneTimeExternalTransaction",
+          "description": "This is a one-time transaction and not part of a subscription."
+        },
+        "originalPreTaxAmount": {
+          "$ref": "Price",
+          "description": "Required. The original transaction amount before taxes. This represents the pre-tax amount originally notified to Google before any refunds were applied."
+        },
+        "originalTaxAmount": {
+          "$ref": "Price",
+          "description": "Required. The original tax amount. This represents the tax amount originally notified to Google before any refunds were applied."
+        },
+        "packageName": {
+          "description": "Output only. The resource name of the external transaction. The package name of the application the inapp products were sold (for example, 'com.some.app').",
+          "readOnly": true,
+          "type": "string"
+        },
+        "recurringTransaction": {
+          "$ref": "RecurringExternalTransaction",
+          "description": "This transaction is part of a recurring series of transactions."
+        },
+        "testPurchase": {
+          "$ref": "ExternalTransactionTestPurchase",
+          "description": "Output only. If set, this transaction was a test purchase. Google will not charge for a test transaction.",
+          "readOnly": true
+        },
+        "transactionState": {
+          "description": "Output only. The current state of the transaction.",
+          "enum": [
+            "TRANSACTION_STATE_UNSPECIFIED",
+            "TRANSACTION_REPORTED",
+            "TRANSACTION_CANCELED"
+          ],
+          "enumDescriptions": [
+            "Unspecified transaction state. Not used.",
+            "The transaction has been successfully reported to Google.",
+            "The transaction has been fully refunded."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "transactionTime": {
+          "description": "Required. The time when the transaction was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "userTaxAddress": {
+          "$ref": "ExternalTransactionAddress",
+          "description": "Required. User address for tax computation."
+        }
+      },
+      "type": "object"
+    },
+    "ExternalTransactionAddress": {
+      "description": "User's address for the external transaction.",
+      "id": "ExternalTransactionAddress",
+      "properties": {
+        "regionCode": {
+          "description": "Required. Two letter region code based on ISO-3166-1 Alpha-2 (UN region codes).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExternalTransactionTestPurchase": {
+      "description": "Represents a transaction performed using a test account. These transactions will not be charged by Google.",
+      "id": "ExternalTransactionTestPurchase",
+      "properties": {},
       "type": "object"
     },
     "ExternallyHostedApk": {
@@ -4790,6 +5255,12 @@
       },
       "type": "object"
     },
+    "FullRefund": {
+      "description": "A full refund of the remaining amount of a transaction.",
+      "id": "FullRefund",
+      "properties": {},
+      "type": "object"
+    },
     "GeneratedApksListResponse": {
       "description": "Response to list generated APKs.",
       "id": "GeneratedApksListResponse",
@@ -4836,6 +5307,10 @@
         "generatedUniversalApk": {
           "$ref": "GeneratedUniversalApk",
           "description": "Generated universal APK, signed with a key corresponding to certificate_sha256_hash. This field is not set if no universal APK was generated for this signing key."
+        },
+        "targetingInfo": {
+          "$ref": "TargetingInfo",
+          "description": "Contains targeting information about the generated apks."
         }
       },
       "type": "object"
@@ -4933,11 +5408,30 @@
               "CAN_MANAGE_TRACK_USERS",
               "CAN_MANAGE_PUBLIC_LISTING",
               "CAN_MANAGE_DRAFT_APPS",
-              "CAN_MANAGE_ORDERS"
+              "CAN_MANAGE_ORDERS",
+              "CAN_MANAGE_APP_CONTENT",
+              "CAN_VIEW_NON_FINANCIAL_DATA",
+              "CAN_VIEW_APP_QUALITY"
+            ],
+            "enumDeprecated": [
+              false,
+              true,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
             ],
             "enumDescriptions": [
               "Unknown or unspecified permission.",
-              "View app information (read-only).",
+              "View app information (read-only). Deprecated: Try defining a more granular capability. Otherwise, check AppLevelPermission.CAN_VIEW_NON_FINANCIAL_DATA.",
               "View financial data.",
               "Admin (all permissions).",
               "Reply to reviews.",
@@ -4946,7 +5440,10 @@
               "Manage testing tracks and edit tester lists.",
               "Manage store presence.",
               "Edit and delete draft apps.",
-              "Manage orders and subscriptions."
+              "Manage orders and subscriptions.",
+              "Manage policy related pages.",
+              "View app information (read-only).",
+              "View app quality data such as Vitals, Crashes etc."
             ],
             "type": "string"
           },
@@ -5149,6 +5646,7 @@
         },
         "pageInfo": {
           "$ref": "PageInfo",
+          "deprecated": true,
           "description": "Deprecated and unset."
         },
         "tokenPagination": {
@@ -5198,6 +5696,27 @@
         "introductoryPricePeriod": {
           "description": "Introductory price period, specified in ISO 8601 format. Common values are (but not limited to) \"P1W\" (one week), \"P1M\" (one month), \"P3M\" (three months), \"P6M\" (six months), and \"P1Y\" (one year).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LanguageTargeting": {
+      "description": "Targeting based on language.",
+      "id": "LanguageTargeting",
+      "properties": {
+        "alternatives": {
+          "description": "Alternative languages.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "value": {
+          "description": "ISO-639: 2 or 3 letter language code.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5352,6 +5871,10 @@
           ],
           "type": "string"
         },
+        "isTokenizedDigitalAsset": {
+          "description": "Whether this in-app product is declared as a product representing a tokenized digital asset.",
+          "type": "boolean"
+        },
         "taxRateInfoByRegionCode": {
           "additionalProperties": {
             "$ref": "RegionalTaxRateInfo"
@@ -5386,6 +5909,78 @@
       "properties": {},
       "type": "object"
     },
+    "ModuleMetadata": {
+      "description": "Metadata of a module.",
+      "id": "ModuleMetadata",
+      "properties": {
+        "deliveryType": {
+          "description": "Indicates the delivery type (e.g. on-demand) of the module.",
+          "enum": [
+            "UNKNOWN_DELIVERY_TYPE",
+            "INSTALL_TIME",
+            "ON_DEMAND",
+            "FAST_FOLLOW"
+          ],
+          "enumDescriptions": [
+            "Unspecified delivery type.",
+            "This module will always be downloaded as part of the initial install of the app.",
+            "This module is requested on-demand, which means it will not be part of the initial install, and will only be sent when requested by the client.",
+            "This module will be downloaded immediately after initial install finishes. The app can be opened before these modules are downloaded."
+          ],
+          "type": "string"
+        },
+        "dependencies": {
+          "description": "Names of the modules that this module directly depends on. Each module implicitly depends on the base module.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "moduleType": {
+          "description": "Indicates the type of this feature module.",
+          "enum": [
+            "UNKNOWN_MODULE_TYPE",
+            "FEATURE_MODULE"
+          ],
+          "enumDescriptions": [
+            "Unknown feature module.",
+            "Regular feature module."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Module name.",
+          "type": "string"
+        },
+        "targeting": {
+          "$ref": "ModuleTargeting",
+          "description": "The targeting that makes a conditional module installed. Relevant only for Split APKs."
+        }
+      },
+      "type": "object"
+    },
+    "ModuleTargeting": {
+      "description": "Targeting on the module level.",
+      "id": "ModuleTargeting",
+      "properties": {
+        "deviceFeatureTargeting": {
+          "description": "Targeting for device features.",
+          "items": {
+            "$ref": "DeviceFeatureTargeting"
+          },
+          "type": "array"
+        },
+        "sdkVersionTargeting": {
+          "$ref": "SdkVersionTargeting",
+          "description": "The sdk version that the variant targets"
+        },
+        "userCountriesTargeting": {
+          "$ref": "UserCountriesTargeting",
+          "description": "Countries-level targeting"
+        }
+      },
+      "type": "object"
+    },
     "Money": {
       "description": "Represents an amount of money with its currency type.",
       "id": "Money",
@@ -5407,12 +6002,80 @@
       },
       "type": "object"
     },
+    "MultiAbi": {
+      "description": "Represents a list of apis.",
+      "id": "MultiAbi",
+      "properties": {
+        "abi": {
+          "description": "A list of targeted ABIs, as represented by the Android Platform",
+          "items": {
+            "$ref": "Abi"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MultiAbiTargeting": {
+      "description": "Targeting based on multiple abis.",
+      "id": "MultiAbiTargeting",
+      "properties": {
+        "alternatives": {
+          "description": "Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits.",
+          "items": {
+            "$ref": "MultiAbi"
+          },
+          "type": "array"
+        },
+        "value": {
+          "description": "Value of a multi abi.",
+          "items": {
+            "$ref": "MultiAbi"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OfferDetails": {
+      "description": "Offer details information related to a purchase line item.",
+      "id": "OfferDetails",
+      "properties": {
+        "basePlanId": {
+          "description": "The base plan ID. Present for all base plan and offers.",
+          "type": "string"
+        },
+        "offerId": {
+          "description": "The offer ID. Only present for discounted offers.",
+          "type": "string"
+        },
+        "offerTags": {
+          "description": "The latest offer tags associated with the offer. It includes tags inherited from the base plan.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "OfferTag": {
       "description": "Represents a custom tag specified for base plans and subscription offers.",
       "id": "OfferTag",
       "properties": {
         "tag": {
           "description": "Must conform with RFC-1034. That is, this string can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-), and be at most 20 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeExternalTransaction": {
+      "description": "Represents a one-time transaction.",
+      "id": "OneTimeExternalTransaction",
+      "properties": {
+        "externalTransactionToken": {
+          "description": "Input only. Provided during the call to Create. Retrieved from the client when the alternative billing flow is launched.",
           "type": "string"
         }
       },
@@ -5501,6 +6164,21 @@
           "description": "Total number of results available on the backend ! The total number of results in the result set.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PartialRefund": {
+      "description": "A partial refund of a transaction.",
+      "id": "PartialRefund",
+      "properties": {
+        "refundId": {
+          "description": "Required. A unique id distinguishing this partial refund. If the refund is successful, subsequent refunds with the same id will fail. Must be unique across refunds for one individual transaction.",
+          "type": "string"
+        },
+        "refundPreTaxAmount": {
+          "$ref": "Price",
+          "description": "Required. The pre-tax amount of the partial refund. Should be less than the remaining pre-tax amount of the transaction."
         }
       },
       "type": "object"
@@ -5649,6 +6327,45 @@
       },
       "type": "object"
     },
+    "RecurringExternalTransaction": {
+      "description": "Represents a transaction that is part of a recurring series of payments. This can be a subscription or a one-time product with multiple payments (such as preorder).",
+      "id": "RecurringExternalTransaction",
+      "properties": {
+        "externalSubscription": {
+          "$ref": "ExternalSubscription",
+          "description": "Details of an external subscription."
+        },
+        "externalTransactionToken": {
+          "description": "Input only. Provided during the call to Create. Retrieved from the client when the alternative billing flow is launched. Required only for the initial purchase.",
+          "type": "string"
+        },
+        "initialExternalTransactionId": {
+          "description": "The external transaction id of the first transaction of this recurring series of transactions. For example, for a subscription this would be the transaction id of the first payment. Required when creating recurring external transactions.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RefundExternalTransactionRequest": {
+      "description": "A request to refund an existing external transaction.",
+      "id": "RefundExternalTransactionRequest",
+      "properties": {
+        "fullRefund": {
+          "$ref": "FullRefund",
+          "description": "A full-amount refund."
+        },
+        "partialRefund": {
+          "$ref": "PartialRefund",
+          "description": "A partial refund."
+        },
+        "refundTime": {
+          "description": "Required. The time that the transaction was refunded.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RegionalBasePlanConfig": {
       "description": "Configuration for a base plan specific to a region.",
       "id": "RegionalBasePlanConfig",
@@ -5675,6 +6392,20 @@
         "oldestAllowedPriceVersionTime": {
           "description": "Required. The cutoff time for historical prices that subscribers can remain paying. Subscribers who are on a price that was created before this cutoff time will be migrated to the currently-offered price. These subscribers will receive a notification that they will be paying a different price. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "priceIncreaseType": {
+          "description": "Optional. The behavior the caller wants users to see when there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN. Note that the first opt-out price increase migration for each app must be initiated in Play Console.",
+          "enum": [
+            "PRICE_INCREASE_TYPE_UNSPECIFIED",
+            "PRICE_INCREASE_TYPE_OPT_IN",
+            "PRICE_INCREASE_TYPE_OPT_OUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Price increase will be presented to users on an opt-in basis.",
+            "Price increase will be presented to users on an opt-out basis."
+          ],
           "type": "string"
         },
         "regionCode": {
@@ -5732,7 +6463,7 @@
           "type": "boolean"
         },
         "streamingTaxType": {
-          "description": "To collect communications or amusement taxes in the United States, choose the appropriate tax category. By default Google will determine the collected rate based on the buyer ZIP code. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax).",
+          "description": "To collect communications or amusement taxes in the United States, choose the appropriate tax category. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax).",
           "enum": [
             "STREAMING_TAX_TYPE_UNSPECIFIED",
             "STREAMING_TAX_TYPE_TELCO_VIDEO_RENTAL",
@@ -5777,11 +6508,11 @@
       "type": "object"
     },
     "RegionsVersion": {
-      "description": "The version of the available regions being used for the specified resource.",
+      "description": "The version of the available regions being used for the specified resource. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353).",
       "id": "RegionsVersion",
       "properties": {
         "version": {
-          "description": "Required. A string representing version of the available regions being used for the specified resource. The current version is 2022/01.",
+          "description": "Required. The latest version is 2022/02.",
           "type": "string"
         }
       },
@@ -5870,6 +6601,150 @@
         "result": {
           "$ref": "ReviewReplyResult",
           "description": "The result of replying/updating a reply to review."
+        }
+      },
+      "type": "object"
+    },
+    "ScreenDensity": {
+      "description": "Represents a screen density.",
+      "id": "ScreenDensity",
+      "properties": {
+        "densityAlias": {
+          "description": "Alias for a screen density.",
+          "enum": [
+            "DENSITY_UNSPECIFIED",
+            "NODPI",
+            "LDPI",
+            "MDPI",
+            "TVDPI",
+            "HDPI",
+            "XHDPI",
+            "XXHDPI",
+            "XXXHDPI"
+          ],
+          "enumDescriptions": [
+            "Unspecified screen density.",
+            "NODPI screen density.",
+            "LDPI screen density.",
+            "MDPI screen density.",
+            "TVDPI screen density.",
+            "HDPI screen density.",
+            "XHDPI screen density.",
+            "XXHDPI screen density.",
+            "XXXHDPI screen density."
+          ],
+          "type": "string"
+        },
+        "densityDpi": {
+          "description": "Value for density dpi.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ScreenDensityTargeting": {
+      "description": "Targeting based on screen density.",
+      "id": "ScreenDensityTargeting",
+      "properties": {
+        "alternatives": {
+          "description": "Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits.",
+          "items": {
+            "$ref": "ScreenDensity"
+          },
+          "type": "array"
+        },
+        "value": {
+          "description": "Value of a screen density.",
+          "items": {
+            "$ref": "ScreenDensity"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SdkVersion": {
+      "description": "Represents an sdk version.",
+      "id": "SdkVersion",
+      "properties": {
+        "min": {
+          "description": "Inclusive minimum value of an sdk version.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SdkVersionTargeting": {
+      "description": "Targeting based on sdk version.",
+      "id": "SdkVersionTargeting",
+      "properties": {
+        "alternatives": {
+          "description": "Targeting of other sibling directories that were in the Bundle. For main splits this is targeting of other main splits.",
+          "items": {
+            "$ref": "SdkVersion"
+          },
+          "type": "array"
+        },
+        "value": {
+          "description": "Value of an sdk version.",
+          "items": {
+            "$ref": "SdkVersion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SplitApkMetadata": {
+      "description": "Holds data specific to Split APKs.",
+      "id": "SplitApkMetadata",
+      "properties": {
+        "isMasterSplit": {
+          "description": "Indicates whether this APK is the main split of the module.",
+          "type": "boolean"
+        },
+        "splitId": {
+          "description": "Id of the split.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SplitApkVariant": {
+      "description": "Variant is a group of APKs that covers a part of the device configuration space. APKs from multiple variants are never combined on one device.",
+      "id": "SplitApkVariant",
+      "properties": {
+        "apkSet": {
+          "description": "Set of APKs, one set per module.",
+          "items": {
+            "$ref": "ApkSet"
+          },
+          "type": "array"
+        },
+        "targeting": {
+          "$ref": "VariantTargeting",
+          "description": "Variant-level targeting."
+        },
+        "variantNumber": {
+          "description": "Number of the variant, starting at 0 (unless overridden). A device will receive APKs from the first variant that matches the device configuration, with higher variant numbers having priority over lower variant numbers.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "StandaloneApkMetadata": {
+      "description": "Holds data specific to Standalone APKs.",
+      "id": "StandaloneApkMetadata",
+      "properties": {
+        "fusedModuleName": {
+          "description": "Names of the modules fused in this standalone APK.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5967,6 +6842,52 @@
         "expectedExpiryTimeMillis": {
           "description": "The expected expiry time for the subscription. If the current expiry time for the subscription is not the value specified here, the deferral will not occur.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionItemPriceChangeDetails": {
+      "description": "Price change related information of a subscription item.",
+      "id": "SubscriptionItemPriceChangeDetails",
+      "properties": {
+        "expectedNewPriceChargeTime": {
+          "description": "The renewal time at which the price change will become effective for the user. This is subject to change(to a future time) due to cases where the renewal time shifts like pause.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "newPrice": {
+          "$ref": "Money",
+          "description": "New recurring price for the subscription item."
+        },
+        "priceChangeMode": {
+          "description": "Price change mode specifies how the subscription item price is changing.",
+          "enum": [
+            "PRICE_CHANGE_MODE_UNSPECIFIED",
+            "PRICE_DECREASE",
+            "PRICE_INCREASE"
+          ],
+          "enumDescriptions": [
+            "Price change mode unspecified. This value should never be set.",
+            "If the subscription price is decreasing.",
+            "If the subscription price is increasing and the user needs to accept it."
+          ],
+          "type": "string"
+        },
+        "priceChangeState": {
+          "description": "State the price change is currently in.",
+          "enum": [
+            "PRICE_CHANGE_STATE_UNSPECIFIED",
+            "OUTSTANDING",
+            "CONFIRMED",
+            "APPLIED"
+          ],
+          "enumDescriptions": [
+            "Price change state unspecified. This value should not be used.",
+            "Waiting for the user to agree for the price change.",
+            "The price change is confirmed to happen for the user.",
+            "The price change is applied, i.e. the user has started being charged the new price."
+          ],
           "type": "string"
         }
       },
@@ -6266,10 +7187,18 @@
           "$ref": "AutoRenewingPlan",
           "description": "The item is auto renewing."
         },
+        "deferredItemReplacement": {
+          "$ref": "DeferredItemReplacement",
+          "description": "Information for deferred item replacement."
+        },
         "expiryTime": {
           "description": "Time at which the subscription expired or will expire unless the access is extended (ex. renews).",
           "format": "google-datetime",
           "type": "string"
+        },
+        "offerDetails": {
+          "$ref": "OfferDetails",
+          "description": "The offer details for this item."
         },
         "prepaidPlan": {
           "$ref": "PrepaidPlan",
@@ -6427,6 +7356,10 @@
           ],
           "type": "string"
         },
+        "isTokenizedDigitalAsset": {
+          "description": "Whether this subscription is declared as a product representing a tokenized digital asset.",
+          "type": "boolean"
+        },
         "taxRateInfoByRegionCode": {
           "additionalProperties": {
             "$ref": "RegionalTaxRateInfo"
@@ -6468,6 +7401,31 @@
       "properties": {},
       "type": "object"
     },
+    "TargetingInfo": {
+      "description": "Targeting information about the generated apks.",
+      "id": "TargetingInfo",
+      "properties": {
+        "assetSliceSet": {
+          "description": "List of created asset slices.",
+          "items": {
+            "$ref": "AssetSliceSet"
+          },
+          "type": "array"
+        },
+        "packageName": {
+          "description": "The package name of this app.",
+          "type": "string"
+        },
+        "variant": {
+          "description": "List of the created variants.",
+          "items": {
+            "$ref": "SplitApkVariant"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "TargetingRuleScope": {
       "description": "Defines the scope of subscriptions which a targeting rule can match to target offers to users based on past or current entitlement.",
       "id": "TargetingRuleScope",
@@ -6493,6 +7451,64 @@
           "description": "All testing Google Groups, as email addresses.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TextureCompressionFormat": {
+      "description": "Represents texture compression format.",
+      "id": "TextureCompressionFormat",
+      "properties": {
+        "alias": {
+          "description": "Alias for texture compression format.",
+          "enum": [
+            "UNSPECIFIED_TEXTURE_COMPRESSION_FORMAT",
+            "ETC1_RGB8",
+            "PALETTED",
+            "THREE_DC",
+            "ATC",
+            "LATC",
+            "DXT1",
+            "S3TC",
+            "PVRTC",
+            "ASTC",
+            "ETC2"
+          ],
+          "enumDescriptions": [
+            "Unspecified format.",
+            "ETC1_RGB8 format.",
+            "PALETTED format.",
+            "THREE_DC format.",
+            "ATC format.",
+            "LATC format.",
+            "DXT1 format.",
+            "S3TC format.",
+            "PVRTC format.",
+            "ASTC format.",
+            "ETC2 format."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TextureCompressionFormatTargeting": {
+      "description": "Targeting by a texture compression format.",
+      "id": "TextureCompressionFormatTargeting",
+      "properties": {
+        "alternatives": {
+          "description": "List of alternative TCFs (TCFs targeted by the sibling splits).",
+          "items": {
+            "$ref": "TextureCompressionFormat"
+          },
+          "type": "array"
+        },
+        "value": {
+          "description": "The list of targeted TCFs. Should not be empty.",
+          "items": {
+            "$ref": "TextureCompressionFormat"
           },
           "type": "array"
         }
@@ -6542,7 +7558,7 @@
           "type": "array"
         },
         "track": {
-          "description": "Identifier of the track.",
+          "description": "Identifier of the track. Form factor tracks have a special prefix as an identifier, for example `wear:production`, `automotive:production`. [More on track name](https://developers.google.com/android-publisher/tracks#ff-track-name)",
           "type": "string"
         }
       },
@@ -6717,7 +7733,10 @@
               "CAN_MANAGE_DRAFT_APPS_GLOBAL",
               "CAN_CREATE_MANAGED_PLAY_APPS_GLOBAL",
               "CAN_CHANGE_MANAGED_PLAY_SETTING_GLOBAL",
-              "CAN_MANAGE_ORDERS_GLOBAL"
+              "CAN_MANAGE_ORDERS_GLOBAL",
+              "CAN_MANAGE_APP_CONTENT_GLOBAL",
+              "CAN_VIEW_NON_FINANCIAL_DATA_GLOBAL",
+              "CAN_VIEW_APP_QUALITY_GLOBAL"
             ],
             "enumDescriptions": [
               "Unknown or unspecified permission.",
@@ -6734,7 +7753,10 @@
               "Create, edit, and delete draft apps.",
               "Create and publish private apps to your organization.",
               "Choose whether apps are public, or only available to your organization.",
-              "Manage orders and subscriptions."
+              "Manage orders and subscriptions.",
+              "Manage policy related pages on all apps for the developer.",
+              "View app information and download bulk reports (read-only).",
+              "View app quality information for all apps for the developer."
             ],
             "type": "string"
           },
@@ -6829,6 +7851,42 @@
       },
       "type": "object"
     },
+    "UserCountriesTargeting": {
+      "description": "Describes an inclusive/exclusive list of country codes that module targets.",
+      "id": "UserCountriesTargeting",
+      "properties": {
+        "countryCodes": {
+          "description": "List of country codes in the two-letter CLDR territory format.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "exclude": {
+          "description": "Indicates if the list above is exclusive.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "UserCountrySet": {
+      "description": "A set of user countries. A country set determines what variation of app content gets served to a specific location.",
+      "id": "UserCountrySet",
+      "properties": {
+        "countryCodes": {
+          "description": "List of country codes representing countries. A Country code is represented in ISO 3166 alpha-2 format. For Example:- \"IT\" for Italy, \"GE\" for Georgia.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Country set name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "UserInitiatedCancellation": {
       "description": "Information specific to cancellations initiated by users.",
       "id": "UserInitiatedCancellation",
@@ -6874,6 +7932,33 @@
           "format": "uint32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "VariantTargeting": {
+      "description": "Targeting on the level of variants.",
+      "id": "VariantTargeting",
+      "properties": {
+        "abiTargeting": {
+          "$ref": "AbiTargeting",
+          "description": "The abi that the variant targets"
+        },
+        "multiAbiTargeting": {
+          "$ref": "MultiAbiTargeting",
+          "description": "Multi-api-level targeting"
+        },
+        "screenDensityTargeting": {
+          "$ref": "ScreenDensityTargeting",
+          "description": "The screen densities that this variant supports"
+        },
+        "sdkVersionTargeting": {
+          "$ref": "SdkVersionTargeting",
+          "description": "The sdk version that the variant targets"
+        },
+        "textureCompressionFormatTargeting": {
+          "$ref": "TextureCompressionFormatTargeting",
+          "description": "Texture-compression-format-level targeting"
         }
       },
       "type": "object"

@@ -37,7 +37,7 @@ export function playdeveloperreporting(
 export function playdeveloperreporting<
   T =
     | playdeveloperreporting_v1alpha1.Playdeveloperreporting
-    | playdeveloperreporting_v1beta1.Playdeveloperreporting
+    | playdeveloperreporting_v1beta1.Playdeveloperreporting,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

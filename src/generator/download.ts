@@ -15,10 +15,10 @@
 import * as minimist from 'yargs-parser';
 import * as path from 'path';
 import * as fs from 'fs';
+const {mkdir} = require('fs').promises;
 import Q from 'p-queue';
 import {request, Headers} from 'gaxios';
 import * as gapi from 'googleapis-common';
-import * as mkdirp from 'mkdirp';
 
 export type Schema = {[index: string]: {}};
 export const DISCOVERY_URL = 'https://www.googleapis.com/discovery/v1/apis/';
@@ -41,7 +41,7 @@ export interface DownloadOptions {
 
 // exported for mocking purposes
 export const gfs = {
-  mkdir: async (dir: string) => mkdirp(dir),
+  mkdir: async (dir: string) => mkdir(dir, {recursive: true}),
   writeFile: (path: string, obj: {}) => {
     fs.writeFileSync(path, JSON.stringify(obj, null, 2));
   },
@@ -61,6 +61,9 @@ export async function downloadDiscoveryDocs(
   const headers: Headers = options.includePrivate
     ? {}
     : {'X-User-Ip': '0.0.0.0'};
+  headers['Content-Type'] = headers['Content-Type']
+    ? headers['Content-Type']
+    : 'json';
   console.log(`sending request to ${options.discoveryUrl}`);
   const res = await request<gapi.Schemas>({url: options.discoveryUrl, headers});
   const apis = res.data.items;

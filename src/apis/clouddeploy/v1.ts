@@ -100,7 +100,7 @@ export namespace clouddeploy_v1 {
   }
 
   /**
-   * Google Cloud Deploy API
+   * Cloud Deploy API
    *
    *
    *
@@ -132,6 +132,36 @@ export namespace clouddeploy_v1 {
    * The response object for `AbandonRelease`.
    */
   export interface Schema$AbandonReleaseResponse {}
+  /**
+   * An advanceChildRollout Job.
+   */
+  export interface Schema$AdvanceChildRolloutJob {}
+  /**
+   * AdvanceChildRolloutJobRun contains information specific to a advanceChildRollout `JobRun`.
+   */
+  export interface Schema$AdvanceChildRolloutJobRun {
+    /**
+     * Output only. Name of the `ChildRollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
+     */
+    rollout?: string | null;
+    /**
+     * Output only. the ID of the ChildRollout's Phase.
+     */
+    rolloutPhaseId?: string | null;
+  }
+  /**
+   * The request object used by `AdvanceRollout`.
+   */
+  export interface Schema$AdvanceRolloutRequest {
+    /**
+     * Required. The phase ID to advance the `Rollout` to.
+     */
+    phaseId?: string | null;
+  }
+  /**
+   * The response object from `AdvanceRollout`.
+   */
+  export interface Schema$AdvanceRolloutResponse {}
   /**
    * Information specifying an Anthos Cluster.
    */
@@ -189,7 +219,7 @@ export namespace clouddeploy_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -211,9 +241,77 @@ export namespace clouddeploy_v1 {
     tag?: string | null;
   }
   /**
+   * Canary represents the canary deployment strategy.
+   */
+  export interface Schema$Canary {
+    /**
+     * Configures the progressive based deployment for a Target.
+     */
+    canaryDeployment?: Schema$CanaryDeployment;
+    /**
+     * Configures the progressive based deployment for a Target, but allows customizing at the phase level where a phase represents each of the percentage deployments.
+     */
+    customCanaryDeployment?: Schema$CustomCanaryDeployment;
+    /**
+     * Optional. Runtime specific configurations for the deployment strategy. The runtime configuration is used to determine how Cloud Deploy will split traffic to enable a progressive deployment.
+     */
+    runtimeConfig?: Schema$RuntimeConfig;
+  }
+  /**
+   * CanaryDeployment represents the canary deployment configuration
+   */
+  export interface Schema$CanaryDeployment {
+    /**
+     * Required. The percentage based deployments that will occur as a part of a `Rollout`. List is expected in ascending order and each integer n is 0 <= n < 100.
+     */
+    percentages?: number[] | null;
+    /**
+     * Optional. Configuration for the postdeploy job of the last phase. If this is not configured, there will be no postdeploy job for this phase.
+     */
+    postdeploy?: Schema$Postdeploy;
+    /**
+     * Optional. Configuration for the predeploy job of the first phase. If this is not configured, there will be no predeploy job for this phase.
+     */
+    predeploy?: Schema$Predeploy;
+    /**
+     * Whether to run verify tests after each percentage deployment.
+     */
+    verify?: boolean | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * The request object used by `CancelRollout`.
+   */
+  export interface Schema$CancelRolloutRequest {}
+  /**
+   * The response object from `CancelRollout`.
+   */
+  export interface Schema$CancelRolloutResponse {}
+  /**
+   * ChildRollouts job composition
+   */
+  export interface Schema$ChildRolloutJobs {
+    /**
+     * Output only. List of AdvanceChildRolloutJobs
+     */
+    advanceRolloutJobs?: Schema$Job[];
+    /**
+     * Output only. List of CreateChildRolloutJobs
+     */
+    createRolloutJobs?: Schema$Job[];
+  }
+  /**
+   * CloudRunConfig contains the Cloud Run runtime configuration.
+   */
+  export interface Schema$CloudRunConfig {
+    /**
+     * Whether Cloud Deploy should update the traffic stanza in a Cloud Run Service on the user's behalf to facilitate traffic splitting. This is required to be true for CanaryDeployments, but optional for CustomCanaryDeployments.
+     */
+    automaticTrafficControl?: boolean | null;
+  }
   /**
    * Information specifying where to deploy a Cloud Run Service.
    */
@@ -241,11 +339,20 @@ export namespace clouddeploy_v1 {
     serviceUrls?: string[] | null;
   }
   /**
+   * CloudRunRenderMetadata contains Cloud Run information associated with a `Release` render.
+   */
+  export interface Schema$CloudRunRenderMetadata {
+    /**
+     * Output only. The name of the Cloud Run Service in the rendered manifest. Format is projects/{project\}/locations/{location\}/services/{service\}.
+     */
+    service?: string | null;
+  }
+  /**
    * Service-wide configuration.
    */
   export interface Schema$Config {
     /**
-     * Output only. Default Skaffold version that is assigned when a Release is created without specifying a Skaffold version.
+     * Default Skaffold version that is assigned when a Release is created without specifying a Skaffold version.
      */
     defaultSkaffoldVersion?: string | null;
     /**
@@ -253,9 +360,35 @@ export namespace clouddeploy_v1 {
      */
     name?: string | null;
     /**
-     * Output only. All supported versions of Skaffold.
+     * All supported versions of Skaffold.
      */
     supportedVersions?: Schema$SkaffoldVersion[];
+  }
+  /**
+   * A createChildRollout Job.
+   */
+  export interface Schema$CreateChildRolloutJob {}
+  /**
+   * CreateChildRolloutJobRun contains information specific to a createChildRollout `JobRun`.
+   */
+  export interface Schema$CreateChildRolloutJobRun {
+    /**
+     * Output only. Name of the `ChildRollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
+     */
+    rollout?: string | null;
+    /**
+     * Output only. The ID of the childRollout Phase initiated by this JobRun.
+     */
+    rolloutPhaseId?: string | null;
+  }
+  /**
+   * CustomCanaryDeployment represents the custom canary deployment configuration.
+   */
+  export interface Schema$CustomCanaryDeployment {
+    /**
+     * Required. Configuration for each phase in the canary deployment in the order executed.
+     */
+    phaseConfigs?: Schema$PhaseConfig[];
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
@@ -288,11 +421,11 @@ export namespace clouddeploy_v1 {
     serviceAccount?: string | null;
   }
   /**
-   * A `DeliveryPipeline` resource in the Google Cloud Deploy API. A `DeliveryPipeline` defines a pipeline through which a Skaffold configuration can progress.
+   * A `DeliveryPipeline` resource in the Cloud Deploy API. A `DeliveryPipeline` defines a pipeline through which a Skaffold configuration can progress.
    */
   export interface Schema$DeliveryPipeline {
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy.
+     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -312,7 +445,7 @@ export namespace clouddeploy_v1 {
      */
     etag?: string | null;
     /**
-     * Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     * Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -354,6 +487,19 @@ export namespace clouddeploy_v1 {
     type?: string | null;
   }
   /**
+   * The artifacts produced by a deploy operation.
+   */
+  export interface Schema$DeployArtifact {
+    /**
+     * Output only. URI of a directory containing the artifacts. All paths are relative to this location.
+     */
+    artifactUri?: string | null;
+    /**
+     * Output only. File paths of the manifests applied during the deploy operation relative to the URI.
+     */
+    manifestPaths?: string[] | null;
+  }
+  /**
    * A deploy Job.
    */
   export interface Schema$DeployJob {}
@@ -361,6 +507,10 @@ export namespace clouddeploy_v1 {
    * DeployJobRun contains information specific to a deploy `JobRun`.
    */
   export interface Schema$DeployJobRun {
+    /**
+     * Output only. The artifact of a deploy job run, if available.
+     */
+    artifact?: Schema$DeployArtifact;
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is used to deploy. Format is projects/{project\}/locations/{location\}/builds/{build\}.
      */
@@ -392,13 +542,34 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$DeploymentJobs {
     /**
-     * Output only. The deploy Job. This is the first job run in the phase.
+     * Output only. The deploy Job. This is the deploy job in the phase.
      */
     deployJob?: Schema$Job;
+    /**
+     * Output only. The postdeploy Job, which is the last job on the phase.
+     */
+    postdeployJob?: Schema$Job;
+    /**
+     * Output only. The predeploy Job, which is the first job on the phase.
+     */
+    predeployJob?: Schema$Job;
     /**
      * Output only. The verify Job. Runs after a deploy if the deploy succeeds.
      */
     verifyJob?: Schema$Job;
+  }
+  /**
+   * DeployParameters contains deploy parameters information.
+   */
+  export interface Schema$DeployParameters {
+    /**
+     * Optional. Deploy parameters are applied to targets with match labels. If unspecified, deploy parameters are applied to all targets (including child targets of a multi-target).
+     */
+    matchTargetLabels?: {[key: string]: string} | null;
+    /**
+     * Required. Values are deploy parameters in key-value pairs.
+     */
+    values?: {[key: string]: string} | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -459,6 +630,27 @@ export namespace clouddeploy_v1 {
     title?: string | null;
   }
   /**
+   * Information about the Kubernetes Gateway API service mesh configuration.
+   */
+  export interface Schema$GatewayServiceMesh {
+    /**
+     * Required. Name of the Kubernetes Deployment whose traffic is managed by the specified HTTPRoute and Service.
+     */
+    deployment?: string | null;
+    /**
+     * Required. Name of the Gateway API HTTPRoute.
+     */
+    httpRoute?: string | null;
+    /**
+     * Optional. The time to wait for route updates to propagate. The maximum configurable time is 3 hours, in seconds format. If unspecified, there is no wait time.
+     */
+    routeUpdateWaitTime?: string | null;
+    /**
+     * Required. Name of the Kubernetes Service.
+     */
+    service?: string | null;
+  }
+  /**
    * Information specifying a GKE Cluster.
    */
   export interface Schema$GkeCluster {
@@ -472,9 +664,34 @@ export namespace clouddeploy_v1 {
     internalIp?: boolean | null;
   }
   /**
+   * The request object used by `IgnoreJob`.
+   */
+  export interface Schema$IgnoreJobRequest {
+    /**
+     * Required. The job ID for the Job to ignore.
+     */
+    jobId?: string | null;
+    /**
+     * Required. The phase ID the Job to ignore belongs to.
+     */
+    phaseId?: string | null;
+  }
+  /**
+   * The response object from `IgnoreJob`.
+   */
+  export interface Schema$IgnoreJobResponse {}
+  /**
    * Job represents an operation for a `Rollout`.
    */
   export interface Schema$Job {
+    /**
+     * Output only. An advanceChildRollout Job.
+     */
+    advanceChildRolloutJob?: Schema$AdvanceChildRolloutJob;
+    /**
+     * Output only. A createChildRollout Job.
+     */
+    createChildRolloutJob?: Schema$CreateChildRolloutJob;
     /**
      * Output only. A deploy Job.
      */
@@ -488,6 +705,18 @@ export namespace clouddeploy_v1 {
      */
     jobRun?: string | null;
     /**
+     * Output only. A postdeploy Job.
+     */
+    postdeployJob?: Schema$PostdeployJob;
+    /**
+     * Output only. A predeploy Job.
+     */
+    predeployJob?: Schema$PredeployJob;
+    /**
+     * Output only. Additional information on why the Job was skipped, if available.
+     */
+    skipMessage?: string | null;
+    /**
      * Output only. The current state of the Job.
      */
     state?: string | null;
@@ -497,9 +726,17 @@ export namespace clouddeploy_v1 {
     verifyJob?: Schema$VerifyJob;
   }
   /**
-   * A `JobRun` resource in the Google Cloud Deploy API. A `JobRun` contains information of a single `Rollout` job evaluation.
+   * A `JobRun` resource in the Cloud Deploy API. A `JobRun` contains information of a single `Rollout` job evaluation.
    */
   export interface Schema$JobRun {
+    /**
+     * Output only. Information specific to an advanceChildRollout `JobRun`
+     */
+    advanceChildRolloutJobRun?: Schema$AdvanceChildRolloutJobRun;
+    /**
+     * Output only. Information specific to a createChildRollout `JobRun`.
+     */
+    createChildRolloutJobRun?: Schema$CreateChildRolloutJobRun;
     /**
      * Output only. Time at which the `JobRun` was created.
      */
@@ -528,6 +765,14 @@ export namespace clouddeploy_v1 {
      * Output only. ID of the `Rollout` phase this `JobRun` belongs in.
      */
     phaseId?: string | null;
+    /**
+     * Output only. Information specific to a postdeploy `JobRun`.
+     */
+    postdeployJobRun?: Schema$PostdeployJobRun;
+    /**
+     * Output only. Information specific to a predeploy `JobRun`.
+     */
+    predeployJobRun?: Schema$PredeployJobRun;
     /**
      * Output only. Time at which the `JobRun` was started.
      */
@@ -577,6 +822,19 @@ export namespace clouddeploy_v1 {
      * Type of this notification, e.g. for a Pub/Sub failure.
      */
     type?: string | null;
+  }
+  /**
+   * KubernetesConfig contains the Kubernetes runtime configuration.
+   */
+  export interface Schema$KubernetesConfig {
+    /**
+     * Kubernetes Gateway API service mesh configuration.
+     */
+    gatewayServiceMesh?: Schema$GatewayServiceMesh;
+    /**
+     * Kubernetes Service networking configuration.
+     */
+    serviceNetworking?: Schema$ServiceNetworking;
   }
   /**
    * The response object from `ListDeliveryPipelines`.
@@ -690,7 +948,7 @@ export namespace clouddeploy_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -724,6 +982,15 @@ export namespace clouddeploy_v1 {
     cloudRun?: Schema$CloudRunMetadata;
   }
   /**
+   * Information specifying a multiTarget.
+   */
+  export interface Schema$MultiTarget {
+    /**
+     * Required. The target_ids of this multiTarget.
+     */
+    targetIds?: string[] | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -744,7 +1011,7 @@ export namespace clouddeploy_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -786,6 +1053,10 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Phase {
     /**
+     * Output only. ChildRollout job composition.
+     */
+    childRolloutJobs?: Schema$ChildRolloutJobs;
+    /**
      * Output only. Deployment job composition.
      */
     deploymentJobs?: Schema$DeploymentJobs;
@@ -794,9 +1065,59 @@ export namespace clouddeploy_v1 {
      */
     id?: string | null;
     /**
+     * Output only. Additional information on why the Phase was skipped, if available.
+     */
+    skipMessage?: string | null;
+    /**
      * Output only. Current state of the Phase.
      */
     state?: string | null;
+  }
+  /**
+   * Contains the paths to the artifacts, relative to the URI, for a phase.
+   */
+  export interface Schema$PhaseArtifact {
+    /**
+     * Output only. File path of the directory of rendered job manifests relative to the URI. This is only set if it is applicable.
+     */
+    jobManifestsPath?: string | null;
+    /**
+     * Output only. File path of the rendered manifest relative to the URI.
+     */
+    manifestPath?: string | null;
+    /**
+     * Output only. File path of the resolved Skaffold configuration relative to the URI.
+     */
+    skaffoldConfigPath?: string | null;
+  }
+  /**
+   * PhaseConfig represents the configuration for a phase in the custom canary deployment.
+   */
+  export interface Schema$PhaseConfig {
+    /**
+     * Required. Percentage deployment for the phase.
+     */
+    percentage?: number | null;
+    /**
+     * Required. The ID to assign to the `Rollout` phase. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     */
+    phaseId?: string | null;
+    /**
+     * Optional. Configuration for the postdeploy job of this phase. If this is not configured, there will be no postdeploy job for this phase.
+     */
+    postdeploy?: Schema$Postdeploy;
+    /**
+     * Optional. Configuration for the predeploy job of this phase. If this is not configured, there will be no predeploy job for this phase.
+     */
+    predeploy?: Schema$Predeploy;
+    /**
+     * Skaffold profiles to use when rendering the manifest for this phase. These are in addition to the profiles list specified in the `DeliveryPipeline` stage.
+     */
+    profiles?: string[] | null;
+    /**
+     * Whether to run verify tests after the deployment.
+     */
+    verify?: boolean | null;
   }
   /**
    * PipelineCondition contains all conditions relevant to a Delivery Pipeline.
@@ -807,9 +1128,13 @@ export namespace clouddeploy_v1 {
      */
     pipelineReadyCondition?: Schema$PipelineReadyCondition;
     /**
-     * Detalis around targets enumerated in the pipeline.
+     * Details around targets enumerated in the pipeline.
      */
     targetsPresentCondition?: Schema$TargetsPresentCondition;
+    /**
+     * Details on the whether the targets enumerated in the pipeline are of the same type.
+     */
+    targetsTypeCondition?: Schema$TargetsTypeCondition;
   }
   /**
    * PipelineReadyCondition contains information around the status of the Pipeline.
@@ -825,7 +1150,7 @@ export namespace clouddeploy_v1 {
     updateTime?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -846,6 +1171,76 @@ export namespace clouddeploy_v1 {
     version?: number | null;
   }
   /**
+   * Postdeploy contains the postdeploy job configuration information.
+   */
+  export interface Schema$Postdeploy {
+    /**
+     * Optional. A sequence of Skaffold custom actions to invoke during execution of the postdeploy job.
+     */
+    actions?: string[] | null;
+  }
+  /**
+   * A postdeploy Job.
+   */
+  export interface Schema$PostdeployJob {
+    /**
+     * Output only. The custom actions that the postdeploy Job executes.
+     */
+    actions?: string[] | null;
+  }
+  /**
+   * PostdeployJobRun contains information specific to a postdeploy `JobRun`.
+   */
+  export interface Schema$PostdeployJobRun {
+    /**
+     * Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the postdeploy Job. Format is projects/{project\}/locations/{location\}/builds/{build\}.
+     */
+    build?: string | null;
+    /**
+     * Output only. The reason the postdeploy failed. This will always be unspecified while the postdeploy is in progress or if it succeeded.
+     */
+    failureCause?: string | null;
+    /**
+     * Output only. Additional information about the postdeploy failure, if available.
+     */
+    failureMessage?: string | null;
+  }
+  /**
+   * Predeploy contains the predeploy job configuration information.
+   */
+  export interface Schema$Predeploy {
+    /**
+     * Optional. A sequence of Skaffold custom actions to invoke during execution of the predeploy job.
+     */
+    actions?: string[] | null;
+  }
+  /**
+   * A predeploy Job.
+   */
+  export interface Schema$PredeployJob {
+    /**
+     * Output only. The custom actions that the predeploy Job executes.
+     */
+    actions?: string[] | null;
+  }
+  /**
+   * PredeployJobRun contains information specific to a predeploy `JobRun`.
+   */
+  export interface Schema$PredeployJobRun {
+    /**
+     * Output only. The resource name of the Cloud Build `Build` object that is used to execute the custom actions associated with the predeploy Job. Format is projects/{project\}/locations/{location\}/builds/{build\}.
+     */
+    build?: string | null;
+    /**
+     * Output only. The reason the predeploy failed. This will always be unspecified while the predeploy is in progress or if it succeeded.
+     */
+    failureCause?: string | null;
+    /**
+     * Output only. Additional information about the predeploy failure, if available.
+     */
+    failureMessage?: string | null;
+  }
+  /**
    * Execution using a private Cloud Build pool.
    */
   export interface Schema$PrivatePool {
@@ -863,7 +1258,7 @@ export namespace clouddeploy_v1 {
     workerPool?: string | null;
   }
   /**
-   * A `Release` resource in the Google Cloud Deploy API. A `Release` defines a specific Skaffold configuration instance that can be deployed.
+   * A `Release` resource in the Cloud Deploy API. A `Release` defines a specific Skaffold configuration instance that can be deployed.
    */
   export interface Schema$Release {
     /**
@@ -871,13 +1266,17 @@ export namespace clouddeploy_v1 {
      */
     abandoned?: boolean | null;
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
     annotations?: {[key: string]: string} | null;
     /**
      * List of artifacts to pass through to Skaffold command.
      */
     buildArtifacts?: Schema$BuildArtifact[];
+    /**
+     * Output only. Information around the state of the Release.
+     */
+    condition?: Schema$ReleaseCondition;
     /**
      * Output only. Time at which the `Release` was created.
      */
@@ -887,6 +1286,10 @@ export namespace clouddeploy_v1 {
      */
     deliveryPipelineSnapshot?: Schema$DeliveryPipeline;
     /**
+     * Optional. The deploy parameters to use for all targets in this release.
+     */
+    deployParameters?: {[key: string]: string} | null;
+    /**
      * Description of the `Release`. Max length is 255 characters.
      */
     description?: string | null;
@@ -895,7 +1298,7 @@ export namespace clouddeploy_v1 {
      */
     etag?: string | null;
     /**
-     * Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     * Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -923,7 +1326,7 @@ export namespace clouddeploy_v1 {
      */
     skaffoldConfigUri?: string | null;
     /**
-     * The Skaffold version to use when operating on this release, such as "1.20.0". Not all versions are valid; Google Cloud Deploy supports a specific set of versions. If unset, the most recent supported Skaffold version will be used.
+     * The Skaffold version to use when operating on this release, such as "1.20.0". Not all versions are valid; Cloud Deploy supports a specific set of versions. If unset, the most recent supported Skaffold version will be used.
      */
     skaffoldVersion?: string | null;
     /**
@@ -944,6 +1347,19 @@ export namespace clouddeploy_v1 {
     uid?: string | null;
   }
   /**
+   * ReleaseCondition contains all conditions relevant to a Release.
+   */
+  export interface Schema$ReleaseCondition {
+    /**
+     * Details around the Releases's overall status.
+     */
+    releaseReadyCondition?: Schema$ReleaseReadyCondition;
+    /**
+     * Details around the support state of the release's skaffold version.
+     */
+    skaffoldSupportedCondition?: Schema$SkaffoldSupportedCondition;
+  }
+  /**
    * Payload proto for "clouddeploy.googleapis.com/release_notification" Platform Log event that describes the failure to send release status change Pub/Sub notification.
    */
   export interface Schema$ReleaseNotificationEvent {
@@ -961,6 +1377,15 @@ export namespace clouddeploy_v1 {
     type?: string | null;
   }
   /**
+   * ReleaseReadyCondition contains information around the status of the Release. If a release is not ready, you cannot create a rollout with the release.
+   */
+  export interface Schema$ReleaseReadyCondition {
+    /**
+     * True if the Release is in a valid state. Otherwise at least one condition in `ReleaseCondition` is in an invalid state. Iterate over those conditions and see which condition(s) has status = false to find out what is wrong with the Release.
+     */
+    status?: boolean | null;
+  }
+  /**
    * Payload proto for "clouddeploy.googleapis.com/release_render" Platform Log event that describes the render status change.
    */
   export interface Schema$ReleaseRenderEvent {
@@ -972,6 +1397,15 @@ export namespace clouddeploy_v1 {
      * The name of the `Release`.
      */
     release?: string | null;
+  }
+  /**
+   * RenderMetadata includes information associated with a `Release` render.
+   */
+  export interface Schema$RenderMetadata {
+    /**
+     * Output only. Metadata associated with rendering for Cloud Run.
+     */
+    cloudRun?: Schema$CloudRunRenderMetadata;
   }
   /**
    * RetryJobRequest is the request object used by `RetryJob`.
@@ -991,11 +1425,11 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$RetryJobResponse {}
   /**
-   * A `Rollout` resource in the Google Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.
+   * A `Rollout` resource in the Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.
    */
   export interface Schema$Rollout {
     /**
-     * User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -1006,6 +1440,10 @@ export namespace clouddeploy_v1 {
      * Output only. Time at which the `Rollout` was approved.
      */
     approveTime?: string | null;
+    /**
+     * Output only. Name of the `ControllerRollout`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/a-z{0,62\}.
+     */
+    controllerRollout?: string | null;
     /**
      * Output only. Time at which the `Rollout` was created.
      */
@@ -1043,7 +1481,7 @@ export namespace clouddeploy_v1 {
      */
     failureReason?: string | null;
     /**
-     * Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     * Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1101,6 +1539,19 @@ export namespace clouddeploy_v1 {
     type?: string | null;
   }
   /**
+   * RuntimeConfig contains the runtime specific configurations for a deployment strategy.
+   */
+  export interface Schema$RuntimeConfig {
+    /**
+     * Cloud Run runtime configuration.
+     */
+    cloudRun?: Schema$CloudRunConfig;
+    /**
+     * Kubernetes runtime configuration.
+     */
+    kubernetes?: Schema$KubernetesConfig;
+  }
+  /**
    * SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`.
    */
   export interface Schema$SerialPipeline {
@@ -1108,6 +1559,23 @@ export namespace clouddeploy_v1 {
      * Each stage specifies configuration for a `Target`. The ordering of this list defines the promotion flow.
      */
     stages?: Schema$Stage[];
+  }
+  /**
+   * Information about the Kubernetes Service networking configuration.
+   */
+  export interface Schema$ServiceNetworking {
+    /**
+     * Required. Name of the Kubernetes Deployment whose traffic is managed by the specified Service.
+     */
+    deployment?: string | null;
+    /**
+     * Optional. Whether to disable Pod overprovisioning. If Pod overprovisioning is disabled then Cloud Deploy will limit the number of total Pods used for the deployment strategy to the number of Pods the Deployment has on the cluster.
+     */
+    disablePodOverprovisioning?: boolean | null;
+    /**
+     * Required. Name of the Kubernetes Service.
+     */
+    service?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1123,13 +1591,42 @@ export namespace clouddeploy_v1 {
     updateMask?: string | null;
   }
   /**
+   * SkaffoldSupportedCondition contains information about when support for the release's version of skaffold ends.
+   */
+  export interface Schema$SkaffoldSupportedCondition {
+    /**
+     * The time at which this release's version of skaffold will enter maintenance mode.
+     */
+    maintenanceModeTime?: string | null;
+    /**
+     * The skaffold support state for this release's version of skaffold.
+     */
+    skaffoldSupportState?: string | null;
+    /**
+     * True if the version of skaffold used by this release is supported.
+     */
+    status?: boolean | null;
+    /**
+     * The time at which this release's version of skaffold will no longer be supported.
+     */
+    supportExpirationTime?: string | null;
+  }
+  /**
    * Details of a supported Skaffold version.
    */
   export interface Schema$SkaffoldVersion {
     /**
+     * The time at which this version of skaffold will enter maintenance mode.
+     */
+    maintenanceModeTime?: string | null;
+    /**
      * Date when this version is expected to no longer be supported.
      */
     supportEndDate?: Schema$Date;
+    /**
+     * The time at which this version of skaffold will no longer be supported.
+     */
+    supportExpirationTime?: string | null;
     /**
      * Release version number. For example, "1.20.3".
      */
@@ -1139,6 +1636,10 @@ export namespace clouddeploy_v1 {
    * Stage specifies a location to which to deploy.
    */
   export interface Schema$Stage {
+    /**
+     * Optional. The deploy parameters to use for the target in this stage.
+     */
+    deployParameters?: Schema$DeployParameters[];
     /**
      * Skaffold profiles to use when rendering the manifest for this stage's `Target`.
      */
@@ -1156,6 +1657,14 @@ export namespace clouddeploy_v1 {
    * Standard represents the standard deployment strategy.
    */
   export interface Schema$Standard {
+    /**
+     * Optional. Configuration for the postdeploy job. If this is not configured, postdeploy job will not be present.
+     */
+    postdeploy?: Schema$Postdeploy;
+    /**
+     * Optional. Configuration for the predeploy job. If this is not configured, predeploy job will not be present.
+     */
+    predeploy?: Schema$Predeploy;
     /**
      * Whether to verify a deployment.
      */
@@ -1183,26 +1692,34 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$Strategy {
     /**
+     * Canary deployment strategy provides progressive percentage based deployments to a Target.
+     */
+    canary?: Schema$Canary;
+    /**
      * Standard deployment strategy executes a single deploy and allows verifying the deployment.
      */
     standard?: Schema$Standard;
   }
   /**
-   * A `Target` resource in the Google Cloud Deploy API. A `Target` defines a location to which a Skaffold configuration can be deployed.
+   * A `Target` resource in the Cloud Deploy API. A `Target` defines a location to which a Skaffold configuration can be deployed.
    */
   export interface Schema$Target {
     /**
-     * Optional. User annotations. These attributes can only be set and used by the user, and not by Google Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     * Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Information specifying an Anthos Cluster.
+     * Optional. Information specifying an Anthos Cluster.
      */
     anthosCluster?: Schema$AnthosCluster;
     /**
      * Output only. Time at which the `Target` was created.
      */
     createTime?: string | null;
+    /**
+     * Optional. The deploy parameters to use for this target.
+     */
+    deployParameters?: {[key: string]: string} | null;
     /**
      * Optional. Description of the `Target`. Max length is 255 characters.
      */
@@ -1216,13 +1733,17 @@ export namespace clouddeploy_v1 {
      */
     executionConfigs?: Schema$ExecutionConfig[];
     /**
-     * Information specifying a GKE Cluster.
+     * Optional. Information specifying a GKE Cluster.
      */
     gke?: Schema$GkeCluster;
     /**
-     * Optional. Labels are attributes that can be set and used by both the user and by Google Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     * Optional. Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Information specifying a multiTarget.
+     */
+    multiTarget?: Schema$MultiTarget;
     /**
      * Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/targets/a-z{0,62\}.
      */
@@ -1232,7 +1753,7 @@ export namespace clouddeploy_v1 {
      */
     requireApproval?: boolean | null;
     /**
-     * Information specifying a Cloud Run deployment target.
+     * Optional. Information specifying a Cloud Run deployment target.
      */
     run?: Schema$CloudRunLocation;
     /**
@@ -1260,6 +1781,10 @@ export namespace clouddeploy_v1 {
      * Output only. File path of the rendered manifest relative to the URI.
      */
     manifestPath?: string | null;
+    /**
+     * Output only. Map from the phase ID to the phase artifacts for the `Target`.
+     */
+    phaseArtifacts?: {[key: string]: Schema$PhaseArtifact} | null;
     /**
      * Output only. File path of the resolved Skaffold configuration relative to the URI.
      */
@@ -1295,6 +1820,10 @@ export namespace clouddeploy_v1 {
      */
     failureMessage?: string | null;
     /**
+     * Output only. Metadata related to the `Release` render for this Target.
+     */
+    metadata?: Schema$RenderMetadata;
+    /**
      * Output only. The resource name of the Cloud Build `Build` object that is used to render the manifest for this target. Format is `projects/{project\}/locations/{location\}/builds/{build\}`.
      */
     renderingBuild?: string | null;
@@ -1308,7 +1837,7 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$TargetsPresentCondition {
     /**
-     * The list of Target names that are missing. For example, projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
+     * The list of Target names that do not exist. For example, projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
      */
     missingTargets?: string[] | null;
     /**
@@ -1320,6 +1849,27 @@ export namespace clouddeploy_v1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * TargetsTypeCondition contains information on whether the Targets defined in the Delivery Pipeline are of the same type.
+   */
+  export interface Schema$TargetsTypeCondition {
+    /**
+     * Human readable error message.
+     */
+    errorDetails?: string | null;
+    /**
+     * True if the targets are all a comparable type. For example this is true if all targets are GKE clusters. This is false if some targets are Cloud Run targets and others are GKE clusters.
+     */
+    status?: boolean | null;
+  }
+  /**
+   * The request object used by `TerminateJobRun`.
+   */
+  export interface Schema$TerminateJobRunRequest {}
+  /**
+   * The response object from `TerminateJobRun`.
+   */
+  export interface Schema$TerminateJobRunResponse {}
   /**
    * Request message for `TestIamPermissions` method.
    */
@@ -1394,52 +1944,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets information about a location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.get({
-     *     // Resource name for the location.
-     *     name: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "locationId": "my_locationId",
-     *   //   "metadata": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1524,50 +2028,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets the configuration for a location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.getConfig({
-     *     // Required. Name of requested configuration.
-     *     name: 'projects/my-project/locations/my-location/config',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultSkaffoldVersion": "my_defaultSkaffoldVersion",
-     *   //   "name": "my_name",
-     *   //   "supportedVersions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1652,55 +2112,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists information about the supported locations for this service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
-     *     filter: 'placeholder-value',
-     *     // The resource that owns the locations collection, if applicable.
-     *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service selects a default.
-     *     pageSize: 'placeholder-value',
-     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "locations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1839,76 +2250,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a new DeliveryPipeline in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.deliveryPipelines.create({
-     *     // Required. ID of the `DeliveryPipeline`.
-     *     deliveryPipelineId: 'placeholder-value',
-     *     // Required. The parent collection in which the `DeliveryPipeline` should be created. Format should be projects/{project_id\}/locations/{location_name\}.
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "annotations": {},
-     *       //   "condition": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "etag": "my_etag",
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "serialPipeline": {},
-     *       //   "suspended": false,
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1997,62 +2338,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Deletes a single DeliveryPipeline.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.deliveryPipelines.delete({
-     *     // Optional. If set to true, then deleting an already deleted or non-existing `DeliveryPipeline` will succeed.
-     *     allowMissing: 'placeholder-value',
-     *     // Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
-     *     etag: 'placeholder-value',
-     *     // Optional. If set to true, all child resources under this pipeline will also be deleted. Otherwise, the request will only work if the pipeline has no child resources.
-     *     force: 'placeholder-value',
-     *     // Required. The name of the `DeliveryPipeline` to delete. Format should be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}.
-     *     name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Optional. If set, validate the request and preview the review, but do not actually post it.
-     *     validateOnly: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2138,58 +2423,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single DeliveryPipeline.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.deliveryPipelines.get({
-     *     // Required. Name of the `DeliveryPipeline`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}.
-     *     name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "annotations": {},
-     *   //   "condition": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "etag": "my_etag",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "serialPipeline": {},
-     *   //   "suspended": false,
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2274,55 +2507,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.getIamPolicy({
-     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2411,58 +2595,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists DeliveryPipelines in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.deliveryPipelines.list({
-     *     // Filter pipelines to be returned. See https://google.aip.dev/160 for more details.
-     *     filter: 'placeholder-value',
-     *     // Field to sort by. See https://google.aip.dev/132#ordering for more details.
-     *     orderBy: 'placeholder-value',
-     *     // The maximum number of pipelines to return. The service may return fewer than this value. If unspecified, at most 50 pipelines will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListDeliveryPipelines` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of pipelines. Format must be projects/{project_id\}/locations/{location_name\}.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "deliveryPipelines": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2560,78 +2692,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Updates the parameters of a single DeliveryPipeline.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.deliveryPipelines.patch({
-     *     // Optional. If set to true, updating a `DeliveryPipeline` that does not exist will result in the creation of a new `DeliveryPipeline`.
-     *     allowMissing: 'placeholder-value',
-     *     // Optional. Name of the `DeliveryPipeline`. Format is projects/{project\}/ locations/{location\}/deliveryPipelines/a-z{0,62\}.
-     *     name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Required. Field mask is used to specify the fields to be overwritten in the `DeliveryPipeline` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
-     *     updateMask: 'placeholder-value',
-     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "annotations": {},
-     *       //   "condition": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "etag": "my_etag",
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "serialPipeline": {},
-     *       //   "suspended": false,
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2717,62 +2777,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {},
-     *         //   "updateMask": "my_updateMask"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2861,58 +2865,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3165,53 +3117,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Abandons a Release in the Delivery Pipeline.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.abandon({
-     *       // Required. Name of the Release. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}.
-     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3307,86 +3212,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a new Release in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.create({
-     *       // Required. The parent collection in which the `Release` should be created. Format should be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}.
-     *       parent:
-     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
-     *       // Required. ID of the `Release`.
-     *       releaseId: 'placeholder-value',
-     *       // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *       // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
-     *       validateOnly: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "abandoned": false,
-     *         //   "annotations": {},
-     *         //   "buildArtifacts": [],
-     *         //   "createTime": "my_createTime",
-     *         //   "deliveryPipelineSnapshot": {},
-     *         //   "description": "my_description",
-     *         //   "etag": "my_etag",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "renderEndTime": "my_renderEndTime",
-     *         //   "renderStartTime": "my_renderStartTime",
-     *         //   "renderState": "my_renderState",
-     *         //   "skaffoldConfigPath": "my_skaffoldConfigPath",
-     *         //   "skaffoldConfigUri": "my_skaffoldConfigUri",
-     *         //   "skaffoldVersion": "my_skaffoldVersion",
-     *         //   "targetArtifacts": {},
-     *         //   "targetRenders": {},
-     *         //   "targetSnapshots": [],
-     *         //   "uid": "my_uid"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3475,67 +3300,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single Release.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.get({
-     *       // Required. Name of the `Release`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}.
-     *       name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "abandoned": false,
-     *   //   "annotations": {},
-     *   //   "buildArtifacts": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "deliveryPipelineSnapshot": {},
-     *   //   "description": "my_description",
-     *   //   "etag": "my_etag",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "renderEndTime": "my_renderEndTime",
-     *   //   "renderStartTime": "my_renderStartTime",
-     *   //   "renderState": "my_renderState",
-     *   //   "skaffoldConfigPath": "my_skaffoldConfigPath",
-     *   //   "skaffoldConfigUri": "my_skaffoldConfigUri",
-     *   //   "skaffoldVersion": "my_skaffoldVersion",
-     *   //   "targetArtifacts": {},
-     *   //   "targetRenders": {},
-     *   //   "targetSnapshots": [],
-     *   //   "uid": "my_uid"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3621,60 +3385,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists Releases in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.list({
-     *       // Optional. Filter releases to be returned. See https://google.aip.dev/160 for more details.
-     *       filter: 'placeholder-value',
-     *       // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
-     *       orderBy: 'placeholder-value',
-     *       // Optional. The maximum number of `Release` objects to return. The service may return fewer than this value. If unspecified, at most 50 `Release` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. A page token, received from a previous `ListReleases` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The `DeliveryPipeline` which owns this collection of `Release` objects.
-     *       parent:
-     *         'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "releases": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3846,58 +3556,102 @@ export namespace clouddeploy_v1 {
     }
 
     /**
+     * Advances a Rollout in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    advance(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    advance(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AdvanceRolloutResponse>;
+    advance(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    advance(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AdvanceRolloutResponse>,
+      callback: BodyResponseCallback<Schema$AdvanceRolloutResponse>
+    ): void;
+    advance(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance,
+      callback: BodyResponseCallback<Schema$AdvanceRolloutResponse>
+    ): void;
+    advance(
+      callback: BodyResponseCallback<Schema$AdvanceRolloutResponse>
+    ): void;
+    advance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance
+        | BodyResponseCallback<Schema$AdvanceRolloutResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AdvanceRolloutResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AdvanceRolloutResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AdvanceRolloutResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:advance').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AdvanceRolloutResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AdvanceRolloutResponse>(parameters);
+      }
+    }
+
+    /**
      * Approves a Rollout.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.approve(
-     *       {
-     *         // Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
-     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "approved": false
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3992,89 +3746,97 @@ export namespace clouddeploy_v1 {
     }
 
     /**
+     * Cancels a Rollout in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CancelRolloutResponse>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CancelRolloutResponse>,
+      callback: BodyResponseCallback<Schema$CancelRolloutResponse>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel,
+      callback: BodyResponseCallback<Schema$CancelRolloutResponse>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$CancelRolloutResponse>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel
+        | BodyResponseCallback<Schema$CancelRolloutResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CancelRolloutResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CancelRolloutResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CancelRolloutResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CancelRolloutResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CancelRolloutResponse>(parameters);
+      }
+    }
+
+    /**
      * Creates a new Rollout in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.create(
-     *       {
-     *         // Required. The parent collection in which the `Rollout` should be created. Format should be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}.
-     *         parent:
-     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release',
-     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *         requestId: 'placeholder-value',
-     *         // Required. ID of the `Rollout`.
-     *         rolloutId: 'placeholder-value',
-     *         // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
-     *         validateOnly: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "annotations": {},
-     *           //   "approvalState": "my_approvalState",
-     *           //   "approveTime": "my_approveTime",
-     *           //   "createTime": "my_createTime",
-     *           //   "deployEndTime": "my_deployEndTime",
-     *           //   "deployFailureCause": "my_deployFailureCause",
-     *           //   "deployStartTime": "my_deployStartTime",
-     *           //   "deployingBuild": "my_deployingBuild",
-     *           //   "description": "my_description",
-     *           //   "enqueueTime": "my_enqueueTime",
-     *           //   "etag": "my_etag",
-     *           //   "failureReason": "my_failureReason",
-     *           //   "labels": {},
-     *           //   "metadata": {},
-     *           //   "name": "my_name",
-     *           //   "phases": [],
-     *           //   "state": "my_state",
-     *           //   "targetId": "my_targetId",
-     *           //   "uid": "my_uid"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4163,69 +3925,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single Rollout.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.get(
-     *       {
-     *         // Required. Name of the `Rollout`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}.
-     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "annotations": {},
-     *   //   "approvalState": "my_approvalState",
-     *   //   "approveTime": "my_approveTime",
-     *   //   "createTime": "my_createTime",
-     *   //   "deployEndTime": "my_deployEndTime",
-     *   //   "deployFailureCause": "my_deployFailureCause",
-     *   //   "deployStartTime": "my_deployStartTime",
-     *   //   "deployingBuild": "my_deployingBuild",
-     *   //   "description": "my_description",
-     *   //   "enqueueTime": "my_enqueueTime",
-     *   //   "etag": "my_etag",
-     *   //   "failureReason": "my_failureReason",
-     *   //   "labels": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "phases": [],
-     *   //   "state": "my_state",
-     *   //   "targetId": "my_targetId",
-     *   //   "uid": "my_uid"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4310,63 +4009,98 @@ export namespace clouddeploy_v1 {
     }
 
     /**
+     * Ignores the specified Job in a Rollout.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    ignoreJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    ignoreJob(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IgnoreJobResponse>;
+    ignoreJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    ignoreJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
+      options: MethodOptions | BodyResponseCallback<Schema$IgnoreJobResponse>,
+      callback: BodyResponseCallback<Schema$IgnoreJobResponse>
+    ): void;
+    ignoreJob(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob,
+      callback: BodyResponseCallback<Schema$IgnoreJobResponse>
+    ): void;
+    ignoreJob(callback: BodyResponseCallback<Schema$IgnoreJobResponse>): void;
+    ignoreJob(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob
+        | BodyResponseCallback<Schema$IgnoreJobResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IgnoreJobResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IgnoreJobResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$IgnoreJobResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+rollout}:ignoreJob').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['rollout'],
+        pathParams: ['rollout'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$IgnoreJobResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$IgnoreJobResponse>(parameters);
+      }
+    }
+
+    /**
      * Lists Rollouts in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.list(
-     *       {
-     *         // Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more details.
-     *         filter: 'placeholder-value',
-     *         // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
-     *         orderBy: 'placeholder-value',
-     *         // Optional. The maximum number of `Rollout` objects to return. The service may return fewer than this value. If unspecified, at most 50 `Rollout` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. A page token, received from a previous `ListRollouts` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The `Release` which owns this collection of `Rollout` objects.
-     *         parent:
-     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "rollouts": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4460,59 +4194,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Retries the specified Job in a Rollout.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.retryJob(
-     *       {
-     *         // Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
-     *         rollout:
-     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "jobId": "my_jobId",
-     *           //   "phaseId": "my_phaseId"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4600,6 +4281,18 @@ export namespace clouddeploy_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Advance
+    extends StandardParameters {
+    /**
+     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AdvanceRolloutRequest;
+  }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Approve
     extends StandardParameters {
     /**
@@ -4611,6 +4304,18 @@ export namespace clouddeploy_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ApproveRolloutRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Cancel
+    extends StandardParameters {
+    /**
+     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelRolloutRequest;
   }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create
     extends StandardParameters {
@@ -4627,6 +4332,10 @@ export namespace clouddeploy_v1 {
      */
     rolloutId?: string;
     /**
+     * Optional. The starting phase ID for the `Rollout`. If empty the `Rollout` will start at the first phase.
+     */
+    startingPhaseId?: string;
+    /**
      * Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
      */
     validateOnly?: boolean;
@@ -4642,6 +4351,18 @@ export namespace clouddeploy_v1 {
      * Required. Name of the `Rollout`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Ignorejob
+    extends StandardParameters {
+    /**
+     * Required. Name of the Rollout. Format is projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}.
+     */
+    rollout?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$IgnoreJobRequest;
   }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List
     extends StandardParameters {
@@ -4687,61 +4408,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single JobRun.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.jobRuns.get(
-     *       {
-     *         // Required. Name of the `JobRun`. Format must be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}/rollouts/{rollout_name\}/jobRuns/{job_run_name\}.
-     *         name: 'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout/jobRuns/my-jobRun',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "deployJobRun": {},
-     *   //   "endTime": "my_endTime",
-     *   //   "etag": "my_etag",
-     *   //   "jobId": "my_jobId",
-     *   //   "name": "my_name",
-     *   //   "phaseId": "my_phaseId",
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "uid": "my_uid",
-     *   //   "verifyJobRun": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4827,62 +4493,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists JobRuns in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.jobRuns.list(
-     *       {
-     *         // Optional. Filter results to be returned. See https://google.aip.dev/160 for more details.
-     *         filter: 'placeholder-value',
-     *         // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
-     *         orderBy: 'placeholder-value',
-     *         // Optional. The maximum number of `JobRun` objects to return. The service may return fewer than this value. If unspecified, at most 50 `JobRun` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
-     *         pageSize: 'placeholder-value',
-     *         // Optional. A page token, received from a previous `ListJobRuns` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The `Rollout` which owns this collection of `JobRun` objects.
-     *         parent:
-     *           'projects/my-project/locations/my-location/deliveryPipelines/my-deliveryPipeline/releases/my-release/rollouts/my-rollout',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "jobRuns": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4971,6 +4581,101 @@ export namespace clouddeploy_v1 {
         return createAPIRequest<Schema$ListJobRunsResponse>(parameters);
       }
     }
+
+    /**
+     * Terminates a Job Run in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    terminate(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    terminate(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TerminateJobRunResponse>;
+    terminate(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    terminate(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TerminateJobRunResponse>,
+      callback: BodyResponseCallback<Schema$TerminateJobRunResponse>
+    ): void;
+    terminate(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate,
+      callback: BodyResponseCallback<Schema$TerminateJobRunResponse>
+    ): void;
+    terminate(
+      callback: BodyResponseCallback<Schema$TerminateJobRunResponse>
+    ): void;
+    terminate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate
+        | BodyResponseCallback<Schema$TerminateJobRunResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TerminateJobRunResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TerminateJobRunResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TerminateJobRunResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:terminate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TerminateJobRunResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TerminateJobRunResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Get
@@ -5003,6 +4708,18 @@ export namespace clouddeploy_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Jobruns$Terminate
+    extends StandardParameters {
+    /**
+     * Required. Name of the `JobRun`. Format must be projects/{project\}/locations/{location\}/deliveryPipelines/{deliveryPipeline\}/ releases/{release\}/rollouts/{rollout\}/jobRuns/{jobRun\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TerminateJobRunRequest;
+  }
 
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
@@ -5012,52 +4729,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5142,46 +4813,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5266,52 +4897,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5395,56 +4980,7 @@ export namespace clouddeploy_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5590,79 +5126,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Creates a new Target in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.targets.create({
-     *     // Required. The parent collection in which the `Target` should be created. Format should be projects/{project_id\}/locations/{location_name\}.
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Required. ID of the `Target`.
-     *     targetId: 'placeholder-value',
-     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "annotations": {},
-     *       //   "anthosCluster": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "etag": "my_etag",
-     *       //   "executionConfigs": [],
-     *       //   "gke": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "requireApproval": false,
-     *       //   "run": {},
-     *       //   "targetId": "my_targetId",
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5750,60 +5213,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Deletes a single Target.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.targets.delete({
-     *     // Optional. If set to true, then deleting an already deleted or non-existing DeliveryPipeline will succeed.
-     *     allowMissing: 'placeholder-value',
-     *     // Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
-     *     etag: 'placeholder-value',
-     *     // Required. The name of the `Target` to delete. Format should be projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
-     *     name: 'projects/my-project/locations/my-location/targets/my-target',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Optional. If set, validate the request and preview the review, but do not actually post it.
-     *     validateOnly: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5888,61 +5297,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets details of a single Target.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.targets.get({
-     *     // Required. Name of the `Target`. Format must be projects/{project_id\}/locations/{location_name\}/targets/{target_name\}.
-     *     name: 'projects/my-project/locations/my-location/targets/my-target',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "annotations": {},
-     *   //   "anthosCluster": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "etag": "my_etag",
-     *   //   "executionConfigs": [],
-     *   //   "gke": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "requireApproval": false,
-     *   //   "run": {},
-     *   //   "targetId": "my_targetId",
-     *   //   "uid": "my_uid",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6027,53 +5381,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.targets.getIamPolicy({
-     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/targets/my-target',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6161,58 +5468,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Lists Targets in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.targets.list({
-     *     // Optional. Filter targets to be returned. See https://google.aip.dev/160 for more details.
-     *     filter: 'placeholder-value',
-     *     // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of `Target` objects to return. The service may return fewer than this value. If unspecified, at most 50 `Target` objects will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. A page token, received from a previous `ListTargets` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of targets. Format must be projects/{project_id\}/locations/{location_name\}.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "targets": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6303,81 +5558,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Updates the parameters of a single Target.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.targets.patch({
-     *     // Optional. If set to true, updating a `Target` that does not exist will result in the creation of a new `Target`.
-     *     allowMissing: 'placeholder-value',
-     *     // Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/targets/a-z{0,62\}.
-     *     name: 'projects/my-project/locations/my-location/targets/my-target',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Required. Field mask is used to specify the fields to be overwritten in the Target resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
-     *     updateMask: 'placeholder-value',
-     *     // Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
-     *     validateOnly: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "annotations": {},
-     *       //   "anthosCluster": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "etag": "my_etag",
-     *       //   "executionConfigs": [],
-     *       //   "gke": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "requireApproval": false,
-     *       //   "run": {},
-     *       //   "targetId": "my_targetId",
-     *       //   "uid": "my_uid",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6462,60 +5642,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.targets.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/targets/my-target',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auditConfigs": [],
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6603,56 +5729,6 @@ export namespace clouddeploy_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/clouddeploy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const clouddeploy = google.clouddeploy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await clouddeploy.projects.locations.targets.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/targets/my-target',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6774,7 +5850,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Targets$Delete
     extends StandardParameters {
     /**
-     * Optional. If set to true, then deleting an already deleted or non-existing DeliveryPipeline will succeed.
+     * Optional. If set to true, then deleting an already deleted or non-existing `Target` will succeed.
      */
     allowMissing?: boolean;
     /**

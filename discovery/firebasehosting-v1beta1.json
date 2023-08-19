@@ -315,7 +315,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Output only. The fully-qualified resource name of the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID PROJECT_IDENTIFIER: the Firebase project's [`ProjectNumber`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510).",
+                  "description": "Output only. The fully-qualified resource name of the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID PROJECT_IDENTIFIER: the Firebase project's [`ProjectNumber`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510).",
                   "location": "path",
                   "pattern": "^projects/[^/]+/sites/[^/]+$",
                   "required": true,
@@ -579,6 +579,34 @@
                         "https://www.googleapis.com/auth/firebase"
                       ]
                     },
+                    "get": {
+                      "description": "Gets the specified release for a site or channel. When used to get a release for a site, this can get releases for both the default `live` channel and any active preview channels for the specified site.",
+                      "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/channels/{channelsId}/releases/{releasesId}",
+                      "httpMethod": "GET",
+                      "id": "firebasehosting.projects.sites.channels.releases.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID ",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/sites/[^/]+/channels/[^/]+/releases/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Release"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only",
+                        "https://www.googleapis.com/auth/firebase",
+                        "https://www.googleapis.com/auth/firebase.readonly"
+                      ]
+                    },
                     "list": {
                       "description": "Lists the releases that have been created for the specified site or channel. When used to list releases for a site, this list includes releases for both the default `live` channel and any active preview channels for the specified site.",
                       "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/channels/{channelsId}/releases",
@@ -813,6 +841,34 @@
                     "https://www.googleapis.com/auth/firebase"
                   ]
                 },
+                "get": {
+                  "description": "Gets the specified release for a site or channel. When used to get a release for a site, this can get releases for both the default `live` channel and any active preview channels for the specified site.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/releases/{releasesId}",
+                  "httpMethod": "GET",
+                  "id": "firebasehosting.projects.sites.releases.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID ",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+/releases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Release"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/firebase",
+                    "https://www.googleapis.com/auth/firebase.readonly"
+                  ]
+                },
                 "list": {
                   "description": "Lists the releases that have been created for the specified site or channel. When used to list releases for a site, this list includes releases for both the default `live` channel and any active preview channels for the specified site.",
                   "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/releases",
@@ -908,6 +964,7 @@
                       "type": "string"
                     },
                     "versionId": {
+                      "deprecated": true,
                       "description": "A unique id for the new version. This is was only specified for legacy version creations, and should be blank.",
                       "location": "query",
                       "type": "string"
@@ -949,6 +1006,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
+                "get": {
+                  "description": "Get the specified version that has been created for the specified site. This can include versions that were created for the default `live` channel or for any active preview channels for the specified site.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/versions/{versionsId}",
+                  "httpMethod": "GET",
+                  "id": "firebasehosting.projects.sites.versions.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+/versions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Version"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/firebase",
+                    "https://www.googleapis.com/auth/firebase.readonly"
                   ]
                 },
                 "list": {
@@ -1394,6 +1479,34 @@
                     "https://www.googleapis.com/auth/firebase"
                   ]
                 },
+                "get": {
+                  "description": "Gets the specified release for a site or channel. When used to get a release for a site, this can get releases for both the default `live` channel and any active preview channels for the specified site.",
+                  "flatPath": "v1beta1/sites/{sitesId}/channels/{channelsId}/releases/{releasesId}",
+                  "httpMethod": "GET",
+                  "id": "firebasehosting.sites.channels.releases.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID ",
+                      "location": "path",
+                      "pattern": "^sites/[^/]+/channels/[^/]+/releases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Release"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/firebase",
+                    "https://www.googleapis.com/auth/firebase.readonly"
+                  ]
+                },
                 "list": {
                   "description": "Lists the releases that have been created for the specified site or channel. When used to list releases for a site, this list includes releases for both the default `live` channel and any active preview channels for the specified site.",
                   "flatPath": "v1beta1/sites/{sitesId}/channels/{channelsId}/releases",
@@ -1628,6 +1741,34 @@
                 "https://www.googleapis.com/auth/firebase"
               ]
             },
+            "get": {
+              "description": "Gets the specified release for a site or channel. When used to get a release for a site, this can get releases for both the default `live` channel and any active preview channels for the specified site.",
+              "flatPath": "v1beta1/sites/{sitesId}/releases/{releasesId}",
+              "httpMethod": "GET",
+              "id": "firebasehosting.sites.releases.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The fully-qualified resource name for the Hosting release, in either of the following formats: - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID - sites/SITE_ID/releases/RELEASE_ID ",
+                  "location": "path",
+                  "pattern": "^sites/[^/]+/releases/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "Release"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only",
+                "https://www.googleapis.com/auth/firebase",
+                "https://www.googleapis.com/auth/firebase.readonly"
+              ]
+            },
             "list": {
               "description": "Lists the releases that have been created for the specified site or channel. When used to list releases for a site, this list includes releases for both the default `live` channel and any active preview channels for the specified site.",
               "flatPath": "v1beta1/sites/{sitesId}/releases",
@@ -1723,6 +1864,7 @@
                   "type": "string"
                 },
                 "versionId": {
+                  "deprecated": true,
                   "description": "A unique id for the new version. This is was only specified for legacy version creations, and should be blank.",
                   "location": "query",
                   "type": "string"
@@ -1764,6 +1906,34 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/firebase"
+              ]
+            },
+            "get": {
+              "description": "Get the specified version that has been created for the specified site. This can include versions that were created for the default `live` channel or for any active preview channels for the specified site.",
+              "flatPath": "v1beta1/sites/{sitesId}/versions/{versionsId}",
+              "httpMethod": "GET",
+              "id": "firebasehosting.sites.versions.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID",
+                  "location": "path",
+                  "pattern": "^sites/[^/]+/versions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "Version"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only",
+                "https://www.googleapis.com/auth/firebase",
+                "https://www.googleapis.com/auth/firebase.readonly"
               ]
             },
             "list": {
@@ -1939,7 +2109,7 @@
       }
     }
   },
-  "revision": "20220601",
+  "revision": "20230807",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -2075,6 +2245,10 @@
         "serviceId": {
           "description": "Required. User-defined ID of the Cloud Run service.",
           "type": "string"
+        },
+        "tag": {
+          "description": "Optional. User-provided TrafficConfig tag to send traffic to. When omitted, traffic is sent to the service-wide URI",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2107,6 +2281,13 @@
             "DOMAIN_ACTIVE",
             "DOMAIN_VERIFICATION_REQUIRED",
             "DOMAIN_VERIFICATION_LOST"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Unspecified domain association status.",
@@ -2402,7 +2583,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -2622,7 +2803,7 @@
       "id": "Site",
       "properties": {
         "appId": {
-          "description": "Optional. The [ID of a Web App](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.webApps#WebApp.FIELDS.app_id) associated with the Hosting site.",
+          "description": "Optional. The [ID of a Web App](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects.webApps#WebApp.FIELDS.app_id) associated with the Hosting site.",
           "type": "string"
         },
         "defaultUrl": {
@@ -2638,7 +2819,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The fully-qualified resource name of the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID PROJECT_IDENTIFIER: the Firebase project's [`ProjectNumber`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510).",
+          "description": "Output only. The fully-qualified resource name of the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID PROJECT_IDENTIFIER: the Firebase project's [`ProjectNumber`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510).",
           "readOnly": true,
           "type": "string"
         },

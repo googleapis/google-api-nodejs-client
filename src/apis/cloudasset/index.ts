@@ -69,7 +69,7 @@ export function cloudasset<
     | cloudasset_v1p1beta1.Cloudasset
     | cloudasset_v1p4beta1.Cloudasset
     | cloudasset_v1p5beta1.Cloudasset
-    | cloudasset_v1p7beta1.Cloudasset
+    | cloudasset_v1p7beta1.Cloudasset,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

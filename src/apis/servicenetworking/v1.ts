@@ -160,7 +160,7 @@ export namespace servicenetworking_v1 {
      */
     consumerNetwork?: string | null;
     /**
-     * Required. The DNS name suffix for the zones e.g. `example.com`.
+     * Required. The DNS name suffix for the zones e.g. `example.com.`. Cloud DNS requires that a DNS suffix ends with a trailing dot.
      */
     dnsSuffix?: string | null;
     /**
@@ -212,6 +212,10 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$AddSubnetworkRequest {
     /**
+     * Optional. Defines the allowSubnetCidrRoutesOverlap field of the subnet, e.g. Available in alpha and beta according to [Compute API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/subnetworks/insert)
+     */
+    allowSubnetCidrRoutesOverlap?: boolean | null;
+    /**
      * Optional. The IAM permission check determines whether the consumer project has 'servicenetworking.services.use' permission or not.
      */
     checkServiceNetworkingUsePermission?: boolean | null;
@@ -232,7 +236,7 @@ export namespace servicenetworking_v1 {
      */
     description?: string | null;
     /**
-     * Required. The prefix length of the subnet's IP address range. Use CIDR range notation, such as `30` to provision a subnet with an `x.x.x.x/30` CIDR range. The IP address range is drawn from a pool of available ranges in the service consumer's allocated range.
+     * Required. The prefix length of the subnet's IP address range. Use CIDR range notation, such as `29` to provision a subnet with an `x.x.x.x/29` CIDR range. The IP address range is drawn from a pool of available ranges in the service consumer's allocated range. GCE disallows subnets with prefix_length \> 29
      */
     ipPrefixLength?: number | null;
     /**
@@ -259,6 +263,10 @@ export namespace servicenetworking_v1 {
      * Optional. The name of one or more allocated IP address ranges associated with this private service access connection. If no range names are provided all ranges associated with this connection will be considered. If a CIDR range with the specified IP prefix length is not available within these ranges, the call fails.
      */
     requestedRanges?: string[] | null;
+    /**
+     * Optional. Defines the role field of the subnet, e.g. 'ACTIVE'. For information about the roles that can be set using this field, see [subnetwork](https://cloud.google.com/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.
+     */
+    role?: string | null;
     /**
      * Optional. A list of secondary IP ranges to be created within the new subnetwork.
      */
@@ -415,9 +423,17 @@ export namespace servicenetworking_v1 {
      */
     jwtAudience?: string | null;
     /**
+     * Deprecated, do not use.
+     */
+    minDeadline?: number | null;
+    /**
      * The number of seconds to wait for the completion of a long running operation. The default is no deadline.
      */
     operationDeadline?: number | null;
+    /**
+     * The map between request protocol and the backend address.
+     */
+    overridesByRequestProtocol?: {[key: string]: Schema$BackendRule} | null;
     pathTranslation?: string | null;
     /**
      * The protocol used for sending a request to the backend. The supported values are "http/1.1" and "h2". The default value is inferred from the scheme in the address field: SCHEME PROTOCOL http:// http/1.1 https:// http/1.1 grpc:// h2 grpcs:// h2 For secure HTTP backends (https://) that support HTTP/2, set this field to "h2" for improved performance. Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends. See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values.
@@ -455,6 +471,55 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Details about how and where to publish client libraries.
+   */
+  export interface Schema$ClientLibrarySettings {
+    /**
+     * Settings for C++ client libraries.
+     */
+    cppSettings?: Schema$CppSettings;
+    /**
+     * Settings for .NET client libraries.
+     */
+    dotnetSettings?: Schema$DotnetSettings;
+    /**
+     * Settings for Go client libraries.
+     */
+    goSettings?: Schema$GoSettings;
+    /**
+     * Settings for legacy Java features, supported in the Service YAML.
+     */
+    javaSettings?: Schema$JavaSettings;
+    /**
+     * Launch stage of this version of the API.
+     */
+    launchStage?: string | null;
+    /**
+     * Settings for Node client libraries.
+     */
+    nodeSettings?: Schema$NodeSettings;
+    /**
+     * Settings for PHP client libraries.
+     */
+    phpSettings?: Schema$PhpSettings;
+    /**
+     * Settings for Python client libraries.
+     */
+    pythonSettings?: Schema$PythonSettings;
+    /**
+     * When using transport=rest, the client request will encode enums as numbers rather than strings.
+     */
+    restNumericEnums?: boolean | null;
+    /**
+     * Settings for Ruby client libraries.
+     */
+    rubySettings?: Schema$RubySettings;
+    /**
+     * Version of the API to apply these settings to. This is the full protobuf package for the API, ending in the version element. Examples: "google.cloud.speech.v1" and "google.spanner.admin.database.v1".
+     */
+    version?: string | null;
+  }
+  /**
    * Cloud SQL configuration.
    */
   export interface Schema$CloudSQLConfig {
@@ -470,6 +535,19 @@ export namespace servicenetworking_v1 {
      * The project number of the Cloud SQL umbrella project.
      */
     umbrellaProject?: string | null;
+  }
+  /**
+   * Required information for every language.
+   */
+  export interface Schema$CommonLanguageSettings {
+    /**
+     * The destination where API teams want this client library to be published.
+     */
+    destinations?: string[] | null;
+    /**
+     * Link to automatically generated reference documentation. Example: https://cloud.google.com/nodejs/docs/reference/asset/latest
+     */
+    referenceDocsUri?: string | null;
   }
   /**
    * Represents a private connection resource. A private connection is implemented as a VPC Network Peering connection between a service producer's VPC network and a service consumer's VPC network.
@@ -597,13 +675,26 @@ export namespace servicenetworking_v1 {
     selector?: string | null;
   }
   /**
-   * Selects and configures the service controller used by the service. The service controller handles two things: - **What is allowed:** for each API request, Chemist checks the project status, activation status, abuse status, billing status, service status, location restrictions, VPC Service Controls, SuperQuota, and other policies. - **What has happened:** for each API response, Chemist reports the telemetry data to analytics, auditing, billing, eventing, logging, monitoring, sawmill, and tracing. Chemist also accepts telemetry data not associated with API traffic, such as billing metrics. Example: control: environment: servicecontrol.googleapis.com
+   * Selects and configures the service controller used by the service. Example: control: environment: servicecontrol.googleapis.com
    */
   export interface Schema$Control {
     /**
      * The service controller environment to use. If empty, no control plane feature (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com
      */
     environment?: string | null;
+    /**
+     * Defines policies applying to the API methods of the service.
+     */
+    methodPolicies?: Schema$MethodPolicy[];
+  }
+  /**
+   * Settings for C++ client libraries.
+   */
+  export interface Schema$CppSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
   }
   /**
    * Customize service error responses. For example, list any service specific protobuf types that can appear in error detail lists of error responses. Example: custom_error: types: - google.foo.v1.CustomError - google.foo.v1.AnotherError
@@ -679,7 +770,7 @@ export namespace servicenetworking_v1 {
      */
     data?: string[] | null;
     /**
-     * Required. The DNS or domain name of the record set, e.g. `test.example.com`.
+     * Required. The DNS or domain name of the record set, e.g. `test.example.com`. Cloud DNS requires that a DNS suffix ends with a trailing dot.
      */
     domain?: string | null;
     /**
@@ -696,7 +787,7 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$DnsZone {
     /**
-     * The DNS name suffix of this zone e.g. `example.com.`.
+     * The DNS name suffix of this zone e.g. `example.com.`. Cloud DNS requires that a DNS suffix ends with a trailing dot.
      */
     dnsSuffix?: string | null;
     /**
@@ -705,7 +796,20 @@ export namespace servicenetworking_v1 {
     name?: string | null;
   }
   /**
-   * `Documentation` provides the information for describing a service. Example: documentation: summary: \> The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages; - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: \> ... - selector: google.calendar.Calendar.Put description: \> ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
+   * * Represents a pair of private and peering DNS zone resources. *
+   */
+  export interface Schema$DnsZonePair {
+    /**
+     * The DNS peering zone in the consumer project.
+     */
+    consumerPeeringZone?: Schema$DnsZone;
+    /**
+     * The private DNS zone in the shared producer host project.
+     */
+    producerPrivateZone?: Schema$DnsZone;
+  }
+  /**
+   * `Documentation` provides the information for describing a service. Example: documentation: summary: \> The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages: - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: \> ... - selector: google.calendar.Calendar.Put description: \> ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
    */
   export interface Schema$Documentation {
     /**
@@ -724,6 +828,10 @@ export namespace servicenetworking_v1 {
      * A list of documentation rules that apply to individual API elements. **NOTE:** All service configuration rules follow "last one wins" order.
      */
     rules?: Schema$DocumentationRule[];
+    /**
+     * Specifies section and content to override boilerplate content provided by go/api-docgen. Currently overrides following sections: 1. rest.service.client_libraries
+     */
+    sectionOverrides?: Schema$Page[];
     /**
      * Specifies the service root url if the default one (the service name from the yaml file) is not suitable. This can be seen in any fully specified service urls as well as sections that show a base that other urls are relative to.
      */
@@ -746,9 +854,42 @@ export namespace servicenetworking_v1 {
      */
     description?: string | null;
     /**
+     * String of comma or space separated case-sensitive words for which method/field name replacement will be disabled by go/api-docgen.
+     */
+    disableReplacementWords?: string | null;
+    /**
      * The selector is a comma-separated list of patterns for any element such as a method, a field, an enum value. Each pattern is a qualified name of the element which may end in "*", indicating a wildcard. Wildcards are only allowed at the end and for a whole component of the qualified name, i.e. "foo.*" is ok, but not "foo.b*" or "foo.*.bar". A wildcard will match one or more components. To specify a default for all applicable elements, the whole pattern "*" is used.
      */
     selector?: string | null;
+  }
+  /**
+   * Settings for Dotnet client libraries.
+   */
+  export interface Schema$DotnetSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+    /**
+     * Namespaces which must be aliased in snippets due to a known (but non-generator-predictable) naming collision
+     */
+    forcedNamespaceAliases?: string[] | null;
+    /**
+     * Method signatures (in the form "service.method(signature)") which are provided separately, so shouldn't be generated. Snippets *calling* these methods are still generated, however.
+     */
+    handwrittenSignatures?: string[] | null;
+    /**
+     * List of full resource types to ignore during generation. This is typically used for API-specific Location resources, which should be handled by the generator as if they were actually the common Location resources. Example entry: "documentai.googleapis.com/Location"
+     */
+    ignoredResources?: string[] | null;
+    /**
+     * Map from full resource types to the effective short name for the resource. This is used when otherwise resource named from different services would cause naming collisions. Example entry: "datalabeling.googleapis.com/Dataset": "DataLabelingDataset"
+     */
+    renamedResources?: {[key: string]: string} | null;
+    /**
+     * Map from original service names to renamed versions. This is used when the default generated types would cause a naming conflict. (Neither name is fully-qualified.) Example: Subscriber to SubscriberServiceApi.
+     */
+    renamedServices?: {[key: string]: string} | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -768,6 +909,10 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$Endpoint {
     /**
+     * Unimplemented. Dot not use. DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.
+     */
+    aliases?: string[] | null;
+    /**
      * Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed.
      */
     allowCors?: boolean | null;
@@ -784,6 +929,10 @@ export namespace servicenetworking_v1 {
    * Enum type definition.
    */
   export interface Schema$Enum {
+    /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
     /**
      * Enum value definitions.
      */
@@ -868,6 +1017,36 @@ export namespace servicenetworking_v1 {
     typeUrl?: string | null;
   }
   /**
+   * Google API Policy Annotation This message defines a simple API policy annotation that can be used to annotate API request and response message fields with applicable policies. One field may have multiple applicable policies that must all be satisfied before a request can be processed. This policy annotation is used to generate the overall policy that will be used for automatic runtime policy enforcement and documentation generation.
+   */
+  export interface Schema$FieldPolicy {
+    /**
+     * Specifies the required permission(s) for the resource referred to by the field. It requires the field contains a valid resource reference, and the request must pass the permission checks to proceed. For example, "resourcemanager.projects.get".
+     */
+    resourcePermission?: string | null;
+    /**
+     * Specifies the resource type for the resource referred to by the field.
+     */
+    resourceType?: string | null;
+    /**
+     * Selects one or more request or response message fields to apply this `FieldPolicy`. When a `FieldPolicy` is used in proto annotation, the selector must be left as empty. The service config generator will automatically fill the correct value. When a `FieldPolicy` is used in service config, the selector must be a comma-separated string with valid request or response field paths, such as "foo.bar" or "foo.bar,foo.baz".
+     */
+    selector?: string | null;
+  }
+  /**
+   * Represents managed DNS zones created in the shared Producer host and consumer projects.
+   */
+  export interface Schema$GetDnsZoneResponse {
+    /**
+     * The DNS peering zone created in the consumer project.
+     */
+    consumerPeeringZone?: Schema$DnsZone;
+    /**
+     * The private DNS zone created in the shared producer host project.
+     */
+    producerPrivateZone?: Schema$DnsZone;
+  }
+  /**
    * Represents a private connection resource. A private connection is implemented as a VPC Network Peering connection between a service producer's VPC network and a service consumer's VPC network.
    */
   export interface Schema$GoogleCloudServicenetworkingV1betaConnection {
@@ -925,6 +1104,15 @@ export namespace servicenetworking_v1 {
      * The name of the reserved range.
      */
     name?: string | null;
+  }
+  /**
+   * Settings for Go client libraries.
+   */
+  export interface Schema$GoSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
   }
   /**
    * Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods.
@@ -985,6 +1173,23 @@ export namespace servicenetworking_v1 {
     selector?: string | null;
   }
   /**
+   * Settings for Java client libraries.
+   */
+  export interface Schema$JavaSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+    /**
+     * The package name to use in Java. Clobbers the java_package option set in the protobuf. This should be used **only** by APIs who have already set the language_settings.java.package_name" field in gapic.yaml. API teams should use the protobuf java_package option where possible. Example of a YAML configuration:: publishing: java_settings: library_package: com.google.cloud.pubsub.v1
+     */
+    libraryPackage?: string | null;
+    /**
+     * Configure the Java class name to use instead of the service's for its corresponding generated GAPIC client. Keys are fully-qualified service names as they appear in the protobuf (including the full the language_settings.java.interface_names" field in gapic.yaml. API teams should otherwise use the service name as it appears in the protobuf. Example of a YAML configuration:: publishing: java_settings: service_class_names: - google.pubsub.v1.Publisher: TopicAdmin - google.pubsub.v1.Subscriber: SubscriptionAdmin
+     */
+    serviceClassNames?: {[key: string]: string} | null;
+  }
+  /**
    * Specifies a location to extract JWT from an API request.
    */
   export interface Schema$JwtLocation {
@@ -1030,6 +1235,24 @@ export namespace servicenetworking_v1 {
      * The list of Connections.
      */
     connections?: Schema$Connection[];
+  }
+  /**
+   * Represents all DNS RecordSets associated with the producer network
+   */
+  export interface Schema$ListDnsRecordSetsResponse {
+    /**
+     * DNS record Set Resource
+     */
+    dnsRecordSets?: Schema$DnsRecordSet[];
+  }
+  /**
+   * Represents all DNS zones in the shared producer host project and the matching peering zones in the consumer project.
+   */
+  export interface Schema$ListDnsZonesResponse {
+    /**
+     * All pairs of private DNS zones in the shared producer host project and the matching peering zones in the consumer project..
+     */
+    dnsZonePairs?: Schema$DnsZonePair[];
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1101,6 +1324,27 @@ export namespace servicenetworking_v1 {
     monitoredResource?: string | null;
   }
   /**
+   * Describes settings to use when generating API methods that use the long-running operation pattern. All default values below are from those used in the client library generators (e.g. [Java](https://github.com/googleapis/gapic-generator-java/blob/04c2faa191a9b5a10b92392fe8482279c4404803/src/main/java/com/google/api/generator/gapic/composer/common/RetrySettingsComposer.java)).
+   */
+  export interface Schema$LongRunning {
+    /**
+     * Initial delay after which the first poll request will be made. Default value: 5 seconds.
+     */
+    initialPollDelay?: string | null;
+    /**
+     * Maximum time between two subsequent poll requests. Default value: 45 seconds.
+     */
+    maxPollDelay?: string | null;
+    /**
+     * Multiplier to gradually increase delay between subsequent polls until it reaches max_poll_delay. Default value: 1.5.
+     */
+    pollDelayMultiplier?: number | null;
+    /**
+     * Total polling timeout. Default value: 5 minutes.
+     */
+    totalPollTimeout?: string | null;
+  }
+  /**
    * Method represents a method of an API interface.
    */
   export interface Schema$Method {
@@ -1132,6 +1376,32 @@ export namespace servicenetworking_v1 {
      * The source syntax of this method.
      */
     syntax?: string | null;
+  }
+  /**
+   * Defines policies applying to an RPC method.
+   */
+  export interface Schema$MethodPolicy {
+    /**
+     * Policies that are applicable to the request message.
+     */
+    requestPolicies?: Schema$FieldPolicy[];
+    /**
+     * Selects a method to which these policies should be enforced, for example, "google.pubsub.v1.Subscriber.CreateSubscription". Refer to selector for syntax details. NOTE: This field must not be set in the proto annotation. It will be automatically filled by the service config compiler .
+     */
+    selector?: string | null;
+  }
+  /**
+   * Describes the generator configuration for a method.
+   */
+  export interface Schema$MethodSettings {
+    /**
+     * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes
+     */
+    longRunning?: Schema$LongRunning;
+    /**
+     * The fully qualified name of the method, for which the options below apply. This is used to find the method to apply the options.
+     */
+    selector?: string | null;
   }
   /**
    * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.
@@ -1213,7 +1483,7 @@ export namespace servicenetworking_v1 {
     selector?: string | null;
   }
   /**
-   * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v1/{resource=**\}:getAcl"; \} \} package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = "/v2/{resource=**\}"; \} \} Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inheriting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/{resource=**\}:getAcl"; \} ... \} Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/acls/{resource=**\}:getAcl"; \} ... \}
+   * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v1/{resource=**\}:getAcl"; \} \} package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = "/v2/{resource=**\}"; \} \} Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inherting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/{resource=**\}:getAcl"; \} ... \} Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/acls/{resource=**\}:getAcl"; \} ... \}
    */
   export interface Schema$Mixin {
     /**
@@ -1281,6 +1551,15 @@ export namespace servicenetworking_v1 {
     monitoredResource?: string | null;
   }
   /**
+   * Settings for Node client libraries.
+   */
+  export interface Schema$NodeSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+  }
+  /**
    * OAuth scopes are a way to define data and permissions on data. For example, there are scopes defined for "Read-only access to Google Calendar" and "Access to Cloud Platform". Users can consent to a scope for an application, giving it permission to access that data on their behalf. OAuth scope specifications should be fairly coarse grained; a user will need to see and understand the text description of what your scope means. In most cases: use one or at most two OAuth scopes for an entire family of products. If your product has multiple APIs, you should probably be sharing the OAuth scope across all of those APIs. When you need finer grained OAuth consent screens: talk with your product management about how developers will use them in practice. Please note that even though each of the canonical scopes is enough for a request to be accepted and passed to the backend, a request can still fail due to the backend requiring additional scopes or permissions.
    */
   export interface Schema$OAuthRequirements {
@@ -1310,7 +1589,7 @@ export namespace servicenetworking_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1366,6 +1645,15 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$PeeredDnsDomainMetadata {}
   /**
+   * Settings for Php client libraries.
+   */
+  export interface Schema$PhpSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+  }
+  /**
    * Grouping of IAM role and IAM member.
    */
   export interface Schema$PolicyBinding {
@@ -1374,9 +1662,63 @@ export namespace servicenetworking_v1 {
      */
     member?: string | null;
     /**
-     * Required. Role to apply. Only allowlisted roles can be used at the specified granularity. The role must be one of the following: - 'roles/container.hostServiceAgentUser' applied on the shared VPC host project - 'roles/compute.securityAdmin' applied on the shared VPC host project
+     * Required. Role to apply. Only allowlisted roles can be used at the specified granularity. The role must be one of the following: - 'roles/container.hostServiceAgentUser' applied on the shared VPC host project - 'roles/compute.securityAdmin' applied on the shared VPC host project - 'roles/compute.networkAdmin' applied on the shared VPC host project - 'roles/compute.xpnAdmin' applied on the shared VPC host project - 'roles/dns.admin' applied on the shared VPC host project
      */
     role?: string | null;
+  }
+  /**
+   * This message configures the settings for publishing [Google Cloud Client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries) generated from the service config.
+   */
+  export interface Schema$Publishing {
+    /**
+     * Used as a tracking tag when collecting data about the APIs developer relations artifacts like docs, packages delivered to package managers, etc. Example: "speech".
+     */
+    apiShortName?: string | null;
+    /**
+     * GitHub teams to be added to CODEOWNERS in the directory in GitHub containing source code for the client libraries for this API.
+     */
+    codeownerGithubTeams?: string[] | null;
+    /**
+     * A prefix used in sample code when demarking regions to be included in documentation.
+     */
+    docTagPrefix?: string | null;
+    /**
+     * Link to product home page. Example: https://cloud.google.com/asset-inventory/docs/overview
+     */
+    documentationUri?: string | null;
+    /**
+     * GitHub label to apply to issues and pull requests opened for this API.
+     */
+    githubLabel?: string | null;
+    /**
+     * Client library settings. If the same version string appears multiple times in this list, then the last one wins. Settings from earlier settings with the same version string are discarded.
+     */
+    librarySettings?: Schema$ClientLibrarySettings[];
+    /**
+     * A list of API method settings, e.g. the behavior for methods that use the long-running operation pattern.
+     */
+    methodSettings?: Schema$MethodSettings[];
+    /**
+     * Link to a *public* URI where users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103
+     */
+    newIssueUri?: string | null;
+    /**
+     * For whom the client library is being published.
+     */
+    organization?: string | null;
+    /**
+     * Optional link to proto reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rpc
+     */
+    protoReferenceDocumentationUri?: string | null;
+  }
+  /**
+   * Settings for Python client libraries.
+   */
+  export interface Schema$PythonSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
   }
   /**
    * Quota configuration helps to achieve fairness and budgeting in service usage. The metric based quota configuration works this way: - The service configuration defines a set of metrics. - For API calls, the quota.metric_rules maps methods to metrics with corresponding costs. - The quota.limits defines limits on the metrics, which will be used for quota checks at runtime. An example quota configuration in yaml format: quota: limits: - name: apiWriteQpsPerProject metric: library.googleapis.com/write_calls unit: "1/min/{project\}" # rate limit for consumer projects values: STANDARD: 10000 (The metric rules bind all methods to the read_calls metric, except for the UpdateBook and DeleteBook methods. These two methods are mapped to the write_calls metric, with the UpdateBook method consuming at twice rate as the DeleteBook method.) metric_rules: - selector: "*" metric_costs: library.googleapis.com/read_calls: 1 - selector: google.example.library.v1.LibraryService.UpdateBook metric_costs: library.googleapis.com/write_calls: 2 - selector: google.example.library.v1.LibraryService.DeleteBook metric_costs: library.googleapis.com/write_calls: 1 Corresponding Metric definition: metrics: - name: library.googleapis.com/read_calls display_name: Read requests metric_kind: DELTA value_type: INT64 - name: library.googleapis.com/write_calls display_name: Write requests metric_kind: DELTA value_type: INT64
@@ -1454,7 +1796,7 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$RangeReservation {
     /**
-     * Required. The size of the desired subnet. Use usual CIDR range notation. For example, '30' to find unused x.x.x.x/30 CIDR range. The goal is to determine if one of the allocated ranges has enough free space for a subnet of the requested size.
+     * Required. The size of the desired subnet. Use usual CIDR range notation. For example, '29' to find unused x.x.x.x/29 CIDR range. The goal is to determine if one of the allocated ranges has enough free space for a subnet of the requested size. GCE disallows subnets with prefix_length \> 29
      */
     ipPrefixLength?: number | null;
     /**
@@ -1462,7 +1804,7 @@ export namespace servicenetworking_v1 {
      */
     requestedRanges?: string[] | null;
     /**
-     * Optional. The size of the desired secondary ranges for the subnet. Use usual CIDR range notation. For example, '30' to find unused x.x.x.x/30 CIDR range. The goal is to determine that the allocated ranges have enough free space for all the requested secondary ranges.
+     * Optional. The size of the desired secondary ranges for the subnet. Use usual CIDR range notation. For example, '29' to find unused x.x.x.x/29 CIDR range. The goal is to determine that the allocated ranges have enough free space for all the requested secondary ranges. GCE disallows subnets with prefix_length \> 29
      */
     secondaryRangeIpPrefixLengths?: number[] | null;
     /**
@@ -1536,6 +1878,15 @@ export namespace servicenetworking_v1 {
      * Fully-qualified URL of the gateway that should handle matching packets that this route applies to. For example: `projects/123456/global/gateways/default-internet-gateway`
      */
     nextHopGateway?: string | null;
+  }
+  /**
+   * Settings for Ruby client libraries.
+   */
+  export interface Schema$RubySettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
   }
   /**
    * Request to search for an unused range within allocated ranges.
@@ -1662,6 +2013,10 @@ export namespace servicenetworking_v1 {
      * The Google project that owns this service.
      */
     producerProjectId?: string | null;
+    /**
+     * Settings for [Google Cloud Client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries) generated from APIs defined as protocol buffers.
+     */
+    publishing?: Schema$Publishing;
     /**
      * Quota configuration.
      */
@@ -1798,6 +2153,10 @@ export namespace servicenetworking_v1 {
    * A protocol buffer message type.
    */
   export interface Schema$Type {
+    /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
     /**
      * The list of fields.
      */
@@ -1936,55 +2295,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'operations/.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2070,49 +2380,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'operations/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2198,55 +2465,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2330,59 +2548,7 @@ export namespace servicenetworking_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'operations',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2533,78 +2699,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * For service producers, provisions a new subnet in a peered service's shared VPC network in the requested region and with the requested size that's expressed as a CIDR range (number of leading bits of ipV4 network mask). The method checks against the assigned allocated ranges to find a non-conflicting IP address range. The method will reuse a subnet if subsequent calls contain the same subnet name, region, and prefix length. This method will make producer's tenant project to be a shared VPC service project as needed.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.addSubnetwork({
-     *     // Required. A tenant project in the service producer organization, in the following format: services/{service\}/{collection-id\}/{resource-id\}. {collection-id\} is the cloud resource collection type that represents the tenant project. Only `projects` are supported. {resource-id\} is the tenant project numeric id, such as `123456`. {service\} the name of the peering service, such as `service-peering.example.com`. This service must already be enabled in the service consumer's project.
-     *     parent: 'services/my-service/[^/]+/[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "checkServiceNetworkingUsePermission": false,
-     *       //   "computeIdempotencyWindow": "my_computeIdempotencyWindow",
-     *       //   "consumer": "my_consumer",
-     *       //   "consumerNetwork": "my_consumerNetwork",
-     *       //   "description": "my_description",
-     *       //   "ipPrefixLength": 0,
-     *       //   "outsideAllocationPublicIpRange": "my_outsideAllocationPublicIpRange",
-     *       //   "privateIpv6GoogleAccess": "my_privateIpv6GoogleAccess",
-     *       //   "purpose": "my_purpose",
-     *       //   "region": "my_region",
-     *       //   "requestedAddress": "my_requestedAddress",
-     *       //   "requestedRanges": [],
-     *       //   "secondaryIpRangeSpecs": [],
-     *       //   "subnetwork": "my_subnetwork",
-     *       //   "subnetworkUsers": [],
-     *       //   "useCustomComputeIdempotencyWindow": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2693,63 +2787,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Disables VPC service controls for a connection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.disableVpcServiceControls({
-     *     // The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerNetwork": "my_consumerNetwork"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2840,63 +2877,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Enables VPC service controls for a connection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.enableVpcServiceControls({
-     *     // The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerNetwork": "my_consumerNetwork"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2987,64 +2967,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Service producers can use this method to find a currently unused range within consumer allocated ranges. This returned range is not reserved, and not guaranteed to remain unused. It will validate previously provided allocated ranges, find non-conflicting sub-range of requested size (expressed in number of leading bits of ipv4 network mask, as in CIDR range notation).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.searchRange({
-     *     // Required. This is in a form services/{service\}. {service\} the name of the private access management service, for example 'service-peering.example.com'.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "ipPrefixLength": 0,
-     *       //   "network": "my_network"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3133,65 +3055,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Service producers use this method to validate if the consumer provided network, project and requested range are valid. This allows them to use a fail-fast mechanism for consumer requests, and not have to wait for AddSubnetwork operation completion to determine if user request is invalid.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.validate({
-     *     // Required. This is in a form services/{service\} where {service\} is the name of the private access management service. For example 'service-peering.example.com'.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "checkServiceNetworkingUsePermission": false,
-     *       //   "consumerNetwork": "my_consumerNetwork",
-     *       //   "consumerProject": {},
-     *       //   "rangeReservation": {},
-     *       //   "validateNetwork": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "existingSubnetworkCandidates": [],
-     *   //   "isValid": false,
-     *   //   "validationError": "my_validationError"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3357,66 +3220,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Creates a private connection that establishes a VPC Network Peering connection to a VPC network in the service producer's organization. The administrator of the service consumer's VPC network invokes this method. The administrator must assign one or more allocated IP ranges for provisioning subnetworks in the service producer's VPC network. This connection is used for all supported services in the service producer's organization, so it only needs to be invoked once.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.connections.create({
-     *     // The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "network": "my_network",
-     *       //   "peering": "my_peering",
-     *       //   "reservedPeeringRanges": [],
-     *       //   "service": "my_service"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3505,63 +3308,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Deletes a private service access connection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.connections.deleteConnection({
-     *     // Required. The private service connection that connects to a service producer organization. The name includes both the private service name and the VPC network peering name in the format of `services/{peering_service_name\}/connections/{vpc_peering_name\}`. For Google services that support this functionality, this is `services/servicenetworking.googleapis.com/connections/servicenetworking-googleapis-com`.
-     *     name: 'services/my-service/connections/my-connection',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerNetwork": "my_consumerNetwork"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3647,53 +3393,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * List the private connections that are configured in a service consumer's VPC network.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.connections.list({
-     *     // The name of service consumer's VPC network that's connected with service producer network through a private connection. The network name must be in the following format: `projects/{project\}/global/networks/{network\}`. {project\} is a project number, such as in `12345` that includes the VPC service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
-     *     network: 'placeholder-value',
-     *     // The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`. If you specify `services/-` as the parameter value, all configured peering services are listed.
-     *     parent: 'services/my-service',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "connections": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3787,70 +3486,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Updates the allocated ranges that are assigned to a connection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.connections.patch({
-     *     // If a previously defined allocated range is removed, force flag must be set to true.
-     *     force: 'placeholder-value',
-     *     // The private service connection that connects to a service producer organization. The name includes both the private service name and the VPC network peering name in the format of `services/{peering_service_name\}/connections/{vpc_peering_name\}`. For Google services that support this functionality, this is `services/servicenetworking.googleapis.com/connections/servicenetworking-googleapis-com`.
-     *     name: 'services/my-service/connections/my-connection',
-     *     // The update mask. If this is omitted, it defaults to "*". You can only update the listed peering ranges.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "network": "my_network",
-     *       //   "peering": "my_peering",
-     *       //   "reservedPeeringRanges": [],
-     *       //   "service": "my_service"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3999,65 +3634,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Service producers can use this method to add DNS record sets to private DNS zones in the shared producer host project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.dnsRecordSets.add({
-     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerNetwork": "my_consumerNetwork",
-     *       //   "dnsRecordSet": {},
-     *       //   "zone": "my_zone"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4145,66 +3721,190 @@ export namespace servicenetworking_v1 {
     }
 
     /**
+     * Producers can use this method to retrieve information about the DNS record set added to the private zone inside the shared tenant host project associated with a consumer network.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Services$Dnsrecordsets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Services$Dnsrecordsets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DnsRecordSet>;
+    get(
+      params: Params$Resource$Services$Dnsrecordsets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Services$Dnsrecordsets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DnsRecordSet>,
+      callback: BodyResponseCallback<Schema$DnsRecordSet>
+    ): void;
+    get(
+      params: Params$Resource$Services$Dnsrecordsets$Get,
+      callback: BodyResponseCallback<Schema$DnsRecordSet>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DnsRecordSet>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Dnsrecordsets$Get
+        | BodyResponseCallback<Schema$DnsRecordSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DnsRecordSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DnsRecordSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DnsRecordSet> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Dnsrecordsets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Dnsrecordsets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dnsRecordSets:get').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DnsRecordSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DnsRecordSet>(parameters);
+      }
+    }
+
+    /**
+     * Producers can use this method to retrieve a list of available DNS RecordSets available inside the private zone on the tenant host project accessible from their network.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Services$Dnsrecordsets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Services$Dnsrecordsets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDnsRecordSetsResponse>;
+    list(
+      params: Params$Resource$Services$Dnsrecordsets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Services$Dnsrecordsets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDnsRecordSetsResponse>,
+      callback: BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$Dnsrecordsets$List,
+      callback: BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Dnsrecordsets$List
+        | BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDnsRecordSetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDnsRecordSetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Dnsrecordsets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Dnsrecordsets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dnsRecordSets:list').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDnsRecordSetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDnsRecordSetsResponse>(parameters);
+      }
+    }
+
+    /**
      * Service producers can use this method to remove DNS record sets from private DNS zones in the shared producer host project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.dnsRecordSets.remove({
-     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerNetwork": "my_consumerNetwork",
-     *       //   "dnsRecordSet": {},
-     *       //   "zone": "my_zone"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4293,66 +3993,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Service producers can use this method to update DNS record sets from private DNS zones in the shared producer host project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.dnsRecordSets.update({
-     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerNetwork": "my_consumerNetwork",
-     *       //   "existingDnsRecordSet": {},
-     *       //   "newDnsRecordSet": {},
-     *       //   "zone": "my_zone"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4452,6 +4092,44 @@ export namespace servicenetworking_v1 {
      */
     requestBody?: Schema$AddDnsRecordSetRequest;
   }
+  export interface Params$Resource$Services$Dnsrecordsets$Get
+    extends StandardParameters {
+    /**
+     * Required. The consumer network containing the record set. Must be in the form of projects/{project\}/global/networks/{network\}
+     */
+    consumerNetwork?: string;
+    /**
+     * Required. The domain name of the zone containing the recordset.
+     */
+    domain?: string;
+    /**
+     * Required. Parent resource identifying the connection which owns this collection of DNS zones in the format services/{service\}.
+     */
+    parent?: string;
+    /**
+     * Required. RecordSet Type eg. type='A'. See the list of [Supported DNS Types](https://cloud.google.com/dns/records/json-record).
+     */
+    type?: string;
+    /**
+     * Required. The name of the zone containing the record set.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Services$Dnsrecordsets$List
+    extends StandardParameters {
+    /**
+     * Required. The network that the consumer is using to connect with services. Must be in the form of projects/{project\}/global/networks/{network\} {project\} is the project number, as in '12345' {network\} is the network name.
+     */
+    consumerNetwork?: string;
+    /**
+     * Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
+     */
+    parent?: string;
+    /**
+     * Required. The name of the private DNS zone in the shared producer host project from which the record set will be removed.
+     */
+    zone?: string;
+  }
   export interface Params$Resource$Services$Dnsrecordsets$Remove
     extends StandardParameters {
     /**
@@ -4485,65 +4163,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Service producers can use this method to add private DNS zones in the shared producer host project and matching peering zones in the consumer project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.dnsZones.add({
-     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerNetwork": "my_consumerNetwork",
-     *       //   "dnsSuffix": "my_dnsSuffix",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4632,64 +4251,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Service producers can use this method to remove private DNS zones in the shared producer host project and matching peering zones in the consumer project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.dnsZones.remove({
-     *     // Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerNetwork": "my_consumerNetwork",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4824,9 +4385,13 @@ export namespace servicenetworking_v1 {
 
   export class Resource$Services$Projects$Global$Networks {
     context: APIRequestContext;
+    dnsZones: Resource$Services$Projects$Global$Networks$Dnszones;
     peeredDnsDomains: Resource$Services$Projects$Global$Networks$Peereddnsdomains;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.dnsZones = new Resource$Services$Projects$Global$Networks$Dnszones(
+        this.context
+      );
       this.peeredDnsDomains =
         new Resource$Services$Projects$Global$Networks$Peereddnsdomains(
           this.context
@@ -4835,65 +4400,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Service producers use this method to get the configuration of their connection including the import/export of custom routes and subnetwork routes with public IP.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.projects.global.networks.get({
-     *     // Optional. When true, include the used IP ranges as part of the GetConsumerConfig output. This includes routes created inside the service networking network, consumer network, peers of the consumer network, and reserved ranges inside the service networking network. By default, this is false
-     *     includeUsedIpRanges: 'placeholder-value',
-     *     // Required. Name of the consumer config to retrieve in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
-     *     name: 'services/my-service/projects/my-project/global/networks/my-network',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cloudsqlConfigs": [],
-     *   //   "consumerExportCustomRoutes": false,
-     *   //   "consumerExportSubnetRoutesWithPublicIp": false,
-     *   //   "consumerImportCustomRoutes": false,
-     *   //   "consumerImportSubnetRoutesWithPublicIp": false,
-     *   //   "producerExportCustomRoutes": false,
-     *   //   "producerExportSubnetRoutesWithPublicIp": false,
-     *   //   "producerImportCustomRoutes": false,
-     *   //   "producerImportSubnetRoutesWithPublicIp": false,
-     *   //   "producerNetwork": "my_producerNetwork",
-     *   //   "reservedRanges": [],
-     *   //   "usedIpRanges": [],
-     *   //   "vpcScReferenceArchitectureEnabled": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4979,67 +4485,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Service producers use this method to update the configuration of their connection including the import/export of custom routes and subnetwork routes with public IP.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await servicenetworking.services.projects.global.networks.updateConsumerConfig(
-     *       {
-     *         // Required. Parent resource identifying the connection for which the consumer config is being updated in the format: `services/{service\}/projects/{project\}/global/networks/{network\}` {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network.
-     *         parent:
-     *           'services/my-service/projects/my-project/global/networks/my-network',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "consumerConfig": {}
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5154,6 +4599,211 @@ export namespace servicenetworking_v1 {
     requestBody?: Schema$UpdateConsumerConfigRequest;
   }
 
+  export class Resource$Services$Projects$Global$Networks$Dnszones {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Service producers can use this method to retrieve a DNS zone in the shared producer host project and the matching peering zones in consumer project
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Services$Projects$Global$Networks$Dnszones$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetDnsZoneResponse>;
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GetDnsZoneResponse>,
+      callback: BodyResponseCallback<Schema$GetDnsZoneResponse>
+    ): void;
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$Get,
+      callback: BodyResponseCallback<Schema$GetDnsZoneResponse>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GetDnsZoneResponse>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Projects$Global$Networks$Dnszones$Get
+        | BodyResponseCallback<Schema$GetDnsZoneResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetDnsZoneResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetDnsZoneResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetDnsZoneResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Projects$Global$Networks$Dnszones$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Services$Projects$Global$Networks$Dnszones$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetDnsZoneResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetDnsZoneResponse>(parameters);
+      }
+    }
+
+    /**
+     * * Service producers can use this method to retrieve a list of available DNS zones in the shared producer host project and the matching peering zones in the consumer project. *
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Services$Projects$Global$Networks$Dnszones$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDnsZonesResponse>;
+    list(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDnsZonesResponse>,
+      callback: BodyResponseCallback<Schema$ListDnsZonesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Services$Projects$Global$Networks$Dnszones$List,
+      callback: BodyResponseCallback<Schema$ListDnsZonesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListDnsZonesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Services$Projects$Global$Networks$Dnszones$List
+        | BodyResponseCallback<Schema$ListDnsZonesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDnsZonesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDnsZonesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDnsZonesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Projects$Global$Networks$Dnszones$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Services$Projects$Global$Networks$Dnszones$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/dnsZones:list').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDnsZonesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDnsZonesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Services$Projects$Global$Networks$Dnszones$Get
+    extends StandardParameters {
+    /**
+     * Required. The network that the consumer is using to connect with services. Must be in the form of services/{service\}/projects/{project\}/global/networks/{network\}/zones/{zoneName\} Where {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this {project\} is the project number, as in '12345' {network\} is the network name. {zoneName\} is the DNS zone name
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Services$Projects$Global$Networks$Dnszones$List
+    extends StandardParameters {
+    /**
+     * Required. Parent resource identifying the connection which owns this collection of DNS zones in the format services/{service\}/projects/{project\}/global/networks/{network\} Service: The service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. Projects: the consumer project containing the consumer network. Network: The consumer network accessible from the tenant project.
+     */
+    parent?: string;
+  }
+
   export class Resource$Services$Projects$Global$Networks$Peereddnsdomains {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5162,68 +4812,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Creates a peered DNS domain which sends requests for records in given namespace originating in the service producer VPC network to the consumer VPC network to be resolved.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await servicenetworking.services.projects.global.networks.peeredDnsDomains.create(
-     *       {
-     *         // Required. Parent resource identifying the connection for which the peered DNS domain will be created in the format: `services/{service\}/projects/{project\}/global/networks/{network\}` {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network.
-     *         parent:
-     *           'services/my-service/projects/my-project/global/networks/my-network',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "dnsSuffix": "my_dnsSuffix",
-     *           //   "name": "my_name"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5313,58 +4901,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Deletes a peered DNS domain.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await servicenetworking.services.projects.global.networks.peeredDnsDomains.delete(
-     *       {
-     *         // Required. The name of the peered DNS domain to delete in the format: `services/{service\}/projects/{project\}/global/networks/{network\}/peeredDnsDomains/{name\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network. {name\} is the name of the peered DNS domain.
-     *         name: 'services/my-service/projects/my-project/global/networks/my-network/peeredDnsDomains/my-peeredDnsDomain',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5451,55 +4987,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Lists peered DNS domains for a connection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await servicenetworking.services.projects.global.networks.peeredDnsDomains.list(
-     *       {
-     *         // Required. Parent resource identifying the connection which owns this collection of peered DNS domains in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
-     *         parent:
-     *           'services/my-service/projects/my-project/global/networks/my-network',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "peeredDnsDomains": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5632,64 +5119,6 @@ export namespace servicenetworking_v1 {
 
     /**
      * Service producers can use this method to add roles in the shared VPC host project. Each role is bound to the provided member. Each role must be selected from within an allowlisted set of roles. Each role is applied at only the granularity specified in the allowlist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicenetworking = google.servicenetworking('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicenetworking.services.roles.add({
-     *     // Required. This is in a form services/{service\} where {service\} is the name of the private access management service. For example 'service-peering.example.com'.
-     *     parent: 'services/my-service',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerNetwork": "my_consumerNetwork",
-     *       //   "policyBinding": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

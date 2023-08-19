@@ -54,9 +54,21 @@ export namespace drive_v2 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -74,19 +86,23 @@ export namespace drive_v2 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * Drive API
+   * Google Drive API
    *
-   * Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.
+   * The Google Drive API allows clients to access resources from Google Drive.
    *
    * @example
    * ```js
@@ -150,15 +166,11 @@ export namespace drive_v2 {
      */
     canCreateDrives?: boolean | null;
     /**
-     * Deprecated - use canCreateDrives instead.
+     * Deprecated: Use `canCreateDrives` instead.
      */
     canCreateTeamDrives?: boolean | null;
     /**
-     * The domain sharing policy for the current user. Possible values are:
-     * - allowed
-     * - allowedWithWarning
-     * - incomingOnly
-     * - disallowed
+     * The domain sharing policy for the current user. Possible values are: * `allowed` * `allowedWithWarning` * `incomingOnly` * `disallowed`
      */
     domainSharingPolicy?: string | null;
     /**
@@ -194,7 +206,7 @@ export namespace drive_v2 {
      */
     isCurrentAppInstalled?: boolean | null;
     /**
-     * This is always drive#about.
+     * This is always `drive#about`.
      */
     kind?: string | null;
     /**
@@ -241,9 +253,7 @@ export namespace drive_v2 {
      */
     quotaBytesUsedInTrash?: string | null;
     /**
-     * The type of the user's storage quota. Possible values are:
-     * - LIMITED
-     * - UNLIMITED
+     * The type of the user's storage quota. Possible values are: * `LIMITED` * `UNLIMITED`
      */
     quotaType?: string | null;
     /**
@@ -259,7 +269,7 @@ export namespace drive_v2 {
      */
     selfLink?: string | null;
     /**
-     * Deprecated - use driveThemes instead.
+     * Deprecated: Use `driveThemes` instead.
      */
     teamDriveThemes?: Array<{
       backgroundImageLink?: string;
@@ -304,7 +314,7 @@ export namespace drive_v2 {
      */
     installed?: boolean | null;
     /**
-     * This is always drive#app.
+     * This is always `drive#app`.
      */
     kind?: string | null;
     /**
@@ -320,7 +330,7 @@ export namespace drive_v2 {
      */
     objectType?: string | null;
     /**
-     * The template url for opening files with this app. The template will contain {ids\} and/or {exportIds\} to be replaced by the actual file ids. See  Open Files  for the full documentation.
+     * The template url for opening files with this app. The template will contain `{ids\}` and/or `{exportIds\}` to be replaced by the actual file ids. See Open Files for the full documentation.
      */
     openUrlTemplate?: string | null;
     /**
@@ -389,7 +399,7 @@ export namespace drive_v2 {
      */
     items?: Schema$App[];
     /**
-     * This is always drive#appList.
+     * This is always `drive#appList`.
      */
     kind?: string | null;
     /**
@@ -402,7 +412,7 @@ export namespace drive_v2 {
    */
   export interface Schema$Change {
     /**
-     * The type of the change. Possible values are file and drive.
+     * The type of the change. Possible values are `file` and `drive`.
      */
     changeType?: string | null;
     /**
@@ -430,7 +440,7 @@ export namespace drive_v2 {
      */
     id?: string | null;
     /**
-     * This is always drive#change.
+     * This is always `drive#change`.
      */
     kind?: string | null;
     /**
@@ -442,15 +452,15 @@ export namespace drive_v2 {
      */
     selfLink?: string | null;
     /**
-     * Deprecated - use drive instead.
+     * Deprecated: Use `drive` instead.
      */
     teamDrive?: Schema$TeamDrive;
     /**
-     * Deprecated - use driveId instead.
+     * Deprecated: Use `driveId` instead.
      */
     teamDriveId?: string | null;
     /**
-     * Deprecated - use changeType instead.
+     * Deprecated: Use `changeType` instead.
      */
     type?: string | null;
   }
@@ -467,7 +477,7 @@ export namespace drive_v2 {
      */
     items?: Schema$Change[];
     /**
-     * This is always drive#changeList.
+     * This is always `drive#changeList`.
      */
     kind?: string | null;
     /**
@@ -492,7 +502,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * An notification channel used to watch for resource changes.
+   * A notification channel used to watch for resource changes.
    */
   export interface Schema$Channel {
     /**
@@ -508,7 +518,7 @@ export namespace drive_v2 {
      */
     id?: string | null;
     /**
-     * Identifies this as a notification channel used to watch for changes to a resource, which is "api#channel".
+     * Identifies this as a notification channel used to watch for changes to a resource, which is `api#channel`.
      */
     kind?: string | null;
     /**
@@ -532,7 +542,7 @@ export namespace drive_v2 {
      */
     token?: string | null;
     /**
-     * The type of delivery mechanism used for this channel. Valid values are "web_hook" (or "webhook"). Both values refer to a channel where Http requests are used to deliver messages.
+     * The type of delivery mechanism used for this channel.
      */
     type?: string | null;
   }
@@ -549,7 +559,7 @@ export namespace drive_v2 {
      */
     items?: Schema$ChildReference[];
     /**
-     * This is always drive#childList.
+     * This is always `drive#childList`.
      */
     kind?: string | null;
     /**
@@ -570,7 +580,7 @@ export namespace drive_v2 {
    */
   export interface Schema$ChildReference {
     /**
-     * A link to the child.
+     * Output only. A link to the child.
      */
     childLink?: string | null;
     /**
@@ -578,11 +588,11 @@ export namespace drive_v2 {
      */
     id?: string | null;
     /**
-     * This is always drive#childReference.
+     * Output only. This is always `drive#childReference`.
      */
     kind?: string | null;
     /**
-     * A link back to this reference.
+     * Output only. A link back to this reference.
      */
     selfLink?: string | null;
   }
@@ -591,15 +601,15 @@ export namespace drive_v2 {
    */
   export interface Schema$Comment {
     /**
-     * A region of the document represented as a JSON string. For details on defining anchor properties, refer to  Add comments and replies.
+     * A region of the document represented as a JSON string. For details on defining anchor properties, refer to [Add comments and replies](https://developers.google.com/drive/api/v2/manage-comments).
      */
     anchor?: string | null;
     /**
-     * The author of the comment. The author's email address and permission ID will not be populated.
+     * Output only. The author of the comment. The author's email address and permission ID will not be populated.
      */
     author?: Schema$User;
     /**
-     * The ID of the comment.
+     * Output only. The ID of the comment.
      */
     commentId?: string | null;
     /**
@@ -615,23 +625,23 @@ export namespace drive_v2 {
      */
     createdDate?: string | null;
     /**
-     * Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
+     * Output only. Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
      */
     deleted?: boolean | null;
     /**
-     * The file which this comment is addressing.
+     * Output only. The file which this comment is addressing.
      */
     fileId?: string | null;
     /**
-     * The title of the file which this comment is addressing.
+     * Output only. The title of the file which this comment is addressing.
      */
     fileTitle?: string | null;
     /**
-     * HTML formatted content for this comment.
+     * Output only. HTML formatted content for this comment.
      */
     htmlContent?: string | null;
     /**
-     * This is always drive#comment.
+     * Output only. This is always `drive#comment`.
      */
     kind?: string | null;
     /**
@@ -639,17 +649,15 @@ export namespace drive_v2 {
      */
     modifiedDate?: string | null;
     /**
-     * Replies to this post.
+     * Output only. Replies to this post.
      */
     replies?: Schema$CommentReply[];
     /**
-     * A link back to this comment.
+     * Output only. A link back to this comment.
      */
     selfLink?: string | null;
     /**
-     * The status of this comment. Status can be changed by posting a reply to a comment with the desired status.
-     * - "open" - The comment is still open.
-     * - "resolved" - The comment has been resolved by one of its replies.
+     * Output only. The status of this comment. Status can be changed by posting a reply to a comment with the desired status. * `open` - The comment is still open. * `resolved` - The comment has been resolved by one of its replies.
      */
     status?: string | null;
   }
@@ -662,7 +670,7 @@ export namespace drive_v2 {
      */
     items?: Schema$Comment[];
     /**
-     * This is always drive#commentList.
+     * This is always `drive#commentList`.
      */
     kind?: string | null;
     /**
@@ -683,7 +691,7 @@ export namespace drive_v2 {
    */
   export interface Schema$CommentReply {
     /**
-     * The author of the reply. The author's email address and permission ID will not be populated.
+     * Output only. The author of the reply. The author's email address and permission ID will not be populated.
      */
     author?: Schema$User;
     /**
@@ -695,15 +703,15 @@ export namespace drive_v2 {
      */
     createdDate?: string | null;
     /**
-     * Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
+     * Output only. Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
      */
     deleted?: boolean | null;
     /**
-     * HTML formatted content for this reply.
+     * Output only. HTML formatted content for this reply.
      */
     htmlContent?: string | null;
     /**
-     * This is always drive#commentReply.
+     * Output only. This is always `drive#commentReply`.
      */
     kind?: string | null;
     /**
@@ -711,13 +719,11 @@ export namespace drive_v2 {
      */
     modifiedDate?: string | null;
     /**
-     * The ID of the reply.
+     * Output only. The ID of the reply.
      */
     replyId?: string | null;
     /**
-     * The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are:
-     * - "resolve" - To resolve a comment.
-     * - "reopen" - To reopen (un-resolve) a comment.
+     * The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are: * `resolve` - To resolve a comment. * `reopen` - To reopen (un-resolve) a comment.
      */
     verb?: string | null;
   }
@@ -730,7 +736,7 @@ export namespace drive_v2 {
      */
     items?: Schema$CommentReply[];
     /**
-     * This is always drive#commentReplyList.
+     * This is always `drive#commentReplyList`.
      */
     kind?: string | null;
     /**
@@ -751,15 +757,19 @@ export namespace drive_v2 {
    */
   export interface Schema$ContentRestriction {
     /**
+     * Whether the content restriction can only be modified or removed by a user who owns the file. For files in shared drives, any user with `organizer` capabilities can modify or remove this content restriction.
+     */
+    ownerRestricted?: boolean | null;
+    /**
      * Whether the content of the file is read-only. If a file is read-only, a new revision of the file may not be added, comments may not be added or modified, and the title of the file may not be modified.
      */
     readOnly?: boolean | null;
     /**
-     * Reason for why the content of the file is restricted. This is only mutable on requests that also set readOnly=true.
+     * Reason for why the content of the file is restricted. This is only mutable on requests that also set `readOnly=true`.
      */
     reason?: string | null;
     /**
-     * The user who set the content restriction. Only populated if readOnly is true.
+     * Output only. The user who set the content restriction. Only populated if `readOnly` is true.
      */
     restrictingUser?: Schema$User;
     /**
@@ -767,7 +777,7 @@ export namespace drive_v2 {
      */
     restrictionDate?: string | null;
     /**
-     * The type of the content restriction. Currently the only possible value is globalContentRestriction.
+     * Output only. The type of the content restriction. Currently the only possible value is `globalContentRestriction`.
      */
     type?: string | null;
   }
@@ -776,7 +786,7 @@ export namespace drive_v2 {
    */
   export interface Schema$Drive {
     /**
-     * An image file and cropping parameters from which a background image for this shared drive is set. This is a write only field; it can only be set on drive.drives.update requests that don't set themeId. When specified, all fields of the backgroundImageFile must be set.
+     * An image file and cropping parameters from which a background image for this shared drive is set. This is a write only field; it can only be set on `drive.drives.update` requests that don't set `themeId`. When specified, all fields of the `backgroundImageFile` must be set.
      */
     backgroundImageFile?: {
       id?: string;
@@ -785,11 +795,11 @@ export namespace drive_v2 {
       yCoordinate?: number;
     } | null;
     /**
-     * A short-lived link to this shared drive's background image.
+     * Output only. A short-lived link to this shared drive's background image.
      */
     backgroundImageLink?: string | null;
     /**
-     * Capabilities the current user has on this shared drive.
+     * Output only. Capabilities the current user has on this shared drive.
      */
     capabilities?: {
       canAddChildren?: boolean;
@@ -797,6 +807,7 @@ export namespace drive_v2 {
       canChangeDomainUsersOnlyRestriction?: boolean;
       canChangeDriveBackground?: boolean;
       canChangeDriveMembersOnlyRestriction?: boolean;
+      canChangeSharingFoldersRequiresOrganizerPermissionRestriction?: boolean;
       canComment?: boolean;
       canCopy?: boolean;
       canDeleteChildren?: boolean;
@@ -813,7 +824,7 @@ export namespace drive_v2 {
       canTrashChildren?: boolean;
     } | null;
     /**
-     * The color of this shared drive as an RGB hex string. It can only be set on a drive.drives.update request that does not set themeId.
+     * The color of this shared drive as an RGB hex string. It can only be set on a `drive.drives.update` request that does not set `themeId`.
      */
     colorRgb?: string | null;
     /**
@@ -825,11 +836,11 @@ export namespace drive_v2 {
      */
     hidden?: boolean | null;
     /**
-     * The ID of this shared drive which is also the ID of the top level folder of this shared drive.
+     * Output only. The ID of this shared drive which is also the ID of the top level folder of this shared drive.
      */
     id?: string | null;
     /**
-     * This is always drive#drive
+     * Output only. This is always `drive#drive`
      */
     kind?: string | null;
     /**
@@ -837,7 +848,7 @@ export namespace drive_v2 {
      */
     name?: string | null;
     /**
-     * The organizational unit of this shared drive. This field is only populated on drives.list responses when the useDomainAdminAccess parameter is set to true.
+     * Output only. The organizational unit of this shared drive. This field is only populated on `drives.list` responses when the `useDomainAdminAccess` parameter is set to `true`.
      */
     orgUnitId?: string | null;
     /**
@@ -848,9 +859,10 @@ export namespace drive_v2 {
       copyRequiresWriterPermission?: boolean;
       domainUsersOnly?: boolean;
       driveMembersOnly?: boolean;
+      sharingFoldersRequiresOrganizerPermission?: boolean;
     } | null;
     /**
-     * The ID of the theme from which the background image and color will be set. The set of possible driveThemes can be retrieved from a drive.about.get response. When not specified on a drive.drives.insert request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.
+     * The ID of the theme from which the background image and color will be set. The set of possible `driveThemes` can be retrieved from a `drive.about.get` response. When not specified on a `drive.drives.insert` request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set `colorRgb` or `backgroundImageFile`.
      */
     themeId?: string | null;
   }
@@ -863,7 +875,7 @@ export namespace drive_v2 {
      */
     items?: Schema$Drive[];
     /**
-     * This is always drive#driveList
+     * This is always `drive#driveList`
      */
     kind?: string | null;
     /**
@@ -876,23 +888,23 @@ export namespace drive_v2 {
    */
   export interface Schema$File {
     /**
-     * A link for opening the file in a relevant Google editor or viewer.
+     * Output only. A link for opening the file in a relevant Google editor or viewer.
      */
     alternateLink?: string | null;
     /**
-     * Whether this file is in the Application Data folder.
+     * Output only. Whether this file is in the Application Data folder.
      */
     appDataContents?: boolean | null;
     /**
-     * Deprecated: use capabilities/canComment.
+     * Output only. Deprecated: Use `capabilities/canComment` instead.
      */
     canComment?: boolean | null;
     /**
-     * Deprecated: use capabilities/canReadRevisions.
+     * Output only. Deprecated: Use `capabilities/canReadRevisions` instead.
      */
     canReadRevisions?: boolean | null;
     /**
-     * Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.
+     * Output only. Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.
      */
     capabilities?: {
       canAcceptOwnership?: boolean;
@@ -911,7 +923,9 @@ export namespace drive_v2 {
       canListChildren?: boolean;
       canModifyContent?: boolean;
       canModifyContentRestriction?: boolean;
+      canModifyEditorContentRestriction?: boolean;
       canModifyLabels?: boolean;
+      canModifyOwnerContentRestriction?: boolean;
       canMoveChildrenOutOfDrive?: boolean;
       canMoveChildrenOutOfTeamDrive?: boolean;
       canMoveChildrenWithinDrive?: boolean;
@@ -927,6 +941,7 @@ export namespace drive_v2 {
       canReadRevisions?: boolean;
       canReadTeamDrive?: boolean;
       canRemoveChildren?: boolean;
+      canRemoveContentRestriction?: boolean;
       canRemoveMyDriveParent?: boolean;
       canRename?: boolean;
       canShare?: boolean;
@@ -939,7 +954,7 @@ export namespace drive_v2 {
      */
     contentRestrictions?: Schema$ContentRestriction[];
     /**
-     * Deprecated: use capabilities/canCopy.
+     * Output only. Deprecated: Use `capabilities/canCopy` instead.
      */
     copyable?: boolean | null;
     /**
@@ -951,7 +966,7 @@ export namespace drive_v2 {
      */
     createdDate?: string | null;
     /**
-     * A link to open this file with the user's default app for this file. Only populated when the drive.apps.readonly scope is used.
+     * Output only. A link to open this file with the user's default app for this file. Only populated when the drive.apps.readonly scope is used.
      */
     defaultOpenWithLink?: string | null;
     /**
@@ -959,39 +974,39 @@ export namespace drive_v2 {
      */
     description?: string | null;
     /**
-     * Short lived download URL for the file. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * Output only. Short lived download URL for the file. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
      */
     downloadUrl?: string | null;
     /**
-     * ID of the shared drive the file resides in. Only populated for items in shared drives.
+     * Output only. ID of the shared drive the file resides in. Only populated for items in shared drives.
      */
     driveId?: string | null;
     /**
-     * Deprecated: use capabilities/canEdit.
+     * Output only. Deprecated: Use `capabilities/canEdit` instead.
      */
     editable?: boolean | null;
     /**
-     * A link for embedding the file.
+     * Output only. A link for embedding the file.
      */
     embedLink?: string | null;
     /**
-     * ETag of the file.
+     * Output only. ETag of the file.
      */
     etag?: string | null;
     /**
-     * Whether this file has been explicitly trashed, as opposed to recursively trashed.
+     * Output only. Whether this file has been explicitly trashed, as opposed to recursively trashed.
      */
     explicitlyTrashed?: boolean | null;
     /**
-     * Links for exporting Docs Editors files to specific formats.
+     * Output only. Links for exporting Docs Editors files to specific formats.
      */
     exportLinks?: {[key: string]: string} | null;
     /**
-     * The final component of fullFileExtension with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * Output only. The final component of `fullFileExtension` with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     fileExtension?: string | null;
     /**
-     * The size of the file in bytes. This field is populated for files with content stored in Google Drive and for files in Docs Editors; it is not populated for shortcut files.
+     * Output only. Size in bytes of blobs and first party editor files. Won't be populated for files that have no size, like shortcuts and folders.
      */
     fileSize?: string | null;
     /**
@@ -999,23 +1014,23 @@ export namespace drive_v2 {
      */
     folderColorRgb?: string | null;
     /**
-     * The full file extension; extracted from the title. May contain multiple concatenated extensions, such as "tar.gz". Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * Output only. The full file extension; extracted from the title. May contain multiple concatenated extensions, such as "tar.gz". Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     fullFileExtension?: string | null;
     /**
-     * Whether there are permissions directly on this file. This field is only populated for items in shared drives.
+     * Output only. Whether there are permissions directly on this file. This field is only populated for items in shared drives.
      */
     hasAugmentedPermissions?: boolean | null;
     /**
-     * Whether this file has a thumbnail. This does not indicate whether the requesting app has access to the thumbnail. To check access, look for the presence of the thumbnailLink field.
+     * Output only. Whether this file has a thumbnail. This does not indicate whether the requesting app has access to the thumbnail. To check access, look for the presence of the thumbnailLink field.
      */
     hasThumbnail?: boolean | null;
     /**
-     * The ID of the file's head revision. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * Output only. The ID of the file's head revision. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     headRevisionId?: string | null;
     /**
-     * A link to the file's icon.
+     * Output only. A link to the file's icon.
      */
     iconLink?: string | null;
     /**
@@ -1023,7 +1038,7 @@ export namespace drive_v2 {
      */
     id?: string | null;
     /**
-     * Metadata about image media. This will only be present for image types, and its contents will depend on what can be parsed from the image content.
+     * Output only. Metadata about image media. This will only be present for image types, and its contents will depend on what can be parsed from the image content.
      */
     imageMediaMetadata?: {
       aperture?: number;
@@ -1053,15 +1068,15 @@ export namespace drive_v2 {
      */
     indexableText?: {text?: string} | null;
     /**
-     * Whether the file was created or opened by the requesting app.
+     * Output only. Whether the file was created or opened by the requesting app.
      */
     isAppAuthorized?: boolean | null;
     /**
-     * The type of file. This is always drive#file.
+     * Output only. The type of file. This is always `drive#file`.
      */
     kind?: string | null;
     /**
-     * An overview of the labels on the file.
+     * Output only. An overview of the labels on the file.
      */
     labelInfo?: {labels?: Schema$Label[]} | null;
     /**
@@ -1076,11 +1091,11 @@ export namespace drive_v2 {
       viewed?: boolean;
     } | null;
     /**
-     * The last user to modify this file.
+     * Output only. The last user to modify this file.
      */
     lastModifyingUser?: Schema$User;
     /**
-     * Name of the last user to modify this file.
+     * Output only. Name of the last user to modify this file.
      */
     lastModifyingUserName?: string | null;
     /**
@@ -1099,7 +1114,7 @@ export namespace drive_v2 {
      */
     markedViewedByMeDate?: string | null;
     /**
-     * An MD5 checksum for the content of this file. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * Output only. An MD5 checksum for the content of this file. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     md5Checksum?: string | null;
     /**
@@ -1115,36 +1130,35 @@ export namespace drive_v2 {
      */
     modifiedDate?: string | null;
     /**
-     * A map of the id of each of the user's apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used.
+     * Output only. A map of the id of each of the user's apps to a link to open this file with that app. Only populated when the drive.apps.readonly scope is used.
      */
     openWithLinks?: {[key: string]: string} | null;
     /**
-     * The original filename of the uploaded content if available, or else the original value of the title field. This is only available for files with binary content in Google Drive.
+     * The original filename of the uploaded content if available, or else the original value of the `title` field. This is only available for files with binary content in Google Drive.
      */
     originalFilename?: string | null;
     /**
-     * Whether the file is owned by the current user. Not populated for items in shared drives.
+     * Output only. Whether the file is owned by the current user. Not populated for items in shared drives.
      */
     ownedByMe?: boolean | null;
     /**
-     * Name(s) of the owner(s) of this file. Not populated for items in shared drives.
+     * Output only. Name(s) of the owner(s) of this file. Not populated for items in shared drives.
      */
     ownerNames?: string[] | null;
     /**
-     * The owner of this file. Only certain legacy files may have more than one owner. This field isn't populated for items in shared drives.
+     * Output only. The owner of this file. Only certain legacy files may have more than one owner. This field isn't populated for items in shared drives.
      */
     owners?: Schema$User[];
     /**
-     * Collection of parent folders which contain this file.
-     * If not specified as part of an insert request, the file will be placed directly in the user's My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests can also use the addParents and removeParents parameters to modify the parents list.
+     * Collection of parent folders which contain this file. If not specified as part of an insert request, the file will be placed directly in the user's My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests can also use the `addParents` and `removeParents` parameters to modify the parents list.
      */
     parents?: Schema$ParentReference[];
     /**
-     * List of permission IDs for users with access to this file.
+     * Output only. List of permission IDs for users with access to this file.
      */
     permissionIds?: string[] | null;
     /**
-     * The list of permissions for users with access to this file. Not populated for items in shared drives.
+     * Output only. The list of permissions for users with access to this file. Not populated for items in shared drives.
      */
     permissions?: Schema$Permission[];
     /**
@@ -1152,31 +1166,31 @@ export namespace drive_v2 {
      */
     properties?: Schema$Property[];
     /**
-     * The number of quota bytes used by this file.
+     * Output only. The number of quota bytes used by this file.
      */
     quotaBytesUsed?: string | null;
     /**
-     * A key needed to access the item via a shared link.
+     * Output only. A key needed to access the item via a shared link.
      */
     resourceKey?: string | null;
     /**
-     * A link back to this file.
+     * Output only. A link back to this file.
      */
     selfLink?: string | null;
     /**
-     * The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * Output only. The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     sha1Checksum?: string | null;
     /**
-     * The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * Output only. The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     sha256Checksum?: string | null;
     /**
-     * Deprecated: use capabilities/canShare.
+     * Output only. Deprecated: Use `capabilities/canShare` instead.
      */
     shareable?: boolean | null;
     /**
-     * Whether the file has been shared. Not populated for items in shared drives.
+     * Output only. Whether the file has been shared. Not populated for items in shared drives.
      */
     shared?: boolean | null;
     /**
@@ -1184,11 +1198,11 @@ export namespace drive_v2 {
      */
     sharedWithMeDate?: string | null;
     /**
-     * User that shared the item with the current user, if available.
+     * Output only. User that shared the item with the current user, if available.
      */
     sharingUser?: Schema$User;
     /**
-     * Shortcut file details. Only populated for shortcut files, which have the mimeType field set to application/vnd.google-apps.shortcut.
+     * Shortcut file details. Only populated for shortcut files, which have the mimeType field set to `application/vnd.google-apps.shortcut`.
      */
     shortcutDetails?: {
       targetId?: string;
@@ -1196,11 +1210,11 @@ export namespace drive_v2 {
       targetResourceKey?: string;
     } | null;
     /**
-     * The list of spaces which contain the file. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * Output only. The list of spaces which contain the file. Supported values are `drive`, `appDataFolder` and `photos`.
      */
     spaces?: string[] | null;
     /**
-     * Deprecated - use driveId instead.
+     * Output only. Deprecated: Use `driveId` instead.
      */
     teamDriveId?: string | null;
     /**
@@ -1208,11 +1222,11 @@ export namespace drive_v2 {
      */
     thumbnail?: {image?: string; mimeType?: string} | null;
     /**
-     * A short-lived link to the file's thumbnail. Typically lasts on the order of hours. Only populated when the requesting app can access the file's content. If the file isn't shared publicly, the URL returned in Files.thumbnailLink must be fetched using a credentialed request.
+     * Output only. A short-lived link to the file's thumbnail, if available. Typically lasts on the order of hours. Only populated when the requesting app can access the file's content. If the file isn't shared publicly, the URL returned in `Files.thumbnailLink` must be fetched using a credentialed request.
      */
     thumbnailLink?: string | null;
     /**
-     * The thumbnail version for use in thumbnail cache invalidation.
+     * Output only. The thumbnail version for use in thumbnail cache invalidation.
      */
     thumbnailVersion?: string | null;
     /**
@@ -1224,19 +1238,19 @@ export namespace drive_v2 {
      */
     trashedDate?: string | null;
     /**
-     * If the file has been explicitly trashed, the user who trashed it. Only populated for items in shared drives.
+     * Output only. If the file has been explicitly trashed, the user who trashed it. Only populated for items in shared drives.
      */
     trashingUser?: Schema$User;
     /**
-     * The permissions for the authenticated user on this file.
+     * Output only. The permissions for the authenticated user on this file.
      */
     userPermission?: Schema$Permission;
     /**
-     * A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the requesting user.
+     * Output only. A monotonically increasing version number for the file. This reflects every change made to the file on the server, even those not visible to the requesting user.
      */
     version?: string | null;
     /**
-     * Metadata about video media. This will only be present for video types.
+     * Output only. Metadata about video media. This will only be present for video types.
      */
     videoMediaMetadata?: {
       durationMillis?: string;
@@ -1244,11 +1258,11 @@ export namespace drive_v2 {
       width?: number;
     } | null;
     /**
-     * A link for downloading the content of the file in a browser using cookie based authentication. In cases where the content is shared publicly, the content can be downloaded without any credentials.
+     * Output only. A link for downloading the content of the file in a browser using cookie based authentication. In cases where the content is shared publicly, the content can be downloaded without any credentials.
      */
     webContentLink?: string | null;
     /**
-     * A link only available on public folders for viewing their static web assets (HTML, CSS, JS, etc) via Google Drive's Website Hosting.
+     * Output only. A link only available on public folders for viewing their static web assets (HTML, CSS, JS, etc) via Google Drive's Website Hosting.
      */
     webViewLink?: string | null;
     /**
@@ -1273,7 +1287,7 @@ export namespace drive_v2 {
      */
     items?: Schema$File[];
     /**
-     * This is always drive#fileList.
+     * This is always `drive#fileList`.
      */
     kind?: string | null;
     /**
@@ -1298,7 +1312,7 @@ export namespace drive_v2 {
      */
     ids?: string[] | null;
     /**
-     * This is always drive#generatedIds
+     * This is always `drive#generatedIds`
      */
     kind?: string | null;
     /**
@@ -1307,11 +1321,11 @@ export namespace drive_v2 {
     space?: string | null;
   }
   /**
-   * Representation of a label and its fields.
+   * Representation of a label and label fields.
    */
   export interface Schema$Label {
     /**
-     * A map of the label's fields keyed by the field ID.
+     * A map of the fields on the label, keyed by the field's ID.
      */
     fields?: {[key: string]: Schema$LabelField} | null;
     /**
@@ -1319,7 +1333,7 @@ export namespace drive_v2 {
      */
     id?: string | null;
     /**
-     * This is always drive#label
+     * This is always `drive#label`
      */
     kind?: string | null;
     /**
@@ -1328,7 +1342,7 @@ export namespace drive_v2 {
     revisionId?: string | null;
   }
   /**
-   * Representation of a label field.
+   * Representation of field, which is a typed key-value pair.
    */
   export interface Schema$LabelField {
     /**
@@ -1336,36 +1350,31 @@ export namespace drive_v2 {
      */
     dateString?: string[] | null;
     /**
-     * The identifier of this field.
+     * The identifier of this label field.
      */
     id?: string | null;
     /**
-     * Only present if valueType is integer.
+     * Only present if `valueType` is `integer`.
      */
     integer?: string[] | null;
     /**
-     * This is always drive#labelField.
+     * This is always `drive#labelField`.
      */
     kind?: string | null;
     /**
-     * Only present if valueType is selection.
+     * Only present if `valueType` is `selection`
      */
     selection?: string[] | null;
     /**
-     * Only present if valueType is text.
+     * Only present if `valueType` is `text`.
      */
     text?: string[] | null;
     /**
-     * Only present if valueType is user.
+     * Only present if `valueType` is `user`.
      */
     user?: Schema$User[];
     /**
-     * The field type. While new values may be supported in the future, the following are currently allowed:
-     * - dateString
-     * - integer
-     * - selection
-     * - text
-     * - user
+     * The field type. While new values may be supported in the future, the following are currently allowed: * `dateString` * `integer` * `selection` * `text` * `user`
      */
     valueType?: string | null;
   }
@@ -1378,27 +1387,27 @@ export namespace drive_v2 {
      */
     fieldId?: string | null;
     /**
-     * This is always drive#labelFieldModification.
+     * This is always `drive#labelFieldModification`.
      */
     kind?: string | null;
     /**
-     * Replaces a dateString field with these new values. The values must be strings in the RFC 3339 full-date format: YYYY-MM-DD.
+     * Replaces the value of a dateString Field with these new values. The string must be in the RFC 3339 full-date format: YYYY-MM-DD.
      */
     setDateValues?: string[] | null;
     /**
-     * Replaces an integer field with these new values.
+     * Replaces the value of an `integer` field with these new values.
      */
     setIntegerValues?: string[] | null;
     /**
-     * Replaces a selection field with these new values.
+     * Replaces a `selection` field with these new values.
      */
     setSelectionValues?: string[] | null;
     /**
-     * Replaces a text field with these new values.
+     * Sets the value of a `text` field.
      */
     setTextValues?: string[] | null;
     /**
-     * Replaces a user field with these new values. The values must be valid email addresses.
+     * Replaces a `user` field with these new values. The values must be valid email addresses.
      */
     setUserValues?: string[] | null;
     /**
@@ -1407,7 +1416,7 @@ export namespace drive_v2 {
     unsetValues?: boolean | null;
   }
   /**
-   * A list of labels.
+   * A list of labels applied to a file.
    */
   export interface Schema$LabelList {
     /**
@@ -1415,7 +1424,7 @@ export namespace drive_v2 {
      */
     items?: Schema$Label[];
     /**
-     * This is always drive#labelList
+     * This is always `drive#labelList`
      */
     kind?: string | null;
     /**
@@ -1432,7 +1441,7 @@ export namespace drive_v2 {
      */
     fieldModifications?: Schema$LabelFieldModification[];
     /**
-     * This is always drive#labelModification.
+     * This is always `drive#labelModification`.
      */
     kind?: string | null;
     /**
@@ -1445,11 +1454,11 @@ export namespace drive_v2 {
     removeLabel?: boolean | null;
   }
   /**
-   * A request to modify the set of labels on a file. This request may contain many modifications that will either all succeed or all fail transactionally.
+   * A request to modify the set of labels on a file. This request may contain many modifications that will either all succeed or all fail atomically.
    */
   export interface Schema$ModifyLabelsRequest {
     /**
-     * This is always drive#modifyLabelsRequest
+     * This is always `drive#modifyLabelsRequest`.
      */
     kind?: string | null;
     /**
@@ -1462,7 +1471,7 @@ export namespace drive_v2 {
    */
   export interface Schema$ModifyLabelsResponse {
     /**
-     * This is always drive#modifyLabelsResponse
+     * This is always `drive#modifyLabelsResponse`
      */
     kind?: string | null;
     /**
@@ -1483,7 +1492,7 @@ export namespace drive_v2 {
      */
     items?: Schema$ParentReference[];
     /**
-     * This is always drive#parentList.
+     * This is always `drive#parentList`.
      */
     kind?: string | null;
     /**
@@ -1500,19 +1509,19 @@ export namespace drive_v2 {
      */
     id?: string | null;
     /**
-     * Whether or not the parent is the root folder.
+     * Output only. Whether or not the parent is the root folder.
      */
     isRoot?: boolean | null;
     /**
-     * This is always drive#parentReference.
+     * Output only. This is always `drive#parentReference`.
      */
     kind?: string | null;
     /**
-     * A link to the parent.
+     * Output only. A link to the parent.
      */
     parentLink?: string | null;
     /**
-     * A link back to this reference.
+     * Output only. A link back to this reference.
      */
     selfLink?: string | null;
   }
@@ -1521,55 +1530,51 @@ export namespace drive_v2 {
    */
   export interface Schema$Permission {
     /**
-     * Additional roles for this user. Only commenter is currently allowed, though more may be supported in the future.
+     * Additional roles for this user. Only `commenter` is currently allowed, though more may be supported in the future.
      */
     additionalRoles?: string[] | null;
     /**
-     * Deprecated.
+     * Output only. Deprecated.
      */
     authKey?: string | null;
     /**
-     * Whether the account associated with this permission has been deleted. This field only pertains to user and group permissions.
+     * Output only. Whether the account associated with this permission has been deleted. This field only pertains to user and group permissions.
      */
     deleted?: boolean | null;
     /**
-     * The domain name of the entity this permission refers to. This is an output-only field which is present when the permission type is user, group or domain.
+     * Output only. The domain name of the entity this permission refers to. This is an output-only field which is present when the permission type is `user`, `group` or `domain`.
      */
     domain?: string | null;
     /**
-     * The email address of the user or group this permission refers to. This is an output-only field which is present when the permission type is user or group.
+     * Output only. The email address of the user or group this permission refers to. This is an output-only field which is present when the permission type is `user` or `group`.
      */
     emailAddress?: string | null;
     /**
-     * The ETag of the permission.
+     * Output only. The ETag of the permission.
      */
     etag?: string | null;
     /**
-     * The time at which this permission will expire (RFC 3339 date-time). Expiration dates have the following restrictions:
-     * - They cannot be set on shared drive items
-     * - They can only be set on user and group permissions
-     * - The date must be in the future
-     * - The date cannot be more than a year in the future
+     * The time at which this permission will expire (RFC 3339 date-time). Expiration dates have the following restrictions: - They can only be set on user and group permissions - The date must be in the future - The date cannot be more than a year in the future - The date can only be set on drive.permissions.update or drive.permissions.patch requests
      */
     expirationDate?: string | null;
     /**
-     * The ID of the user this permission refers to, and identical to the permissionId in the About and Files resources. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type is anyone, in which case both id and value are ignored.
+     * The ID of the user this permission refers to, and identical to the `permissionId` in the About and Files resources. When making a `drive.permissions.insert` request, exactly one of the `id` or `value` fields must be specified unless the permission type is `anyone`, in which case both `id` and `value` are ignored.
      */
     id?: string | null;
     /**
-     * This is always drive#permission.
+     * Output only. This is always `drive#permission`.
      */
     kind?: string | null;
     /**
-     * The name for this permission.
+     * Output only. The name for this permission.
      */
     name?: string | null;
     /**
-     * Whether the account associated with this permission is a pending owner. Only populated for user type permissions for files that are not in a shared drive.
+     * Whether the account associated with this permission is a pending owner. Only populated for `user` type permissions for files that are not in a shared drive.
      */
     pendingOwner?: boolean | null;
     /**
-     * Details of whether the permissions on this shared drive item are inherited or directly on this item. This is an output-only field which is present only for shared drive items.
+     * Output only. Details of whether the permissions on this shared drive item are inherited or directly on this item. This is an output-only field which is present only for shared drive items.
      */
     permissionDetails?: Array<{
       additionalRoles?: string[];
@@ -1579,24 +1584,19 @@ export namespace drive_v2 {
       role?: string;
     }> | null;
     /**
-     * A link to the profile photo, if available.
+     * Output only. A link to the profile photo, if available.
      */
     photoLink?: string | null;
     /**
-     * The primary role for this user. While new values may be supported in the future, the following are currently allowed:
-     * - owner
-     * - organizer
-     * - fileOrganizer
-     * - writer
-     * - reader
+     * The primary role for this user. While new values may be supported in the future, the following are currently allowed: * `owner` * `organizer` * `fileOrganizer` * `writer` * `reader`
      */
     role?: string | null;
     /**
-     * A link back to this permission.
+     * Output only. A link back to this permission.
      */
     selfLink?: string | null;
     /**
-     * Deprecated - use permissionDetails instead.
+     * Output only. Deprecated: Use `permissionDetails` instead.
      */
     teamDrivePermissionDetails?: Array<{
       additionalRoles?: string[];
@@ -1606,19 +1606,15 @@ export namespace drive_v2 {
       teamDrivePermissionType?: string;
     }> | null;
     /**
-     * The account type. Allowed values are:
-     * - user
-     * - group
-     * - domain
-     * - anyone
+     * The account type. Allowed values are: * `user` * `group` * `domain` * `anyone`
      */
     type?: string | null;
     /**
-     * The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a drive.permissions.insert request, exactly one of the id or value fields must be specified unless the permission type is anyone, in which case both id and value are ignored.
+     * The email address or domain name for the entity. This is used during inserts and is not populated in responses. When making a `drive.permissions.insert` request, exactly one of the `id` or `value` fields must be specified unless the permission type is `anyone`, in which case both `id` and `value` are ignored.
      */
     value?: string | null;
     /**
-     * Indicates the view for this permission. Only populated for permissions that belong to a view. published is the only supported value.
+     * Indicates the view for this permission. Only populated for permissions that belong to a view. `published` is the only supported value.
      */
     view?: string | null;
     /**
@@ -1635,7 +1631,7 @@ export namespace drive_v2 {
      */
     id?: string | null;
     /**
-     * This is always drive#permissionId.
+     * This is always `drive#permissionId`.
      */
     kind?: string | null;
   }
@@ -1652,7 +1648,7 @@ export namespace drive_v2 {
      */
     items?: Schema$Permission[];
     /**
-     * This is always drive#permissionList.
+     * This is always `drive#permissionList`.
      */
     kind?: string | null;
     /**
@@ -1665,16 +1661,11 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A key-value pair attached to a file that is either public or private to an application.
-   * The following limits apply to file properties:
-   * - Maximum of 100 properties total per file
-   * - Maximum of 30 private properties per app
-   * - Maximum of 30 public properties
-   * - Maximum of 124 bytes size limit on (key + value) string in UTF-8 encoding for a single property.
+   * A key-value pair attached to a file that is either public or private to an application. The following limits apply to file properties: * Maximum of 100 properties total per file * Maximum of 30 private properties per app * Maximum of 30 public properties * Maximum of 124 bytes size limit on (key + value) string in UTF-8 encoding for a single property
    */
   export interface Schema$Property {
     /**
-     * ETag of the property.
+     * Output only. ETag of the property.
      */
     etag?: string | null;
     /**
@@ -1682,11 +1673,11 @@ export namespace drive_v2 {
      */
     key?: string | null;
     /**
-     * This is always drive#property.
+     * Output only. This is always `drive#property`.
      */
     kind?: string | null;
     /**
-     * The link back to this property.
+     * Output only. The link back to this property.
      */
     selfLink?: string | null;
     /**
@@ -1694,7 +1685,7 @@ export namespace drive_v2 {
      */
     value?: string | null;
     /**
-     * The visibility of this property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE). Private properties can only be retrieved using an authenticated request. An authenticated request uses an access token obtained with a OAuth 2 client ID. You cannot use an API key to retrieve private properties.
+     * The visibility of this property. Allowed values are PRIVATE (default) and PUBLIC. Private properties can only be retrieved using an authenticated request. An authenticated request uses an access token obtained with a OAuth 2 client ID. You cannot use an API key to retrieve private properties.
      */
     visibility?: string | null;
   }
@@ -1711,7 +1702,7 @@ export namespace drive_v2 {
      */
     items?: Schema$Property[];
     /**
-     * This is always drive#propertyList.
+     * This is always `drive#propertyList`.
      */
     kind?: string | null;
     /**
@@ -1723,41 +1714,44 @@ export namespace drive_v2 {
    * A revision of a file.
    */
   export interface Schema$Revision {
+    /**
+     * Output only. Short term download URL for the file. This will only be populated on files with content stored in Drive.
+     */
     downloadUrl?: string | null;
     /**
-     * The ETag of the revision.
+     * Output only. The ETag of the revision.
      */
     etag?: string | null;
     /**
-     * Links for exporting Docs Editors files to specific formats.
+     * Output only. Links for exporting Docs Editors files to specific formats.
      */
     exportLinks?: {[key: string]: string} | null;
     /**
-     * The size of the revision in bytes. This will only be populated on files with content stored in Drive.
+     * Output only. The size of the revision in bytes. This will only be populated on files with content stored in Drive.
      */
     fileSize?: string | null;
     /**
-     * The ID of the revision.
+     * Output only. The ID of the revision.
      */
     id?: string | null;
     /**
-     * This is always drive#revision.
+     * Output only. This is always `drive#revision`.
      */
     kind?: string | null;
     /**
-     * The last user to modify this revision.
+     * Output only. The last user to modify this revision.
      */
     lastModifyingUser?: Schema$User;
     /**
-     * Name of the last user to modify this revision.
+     * Output only. Name of the last user to modify this revision.
      */
     lastModifyingUserName?: string | null;
     /**
-     * An MD5 checksum for the content of this revision. This will only be populated on files with content stored in Drive.
+     * Output only. An MD5 checksum for the content of this revision. This will only be populated on files with content stored in Drive.
      */
     md5Checksum?: string | null;
     /**
-     * The MIME type of the revision.
+     * Output only. The MIME type of the revision.
      */
     mimeType?: string | null;
     /**
@@ -1765,7 +1759,7 @@ export namespace drive_v2 {
      */
     modifiedDate?: string | null;
     /**
-     * The original filename when this revision was created. This will only be populated on files with content stored in Drive.
+     * Output only. The original filename when this revision was created. This will only be populated on files with content stored in Drive.
      */
     originalFilename?: string | null;
     /**
@@ -1781,7 +1775,7 @@ export namespace drive_v2 {
      */
     published?: boolean | null;
     /**
-     * A link to the published revision. This is only populated for Google Sites files.
+     * Output only. A link to the published revision. This is only populated for Google Sites files.
      */
     publishedLink?: string | null;
     /**
@@ -1789,7 +1783,7 @@ export namespace drive_v2 {
      */
     publishedOutsideDomain?: boolean | null;
     /**
-     * A link back to this revision.
+     * Output only. A link back to this revision.
      */
     selfLink?: string | null;
   }
@@ -1806,7 +1800,7 @@ export namespace drive_v2 {
      */
     items?: Schema$Revision[];
     /**
-     * This is always drive#revisionList.
+     * This is always `drive#revisionList`.
      */
     kind?: string | null;
     /**
@@ -1820,7 +1814,7 @@ export namespace drive_v2 {
   }
   export interface Schema$StartPageToken {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "drive#startPageToken".
+     * Identifies what kind of resource this is. Value: the fixed string `"drive#startPageToken"`.
      */
     kind?: string | null;
     /**
@@ -1829,11 +1823,11 @@ export namespace drive_v2 {
     startPageToken?: string | null;
   }
   /**
-   * Deprecated: use the drive collection instead.
+   * Deprecated: Use the `drive` collection instead.
    */
   export interface Schema$TeamDrive {
     /**
-     * An image file and cropping parameters from which a background image for this Team Drive is set. This is a write only field; it can only be set on drive.teamdrives.update requests that don't set themeId. When specified, all fields of the backgroundImageFile must be set.
+     * An image file and cropping parameters from which a background image for this Team Drive is set. This is a write only field; it can only be set on `drive.teamdrives.update` requests that don't set `themeId`. When specified, all fields of the `backgroundImageFile` must be set.
      */
     backgroundImageFile?: {
       id?: string;
@@ -1852,6 +1846,7 @@ export namespace drive_v2 {
       canAddChildren?: boolean;
       canChangeCopyRequiresWriterPermissionRestriction?: boolean;
       canChangeDomainUsersOnlyRestriction?: boolean;
+      canChangeSharingFoldersRequiresOrganizerPermissionRestriction?: boolean;
       canChangeTeamDriveBackground?: boolean;
       canChangeTeamMembersOnlyRestriction?: boolean;
       canComment?: boolean;
@@ -1871,7 +1866,7 @@ export namespace drive_v2 {
       canTrashChildren?: boolean;
     } | null;
     /**
-     * The color of this Team Drive as an RGB hex string. It can only be set on a drive.teamdrives.update request that does not set themeId.
+     * The color of this Team Drive as an RGB hex string. It can only be set on a `drive.teamdrives.update` request that does not set `themeId`.
      */
     colorRgb?: string | null;
     /**
@@ -1883,7 +1878,7 @@ export namespace drive_v2 {
      */
     id?: string | null;
     /**
-     * This is always drive#teamDrive
+     * This is always `drive#teamDrive`
      */
     kind?: string | null;
     /**
@@ -1891,7 +1886,7 @@ export namespace drive_v2 {
      */
     name?: string | null;
     /**
-     * The organizational unit of this shared drive. This field is only populated on drives.list responses when the useDomainAdminAccess parameter is set to true.
+     * The organizational unit of this shared drive. This field is only populated on `drives.list` responses when the `useDomainAdminAccess` parameter is set to `true`.
      */
     orgUnitId?: string | null;
     /**
@@ -1901,10 +1896,11 @@ export namespace drive_v2 {
       adminManagedRestrictions?: boolean;
       copyRequiresWriterPermission?: boolean;
       domainUsersOnly?: boolean;
+      sharingFoldersRequiresOrganizerPermission?: boolean;
       teamMembersOnly?: boolean;
     } | null;
     /**
-     * The ID of the theme from which the background image and color will be set. The set of possible teamDriveThemes can be retrieved from a drive.about.get response. When not specified on a drive.teamdrives.insert request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set colorRgb or backgroundImageFile.
+     * The ID of the theme from which the background image and color will be set. The set of possible `teamDriveThemes` can be retrieved from a `drive.about.get` response. When not specified on a `drive.teamdrives.insert` request, a random theme is chosen from which the background image and color are set. This is a write-only field; it can only be set on requests that don't set `colorRgb` or `backgroundImageFile`.
      */
     themeId?: string | null;
   }
@@ -1917,7 +1913,7 @@ export namespace drive_v2 {
      */
     items?: Schema$TeamDrive[];
     /**
-     * This is always drive#teamDriveList
+     * This is always `drive#teamDriveList`
      */
     kind?: string | null;
     /**
@@ -1930,27 +1926,27 @@ export namespace drive_v2 {
    */
   export interface Schema$User {
     /**
-     * A plain text displayable name for this user.
+     * Output only. A plain text displayable name for this user.
      */
     displayName?: string | null;
     /**
-     * The email address of the user.
+     * Output only. The email address of the user.
      */
     emailAddress?: string | null;
     /**
-     * Whether this user is the same as the authenticated user for whom the request was made.
+     * Output only. Whether this user is the same as the authenticated user for whom the request was made.
      */
     isAuthenticatedUser?: boolean | null;
     /**
-     * This is always drive#user.
+     * Output only. This is always `drive#user`.
      */
     kind?: string | null;
     /**
-     * The user's ID as visible in the permissions collection.
+     * Output only. The user's ID as visible in the permissions collection.
      */
     permissionId?: string | null;
     /**
-     * The user's profile picture.
+     * Output only. The user's profile picture.
      */
     picture?: {url?: string} | null;
   }
@@ -1963,87 +1959,6 @@ export namespace drive_v2 {
 
     /**
      * Gets the information about the current user along with Drive API settings
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.about.get({
-     *     // Whether to count changes outside the My Drive hierarchy. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the maxChangeIdCount.
-     *     includeSubscribed: 'placeholder-value',
-     *     // Maximum number of remaining change IDs to count
-     *     maxChangeIdCount: 'placeholder-value',
-     *     // Change ID to start counting from when calculating number of remaining change IDs
-     *     startChangeId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalRoleInfo": [],
-     *   //   "canCreateDrives": false,
-     *   //   "canCreateTeamDrives": false,
-     *   //   "domainSharingPolicy": "my_domainSharingPolicy",
-     *   //   "driveThemes": [],
-     *   //   "etag": "my_etag",
-     *   //   "exportFormats": [],
-     *   //   "features": [],
-     *   //   "folderColorPalette": [],
-     *   //   "importFormats": [],
-     *   //   "isCurrentAppInstalled": false,
-     *   //   "kind": "my_kind",
-     *   //   "languageCode": "my_languageCode",
-     *   //   "largestChangeId": "my_largestChangeId",
-     *   //   "maxUploadSizes": [],
-     *   //   "name": "my_name",
-     *   //   "permissionId": "my_permissionId",
-     *   //   "quotaBytesByService": [],
-     *   //   "quotaBytesTotal": "my_quotaBytesTotal",
-     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *   //   "quotaBytesUsedAggregate": "my_quotaBytesUsedAggregate",
-     *   //   "quotaBytesUsedInTrash": "my_quotaBytesUsedInTrash",
-     *   //   "quotaType": "my_quotaType",
-     *   //   "remainingChangeIds": "my_remainingChangeIds",
-     *   //   "rootFolderId": "my_rootFolderId",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "teamDriveThemes": [],
-     *   //   "user": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2128,7 +2043,7 @@ export namespace drive_v2 {
 
   export interface Params$Resource$About$Get extends StandardParameters {
     /**
-     * Whether to count changes outside the My Drive hierarchy. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the maxChangeIdCount.
+     * Whether to count changes outside the My Drive hierarchy. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the `maxChangeIdCount`.
      */
     includeSubscribed?: boolean;
     /**
@@ -2149,79 +2064,6 @@ export namespace drive_v2 {
 
     /**
      * Gets a specific app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.apps.get({
-     *     // The ID of the app.
-     *     appId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authorized": false,
-     *   //   "createInFolderTemplate": "my_createInFolderTemplate",
-     *   //   "createUrl": "my_createUrl",
-     *   //   "hasDriveWideScope": false,
-     *   //   "icons": [],
-     *   //   "id": "my_id",
-     *   //   "installed": false,
-     *   //   "kind": "my_kind",
-     *   //   "longDescription": "my_longDescription",
-     *   //   "name": "my_name",
-     *   //   "objectType": "my_objectType",
-     *   //   "openUrlTemplate": "my_openUrlTemplate",
-     *   //   "primaryFileExtensions": [],
-     *   //   "primaryMimeTypes": [],
-     *   //   "productId": "my_productId",
-     *   //   "productUrl": "my_productUrl",
-     *   //   "secondaryFileExtensions": [],
-     *   //   "secondaryMimeTypes": [],
-     *   //   "shortDescription": "my_shortDescription",
-     *   //   "supportsCreate": false,
-     *   //   "supportsImport": false,
-     *   //   "supportsMultiOpen": false,
-     *   //   "supportsOfflineCreate": false,
-     *   //   "useByDefault": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2308,56 +2150,6 @@ export namespace drive_v2 {
 
     /**
      * Lists a user's installed apps.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive.apps.readonly'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.apps.list({
-     *     // A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
-     *     appFilterExtensions: 'placeholder-value',
-     *     // A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
-     *     appFilterMimeTypes: 'placeholder-value',
-     *     // A language or locale code, as defined by BCP 47, with some extensions from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
-     *     languageCode: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultAppIds": [],
-     *   //   "etag": "my_etag",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2448,11 +2240,11 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Apps$List extends StandardParameters {
     /**
-     * A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If appFilterMimeTypes are provided as well, the result is a union of the two resulting app lists.
+     * A comma-separated list of file extensions for open with filtering. All apps within the given app query scope which can open any of the given file extensions will be included in the response. If `appFilterMimeTypes` are provided as well, the result is a union of the two resulting app lists.
      */
     appFilterExtensions?: string;
     /**
-     * A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If appFilterExtensions are provided as well, the result is a union of the two resulting app lists.
+     * A comma-separated list of MIME types for open with filtering. All apps within the given app query scope which can open any of the given MIME types will be included in the response. If `appFilterExtensions` are provided as well, the result is a union of the two resulting app lists.
      */
     appFilterMimeTypes?: string;
     /**
@@ -2468,78 +2260,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Deprecated - Use changes.getStartPageToken and changes.list to retrieve recent changes.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.changes.get({
-     *     // The ID of the change.
-     *     changeId: 'placeholder-value',
-     *     // The shared drive from which the change is returned.
-     *     driveId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Deprecated use driveId instead.
-     *     teamDriveId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "changeType": "my_changeType",
-     *   //   "deleted": false,
-     *   //   "drive": {},
-     *   //   "driveId": "my_driveId",
-     *   //   "file": {},
-     *   //   "fileId": "my_fileId",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "modificationDate": "my_modificationDate",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "teamDrive": {},
-     *   //   "teamDriveId": "my_teamDriveId",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deprecated: Use `changes.getStartPageToken` and `changes.list` to retrieve recent changes.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2626,64 +2347,6 @@ export namespace drive_v2 {
 
     /**
      * Gets the starting pageToken for listing future changes.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.changes.getStartPageToken({
-     *     // The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.
-     *     driveId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Deprecated use driveId instead.
-     *     teamDriveId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "startPageToken": "my_startPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2773,92 +2436,6 @@ export namespace drive_v2 {
 
     /**
      * Lists the changes for a user or shared drive.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.changes.list({
-     *     // The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
-     *     driveId: 'placeholder-value',
-     *     // Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
-     *     includeCorpusRemovals: 'placeholder-value',
-     *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     *     includeDeleted: 'placeholder-value',
-     *     // Whether both My Drive and shared drive items should be included in results.
-     *     includeItemsFromAllDrives: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
-     *     includeSubscribed: 'placeholder-value',
-     *     // Deprecated use includeItemsFromAllDrives instead.
-     *     includeTeamDriveItems: 'placeholder-value',
-     *     // Maximum number of changes to return.
-     *     maxResults: 'placeholder-value',
-     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
-     *     pageToken: 'placeholder-value',
-     *     // A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     *     spaces: 'placeholder-value',
-     *     // Deprecated - use pageToken instead.
-     *     startChangeId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Deprecated use driveId instead.
-     *     teamDriveId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "largestChangeId": "my_largestChangeId",
-     *   //   "newStartPageToken": "my_newStartPageToken",
-     *   //   "nextLink": "my_nextLink",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2942,111 +2519,6 @@ export namespace drive_v2 {
 
     /**
      * Subscribe to changes for a user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.changes.watch({
-     *     // The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
-     *     driveId: 'placeholder-value',
-     *     // Whether changes should include the file resource if the file is still accessible by the user at the time of the request, even when a file was removed from the list of changes and there will be no further change entries for this file.
-     *     includeCorpusRemovals: 'placeholder-value',
-     *     // Whether to include changes indicating that items have been removed from the list of changes, for example by deletion or loss of access.
-     *     includeDeleted: 'placeholder-value',
-     *     // Whether both My Drive and shared drive items should be included in results.
-     *     includeItemsFromAllDrives: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
-     *     includeSubscribed: 'placeholder-value',
-     *     // Deprecated use includeItemsFromAllDrives instead.
-     *     includeTeamDriveItems: 'placeholder-value',
-     *     // Maximum number of changes to return.
-     *     maxResults: 'placeholder-value',
-     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
-     *     pageToken: 'placeholder-value',
-     *     // A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
-     *     spaces: 'placeholder-value',
-     *     // Deprecated - use pageToken instead.
-     *     startChangeId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Deprecated use driveId instead.
-     *     teamDriveId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "address": "my_address",
-     *       //   "expiration": "my_expiration",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "params": {},
-     *       //   "payload": false,
-     *       //   "resourceId": "my_resourceId",
-     *       //   "resourceUri": "my_resourceUri",
-     *       //   "token": "my_token",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "address": "my_address",
-     *   //   "expiration": "my_expiration",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "params": {},
-     *   //   "payload": false,
-     *   //   "resourceId": "my_resourceId",
-     *   //   "resourceUri": "my_resourceUri",
-     *   //   "token": "my_token",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3138,7 +2610,7 @@ export namespace drive_v2 {
      */
     changeId?: string;
     /**
-     * The shared drive from which the change is returned.
+     * The shared drive from which the change will be returned.
      */
     driveId?: string;
     /**
@@ -3146,18 +2618,18 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * Deprecated use driveId instead.
+     * Deprecated: Use `driveId` instead.
      */
     teamDriveId?: string;
   }
   export interface Params$Resource$Changes$Getstartpagetoken
     extends StandardParameters {
     /**
-     * The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive is returned.
+     * The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive will be returned.
      */
     driveId?: string;
     /**
@@ -3165,17 +2637,17 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * Deprecated use driveId instead.
+     * Deprecated: Use `driveId` instead.
      */
     teamDriveId?: string;
   }
   export interface Params$Resource$Changes$List extends StandardParameters {
     /**
-     * The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     * The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      */
     driveId?: string;
     /**
@@ -3191,19 +2663,19 @@ export namespace drive_v2 {
      */
     includeItemsFromAllDrives?: boolean;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
-     * Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
+     * Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the result.
      */
     includeSubscribed?: boolean;
     /**
-     * Deprecated use includeItemsFromAllDrives instead.
+     * Deprecated: Use `includeItemsFromAllDrives` instead.
      */
     includeTeamDriveItems?: boolean;
     /**
@@ -3211,15 +2683,15 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
+     * The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response or to the response from the getStartPageToken method.
      */
     pageToken?: string;
     /**
-     * A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * A comma-separated list of spaces to query. Supported values are `drive`, `appDataFolder` and `photos`.
      */
     spaces?: string;
     /**
-     * Deprecated - use pageToken instead.
+     * Deprecated: Use `pageToken` instead.
      */
     startChangeId?: string;
     /**
@@ -3227,17 +2699,17 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * Deprecated use driveId instead.
+     * Deprecated: Use `driveId` instead.
      */
     teamDriveId?: string;
   }
   export interface Params$Resource$Changes$Watch extends StandardParameters {
     /**
-     * The shared drive from which changes are returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
+     * The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.
      */
     driveId?: string;
     /**
@@ -3253,19 +2725,19 @@ export namespace drive_v2 {
      */
     includeItemsFromAllDrives?: boolean;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
-     * Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive are omitted from the result.
+     * Whether to include changes outside the My Drive hierarchy in the result. When set to false, changes to files such as those in the Application Data folder or shared files which have not been added to My Drive will be omitted from the result.
      */
     includeSubscribed?: boolean;
     /**
-     * Deprecated use includeItemsFromAllDrives instead.
+     * Deprecated: Use `includeItemsFromAllDrives` instead.
      */
     includeTeamDriveItems?: boolean;
     /**
@@ -3273,15 +2745,15 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response or to the response from the getStartPageToken method.
+     * The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response or to the response from the getStartPageToken method.
      */
     pageToken?: string;
     /**
-     * A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * A comma-separated list of spaces to query. Supported values are `drive`, `appDataFolder` and `photos`.
      */
     spaces?: string;
     /**
-     * Deprecated - use pageToken instead.
+     * Deprecated: Use `pageToken` instead.
      */
     startChangeId?: string;
     /**
@@ -3289,11 +2761,11 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * Deprecated use driveId instead.
+     * Deprecated: Use `driveId` instead.
      */
     teamDriveId?: string;
 
@@ -3310,67 +2782,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Stop watching resources through this channel
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.channels.stop({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "address": "my_address",
-     *       //   "expiration": "my_expiration",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "params": {},
-     *       //   "payload": false,
-     *       //   "resourceId": "my_resourceId",
-     *       //   "resourceUri": "my_resourceUri",
-     *       //   "token": "my_token",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Stops watching resources through this channel.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3469,50 +2881,6 @@ export namespace drive_v2 {
 
     /**
      * Removes a child from a folder.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.children.delete({
-     *     // The ID of the child.
-     *     childId: 'placeholder-value',
-     *     // Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
-     *     enforceSingleParent: 'placeholder-value',
-     *     // The ID of the folder.
-     *     folderId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3596,61 +2964,6 @@ export namespace drive_v2 {
 
     /**
      * Gets a specific child reference.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.children.get({
-     *     // The ID of the child.
-     *     childId: 'placeholder-value',
-     *     // The ID of the folder.
-     *     folderId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "childLink": "my_childLink",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3736,72 +3049,6 @@ export namespace drive_v2 {
 
     /**
      * Inserts a file into a folder.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.children.insert({
-     *     // Deprecated. Adding files to multiple folders is no longer supported. Use shortcuts instead.
-     *     enforceSingleParent: 'placeholder-value',
-     *     // The ID of the folder.
-     *     folderId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "childLink": "my_childLink",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "childLink": "my_childLink",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3888,69 +3135,6 @@ export namespace drive_v2 {
 
     /**
      * Lists a folder's children.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.children.list({
-     *     // The ID of the folder.
-     *     folderId: 'placeholder-value',
-     *     // Maximum number of children to return.
-     *     maxResults: 'placeholder-value',
-     *     // A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
-     *     orderBy: 'placeholder-value',
-     *     // Page token for children.
-     *     pageToken: 'placeholder-value',
-     *     // Query string for searching children.
-     *     q: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextLink": "my_nextLink",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4042,7 +3226,7 @@ export namespace drive_v2 {
      */
     childId?: string;
     /**
-     * Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     * Deprecated: If an item is not in a shared drive and its last parent is removed, the item is placed under its owner's root.
      */
     enforceSingleParent?: boolean;
     /**
@@ -4062,7 +3246,7 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Children$Insert extends StandardParameters {
     /**
-     * Deprecated. Adding files to multiple folders is no longer supported. Use shortcuts instead.
+     * Deprecated: Adding files to multiple folders is no longer supported. Use `shortcuts` instead.
      */
     enforceSingleParent?: boolean;
     /**
@@ -4074,7 +3258,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
 
@@ -4093,7 +3277,7 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     * A comma-separated list of sort keys. Valid keys are `createdDate`, `folder`, `lastViewedByMeDate`, `modifiedByMeDate`, `modifiedDate`, `quotaBytesUsed`, `recency`, `sharedWithMeDate`, `starred`, and `title`. Each key sorts ascending by default, but may be reversed with the `desc` modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      */
     orderBy?: string;
     /**
@@ -4114,48 +3298,6 @@ export namespace drive_v2 {
 
     /**
      * Deletes a comment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.comments.delete({
-     *     // The ID of the comment.
-     *     commentId: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4239,70 +3381,6 @@ export namespace drive_v2 {
 
     /**
      * Gets a comment by ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.comments.get({
-     *     // The ID of the comment.
-     *     commentId: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // If set, this will succeed when retrieving a deleted comment, and will include any deleted replies.
-     *     includeDeleted: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "anchor": "my_anchor",
-     *   //   "author": {},
-     *   //   "commentId": "my_commentId",
-     *   //   "content": "my_content",
-     *   //   "context": {},
-     *   //   "createdDate": "my_createdDate",
-     *   //   "deleted": false,
-     *   //   "fileId": "my_fileId",
-     *   //   "fileTitle": "my_fileTitle",
-     *   //   "htmlContent": "my_htmlContent",
-     *   //   "kind": "my_kind",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "replies": [],
-     *   //   "selfLink": "my_selfLink",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4388,87 +3466,6 @@ export namespace drive_v2 {
 
     /**
      * Creates a new comment on the given file.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.comments.insert({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "anchor": "my_anchor",
-     *       //   "author": {},
-     *       //   "commentId": "my_commentId",
-     *       //   "content": "my_content",
-     *       //   "context": {},
-     *       //   "createdDate": "my_createdDate",
-     *       //   "deleted": false,
-     *       //   "fileId": "my_fileId",
-     *       //   "fileTitle": "my_fileTitle",
-     *       //   "htmlContent": "my_htmlContent",
-     *       //   "kind": "my_kind",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "replies": [],
-     *       //   "selfLink": "my_selfLink",
-     *       //   "status": "my_status"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "anchor": "my_anchor",
-     *   //   "author": {},
-     *   //   "commentId": "my_commentId",
-     *   //   "content": "my_content",
-     *   //   "context": {},
-     *   //   "createdDate": "my_createdDate",
-     *   //   "deleted": false,
-     *   //   "fileId": "my_fileId",
-     *   //   "fileTitle": "my_fileTitle",
-     *   //   "htmlContent": "my_htmlContent",
-     *   //   "kind": "my_kind",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "replies": [],
-     *   //   "selfLink": "my_selfLink",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4555,64 +3552,6 @@ export namespace drive_v2 {
 
     /**
      * Lists a file's comments.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.comments.list({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // If set, all comments and replies, including deleted comments and replies (with content stripped) will be returned.
-     *     includeDeleted: 'placeholder-value',
-     *     // The maximum number of discussions to include in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     *     pageToken: 'placeholder-value',
-     *     // Only discussions that were updated after this timestamp will be returned. Formatted as an RFC 3339 timestamp.
-     *     updatedMin: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextLink": "my_nextLink",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4699,89 +3638,6 @@ export namespace drive_v2 {
 
     /**
      * Updates an existing comment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.comments.patch({
-     *     // The ID of the comment.
-     *     commentId: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "anchor": "my_anchor",
-     *       //   "author": {},
-     *       //   "commentId": "my_commentId",
-     *       //   "content": "my_content",
-     *       //   "context": {},
-     *       //   "createdDate": "my_createdDate",
-     *       //   "deleted": false,
-     *       //   "fileId": "my_fileId",
-     *       //   "fileTitle": "my_fileTitle",
-     *       //   "htmlContent": "my_htmlContent",
-     *       //   "kind": "my_kind",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "replies": [],
-     *       //   "selfLink": "my_selfLink",
-     *       //   "status": "my_status"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "anchor": "my_anchor",
-     *   //   "author": {},
-     *   //   "commentId": "my_commentId",
-     *   //   "content": "my_content",
-     *   //   "context": {},
-     *   //   "createdDate": "my_createdDate",
-     *   //   "deleted": false,
-     *   //   "fileId": "my_fileId",
-     *   //   "fileTitle": "my_fileTitle",
-     *   //   "htmlContent": "my_htmlContent",
-     *   //   "kind": "my_kind",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "replies": [],
-     *   //   "selfLink": "my_selfLink",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4867,89 +3723,6 @@ export namespace drive_v2 {
 
     /**
      * Updates an existing comment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.comments.update({
-     *     // The ID of the comment.
-     *     commentId: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "anchor": "my_anchor",
-     *       //   "author": {},
-     *       //   "commentId": "my_commentId",
-     *       //   "content": "my_content",
-     *       //   "context": {},
-     *       //   "createdDate": "my_createdDate",
-     *       //   "deleted": false,
-     *       //   "fileId": "my_fileId",
-     *       //   "fileTitle": "my_fileTitle",
-     *       //   "htmlContent": "my_htmlContent",
-     *       //   "kind": "my_kind",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "replies": [],
-     *       //   "selfLink": "my_selfLink",
-     *       //   "status": "my_status"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "anchor": "my_anchor",
-     *   //   "author": {},
-     *   //   "commentId": "my_commentId",
-     *   //   "content": "my_content",
-     *   //   "context": {},
-     *   //   "createdDate": "my_createdDate",
-     *   //   "deleted": false,
-     *   //   "fileId": "my_fileId",
-     *   //   "fileTitle": "my_fileTitle",
-     *   //   "htmlContent": "my_htmlContent",
-     *   //   "kind": "my_kind",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "replies": [],
-     *   //   "selfLink": "my_selfLink",
-     *   //   "status": "my_status"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5130,47 +3903,6 @@ export namespace drive_v2 {
 
     /**
      * Permanently deletes a shared drive for which the user is an organizer. The shared drive cannot contain any untrashed items.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.drives.delete({
-     *     // Whether any items inside the shared drive should also be deleted. This option is only supported when useDomainAdminAccess is also set to true.
-     *     allowItemDeletion: 'placeholder-value',
-     *     // The ID of the shared drive.
-     *     driveId: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5255,64 +3987,6 @@ export namespace drive_v2 {
 
     /**
      * Gets a shared drive's metadata by ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.drives.get({
-     *     // The ID of the shared drive.
-     *     driveId: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "backgroundImageFile": {},
-     *   //   "backgroundImageLink": "my_backgroundImageLink",
-     *   //   "capabilities": {},
-     *   //   "colorRgb": "my_colorRgb",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "hidden": false,
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "orgUnitId": "my_orgUnitId",
-     *   //   "restrictions": {},
-     *   //   "themeId": "my_themeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5399,59 +4073,6 @@ export namespace drive_v2 {
 
     /**
      * Hides a shared drive from the default view.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.drives.hide({
-     *     // The ID of the shared drive.
-     *     driveId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "backgroundImageFile": {},
-     *   //   "backgroundImageLink": "my_backgroundImageLink",
-     *   //   "capabilities": {},
-     *   //   "colorRgb": "my_colorRgb",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "hidden": false,
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "orgUnitId": "my_orgUnitId",
-     *   //   "restrictions": {},
-     *   //   "themeId": "my_themeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5538,78 +4159,6 @@ export namespace drive_v2 {
 
     /**
      * Creates a new shared drive.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.drives.insert({
-     *     // An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
-     *     requestId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "backgroundImageFile": {},
-     *       //   "backgroundImageLink": "my_backgroundImageLink",
-     *       //   "capabilities": {},
-     *       //   "colorRgb": "my_colorRgb",
-     *       //   "createdDate": "my_createdDate",
-     *       //   "hidden": false,
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "orgUnitId": "my_orgUnitId",
-     *       //   "restrictions": {},
-     *       //   "themeId": "my_themeId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "backgroundImageFile": {},
-     *   //   "backgroundImageLink": "my_backgroundImageLink",
-     *   //   "capabilities": {},
-     *   //   "colorRgb": "my_colorRgb",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "hidden": false,
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "orgUnitId": "my_orgUnitId",
-     *   //   "restrictions": {},
-     *   //   "themeId": "my_themeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5692,60 +4241,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Lists the user's shared drives.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.drives.list({
-     *     // Maximum number of shared drives to return per page.
-     *     maxResults: 'placeholder-value',
-     *     // Page token for shared drives.
-     *     pageToken: 'placeholder-value',
-     *     // Query string for searching shared drives.
-     *     q: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then all shared drives of the domain in which the requester is an administrator are returned.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     *  Lists the user's shared drives. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for shared drives](/drive/api/guides/search-shareddrives) guide.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5829,59 +4325,6 @@ export namespace drive_v2 {
 
     /**
      * Restores a shared drive to the default view.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.drives.unhide({
-     *     // The ID of the shared drive.
-     *     driveId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "backgroundImageFile": {},
-     *   //   "backgroundImageLink": "my_backgroundImageLink",
-     *   //   "capabilities": {},
-     *   //   "colorRgb": "my_colorRgb",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "hidden": false,
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "orgUnitId": "my_orgUnitId",
-     *   //   "restrictions": {},
-     *   //   "themeId": "my_themeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5968,80 +4411,6 @@ export namespace drive_v2 {
 
     /**
      * Updates the metadata for a shared drive.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.drives.update({
-     *     // The ID of the shared drive.
-     *     driveId: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the shared drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "backgroundImageFile": {},
-     *       //   "backgroundImageLink": "my_backgroundImageLink",
-     *       //   "capabilities": {},
-     *       //   "colorRgb": "my_colorRgb",
-     *       //   "createdDate": "my_createdDate",
-     *       //   "hidden": false,
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "orgUnitId": "my_orgUnitId",
-     *       //   "restrictions": {},
-     *       //   "themeId": "my_themeId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "backgroundImageFile": {},
-     *   //   "backgroundImageLink": "my_backgroundImageLink",
-     *   //   "capabilities": {},
-     *   //   "colorRgb": "my_colorRgb",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "hidden": false,
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "orgUnitId": "my_orgUnitId",
-     *   //   "restrictions": {},
-     *   //   "themeId": "my_themeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6129,7 +4498,7 @@ export namespace drive_v2 {
 
   export interface Params$Resource$Drives$Delete extends StandardParameters {
     /**
-     * Whether any items inside the shared drive should also be deleted. This option is only supported when useDomainAdminAccess is also set to true.
+     * Whether any items inside the shared drive should also be deleted. This option is only supported when `useDomainAdminAccess` is also set to `true`.
      */
     allowItemDeletion?: boolean;
     /**
@@ -6159,7 +4528,7 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Drives$Insert extends StandardParameters {
     /**
-     * An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
+     * Required. An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned.
      */
     requestId?: string;
 
@@ -6215,235 +4584,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Creates a copy of the specified file. Folders cannot be copied.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.copy({
-     *     // Whether to convert this file to the corresponding Docs Editors format.
-     *     convert: 'placeholder-value',
-     *     // Deprecated. Copying files into multiple folders is no longer supported. Use shortcuts instead.
-     *     enforceSingleParent: 'placeholder-value',
-     *     // The ID of the file to copy.
-     *     fileId: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     *     ocr: 'placeholder-value',
-     *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     *     ocrLanguage: 'placeholder-value',
-     *     // Whether to pin the head revision of the new copy. A file can have a maximum of 200 pinned revisions.
-     *     pinned: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // The language of the timed text.
-     *     timedTextLanguage: 'placeholder-value',
-     *     // The timed text track name.
-     *     timedTextTrackName: 'placeholder-value',
-     *     // The visibility of the new file. This parameter is only relevant when the source is not a native Google Doc and convert=false.
-     *     visibility: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "appDataContents": false,
-     *       //   "canComment": false,
-     *       //   "canReadRevisions": false,
-     *       //   "capabilities": {},
-     *       //   "contentRestrictions": [],
-     *       //   "copyRequiresWriterPermission": false,
-     *       //   "copyable": false,
-     *       //   "createdDate": "my_createdDate",
-     *       //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *       //   "description": "my_description",
-     *       //   "downloadUrl": "my_downloadUrl",
-     *       //   "driveId": "my_driveId",
-     *       //   "editable": false,
-     *       //   "embedLink": "my_embedLink",
-     *       //   "etag": "my_etag",
-     *       //   "explicitlyTrashed": false,
-     *       //   "exportLinks": {},
-     *       //   "fileExtension": "my_fileExtension",
-     *       //   "fileSize": "my_fileSize",
-     *       //   "folderColorRgb": "my_folderColorRgb",
-     *       //   "fullFileExtension": "my_fullFileExtension",
-     *       //   "hasAugmentedPermissions": false,
-     *       //   "hasThumbnail": false,
-     *       //   "headRevisionId": "my_headRevisionId",
-     *       //   "iconLink": "my_iconLink",
-     *       //   "id": "my_id",
-     *       //   "imageMediaMetadata": {},
-     *       //   "indexableText": {},
-     *       //   "isAppAuthorized": false,
-     *       //   "kind": "my_kind",
-     *       //   "labelInfo": {},
-     *       //   "labels": {},
-     *       //   "lastModifyingUser": {},
-     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *       //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *       //   "linkShareMetadata": {},
-     *       //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *       //   "md5Checksum": "my_md5Checksum",
-     *       //   "mimeType": "my_mimeType",
-     *       //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "openWithLinks": {},
-     *       //   "originalFilename": "my_originalFilename",
-     *       //   "ownedByMe": false,
-     *       //   "ownerNames": [],
-     *       //   "owners": [],
-     *       //   "parents": [],
-     *       //   "permissionIds": [],
-     *       //   "permissions": [],
-     *       //   "properties": [],
-     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *       //   "resourceKey": "my_resourceKey",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "sha1Checksum": "my_sha1Checksum",
-     *       //   "sha256Checksum": "my_sha256Checksum",
-     *       //   "shareable": false,
-     *       //   "shared": false,
-     *       //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *       //   "sharingUser": {},
-     *       //   "shortcutDetails": {},
-     *       //   "spaces": [],
-     *       //   "teamDriveId": "my_teamDriveId",
-     *       //   "thumbnail": {},
-     *       //   "thumbnailLink": "my_thumbnailLink",
-     *       //   "thumbnailVersion": "my_thumbnailVersion",
-     *       //   "title": "my_title",
-     *       //   "trashedDate": "my_trashedDate",
-     *       //   "trashingUser": {},
-     *       //   "userPermission": {},
-     *       //   "version": "my_version",
-     *       //   "videoMediaMetadata": {},
-     *       //   "webContentLink": "my_webContentLink",
-     *       //   "webViewLink": "my_webViewLink",
-     *       //   "writersCanShare": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "appDataContents": false,
-     *   //   "canComment": false,
-     *   //   "canReadRevisions": false,
-     *   //   "capabilities": {},
-     *   //   "contentRestrictions": [],
-     *   //   "copyRequiresWriterPermission": false,
-     *   //   "copyable": false,
-     *   //   "createdDate": "my_createdDate",
-     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *   //   "description": "my_description",
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "driveId": "my_driveId",
-     *   //   "editable": false,
-     *   //   "embedLink": "my_embedLink",
-     *   //   "etag": "my_etag",
-     *   //   "explicitlyTrashed": false,
-     *   //   "exportLinks": {},
-     *   //   "fileExtension": "my_fileExtension",
-     *   //   "fileSize": "my_fileSize",
-     *   //   "folderColorRgb": "my_folderColorRgb",
-     *   //   "fullFileExtension": "my_fullFileExtension",
-     *   //   "hasAugmentedPermissions": false,
-     *   //   "hasThumbnail": false,
-     *   //   "headRevisionId": "my_headRevisionId",
-     *   //   "iconLink": "my_iconLink",
-     *   //   "id": "my_id",
-     *   //   "imageMediaMetadata": {},
-     *   //   "indexableText": {},
-     *   //   "isAppAuthorized": false,
-     *   //   "kind": "my_kind",
-     *   //   "labelInfo": {},
-     *   //   "labels": {},
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *   //   "linkShareMetadata": {},
-     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "openWithLinks": {},
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "ownedByMe": false,
-     *   //   "ownerNames": [],
-     *   //   "owners": [],
-     *   //   "parents": [],
-     *   //   "permissionIds": [],
-     *   //   "permissions": [],
-     *   //   "properties": [],
-     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *   //   "resourceKey": "my_resourceKey",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "sha1Checksum": "my_sha1Checksum",
-     *   //   "sha256Checksum": "my_sha256Checksum",
-     *   //   "shareable": false,
-     *   //   "shared": false,
-     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *   //   "sharingUser": {},
-     *   //   "shortcutDetails": {},
-     *   //   "spaces": [],
-     *   //   "teamDriveId": "my_teamDriveId",
-     *   //   "thumbnail": {},
-     *   //   "thumbnailLink": "my_thumbnailLink",
-     *   //   "thumbnailVersion": "my_thumbnailVersion",
-     *   //   "title": "my_title",
-     *   //   "trashedDate": "my_trashedDate",
-     *   //   "trashingUser": {},
-     *   //   "userPermission": {},
-     *   //   "version": "my_version",
-     *   //   "videoMediaMetadata": {},
-     *   //   "webContentLink": "my_webContentLink",
-     *   //   "webViewLink": "my_webViewLink",
-     *   //   "writersCanShare": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a copy of the specified file.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6530,53 +4671,6 @@ export namespace drive_v2 {
 
     /**
      * Permanently deletes a file by ID. Skips the trash. The currently authenticated user must own the file or be an organizer on the parent for shared drive files.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.delete({
-     *     // Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
-     *     enforceSingleParent: 'placeholder-value',
-     *     // The ID of the file to delete.
-     *     fileId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6661,43 +4755,6 @@ export namespace drive_v2 {
 
     /**
      * Permanently deletes all of the user's trashed files.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.emptyTrash({
-     *     // Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
-     *     enforceSingleParent: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6782,49 +4839,6 @@ export namespace drive_v2 {
 
     /**
      * Exports a Google Workspace document to the requested MIME type and returns exported byte content. Note that the exported content is limited to 10MB.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.export({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The MIME type of the format requested for this export.
-     *     mimeType: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6909,58 +4923,6 @@ export namespace drive_v2 {
 
     /**
      * Generates a set of file IDs which can be provided in insert or copy requests.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.generateIds({
-     *     // Maximum number of IDs to return.
-     *     maxResults: 'placeholder-value',
-     *     // The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'. (Default: 'drive')
-     *     space: 'placeholder-value',
-     *     // The type of items which the IDs can be used for. Supported values are 'files' and 'shortcuts'. Note that 'shortcuts' are only supported in the drive 'space'. (Default: 'files')
-     *     type: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ids": [],
-     *   //   "kind": "my_kind",
-     *   //   "space": "my_space"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7047,147 +5009,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Gets a file's metadata or content by ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.get({
-     *     // Whether the user is acknowledging the risk of downloading known malware or other abusive files.
-     *     acknowledgeAbuse: 'placeholder-value',
-     *     // The ID for the file in question.
-     *     fileId: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // This parameter is deprecated and has no function.
-     *     projection: 'placeholder-value',
-     *     // Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     *     revisionId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
-     *     updateViewedDate: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "appDataContents": false,
-     *   //   "canComment": false,
-     *   //   "canReadRevisions": false,
-     *   //   "capabilities": {},
-     *   //   "contentRestrictions": [],
-     *   //   "copyRequiresWriterPermission": false,
-     *   //   "copyable": false,
-     *   //   "createdDate": "my_createdDate",
-     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *   //   "description": "my_description",
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "driveId": "my_driveId",
-     *   //   "editable": false,
-     *   //   "embedLink": "my_embedLink",
-     *   //   "etag": "my_etag",
-     *   //   "explicitlyTrashed": false,
-     *   //   "exportLinks": {},
-     *   //   "fileExtension": "my_fileExtension",
-     *   //   "fileSize": "my_fileSize",
-     *   //   "folderColorRgb": "my_folderColorRgb",
-     *   //   "fullFileExtension": "my_fullFileExtension",
-     *   //   "hasAugmentedPermissions": false,
-     *   //   "hasThumbnail": false,
-     *   //   "headRevisionId": "my_headRevisionId",
-     *   //   "iconLink": "my_iconLink",
-     *   //   "id": "my_id",
-     *   //   "imageMediaMetadata": {},
-     *   //   "indexableText": {},
-     *   //   "isAppAuthorized": false,
-     *   //   "kind": "my_kind",
-     *   //   "labelInfo": {},
-     *   //   "labels": {},
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *   //   "linkShareMetadata": {},
-     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "openWithLinks": {},
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "ownedByMe": false,
-     *   //   "ownerNames": [],
-     *   //   "owners": [],
-     *   //   "parents": [],
-     *   //   "permissionIds": [],
-     *   //   "permissions": [],
-     *   //   "properties": [],
-     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *   //   "resourceKey": "my_resourceKey",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "sha1Checksum": "my_sha1Checksum",
-     *   //   "sha256Checksum": "my_sha256Checksum",
-     *   //   "shareable": false,
-     *   //   "shared": false,
-     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *   //   "sharingUser": {},
-     *   //   "shortcutDetails": {},
-     *   //   "spaces": [],
-     *   //   "teamDriveId": "my_teamDriveId",
-     *   //   "thumbnail": {},
-     *   //   "thumbnailLink": "my_thumbnailLink",
-     *   //   "thumbnailVersion": "my_thumbnailVersion",
-     *   //   "title": "my_title",
-     *   //   "trashedDate": "my_trashedDate",
-     *   //   "trashingUser": {},
-     *   //   "userPermission": {},
-     *   //   "version": "my_version",
-     *   //   "videoMediaMetadata": {},
-     *   //   "webContentLink": "my_webContentLink",
-     *   //   "webViewLink": "my_webViewLink",
-     *   //   "writersCanShare": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     *  Gets a file's metadata or content by ID. If you provide the URL parameter `alt=media`, then the response includes the file contents in the response body. Downloading content with `alt=media` only works if the file is stored in Drive. To download Google Docs, Sheets, and Slides use [`files.export`](/drive/api/reference/rest/v2/files/export) instead. For more information, see [Download & export files](/drive/api/guides/manage-downloads).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7273,238 +5095,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Insert a new file.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.insert({
-     *     // Whether to convert this file to the corresponding Docs Editors format.
-     *     convert: 'placeholder-value',
-     *     // Deprecated. Creating files in multiple folders is no longer supported.
-     *     enforceSingleParent: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     *     ocr: 'placeholder-value',
-     *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     *     ocrLanguage: 'placeholder-value',
-     *     // Whether to pin the head revision of the uploaded file. A file can have a maximum of 200 pinned revisions.
-     *     pinned: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // The language of the timed text.
-     *     timedTextLanguage: 'placeholder-value',
-     *     // The timed text track name.
-     *     timedTextTrackName: 'placeholder-value',
-     *     // Whether to use the content as indexable text.
-     *     useContentAsIndexableText: 'placeholder-value',
-     *     // The visibility of the new file. This parameter is only relevant when convert=false.
-     *     visibility: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "appDataContents": false,
-     *       //   "canComment": false,
-     *       //   "canReadRevisions": false,
-     *       //   "capabilities": {},
-     *       //   "contentRestrictions": [],
-     *       //   "copyRequiresWriterPermission": false,
-     *       //   "copyable": false,
-     *       //   "createdDate": "my_createdDate",
-     *       //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *       //   "description": "my_description",
-     *       //   "downloadUrl": "my_downloadUrl",
-     *       //   "driveId": "my_driveId",
-     *       //   "editable": false,
-     *       //   "embedLink": "my_embedLink",
-     *       //   "etag": "my_etag",
-     *       //   "explicitlyTrashed": false,
-     *       //   "exportLinks": {},
-     *       //   "fileExtension": "my_fileExtension",
-     *       //   "fileSize": "my_fileSize",
-     *       //   "folderColorRgb": "my_folderColorRgb",
-     *       //   "fullFileExtension": "my_fullFileExtension",
-     *       //   "hasAugmentedPermissions": false,
-     *       //   "hasThumbnail": false,
-     *       //   "headRevisionId": "my_headRevisionId",
-     *       //   "iconLink": "my_iconLink",
-     *       //   "id": "my_id",
-     *       //   "imageMediaMetadata": {},
-     *       //   "indexableText": {},
-     *       //   "isAppAuthorized": false,
-     *       //   "kind": "my_kind",
-     *       //   "labelInfo": {},
-     *       //   "labels": {},
-     *       //   "lastModifyingUser": {},
-     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *       //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *       //   "linkShareMetadata": {},
-     *       //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *       //   "md5Checksum": "my_md5Checksum",
-     *       //   "mimeType": "my_mimeType",
-     *       //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "openWithLinks": {},
-     *       //   "originalFilename": "my_originalFilename",
-     *       //   "ownedByMe": false,
-     *       //   "ownerNames": [],
-     *       //   "owners": [],
-     *       //   "parents": [],
-     *       //   "permissionIds": [],
-     *       //   "permissions": [],
-     *       //   "properties": [],
-     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *       //   "resourceKey": "my_resourceKey",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "sha1Checksum": "my_sha1Checksum",
-     *       //   "sha256Checksum": "my_sha256Checksum",
-     *       //   "shareable": false,
-     *       //   "shared": false,
-     *       //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *       //   "sharingUser": {},
-     *       //   "shortcutDetails": {},
-     *       //   "spaces": [],
-     *       //   "teamDriveId": "my_teamDriveId",
-     *       //   "thumbnail": {},
-     *       //   "thumbnailLink": "my_thumbnailLink",
-     *       //   "thumbnailVersion": "my_thumbnailVersion",
-     *       //   "title": "my_title",
-     *       //   "trashedDate": "my_trashedDate",
-     *       //   "trashingUser": {},
-     *       //   "userPermission": {},
-     *       //   "version": "my_version",
-     *       //   "videoMediaMetadata": {},
-     *       //   "webContentLink": "my_webContentLink",
-     *       //   "webViewLink": "my_webViewLink",
-     *       //   "writersCanShare": false
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "appDataContents": false,
-     *   //   "canComment": false,
-     *   //   "canReadRevisions": false,
-     *   //   "capabilities": {},
-     *   //   "contentRestrictions": [],
-     *   //   "copyRequiresWriterPermission": false,
-     *   //   "copyable": false,
-     *   //   "createdDate": "my_createdDate",
-     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *   //   "description": "my_description",
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "driveId": "my_driveId",
-     *   //   "editable": false,
-     *   //   "embedLink": "my_embedLink",
-     *   //   "etag": "my_etag",
-     *   //   "explicitlyTrashed": false,
-     *   //   "exportLinks": {},
-     *   //   "fileExtension": "my_fileExtension",
-     *   //   "fileSize": "my_fileSize",
-     *   //   "folderColorRgb": "my_folderColorRgb",
-     *   //   "fullFileExtension": "my_fullFileExtension",
-     *   //   "hasAugmentedPermissions": false,
-     *   //   "hasThumbnail": false,
-     *   //   "headRevisionId": "my_headRevisionId",
-     *   //   "iconLink": "my_iconLink",
-     *   //   "id": "my_id",
-     *   //   "imageMediaMetadata": {},
-     *   //   "indexableText": {},
-     *   //   "isAppAuthorized": false,
-     *   //   "kind": "my_kind",
-     *   //   "labelInfo": {},
-     *   //   "labels": {},
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *   //   "linkShareMetadata": {},
-     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "openWithLinks": {},
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "ownedByMe": false,
-     *   //   "ownerNames": [],
-     *   //   "owners": [],
-     *   //   "parents": [],
-     *   //   "permissionIds": [],
-     *   //   "permissions": [],
-     *   //   "properties": [],
-     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *   //   "resourceKey": "my_resourceKey",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "sha1Checksum": "my_sha1Checksum",
-     *   //   "sha256Checksum": "my_sha256Checksum",
-     *   //   "shareable": false,
-     *   //   "shared": false,
-     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *   //   "sharingUser": {},
-     *   //   "shortcutDetails": {},
-     *   //   "spaces": [],
-     *   //   "teamDriveId": "my_teamDriveId",
-     *   //   "thumbnail": {},
-     *   //   "thumbnailLink": "my_thumbnailLink",
-     *   //   "thumbnailVersion": "my_thumbnailVersion",
-     *   //   "title": "my_title",
-     *   //   "trashedDate": "my_trashedDate",
-     *   //   "trashingUser": {},
-     *   //   "userPermission": {},
-     *   //   "version": "my_version",
-     *   //   "videoMediaMetadata": {},
-     *   //   "webContentLink": "my_webContentLink",
-     *   //   "webViewLink": "my_webViewLink",
-     *   //   "writersCanShare": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     *  Inserts a new file. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`x/x` Note: Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/drive/api/guides/manage-uploads). Apps creating shortcuts with `files.insert` must specify the MIME type `application/vnd.google-apps.shortcut`. Apps should specify a file extension in the `title` property when inserting files with the API. For example, an operation to insert a JPEG file should specify something like `"title": "cat.jpg"` in the metadata. Subsequent `GET` requests include the read-only `fileExtension` property populated with the extension originally specified in the `title` property. When a Google Drive user requests to download a file, or when the file is downloaded through the sync client, Drive builds a full filename (with extension) based on the title. In cases where the extension is missing, Drive attempts to determine the extension based on the file's MIME type.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7591,94 +5182,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Lists the user's files.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.list({
-     *     // Groupings of files to which the query applies. Supported groupings are: 'user' (files created by, opened by, or shared directly with the user), 'drive' (files in the specified shared drive as indicated by the 'driveId'), 'domain' (files shared to the user's domain), and 'allDrives' (A combination of 'user' and 'drive' for all drives where the user is a member). When able, use 'user' or 'drive', instead of 'allDrives', for efficiency.
-     *     corpora: 'placeholder-value',
-     *     // The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
-     *     corpus: 'placeholder-value',
-     *     // ID of the shared drive to search.
-     *     driveId: 'placeholder-value',
-     *     // Whether both My Drive and shared drive items should be included in results.
-     *     includeItemsFromAllDrives: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // Deprecated use includeItemsFromAllDrives instead.
-     *     includeTeamDriveItems: 'placeholder-value',
-     *     // The maximum number of files to return per page. Partial or empty result pages are possible even before the end of the files list has been reached.
-     *     maxResults: 'placeholder-value',
-     *     // A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
-     *     orderBy: 'placeholder-value',
-     *     // Page token for files.
-     *     pageToken: 'placeholder-value',
-     *     // This parameter is deprecated and has no function.
-     *     projection: 'placeholder-value',
-     *     // Query string for searching files.
-     *     q: 'placeholder-value',
-     *     // A comma-separated list of spaces to query. Supported values are 'drive' and 'appDataFolder'.
-     *     spaces: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Deprecated use driveId instead.
-     *     teamDriveId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "incompleteSearch": false,
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextLink": "my_nextLink",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     *  Lists the user's files. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for files & folders](/drive/api/guides/search-files) guide. *Note:* This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7762,60 +5266,6 @@ export namespace drive_v2 {
 
     /**
      * Lists the labels on a file.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.listLabels({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The maximum number of labels to return per page. When not set, this defaults to 100.
-     *     maxResults: 'placeholder-value',
-     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7901,63 +5351,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Modifies the set of labels on a file.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.modifyLabels({
-     *     // The ID of the file for which the labels are modified.
-     *     fileId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "kind": "my_kind",
-     *       //   "labelModifications": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "modifiedLabels": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Modifies the set of labels applied to a file. Returns a list of the labels that were added or modified.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8052,247 +5446,6 @@ export namespace drive_v2 {
 
     /**
      * Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might change automatically, such as modifiedDate. This method supports patch semantics.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.scripts',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.patch({
-     *     // Comma-separated list of parent IDs to add.
-     *     addParents: 'placeholder-value',
-     *     // This parameter is deprecated and has no function.
-     *     convert: 'placeholder-value',
-     *     // Deprecated. Adding files to multiple folders is no longer supported. Use shortcuts instead.
-     *     enforceSingleParent: 'placeholder-value',
-     *     // The ID of the file to update.
-     *     fileId: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
-     *     modifiedDateBehavior: 'placeholder-value',
-     *     // Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
-     *     newRevision: 'placeholder-value',
-     *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     *     ocr: 'placeholder-value',
-     *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     *     ocrLanguage: 'placeholder-value',
-     *     // Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
-     *     pinned: 'placeholder-value',
-     *     // Comma-separated list of parent IDs to remove.
-     *     removeParents: 'placeholder-value',
-     *     // Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
-     *     setModifiedDate: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // The language of the timed text.
-     *     timedTextLanguage: 'placeholder-value',
-     *     // The timed text track name.
-     *     timedTextTrackName: 'placeholder-value',
-     *     // Whether to update the view date after successfully updating the file.
-     *     updateViewedDate: 'placeholder-value',
-     *     // Whether to use the content as indexable text.
-     *     useContentAsIndexableText: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "appDataContents": false,
-     *       //   "canComment": false,
-     *       //   "canReadRevisions": false,
-     *       //   "capabilities": {},
-     *       //   "contentRestrictions": [],
-     *       //   "copyRequiresWriterPermission": false,
-     *       //   "copyable": false,
-     *       //   "createdDate": "my_createdDate",
-     *       //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *       //   "description": "my_description",
-     *       //   "downloadUrl": "my_downloadUrl",
-     *       //   "driveId": "my_driveId",
-     *       //   "editable": false,
-     *       //   "embedLink": "my_embedLink",
-     *       //   "etag": "my_etag",
-     *       //   "explicitlyTrashed": false,
-     *       //   "exportLinks": {},
-     *       //   "fileExtension": "my_fileExtension",
-     *       //   "fileSize": "my_fileSize",
-     *       //   "folderColorRgb": "my_folderColorRgb",
-     *       //   "fullFileExtension": "my_fullFileExtension",
-     *       //   "hasAugmentedPermissions": false,
-     *       //   "hasThumbnail": false,
-     *       //   "headRevisionId": "my_headRevisionId",
-     *       //   "iconLink": "my_iconLink",
-     *       //   "id": "my_id",
-     *       //   "imageMediaMetadata": {},
-     *       //   "indexableText": {},
-     *       //   "isAppAuthorized": false,
-     *       //   "kind": "my_kind",
-     *       //   "labelInfo": {},
-     *       //   "labels": {},
-     *       //   "lastModifyingUser": {},
-     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *       //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *       //   "linkShareMetadata": {},
-     *       //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *       //   "md5Checksum": "my_md5Checksum",
-     *       //   "mimeType": "my_mimeType",
-     *       //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "openWithLinks": {},
-     *       //   "originalFilename": "my_originalFilename",
-     *       //   "ownedByMe": false,
-     *       //   "ownerNames": [],
-     *       //   "owners": [],
-     *       //   "parents": [],
-     *       //   "permissionIds": [],
-     *       //   "permissions": [],
-     *       //   "properties": [],
-     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *       //   "resourceKey": "my_resourceKey",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "sha1Checksum": "my_sha1Checksum",
-     *       //   "sha256Checksum": "my_sha256Checksum",
-     *       //   "shareable": false,
-     *       //   "shared": false,
-     *       //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *       //   "sharingUser": {},
-     *       //   "shortcutDetails": {},
-     *       //   "spaces": [],
-     *       //   "teamDriveId": "my_teamDriveId",
-     *       //   "thumbnail": {},
-     *       //   "thumbnailLink": "my_thumbnailLink",
-     *       //   "thumbnailVersion": "my_thumbnailVersion",
-     *       //   "title": "my_title",
-     *       //   "trashedDate": "my_trashedDate",
-     *       //   "trashingUser": {},
-     *       //   "userPermission": {},
-     *       //   "version": "my_version",
-     *       //   "videoMediaMetadata": {},
-     *       //   "webContentLink": "my_webContentLink",
-     *       //   "webViewLink": "my_webViewLink",
-     *       //   "writersCanShare": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "appDataContents": false,
-     *   //   "canComment": false,
-     *   //   "canReadRevisions": false,
-     *   //   "capabilities": {},
-     *   //   "contentRestrictions": [],
-     *   //   "copyRequiresWriterPermission": false,
-     *   //   "copyable": false,
-     *   //   "createdDate": "my_createdDate",
-     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *   //   "description": "my_description",
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "driveId": "my_driveId",
-     *   //   "editable": false,
-     *   //   "embedLink": "my_embedLink",
-     *   //   "etag": "my_etag",
-     *   //   "explicitlyTrashed": false,
-     *   //   "exportLinks": {},
-     *   //   "fileExtension": "my_fileExtension",
-     *   //   "fileSize": "my_fileSize",
-     *   //   "folderColorRgb": "my_folderColorRgb",
-     *   //   "fullFileExtension": "my_fullFileExtension",
-     *   //   "hasAugmentedPermissions": false,
-     *   //   "hasThumbnail": false,
-     *   //   "headRevisionId": "my_headRevisionId",
-     *   //   "iconLink": "my_iconLink",
-     *   //   "id": "my_id",
-     *   //   "imageMediaMetadata": {},
-     *   //   "indexableText": {},
-     *   //   "isAppAuthorized": false,
-     *   //   "kind": "my_kind",
-     *   //   "labelInfo": {},
-     *   //   "labels": {},
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *   //   "linkShareMetadata": {},
-     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "openWithLinks": {},
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "ownedByMe": false,
-     *   //   "ownerNames": [],
-     *   //   "owners": [],
-     *   //   "parents": [],
-     *   //   "permissionIds": [],
-     *   //   "permissions": [],
-     *   //   "properties": [],
-     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *   //   "resourceKey": "my_resourceKey",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "sha1Checksum": "my_sha1Checksum",
-     *   //   "sha256Checksum": "my_sha256Checksum",
-     *   //   "shareable": false,
-     *   //   "shared": false,
-     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *   //   "sharingUser": {},
-     *   //   "shortcutDetails": {},
-     *   //   "spaces": [],
-     *   //   "teamDriveId": "my_teamDriveId",
-     *   //   "thumbnail": {},
-     *   //   "thumbnailLink": "my_thumbnailLink",
-     *   //   "thumbnailVersion": "my_thumbnailVersion",
-     *   //   "title": "my_title",
-     *   //   "trashedDate": "my_trashedDate",
-     *   //   "trashingUser": {},
-     *   //   "userPermission": {},
-     *   //   "version": "my_version",
-     *   //   "videoMediaMetadata": {},
-     *   //   "webContentLink": "my_webContentLink",
-     *   //   "webViewLink": "my_webViewLink",
-     *   //   "writersCanShare": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8379,136 +5532,6 @@ export namespace drive_v2 {
 
     /**
      * Set the file's updated time to the current server time.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.touch({
-     *     // The ID of the file to update.
-     *     fileId: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "appDataContents": false,
-     *   //   "canComment": false,
-     *   //   "canReadRevisions": false,
-     *   //   "capabilities": {},
-     *   //   "contentRestrictions": [],
-     *   //   "copyRequiresWriterPermission": false,
-     *   //   "copyable": false,
-     *   //   "createdDate": "my_createdDate",
-     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *   //   "description": "my_description",
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "driveId": "my_driveId",
-     *   //   "editable": false,
-     *   //   "embedLink": "my_embedLink",
-     *   //   "etag": "my_etag",
-     *   //   "explicitlyTrashed": false,
-     *   //   "exportLinks": {},
-     *   //   "fileExtension": "my_fileExtension",
-     *   //   "fileSize": "my_fileSize",
-     *   //   "folderColorRgb": "my_folderColorRgb",
-     *   //   "fullFileExtension": "my_fullFileExtension",
-     *   //   "hasAugmentedPermissions": false,
-     *   //   "hasThumbnail": false,
-     *   //   "headRevisionId": "my_headRevisionId",
-     *   //   "iconLink": "my_iconLink",
-     *   //   "id": "my_id",
-     *   //   "imageMediaMetadata": {},
-     *   //   "indexableText": {},
-     *   //   "isAppAuthorized": false,
-     *   //   "kind": "my_kind",
-     *   //   "labelInfo": {},
-     *   //   "labels": {},
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *   //   "linkShareMetadata": {},
-     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "openWithLinks": {},
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "ownedByMe": false,
-     *   //   "ownerNames": [],
-     *   //   "owners": [],
-     *   //   "parents": [],
-     *   //   "permissionIds": [],
-     *   //   "permissions": [],
-     *   //   "properties": [],
-     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *   //   "resourceKey": "my_resourceKey",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "sha1Checksum": "my_sha1Checksum",
-     *   //   "sha256Checksum": "my_sha256Checksum",
-     *   //   "shareable": false,
-     *   //   "shared": false,
-     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *   //   "sharingUser": {},
-     *   //   "shortcutDetails": {},
-     *   //   "spaces": [],
-     *   //   "teamDriveId": "my_teamDriveId",
-     *   //   "thumbnail": {},
-     *   //   "thumbnailLink": "my_thumbnailLink",
-     *   //   "thumbnailVersion": "my_thumbnailVersion",
-     *   //   "title": "my_title",
-     *   //   "trashedDate": "my_trashedDate",
-     *   //   "trashingUser": {},
-     *   //   "userPermission": {},
-     *   //   "version": "my_version",
-     *   //   "videoMediaMetadata": {},
-     *   //   "webContentLink": "my_webContentLink",
-     *   //   "webViewLink": "my_webViewLink",
-     *   //   "writersCanShare": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8594,136 +5617,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Moves a file to the trash. The currently authenticated user must own the file or be at least a fileOrganizer on the parent for shared drive files. Only the owner may trash a file. The trashed item is excluded from all files.list responses returned for any user who does not own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.trash({
-     *     // The ID of the file to trash.
-     *     fileId: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "appDataContents": false,
-     *   //   "canComment": false,
-     *   //   "canReadRevisions": false,
-     *   //   "capabilities": {},
-     *   //   "contentRestrictions": [],
-     *   //   "copyRequiresWriterPermission": false,
-     *   //   "copyable": false,
-     *   //   "createdDate": "my_createdDate",
-     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *   //   "description": "my_description",
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "driveId": "my_driveId",
-     *   //   "editable": false,
-     *   //   "embedLink": "my_embedLink",
-     *   //   "etag": "my_etag",
-     *   //   "explicitlyTrashed": false,
-     *   //   "exportLinks": {},
-     *   //   "fileExtension": "my_fileExtension",
-     *   //   "fileSize": "my_fileSize",
-     *   //   "folderColorRgb": "my_folderColorRgb",
-     *   //   "fullFileExtension": "my_fullFileExtension",
-     *   //   "hasAugmentedPermissions": false,
-     *   //   "hasThumbnail": false,
-     *   //   "headRevisionId": "my_headRevisionId",
-     *   //   "iconLink": "my_iconLink",
-     *   //   "id": "my_id",
-     *   //   "imageMediaMetadata": {},
-     *   //   "indexableText": {},
-     *   //   "isAppAuthorized": false,
-     *   //   "kind": "my_kind",
-     *   //   "labelInfo": {},
-     *   //   "labels": {},
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *   //   "linkShareMetadata": {},
-     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "openWithLinks": {},
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "ownedByMe": false,
-     *   //   "ownerNames": [],
-     *   //   "owners": [],
-     *   //   "parents": [],
-     *   //   "permissionIds": [],
-     *   //   "permissions": [],
-     *   //   "properties": [],
-     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *   //   "resourceKey": "my_resourceKey",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "sha1Checksum": "my_sha1Checksum",
-     *   //   "sha256Checksum": "my_sha256Checksum",
-     *   //   "shareable": false,
-     *   //   "shared": false,
-     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *   //   "sharingUser": {},
-     *   //   "shortcutDetails": {},
-     *   //   "spaces": [],
-     *   //   "teamDriveId": "my_teamDriveId",
-     *   //   "thumbnail": {},
-     *   //   "thumbnailLink": "my_thumbnailLink",
-     *   //   "thumbnailVersion": "my_thumbnailVersion",
-     *   //   "title": "my_title",
-     *   //   "trashedDate": "my_trashedDate",
-     *   //   "trashingUser": {},
-     *   //   "userPermission": {},
-     *   //   "version": "my_version",
-     *   //   "videoMediaMetadata": {},
-     *   //   "webContentLink": "my_webContentLink",
-     *   //   "webViewLink": "my_webViewLink",
-     *   //   "writersCanShare": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     *  Moves a file to the trash. The currently authenticated user must own the file or be at least a `fileOrganizer` on the parent for shared drive files. Only the owner may trash a file. The trashed item is excluded from all `files.list` responses returned for any user who doesn't own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file. *Note:* Files moved to the trash still appear by default in results from the `files.list` method. To permanently remove a file, use `files.delete`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8809,136 +5703,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Restores a file from the trash. The currently authenticated user must own the file or be at least a fileOrganizer on the parent for shared drive files. Only the owner may untrash a file.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.untrash({
-     *     // The ID of the file to untrash.
-     *     fileId: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "appDataContents": false,
-     *   //   "canComment": false,
-     *   //   "canReadRevisions": false,
-     *   //   "capabilities": {},
-     *   //   "contentRestrictions": [],
-     *   //   "copyRequiresWriterPermission": false,
-     *   //   "copyable": false,
-     *   //   "createdDate": "my_createdDate",
-     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *   //   "description": "my_description",
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "driveId": "my_driveId",
-     *   //   "editable": false,
-     *   //   "embedLink": "my_embedLink",
-     *   //   "etag": "my_etag",
-     *   //   "explicitlyTrashed": false,
-     *   //   "exportLinks": {},
-     *   //   "fileExtension": "my_fileExtension",
-     *   //   "fileSize": "my_fileSize",
-     *   //   "folderColorRgb": "my_folderColorRgb",
-     *   //   "fullFileExtension": "my_fullFileExtension",
-     *   //   "hasAugmentedPermissions": false,
-     *   //   "hasThumbnail": false,
-     *   //   "headRevisionId": "my_headRevisionId",
-     *   //   "iconLink": "my_iconLink",
-     *   //   "id": "my_id",
-     *   //   "imageMediaMetadata": {},
-     *   //   "indexableText": {},
-     *   //   "isAppAuthorized": false,
-     *   //   "kind": "my_kind",
-     *   //   "labelInfo": {},
-     *   //   "labels": {},
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *   //   "linkShareMetadata": {},
-     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "openWithLinks": {},
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "ownedByMe": false,
-     *   //   "ownerNames": [],
-     *   //   "owners": [],
-     *   //   "parents": [],
-     *   //   "permissionIds": [],
-     *   //   "permissions": [],
-     *   //   "properties": [],
-     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *   //   "resourceKey": "my_resourceKey",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "sha1Checksum": "my_sha1Checksum",
-     *   //   "sha256Checksum": "my_sha256Checksum",
-     *   //   "shareable": false,
-     *   //   "shared": false,
-     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *   //   "sharingUser": {},
-     *   //   "shortcutDetails": {},
-     *   //   "spaces": [],
-     *   //   "teamDriveId": "my_teamDriveId",
-     *   //   "thumbnail": {},
-     *   //   "thumbnailLink": "my_thumbnailLink",
-     *   //   "thumbnailVersion": "my_thumbnailVersion",
-     *   //   "title": "my_title",
-     *   //   "trashedDate": "my_trashedDate",
-     *   //   "trashingUser": {},
-     *   //   "userPermission": {},
-     *   //   "version": "my_version",
-     *   //   "videoMediaMetadata": {},
-     *   //   "webContentLink": "my_webContentLink",
-     *   //   "webViewLink": "my_webViewLink",
-     *   //   "writersCanShare": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Restores a file from the trash. The currently authenticated user must own the file or be at least a `fileOrganizer` on the parent for shared drive files. Only the owner may untrash a file.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9024,252 +5789,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as modifiedDate. This method supports patch semantics.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.scripts',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.update({
-     *     // Comma-separated list of parent IDs to add.
-     *     addParents: 'placeholder-value',
-     *     // This parameter is deprecated and has no function.
-     *     convert: 'placeholder-value',
-     *     // Deprecated. Adding files to multiple folders is no longer supported. Use shortcuts instead.
-     *     enforceSingleParent: 'placeholder-value',
-     *     // The ID of the file to update.
-     *     fileId: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
-     *     modifiedDateBehavior: 'placeholder-value',
-     *     // Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
-     *     newRevision: 'placeholder-value',
-     *     // Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
-     *     ocr: 'placeholder-value',
-     *     // If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
-     *     ocrLanguage: 'placeholder-value',
-     *     // Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
-     *     pinned: 'placeholder-value',
-     *     // Comma-separated list of parent IDs to remove.
-     *     removeParents: 'placeholder-value',
-     *     // Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
-     *     setModifiedDate: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // The language of the timed text.
-     *     timedTextLanguage: 'placeholder-value',
-     *     // The timed text track name.
-     *     timedTextTrackName: 'placeholder-value',
-     *     // Whether to update the view date after successfully updating the file.
-     *     updateViewedDate: 'placeholder-value',
-     *     // Whether to use the content as indexable text.
-     *     useContentAsIndexableText: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "appDataContents": false,
-     *       //   "canComment": false,
-     *       //   "canReadRevisions": false,
-     *       //   "capabilities": {},
-     *       //   "contentRestrictions": [],
-     *       //   "copyRequiresWriterPermission": false,
-     *       //   "copyable": false,
-     *       //   "createdDate": "my_createdDate",
-     *       //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *       //   "description": "my_description",
-     *       //   "downloadUrl": "my_downloadUrl",
-     *       //   "driveId": "my_driveId",
-     *       //   "editable": false,
-     *       //   "embedLink": "my_embedLink",
-     *       //   "etag": "my_etag",
-     *       //   "explicitlyTrashed": false,
-     *       //   "exportLinks": {},
-     *       //   "fileExtension": "my_fileExtension",
-     *       //   "fileSize": "my_fileSize",
-     *       //   "folderColorRgb": "my_folderColorRgb",
-     *       //   "fullFileExtension": "my_fullFileExtension",
-     *       //   "hasAugmentedPermissions": false,
-     *       //   "hasThumbnail": false,
-     *       //   "headRevisionId": "my_headRevisionId",
-     *       //   "iconLink": "my_iconLink",
-     *       //   "id": "my_id",
-     *       //   "imageMediaMetadata": {},
-     *       //   "indexableText": {},
-     *       //   "isAppAuthorized": false,
-     *       //   "kind": "my_kind",
-     *       //   "labelInfo": {},
-     *       //   "labels": {},
-     *       //   "lastModifyingUser": {},
-     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *       //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *       //   "linkShareMetadata": {},
-     *       //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *       //   "md5Checksum": "my_md5Checksum",
-     *       //   "mimeType": "my_mimeType",
-     *       //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "openWithLinks": {},
-     *       //   "originalFilename": "my_originalFilename",
-     *       //   "ownedByMe": false,
-     *       //   "ownerNames": [],
-     *       //   "owners": [],
-     *       //   "parents": [],
-     *       //   "permissionIds": [],
-     *       //   "permissions": [],
-     *       //   "properties": [],
-     *       //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *       //   "resourceKey": "my_resourceKey",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "sha1Checksum": "my_sha1Checksum",
-     *       //   "sha256Checksum": "my_sha256Checksum",
-     *       //   "shareable": false,
-     *       //   "shared": false,
-     *       //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *       //   "sharingUser": {},
-     *       //   "shortcutDetails": {},
-     *       //   "spaces": [],
-     *       //   "teamDriveId": "my_teamDriveId",
-     *       //   "thumbnail": {},
-     *       //   "thumbnailLink": "my_thumbnailLink",
-     *       //   "thumbnailVersion": "my_thumbnailVersion",
-     *       //   "title": "my_title",
-     *       //   "trashedDate": "my_trashedDate",
-     *       //   "trashingUser": {},
-     *       //   "userPermission": {},
-     *       //   "version": "my_version",
-     *       //   "videoMediaMetadata": {},
-     *       //   "webContentLink": "my_webContentLink",
-     *       //   "webViewLink": "my_webViewLink",
-     *       //   "writersCanShare": false
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "appDataContents": false,
-     *   //   "canComment": false,
-     *   //   "canReadRevisions": false,
-     *   //   "capabilities": {},
-     *   //   "contentRestrictions": [],
-     *   //   "copyRequiresWriterPermission": false,
-     *   //   "copyable": false,
-     *   //   "createdDate": "my_createdDate",
-     *   //   "defaultOpenWithLink": "my_defaultOpenWithLink",
-     *   //   "description": "my_description",
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "driveId": "my_driveId",
-     *   //   "editable": false,
-     *   //   "embedLink": "my_embedLink",
-     *   //   "etag": "my_etag",
-     *   //   "explicitlyTrashed": false,
-     *   //   "exportLinks": {},
-     *   //   "fileExtension": "my_fileExtension",
-     *   //   "fileSize": "my_fileSize",
-     *   //   "folderColorRgb": "my_folderColorRgb",
-     *   //   "fullFileExtension": "my_fullFileExtension",
-     *   //   "hasAugmentedPermissions": false,
-     *   //   "hasThumbnail": false,
-     *   //   "headRevisionId": "my_headRevisionId",
-     *   //   "iconLink": "my_iconLink",
-     *   //   "id": "my_id",
-     *   //   "imageMediaMetadata": {},
-     *   //   "indexableText": {},
-     *   //   "isAppAuthorized": false,
-     *   //   "kind": "my_kind",
-     *   //   "labelInfo": {},
-     *   //   "labels": {},
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "lastViewedByMeDate": "my_lastViewedByMeDate",
-     *   //   "linkShareMetadata": {},
-     *   //   "markedViewedByMeDate": "my_markedViewedByMeDate",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedByMeDate": "my_modifiedByMeDate",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "openWithLinks": {},
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "ownedByMe": false,
-     *   //   "ownerNames": [],
-     *   //   "owners": [],
-     *   //   "parents": [],
-     *   //   "permissionIds": [],
-     *   //   "permissions": [],
-     *   //   "properties": [],
-     *   //   "quotaBytesUsed": "my_quotaBytesUsed",
-     *   //   "resourceKey": "my_resourceKey",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "sha1Checksum": "my_sha1Checksum",
-     *   //   "sha256Checksum": "my_sha256Checksum",
-     *   //   "shareable": false,
-     *   //   "shared": false,
-     *   //   "sharedWithMeDate": "my_sharedWithMeDate",
-     *   //   "sharingUser": {},
-     *   //   "shortcutDetails": {},
-     *   //   "spaces": [],
-     *   //   "teamDriveId": "my_teamDriveId",
-     *   //   "thumbnail": {},
-     *   //   "thumbnailLink": "my_thumbnailLink",
-     *   //   "thumbnailVersion": "my_thumbnailVersion",
-     *   //   "title": "my_title",
-     *   //   "trashedDate": "my_trashedDate",
-     *   //   "trashingUser": {},
-     *   //   "userPermission": {},
-     *   //   "version": "my_version",
-     *   //   "videoMediaMetadata": {},
-     *   //   "webContentLink": "my_webContentLink",
-     *   //   "webViewLink": "my_webViewLink",
-     *   //   "writersCanShare": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     *  Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an x/upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`x/x` Note: Specify a valid MIME type, rather than the literal `x/x` value. The literal `x/x` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/drive/api/guides/manage-uploads).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9359,99 +5879,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Subscribes to changes to a file. While you can establish a channel for changes to a file on a shared drive, a change to a shared drive file won't create a notification.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.files.watch({
-     *     // Whether the user is acknowledging the risk of downloading known malware or other abusive files.
-     *     acknowledgeAbuse: 'placeholder-value',
-     *     // The ID for the file in question.
-     *     fileId: 'placeholder-value',
-     *     // A comma-separated list of IDs of labels to include in the labelInfo part of the response.
-     *     includeLabels: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // This parameter is deprecated and has no function.
-     *     projection: 'placeholder-value',
-     *     // Specifies the Revision ID that should be downloaded. Ignored unless alt=media is specified.
-     *     revisionId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
-     *     updateViewedDate: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "address": "my_address",
-     *       //   "expiration": "my_expiration",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "params": {},
-     *       //   "payload": false,
-     *       //   "resourceId": "my_resourceId",
-     *       //   "resourceUri": "my_resourceUri",
-     *       //   "token": "my_token",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "address": "my_address",
-     *   //   "expiration": "my_expiration",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "params": {},
-     *   //   "payload": false,
-     *   //   "resourceId": "my_resourceId",
-     *   //   "resourceUri": "my_resourceUri",
-     *   //   "token": "my_token",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Subscribes to changes to a file.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9543,7 +5971,7 @@ export namespace drive_v2 {
      */
     convert?: boolean;
     /**
-     * Deprecated. Copying files into multiple folders is no longer supported. Use shortcuts instead.
+     * Deprecated: Copying files into multiple folders is no longer supported. Use shortcuts instead.
      */
     enforceSingleParent?: boolean;
     /**
@@ -9551,11 +5979,11 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
@@ -9563,7 +5991,7 @@ export namespace drive_v2 {
      */
     ocr?: boolean;
     /**
-     * If ocr is true, hints at the language to use. Valid values are BCP 47 codes.
+     * If `ocr` is true, hints at the language to use. Valid values are BCP 47 codes.
      */
     ocrLanguage?: string;
     /**
@@ -9575,7 +6003,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -9598,7 +6026,7 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Files$Delete extends StandardParameters {
     /**
-     * Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     * Deprecated: If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item is placed under its owner's root.
      */
     enforceSingleParent?: boolean;
     /**
@@ -9610,13 +6038,17 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
   }
   export interface Params$Resource$Files$Emptytrash extends StandardParameters {
     /**
-     * Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     * If set, empties the trash of the provided shared drive.
+     */
+    driveId?: string;
+    /**
+     * Deprecated: If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item is placed under its owner's root.
      */
     enforceSingleParent?: boolean;
   }
@@ -9626,7 +6058,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * The MIME type of the format requested for this export.
+     * Required. The MIME type of the format requested for this export.
      */
     mimeType?: string;
   }
@@ -9637,11 +6069,11 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'. (Default: 'drive')
+     * The space in which the IDs can be used to create new files. Supported values are `drive` and `appDataFolder`. (Default: `drive`)
      */
     space?: string;
     /**
-     * The type of items which the IDs can be used for. Supported values are 'files' and 'shortcuts'. Note that 'shortcuts' are only supported in the drive 'space'. (Default: 'files')
+     * The type of items which the IDs can be used for. Supported values are `files` and `shortcuts`. Note that `shortcuts` are only supported in the `drive` `space`. (Default: `files`)
      */
     type?: string;
   }
@@ -9655,15 +6087,15 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
-     * This parameter is deprecated and has no function.
+     * Deprecated: This parameter has no function.
      */
     projection?: string;
     /**
@@ -9675,11 +6107,11 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * Deprecated: Use files.update with modifiedDateBehavior=noChange, updateViewedDate=true and an empty request body.
+     * Deprecated: Use `files.update` with `modifiedDateBehavior=noChange, updateViewedDate=true` and an empty request body.
      */
     updateViewedDate?: boolean;
   }
@@ -9689,15 +6121,15 @@ export namespace drive_v2 {
      */
     convert?: boolean;
     /**
-     * Deprecated. Creating files in multiple folders is no longer supported.
+     * Deprecated: Creating files in multiple folders is no longer supported.
      */
     enforceSingleParent?: boolean;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
@@ -9717,7 +6149,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -9759,11 +6191,11 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Files$List extends StandardParameters {
     /**
-     * Groupings of files to which the query applies. Supported groupings are: 'user' (files created by, opened by, or shared directly with the user), 'drive' (files in the specified shared drive as indicated by the 'driveId'), 'domain' (files shared to the user's domain), and 'allDrives' (A combination of 'user' and 'drive' for all drives where the user is a member). When able, use 'user' or 'drive', instead of 'allDrives', for efficiency.
+     * Bodies of items (files/documents) to which the query applies. Supported bodies are `default`, `domain`, `drive` and `allDrives`. Prefer `default` or `drive` to `allDrives` for efficiency.
      */
     corpora?: string;
     /**
-     * The body of items (files/documents) to which the query applies. Deprecated: use 'corpora' instead.
+     * Deprecated: The body of items (files/documents) to which the query applies. Use `corpora` instead.
      */
     corpus?: string;
     /**
@@ -9775,15 +6207,15 @@ export namespace drive_v2 {
      */
     includeItemsFromAllDrives?: boolean;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
-     * Deprecated use includeItemsFromAllDrives instead.
+     * Deprecated: Use `includeItemsFromAllDrives` instead.
      */
     includeTeamDriveItems?: boolean;
     /**
@@ -9791,7 +6223,7 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * A comma-separated list of sort keys. Valid keys are 'createdDate', 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate', 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and 'title_natural'. Each key sorts ascending by default, but may be reversed with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
+     * A comma-separated list of sort keys. Valid keys are `createdDate`, `folder`, `lastViewedByMeDate`, `modifiedByMeDate`, `modifiedDate`, `quotaBytesUsed`, `recency`, `sharedWithMeDate`, `starred`, `title`, and `title_natural`. Each key sorts ascending by default, but may be reversed with the `desc` modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please note that there is a current limitation for users with approximately one million files in which the requested sort order is ignored.
      */
     orderBy?: string;
     /**
@@ -9799,7 +6231,7 @@ export namespace drive_v2 {
      */
     pageToken?: string;
     /**
-     * This parameter is deprecated and has no function.
+     * Deprecated: This parameter has no function.
      */
     projection?: string;
     /**
@@ -9807,7 +6239,7 @@ export namespace drive_v2 {
      */
     q?: string;
     /**
-     * A comma-separated list of spaces to query. Supported values are 'drive' and 'appDataFolder'.
+     * A comma-separated list of spaces to query. Supported values are `drive`, and `appDataFolder`.
      */
     spaces?: string;
     /**
@@ -9815,32 +6247,32 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * Deprecated use driveId instead.
+     * Deprecated: Use `driveId` instead.
      */
     teamDriveId?: string;
   }
   export interface Params$Resource$Files$Listlabels extends StandardParameters {
     /**
-     * The ID of the file.
+     * The ID for the file or shared drive.
      */
     fileId?: string;
     /**
-     * The maximum number of labels to return per page. When not set, this defaults to 100.
+     * The maximum number of labels to return per page. When not set, defaults to 100.
      */
     maxResults?: number;
     /**
-     * The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     * The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Files$Modifylabels
     extends StandardParameters {
     /**
-     * The ID of the file for which the labels are modified.
+     * The ID of the file to which the labels belong.
      */
     fileId?: string;
 
@@ -9855,11 +6287,11 @@ export namespace drive_v2 {
      */
     addParents?: string;
     /**
-     * This parameter is deprecated and has no function.
+     * Deprecated: This parameter has no function.
      */
     convert?: boolean;
     /**
-     * Deprecated. Adding files to multiple folders is no longer supported. Use shortcuts instead.
+     * Deprecated: Adding files to multiple folders is no longer supported. Use `shortcuts` instead.
      */
     enforceSingleParent?: boolean;
     /**
@@ -9867,19 +6299,19 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
-     * Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
+     * Determines the behavior in which `modifiedDate` is updated. This overrides `setModifiedDate`.
      */
     modifiedDateBehavior?: string;
     /**
-     * Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
+     * Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the [Drive Help Center](https://support.google.com/drive/answer/2409045). Note that this field is ignored if there is no payload in the request.
      */
     newRevision?: boolean;
     /**
@@ -9899,7 +6331,7 @@ export namespace drive_v2 {
      */
     removeParents?: string;
     /**
-     * Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
+     * Whether to set the modified date using the value supplied in the request body. Setting this field to `true` is equivalent to `modifiedDateBehavior=fromBodyOrNow`, and `false` is equivalent to `modifiedDateBehavior=now`. To prevent any changes to the modified date set `modifiedDateBehavior=noChange`.
      */
     setModifiedDate?: boolean;
     /**
@@ -9907,7 +6339,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -9938,11 +6370,11 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
@@ -9950,7 +6382,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
   }
@@ -9960,11 +6392,11 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
@@ -9972,7 +6404,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
   }
@@ -9982,11 +6414,11 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
@@ -9994,7 +6426,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
   }
@@ -10004,11 +6436,11 @@ export namespace drive_v2 {
      */
     addParents?: string;
     /**
-     * This parameter is deprecated and has no function.
+     * Deprecated: This parameter has no function.
      */
     convert?: boolean;
     /**
-     * Deprecated. Adding files to multiple folders is no longer supported. Use shortcuts instead.
+     * Deprecated: Adding files to multiple folders is no longer supported. Use `shortcuts` instead.
      */
     enforceSingleParent?: boolean;
     /**
@@ -10016,19 +6448,19 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
-     * Determines the behavior in which modifiedDate is updated. This overrides setModifiedDate.
+     * Determines the behavior in which `modifiedDate` is updated. This overrides `setModifiedDate`.
      */
     modifiedDateBehavior?: string;
     /**
-     * Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the Drive Help Center. Note that this field is ignored if there is no payload in the request.
+     * Whether a blob upload should create a new revision. If false, the blob data in the current head revision is replaced. If true or not set, a new blob is created as head revision, and previous unpinned revisions are preserved for a short period of time. Pinned revisions are stored indefinitely, using additional storage quota, up to a maximum of 200 revisions. For details on how revisions are retained, see the [Drive Help Center](https://support.google.com/drive/answer/2409045).
      */
     newRevision?: boolean;
     /**
@@ -10040,7 +6472,7 @@ export namespace drive_v2 {
      */
     ocrLanguage?: string;
     /**
-     * Whether to pin the new revision. A file can have a maximum of 200 pinned revisions. Note that this field is ignored if there is no payload in the request.
+     * Whether to pin the new revision. A file can have a maximum of 200 pinned revisions.
      */
     pinned?: boolean;
     /**
@@ -10048,7 +6480,7 @@ export namespace drive_v2 {
      */
     removeParents?: string;
     /**
-     * Whether to set the modified date using the value supplied in the request body. Setting this field to true is equivalent to modifiedDateBehavior=fromBodyOrNow, and false is equivalent to modifiedDateBehavior=now. To prevent any changes to the modified date set modifiedDateBehavior=noChange.
+     * Whether to set the modified date using the value supplied in the request body. Setting this field to `true` is equivalent to `modifiedDateBehavior=fromBodyOrNow`, and `false` is equivalent to `modifiedDateBehavior=now`. To prevent any changes to the modified date set `modifiedDateBehavior=noChange`.
      */
     setModifiedDate?: boolean;
     /**
@@ -10056,7 +6488,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -10106,15 +6538,15 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * A comma-separated list of IDs of labels to include in the labelInfo part of the response.
+     * A comma-separated list of IDs of labels to include in the `labelInfo` part of the response.
      */
     includeLabels?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
-     * This parameter is deprecated and has no function.
+     * Deprecated: This parameter has no function.
      */
     projection?: string;
     /**
@@ -10126,7 +6558,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -10148,50 +6580,6 @@ export namespace drive_v2 {
 
     /**
      * Removes a parent from a file.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.parents.delete({
-     *     // Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
-     *     enforceSingleParent: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The ID of the parent.
-     *     parentId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10275,62 +6663,6 @@ export namespace drive_v2 {
 
     /**
      * Gets a specific parent reference.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.parents.get({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The ID of the parent.
-     *     parentId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "id": "my_id",
-     *   //   "isRoot": false,
-     *   //   "kind": "my_kind",
-     *   //   "parentLink": "my_parentLink",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10416,74 +6748,6 @@ export namespace drive_v2 {
 
     /**
      * Adds a parent folder for a file.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.parents.insert({
-     *     // Deprecated. Adding files to multiple folders is no longer supported. Use shortcuts instead.
-     *     enforceSingleParent: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "id": "my_id",
-     *       //   "isRoot": false,
-     *       //   "kind": "my_kind",
-     *       //   "parentLink": "my_parentLink",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "id": "my_id",
-     *   //   "isRoot": false,
-     *   //   "kind": "my_kind",
-     *   //   "parentLink": "my_parentLink",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10570,59 +6834,6 @@ export namespace drive_v2 {
 
     /**
      * Lists a file's parents.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.parents.list({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10710,7 +6921,7 @@ export namespace drive_v2 {
 
   export interface Params$Resource$Parents$Delete extends StandardParameters {
     /**
-     * Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     * Deprecated: If an item is not in a shared drive and its last parent is removed, the item is placed under its owner's root.
      */
     enforceSingleParent?: boolean;
     /**
@@ -10734,7 +6945,7 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Parents$Insert extends StandardParameters {
     /**
-     * Deprecated. Adding files to multiple folders is no longer supported. Use shortcuts instead.
+     * Deprecated: Adding files to multiple folders is no longer supported. Use `shortcuts` instead.
      */
     enforceSingleParent?: boolean;
     /**
@@ -10746,7 +6957,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
 
@@ -10769,55 +6980,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Deletes a permission from a file or shared drive.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.permissions.delete({
-     *     // The ID for the file or shared drive.
-     *     fileId: 'placeholder-value',
-     *     // The ID for the permission.
-     *     permissionId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deletes a permission from a file or shared drive. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10902,82 +7065,6 @@ export namespace drive_v2 {
 
     /**
      * Gets a permission by ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.permissions.get({
-     *     // The ID for the file or shared drive.
-     *     fileId: 'placeholder-value',
-     *     // The ID for the permission.
-     *     permissionId: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalRoles": [],
-     *   //   "authKey": "my_authKey",
-     *   //   "deleted": false,
-     *   //   "domain": "my_domain",
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "etag": "my_etag",
-     *   //   "expirationDate": "my_expirationDate",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "pendingOwner": false,
-     *   //   "permissionDetails": [],
-     *   //   "photoLink": "my_photoLink",
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "teamDrivePermissionDetails": [],
-     *   //   "type": "my_type",
-     *   //   "value": "my_value",
-     *   //   "view": "my_view",
-     *   //   "withLink": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11063,58 +7150,6 @@ export namespace drive_v2 {
 
     /**
      * Returns the permission ID for an email address.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.apps.readonly',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.permissions.getIdForEmail({
-     *     // The email address for which to return a permission ID
-     *     email: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11201,112 +7236,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Inserts a permission for a file or shared drive.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.permissions.insert({
-     *     // A plain text custom message to include in notification emails.
-     *     emailMessage: 'placeholder-value',
-     *     // Deprecated. See moveToNewOwnersRoot for details.
-     *     enforceSingleParent: 'placeholder-value',
-     *     // The ID for the file or shared drive.
-     *     fileId: 'placeholder-value',
-     *     // This parameter will only take effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. If set to true, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to false, parents are not changed.
-     *     moveToNewOwnersRoot: 'placeholder-value',
-     *     // Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
-     *     sendNotificationEmails: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "additionalRoles": [],
-     *       //   "authKey": "my_authKey",
-     *       //   "deleted": false,
-     *       //   "domain": "my_domain",
-     *       //   "emailAddress": "my_emailAddress",
-     *       //   "etag": "my_etag",
-     *       //   "expirationDate": "my_expirationDate",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "pendingOwner": false,
-     *       //   "permissionDetails": [],
-     *       //   "photoLink": "my_photoLink",
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "teamDrivePermissionDetails": [],
-     *       //   "type": "my_type",
-     *       //   "value": "my_value",
-     *       //   "view": "my_view",
-     *       //   "withLink": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalRoles": [],
-     *   //   "authKey": "my_authKey",
-     *   //   "deleted": false,
-     *   //   "domain": "my_domain",
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "etag": "my_etag",
-     *   //   "expirationDate": "my_expirationDate",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "pendingOwner": false,
-     *   //   "permissionDetails": [],
-     *   //   "photoLink": "my_photoLink",
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "teamDrivePermissionDetails": [],
-     *   //   "type": "my_type",
-     *   //   "value": "my_value",
-     *   //   "view": "my_view",
-     *   //   "withLink": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Inserts a permission for a file or shared drive. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11394,71 +7324,6 @@ export namespace drive_v2 {
 
     /**
      * Lists a file's or shared drive's permissions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.permissions.list({
-     *     // The ID for the file or shared drive.
-     *     fileId: 'placeholder-value',
-     *     // Specifies which additional view's permissions to include in the response. Only 'published' is supported.
-     *     includePermissionsForView: 'placeholder-value',
-     *     // The maximum number of permissions to return per page. When not set for files in a shared drive, at most 100 results will be returned. When not set for files that are not in a shared drive, the entire list will be returned.
-     *     maxResults: 'placeholder-value',
-     *     // The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
-     *     pageToken: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11544,110 +7409,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Updates a permission using patch semantics.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.permissions.patch({
-     *     // The ID for the file or shared drive.
-     *     fileId: 'placeholder-value',
-     *     // The ID for the permission.
-     *     permissionId: 'placeholder-value',
-     *     // Whether to remove the expiration date.
-     *     removeExpiration: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
-     *     transferOwnership: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "additionalRoles": [],
-     *       //   "authKey": "my_authKey",
-     *       //   "deleted": false,
-     *       //   "domain": "my_domain",
-     *       //   "emailAddress": "my_emailAddress",
-     *       //   "etag": "my_etag",
-     *       //   "expirationDate": "my_expirationDate",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "pendingOwner": false,
-     *       //   "permissionDetails": [],
-     *       //   "photoLink": "my_photoLink",
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "teamDrivePermissionDetails": [],
-     *       //   "type": "my_type",
-     *       //   "value": "my_value",
-     *       //   "view": "my_view",
-     *       //   "withLink": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalRoles": [],
-     *   //   "authKey": "my_authKey",
-     *   //   "deleted": false,
-     *   //   "domain": "my_domain",
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "etag": "my_etag",
-     *   //   "expirationDate": "my_expirationDate",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "pendingOwner": false,
-     *   //   "permissionDetails": [],
-     *   //   "photoLink": "my_photoLink",
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "teamDrivePermissionDetails": [],
-     *   //   "type": "my_type",
-     *   //   "value": "my_value",
-     *   //   "view": "my_view",
-     *   //   "withLink": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Updates a permission using patch semantics. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11733,110 +7495,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Updates a permission.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.permissions.update({
-     *     // The ID for the file or shared drive.
-     *     fileId: 'placeholder-value',
-     *     // The ID for the permission.
-     *     permissionId: 'placeholder-value',
-     *     // Whether to remove the expiration date.
-     *     removeExpiration: 'placeholder-value',
-     *     // Whether the requesting application supports both My Drives and shared drives.
-     *     supportsAllDrives: 'placeholder-value',
-     *     // Deprecated use supportsAllDrives instead.
-     *     supportsTeamDrives: 'placeholder-value',
-     *     // Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect. File owners can only transfer ownership of files existing on My Drive. Files existing in a shared drive are owned by the organization that owns that shared drive. Ownership transfers are not supported for files and folders in shared drives. Organizers of a shared drive can move items from that shared drive into their My Drive which transfers the ownership to them.
-     *     transferOwnership: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if the file ID parameter refers to a shared drive and the requester is an administrator of the domain to which the shared drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "additionalRoles": [],
-     *       //   "authKey": "my_authKey",
-     *       //   "deleted": false,
-     *       //   "domain": "my_domain",
-     *       //   "emailAddress": "my_emailAddress",
-     *       //   "etag": "my_etag",
-     *       //   "expirationDate": "my_expirationDate",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "pendingOwner": false,
-     *       //   "permissionDetails": [],
-     *       //   "photoLink": "my_photoLink",
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "teamDrivePermissionDetails": [],
-     *       //   "type": "my_type",
-     *       //   "value": "my_value",
-     *       //   "view": "my_view",
-     *       //   "withLink": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalRoles": [],
-     *   //   "authKey": "my_authKey",
-     *   //   "deleted": false,
-     *   //   "domain": "my_domain",
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "etag": "my_etag",
-     *   //   "expirationDate": "my_expirationDate",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "pendingOwner": false,
-     *   //   "permissionDetails": [],
-     *   //   "photoLink": "my_photoLink",
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "teamDrivePermissionDetails": [],
-     *   //   "type": "my_type",
-     *   //   "value": "my_value",
-     *   //   "view": "my_view",
-     *   //   "withLink": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Updates a permission. **Warning:** Concurrent permissions operations on the same file are not supported; only the last update is applied.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11937,7 +7596,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -11959,7 +7618,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -11981,7 +7640,7 @@ export namespace drive_v2 {
      */
     emailMessage?: string;
     /**
-     * Deprecated. See moveToNewOwnersRoot for details.
+     * Deprecated: See `moveToNewOwnersRoot` for details.
      */
     enforceSingleParent?: boolean;
     /**
@@ -11989,11 +7648,11 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * This parameter will only take effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. If set to true, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to false, parents are not changed.
+     * This parameter will only take effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. If set to `true`, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to `false`, parents are not changed.
      */
     moveToNewOwnersRoot?: boolean;
     /**
-     * Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the role is owner.
+     * Whether to send notification emails when sharing to users or groups. This parameter is ignored and an email is sent if the `role` is `owner`.
      */
     sendNotificationEmails?: boolean;
     /**
@@ -12001,7 +7660,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -12020,7 +7679,7 @@ export namespace drive_v2 {
      */
     fileId?: string;
     /**
-     * Specifies which additional view's permissions to include in the response. Only 'published' is supported.
+     * Specifies which additional view's permissions to include in the response. Only `published` is supported.
      */
     includePermissionsForView?: string;
     /**
@@ -12028,7 +7687,7 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.
+     * The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.
      */
     pageToken?: string;
     /**
@@ -12036,7 +7695,7 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
@@ -12063,11 +7722,11 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * Whether changing a role to 'owner' downgrades the current owners to writers. Does nothing if the specified role is not 'owner'.
+     * Whether changing a role to `owner` downgrades the current owners to writers. Does nothing if the specified role is not `owner`.
      */
     transferOwnership?: boolean;
     /**
@@ -12099,11 +7758,11 @@ export namespace drive_v2 {
      */
     supportsAllDrives?: boolean;
     /**
-     * Deprecated use supportsAllDrives instead.
+     * Deprecated: Use `supportsAllDrives` instead.
      */
     supportsTeamDrives?: boolean;
     /**
-     * Whether to transfer ownership to the specified user and downgrade the current owner to a writer. This parameter is required as an acknowledgement of the side effect. File owners can only transfer ownership of files existing on My Drive. Files existing in a shared drive are owned by the organization that owns that shared drive. Ownership transfers are not supported for files and folders in shared drives. Organizers of a shared drive can move items from that shared drive into their My Drive which transfers the ownership to them.
+     * Whether changing a role to `owner` downgrades the current owners to writers. Does nothing if the specified role is not `owner`.
      */
     transferOwnership?: boolean;
     /**
@@ -12125,52 +7784,6 @@ export namespace drive_v2 {
 
     /**
      * Deletes a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.properties.delete({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The key of the property.
-     *     propertyKey: 'placeholder-value',
-     *     // The visibility of the property.
-     *     visibility: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12255,65 +7868,6 @@ export namespace drive_v2 {
 
     /**
      * Gets a property by its key.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.properties.get({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The key of the property.
-     *     propertyKey: 'placeholder-value',
-     *     // The visibility of the property.
-     *     visibility: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "key": "my_key",
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "value": "my_value",
-     *   //   "visibility": "my_visibility"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12399,71 +7953,6 @@ export namespace drive_v2 {
 
     /**
      * Adds a property to a file, or updates it if it already exists.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.properties.insert({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "key": "my_key",
-     *       //   "kind": "my_kind",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "value": "my_value",
-     *       //   "visibility": "my_visibility"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "key": "my_key",
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "value": "my_value",
-     *   //   "visibility": "my_visibility"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12551,59 +8040,6 @@ export namespace drive_v2 {
 
     /**
      * Lists a file's properties.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.properties.list({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12690,75 +8126,6 @@ export namespace drive_v2 {
 
     /**
      * Updates a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.properties.patch({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The key of the property.
-     *     propertyKey: 'placeholder-value',
-     *     // The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
-     *     visibility: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "key": "my_key",
-     *       //   "kind": "my_kind",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "value": "my_value",
-     *       //   "visibility": "my_visibility"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "key": "my_key",
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "value": "my_value",
-     *   //   "visibility": "my_visibility"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12844,75 +8211,6 @@ export namespace drive_v2 {
 
     /**
      * Updates a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.properties.update({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The key of the property.
-     *     propertyKey: 'placeholder-value',
-     *     // The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
-     *     visibility: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "key": "my_key",
-     *       //   "kind": "my_kind",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "value": "my_value",
-     *       //   "visibility": "my_visibility"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "key": "my_key",
-     *   //   "kind": "my_kind",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "value": "my_value",
-     *   //   "visibility": "my_visibility"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13093,50 +8391,6 @@ export namespace drive_v2 {
 
     /**
      * Deletes a reply.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.replies.delete({
-     *     // The ID of the comment.
-     *     commentId: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The ID of the reply.
-     *     replyId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13221,66 +8475,6 @@ export namespace drive_v2 {
 
     /**
      * Gets a reply.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.replies.get({
-     *     // The ID of the comment.
-     *     commentId: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // If set, this will succeed when retrieving a deleted reply.
-     *     includeDeleted: 'placeholder-value',
-     *     // The ID of the reply.
-     *     replyId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "author": {},
-     *   //   "content": "my_content",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "deleted": false,
-     *   //   "htmlContent": "my_htmlContent",
-     *   //   "kind": "my_kind",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "replyId": "my_replyId",
-     *   //   "verb": "my_verb"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13367,77 +8561,6 @@ export namespace drive_v2 {
 
     /**
      * Creates a new reply to the given comment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.replies.insert({
-     *     // The ID of the comment.
-     *     commentId: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "author": {},
-     *       //   "content": "my_content",
-     *       //   "createdDate": "my_createdDate",
-     *       //   "deleted": false,
-     *       //   "htmlContent": "my_htmlContent",
-     *       //   "kind": "my_kind",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "replyId": "my_replyId",
-     *       //   "verb": "my_verb"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "author": {},
-     *   //   "content": "my_content",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "deleted": false,
-     *   //   "htmlContent": "my_htmlContent",
-     *   //   "kind": "my_kind",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "replyId": "my_replyId",
-     *   //   "verb": "my_verb"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13523,64 +8646,6 @@ export namespace drive_v2 {
 
     /**
      * Lists all of the replies to a comment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.replies.list({
-     *     // The ID of the comment.
-     *     commentId: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // If set, all replies, including deleted replies (with content stripped) will be returned.
-     *     includeDeleted: 'placeholder-value',
-     *     // The maximum number of replies to include in the response, used for paging.
-     *     maxResults: 'placeholder-value',
-     *     // The continuation token, used to page through large result sets. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextLink": "my_nextLink",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13666,79 +8731,6 @@ export namespace drive_v2 {
 
     /**
      * Updates an existing reply.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.replies.patch({
-     *     // The ID of the comment.
-     *     commentId: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The ID of the reply.
-     *     replyId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "author": {},
-     *       //   "content": "my_content",
-     *       //   "createdDate": "my_createdDate",
-     *       //   "deleted": false,
-     *       //   "htmlContent": "my_htmlContent",
-     *       //   "kind": "my_kind",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "replyId": "my_replyId",
-     *       //   "verb": "my_verb"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "author": {},
-     *   //   "content": "my_content",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "deleted": false,
-     *   //   "htmlContent": "my_htmlContent",
-     *   //   "kind": "my_kind",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "replyId": "my_replyId",
-     *   //   "verb": "my_verb"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13825,79 +8817,6 @@ export namespace drive_v2 {
 
     /**
      * Updates an existing reply.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.replies.update({
-     *     // The ID of the comment.
-     *     commentId: 'placeholder-value',
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The ID of the reply.
-     *     replyId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "author": {},
-     *       //   "content": "my_content",
-     *       //   "createdDate": "my_createdDate",
-     *       //   "deleted": false,
-     *       //   "htmlContent": "my_htmlContent",
-     *       //   "kind": "my_kind",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "replyId": "my_replyId",
-     *       //   "verb": "my_verb"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "author": {},
-     *   //   "content": "my_content",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "deleted": false,
-     *   //   "htmlContent": "my_htmlContent",
-     *   //   "kind": "my_kind",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "replyId": "my_replyId",
-     *   //   "verb": "my_verb"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14099,49 +9018,6 @@ export namespace drive_v2 {
 
     /**
      * Permanently deletes a file version. You can only delete revisions for files with binary content, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.revisions.delete({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The ID of the revision.
-     *     revisionId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14225,75 +9101,6 @@ export namespace drive_v2 {
 
     /**
      * Gets a specific revision.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.revisions.get({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // The ID of the revision.
-     *     revisionId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "etag": "my_etag",
-     *   //   "exportLinks": {},
-     *   //   "fileSize": "my_fileSize",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "pinned": false,
-     *   //   "publishAuto": false,
-     *   //   "published": false,
-     *   //   "publishedLink": "my_publishedLink",
-     *   //   "publishedOutsideDomain": false,
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14379,64 +9186,6 @@ export namespace drive_v2 {
 
     /**
      * Lists a file's revisions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.metadata',
-     *       'https://www.googleapis.com/auth/drive.metadata.readonly',
-     *       'https://www.googleapis.com/auth/drive.photos.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.revisions.list({
-     *     // The ID of the file.
-     *     fileId: 'placeholder-value',
-     *     // Maximum number of revisions to return.
-     *     maxResults: 'placeholder-value',
-     *     // Page token for revisions. To get the next page of results, set this parameter to the value of "nextPageToken" from the previous response.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14523,96 +9272,6 @@ export namespace drive_v2 {
 
     /**
      * Updates a revision.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.revisions.patch({
-     *     // The ID for the file.
-     *     fileId: 'placeholder-value',
-     *     // The ID for the revision.
-     *     revisionId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "downloadUrl": "my_downloadUrl",
-     *       //   "etag": "my_etag",
-     *       //   "exportLinks": {},
-     *       //   "fileSize": "my_fileSize",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "lastModifyingUser": {},
-     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *       //   "md5Checksum": "my_md5Checksum",
-     *       //   "mimeType": "my_mimeType",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "originalFilename": "my_originalFilename",
-     *       //   "pinned": false,
-     *       //   "publishAuto": false,
-     *       //   "published": false,
-     *       //   "publishedLink": "my_publishedLink",
-     *       //   "publishedOutsideDomain": false,
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "etag": "my_etag",
-     *   //   "exportLinks": {},
-     *   //   "fileSize": "my_fileSize",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "pinned": false,
-     *   //   "publishAuto": false,
-     *   //   "published": false,
-     *   //   "publishedLink": "my_publishedLink",
-     *   //   "publishedOutsideDomain": false,
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14698,96 +9357,6 @@ export namespace drive_v2 {
 
     /**
      * Updates a revision.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.revisions.update({
-     *     // The ID for the file.
-     *     fileId: 'placeholder-value',
-     *     // The ID for the revision.
-     *     revisionId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "downloadUrl": "my_downloadUrl",
-     *       //   "etag": "my_etag",
-     *       //   "exportLinks": {},
-     *       //   "fileSize": "my_fileSize",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "lastModifyingUser": {},
-     *       //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *       //   "md5Checksum": "my_md5Checksum",
-     *       //   "mimeType": "my_mimeType",
-     *       //   "modifiedDate": "my_modifiedDate",
-     *       //   "originalFilename": "my_originalFilename",
-     *       //   "pinned": false,
-     *       //   "publishAuto": false,
-     *       //   "published": false,
-     *       //   "publishedLink": "my_publishedLink",
-     *       //   "publishedOutsideDomain": false,
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "downloadUrl": "my_downloadUrl",
-     *   //   "etag": "my_etag",
-     *   //   "exportLinks": {},
-     *   //   "fileSize": "my_fileSize",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "lastModifyingUser": {},
-     *   //   "lastModifyingUserName": "my_lastModifyingUserName",
-     *   //   "md5Checksum": "my_md5Checksum",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "modifiedDate": "my_modifiedDate",
-     *   //   "originalFilename": "my_originalFilename",
-     *   //   "pinned": false,
-     *   //   "publishAuto": false,
-     *   //   "published": false,
-     *   //   "publishedLink": "my_publishedLink",
-     *   //   "publishedOutsideDomain": false,
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14944,44 +9513,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Deprecated use drives.delete instead.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.teamdrives.delete({
-     *     // The ID of the Team Drive
-     *     teamDriveId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deprecated: Use `drives.delete` instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15066,64 +9598,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Deprecated use drives.get instead.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.teamdrives.get({
-     *     // The ID of the Team Drive
-     *     teamDriveId: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "backgroundImageFile": {},
-     *   //   "backgroundImageLink": "my_backgroundImageLink",
-     *   //   "capabilities": {},
-     *   //   "colorRgb": "my_colorRgb",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "orgUnitId": "my_orgUnitId",
-     *   //   "restrictions": {},
-     *   //   "themeId": "my_themeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deprecated: Use `drives.get` instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15209,77 +9684,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Deprecated use drives.insert instead.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.teamdrives.insert({
-     *     // An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
-     *     requestId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "backgroundImageFile": {},
-     *       //   "backgroundImageLink": "my_backgroundImageLink",
-     *       //   "capabilities": {},
-     *       //   "colorRgb": "my_colorRgb",
-     *       //   "createdDate": "my_createdDate",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "orgUnitId": "my_orgUnitId",
-     *       //   "restrictions": {},
-     *       //   "themeId": "my_themeId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "backgroundImageFile": {},
-     *   //   "backgroundImageLink": "my_backgroundImageLink",
-     *   //   "capabilities": {},
-     *   //   "colorRgb": "my_colorRgb",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "orgUnitId": "my_orgUnitId",
-     *   //   "restrictions": {},
-     *   //   "themeId": "my_themeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deprecated: Use `drives.insert` instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15366,60 +9771,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Deprecated use drives.list instead.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.teamdrives.list({
-     *     // Maximum number of Team Drives to return.
-     *     maxResults: 'placeholder-value',
-     *     // Page token for Team Drives.
-     *     pageToken: 'placeholder-value',
-     *     // Query string for searching Team Drives.
-     *     q: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then all Team Drives of the domain in which the requester is an administrator are returned.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deprecated: Use `drives.list` instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15505,79 +9857,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Deprecated use drives.update instead.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/drive'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.teamdrives.update({
-     *     // The ID of the Team Drive
-     *     teamDriveId: 'placeholder-value',
-     *     // Issue the request as a domain administrator; if set to true, then the requester will be granted access if they are an administrator of the domain to which the Team Drive belongs.
-     *     useDomainAdminAccess: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "backgroundImageFile": {},
-     *       //   "backgroundImageLink": "my_backgroundImageLink",
-     *       //   "capabilities": {},
-     *       //   "colorRgb": "my_colorRgb",
-     *       //   "createdDate": "my_createdDate",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "orgUnitId": "my_orgUnitId",
-     *       //   "restrictions": {},
-     *       //   "themeId": "my_themeId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "backgroundImageFile": {},
-     *   //   "backgroundImageLink": "my_backgroundImageLink",
-     *   //   "capabilities": {},
-     *   //   "colorRgb": "my_colorRgb",
-     *   //   "createdDate": "my_createdDate",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "orgUnitId": "my_orgUnitId",
-     *   //   "restrictions": {},
-     *   //   "themeId": "my_themeId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deprecated: Use `drives.update` instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15684,7 +9964,7 @@ export namespace drive_v2 {
   export interface Params$Resource$Teamdrives$Insert
     extends StandardParameters {
     /**
-     * An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
+     * Required. An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned.
      */
     requestId?: string;
 

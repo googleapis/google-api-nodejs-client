@@ -254,6 +254,36 @@
         },
         "reports": {
           "methods": {
+            "countChromeBrowsersNeedingAttention": {
+              "description": "Count of Chrome Browsers that have been recently enrolled, have new policy to be synced, or have no recent activity.",
+              "flatPath": "v1/customers/{customersId}/reports:countChromeBrowsersNeedingAttention",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countChromeBrowsersNeedingAttention",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. The customer ID or \"my_customer\" prefixed with \"customers/\".",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "Optional. The ID of the organizational unit. If omitted, all data will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countChromeBrowsersNeedingAttention",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
             "countChromeDevicesReachingAutoExpirationDate": {
               "description": "Generate report of the number of devices expiring in each month of the selected time frame. Devices are grouped by auto update expiration date and model. Further information can be found [here](https://support.google.com/chrome/a/answer/10564947).",
               "flatPath": "v1/customers/{customersId}/reports:countChromeDevicesReachingAutoExpirationDate",
@@ -429,12 +459,12 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name",
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id",
                   "location": "query",
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count",
+                  "description": "Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id",
                   "location": "query",
                   "type": "string"
                 },
@@ -464,7 +494,7 @@
               ]
             },
             "findInstalledAppDevices": {
-              "description": "Generate report of devices that have a specified app installed.",
+              "description": "Generate report of managed Chrome browser devices that have a specified app installed.",
               "flatPath": "v1/customers/{customersId}/reports:findInstalledAppDevices",
               "httpMethod": "GET",
               "id": "chromemanagement.customers.reports.findInstalledAppDevices",
@@ -587,7 +617,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id ",
+                      "description": "Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The \"reports_timestamp\" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC \"Zulu\" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: \"2014-10-02T15:01:23Z\", \"2014-10-02T15:01:23.045123456Z\", \"1679283943823\".",
                       "location": "query",
                       "type": "string"
                     },
@@ -625,13 +655,146 @@
                   ]
                 }
               }
+            },
+            "events": {
+              "methods": {
+                "list": {
+                  "description": "List telemetry events.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/events",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.telemetry.events.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Only include resources that match the filter. Although this parameter is currently optional, this parameter will be required- please specify at least 1 event type. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The \"timestamp\" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC \"Zulu\" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: \"2014-10-02T15:01:23Z\", \"2014-10-02T15:01:23.045123456Z\", \"1679283943823\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of results to return. Default value is 100. Maximum value is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Token to specify next page in the list.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Customer id or \"my_customer\" to use the customer associated to the account making the request.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Required. Read mask to specify which fields to return. Although currently required, this field will become optional, while the filter parameter with an event type will be come required.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/telemetry/events",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1ListTelemetryEventsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                }
+              }
+            },
+            "users": {
+              "methods": {
+                "get": {
+                  "description": "Get telemetry user.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/users/{usersId}",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.telemetry.users.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the `TelemetryUser` to return.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/telemetry/users/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Read mask to specify which fields to return.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1TelemetryUser"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "List all telemetry users.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/users",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.telemetry.users.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Only include resources that match the filter. Supported filter fields: - user_id - user_org_unit_id ",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum number of results to return. Default value is 100. Maximum value is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Token to specify next page in the list.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Customer id or \"my_customer\" to use the customer associated to the account making the request.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Read mask to specify which fields to return.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/telemetry/users",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1ListTelemetryUsersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20221025",
+  "revision": "20230620",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -780,7 +943,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1AudioStatusReport": {
-      "description": "Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceAudioStatus](https://chromeenterprise.google/policies/#ReportDeviceAudioStatus) * Data Collection Frequency: 10 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceAudioStatus](https://chromeenterprise.google/policies/#ReportDeviceAudioStatus) * Data Collection Frequency: 10 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_AUDIO_REPORT",
       "id": "GoogleChromeManagementV1AudioStatusReport",
       "properties": {
         "inputDevice": {
@@ -825,7 +988,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1BatteryInfo": {
-      "description": "Information about the battery. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDevicePowerStatus](https://chromeenterprise.google/policies/#ReportDevicePowerStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Information about the battery. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDevicePowerStatus](https://chromeenterprise.google/policies/#ReportDevicePowerStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_BATTERY_INFO",
       "id": "GoogleChromeManagementV1BatteryInfo",
       "properties": {
         "designCapacity": {
@@ -918,7 +1081,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1BatteryStatusReport": {
-      "description": "Status data for battery. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDevicePowerStatus](https://chromeenterprise.google/policies/#ReportDevicePowerStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Status data for battery. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDevicePowerStatus](https://chromeenterprise.google/policies/#ReportDevicePowerStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_BATTERY_REPORT",
       "id": "GoogleChromeManagementV1BatteryStatusReport",
       "properties": {
         "batteryHealth": {
@@ -973,7 +1136,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1BootPerformanceReport": {
-      "description": "Boot performance report of a device. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceBootMode](https://chromeenterprise.google/policies/#ReportDeviceBootMode) * Data Collection Frequency: On every boot up event * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A",
+      "description": "Boot performance report of a device. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceBootMode](https://chromeenterprise.google/policies/#ReportDeviceBootMode) * Data Collection Frequency: On every boot up event * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_OS_REPORT",
       "id": "GoogleChromeManagementV1BootPerformanceReport",
       "properties": {
         "bootUpDuration": {
@@ -1149,6 +1312,21 @@
           "description": "Output only. The app developer has enabled support for their app. Version-specific field that will only be set when the requested app version is found.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "type": {
+          "description": "Output only. Types of an item in the Chrome Web Store",
+          "enum": [
+            "ITEM_TYPE_UNSPECIFIED",
+            "EXTENSION",
+            "OTHERS"
+          ],
+          "enumDescriptions": [
+            "Unspecified ItemType.",
+            "Chrome Extensions.",
+            "Any other type than extension."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1250,6 +1428,28 @@
           "description": "Total number of matching app requests.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse": {
+      "description": "Response containing counts for browsers that need attention.",
+      "id": "GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse",
+      "properties": {
+        "noRecentActivityCount": {
+          "description": "Number of browsers that haven’t had any recent activity",
+          "format": "int64",
+          "type": "string"
+        },
+        "pendingBrowserUpdateCount": {
+          "description": "Number of browsers that are pending an OS update",
+          "format": "int64",
+          "type": "string"
+        },
+        "recentlyEnrolledCount": {
+          "description": "Number of browsers that have been recently enrolled",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1382,7 +1582,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1CpuInfo": {
-      "description": "CPU specifications for the device * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "CPU specifications for the device * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_CPU_INFO",
       "id": "GoogleChromeManagementV1CpuInfo",
       "properties": {
         "architecture": {
@@ -1423,7 +1623,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1CpuStatusReport": {
-      "description": "Provides information about the status of the CPU. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Every 10 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Provides information about the status of the CPU. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Every 10 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_CPU_REPORT",
       "id": "GoogleChromeManagementV1CpuStatusReport",
       "properties": {
         "cpuTemperatureInfo": {
@@ -1647,6 +1847,52 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1DisplayDevice": {
+      "description": "Information of a display device.",
+      "id": "GoogleChromeManagementV1DisplayDevice",
+      "properties": {
+        "displayHeightMm": {
+          "description": "Output only. Display height in millimeters.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "displayName": {
+          "description": "Output only. Display device name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayWidthMm": {
+          "description": "Output only. Display width in millimeters.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "internal": {
+          "description": "Output only. Is display internal or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "manufactureYear": {
+          "description": "Output only. Year of manufacture.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "manufacturerId": {
+          "description": "Output only. Three letter manufacturer ID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "modelId": {
+          "description": "Output only. Manufacturer product code.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1DisplayInfo": {
       "description": "Information for a display.",
       "id": "GoogleChromeManagementV1DisplayInfo",
@@ -1654,6 +1900,11 @@
         "deviceId": {
           "description": "Output only. Represents the graphics card device id.",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Display device name.",
           "readOnly": true,
           "type": "string"
         },
@@ -1730,19 +1981,37 @@
       "type": "object"
     },
     "GoogleChromeManagementV1GraphicsInfo": {
-      "description": "Information of the graphics subsystem. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceGraphicsStatus](https://chromeenterprise.google/policies/#ReportDeviceGraphicsStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Information of the graphics subsystem. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceGraphicsStatus](https://chromeenterprise.google/policies/#ReportDeviceGraphicsStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_GRAPHICS_INFO",
       "id": "GoogleChromeManagementV1GraphicsInfo",
       "properties": {
         "adapterInfo": {
           "$ref": "GoogleChromeManagementV1GraphicsAdapterInfo",
           "description": "Output only. Information about the graphics adapter (GPU).",
           "readOnly": true
+        },
+        "displayDevices": {
+          "description": "Output only. Information about the display(s) of the device.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1DisplayDevice"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "eprivacySupported": {
+          "description": "Output only. Is ePrivacy screen supported or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "touchScreenInfo": {
+          "$ref": "GoogleChromeManagementV1TouchScreenInfo",
+          "description": "Output only. Information about the internal touch screen(s) of the device.",
+          "readOnly": true
         }
       },
       "type": "object"
     },
     "GoogleChromeManagementV1GraphicsStatusReport": {
-      "description": "Information of the graphics subsystem. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceGraphicsInfo](https://chromeenterprise.google/policies/#ReportDeviceGraphicsInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Information of the graphics subsystem. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceGraphicsInfo](https://chromeenterprise.google/policies/#ReportDeviceGraphicsInfo) * Data Collection Frequency: 3 hours. * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_GRAPHICS_REPORT",
       "id": "GoogleChromeManagementV1GraphicsStatusReport",
       "properties": {
         "displays": {
@@ -1757,6 +2026,34 @@
           "description": "Output only. Time at which the graphics data was reported.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1HeartbeatStatusReport": {
+      "description": "Heartbeat status report of a device. * Available for Kiosks * This field provides online/offline/unknown status of a device and will only be included if the status has changed (e.g. Online -> Offline) * Data for this field is controlled via policy: [HeartbeatEnabled](https://chromeenterprise.google/policies/#HeartbeatEnabled) [More Info](https://support.google.com/chrome/a/answer/6179663#:~:text=On%20the%20Chrome,device%20status%20alerts) * Heartbeat Frequency: 2 mins * Note: If a device goes offline, it can take up to 12 minutes for the online status of the device to be updated * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: N/A * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_DEVICE_ACTIVITY_REPORT",
+      "id": "GoogleChromeManagementV1HeartbeatStatusReport",
+      "properties": {
+        "reportTime": {
+          "description": "Timestamp of when status changed was detected",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "State the device changed to",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "UNKNOWN",
+            "ONLINE",
+            "OFFLINE"
+          ],
+          "enumDescriptions": [
+            "State not specified",
+            "Device is not eligible for heartbeat monitoring",
+            "Device is online",
+            "Device is offline"
+          ],
           "type": "string"
         }
       },
@@ -1905,6 +2202,26 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1KioskAppStatusReport": {
+      "description": "Kiosk app status report of a device. * Available for Kiosks * This field provides the app id and version number running on a kiosk device and the timestamp of when the report was last updated * Data for this field is controlled via policy: [ReportDeviceSessionStatus](https://chromeenterprise.google/policies/#ReportDeviceSessionStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_APPS_REPORT",
+      "id": "GoogleChromeManagementV1KioskAppStatusReport",
+      "properties": {
+        "appId": {
+          "description": "App id of kiosk app for example \"mdmkkicfmmkgmpkmkdikhlbggogpicma\"",
+          "type": "string"
+        },
+        "appVersion": {
+          "description": "App version number of kiosk app for example \"1.10.118\"",
+          "type": "string"
+        },
+        "reportTime": {
+          "description": "Timestamp of when report was collected",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1ListTelemetryDevicesResponse": {
       "id": "GoogleChromeManagementV1ListTelemetryDevicesResponse",
       "properties": {
@@ -1922,8 +2239,44 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1ListTelemetryEventsResponse": {
+      "description": "Response message for listing telemetry events for a customer.",
+      "id": "GoogleChromeManagementV1ListTelemetryEventsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to specify next page in the list.",
+          "type": "string"
+        },
+        "telemetryEvents": {
+          "description": "Telemetry events returned in the response.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TelemetryEvent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1ListTelemetryUsersResponse": {
+      "description": "Response message for listing telemetry users for a customer.",
+      "id": "GoogleChromeManagementV1ListTelemetryUsersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to specify next page in the list.",
+          "type": "string"
+        },
+        "telemetryUsers": {
+          "description": "Telemetry users returned in the response.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TelemetryUser"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1MemoryInfo": {
-      "description": "Memory information of a device. * This field has both telemetry and device information: - `totalRamBytes` - Device information - `availableRamBytes` - Telemetry information - `totalMemoryEncryption` - Device information * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: - `totalRamBytes` - Only at upload - `availableRamBytes` - Every 10 minutes - `totalMemoryEncryption` - at device startup * Default Data Reporting Frequency: - `totalRamBytes` - 3 hours - `availableRamBytes` - 3 hours - `totalMemoryEncryption` - at device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: only for `totalMemoryEncryption` * Reported for affiliated users only: N/A",
+      "description": "Memory information of a device. * This field has both telemetry and device information: - `totalRamBytes` - Device information - `availableRamBytes` - Telemetry information - `totalMemoryEncryption` - Device information * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: - `totalRamBytes` - Only at upload - `availableRamBytes` - Every 10 minutes - `totalMemoryEncryption` - at device startup * Default Data Reporting Frequency: - `totalRamBytes` - 3 hours - `availableRamBytes` - 3 hours - `totalMemoryEncryption` - at device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: only for `totalMemoryEncryption` * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_MEMORY_INFO",
       "id": "GoogleChromeManagementV1MemoryInfo",
       "properties": {
         "availableRamBytes": {
@@ -1947,7 +2300,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1MemoryStatusReport": {
-      "description": "Contains samples of memory status reports. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: Only at upload, SystemRamFreeByes is collected every 10 minutes * Default Data Reporting Frequency: Every 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Contains samples of memory status reports. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceMemoryInfo](https://chromeenterprise.google/policies/#ReportDeviceMemoryInfo) * Data Collection Frequency: Only at upload, SystemRamFreeByes is collected every 10 minutes * Default Data Reporting Frequency: Every 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_MEMORY_REPORT",
       "id": "GoogleChromeManagementV1MemoryStatusReport",
       "properties": {
         "pageFaults": {
@@ -2027,7 +2380,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1NetworkDiagnosticsReport": {
-      "description": "Network testing results to determine the health of the device's network connection, for example whether the HTTPS latency is high or normal.",
+      "description": "Network testing results to determine the health of the device's network connection, for example whether the HTTPS latency is high or normal. * Granular permission needed: TELEMETRY_API_NETWORK_REPORT",
       "id": "GoogleChromeManagementV1NetworkDiagnosticsReport",
       "properties": {
         "httpsLatencyData": {
@@ -2045,7 +2398,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1NetworkInfo": {
-      "description": "Network device information. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportNetworkDeviceConfiguration](https://chromeenterprise.google/policies/#ReportNetworkDeviceConfiguration) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A",
+      "description": "Network device information. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportNetworkDeviceConfiguration](https://chromeenterprise.google/policies/#ReportNetworkDeviceConfiguration) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_NETWORK_INFO",
       "id": "GoogleChromeManagementV1NetworkInfo",
       "properties": {
         "networkDevices": {
@@ -2060,7 +2413,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1NetworkStatusReport": {
-      "description": "State of visible/configured networks. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportNetworkStatus](https://chromeenterprise.google/policies/#ReportNetworkStatus) * Data Collection Frequency: 60 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: Yes",
+      "description": "State of visible/configured networks. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportNetworkStatus](https://chromeenterprise.google/policies/#ReportNetworkStatus) * Data Collection Frequency: 60 minutes * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: Yes * Granular permission needed: TELEMETRY_API_NETWORK_REPORT",
       "id": "GoogleChromeManagementV1NetworkStatusReport",
       "properties": {
         "connectionState": {
@@ -2176,7 +2529,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1OsUpdateStatus": {
-      "description": "Contains information regarding the current OS update status. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceOsUpdateStatus](https://chromeenterprise.google/policies/#ReportDeviceOsUpdateStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Contains information regarding the current OS update status. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceOsUpdateStatus](https://chromeenterprise.google/policies/#ReportDeviceOsUpdateStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_OS_REPORT",
       "id": "GoogleChromeManagementV1OsUpdateStatus",
       "properties": {
         "lastRebootTime": {
@@ -2227,8 +2580,28 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1PeripheralsReport": {
+      "description": "Peripherals report. * Granular permission needed: TELEMETRY_API_PERIPHERALS_REPORT",
+      "id": "GoogleChromeManagementV1PeripheralsReport",
+      "properties": {
+        "reportTime": {
+          "description": "Output only. Timestamp of when the report was collected.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "usbPeripheralReport": {
+          "description": "Reports of all usb connected devices.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1UsbPeripheralReport"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1StorageInfo": {
-      "description": "Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_STORAGE_INFO",
       "id": "GoogleChromeManagementV1StorageInfo",
       "properties": {
         "availableDiskBytes": {
@@ -2273,7 +2646,7 @@
       "type": "object"
     },
     "GoogleChromeManagementV1StorageStatusReport": {
-      "description": "Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A",
+      "description": "Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_STORAGE_REPORT",
       "id": "GoogleChromeManagementV1StorageStatusReport",
       "properties": {
         "disk": {
@@ -2293,8 +2666,14 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent": {
+      "description": "`TelemetryAudioSevereUnderrunEvent` is triggered when a audio devices run out of buffer data for more than 5 seconds. * Granular permission needed: TELEMETRY_API_AUDIO_REPORT",
+      "id": "GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleChromeManagementV1TelemetryDevice": {
-      "description": "Telemetry data collected from a managed device.",
+      "description": "Telemetry data collected from a managed device. * Granular permission needed: TELEMETRY_API_DEVICE",
       "id": "GoogleChromeManagementV1TelemetryDevice",
       "properties": {
         "audioStatusReport": {
@@ -2368,6 +2747,22 @@
           "readOnly": true,
           "type": "array"
         },
+        "heartbeatStatusReport": {
+          "description": "Output only. Heartbeat status report containing timestamps periodically sorted in decreasing order of report_time",
+          "items": {
+            "$ref": "GoogleChromeManagementV1HeartbeatStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "kioskAppStatusReport": {
+          "description": "Output only. Kiosk app status report for the kiosk device",
+          "items": {
+            "$ref": "GoogleChromeManagementV1KioskAppStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "memoryInfo": {
           "$ref": "GoogleChromeManagementV1MemoryInfo",
           "description": "Output only. Information regarding memory specs for the device.",
@@ -2420,6 +2815,14 @@
           "readOnly": true,
           "type": "array"
         },
+        "peripheralsReport": {
+          "description": "Output only. Peripherals reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1PeripheralsReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "serialNumber": {
           "description": "Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the ChromeOS Devices tab.",
           "readOnly": true,
@@ -2449,8 +2852,202 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1TelemetryDeviceInfo": {
+      "description": "Information about a device associated with telemetry data. * Granular Permission needed: TELEMETRY_API_DEVICE",
+      "id": "GoogleChromeManagementV1TelemetryDeviceInfo",
+      "properties": {
+        "deviceId": {
+          "description": "Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Output only. Organization unit ID of the device.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryEvent": {
+      "description": "Telemetry data reported by a managed device.",
+      "id": "GoogleChromeManagementV1TelemetryEvent",
+      "properties": {
+        "audioSevereUnderrunEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent",
+          "description": "Output only. Payload for audio severe underrun event. Present only when the `event_type` field is `AUDIO_SEVERE_UNDERRUN`.",
+          "readOnly": true
+        },
+        "device": {
+          "$ref": "GoogleChromeManagementV1TelemetryDeviceInfo",
+          "description": "Output only. Information about the device associated with the event.",
+          "readOnly": true
+        },
+        "eventType": {
+          "description": "The event type of the current event.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "AUDIO_SEVERE_UNDERRUN",
+            "USB_ADDED",
+            "USB_REMOVED",
+            "NETWORK_HTTPS_LATENCY_CHANGE"
+          ],
+          "enumDescriptions": [
+            "Event type unknown.",
+            "Triggered when a audio devices run out of buffer data for more than 5 seconds.",
+            "Triggered when USB devices are added.",
+            "Triggered when USB devices are removed.",
+            "Triggered when a new HTTPS latency problem was detected or the device has recovered form an existing HTTPS latency problem."
+          ],
+          "type": "string"
+        },
+        "httpsLatencyChangeEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent",
+          "description": "Output only. Payload for HTTPS latency change event. Present only when `event_type` is `NETWORK_HTTPS_LATENCY_CHANGE`.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Output only. Resource name of the event.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reportTime": {
+          "description": "Timestamp that represents when the event was reported.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "usbPeripheralsEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryUsbPeripheralsEvent",
+          "description": "Output only. Payload for usb peripherals event. Present only when the `event_type` field is either `USB_ADDED` or `USB_REMOVED`.",
+          "readOnly": true
+        },
+        "user": {
+          "$ref": "GoogleChromeManagementV1TelemetryUserInfo",
+          "description": "Output only. Information about the user associated with the event.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent": {
+      "description": "Https latency routine is run periodically and `TelemetryHttpsLatencyChangeEvent` is triggered if a latency problem was detected or if the device has recovered from a latency problem. * Granular permission needed: TELEMETRY_API_NETWORK_REPORT",
+      "id": "GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent",
+      "properties": {
+        "httpsLatencyRoutineData": {
+          "$ref": "GoogleChromeManagementV1HttpsLatencyRoutineData",
+          "description": "HTTPS latency routine data that triggered the event."
+        },
+        "httpsLatencyState": {
+          "description": "Current HTTPS latency state.",
+          "enum": [
+            "HTTPS_LATENCY_STATE_UNSPECIFIED",
+            "RECOVERY",
+            "PROBLEM"
+          ],
+          "enumDescriptions": [
+            "HTTPS latency state is unspecified.",
+            "HTTPS latency recovered from a problem.",
+            "HTTPS latency problem."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryUsbPeripheralsEvent": {
+      "description": "`TelemetryUsbPeripheralsEvent` is triggered USB devices are either added or removed. * Granular permission needed: TELEMETRY_API_PERIPHERALS_REPORT",
+      "id": "GoogleChromeManagementV1TelemetryUsbPeripheralsEvent",
+      "properties": {
+        "usbPeripheralReport": {
+          "description": "List of usb devices that were either added or removed.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1UsbPeripheralReport"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryUser": {
+      "description": "Telemetry data collected from a managed user. * Granular permission needed: TELEMETRY_API_USER",
+      "id": "GoogleChromeManagementV1TelemetryUser",
+      "properties": {
+        "customer": {
+          "description": "G Suite Customer whose enterprise enrolled the device.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name of the user.",
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Organization unit of the user.",
+          "type": "string"
+        },
+        "userDevice": {
+          "description": "Telemetry data collected from a managed user and device.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TelemetryUserDevice"
+          },
+          "type": "array"
+        },
+        "userEmail": {
+          "description": "Email address of the user.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "Directory ID of the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryUserDevice": {
+      "description": "Telemetry data collected for a managed user and device. * Granular permission needed: TELEMETRY_API_DEVICE",
+      "id": "GoogleChromeManagementV1TelemetryUserDevice",
+      "properties": {
+        "audioStatusReport": {
+          "description": "Output only. Audio reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1AudioStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "deviceId": {
+          "description": "The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the ChromeOS Devices tab.",
+          "type": "string"
+        },
+        "peripheralsReport": {
+          "description": "Output only. Peripherals reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1PeripheralsReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryUserInfo": {
+      "description": "Information about a user associated with telemetry data. * Granular permission needed: TELEMETRY_API_USER",
+      "id": "GoogleChromeManagementV1TelemetryUserInfo",
+      "properties": {
+        "email": {
+          "description": "Output only. User's email.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Output only. Organization unit ID of the user.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1ThunderboltInfo": {
-      "description": "Thunderbolt bus info. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceSecurityStatus](https://chromeenterprise.google/policies/#ReportDeviceSecurityStatus) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: No * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A",
+      "description": "Thunderbolt bus info. * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceSecurityStatus](https://chromeenterprise.google/policies/#ReportDeviceSecurityStatus) * Data Collection Frequency: At device startup * Default Data Reporting Frequency: At device startup - Policy Controlled: No * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: Yes * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_BUS_DEVICE_INFO",
       "id": "GoogleChromeManagementV1ThunderboltInfo",
       "properties": {
         "securityLevel": {
@@ -2525,6 +3122,103 @@
           "description": "The maximum number of keys that can be used for encryption.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TouchScreenDevice": {
+      "description": "Information of an internal touch screen device.",
+      "id": "GoogleChromeManagementV1TouchScreenDevice",
+      "properties": {
+        "displayName": {
+          "description": "Output only. Touch screen device display name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "stylusCapable": {
+          "description": "Output only. Touch screen device is stylus capable or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "touchPointCount": {
+          "description": "Output only. Number of touch points supported on the device.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TouchScreenInfo": {
+      "description": "Information on the device touch screen.",
+      "id": "GoogleChromeManagementV1TouchScreenInfo",
+      "properties": {
+        "devices": {
+          "description": "Output only. List of the internal touch screen devices.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TouchScreenDevice"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "touchpadLibrary": {
+          "description": "Output only. Touchpad library name used by the input stack.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1UsbPeripheralReport": {
+      "description": "USB connected peripheral report.",
+      "id": "GoogleChromeManagementV1UsbPeripheralReport",
+      "properties": {
+        "categories": {
+          "description": "Output only. Categories the device belongs to https://www.usb.org/defined-class-codes",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "classId": {
+          "description": "Output only. Class ID https://www.usb.org/defined-class-codes",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "firmwareVersion": {
+          "description": "Output only. Firmware version",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Device name, model name, or product name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pid": {
+          "description": "Output only. Product ID",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "subclassId": {
+          "description": "Output only. Subclass ID https://www.usb.org/defined-class-codes",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "vendor": {
+          "description": "Output only. Vendor name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vid": {
+          "description": "Output only. Vendor ID",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"

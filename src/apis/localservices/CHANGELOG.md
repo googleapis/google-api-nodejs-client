@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v1.0.1...localservices-v1.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **localservices:** update the API ([db5b627](https://github.com/googleapis/google-api-nodejs-client/commit/db5b6271a4ea64ef44eaef014de4ff21ab4e3d7b))
+
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v1.0.0...localservices-v1.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **localservices:** update the API ([db5b627](https://github.com/googleapis/google-api-nodejs-client/commit/db5b6271a4ea64ef44eaef014de4ff21ab4e3d7b))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v0.5.2...localservices-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.5.2](https://github.com/googleapis/google-api-nodejs-client/compare/localservices-v0.5.1...localservices-v0.5.2) (2022-09-21)
 
 

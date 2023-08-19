@@ -1,5 +1,41 @@
 # Changelog
 
+## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v2.0.1...cloudshell-v2.0.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* **cloudshell:** update the API ([dd761cd](https://github.com/googleapis/google-api-nodejs-client/commit/dd761cdec6dbc10bf7b9bab9690182ae8af05098))
+
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v2.0.0...cloudshell-v2.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **cloudshell:** update the API ([f098eb8](https://github.com/googleapis/google-api-nodejs-client/commit/f098eb8765ca5b1091695c123fa096aaef0d6cae))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v1.0.0...cloudshell-v2.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v0.3.3...cloudshell-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v0.3.2...cloudshell-v0.3.3) (2022-09-21)
 
 

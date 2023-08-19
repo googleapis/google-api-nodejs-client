@@ -102,7 +102,7 @@ export namespace analyticsadmin_v1alpha {
   /**
    * Google Analytics Admin API
    *
-   *
+   * Manage properties in Google Analytics. Warning: Creating multiple Customer Applications, Accounts, or Projects to simulate or act as a single Customer Application, Account, or Project (respectively) or to circumvent Service-specific usage limits or quotas is a direct violation of Google Cloud Platform Terms of Service as well as Google APIs Terms of Service. These actions can result in immediate termination of your GCP project(s) without any warning.
    *
    * @example
    * ```js
@@ -140,6 +140,23 @@ export namespace analyticsadmin_v1alpha {
      * Ends with this number.
      */
     toValue?: Schema$GoogleAnalyticsAdminV1alphaNumericValue;
+  }
+  /**
+   * A binding of a user to a set of roles.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAccessBinding {
+    /**
+     * Output only. Resource name of this binding. Format: accounts/{account\}/accessBindings/{access_binding\} or properties/{property\}/accessBindings/{access_binding\} Example: "accounts/100/accessBindings/200"
+     */
+    name?: string | null;
+    /**
+     * A list of roles for to grant to the parent resource. Valid values: predefinedRoles/viewer predefinedRoles/analyst predefinedRoles/editor predefinedRoles/admin predefinedRoles/no-cost-data predefinedRoles/no-revenue-data For users, if an empty list of roles is set, this AccessBinding will be deleted.
+     */
+    roles?: string[] | null;
+    /**
+     * If set, the email address of the user to set roles for. Format: "someuser@gmail.com"
+     */
+    user?: string | null;
   }
   /**
    * A contiguous range of days: startDate, startDate + 1, ..., endDate.
@@ -460,6 +477,19 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse {}
   /**
+   * A link between a GA4 Property and an AdSense for Content ad client.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAdSenseLink {
+    /**
+     * Immutable. The AdSense ad client code that the GA4 property is linked to. Example format: "ca-pub-1234567890"
+     */
+    adClientCode?: string | null;
+    /**
+     * Output only. The resource name for this AdSense Link resource. Format: properties/{propertyId\}/adSenseLinks/{linkId\} Example: properties/1234/adSenseLinks/6789
+     */
+    name?: string | null;
+  }
+  /**
    * Request message for ApproveDisplayVideo360AdvertiserLinkProposal RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRequest {}
@@ -492,6 +522,10 @@ export namespace analyticsadmin_v1alpha {
      * Required. The lookback window configuration for acquisition conversion events. The default window size is 30 days.
      */
     acquisitionConversionEventLookbackWindow?: string | null;
+    /**
+     * Required. The Conversion Export Scope for data exported to linked Ads Accounts.
+     */
+    adsWebConversionDataExportScope?: string | null;
     /**
      * Output only. Resource name of this attribution settings resource. Format: properties/{property_id\}/attributionSettings Example: "properties/1000/attributionSettings"
      */
@@ -530,7 +564,7 @@ export namespace analyticsadmin_v1alpha {
      */
     exclusionDurationMode?: string | null;
     /**
-     * Required. Immutable. null Filter clauses that define the Audience. All clauses will be AND’ed together.
+     * Required. Immutable. Unordered list. Filter clauses that define the Audience. All clauses will be AND’ed together.
      */
     filterClauses?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterClause[];
     /**
@@ -555,11 +589,11 @@ export namespace analyticsadmin_v1alpha {
      */
     betweenFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterBetweenFilter;
     /**
-     * Required. Immutable. The dimension name or metric name to filter.
+     * Required. Immutable. The dimension name or metric name to filter. If the field name refers to a custom dimension or metric, a scope prefix will be added to the front of the custom dimensions or metric name. For more on scope prefixes or custom dimensions/metrics, reference the [Google Analytics Data API documentation] (https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#custom_dimensions).
      */
     fieldName?: string | null;
     /**
-     * Optional. If set, specifies the time window for which to evaluate data in number of days. If not set, then audience data is evaluated against lifetime data (i.e., infinite time window). For example, if set to 1 day, only the current day's data is evaluated. The reference point is the current day when at_any_point_in_time is unset or false. It can only be set when Audience scope is ACROSS_ALL_SESSIONS and cannot be greater than 60 days.
+     * Optional. If set, specifies the time window for which to evaluate data in number of days. If not set, then audience data is evaluated against lifetime data (For example, infinite time window). For example, if set to 1 day, only the current day's data is evaluated. The reference point is the current day when at_any_point_in_time is unset or false. It can only be set when Audience scope is ACROSS_ALL_SESSIONS and cannot be greater than 60 days.
      */
     inAnyNDayPeriod?: number | null;
     /**
@@ -653,7 +687,7 @@ export namespace analyticsadmin_v1alpha {
      */
     eventName?: string | null;
     /**
-     * Optional. If specified, this filter matches events that match both the single event name and the parameter filter expressions. AudienceEventFilter inside the parameter filter expression cannot be set (i.e., nested event filters are not supported). This should be a single and_group of dimension_or_metric_filter or not_expression; ANDs of ORs are not supported. Also, if it includes a filter for "eventCount", only that one will be considered; all the other filters will be ignored.
+     * Optional. If specified, this filter matches events that match both the single event name and the parameter filter expressions. AudienceEventFilter inside the parameter filter expression cannot be set (For example, nested event filters are not supported). This should be a single and_group of dimension_or_metric_filter or not_expression; ANDs of ORs are not supported. Also, if it includes a filter for "eventCount", only that one will be considered; all the other filters will be ignored.
      */
     eventParameterFilterExpression?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpression;
   }
@@ -671,7 +705,7 @@ export namespace analyticsadmin_v1alpha {
     logCondition?: string | null;
   }
   /**
-   * A clause for defining either a simple or sequence filter. A filter can be inclusive (i.e., users satisfying the filter clause are included in the Audience) or exclusive (i.e., users satisfying the filter clause are excluded from the Audience).
+   * A clause for defining either a simple or sequence filter. A filter can be inclusive (For example, users satisfying the filter clause are included in the Audience) or exclusive (For example, users satisfying the filter clause are excluded from the Audience).
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAudienceFilterClause {
     /**
@@ -704,7 +738,7 @@ export namespace analyticsadmin_v1alpha {
      */
     eventFilter?: Schema$GoogleAnalyticsAdminV1alphaAudienceEventFilter;
     /**
-     * A filter expression to be NOT'ed (i.e., inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level AudienceFilterExpression.
+     * A filter expression to be NOT'ed (For example, inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level AudienceFilterExpression.
      */
     notExpression?: Schema$GoogleAnalyticsAdminV1alphaAudienceFilterExpression;
     /**
@@ -743,7 +777,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep {
     /**
-     * Optional. When set, this step must be satisfied within the constraint_duration of the previous step (i.e., t[i] - t[i-1] <= constraint_duration). If not set, there is no duration requirement (the duration is effectively unlimited). It is ignored for the first step.
+     * Optional. When set, this step must be satisfied within the constraint_duration of the previous step (For example, t[i] - t[i-1] <= constraint_duration). If not set, there is no duration requirement (the duration is effectively unlimited). It is ignored for the first step.
      */
     constraintDuration?: string | null;
     /**
@@ -820,6 +854,24 @@ export namespace analyticsadmin_v1alpha {
     userLinks?: Schema$GoogleAnalyticsAdminV1alphaAuditUserLink[];
   }
   /**
+   * Request message for BatchCreateAccessBindings RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest {
+    /**
+     * Required. The requests specifying the access bindings to create. A maximum of 1000 access bindings can be created in a batch.
+     */
+    requests?: Schema$GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest[];
+  }
+  /**
+   * Response message for BatchCreateAccessBindings RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse {
+    /**
+     * The access bindings created.
+     */
+    accessBindings?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding[];
+  }
+  /**
    * Request message for BatchCreateUserLinks RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest {
@@ -842,6 +894,15 @@ export namespace analyticsadmin_v1alpha {
     userLinks?: Schema$GoogleAnalyticsAdminV1alphaUserLink[];
   }
   /**
+   * Request message for BatchDeleteAccessBindings RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest {
+    /**
+     * Required. The requests specifying the access bindings to delete. A maximum of 1000 access bindings can be deleted in a batch.
+     */
+    requests?: Schema$GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest[];
+  }
+  /**
    * Request message for BatchDeleteUserLinks RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest {
@@ -851,6 +912,15 @@ export namespace analyticsadmin_v1alpha {
     requests?: Schema$GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest[];
   }
   /**
+   * Response message for BatchGetAccessBindings RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse {
+    /**
+     * The requested access bindings.
+     */
+    accessBindings?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding[];
+  }
+  /**
    * Response message for BatchGetUserLinks RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse {
@@ -858,6 +928,24 @@ export namespace analyticsadmin_v1alpha {
      * The requested user links.
      */
     userLinks?: Schema$GoogleAnalyticsAdminV1alphaUserLink[];
+  }
+  /**
+   * Request message for BatchUpdateAccessBindings RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest {
+    /**
+     * Required. The requests specifying the access bindings to update. A maximum of 1000 access bindings can be updated in a batch.
+     */
+    requests?: Schema$GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest[];
+  }
+  /**
+   * Response message for BatchUpdateAccessBindings RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse {
+    /**
+     * The access bindings updated.
+     */
+    accessBindings?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding[];
   }
   /**
    * Request message for BatchUpdateUserLinks RPC.
@@ -876,6 +964,47 @@ export namespace analyticsadmin_v1alpha {
      * The user links updated.
      */
     userLinks?: Schema$GoogleAnalyticsAdminV1alphaUserLink[];
+  }
+  /**
+   * A link between a GA4 Property and BigQuery project.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaBigQueryLink {
+    /**
+     * Output only. Time when the link was created.
+     */
+    createTime?: string | null;
+    /**
+     * If set true, enables daily data export to the linked Google Cloud project.
+     */
+    dailyExportEnabled?: boolean | null;
+    /**
+     * If set true, enables enterprise export to the linked Google Cloud project.
+     */
+    enterpriseExportEnabled?: boolean | null;
+    /**
+     * The list of event names that will be excluded from exports.
+     */
+    excludedEvents?: string[] | null;
+    /**
+     * The list of streams under the parent property for which data will be exported. Format: properties/{property_id\}/dataStreams/{stream_id\} Example: ['properties/1000/dataStreams/2000']
+     */
+    exportStreams?: string[] | null;
+    /**
+     * If set true, exported data will include advertising identifiers for mobile app streams.
+     */
+    includeAdvertisingId?: boolean | null;
+    /**
+     * Output only. Resource name of this BigQuery link. Format: 'properties/{property_id\}/bigQueryLinks/{bigquery_link_id\}' Format: 'properties/1234/bigQueryLinks/abc567'
+     */
+    name?: string | null;
+    /**
+     * Immutable. The linked Google Cloud project. When creating a BigQueryLink, you may provide this resource name using either a project number or project ID. Once this resource has been created, the returned project will always have a project that contains a project number. Format: 'projects/{project number\}' Example: 'projects/1234'
+     */
+    project?: string | null;
+    /**
+     * If set true, enables streaming export to the linked Google Cloud project.
+     */
+    streamingExportEnabled?: boolean | null;
   }
   /**
    * Request message for CancelDisplayVideo360AdvertiserLinkProposal RPC.
@@ -911,9 +1040,25 @@ export namespace analyticsadmin_v1alpha {
      */
     account?: Schema$GoogleAnalyticsAdminV1alphaAccount;
     /**
+     * A snapshot of an AdSenseLink resource in change history.
+     */
+    adsenseLink?: Schema$GoogleAnalyticsAdminV1alphaAdSenseLink;
+    /**
      * A snapshot of AttributionSettings resource in change history.
      */
     attributionSettings?: Schema$GoogleAnalyticsAdminV1alphaAttributionSettings;
+    /**
+     * A snapshot of an Audience resource in change history.
+     */
+    audience?: Schema$GoogleAnalyticsAdminV1alphaAudience;
+    /**
+     * A snapshot of a BigQuery link resource in change history.
+     */
+    bigqueryLink?: Schema$GoogleAnalyticsAdminV1alphaBigQueryLink;
+    /**
+     * A snapshot of a ChannelGroup resource in change history.
+     */
+    channelGroup?: Schema$GoogleAnalyticsAdminV1alphaChannelGroup;
     /**
      * A snapshot of a ConversionEvent resource in change history.
      */
@@ -942,6 +1087,14 @@ export namespace analyticsadmin_v1alpha {
      * A snapshot of a DisplayVideo360AdvertiserLinkProposal resource in change history.
      */
     displayVideo360AdvertiserLinkProposal?: Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal;
+    /**
+     * A snapshot of EnhancedMeasurementSettings resource in change history.
+     */
+    enhancedMeasurementSettings?: Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings;
+    /**
+     * A snapshot of an EventCreateRule resource in change history.
+     */
+    eventCreateRule?: Schema$GoogleAnalyticsAdminV1alphaEventCreateRule;
     /**
      * A snapshot of an ExpandedDataSet resource in change history.
      */
@@ -1001,9 +1154,120 @@ export namespace analyticsadmin_v1alpha {
     userActorEmail?: string | null;
   }
   /**
+   * A resource message representing a Channel Group.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroup {
+    /**
+     * The description of the Channel Group. Max length of 256 characters.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name of the Channel Group. Max length of 80 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The grouping rules of channels. Maximum number of rules is 25.
+     */
+    groupingRule?: Schema$GoogleAnalyticsAdminV1alphaGroupingRule[];
+    /**
+     * Output only. The resource name for this Channel Group resource. Format: properties/{property\}/channelGroups/{channel_group\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Default Channel Group defined by Google, which cannot be updated.
+     */
+    systemDefined?: boolean | null;
+  }
+  /**
+   * A specific filter for a single dimension.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilter {
+    /**
+     * Required. Immutable. The dimension name to filter.
+     */
+    fieldName?: string | null;
+    /**
+     * A filter for a string dimension that matches a particular list of options.
+     */
+    inListFilter?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter;
+    /**
+     * A filter for a string-type dimension that matches a particular pattern.
+     */
+    stringFilter?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter;
+  }
+  /**
+   * A logical expression of Channel Group dimension filters.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression {
+    /**
+     * A list of expressions to be AND’ed together. It can only contain ChannelGroupFilterExpressions with or_group. This must be set for the top level ChannelGroupFilterExpression.
+     */
+    andGroup?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList;
+    /**
+     * A filter on a single dimension. This cannot be set on the top level ChannelGroupFilterExpression.
+     */
+    filter?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilter;
+    /**
+     * A filter expression to be NOT'ed (that is inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level ChannelGroupFilterExpression.
+     */
+    notExpression?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression;
+    /**
+     * A list of expressions to OR’ed together. It cannot contain ChannelGroupFilterExpressions with and_group or or_group.
+     */
+    orGroup?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList;
+  }
+  /**
+   * A list of Channel Group filter expressions.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList {
+    /**
+     * A list of Channel Group filter expressions.
+     */
+    filterExpressions?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression[];
+  }
+  /**
+   * A filter for a string dimension that matches a particular list of options. The match is case insensitive.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter {
+    /**
+     * Required. The list of possible string values to match against. Must be non-empty.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Filter where the field value is a String. The match is case insensitive.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter {
+    /**
+     * Required. The match type for the string filter.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The string value to be matched against.
+     */
+    value?: string | null;
+  }
+  /**
+   * Configuration for a specific Connected Site Tag.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaConnectedSiteTag {
+    /**
+     * Required. User-provided display name for the connected site tag. Must be less than 256 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Required. "Tag ID to forward events to. Also known as the Measurement ID, or the "G-ID" (For example: G-12345).
+     */
+    tagId?: string | null;
+  }
+  /**
    * A conversion event in a Google Analytics property.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaConversionEvent {
+    /**
+     * Optional. The method by which conversions will be counted across multiple events within a session. If this value is not provided, it will be set to `ONCE_PER_EVENT`.
+     */
+    countingMethod?: string | null;
     /**
      * Output only. Time when this conversion event was created in the property.
      */
@@ -1013,7 +1277,7 @@ export namespace analyticsadmin_v1alpha {
      */
     custom?: boolean | null;
     /**
-     * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
+     * Output only. If set, this event can currently be deleted with DeleteConversionEvent.
      */
     deletable?: boolean | null;
     /**
@@ -1025,6 +1289,36 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string | null;
   }
+  /**
+   * Request message for CreateAccessBinding RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest {
+    /**
+     * Required. The access binding to create.
+     */
+    accessBinding?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding;
+    /**
+     * Required. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string | null;
+  }
+  /**
+   * Request message for CreateConnectedSiteTag RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest {
+    /**
+     * Required. The tag to add to the Universal Analytics property
+     */
+    connectedSiteTag?: Schema$GoogleAnalyticsAdminV1alphaConnectedSiteTag;
+    /**
+     * The Universal Analytics property to create connected site tags for. This API does not support GA4 properties. Format: properties/{universalAnalyticsPropertyId\} Example: properties/1234
+     */
+    property?: string | null;
+  }
+  /**
+   * Response message for CreateConnectedSiteTag RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse {}
   /**
    * Request message for CreateUserLink RPC. Users can have multiple email addresses associated with their Google account, and one of these email addresses is the "primary" email address. Any of the email addresses associated with a Google account may be used for a new UserLink, but the returned UserLink will always contain the "primary" email address. As a result, the input and output email address for this request may differ.
    */
@@ -1063,7 +1357,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string | null;
     /**
-     * Required. Immutable. Tagging parameter name for this custom dimension. If this is a user-scoped dimension, then this is the user property name. If this is an event-scoped dimension, then this is the event parameter name. May only contain alphanumeric and underscore characters, starting with a letter. Max length of 24 characters for user-scoped dimensions, 40 characters for event-scoped dimensions.
+     * Required. Immutable. Tagging parameter name for this custom dimension. If this is a user-scoped dimension, then this is the user property name. If this is an event-scoped dimension, then this is the event parameter name. If this is an item-scoped dimension, then this is the parameter name found in the eCommerce items array. May only contain alphanumeric and underscore characters, starting with a letter. Max length of 24 characters for user-scoped dimensions, 40 characters for event-scoped dimensions.
      */
     parameterName?: string | null;
     /**
@@ -1218,7 +1512,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaDataStreamWebStreamData {
     /**
-     * Immutable. Domain name of the web app being measured, or empty. Example: "http://www.google.com", "https://www.google.com"
+     * Domain name of the web app being measured, or empty. Example: "http://www.google.com", "https://www.google.com"
      */
     defaultUri?: string | null;
     /**
@@ -1226,9 +1520,31 @@ export namespace analyticsadmin_v1alpha {
      */
     firebaseAppId?: string | null;
     /**
-     * Output only. Analytics "Measurement ID", without the "G-" prefix. Example: "G-1A2BCD345E" would just be "1A2BCD345E"
+     * Output only. Analytics Measurement ID. Example: "G-1A2BCD345E"
      */
     measurementId?: string | null;
+  }
+  /**
+   * Request message for DeleteAccessBinding RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest {
+    /**
+     * Required. Formats: - accounts/{account\}/accessBindings/{accessBinding\} - properties/{property\}/accessBindings/{accessBinding\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Request message for DeleteConnectedSiteTag RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest {
+    /**
+     * The Universal Analytics property to delete connected site tags for. This API does not support GA4 properties. Format: properties/{universalAnalyticsPropertyId\} Example: properties/1234
+     */
+    property?: string | null;
+    /**
+     * Tag ID to forward events to. Also known as the Measurement ID, or the "G-ID" (For example: G-12345).
+     */
+    tagId?: string | null;
   }
   /**
    * Request message for DeleteUserLink RPC.
@@ -1306,6 +1622,80 @@ export namespace analyticsadmin_v1alpha {
     validationEmail?: string | null;
   }
   /**
+   * Singleton resource under a web DataStream, configuring measurement of additional site interactions and content.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings {
+    /**
+     * If enabled, capture a file download event each time a link is clicked with a common document, compressed file, application, video, or audio extension.
+     */
+    fileDownloadsEnabled?: boolean | null;
+    /**
+     * If enabled, capture a form interaction event each time a visitor interacts with a form on your website. False by default.
+     */
+    formInteractionsEnabled?: boolean | null;
+    /**
+     * Output only. Resource name of the Enhanced Measurement Settings. Format: properties/{property_id\}/dataStreams/{data_stream\}/enhancedMeasurementSettings Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
+     */
+    name?: string | null;
+    /**
+     * If enabled, capture an outbound click event each time a visitor clicks a link that leads them away from your domain.
+     */
+    outboundClicksEnabled?: boolean | null;
+    /**
+     * If enabled, capture a page view event each time the website changes the browser history state.
+     */
+    pageChangesEnabled?: boolean | null;
+    /**
+     * If enabled, capture scroll events each time a visitor gets to the bottom of a page.
+     */
+    scrollsEnabled?: boolean | null;
+    /**
+     * Required. URL query parameters to interpret as site search parameters. Max length is 1024 characters. Must not be empty.
+     */
+    searchQueryParameter?: string | null;
+    /**
+     * If enabled, capture a view search results event each time a visitor performs a search on your site (based on a query parameter).
+     */
+    siteSearchEnabled?: boolean | null;
+    /**
+     * Indicates whether Enhanced Measurement Settings will be used to automatically measure interactions and content on this web stream. Changing this value does not affect the settings themselves, but determines whether they are respected.
+     */
+    streamEnabled?: boolean | null;
+    /**
+     * Additional URL query parameters. Max length is 1024 characters.
+     */
+    uriQueryParameter?: string | null;
+    /**
+     * If enabled, capture video play, progress, and complete events as visitors view embedded videos on your site.
+     */
+    videoEngagementEnabled?: boolean | null;
+  }
+  /**
+   * An Event Create Rule defines conditions that will trigger the creation of an entirely new event based upon matched criteria of a source event. Additional mutations of the parameters from the source event can be defined. Unlike Event Edit rules, Event Creation Rules have no defined order. They will all be run independently. Event Edit and Event Create rules can't be used to modify an event created from an Event Create rule.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaEventCreateRule {
+    /**
+     * Required. The name of the new event to be created. This value must: * be less than 40 characters * consist only of letters, digits or _ (underscores) * start with a letter
+     */
+    destinationEvent?: string | null;
+    /**
+     * Required. Must have at least one condition, and can have up to 10 max. Conditions on the source event must match for this rule to be applied.
+     */
+    eventConditions?: Schema$GoogleAnalyticsAdminV1alphaMatchingCondition[];
+    /**
+     * Output only. Resource name for this EventCreateRule resource. Format: properties/{property\}/dataStreams/{data_stream\}/eventCreateRules/{event_create_rule\}
+     */
+    name?: string | null;
+    /**
+     * Parameter mutations define parameter behavior on the new event, and are applied in order. A maximum of 20 mutations can be applied.
+     */
+    parameterMutations?: Schema$GoogleAnalyticsAdminV1alphaParameterMutation[];
+    /**
+     * If true, the source parameters are copied to the new event. If false, or unset, all non-internal parameters are not copied from the source event. Parameter mutations are applied after the parameters have been copied.
+     */
+    sourceCopyParameters?: boolean | null;
+  }
+  /**
    * A resource message representing a GA4 ExpandedDataSet.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet {
@@ -1318,7 +1708,7 @@ export namespace analyticsadmin_v1alpha {
      */
     description?: string | null;
     /**
-     * Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the change of encountering `other row`.
+     * Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the chance of encountering `other` row.
      */
     dimensionFilterExpression?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression;
     /**
@@ -1368,7 +1758,7 @@ export namespace analyticsadmin_v1alpha {
      */
     filter?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilter;
     /**
-     * A filter expression to be NOT'ed (i.e., inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression.
+     * A filter expression to be NOT'ed (that is, inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression.
      */
     notExpression?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression;
   }
@@ -1410,6 +1800,33 @@ export namespace analyticsadmin_v1alpha {
      * Required. The string value to be matched against.
      */
     value?: string | null;
+  }
+  /**
+   * Request for fetching the opt out status for the automated GA4 setup process.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest {
+    /**
+     * Required. The UA property to get the opt out status. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internalWebPropertyId\} Example: properties/1234
+     */
+    property?: string | null;
+  }
+  /**
+   * Response message for fetching the opt out status for the automated GA4 setup process.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse {
+    /**
+     * The opt out status for the UA property.
+     */
+    optOut?: boolean | null;
+  }
+  /**
+   * Response for looking up GA4 property connected to a UA property.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse {
+    /**
+     * The GA4 property connected to the UA property. An empty string is returned when there is no connected GA4 property. Format: properties/{property_id\} Example: properties/1234
+     */
+    property?: string | null;
   }
   /**
    * A link between a GA4 property and a Firebase project.
@@ -1492,6 +1909,19 @@ export namespace analyticsadmin_v1alpha {
     state?: string | null;
   }
   /**
+   * The rules that govern how traffic is grouped into one channel.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaGroupingRule {
+    /**
+     * Required. Customer defined display name for the channel.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The Filter Expression that defines the Grouping Rule.
+     */
+    expression?: Schema$GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression;
+  }
+  /**
    * Status information for a link proposal.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails {
@@ -1507,6 +1937,19 @@ export namespace analyticsadmin_v1alpha {
      * Output only. The email address of the user that proposed this linkage.
      */
     requestorEmail?: string | null;
+  }
+  /**
+   * Response message for ListAccessBindings RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse {
+    /**
+     * List of AccessBindings. These will be ordered stably, but in an arbitrary order.
+     */
+    accessBindings?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Request message for ListAccounts RPC.
@@ -1535,6 +1978,19 @@ export namespace analyticsadmin_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ListAdSenseLinks method.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse {
+    /**
+     * List of AdSenseLinks.
+     */
+    adsenseLinks?: Schema$GoogleAnalyticsAdminV1alphaAdSenseLink[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for ListAudiences RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaListAudiencesResponse {
@@ -1546,6 +2002,50 @@ export namespace analyticsadmin_v1alpha {
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListBigQueryLinks RPC
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse {
+    /**
+     * List of BigQueryLinks.
+     */
+    bigqueryLinks?: Schema$GoogleAnalyticsAdminV1alphaBigQueryLink[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListChannelGroups RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse {
+    /**
+     * List of ChannelGroup. These will be ordered stably, but in an arbitrary order.
+     */
+    channelGroups?: Schema$GoogleAnalyticsAdminV1alphaChannelGroup[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Request message for ListConnectedSiteTags RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest {
+    /**
+     * The Universal Analytics property to fetch connected site tags for. This does not work on GA4 properties. A maximum of 20 connected site tags will be returned. Example Format: `properties/1234`
+     */
+    property?: string | null;
+  }
+  /**
+   * Response message for ListConnectedSiteTags RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse {
+    /**
+     * The site tags for the Universal Analytics property. A maximum of 20 connected site tags will be returned.
+     */
+    connectedSiteTags?: Schema$GoogleAnalyticsAdminV1alphaConnectedSiteTag[];
   }
   /**
    * Response message for ListConversionEvents RPC.
@@ -1620,6 +2120,32 @@ export namespace analyticsadmin_v1alpha {
      * List of DisplayVideo360AdvertiserLinks.
      */
     displayVideo360AdvertiserLinks?: Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListEventCreateRules RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse {
+    /**
+     * List of EventCreateRules. These will be ordered stably, but in an arbitrary order.
+     */
+    eventCreateRules?: Schema$GoogleAnalyticsAdminV1alphaEventCreateRule[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListExpandedDataSets RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse {
+    /**
+     * List of ExpandedDataSet. These will be ordered stably, but in an arbitrary order.
+     */
+    expandedDataSets?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -1704,6 +2230,27 @@ export namespace analyticsadmin_v1alpha {
     userLinks?: Schema$GoogleAnalyticsAdminV1alphaUserLink[];
   }
   /**
+   * Defines a condition for when an Event Edit or Event Creation rule applies to an event.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaMatchingCondition {
+    /**
+     * Required. The type of comparison to be applied to the value.
+     */
+    comparisonType?: string | null;
+    /**
+     * Required. The name of the field that is compared against for the condition. If 'event_name' is specified this condition will apply to the name of the event. Otherwise the condition will apply to a parameter with the specified name. This value cannot contain spaces.
+     */
+    field?: string | null;
+    /**
+     * Whether or not the result of the comparison should be negated. For example, if `negated` is true, then 'equals' comparisons would function as 'not equals'.
+     */
+    negated?: boolean | null;
+    /**
+     * Required. The value being compared against for this condition. The runtime implementation may perform type coercion of this value to evaluate this condition based on the type of the parameter value.
+     */
+    value?: string | null;
+  }
+  /**
    * A secret value used for sending hits to Measurement Protocol.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret {
@@ -1732,6 +2279,19 @@ export namespace analyticsadmin_v1alpha {
      * Integer value
      */
     int64Value?: string | null;
+  }
+  /**
+   * Defines an event parameter to mutate.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaParameterMutation {
+    /**
+     * Required. The name of the parameter to mutate. This value must: * be less than 40 characters. * be unique across across all mutations within the rule * consist only of letters, digits or _ (underscores) For event edit rules, the name may also be set to 'event_name' to modify the event_name in place.
+     */
+    parameter?: string | null;
+    /**
+     * Required. The value mutation to perform. * Must be less than 100 characters. * To specify a constant value for the param, use the value's string. * To copy value from another parameter, use syntax like "[[other_parameter]]" For more details, see this [help center article](https://support.google.com/analytics/answer/10085872#modify-an-event&zippy=%2Cin-this-article%2Cmodify-parameters).
+     */
+    parameterValue?: string | null;
   }
   /**
    * A resource message representing a Google Analytics GA4 property.
@@ -1774,7 +2334,7 @@ export namespace analyticsadmin_v1alpha {
      */
     parent?: string | null;
     /**
-     * Immutable. The property type for this Property resource. When creating a property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY" types cannot yet be created via Google Analytics Admin API.
+     * Immutable. The property type for this Property resource. When creating a property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY" types cannot yet be created with the Google Analytics Admin API.
      */
     propertyType?: string | null;
     /**
@@ -1820,7 +2380,7 @@ export namespace analyticsadmin_v1alpha {
      */
     account?: Schema$GoogleAnalyticsAdminV1alphaAccount;
     /**
-     * Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI
+     * Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Cloud Console as a Redirect URI.
      */
     redirectUri?: string | null;
   }
@@ -1842,7 +2402,7 @@ export namespace analyticsadmin_v1alpha {
      */
     dateRanges?: Schema$GoogleAnalyticsAdminV1alphaAccessDateRange[];
     /**
-     * Dimension filters allow you to restrict report response to specific dimension values which match the filter. For example, filtering on access records of a single user. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter.
+     * Dimension filters let you restrict report response to specific dimension values which match the filter. For example, filtering on access records of a single user. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter.
      */
     dimensionFilter?: Schema$GoogleAnalyticsAdminV1alphaAccessFilterExpression;
     /**
@@ -1870,7 +2430,7 @@ export namespace analyticsadmin_v1alpha {
      */
     orderBys?: Schema$GoogleAnalyticsAdminV1alphaAccessOrderBy[];
     /**
-     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [AccessQuota](#AccessQuota).
+     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level requests, this field must be false.
      */
     returnEntityQuota?: boolean | null;
     /**
@@ -1891,7 +2451,7 @@ export namespace analyticsadmin_v1alpha {
      */
     metricHeaders?: Schema$GoogleAnalyticsAdminV1alphaAccessMetricHeader[];
     /**
-     * The quota state for this Analytics property including this request.
+     * The quota state for this Analytics property including this request. This field doesn't work with account-level requests.
      */
     quota?: Schema$GoogleAnalyticsAdminV1alphaAccessQuota;
     /**
@@ -1987,6 +2547,32 @@ export namespace analyticsadmin_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Request for setting the opt out status for the automated GA4 setup process.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest {
+    /**
+     * The status to set.
+     */
+    optOut?: boolean | null;
+    /**
+     * Required. The UA property to set the opt out status. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internalWebPropertyId\} Example: properties/1234
+     */
+    property?: string | null;
+  }
+  /**
+   * Response message for setting the opt out status for the automated GA4 setup process.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse {}
+  /**
+   * Request message for UpdateAccessBinding RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest {
+    /**
+     * Required. The access binding to update.
+     */
+    accessBinding?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding;
+  }
+  /**
    * Request message for UpdateUserLink RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest {
@@ -2019,54 +2605,16 @@ export namespace analyticsadmin_v1alpha {
 
   export class Resource$Accounts {
     context: APIRequestContext;
+    accessBindings: Resource$Accounts$Accessbindings;
     userLinks: Resource$Accounts$Userlinks;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.accessBindings = new Resource$Accounts$Accessbindings(this.context);
       this.userLinks = new Resource$Accounts$Userlinks(this.context);
     }
 
     /**
      * Marks target Account as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted accounts. However, they can be restored using the Trash Can UI. If the accounts are not restored before the expiration time, the account and all child resources (eg: Properties, GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.delete({
-     *     // Required. The name of the Account to soft-delete. Format: accounts/{account\} Example: "accounts/100"
-     *     name: 'accounts/my-account',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2154,56 +2702,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lookup for a single Account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.get({
-     *     // Required. The name of the account to lookup. Format: accounts/{account\} Example: "accounts/100"
-     *     name: 'accounts/my-account',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "deleted": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "regionCode": "my_regionCode",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2297,56 +2795,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Get data sharing settings on an account. Data sharing settings are singletons.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.getDataSharingSettings({
-     *     // Required. The name of the settings to lookup. Format: accounts/{account\}/dataSharingSettings Example: "accounts/1000/dataSharingSettings"
-     *     name: 'accounts/my-account/dataSharingSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "sharingWithGoogleAnySalesEnabled": false,
-     *   //   "sharingWithGoogleAssignedSalesEnabled": false,
-     *   //   "sharingWithGoogleProductsEnabled": false,
-     *   //   "sharingWithGoogleSupportEnabled": false,
-     *   //   "sharingWithOthersEnabled": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2441,56 +2889,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Returns all accounts accessible by the caller. Note that these accounts might not currently have GA4 properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.list({
-     *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Whether to include soft-deleted (ie: "trashed") Accounts in the results. Accounts can be inspected to determine whether they are deleted or not.
-     *     showDeleted: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accounts": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2584,68 +2982,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates an account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.patch({
-     *     // Output only. Resource name of this account. Format: accounts/{account\} Example: "accounts/100"
-     *     name: 'accounts/my-account',
-     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "deleted": false,
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "regionCode": "my_regionCode",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "deleted": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "regionCode": "my_regionCode",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2739,54 +3075,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Requests a ticket for creating an account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.provisionAccountTicket({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "account": {},
-     *       //   "redirectUri": "my_redirectUri"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountTicketId": "my_accountTicketId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2883,65 +3171,104 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. The property must be in Google Analytics 360. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runAccessReport(
+      params?: Params$Resource$Accounts$Runaccessreport,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>;
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      params: Params$Resource$Accounts$Runaccessreport,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+    ): void;
+    runAccessReport(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Runaccessreport
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Runaccessreport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Runaccessreport;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+entity}:runAccessReport').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['entity'],
+        pathParams: ['entity'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaRunAccessReportResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Searches through all changes to an account or its children given the specified set of filters.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.searchChangeHistoryEvents({
-     *     // Required. The account resource for which to return change history resources.
-     *     account: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "action": [],
-     *       //   "actorEmail": [],
-     *       //   "earliestChangeTime": "my_earliestChangeTime",
-     *       //   "latestChangeTime": "my_latestChangeTime",
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken",
-     *       //   "property": "my_property",
-     *       //   "resourceType": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "changeHistoryEvents": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3076,7 +3403,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     * Required. The list of fields to be updated. Field names must be in snake case (for example, "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      */
     updateMask?: string;
 
@@ -3092,6 +3419,18 @@ export namespace analyticsadmin_v1alpha {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketRequest;
   }
+  export interface Params$Resource$Accounts$Runaccessreport
+    extends StandardParameters {
+    /**
+     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     */
+    entity?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaRunAccessReportRequest;
+  }
   export interface Params$Resource$Accounts$Searchchangehistoryevents
     extends StandardParameters {
     /**
@@ -3105,6 +3444,964 @@ export namespace analyticsadmin_v1alpha {
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest;
   }
 
+  export class Resource$Accounts$Accessbindings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates information about multiple access bindings to an account or property. This method is transactional. If any AccessBinding cannot be created, none of the AccessBindings will be created.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Accounts$Accessbindings$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
+      params?: Params$Resource$Accounts$Accessbindings$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>;
+    batchCreate(
+      params: Params$Resource$Accounts$Accessbindings$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Accounts$Accessbindings$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Accounts$Accessbindings$Batchcreate,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Accessbindings$Batchcreate
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Accessbindings$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Accessbindings$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/accessBindings:batchCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes information about multiple users' links to an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Accounts$Accessbindings$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
+      params?: Params$Resource$Accounts$Accessbindings$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    batchDelete(
+      params: Params$Resource$Accounts$Accessbindings$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Accounts$Accessbindings$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Accounts$Accessbindings$Batchdelete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Accessbindings$Batchdelete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Accessbindings$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Accessbindings$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/accessBindings:batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about multiple access bindings to an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Accounts$Accessbindings$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
+      params?: Params$Resource$Accounts$Accessbindings$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>;
+    batchGet(
+      params: Params$Resource$Accounts$Accessbindings$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Accounts$Accessbindings$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Accounts$Accessbindings$Batchget,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Accessbindings$Batchget
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Accessbindings$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Accessbindings$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/accessBindings:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates information about multiple access bindings to an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Accounts$Accessbindings$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
+      params?: Params$Resource$Accounts$Accessbindings$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>;
+    batchUpdate(
+      params: Params$Resource$Accounts$Accessbindings$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Accounts$Accessbindings$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Accounts$Accessbindings$Batchupdate,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Accessbindings$Batchupdate
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Accessbindings$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Accessbindings$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/accessBindings:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates an access binding on an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounts$Accessbindings$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Accounts$Accessbindings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>;
+    create(
+      params: Params$Resource$Accounts$Accessbindings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Accessbindings$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Accessbindings$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Accessbindings$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Accessbindings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Accessbindings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/accessBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an access binding on an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Accounts$Accessbindings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Accounts$Accessbindings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Accounts$Accessbindings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Accessbindings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Accessbindings$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Accessbindings$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Accessbindings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Accessbindings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about an access binding.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Accessbindings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Accessbindings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>;
+    get(
+      params: Params$Resource$Accounts$Accessbindings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Accessbindings$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Accessbindings$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Accessbindings$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Accessbindings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Accessbindings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all access bindings on an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Accessbindings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Accessbindings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>;
+    list(
+      params: Params$Resource$Accounts$Accessbindings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Accessbindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Accessbindings$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Accessbindings$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Accessbindings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Accessbindings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/accessBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an access binding on an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Accessbindings$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Accounts$Accessbindings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>;
+    patch(
+      params: Params$Resource$Accounts$Accessbindings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Accessbindings$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Accessbindings$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Accessbindings$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Accessbindings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Accessbindings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Accessbindings$Batchcreate
+    extends StandardParameters {
+    /**
+     * Required. The account or property that owns the access bindings. The parent field in the CreateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest;
+  }
+  export interface Params$Resource$Accounts$Accessbindings$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field in DeleteAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest;
+  }
+  export interface Params$Resource$Accounts$Accessbindings$Batchget
+    extends StandardParameters {
+    /**
+     * Required. The names of the access bindings to retrieve. A maximum of 1000 access bindings can be retrieved in a batch. Formats: - accounts/{account\}/accessBindings/{accessBinding\} - properties/{property\}/accessBindings/{accessBinding\}
+     */
+    names?: string[];
+    /**
+     * Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field must match this field. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Accessbindings$Batchupdate
+    extends StandardParameters {
+    /**
+     * Required. The account or property that owns the access bindings. The parent of all provided AccessBinding in UpdateAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest;
+  }
+  export interface Params$Resource$Accounts$Accessbindings$Create
+    extends StandardParameters {
+    /**
+     * Required. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding;
+  }
+  export interface Params$Resource$Accounts$Accessbindings$Delete
+    extends StandardParameters {
+    /**
+     * Required. Formats: - accounts/{account\}/accessBindings/{accessBinding\} - properties/{property\}/accessBindings/{accessBinding\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Accessbindings$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the access binding to retrieve. Formats: - accounts/{account\}/accessBindings/{accessBinding\} - properties/{property\}/accessBindings/{accessBinding\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Accessbindings$List
+    extends StandardParameters {
+    /**
+     * The maximum number of access bindings to return. The service may return fewer than this value. If unspecified, at most 200 access bindings will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAccessBindings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccessBindings` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Accessbindings$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of this binding. Format: accounts/{account\}/accessBindings/{access_binding\} or properties/{property\}/accessBindings/{access_binding\} Example: "accounts/100/accessBindings/200"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding;
+  }
+
   export class Resource$Accounts$Userlinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3113,61 +4410,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.userLinks.audit({
-     *     // Required. Example format: accounts/1234
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "userLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3265,57 +4507,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.userLinks.batchCreate({
-     *     // Required. The account or property that all user links in the request are for. This field is required. The parent field in the CreateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "notifyNewUsers": false,
-     *       //   "requests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "userLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3413,54 +4604,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes information about multiple users' links to an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.userLinks.batchDelete({
-     *     // Required. The account or property that all user links in the request are for. The parent of all values for user link names to delete must match this field. Example format: accounts/1234
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3554,53 +4697,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Gets information about multiple users' links to an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.userLinks.batchGet({
-     *     // Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId\}/userLinks/{userLinkId\}
-     *     names: 'placeholder-value',
-     *     // Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234
-     *     parent: 'accounts/my-account',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "userLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3698,56 +4794,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates information about multiple users' links to an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.userLinks.batchUpdate({
-     *     // Required. The account or property that all user links in the request are for. The parent field in the UpdateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "userLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3845,62 +4891,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.userLinks.create({
-     *     // Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.
-     *     notifyNewUser: 'placeholder-value',
-     *     // Required. Example format: accounts/1234
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "directRoles": [],
-     *       //   "emailAddress": "my_emailAddress",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "directRoles": [],
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3998,46 +4988,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes a user link on an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.userLinks.delete({
-     *     // Required. Example format: accounts/1234/userLinks/5678
-     *     name: 'accounts/my-account/userLinks/my-userLink',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4126,53 +5076,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Gets information about a user's link to an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.userLinks.get({
-     *     // Required. Example format: accounts/1234/userLinks/5678
-     *     name: 'accounts/my-account/userLinks/my-userLink',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "directRoles": [],
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4267,56 +5170,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists all user links on an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.userLinks.list({
-     *     // The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 200 user links will be returned. The maximum value is 500; values above 500 will be coerced to 500.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLinks` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Example format: accounts/1234
-     *     parent: 'accounts/my-account',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "userLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4414,60 +5267,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates a user link on an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accounts.userLinks.patch({
-     *     // Output only. Example format: properties/1234/userLinks/5678
-     *     name: 'accounts/my-account/userLinks/my-userLink',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "directRoles": [],
-     *       //   "emailAddress": "my_emailAddress",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "directRoles": [],
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4686,54 +5485,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Returns summaries of all accounts accessible by the caller.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.accountSummaries.list({
-     *     // The maximum number of AccountSummary resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListAccountSummaries` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountSummaries` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountSummaries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4844,20 +5595,31 @@ export namespace analyticsadmin_v1alpha {
 
   export class Resource$Properties {
     context: APIRequestContext;
+    accessBindings: Resource$Properties$Accessbindings;
+    adSenseLinks: Resource$Properties$Adsenselinks;
     audiences: Resource$Properties$Audiences;
+    bigQueryLinks: Resource$Properties$Bigquerylinks;
+    channelGroups: Resource$Properties$Channelgroups;
     conversionEvents: Resource$Properties$Conversionevents;
     customDimensions: Resource$Properties$Customdimensions;
     customMetrics: Resource$Properties$Custommetrics;
     dataStreams: Resource$Properties$Datastreams;
     displayVideo360AdvertiserLinkProposals: Resource$Properties$Displayvideo360advertiserlinkproposals;
     displayVideo360AdvertiserLinks: Resource$Properties$Displayvideo360advertiserlinks;
+    expandedDataSets: Resource$Properties$Expandeddatasets;
     firebaseLinks: Resource$Properties$Firebaselinks;
     googleAdsLinks: Resource$Properties$Googleadslinks;
     searchAds360Links: Resource$Properties$Searchads360links;
     userLinks: Resource$Properties$Userlinks;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.accessBindings = new Resource$Properties$Accessbindings(
+        this.context
+      );
+      this.adSenseLinks = new Resource$Properties$Adsenselinks(this.context);
       this.audiences = new Resource$Properties$Audiences(this.context);
+      this.bigQueryLinks = new Resource$Properties$Bigquerylinks(this.context);
+      this.channelGroups = new Resource$Properties$Channelgroups(this.context);
       this.conversionEvents = new Resource$Properties$Conversionevents(
         this.context
       );
@@ -4872,6 +5634,9 @@ export namespace analyticsadmin_v1alpha {
         );
       this.displayVideo360AdvertiserLinks =
         new Resource$Properties$Displayvideo360advertiserlinks(this.context);
+      this.expandedDataSets = new Resource$Properties$Expandeddatasets(
+        this.context
+      );
       this.firebaseLinks = new Resource$Properties$Firebaselinks(this.context);
       this.googleAdsLinks = new Resource$Properties$Googleadslinks(
         this.context
@@ -4883,55 +5648,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or via this API) before MeasurementProtocolSecret resources may be created.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.acknowledgeUserDataCollection({
-     *     // Required. The property for which to acknowledge user data collection.
-     *     property: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acknowledgement": "my_acknowledgement"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or through this API) before MeasurementProtocolSecret resources may be created.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5028,77 +5745,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates an "GA4" property with the specified location and attributes.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "account": "my_account",
-     *       //   "createTime": "my_createTime",
-     *       //   "currencyCode": "my_currencyCode",
-     *       //   "deleteTime": "my_deleteTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "expireTime": "my_expireTime",
-     *       //   "industryCategory": "my_industryCategory",
-     *       //   "name": "my_name",
-     *       //   "parent": "my_parent",
-     *       //   "propertyType": "my_propertyType",
-     *       //   "serviceLevel": "my_serviceLevel",
-     *       //   "timeZone": "my_timeZone",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "account": "my_account",
-     *   //   "createTime": "my_createTime",
-     *   //   "currencyCode": "my_currencyCode",
-     *   //   "deleteTime": "my_deleteTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "industryCategory": "my_industryCategory",
-     *   //   "name": "my_name",
-     *   //   "parent": "my_parent",
-     *   //   "propertyType": "my_propertyType",
-     *   //   "serviceLevel": "my_serviceLevel",
-     *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5195,61 +5841,103 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not an GA4 Property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
+     * Creates a connected site tag for a Universal Analytics property. You can create a maximum of 20 connected site tags per property. Note: This API cannot be used on GA4 properties.
      *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.delete({
-     *     // Required. The name of the Property to soft-delete. Format: properties/{property_id\} Example: "properties/1000"
-     *     name: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "account": "my_account",
-     *   //   "createTime": "my_createTime",
-     *   //   "currencyCode": "my_currencyCode",
-     *   //   "deleteTime": "my_deleteTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "industryCategory": "my_industryCategory",
-     *   //   "name": "my_name",
-     *   //   "parent": "my_parent",
-     *   //   "propertyType": "my_propertyType",
-     *   //   "serviceLevel": "my_serviceLevel",
-     *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createConnectedSiteTag(
+      params: Params$Resource$Properties$Createconnectedsitetag,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createConnectedSiteTag(
+      params?: Params$Resource$Properties$Createconnectedsitetag,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>;
+    createConnectedSiteTag(
+      params: Params$Resource$Properties$Createconnectedsitetag,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createConnectedSiteTag(
+      params: Params$Resource$Properties$Createconnectedsitetag,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+    ): void;
+    createConnectedSiteTag(
+      params: Params$Resource$Properties$Createconnectedsitetag,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+    ): void;
+    createConnectedSiteTag(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+    ): void;
+    createConnectedSiteTag(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Createconnectedsitetag
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Createconnectedsitetag;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Createconnectedsitetag;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/properties:createConnectedSiteTag'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5343,64 +6031,293 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Deletes a connected site tag for a Universal Analytics property. Note: this has no effect on GA4 properties.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteConnectedSiteTag(
+      params: Params$Resource$Properties$Deleteconnectedsitetag,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteConnectedSiteTag(
+      params?: Params$Resource$Properties$Deleteconnectedsitetag,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    deleteConnectedSiteTag(
+      params: Params$Resource$Properties$Deleteconnectedsitetag,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteConnectedSiteTag(
+      params: Params$Resource$Properties$Deleteconnectedsitetag,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteConnectedSiteTag(
+      params: Params$Resource$Properties$Deleteconnectedsitetag,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteConnectedSiteTag(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    deleteConnectedSiteTag(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Deleteconnectedsitetag
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Deleteconnectedsitetag;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Deleteconnectedsitetag;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/properties:deleteConnectedSiteTag'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Fetches the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Fetchautomatedga4configurationoptout,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchAutomatedGa4ConfigurationOptOut(
+      params?: Params$Resource$Properties$Fetchautomatedga4configurationoptout,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>;
+    fetchAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Fetchautomatedga4configurationoptout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Fetchautomatedga4configurationoptout,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    fetchAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Fetchautomatedga4configurationoptout,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    fetchAutomatedGa4ConfigurationOptOut(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    fetchAutomatedGa4ConfigurationOptOut(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Fetchautomatedga4configurationoptout
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Fetchautomatedga4configurationoptout;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Fetchautomatedga4configurationoptout;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Given a specified UA property, looks up the GA4 property connected to it. Note: this cannot be used with GA4 properties.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchConnectedGa4Property(
+      params: Params$Resource$Properties$Fetchconnectedga4property,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchConnectedGa4Property(
+      params?: Params$Resource$Properties$Fetchconnectedga4property,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>;
+    fetchConnectedGa4Property(
+      params: Params$Resource$Properties$Fetchconnectedga4property,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchConnectedGa4Property(
+      params: Params$Resource$Properties$Fetchconnectedga4property,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+    ): void;
+    fetchConnectedGa4Property(
+      params: Params$Resource$Properties$Fetchconnectedga4property,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+    ): void;
+    fetchConnectedGa4Property(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+    ): void;
+    fetchConnectedGa4Property(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Fetchconnectedga4property
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Fetchconnectedga4property;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Fetchconnectedga4property;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/properties:fetchConnectedGa4Property'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lookup for a single "GA4" Property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.get({
-     *     // Required. The name of the property to lookup. Format: properties/{property_id\} Example: "properties/1000"
-     *     name: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "account": "my_account",
-     *   //   "createTime": "my_createTime",
-     *   //   "currencyCode": "my_currencyCode",
-     *   //   "deleteTime": "my_deleteTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "industryCategory": "my_industryCategory",
-     *   //   "name": "my_name",
-     *   //   "parent": "my_parent",
-     *   //   "propertyType": "my_propertyType",
-     *   //   "serviceLevel": "my_serviceLevel",
-     *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5494,54 +6411,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lookup for a AttributionSettings singleton.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.getAttributionSettings({
-     *     // Required. The name of the attribution settings to retrieve. Format: properties/{property\}/attributionSettings
-     *     name: 'properties/my-propertie/attributionSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acquisitionConversionEventLookbackWindow": "my_acquisitionConversionEventLookbackWindow",
-     *   //   "name": "my_name",
-     *   //   "otherConversionEventLookbackWindow": "my_otherConversionEventLookbackWindow",
-     *   //   "reportingAttributionModel": "my_reportingAttributionModel"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5636,53 +6505,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Returns the singleton data retention settings for this property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.getDataRetentionSettings({
-     *     // Required. The name of the settings to lookup. Format: properties/{property\}/dataRetentionSettings Example: "properties/1000/dataRetentionSettings"
-     *     name: 'properties/my-propertie/dataRetentionSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "eventDataRetention": "my_eventDataRetention",
-     *   //   "name": "my_name",
-     *   //   "resetUserDataOnNewActivity": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5777,53 +6599,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lookup for Google Signals settings for a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.getGoogleSignalsSettings({
-     *     // Required. The name of the google signals settings to retrieve. Format: properties/{property\}/googleSignalsSettings
-     *     name: 'properties/my-propertie/googleSignalsSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "consent": "my_consent",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5918,58 +6693,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Returns child Properties under the specified parent Account. Only "GA4" properties will be returned. Properties will be excluded if the caller does not have access. Soft-deleted (ie: "trashed") properties are excluded by default. Returns an empty list if no relevant properties are found.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.list({
-     *     // Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account/property) or `ancestor:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | parent:properties/123 | The property with property id: 123. | | ancestor:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```
-     *     filter: 'placeholder-value',
-     *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListProperties` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Whether to include soft-deleted (ie: "trashed") Properties in the results. Properties can be inspected to determine whether they are deleted or not.
-     *     showDeleted: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "properties": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6065,83 +6788,103 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Lists the connected site tags for a Universal Analytics property. A maximum of 20 connected site tags will be returned. Note: this has no effect on GA4 property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listConnectedSiteTags(
+      params: Params$Resource$Properties$Listconnectedsitetags,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listConnectedSiteTags(
+      params?: Params$Resource$Properties$Listconnectedsitetags,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>;
+    listConnectedSiteTags(
+      params: Params$Resource$Properties$Listconnectedsitetags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listConnectedSiteTags(
+      params: Params$Resource$Properties$Listconnectedsitetags,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+    ): void;
+    listConnectedSiteTags(
+      params: Params$Resource$Properties$Listconnectedsitetags,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+    ): void;
+    listConnectedSiteTags(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+    ): void;
+    listConnectedSiteTags(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Listconnectedsitetags
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Listconnectedsitetags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Listconnectedsitetags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/properties:listConnectedSiteTags'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.patch({
-     *     // Output only. Resource name of this property. Format: properties/{property_id\} Example: "properties/1000"
-     *     name: 'properties/my-propertie',
-     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "account": "my_account",
-     *       //   "createTime": "my_createTime",
-     *       //   "currencyCode": "my_currencyCode",
-     *       //   "deleteTime": "my_deleteTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "expireTime": "my_expireTime",
-     *       //   "industryCategory": "my_industryCategory",
-     *       //   "name": "my_name",
-     *       //   "parent": "my_parent",
-     *       //   "propertyType": "my_propertyType",
-     *       //   "serviceLevel": "my_serviceLevel",
-     *       //   "timeZone": "my_timeZone",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "account": "my_account",
-     *   //   "createTime": "my_createTime",
-     *   //   "currencyCode": "my_currencyCode",
-     *   //   "deleteTime": "my_deleteTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "industryCategory": "my_industryCategory",
-     *   //   "name": "my_name",
-     *   //   "parent": "my_parent",
-     *   //   "propertyType": "my_propertyType",
-     *   //   "serviceLevel": "my_serviceLevel",
-     *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6235,72 +6978,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. The property must be in Google Analytics 360. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.runAccessReport({
-     *     // The Data Access Report is requested for this property. For example if "123" is your GA4 property ID, then entity should be "properties/123".
-     *     entity: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "dateRanges": [],
-     *       //   "dimensionFilter": {},
-     *       //   "dimensions": [],
-     *       //   "limit": "my_limit",
-     *       //   "metricFilter": {},
-     *       //   "metrics": [],
-     *       //   "offset": "my_offset",
-     *       //   "orderBys": [],
-     *       //   "returnEntityQuota": false,
-     *       //   "timeZone": "my_timeZone"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dimensionHeaders": [],
-     *   //   "metricHeaders": [],
-     *   //   "quota": {},
-     *   //   "rowCount": 0,
-     *   //   "rows": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6397,65 +7074,104 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Sets the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Setautomatedga4configurationoptout,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setAutomatedGa4ConfigurationOptOut(
+      params?: Params$Resource$Properties$Setautomatedga4configurationoptout,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>;
+    setAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Setautomatedga4configurationoptout,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Setautomatedga4configurationoptout,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    setAutomatedGa4ConfigurationOptOut(
+      params: Params$Resource$Properties$Setautomatedga4configurationoptout,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    setAutomatedGa4ConfigurationOptOut(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+    ): void;
+    setAutomatedGa4ConfigurationOptOut(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Setautomatedga4configurationoptout
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Setautomatedga4configurationoptout;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Setautomatedga4configurationoptout;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/properties:setAutomatedGa4ConfigurationOptOut'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates attribution settings on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.updateAttributionSettings({
-     *     // Output only. Resource name of this attribution settings resource. Format: properties/{property_id\}/attributionSettings Example: "properties/1000/attributionSettings"
-     *     name: 'properties/my-propertie/attributionSettings',
-     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acquisitionConversionEventLookbackWindow": "my_acquisitionConversionEventLookbackWindow",
-     *       //   "name": "my_name",
-     *       //   "otherConversionEventLookbackWindow": "my_otherConversionEventLookbackWindow",
-     *       //   "reportingAttributionModel": "my_reportingAttributionModel"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acquisitionConversionEventLookbackWindow": "my_acquisitionConversionEventLookbackWindow",
-     *   //   "name": "my_name",
-     *   //   "otherConversionEventLookbackWindow": "my_otherConversionEventLookbackWindow",
-     *   //   "reportingAttributionModel": "my_reportingAttributionModel"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6550,62 +7266,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates the singleton data retention settings for this property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.updateDataRetentionSettings({
-     *     // Output only. Resource name for this DataRetentionSetting resource. Format: properties/{property\}/dataRetentionSettings
-     *     name: 'properties/my-propertie/dataRetentionSettings',
-     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "eventDataRetention": "my_eventDataRetention",
-     *       //   "name": "my_name",
-     *       //   "resetUserDataOnNewActivity": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "eventDataRetention": "my_eventDataRetention",
-     *   //   "name": "my_name",
-     *   //   "resetUserDataOnNewActivity": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6700,62 +7360,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates Google Signals settings for a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.updateGoogleSignalsSettings({
-     *     // Output only. Resource name of this setting. Format: properties/{property_id\}/googleSignalsSettings Example: "properties/1000/googleSignalsSettings"
-     *     name: 'properties/my-propertie/googleSignalsSettings',
-     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consent": "my_consent",
-     *       //   "name": "my_name",
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "consent": "my_consent",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6868,12 +7472,40 @@ export namespace analyticsadmin_v1alpha {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaProperty;
   }
+  export interface Params$Resource$Properties$Createconnectedsitetag
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest;
+  }
   export interface Params$Resource$Properties$Delete
     extends StandardParameters {
     /**
      * Required. The name of the Property to soft-delete. Format: properties/{property_id\} Example: "properties/1000"
      */
     name?: string;
+  }
+  export interface Params$Resource$Properties$Deleteconnectedsitetag
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest;
+  }
+  export interface Params$Resource$Properties$Fetchautomatedga4configurationoptout
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest;
+  }
+  export interface Params$Resource$Properties$Fetchconnectedga4property
+    extends StandardParameters {
+    /**
+     * Required. The UA property for which to look up the connected GA4 property. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internal_web_property_id\} Example: properties/1234
+     */
+    property?: string;
   }
   export interface Params$Resource$Properties$Get extends StandardParameters {
     /**
@@ -6920,6 +7552,13 @@ export namespace analyticsadmin_v1alpha {
      */
     showDeleted?: boolean;
   }
+  export interface Params$Resource$Properties$Listconnectedsitetags
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest;
+  }
   export interface Params$Resource$Properties$Patch extends StandardParameters {
     /**
      * Output only. Resource name of this property. Format: properties/{property_id\} Example: "properties/1000"
@@ -6938,7 +7577,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Runaccessreport
     extends StandardParameters {
     /**
-     * The Data Access Report is requested for this property. For example if "123" is your GA4 property ID, then entity should be "properties/123".
+     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
      */
     entity?: string;
 
@@ -6946,6 +7585,13 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaRunAccessReportRequest;
+  }
+  export interface Params$Resource$Properties$Setautomatedga4configurationoptout
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest;
   }
   export interface Params$Resource$Properties$Updateattributionsettings
     extends StandardParameters {
@@ -6996,6 +7642,1389 @@ export namespace analyticsadmin_v1alpha {
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaGoogleSignalsSettings;
   }
 
+  export class Resource$Properties$Accessbindings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates information about multiple access bindings to an account or property. This method is transactional. If any AccessBinding cannot be created, none of the AccessBindings will be created.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Properties$Accessbindings$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
+      params?: Params$Resource$Properties$Accessbindings$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>;
+    batchCreate(
+      params: Params$Resource$Properties$Accessbindings$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Properties$Accessbindings$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Properties$Accessbindings$Batchcreate,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Accessbindings$Batchcreate
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Accessbindings$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Accessbindings$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/accessBindings:batchCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes information about multiple users' links to an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Properties$Accessbindings$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
+      params?: Params$Resource$Properties$Accessbindings$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    batchDelete(
+      params: Params$Resource$Properties$Accessbindings$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Properties$Accessbindings$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Properties$Accessbindings$Batchdelete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Accessbindings$Batchdelete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Accessbindings$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Accessbindings$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/accessBindings:batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about multiple access bindings to an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Properties$Accessbindings$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
+      params?: Params$Resource$Properties$Accessbindings$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>;
+    batchGet(
+      params: Params$Resource$Properties$Accessbindings$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Properties$Accessbindings$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Properties$Accessbindings$Batchget,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Accessbindings$Batchget
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Accessbindings$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Accessbindings$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/accessBindings:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates information about multiple access bindings to an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Properties$Accessbindings$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
+      params?: Params$Resource$Properties$Accessbindings$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>;
+    batchUpdate(
+      params: Params$Resource$Properties$Accessbindings$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Properties$Accessbindings$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Properties$Accessbindings$Batchupdate,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Accessbindings$Batchupdate
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Accessbindings$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Accessbindings$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/accessBindings:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates an access binding on an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Accessbindings$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Accessbindings$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>;
+    create(
+      params: Params$Resource$Properties$Accessbindings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Accessbindings$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Accessbindings$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Accessbindings$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Accessbindings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Accessbindings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/accessBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an access binding on an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Accessbindings$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Accessbindings$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Accessbindings$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Accessbindings$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Accessbindings$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Accessbindings$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Accessbindings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Accessbindings$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets information about an access binding.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Accessbindings$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Accessbindings$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>;
+    get(
+      params: Params$Resource$Properties$Accessbindings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Accessbindings$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Accessbindings$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Accessbindings$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Accessbindings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Accessbindings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all access bindings on an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Accessbindings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Accessbindings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>;
+    list(
+      params: Params$Resource$Properties$Accessbindings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Accessbindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Accessbindings$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Accessbindings$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Accessbindings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Accessbindings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/accessBindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAccessBindingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an access binding on an account or property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Accessbindings$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Accessbindings$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>;
+    patch(
+      params: Params$Resource$Properties$Accessbindings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Accessbindings$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Accessbindings$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Accessbindings$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Accessbindings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Accessbindings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccessBinding>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Accessbindings$Batchcreate
+    extends StandardParameters {
+    /**
+     * Required. The account or property that owns the access bindings. The parent field in the CreateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest;
+  }
+  export interface Params$Resource$Properties$Accessbindings$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field in DeleteAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest;
+  }
+  export interface Params$Resource$Properties$Accessbindings$Batchget
+    extends StandardParameters {
+    /**
+     * Required. The names of the access bindings to retrieve. A maximum of 1000 access bindings can be retrieved in a batch. Formats: - accounts/{account\}/accessBindings/{accessBinding\} - properties/{property\}/accessBindings/{accessBinding\}
+     */
+    names?: string[];
+    /**
+     * Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field must match this field. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Accessbindings$Batchupdate
+    extends StandardParameters {
+    /**
+     * Required. The account or property that owns the access bindings. The parent of all provided AccessBinding in UpdateAccessBindingRequest messages must match this field. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest;
+  }
+  export interface Params$Resource$Properties$Accessbindings$Create
+    extends StandardParameters {
+    /**
+     * Required. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding;
+  }
+  export interface Params$Resource$Properties$Accessbindings$Delete
+    extends StandardParameters {
+    /**
+     * Required. Formats: - accounts/{account\}/accessBindings/{accessBinding\} - properties/{property\}/accessBindings/{accessBinding\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Accessbindings$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the access binding to retrieve. Formats: - accounts/{account\}/accessBindings/{accessBinding\} - properties/{property\}/accessBindings/{accessBinding\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Accessbindings$List
+    extends StandardParameters {
+    /**
+     * The maximum number of access bindings to return. The service may return fewer than this value. If unspecified, at most 200 access bindings will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListAccessBindings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccessBindings` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Formats: - accounts/{account\} - properties/{property\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Accessbindings$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of this binding. Format: accounts/{account\}/accessBindings/{access_binding\} or properties/{property\}/accessBindings/{access_binding\} Example: "accounts/100/accessBindings/200"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding;
+  }
+
+  export class Resource$Properties$Adsenselinks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an AdSenseLink.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Adsenselinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Adsenselinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>;
+    create(
+      params: Params$Resource$Properties$Adsenselinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Adsenselinks$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Adsenselinks$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Adsenselinks$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Adsenselinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Adsenselinks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/adSenseLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an AdSenseLink.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Adsenselinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Adsenselinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Adsenselinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Adsenselinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Adsenselinks$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Adsenselinks$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Adsenselinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Adsenselinks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Looks up a single AdSenseLink.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Adsenselinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Adsenselinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>;
+    get(
+      params: Params$Resource$Properties$Adsenselinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Adsenselinks$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Adsenselinks$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Adsenselinks$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Adsenselinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Adsenselinks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAdSenseLink>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists AdSenseLinks on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Adsenselinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Adsenselinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>;
+    list(
+      params: Params$Resource$Properties$Adsenselinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Adsenselinks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Adsenselinks$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Adsenselinks$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Adsenselinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Adsenselinks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/adSenseLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Adsenselinks$Create
+    extends StandardParameters {
+    /**
+     * Required. The property for which to create an AdSense Link. Format: properties/{propertyId\} Example: properties/1234
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAdSenseLink;
+  }
+  export interface Params$Resource$Properties$Adsenselinks$Delete
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier for the AdSense Link to be deleted. Format: properties/{propertyId\}/adSenseLinks/{linkId\} Example: properties/1234/adSenseLinks/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Adsenselinks$Get
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier for the AdSense Link requested. Format: properties/{propertyId\}/adSenseLinks/{linkId\} Example: properties/1234/adSenseLinks/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Adsenselinks$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     */
+    pageSize?: number;
+    /**
+     * A page token received from a previous `ListAdSenseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAdSenseLinks` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the parent property. Format: properties/{propertyId\} Example: properties/1234
+     */
+    parent?: string;
+  }
+
   export class Resource$Properties$Audiences {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7004,52 +9033,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Archives an Audience on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.audiences.archive({
-     *     // Required. Example format: properties/1234/audiences/5678
-     *     name: 'properties/my-propertie/audiences/my-audience',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7141,70 +9124,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates an Audience.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.audiences.create({
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "adsPersonalizationEnabled": false,
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "eventTrigger": {},
-     *       //   "exclusionDurationMode": "my_exclusionDurationMode",
-     *       //   "filterClauses": [],
-     *       //   "membershipDurationDays": 0,
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "eventTrigger": {},
-     *   //   "exclusionDurationMode": "my_exclusionDurationMode",
-     *   //   "filterClauses": [],
-     *   //   "membershipDurationDays": 0,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7302,58 +9221,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lookup for a single Audience. Audiences created before 2020 may not be supported. Default audiences will not show filter definitions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.audiences.get({
-     *     // Required. The name of the Audience to get. Example format: properties/1234/audiences/5678
-     *     name: 'properties/my-propertie/audiences/my-audience',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "eventTrigger": {},
-     *   //   "exclusionDurationMode": "my_exclusionDurationMode",
-     *   //   "filterClauses": [],
-     *   //   "membershipDurationDays": 0,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7448,56 +9315,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists Audiences on a property. Audiences created before 2020 may not be supported. Default audiences will not show filter definitions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.audiences.list({
-     *     // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListAudiences` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAudiences` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "audiences": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7595,72 +9412,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates an Audience on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.audiences.patch({
-     *     // Output only. The resource name for this Audience resource. Format: properties/{propertyId\}/audiences/{audienceId\}
-     *     name: 'properties/my-propertie/audiences/my-audience',
-     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "adsPersonalizationEnabled": false,
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "eventTrigger": {},
-     *       //   "exclusionDurationMode": "my_exclusionDurationMode",
-     *       //   "filterClauses": [],
-     *       //   "membershipDurationDays": 0,
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "eventTrigger": {},
-     *   //   "exclusionDurationMode": "my_exclusionDurationMode",
-     *   //   "filterClauses": [],
-     *   //   "membershipDurationDays": 0,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7817,6 +9568,762 @@ export namespace analyticsadmin_v1alpha {
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaAudience;
   }
 
+  export class Resource$Properties$Bigquerylinks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lookup for a single BigQuery Link.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Bigquerylinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Bigquerylinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>;
+    get(
+      params: Params$Resource$Properties$Bigquerylinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Bigquerylinks$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Bigquerylinks$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Bigquerylinks$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Bigquerylinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Bigquerylinks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBigQueryLink>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists BigQuery Links on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Bigquerylinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Bigquerylinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>;
+    list(
+      params: Params$Resource$Properties$Bigquerylinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Bigquerylinks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Bigquerylinks$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Bigquerylinks$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Bigquerylinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Bigquerylinks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/bigQueryLinks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Bigquerylinks$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the BigQuery link to lookup. Format: properties/{property_id\}/bigQueryLinks/{bigquery_link_id\} Example: properties/123/bigQueryLinks/456
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Bigquerylinks$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListBigQueryLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryLinks` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the property to list BigQuery links under. Format: properties/{property_id\} Example: properties/1234
+     */
+    parent?: string;
+  }
+
+  export class Resource$Properties$Channelgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a ChannelGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Channelgroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Channelgroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>;
+    create(
+      params: Params$Resource$Properties$Channelgroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Channelgroups$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Channelgroups$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Channelgroups$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Channelgroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Channelgroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/channelGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a ChannelGroup on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Channelgroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Channelgroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Channelgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Channelgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Channelgroups$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Channelgroups$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Channelgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Channelgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Lookup for a single ChannelGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Channelgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Channelgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>;
+    get(
+      params: Params$Resource$Properties$Channelgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Channelgroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Channelgroups$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Channelgroups$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Channelgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Channelgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists ChannelGroups on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Channelgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Channelgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>;
+    list(
+      params: Params$Resource$Properties$Channelgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Channelgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Channelgroups$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Channelgroups$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Channelgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Channelgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/channelGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListChannelGroupsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ChannelGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Channelgroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Channelgroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>;
+    patch(
+      params: Params$Resource$Properties$Channelgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Channelgroups$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Channelgroups$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Channelgroups$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Channelgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Channelgroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaChannelGroup>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Channelgroups$Create
+    extends StandardParameters {
+    /**
+     * Required. The property for which to create a ChannelGroup. Example format: properties/1234
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaChannelGroup;
+  }
+  export interface Params$Resource$Properties$Channelgroups$Delete
+    extends StandardParameters {
+    /**
+     * Required. The ChannelGroup to delete. Example format: properties/1234/channelGroups/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Channelgroups$Get
+    extends StandardParameters {
+    /**
+     * Required. The ChannelGroup to get. Example format: properties/1234/channelGroups/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Channelgroups$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListChannelGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListChannelGroups` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The property for which to list ChannelGroups. Example format: properties/1234
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Channelgroups$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name for this Channel Group resource. Format: properties/{property\}/channelGroups/{channel_group\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaChannelGroup;
+  }
+
   export class Resource$Properties$Conversionevents {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7825,64 +10332,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a conversion event with the specified attributes.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.conversionEvents.create({
-     *     // Required. The resource name of the parent property where this conversion event will be created. Format: properties/123
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "custom": false,
-     *       //   "deletable": false,
-     *       //   "eventName": "my_eventName",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "custom": false,
-     *   //   "deletable": false,
-     *   //   "eventName": "my_eventName",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7980,46 +10429,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes a conversion event in a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.conversionEvents.delete({
-     *     // Required. The resource name of the conversion event to delete. Format: properties/{property\}/conversionEvents/{conversion_event\} Example: "properties/123/conversionEvents/456"
-     *     name: 'properties/my-propertie/conversionEvents/my-conversionEvent',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8108,55 +10517,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Retrieve a single conversion event.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.conversionEvents.get({
-     *     // Required. The resource name of the conversion event to retrieve. Format: properties/{property\}/conversionEvents/{conversion_event\} Example: "properties/123/conversionEvents/456"
-     *     name: 'properties/my-propertie/conversionEvents/my-conversionEvent',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "custom": false,
-     *   //   "deletable": false,
-     *   //   "eventName": "my_eventName",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8251,56 +10611,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Returns a list of conversion events in the specified parent property. Returns an empty list if no conversion events are found.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.conversionEvents.list({
-     *     // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListConversionEvents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConversionEvents` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent property. Example: 'properties/123'
-     *     parent: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "conversionEvents": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8395,6 +10705,100 @@ export namespace analyticsadmin_v1alpha {
         );
       }
     }
+
+    /**
+     * Updates a conversion event with the specified attributes.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Conversionevents$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Conversionevents$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>;
+    patch(
+      params: Params$Resource$Properties$Conversionevents$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Conversionevents$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Conversionevents$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Conversionevents$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Conversionevents$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Conversionevents$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaConversionEvent>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Properties$Conversionevents$Create
@@ -8438,6 +10842,22 @@ export namespace analyticsadmin_v1alpha {
      */
     parent?: string;
   }
+  export interface Params$Resource$Properties$Conversionevents$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of this conversion event. Format: properties/{property\}/conversionEvents/{conversion_event\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaConversionEvent;
+  }
 
   export class Resource$Properties$Customdimensions {
     context: APIRequestContext;
@@ -8447,52 +10867,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Archives a CustomDimension on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.customDimensions.archive({
-     *     // Required. The name of the CustomDimension to archive. Example format: properties/1234/customDimensions/5678
-     *     name: 'properties/my-propertie/customDimensions/my-customDimension',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8584,66 +10958,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a CustomDimension.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.customDimensions.create({
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "description": "my_description",
-     *       //   "disallowAdsPersonalization": false,
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "parameterName": "my_parameterName",
-     *       //   "scope": "my_scope"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "disallowAdsPersonalization": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "parameterName": "my_parameterName",
-     *   //   "scope": "my_scope"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8741,56 +11055,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lookup for a single CustomDimension.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.customDimensions.get({
-     *     // Required. The name of the CustomDimension to get. Example format: properties/1234/customDimensions/5678
-     *     name: 'properties/my-propertie/customDimensions/my-customDimension',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "disallowAdsPersonalization": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "parameterName": "my_parameterName",
-     *   //   "scope": "my_scope"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8885,56 +11149,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists CustomDimensions on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.customDimensions.list({
-     *     // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListCustomDimensions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCustomDimensions` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customDimensions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9032,68 +11246,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates a CustomDimension on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.customDimensions.patch({
-     *     // Output only. Resource name for this CustomDimension resource. Format: properties/{property\}/customDimensions/{customDimension\}
-     *     name: 'properties/my-propertie/customDimensions/my-customDimension',
-     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "description": "my_description",
-     *       //   "disallowAdsPersonalization": false,
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "parameterName": "my_parameterName",
-     *       //   "scope": "my_scope"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "disallowAdsPersonalization": false,
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "parameterName": "my_parameterName",
-     *   //   "scope": "my_scope"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9258,52 +11410,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Archives a CustomMetric on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.customMetrics.archive({
-     *     // Required. The name of the CustomMetric to archive. Example format: properties/1234/customMetrics/5678
-     *     name: 'properties/my-propertie/customMetrics/my-customMetric',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9395,68 +11501,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a CustomMetric.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.customMetrics.create({
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "measurementUnit": "my_measurementUnit",
-     *       //   "name": "my_name",
-     *       //   "parameterName": "my_parameterName",
-     *       //   "restrictedMetricType": [],
-     *       //   "scope": "my_scope"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "measurementUnit": "my_measurementUnit",
-     *   //   "name": "my_name",
-     *   //   "parameterName": "my_parameterName",
-     *   //   "restrictedMetricType": [],
-     *   //   "scope": "my_scope"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9554,57 +11598,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lookup for a single CustomMetric.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.customMetrics.get({
-     *     // Required. The name of the CustomMetric to get. Example format: properties/1234/customMetrics/5678
-     *     name: 'properties/my-propertie/customMetrics/my-customMetric',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "measurementUnit": "my_measurementUnit",
-     *   //   "name": "my_name",
-     *   //   "parameterName": "my_parameterName",
-     *   //   "restrictedMetricType": [],
-     *   //   "scope": "my_scope"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9699,56 +11692,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists CustomMetrics on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.customMetrics.list({
-     *     // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListCustomMetrics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCustomMetrics` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customMetrics": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9846,70 +11789,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates a CustomMetric on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.customMetrics.patch({
-     *     // Output only. Resource name for this CustomMetric resource. Format: properties/{property\}/customMetrics/{customMetric\}
-     *     name: 'properties/my-propertie/customMetrics/my-customMetric',
-     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "measurementUnit": "my_measurementUnit",
-     *       //   "name": "my_name",
-     *       //   "parameterName": "my_parameterName",
-     *       //   "restrictedMetricType": [],
-     *       //   "scope": "my_scope"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "measurementUnit": "my_measurementUnit",
-     *   //   "name": "my_name",
-     *   //   "parameterName": "my_parameterName",
-     *   //   "restrictedMetricType": [],
-     *   //   "scope": "my_scope"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10068,9 +11947,12 @@ export namespace analyticsadmin_v1alpha {
 
   export class Resource$Properties$Datastreams {
     context: APIRequestContext;
+    eventCreateRules: Resource$Properties$Datastreams$Eventcreaterules;
     measurementProtocolSecrets: Resource$Properties$Datastreams$Measurementprotocolsecrets;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.eventCreateRules =
+        new Resource$Properties$Datastreams$Eventcreaterules(this.context);
       this.measurementProtocolSecrets =
         new Resource$Properties$Datastreams$Measurementprotocolsecrets(
           this.context
@@ -10079,70 +11961,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a DataStream.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.dataStreams.create({
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "androidAppStreamData": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "iosAppStreamData": {},
-     *       //   "name": "my_name",
-     *       //   "type": "my_type",
-     *       //   "updateTime": "my_updateTime",
-     *       //   "webStreamData": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "androidAppStreamData": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "iosAppStreamData": {},
-     *   //   "name": "my_name",
-     *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "webStreamData": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10240,46 +12058,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes a DataStream on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.dataStreams.delete({
-     *     // Required. The name of the DataStream to delete. Example format: properties/1234/dataStreams/5678
-     *     name: 'properties/my-propertie/dataStreams/my-dataStream',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10368,58 +12146,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lookup for a single DataStream.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.dataStreams.get({
-     *     // Required. The name of the DataStream to get. Example format: properties/1234/dataStreams/5678
-     *     name: 'properties/my-propertie/dataStreams/my-dataStream',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "androidAppStreamData": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "iosAppStreamData": {},
-     *   //   "name": "my_name",
-     *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "webStreamData": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10513,53 +12239,102 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Returns the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getEnhancedMeasurementSettings(
+      params?: Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>;
+    getEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    getEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    getEnhancedMeasurementSettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    getEnhancedMeasurementSettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.dataStreams.getGlobalSiteTag({
-     *     // Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id\}/dataStreams/{stream_id\}/globalSiteTag Example: "properties/123/dataStreams/456/globalSiteTag"
-     *     name: 'properties/my-propertie/dataStreams/my-dataStream/globalSiteTag',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "snippet": "my_snippet"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10654,56 +12429,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists DataStreams on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.dataStreams.list({
-     *     // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListDataStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDataStreams` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dataStreams": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10801,72 +12526,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates a DataStream on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.dataStreams.patch({
-     *     // Output only. Resource name of this Data Stream. Format: properties/{property_id\}/dataStreams/{stream_id\} Example: "properties/1000/dataStreams/2000"
-     *     name: 'properties/my-propertie/dataStreams/my-dataStream',
-     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "androidAppStreamData": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "iosAppStreamData": {},
-     *       //   "name": "my_name",
-     *       //   "type": "my_type",
-     *       //   "updateTime": "my_updateTime",
-     *       //   "webStreamData": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "androidAppStreamData": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "iosAppStreamData": {},
-     *   //   "name": "my_name",
-     *   //   "type": "my_type",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "webStreamData": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10958,6 +12617,101 @@ export namespace analyticsadmin_v1alpha {
         );
       }
     }
+
+    /**
+     * Updates the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateEnhancedMeasurementSettings(
+      params?: Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>;
+    updateEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    updateEnhancedMeasurementSettings(
+      params: Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    updateEnhancedMeasurementSettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+    ): void;
+    updateEnhancedMeasurementSettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Properties$Datastreams$Create
@@ -10983,6 +12737,13 @@ export namespace analyticsadmin_v1alpha {
     extends StandardParameters {
     /**
      * Required. The name of the DataStream to get. Example format: properties/1234/dataStreams/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the settings to lookup. Format: properties/{property\}/dataStreams/{data_stream\}/enhancedMeasurementSettings Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
      */
     name?: string;
   }
@@ -11024,6 +12785,562 @@ export namespace analyticsadmin_v1alpha {
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaDataStream;
   }
+  export interface Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the Enhanced Measurement Settings. Format: properties/{property_id\}/dataStreams/{data_stream\}/enhancedMeasurementSettings Example: "properties/1000/dataStreams/2000/enhancedMeasurementSettings"
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings;
+  }
+
+  export class Resource$Properties$Datastreams$Eventcreaterules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an EventCreateRule.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Datastreams$Eventcreaterules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>;
+    create(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Eventcreaterules$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Eventcreaterules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Eventcreaterules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/eventCreateRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an EventCreateRule.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Datastreams$Eventcreaterules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Eventcreaterules$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Eventcreaterules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Eventcreaterules$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Lookup for a single EventCreateRule.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Datastreams$Eventcreaterules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>;
+    get(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Eventcreaterules$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Eventcreaterules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Eventcreaterules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists EventCreateRules on a web data stream.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Datastreams$Eventcreaterules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>;
+    list(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Eventcreaterules$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Eventcreaterules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Eventcreaterules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/eventCreateRules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an EventCreateRule.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Datastreams$Eventcreaterules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>;
+    patch(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Datastreams$Eventcreaterules$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Eventcreaterules$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Eventcreaterules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Eventcreaterules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEventCreateRule>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Datastreams$Eventcreaterules$Create
+    extends StandardParameters {
+    /**
+     * Required. Example format: properties/123/dataStreams/456
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaEventCreateRule;
+  }
+  export interface Params$Resource$Properties$Datastreams$Eventcreaterules$Delete
+    extends StandardParameters {
+    /**
+     * Required. Example format: properties/123/dataStreams/456/eventCreateRules/789
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Eventcreaterules$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the EventCreateRule to get. Example format: properties/123/dataStreams/456/eventCreateRules/789
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Eventcreaterules$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListEventCreateRules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEventCreateRules` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Example format: properties/123/dataStreams/456
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Eventcreaterules$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name for this EventCreateRule resource. Format: properties/{property\}/dataStreams/{data_stream\}/eventCreateRules/{event_create_rule\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaEventCreateRule;
+  }
 
   export class Resource$Properties$Datastreams$Measurementprotocolsecrets {
     context: APIRequestContext;
@@ -11033,63 +13350,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a measurement protocol secret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.create(
-     *       {
-     *         // Required. The parent resource where this secret will be created. Format: properties/{property\}/dataStreams/{dataStream\}
-     *         parent: 'properties/my-propertie/dataStreams/my-dataStream',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "displayName": "my_displayName",
-     *           //   "name": "my_name",
-     *           //   "secretValue": "my_secretValue"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11187,49 +13447,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes target MeasurementProtocolSecret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.delete(
-     *       {
-     *         // Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
-     *         name: 'properties/my-propertie/dataStreams/my-dataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11319,54 +13536,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lookup for a single "GA4" MeasurementProtocolSecret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.get({
-     *       // Required. The name of the measurement protocol secret to lookup. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
-     *       name: 'properties/my-propertie/dataStreams/my-dataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11462,59 +13631,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Returns child MeasurementProtocolSecrets under the specified parent Property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.list(
-     *       {
-     *         // The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.
-     *         pageSize: 'placeholder-value',
-     *         // A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The resource name of the parent stream. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets
-     *         parent: 'properties/my-propertie/dataStreams/my-dataStream',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "measurementProtocolSecrets": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11612,65 +13728,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates a measurement protocol secret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.patch(
-     *       {
-     *         // Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
-     *         name: 'properties/my-propertie/dataStreams/my-dataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *         // The list of fields to be updated. Omitted fields will not be updated.
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "displayName": "my_displayName",
-     *           //   "name": "my_name",
-     *           //   "secretValue": "my_secretValue"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11813,7 +13870,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated.
      */
     updateMask?: string;
 
@@ -11831,57 +13888,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Approves a DisplayVideo360AdvertiserLinkProposal. The DisplayVideo360AdvertiserLinkProposal will be deleted and a new DisplayVideo360AdvertiserLink will be created.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinkProposals.approve(
-     *       {
-     *         // Required. The name of the DisplayVideo360AdvertiserLinkProposal to approve. Example format: properties/1234/displayVideo360AdvertiserLinkProposals/5678
-     *         name: 'properties/my-propertie/displayVideo360AdvertiserLinkProposals/my-displayVideo360AdvertiserLinkProposal',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayVideo360AdvertiserLink": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11980,64 +13986,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Cancels a DisplayVideo360AdvertiserLinkProposal. Cancelling can mean either: - Declining a proposal initiated from Display & Video 360 - Withdrawing a proposal initiated from Google Analytics After being cancelled, a proposal will eventually be deleted automatically.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinkProposals.cancel(
-     *       {
-     *         // Required. The name of the DisplayVideo360AdvertiserLinkProposal to cancel. Example format: properties/1234/displayVideo360AdvertiserLinkProposals/5678
-     *         name: 'properties/my-propertie/displayVideo360AdvertiserLinkProposals/my-displayVideo360AdvertiserLinkProposal',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignDataSharingEnabled": false,
-     *   //   "costDataSharingEnabled": false,
-     *   //   "linkProposalStatusDetails": {},
-     *   //   "name": "my_name",
-     *   //   "validationEmail": "my_validationEmail"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12136,73 +14084,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a DisplayVideo360AdvertiserLinkProposal.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinkProposals.create(
-     *       {
-     *         // Required. Example format: properties/1234
-     *         parent: 'properties/my-propertie',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "adsPersonalizationEnabled": false,
-     *           //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *           //   "advertiserId": "my_advertiserId",
-     *           //   "campaignDataSharingEnabled": false,
-     *           //   "costDataSharingEnabled": false,
-     *           //   "linkProposalStatusDetails": {},
-     *           //   "name": "my_name",
-     *           //   "validationEmail": "my_validationEmail"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignDataSharingEnabled": false,
-     *   //   "costDataSharingEnabled": false,
-     *   //   "linkProposalStatusDetails": {},
-     *   //   "name": "my_name",
-     *   //   "validationEmail": "my_validationEmail"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12301,49 +14182,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes a DisplayVideo360AdvertiserLinkProposal on a property. This can only be used on cancelled proposals.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinkProposals.delete(
-     *       {
-     *         // Required. The name of the DisplayVideo360AdvertiserLinkProposal to delete. Example format: properties/1234/displayVideo360AdvertiserLinkProposals/5678
-     *         name: 'properties/my-propertie/displayVideo360AdvertiserLinkProposals/my-displayVideo360AdvertiserLinkProposal',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12433,59 +14271,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lookup for a single DisplayVideo360AdvertiserLinkProposal.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinkProposals.get({
-     *       // Required. The name of the DisplayVideo360AdvertiserLinkProposal to get. Example format: properties/1234/displayVideo360AdvertiserLinkProposals/5678
-     *       name: 'properties/my-propertie/displayVideo360AdvertiserLinkProposals/my-displayVideo360AdvertiserLinkProposal',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignDataSharingEnabled": false,
-     *   //   "costDataSharingEnabled": false,
-     *   //   "linkProposalStatusDetails": {},
-     *   //   "name": "my_name",
-     *   //   "validationEmail": "my_validationEmail"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12581,59 +14366,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists DisplayVideo360AdvertiserLinkProposals on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinkProposals.list(
-     *       {
-     *         // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
-     *         pageSize: 'placeholder-value',
-     *         // A page token, received from a previous `ListDisplayVideo360AdvertiserLinkProposals` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDisplayVideo360AdvertiserLinkProposals` must match the call that provided the page token.
-     *         pageToken: 'placeholder-value',
-     *         // Required. Example format: properties/1234
-     *         parent: 'properties/my-propertie',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayVideo360AdvertiserLinkProposals": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12805,67 +14537,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a DisplayVideo360AdvertiserLink. This can only be utilized by users who have proper authorization both on the Google Analytics property and on the Display & Video 360 advertiser. Users who do not have access to the Display & Video 360 advertiser should instead seek to create a DisplayVideo360LinkProposal.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinks.create({
-     *       // Required. Example format: properties/1234
-     *       parent: 'properties/my-propertie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "adsPersonalizationEnabled": false,
-     *         //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *         //   "advertiserId": "my_advertiserId",
-     *         //   "campaignDataSharingEnabled": false,
-     *         //   "costDataSharingEnabled": false,
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignDataSharingEnabled": false,
-     *   //   "costDataSharingEnabled": false,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12963,47 +14634,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes a DisplayVideo360AdvertiserLink on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinks.delete({
-     *       // Required. The name of the DisplayVideo360AdvertiserLink to delete. Example format: properties/1234/displayVideo360AdvertiserLinks/5678
-     *       name: 'properties/my-propertie/displayVideo360AdvertiserLinks/my-displayVideo360AdvertiserLink',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13093,57 +14723,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Look up a single DisplayVideo360AdvertiserLink
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinks.get({
-     *       // Required. The name of the DisplayVideo360AdvertiserLink to get. Example format: properties/1234/displayVideo360AdvertiserLink/5678
-     *       name: 'properties/my-propertie/displayVideo360AdvertiserLinks/my-displayVideo360AdvertiserLink',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignDataSharingEnabled": false,
-     *   //   "costDataSharingEnabled": false,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13239,57 +14818,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists all DisplayVideo360AdvertiserLinks on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinks.list({
-     *       // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
-     *       pageSize: 'placeholder-value',
-     *       // A page token, received from a previous `ListDisplayVideo360AdvertiserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDisplayVideo360AdvertiserLinks` must match the call that provided the page token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Example format: properties/1234
-     *       parent: 'properties/my-propertie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayVideo360AdvertiserLinks": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13387,69 +14915,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates a DisplayVideo360AdvertiserLink on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.displayVideo360AdvertiserLinks.patch({
-     *       // Output only. The resource name for this DisplayVideo360AdvertiserLink resource. Format: properties/{propertyId\}/displayVideo360AdvertiserLinks/{linkId\} Note: linkId is not the Display & Video 360 Advertiser ID
-     *       name: 'properties/my-propertie/displayVideo360AdvertiserLinks/my-displayVideo360AdvertiserLink',
-     *       // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "adsPersonalizationEnabled": false,
-     *         //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *         //   "advertiserId": "my_advertiserId",
-     *         //   "campaignDataSharingEnabled": false,
-     *         //   "costDataSharingEnabled": false,
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignDataSharingEnabled": false,
-     *   //   "costDataSharingEnabled": false,
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13602,6 +15067,541 @@ export namespace analyticsadmin_v1alpha {
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink;
   }
 
+  export class Resource$Properties$Expandeddatasets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a ExpandedDataSet.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Expandeddatasets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Expandeddatasets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>;
+    create(
+      params: Params$Resource$Properties$Expandeddatasets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Expandeddatasets$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Expandeddatasets$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Expandeddatasets$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Expandeddatasets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Expandeddatasets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/expandedDataSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a ExpandedDataSet on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Expandeddatasets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Expandeddatasets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Expandeddatasets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Expandeddatasets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Expandeddatasets$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Expandeddatasets$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Expandeddatasets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Expandeddatasets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Lookup for a single ExpandedDataSet.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Expandeddatasets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Expandeddatasets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>;
+    get(
+      params: Params$Resource$Properties$Expandeddatasets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Expandeddatasets$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Expandeddatasets$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Expandeddatasets$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Expandeddatasets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Expandeddatasets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists ExpandedDataSets on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Expandeddatasets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Expandeddatasets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>;
+    list(
+      params: Params$Resource$Properties$Expandeddatasets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Expandeddatasets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Expandeddatasets$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Expandeddatasets$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Expandeddatasets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Expandeddatasets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/expandedDataSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ExpandedDataSet on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Expandeddatasets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Expandeddatasets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>;
+    patch(
+      params: Params$Resource$Properties$Expandeddatasets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Expandeddatasets$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Expandeddatasets$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Expandeddatasets$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Expandeddatasets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Expandeddatasets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Expandeddatasets$Create
+    extends StandardParameters {
+    /**
+     * Required. Example format: properties/1234
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet;
+  }
+  export interface Params$Resource$Properties$Expandeddatasets$Delete
+    extends StandardParameters {
+    /**
+     * Required. Example format: properties/1234/expandedDataSets/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Expandeddatasets$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the ExpandedDataSet to get. Example format: properties/1234/expandedDataSets/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Expandeddatasets$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListExpandedDataSets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExpandedDataSet` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Example format: properties/1234
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Expandeddatasets$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name for this ExpandedDataSet resource. Format: properties/{property_id\}/expandedDataSets/{expanded_data_set\}
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet;
+  }
+
   export class Resource$Properties$Firebaselinks {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -13610,60 +15610,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a FirebaseLink. Properties can have at most one FirebaseLink.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.firebaseLinks.create({
-     *     // Required. Format: properties/{property_id\} Example: properties/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "name": "my_name",
-     *       //   "project": "my_project"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "name": "my_name",
-     *   //   "project": "my_project"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13761,46 +15707,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes a FirebaseLink on a property
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.firebaseLinks.delete({
-     *     // Required. Format: properties/{property_id\}/firebaseLinks/{firebase_link_id\} Example: properties/1234/firebaseLinks/5678
-     *     name: 'properties/my-propertie/firebaseLinks/my-firebaseLink',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13889,56 +15795,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists FirebaseLinks on a property. Properties can have at most one FirebaseLink.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.firebaseLinks.list({
-     *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Format: properties/{property_id\} Example: properties/1234
-     *     parent: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "firebaseLinks": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14061,7 +15917,7 @@ export namespace analyticsadmin_v1alpha {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
+     * A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirebaseLinks` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -14078,68 +15934,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a GoogleAdsLink.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.googleAdsLinks.create({
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "adsPersonalizationEnabled": false,
-     *       //   "canManageClients": false,
-     *       //   "createTime": "my_createTime",
-     *       //   "creatorEmailAddress": "my_creatorEmailAddress",
-     *       //   "customerId": "my_customerId",
-     *       //   "name": "my_name",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "canManageClients": false,
-     *   //   "createTime": "my_createTime",
-     *   //   "creatorEmailAddress": "my_creatorEmailAddress",
-     *   //   "customerId": "my_customerId",
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14237,46 +16031,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes a GoogleAdsLink on a property
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.googleAdsLinks.delete({
-     *     // Required. Example format: properties/1234/googleAdsLinks/5678
-     *     name: 'properties/my-propertie/googleAdsLinks/my-googleAdsLink',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14365,56 +16119,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists GoogleAdsLinks on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.googleAdsLinks.list({
-     *     // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListGoogleAdsLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGoogleAdsLinks` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "googleAdsLinks": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14512,70 +16216,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates a GoogleAdsLink on a property
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.googleAdsLinks.patch({
-     *     // Output only. Format: properties/{propertyId\}/googleAdsLinks/{googleAdsLinkId\} Note: googleAdsLinkId is not the Google Ads customer ID.
-     *     name: 'properties/my-propertie/googleAdsLinks/my-googleAdsLink',
-     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "adsPersonalizationEnabled": false,
-     *       //   "canManageClients": false,
-     *       //   "createTime": "my_createTime",
-     *       //   "creatorEmailAddress": "my_creatorEmailAddress",
-     *       //   "customerId": "my_customerId",
-     *       //   "name": "my_name",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "canManageClients": false,
-     *   //   "createTime": "my_createTime",
-     *   //   "creatorEmailAddress": "my_creatorEmailAddress",
-     *   //   "customerId": "my_customerId",
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14728,68 +16368,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a SearchAds360Link.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.searchAds360Links.create({
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "adsPersonalizationEnabled": false,
-     *       //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "campaignDataSharingEnabled": false,
-     *       //   "costDataSharingEnabled": false,
-     *       //   "name": "my_name",
-     *       //   "siteStatsSharingEnabled": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignDataSharingEnabled": false,
-     *   //   "costDataSharingEnabled": false,
-     *   //   "name": "my_name",
-     *   //   "siteStatsSharingEnabled": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14887,46 +16465,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes a SearchAds360Link on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.searchAds360Links.delete({
-     *     // Required. The name of the SearchAds360Link to delete. Example format: properties/1234/SearchAds360Links/5678
-     *     name: 'properties/my-propertie/searchAds360Links/my-searchAds360Link',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15015,57 +16553,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Look up a single SearchAds360Link
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.searchAds360Links.get({
-     *     // Required. The name of the SearchAds360Link to get. Example format: properties/1234/SearchAds360Link/5678
-     *     name: 'properties/my-propertie/searchAds360Links/my-searchAds360Link',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignDataSharingEnabled": false,
-     *   //   "costDataSharingEnabled": false,
-     *   //   "name": "my_name",
-     *   //   "siteStatsSharingEnabled": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15160,56 +16647,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists all SearchAds360Links on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.searchAds360Links.list({
-     *     // The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListSearchAds360Links` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSearchAds360Links` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Example format: properties/1234
-     *     parent: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "searchAds360Links": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15307,70 +16744,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates a SearchAds360Link on a property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.searchAds360Links.patch({
-     *     // Output only. The resource name for this SearchAds360Link resource. Format: properties/{propertyId\}/searchAds360Links/{linkId\} Note: linkId is not the Search Ads 360 advertiser ID
-     *     name: 'properties/my-propertie/searchAds360Links/my-searchAds360Link',
-     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "adsPersonalizationEnabled": false,
-     *       //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "campaignDataSharingEnabled": false,
-     *       //   "costDataSharingEnabled": false,
-     *       //   "name": "my_name",
-     *       //   "siteStatsSharingEnabled": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adsPersonalizationEnabled": false,
-     *   //   "advertiserDisplayName": "my_advertiserDisplayName",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignDataSharingEnabled": false,
-     *   //   "costDataSharingEnabled": false,
-     *   //   "name": "my_name",
-     *   //   "siteStatsSharingEnabled": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15530,61 +16903,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.userLinks.audit({
-     *     // Required. Example format: accounts/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "userLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15682,57 +17000,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.userLinks.batchCreate({
-     *     // Required. The account or property that all user links in the request are for. This field is required. The parent field in the CreateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "notifyNewUsers": false,
-     *       //   "requests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "userLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15830,54 +17097,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes information about multiple users' links to an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.userLinks.batchDelete({
-     *     // Required. The account or property that all user links in the request are for. The parent of all values for user link names to delete must match this field. Example format: accounts/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15971,53 +17190,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Gets information about multiple users' links to an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.userLinks.batchGet({
-     *     // Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId\}/userLinks/{userLinkId\}
-     *     names: 'placeholder-value',
-     *     // Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234
-     *     parent: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "userLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16115,56 +17287,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates information about multiple users' links to an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.userLinks.batchUpdate({
-     *     // Required. The account or property that all user links in the request are for. The parent field in the UpdateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "userLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16262,62 +17384,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.userLinks.create({
-     *     // Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.
-     *     notifyNewUser: 'placeholder-value',
-     *     // Required. Example format: accounts/1234
-     *     parent: 'properties/my-propertie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "directRoles": [],
-     *       //   "emailAddress": "my_emailAddress",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "directRoles": [],
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16415,46 +17481,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Deletes a user link on an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.userLinks.delete({
-     *     // Required. Example format: accounts/1234/userLinks/5678
-     *     name: 'properties/my-propertie/userLinks/my-userLink',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16543,53 +17569,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Gets information about a user's link to an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.userLinks.get({
-     *     // Required. Example format: accounts/1234/userLinks/5678
-     *     name: 'properties/my-propertie/userLinks/my-userLink',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "directRoles": [],
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16684,56 +17663,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Lists all user links on an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.userLinks.list({
-     *     // The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 200 user links will be returned. The maximum value is 500; values above 500 will be coerced to 500.
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLinks` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Example format: accounts/1234
-     *     parent: 'properties/my-propertie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "userLinks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16831,60 +17760,6 @@ export namespace analyticsadmin_v1alpha {
 
     /**
      * Updates a user link on an account or property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.userLinks.patch({
-     *     // Output only. Example format: properties/1234/userLinks/5678
-     *     name: 'properties/my-propertie/userLinks/my-userLink',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "directRoles": [],
-     *       //   "emailAddress": "my_emailAddress",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "directRoles": [],
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -264,7 +264,7 @@ export namespace appengine_v1beta {
     visibleDomainMappings?: string[] | null;
   }
   /**
-   * A domain that a user has been authorized to administer. To authorize use of a domain, verify ownership via Webmaster Central (https://www.google.com/webmasters/verification/home).
+   * A domain that a user has been authorized to administer. To authorize use of a domain, verify ownership via Search Console (https://search.google.com/search-console/welcome).
    */
   export interface Schema$AuthorizedDomain {
     /**
@@ -656,6 +656,19 @@ export namespace appengine_v1beta {
     sourceRange?: string | null;
   }
   /**
+   * Runtime settings for the App Engine flexible environment.
+   */
+  export interface Schema$FlexibleRuntimeSettings {
+    /**
+     * The operating system of the application runtime.
+     */
+    operatingSystem?: string | null;
+    /**
+     * The runtime version of an App Engine flexible application.
+     */
+    runtimeVersion?: string | null;
+  }
+  /**
    * Metadata for the given google.cloud.location.Location.
    */
   export interface Schema$GoogleAppengineV1betaLocationMetadata {
@@ -904,6 +917,19 @@ export namespace appengine_v1beta {
     operations?: Schema$Operation[];
   }
   /**
+   * Response message for Applications.ListRuntimes.
+   */
+  export interface Schema$ListRuntimesResponse {
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The runtimes available to the requested application.
+     */
+    runtimes?: Schema$Runtime[];
+  }
+  /**
    * Response message for Services.ListServices.
    */
   export interface Schema$ListServicesResponse {
@@ -963,7 +989,7 @@ export namespace appengine_v1beta {
     timeout?: string | null;
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -1106,7 +1132,7 @@ export namespace appengine_v1beta {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1213,6 +1239,75 @@ export namespace appengine_v1beta {
     warning?: string[] | null;
   }
   /**
+   * The request sent to CLHs during project events.
+   */
+  export interface Schema$ProjectEvent {
+    /**
+     * The unique ID for this project event. CLHs can use this value to dedup repeated calls. required
+     */
+    eventId?: string | null;
+    phase?: string | null;
+    /**
+     * The projects metadata for this project. required
+     */
+    projectMetadata?: Schema$ProjectsMetadata;
+    /**
+     * The state of the project that led to this event.
+     */
+    state?: Schema$ProjectState;
+  }
+  /**
+   * ProjectsMetadata is the metadata CCFE stores about the all the relevant projects (tenant, consumer, producer).
+   */
+  export interface Schema$ProjectsMetadata {
+    /**
+     * The consumer project id.
+     */
+    consumerProjectId?: string | null;
+    /**
+     * The consumer project number.
+     */
+    consumerProjectNumber?: string | null;
+    /**
+     * The CCFE state of the consumer project. It is the same state that is communicated to the CLH during project events. Notice that this field is not set in the DB, it is only set in this proto when communicated to CLH in the side channel.
+     */
+    consumerProjectState?: string | null;
+    /**
+     * The service account authorized to operate on the consumer project. Note: CCFE only propagates P4SA with default tag to CLH.
+     */
+    p4ServiceAccount?: string | null;
+    /**
+     * The producer project id.
+     */
+    producerProjectId?: string | null;
+    /**
+     * The producer project number.
+     */
+    producerProjectNumber?: string | null;
+    /**
+     * The tenant project id.
+     */
+    tenantProjectId?: string | null;
+    /**
+     * The tenant project number.
+     */
+    tenantProjectNumber?: string | null;
+  }
+  /**
+   * ProjectState contains the externally-visible project state that is used to communicate the state and reasoning for that state to the CLH. This data is not persisted by CCFE, but is instead derived from CCFE's internal representation of the project state.
+   */
+  export interface Schema$ProjectState {
+    currentReasons?: Schema$Reasons;
+    /**
+     * The previous and current reasons for a project state will be sent for a project event. CLHs that need to know the signal that caused the project event to trigger (edges) as opposed to just knowing the state can act upon differences in the previous and current reasons.Reasons will be provided for every system: service management, data governance, abuse, and billing.If this is a CCFE-triggered event used for reconciliation then the current reasons will be set to their *_CONTROL_PLANE_SYNC state. The previous reasons will contain the last known set of non-unknown non-control_plane_sync reasons for the state.Reasons fields are deprecated. New tenants should only use the state field. If you must know the reason(s) behind a specific state, please consult with CCFE team first (cloud-ccfe-discuss@google.com).
+     */
+    previousReasons?: Schema$Reasons;
+    /**
+     * The current state of the project. This state is the culmination of all of the opinions from external systems that CCFE knows about of the project.
+     */
+    state?: string | null;
+  }
+  /**
    * Readiness checking configuration for VM instances. Unhealthy instances are removed from traffic rotation.
    */
   export interface Schema$ReadinessCheck {
@@ -1244,6 +1339,15 @@ export namespace appengine_v1beta {
      * Time before the check is considered failed.
      */
     timeout?: string | null;
+  }
+  /**
+   * Projects transition between and within states based on reasons sent from various systems. CCFE will provide the CLH with reasons for the current state per system.The current systems that CCFE supports are: Service Management (Inception) Data Governance (Wipeout) Abuse (Ares) Billing (Internal Cloud Billing API)
+   */
+  export interface Schema$Reasons {
+    abuse?: string | null;
+    billing?: string | null;
+    dataGovernance?: string | null;
+    serviceManagement?: string | null;
   }
   /**
    * Request message for 'Applications.RepairApplication'.
@@ -1303,6 +1407,27 @@ export namespace appengine_v1beta {
      * User specified volumes.
      */
     volumes?: Schema$Volume[];
+  }
+  /**
+   * Runtime versions for App Engine.
+   */
+  export interface Schema$Runtime {
+    /**
+     * The environment of the runtime.
+     */
+    environment?: string | null;
+    /**
+     * The name of the runtime, e.g., 'go113', 'nodejs12', etc.
+     */
+    name?: string | null;
+    /**
+     * The stage of life this runtime is in, e.g., BETA, GA, etc.
+     */
+    stage?: string | null;
+    /**
+     * Warning messages, e.g., a deprecation warning.
+     */
+    warnings?: string[] | null;
   }
   /**
    * Executes a script to handle the request that matches the URL pattern.
@@ -1562,6 +1687,10 @@ export namespace appengine_v1beta {
      */
     errorHandlers?: Schema$ErrorHandler[];
     /**
+     * Settings for App Engine flexible runtimes.
+     */
+    flexibleRuntimeSettings?: Schema$FlexibleRuntimeSettings;
+    /**
      * An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the request and other request handlers are not attempted.Only returned in GET requests if view=FULL is set.
      */
     handlers?: Schema$UrlMap[];
@@ -1710,6 +1839,7 @@ export namespace appengine_v1beta {
     firewall: Resource$Apps$Firewall;
     locations: Resource$Apps$Locations;
     operations: Resource$Apps$Operations;
+    runtimes: Resource$Apps$Runtimes;
     services: Resource$Apps$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -1723,79 +1853,12 @@ export namespace appengine_v1beta {
       this.firewall = new Resource$Apps$Firewall(this.context);
       this.locations = new Resource$Apps$Locations(this.context);
       this.operations = new Resource$Apps$Operations(this.context);
+      this.runtimes = new Resource$Apps$Runtimes(this.context);
       this.services = new Resource$Apps$Services(this.context);
     }
 
     /**
      * Creates an App Engine application for a Google Cloud Platform project. Required fields: id - The ID of the target Cloud Platform project. location - The region (https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.For more information about App Engine applications, see Managing Projects, Applications, and Billing (https://cloud.google.com/appengine/docs/standard/python/console/).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.create({
-     *     // The project and location in which the application should be created, specified in the format projects/x/locations/x
-     *     parent: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authDomain": "my_authDomain",
-     *       //   "codeBucket": "my_codeBucket",
-     *       //   "databaseType": "my_databaseType",
-     *       //   "defaultBucket": "my_defaultBucket",
-     *       //   "defaultCookieExpiration": "my_defaultCookieExpiration",
-     *       //   "defaultHostname": "my_defaultHostname",
-     *       //   "dispatchRules": [],
-     *       //   "featureSettings": {},
-     *       //   "gcrDomain": "my_gcrDomain",
-     *       //   "iap": {},
-     *       //   "id": "my_id",
-     *       //   "locationId": "my_locationId",
-     *       //   "name": "my_name",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "servingStatus": "my_servingStatus"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1879,66 +1942,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets information about an application.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.get({
-     *     // Part of `name`. Name of the Application resource to get. Example: apps/myapp.
-     *     appsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authDomain": "my_authDomain",
-     *   //   "codeBucket": "my_codeBucket",
-     *   //   "databaseType": "my_databaseType",
-     *   //   "defaultBucket": "my_defaultBucket",
-     *   //   "defaultCookieExpiration": "my_defaultCookieExpiration",
-     *   //   "defaultHostname": "my_defaultHostname",
-     *   //   "dispatchRules": [],
-     *   //   "featureSettings": {},
-     *   //   "gcrDomain": "my_gcrDomain",
-     *   //   "iap": {},
-     *   //   "id": "my_id",
-     *   //   "locationId": "my_locationId",
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "servingStatus": "my_servingStatus"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2025,76 +2028,6 @@ export namespace appengine_v1beta {
 
     /**
      * Updates the specified Application resource. You can update the following fields: auth_domain - Google authentication domain for controlling user access to the application. default_cookie_expiration - Cookie expiration policy for the application. iap - Identity-Aware Proxy properties for the application.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.patch({
-     *     // Part of `name`. Name of the Application resource to update. Example: apps/myapp.
-     *     appsId: 'placeholder-value',
-     *     // Required. Standard field mask for the set of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authDomain": "my_authDomain",
-     *       //   "codeBucket": "my_codeBucket",
-     *       //   "databaseType": "my_databaseType",
-     *       //   "defaultBucket": "my_defaultBucket",
-     *       //   "defaultCookieExpiration": "my_defaultCookieExpiration",
-     *       //   "defaultHostname": "my_defaultHostname",
-     *       //   "dispatchRules": [],
-     *       //   "featureSettings": {},
-     *       //   "gcrDomain": "my_gcrDomain",
-     *       //   "iap": {},
-     *       //   "id": "my_id",
-     *       //   "locationId": "my_locationId",
-     *       //   "name": "my_name",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "servingStatus": "my_servingStatus"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2181,58 +2114,6 @@ export namespace appengine_v1beta {
 
     /**
      * Recreates the required App Engine features for the specified App Engine application, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example, Error retrieving the App Engine service account. If you have deleted your App Engine service account, this will not be able to recreate it. Instead, you should attempt to use the IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B"name"%3A"projects%2F-%2FserviceAccounts%2Funique_id"%2C"resource"%3A%7B%7D%7D . If the deletion was recent, the numeric ID can be found in the Cloud Console Activity Log.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.repair({
-     *     // Part of `name`. Name of the application to repair. Example: apps/myapp
-     *     appsId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2320,11 +2201,6 @@ export namespace appengine_v1beta {
 
   export interface Params$Resource$Apps$Create extends StandardParameters {
     /**
-     * The project and location in which the application should be created, specified in the format projects/x/locations/x
-     */
-    parent?: string;
-
-    /**
      * Request body metadata
      */
     requestBody?: Schema$Application;
@@ -2370,72 +2246,6 @@ export namespace appengine_v1beta {
 
     /**
      * Uploads the specified SSL certificate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.authorizedCertificates.create({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     *     appsId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "certificateRawData": {},
-     *       //   "displayName": "my_displayName",
-     *       //   "domainMappingsCount": 0,
-     *       //   "domainNames": [],
-     *       //   "expireTime": "my_expireTime",
-     *       //   "id": "my_id",
-     *       //   "managedCertificate": {},
-     *       //   "name": "my_name",
-     *       //   "visibleDomainMappings": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateRawData": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "domainMappingsCount": 0,
-     *   //   "domainNames": [],
-     *   //   "expireTime": "my_expireTime",
-     *   //   "id": "my_id",
-     *   //   "managedCertificate": {},
-     *   //   "name": "my_name",
-     *   //   "visibleDomainMappings": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2527,48 +2337,6 @@ export namespace appengine_v1beta {
 
     /**
      * Deletes the specified SSL certificate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.authorizedCertificates.delete({
-     *     // Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     authorizedCertificatesId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2656,64 +2424,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets the specified SSL certificate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.authorizedCertificates.get({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     authorizedCertificatesId: 'placeholder-value',
-     *     // Controls the set of fields returned in the GET response.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateRawData": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "domainMappingsCount": 0,
-     *   //   "domainNames": [],
-     *   //   "expireTime": "my_expireTime",
-     *   //   "id": "my_id",
-     *   //   "managedCertificate": {},
-     *   //   "name": "my_name",
-     *   //   "visibleDomainMappings": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2806,59 +2516,6 @@ export namespace appengine_v1beta {
 
     /**
      * Lists all SSL certificates the user is authorized to administer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.authorizedCertificates.list({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     *     appsId: 'placeholder-value',
-     *     // Maximum results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation token for fetching the next page of results.
-     *     pageToken: 'placeholder-value',
-     *     // Controls the set of fields returned in the LIST response.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificates": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2954,76 +2611,6 @@ export namespace appengine_v1beta {
 
     /**
      * Updates the specified SSL certificate. To renew a certificate and maintain its existing domain mappings, update certificate_data with a new certificate. The new certificate must be applicable to the same domains as the original certificate. The certificate display_name may also be updated.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.authorizedCertificates.patch({
-     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     authorizedCertificatesId: 'placeholder-value',
-     *     // Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "certificateRawData": {},
-     *       //   "displayName": "my_displayName",
-     *       //   "domainMappingsCount": 0,
-     *       //   "domainNames": [],
-     *       //   "expireTime": "my_expireTime",
-     *       //   "id": "my_id",
-     *       //   "managedCertificate": {},
-     *       //   "name": "my_name",
-     *       //   "visibleDomainMappings": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "certificateRawData": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "domainMappingsCount": 0,
-     *   //   "domainNames": [],
-     *   //   "expireTime": "my_expireTime",
-     *   //   "id": "my_id",
-     *   //   "managedCertificate": {},
-     *   //   "name": "my_name",
-     *   //   "visibleDomainMappings": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3201,57 +2788,6 @@ export namespace appengine_v1beta {
 
     /**
      * Lists all domains the user is authorized to administer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.authorizedDomains.list({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     *     appsId: 'placeholder-value',
-     *     // Maximum results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation token for fetching the next page of results.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "domains": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3371,65 +2907,6 @@ export namespace appengine_v1beta {
 
     /**
      * Maps a domain to an application. A user must be authorized to administer a domain in order to map it to an application. For a list of available authorized domains, see AuthorizedDomains.ListAuthorizedDomains.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.domainMappings.create({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     *     appsId: 'placeholder-value',
-     *     // Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
-     *     overrideStrategy: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "id": "my_id",
-     *       //   "name": "my_name",
-     *       //   "resourceRecords": [],
-     *       //   "sslSettings": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3517,54 +2994,6 @@ export namespace appengine_v1beta {
 
     /**
      * Deletes the specified domain mapping. A user must be authorized to administer the associated domain in order to delete a DomainMapping resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.domainMappings.delete({
-     *     // Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     domainMappingsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3652,57 +3081,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets the specified domain mapping.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.domainMappings.get({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     domainMappingsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "id": "my_id",
-     *   //   "name": "my_name",
-     *   //   "resourceRecords": [],
-     *   //   "sslSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3790,57 +3168,6 @@ export namespace appengine_v1beta {
 
     /**
      * Lists the domain mappings on an application.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.domainMappings.list({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     *     appsId: 'placeholder-value',
-     *     // Maximum results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation token for fetching the next page of results.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "domainMappings": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3935,67 +3262,6 @@ export namespace appengine_v1beta {
 
     /**
      * Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.domainMappings.patch({
-     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     domainMappingsId: 'placeholder-value',
-     *     // Required. Standard field mask for the set of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "id": "my_id",
-     *       //   "name": "my_name",
-     *       //   "resourceRecords": [],
-     *       //   "sslSettings": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4173,56 +3439,6 @@ export namespace appengine_v1beta {
 
     /**
      * Replaces the entire firewall ruleset in one bulk operation. This overrides and replaces the rules of an existing firewall with the new rules.If the final rule does not match traffic with the '*' wildcard IP range, then an "allow all" rule is explicitly added to the end of the list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.firewall.ingressRules.batchUpdate({
-     *     // Part of `name`. Name of the Firewall collection to set. Example: apps/myapp/firewall/ingressRules.
-     *     appsId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "ingressRules": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ingressRules": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4319,62 +3535,6 @@ export namespace appengine_v1beta {
 
     /**
      * Creates a firewall rule for the application.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.firewall.ingressRules.create({
-     *     // Part of `parent`. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
-     *     appsId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "action": "my_action",
-     *       //   "description": "my_description",
-     *       //   "priority": 0,
-     *       //   "sourceRange": "my_sourceRange"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "action": "my_action",
-     *   //   "description": "my_description",
-     *   //   "priority": 0,
-     *   //   "sourceRange": "my_sourceRange"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4461,48 +3621,6 @@ export namespace appengine_v1beta {
 
     /**
      * Deletes the specified firewall rule.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.firewall.ingressRules.delete({
-     *     // Part of `name`. Name of the Firewall resource to delete. Example: apps/myapp/firewall/ingressRules/100.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     ingressRulesId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4590,57 +3708,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets the specified firewall rule.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.firewall.ingressRules.get({
-     *     // Part of `name`. Name of the Firewall resource to retrieve. Example: apps/myapp/firewall/ingressRules/100.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     ingressRulesId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "action": "my_action",
-     *   //   "description": "my_description",
-     *   //   "priority": 0,
-     *   //   "sourceRange": "my_sourceRange"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4728,59 +3795,6 @@ export namespace appengine_v1beta {
 
     /**
      * Lists the firewall rules of an application.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.firewall.ingressRules.list({
-     *     // Part of `parent`. Name of the Firewall collection to retrieve. Example: apps/myapp/firewall/ingressRules.
-     *     appsId: 'placeholder-value',
-     *     // A valid IP Address. If set, only rules matching this address will be returned. The first returned rule will be the rule that fires on requests from this IP.
-     *     matchingAddress: 'placeholder-value',
-     *     // Maximum results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation token for fetching the next page of results.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ingressRules": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4872,66 +3886,6 @@ export namespace appengine_v1beta {
 
     /**
      * Updates the specified firewall rule.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.firewall.ingressRules.patch({
-     *     // Part of `name`. Name of the Firewall resource to update. Example: apps/myapp/firewall/ingressRules/100.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     ingressRulesId: 'placeholder-value',
-     *     // Standard field mask for the set of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "action": "my_action",
-     *       //   "description": "my_description",
-     *       //   "priority": 0,
-     *       //   "sourceRange": "my_sourceRange"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "action": "my_action",
-     *   //   "description": "my_description",
-     *   //   "priority": 0,
-     *   //   "sourceRange": "my_sourceRange"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5112,58 +4066,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets information about a location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.locations.get({
-     *     // Part of `name`. Resource name for the location.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     locationsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "locationId": "my_locationId",
-     *   //   "metadata": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5250,59 +4152,6 @@ export namespace appengine_v1beta {
 
     /**
      * Lists information about the supported locations for this service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.locations.list({
-     *     // Part of `name`. The resource that owns the locations collection, if applicable.
-     *     appsId: 'placeholder-value',
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
-     *     filter: 'placeholder-value',
-     *     // The maximum number of results to return. If not set, the service selects a default.
-     *     pageSize: 'placeholder-value',
-     *     // A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "locations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5433,58 +4282,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.operations.get({
-     *     // Part of `name`. The name of the operation resource.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     operationsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5570,60 +4367,7 @@ export namespace appengine_v1beta {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x\}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.operations.list({
-     *     // Part of `name`. The name of the operation's parent resource.
-     *     appsId: 'placeholder-value',
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5746,6 +4490,125 @@ export namespace appengine_v1beta {
     pageToken?: string;
   }
 
+  export class Resource$Apps$Runtimes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all the available runtimes for the application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Apps$Runtimes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Apps$Runtimes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRuntimesResponse>;
+    list(
+      params: Params$Resource$Apps$Runtimes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Apps$Runtimes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Apps$Runtimes$List,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRuntimesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Apps$Runtimes$List
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRuntimesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apps$Runtimes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Runtimes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/apps/{appsId}/runtimes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['appsId'],
+        pathParams: ['appsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRuntimesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRuntimesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Apps$Runtimes$List
+    extends StandardParameters {
+    /**
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Optional. The environment of the Application.
+     */
+    environment?: string;
+    /**
+     * Optional. Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+  }
+
   export class Resource$Apps$Services {
     context: APIRequestContext;
     versions: Resource$Apps$Services$Versions;
@@ -5756,54 +4619,6 @@ export namespace appengine_v1beta {
 
     /**
      * Deletes the specified service and all enclosed versions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.delete({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5890,58 +4705,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets the current configuration of the specified service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.get({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "id": "my_id",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "networkSettings": {},
-     *   //   "split": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6028,57 +4791,6 @@ export namespace appengine_v1beta {
 
     /**
      * Lists all the services in the application.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.list({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     *     appsId: 'placeholder-value',
-     *     // Maximum results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation token for fetching the next page of results.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "services": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6171,70 +4883,6 @@ export namespace appengine_v1beta {
 
     /**
      * Updates the configuration of the specified service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.patch({
-     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.
-     *     appsId: 'placeholder-value',
-     *     // Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#InboundServiceType) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#AutomaticScaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services#ShardBy) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
-     *     migrateTraffic: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *     // Required. Standard field mask for the set of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "id": "my_id",
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "networkSettings": {},
-     *       //   "split": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6394,101 +5042,6 @@ export namespace appengine_v1beta {
 
     /**
      * Deploys code and resource files to a new version.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.versions.create({
-     *     // Part of `parent`. Name of the parent resource to create this version under. Example: apps/myapp/services/default.
-     *     appsId: 'placeholder-value',
-     *     // Part of `parent`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiConfig": {},
-     *       //   "appEngineApis": false,
-     *       //   "automaticScaling": {},
-     *       //   "basicScaling": {},
-     *       //   "betaSettings": {},
-     *       //   "buildEnvVariables": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "createdBy": "my_createdBy",
-     *       //   "defaultExpiration": "my_defaultExpiration",
-     *       //   "deployment": {},
-     *       //   "diskUsageBytes": "my_diskUsageBytes",
-     *       //   "endpointsApiService": {},
-     *       //   "entrypoint": {},
-     *       //   "env": "my_env",
-     *       //   "envVariables": {},
-     *       //   "errorHandlers": [],
-     *       //   "handlers": [],
-     *       //   "healthCheck": {},
-     *       //   "id": "my_id",
-     *       //   "inboundServices": [],
-     *       //   "instanceClass": "my_instanceClass",
-     *       //   "libraries": [],
-     *       //   "livenessCheck": {},
-     *       //   "manualScaling": {},
-     *       //   "name": "my_name",
-     *       //   "network": {},
-     *       //   "nobuildFilesRegex": "my_nobuildFilesRegex",
-     *       //   "readinessCheck": {},
-     *       //   "resources": {},
-     *       //   "runtime": "my_runtime",
-     *       //   "runtimeApiVersion": "my_runtimeApiVersion",
-     *       //   "runtimeChannel": "my_runtimeChannel",
-     *       //   "runtimeMainExecutablePath": "my_runtimeMainExecutablePath",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "servingStatus": "my_servingStatus",
-     *       //   "threadsafe": false,
-     *       //   "versionUrl": "my_versionUrl",
-     *       //   "vm": false,
-     *       //   "vpcAccessConnector": {},
-     *       //   "zones": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6575,56 +5128,6 @@ export namespace appengine_v1beta {
 
     /**
      * Deletes an existing Version resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.versions.delete({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     versionsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6712,97 +5215,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets the specified Version resource. By default, only a BASIC_VIEW will be returned. Specify the FULL_VIEW parameter to get the full resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.versions.get({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     versionsId: 'placeholder-value',
-     *     // Controls the set of fields returned in the Get response.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiConfig": {},
-     *   //   "appEngineApis": false,
-     *   //   "automaticScaling": {},
-     *   //   "basicScaling": {},
-     *   //   "betaSettings": {},
-     *   //   "buildEnvVariables": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "createdBy": "my_createdBy",
-     *   //   "defaultExpiration": "my_defaultExpiration",
-     *   //   "deployment": {},
-     *   //   "diskUsageBytes": "my_diskUsageBytes",
-     *   //   "endpointsApiService": {},
-     *   //   "entrypoint": {},
-     *   //   "env": "my_env",
-     *   //   "envVariables": {},
-     *   //   "errorHandlers": [],
-     *   //   "handlers": [],
-     *   //   "healthCheck": {},
-     *   //   "id": "my_id",
-     *   //   "inboundServices": [],
-     *   //   "instanceClass": "my_instanceClass",
-     *   //   "libraries": [],
-     *   //   "livenessCheck": {},
-     *   //   "manualScaling": {},
-     *   //   "name": "my_name",
-     *   //   "network": {},
-     *   //   "nobuildFilesRegex": "my_nobuildFilesRegex",
-     *   //   "readinessCheck": {},
-     *   //   "resources": {},
-     *   //   "runtime": "my_runtime",
-     *   //   "runtimeApiVersion": "my_runtimeApiVersion",
-     *   //   "runtimeChannel": "my_runtimeChannel",
-     *   //   "runtimeMainExecutablePath": "my_runtimeMainExecutablePath",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "servingStatus": "my_servingStatus",
-     *   //   "threadsafe": false,
-     *   //   "versionUrl": "my_versionUrl",
-     *   //   "vm": false,
-     *   //   "vpcAccessConnector": {},
-     *   //   "zones": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6890,61 +5302,6 @@ export namespace appengine_v1beta {
 
     /**
      * Lists the versions of a service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.versions.list({
-     *     // Part of `parent`. Name of the parent Service resource. Example: apps/myapp/services/default.
-     *     appsId: 'placeholder-value',
-     *     // Maximum results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation token for fetching the next page of results.
-     *     pageToken: 'placeholder-value',
-     *     // Part of `parent`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *     // Controls the set of fields returned in the List response.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "versions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7036,105 +5393,6 @@ export namespace appengine_v1beta {
 
     /**
      * Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses:Standard environment instance_class (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.instance_class)automatic scaling in the standard environment: automatic_scaling.min_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automaticScaling.standard_scheduler_settings.max_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.min_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_cpu_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_throughput_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#StandardSchedulerSettings)basic scaling or manual scaling in the standard environment: serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status) manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#manualscaling)Flexible environment serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.serving_status)automatic scaling in the flexible environment: automatic_scaling.min_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cool_down_period_sec (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cpu_utilization.target_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#Version.FIELDS.automatic_scaling)manual scaling in the flexible environment: manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#manualscaling)
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.versions.patch({
-     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *     // Standard field mask for the set of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     versionsId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiConfig": {},
-     *       //   "appEngineApis": false,
-     *       //   "automaticScaling": {},
-     *       //   "basicScaling": {},
-     *       //   "betaSettings": {},
-     *       //   "buildEnvVariables": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "createdBy": "my_createdBy",
-     *       //   "defaultExpiration": "my_defaultExpiration",
-     *       //   "deployment": {},
-     *       //   "diskUsageBytes": "my_diskUsageBytes",
-     *       //   "endpointsApiService": {},
-     *       //   "entrypoint": {},
-     *       //   "env": "my_env",
-     *       //   "envVariables": {},
-     *       //   "errorHandlers": [],
-     *       //   "handlers": [],
-     *       //   "healthCheck": {},
-     *       //   "id": "my_id",
-     *       //   "inboundServices": [],
-     *       //   "instanceClass": "my_instanceClass",
-     *       //   "libraries": [],
-     *       //   "livenessCheck": {},
-     *       //   "manualScaling": {},
-     *       //   "name": "my_name",
-     *       //   "network": {},
-     *       //   "nobuildFilesRegex": "my_nobuildFilesRegex",
-     *       //   "readinessCheck": {},
-     *       //   "resources": {},
-     *       //   "runtime": "my_runtime",
-     *       //   "runtimeApiVersion": "my_runtimeApiVersion",
-     *       //   "runtimeChannel": "my_runtimeChannel",
-     *       //   "runtimeMainExecutablePath": "my_runtimeMainExecutablePath",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "servingStatus": "my_servingStatus",
-     *       //   "threadsafe": false,
-     *       //   "versionUrl": "my_versionUrl",
-     *       //   "vm": false,
-     *       //   "vpcAccessConnector": {},
-     *       //   "zones": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7327,66 +5585,6 @@ export namespace appengine_v1beta {
 
     /**
      * Enables debugging on a VM instance. This allows you to use the SSH command to connect to the virtual machine where the instance lives. While in "debug mode", the instance continues to serve live traffic. You should delete the instance when you are done debugging and then allow the system to take over and determine if another instance should be started.Only applicable for instances in App Engine flexible environment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.versions.instances.debug({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     instancesId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     versionsId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "sshKey": "my_sshKey"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7474,58 +5672,6 @@ export namespace appengine_v1beta {
 
     /**
      * Stops a running instance.The instance might be automatically recreated based on the scaling settings of the version. For more information, see "How Instances are Managed" (standard environment (https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed) | flexible environment (https://cloud.google.com/appengine/docs/flexible/python/how-instances-are-managed)).To ensure that instances are not re-created and avoid getting billed, you can stop all instances within the target version by changing the serving status of the version to STOPPED with the apps.services.versions.patch (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch) method.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.versions.instances.delete({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     instancesId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     versionsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7613,74 +5759,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets instance information.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.versions.instances.get({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
-     *     appsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     instancesId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `appsId`.
-     *     versionsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appEngineRelease": "my_appEngineRelease",
-     *   //   "availability": "my_availability",
-     *   //   "averageLatency": 0,
-     *   //   "errors": 0,
-     *   //   "id": "my_id",
-     *   //   "memoryUsage": "my_memoryUsage",
-     *   //   "name": "my_name",
-     *   //   "qps": {},
-     *   //   "requests": 0,
-     *   //   "startTime": "my_startTime",
-     *   //   "vmDebugEnabled": false,
-     *   //   "vmId": "my_vmId",
-     *   //   "vmIp": "my_vmIp",
-     *   //   "vmLiveness": "my_vmLiveness",
-     *   //   "vmName": "my_vmName",
-     *   //   "vmStatus": "my_vmStatus",
-     *   //   "vmZoneName": "my_vmZoneName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7768,61 +5846,6 @@ export namespace appengine_v1beta {
 
     /**
      * Lists the instances of a version.Tip: To aggregate details about instances over time, see the Stackdriver Monitoring API (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.apps.services.versions.instances.list({
-     *     // Part of `parent`. Name of the parent Version resource. Example: apps/myapp/services/default/versions/v1.
-     *     appsId: 'placeholder-value',
-     *     // Maximum results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation token for fetching the next page of results.
-     *     pageToken: 'placeholder-value',
-     *     // Part of `parent`. See documentation of `appsId`.
-     *     servicesId: 'placeholder-value',
-     *     // Part of `parent`. See documentation of `appsId`.
-     *     versionsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "instances": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8011,13 +6034,9 @@ export namespace appengine_v1beta {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
-    applications: Resource$Projects$Locations$Applications;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.applications = new Resource$Projects$Locations$Applications(
-        this.context
-      );
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -8025,58 +6044,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets information about a location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.projects.locations.get({
-     *     // Part of `name`. See documentation of `projectsId`.
-     *     locationsId: 'placeholder-value',
-     *     // Part of `name`. Resource name for the location.
-     *     projectsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "locationId": "my_locationId",
-     *   //   "metadata": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8163,59 +6130,6 @@ export namespace appengine_v1beta {
 
     /**
      * Lists information about the supported locations for this service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
-     *     filter: 'placeholder-value',
-     *     // The maximum number of results to return. If not set, the service selects a default.
-     *     pageSize: 'placeholder-value',
-     *     // A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *     // Part of `name`. The resource that owns the locations collection, if applicable.
-     *     projectsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "locations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8338,516 +6252,6 @@ export namespace appengine_v1beta {
     projectsId?: string;
   }
 
-  export class Resource$Projects$Locations$Applications {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates an App Engine application for a Google Cloud Platform project. Required fields: id - The ID of the target Cloud Platform project. location - The region (https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.For more information about App Engine applications, see Managing Projects, Applications, and Billing (https://cloud.google.com/appengine/docs/standard/python/console/).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.projects.locations.applications.create({
-     *     // Part of `parent`. See documentation of `projectsId`.
-     *     locationsId: 'placeholder-value',
-     *     // Part of `parent`. The project and location in which the application should be created, specified in the format projects/x/locations/x
-     *     projectsId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authDomain": "my_authDomain",
-     *       //   "codeBucket": "my_codeBucket",
-     *       //   "databaseType": "my_databaseType",
-     *       //   "defaultBucket": "my_defaultBucket",
-     *       //   "defaultCookieExpiration": "my_defaultCookieExpiration",
-     *       //   "defaultHostname": "my_defaultHostname",
-     *       //   "dispatchRules": [],
-     *       //   "featureSettings": {},
-     *       //   "gcrDomain": "my_gcrDomain",
-     *       //   "iap": {},
-     *       //   "id": "my_id",
-     *       //   "locationId": "my_locationId",
-     *       //   "name": "my_name",
-     *       //   "serviceAccount": "my_serviceAccount",
-     *       //   "servingStatus": "my_servingStatus"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Applications$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Applications$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    create(
-      params: Params$Resource$Projects$Locations$Applications$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Applications$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Applications$Create,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$Operation>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Applications$Create
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Applications$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Applications$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1beta/projects/{projectsId}/locations/{locationsId}/applications'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectsId', 'locationsId'],
-        pathParams: ['locationsId', 'projectsId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Gets information about an application.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.projects.locations.applications.get({
-     *     // Part of `name`. See documentation of `projectsId`.
-     *     applicationsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `projectsId`.
-     *     locationsId: 'placeholder-value',
-     *     // Part of `name`. Name of the Application resource to get. Example: apps/myapp.
-     *     projectsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authDomain": "my_authDomain",
-     *   //   "codeBucket": "my_codeBucket",
-     *   //   "databaseType": "my_databaseType",
-     *   //   "defaultBucket": "my_defaultBucket",
-     *   //   "defaultCookieExpiration": "my_defaultCookieExpiration",
-     *   //   "defaultHostname": "my_defaultHostname",
-     *   //   "dispatchRules": [],
-     *   //   "featureSettings": {},
-     *   //   "gcrDomain": "my_gcrDomain",
-     *   //   "iap": {},
-     *   //   "id": "my_id",
-     *   //   "locationId": "my_locationId",
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "servingStatus": "my_servingStatus"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Applications$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Applications$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Application>;
-    get(
-      params: Params$Resource$Projects$Locations$Applications$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Applications$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Application>,
-      callback: BodyResponseCallback<Schema$Application>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Applications$Get,
-      callback: BodyResponseCallback<Schema$Application>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Application>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Applications$Get
-        | BodyResponseCallback<Schema$Application>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Application>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Application>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Application> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Applications$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Applications$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectsId', 'locationsId', 'applicationsId'],
-        pathParams: ['applicationsId', 'locationsId', 'projectsId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Application>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Application>(parameters);
-      }
-    }
-
-    /**
-     * Recreates the required App Engine features for the specified App Engine application, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example, Error retrieving the App Engine service account. If you have deleted your App Engine service account, this will not be able to recreate it. Instead, you should attempt to use the IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B"name"%3A"projects%2F-%2FserviceAccounts%2Funique_id"%2C"resource"%3A%7B%7D%7D . If the deletion was recent, the numeric ID can be found in the Cloud Console Activity Log.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.projects.locations.applications.repair({
-     *     // Part of `name`. See documentation of `projectsId`.
-     *     applicationsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `projectsId`.
-     *     locationsId: 'placeholder-value',
-     *     // Part of `name`. Name of the application to repair. Example: apps/myapp
-     *     projectsId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    repair(
-      params: Params$Resource$Projects$Locations$Applications$Repair,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    repair(
-      params?: Params$Resource$Projects$Locations$Applications$Repair,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    repair(
-      params: Params$Resource$Projects$Locations$Applications$Repair,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    repair(
-      params: Params$Resource$Projects$Locations$Applications$Repair,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    repair(
-      params: Params$Resource$Projects$Locations$Applications$Repair,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    repair(callback: BodyResponseCallback<Schema$Operation>): void;
-    repair(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Applications$Repair
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Applications$Repair;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Applications$Repair;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}:repair'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectsId', 'locationsId', 'applicationsId'],
-        pathParams: ['applicationsId', 'locationsId', 'projectsId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Applications$Create
-    extends StandardParameters {
-    /**
-     * Part of `parent`. See documentation of `projectsId`.
-     */
-    locationsId?: string;
-    /**
-     * Part of `parent`. The project and location in which the application should be created, specified in the format projects/x/locations/x
-     */
-    projectsId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Application;
-  }
-  export interface Params$Resource$Projects$Locations$Applications$Get
-    extends StandardParameters {
-    /**
-     * Part of `name`. See documentation of `projectsId`.
-     */
-    applicationsId?: string;
-    /**
-     * Part of `name`. See documentation of `projectsId`.
-     */
-    locationsId?: string;
-    /**
-     * Part of `name`. Name of the Application resource to get. Example: apps/myapp.
-     */
-    projectsId?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Applications$Repair
-    extends StandardParameters {
-    /**
-     * Part of `name`. See documentation of `projectsId`.
-     */
-    applicationsId?: string;
-    /**
-     * Part of `name`. See documentation of `projectsId`.
-     */
-    locationsId?: string;
-    /**
-     * Part of `name`. Name of the application to repair. Example: apps/myapp
-     */
-    projectsId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RepairApplicationRequest;
-  }
-
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -8856,60 +6260,6 @@ export namespace appengine_v1beta {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.projects.locations.operations.get({
-     *     // Part of `name`. See documentation of `projectsId`.
-     *     locationsId: 'placeholder-value',
-     *     // Part of `name`. See documentation of `projectsId`.
-     *     operationsId: 'placeholder-value',
-     *     // Part of `name`. The name of the operation resource.
-     *     projectsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8996,62 +6346,7 @@ export namespace appengine_v1beta {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x\}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const appengine = google.appengine('v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/appengine.admin',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await appengine.projects.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // Part of `name`. See documentation of `projectsId`.
-     *     locationsId: 'placeholder-value',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *     // Part of `name`. The name of the operation's parent resource.
-     *     projectsId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

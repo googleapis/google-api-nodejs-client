@@ -284,6 +284,10 @@ export namespace manufacturers_v1 {
      * The videos of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#video.
      */
     videoLink?: string[] | null;
+    /**
+     * Virtual Model (3d) asset link.
+     */
+    virtualModelLink?: string | null;
   }
   /**
    * The capacity of a product. For more information, see https://support.google.com/manufacturers/answer/6124116#capacity.
@@ -295,6 +299,35 @@ export namespace manufacturers_v1 {
     unit?: string | null;
     /**
      * The numeric value of the capacity.
+     */
+    value?: string | null;
+  }
+  /**
+   * Description of a certification.
+   */
+  export interface Schema$Certification {
+    /**
+     * Required. Name of the certification body.
+     */
+    authority?: string | null;
+    /**
+     * Optional. A URL link to the certification.
+     */
+    link?: string | null;
+    /**
+     * Optional. A URL link to the certification logo.
+     */
+    logo?: string | null;
+    /**
+     * Required. Name of the certification.
+     */
+    name?: string | null;
+    /**
+     * Optional. The expiration date (UTC).
+     */
+    validUntil?: string | null;
+    /**
+     * Required. A custom value of the certification.
      */
     value?: string | null;
   }
@@ -449,6 +482,19 @@ export namespace manufacturers_v1 {
      * The server-generated type of the issue, for example, “INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”, etc.
      */
     type?: string | null;
+  }
+  /**
+   * Response for ListProductCertifications method.
+   */
+  export interface Schema$ListProductCertificationsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The product certifications from the specified certification body.
+     */
+    productCertifications?: Schema$ProductCertification[];
   }
   export interface Schema$ListProductsResponse {
     /**
@@ -685,6 +731,51 @@ export namespace manufacturers_v1 {
     targetCountry?: string | null;
   }
   /**
+   * Product certification data.
+   */
+  export interface Schema$ProductCertification {
+    /**
+     * Required. This is the product's brand name. The brand is used to help identify your product.
+     */
+    brand?: string | null;
+    /**
+     * Required. A list of certifications to link to the described product.
+     */
+    certification?: Schema$Certification[];
+    /**
+     * Optional. A 2-letter country code (ISO 3166-1 Alpha 2).
+     */
+    countryCode?: string[] | null;
+    /**
+     * Output only. The statuses of the destinations.
+     */
+    destinationStatuses?: Schema$DestinationStatus[];
+    /**
+     * Output only. A server-generated list of issues associated with the product.
+     */
+    issues?: Schema$Issue[];
+    /**
+     * Optional. These are the Manufacturer Part Numbers (MPN). MPNs are used to uniquely identify a specific product among all products from the same manufacturer
+     */
+    mpn?: string[] | null;
+    /**
+     * Required. The unique name identifier of a product certification Format: accounts/{account\}/languages/{language_code\}/productCertifications/{id\} Where `id` is a some unique identifier and `language_code` is a 2-letter ISO 639-1 code of a Shopping supported language according to https://support.google.com/merchants/answer/160637.
+     */
+    name?: string | null;
+    /**
+     * Optional. Another name for GTIN.
+     */
+    productCode?: string[] | null;
+    /**
+     * Optional. These are your own product categorization system in your product data.
+     */
+    productType?: string[] | null;
+    /**
+     * Required. This is to clearly identify the product you are certifying.
+     */
+    title?: string | null;
+  }
+  /**
    * A product detail of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productdetail.
    */
   export interface Schema$ProductDetail {
@@ -721,11 +812,442 @@ export namespace manufacturers_v1 {
 
   export class Resource$Accounts {
     context: APIRequestContext;
+    languages: Resource$Accounts$Languages;
     products: Resource$Accounts$Products;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.languages = new Resource$Accounts$Languages(this.context);
       this.products = new Resource$Accounts$Products(this.context);
     }
+  }
+
+  export class Resource$Accounts$Languages {
+    context: APIRequestContext;
+    productCertifications: Resource$Accounts$Languages$Productcertifications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.productCertifications =
+        new Resource$Accounts$Languages$Productcertifications(this.context);
+    }
+  }
+
+  export class Resource$Accounts$Languages$Productcertifications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes a product certification by its name. This method can only be called by certification bodies.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Accounts$Languages$Productcertifications$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Languages$Productcertifications$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Languages$Productcertifications$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Languages$Productcertifications$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a product certification by its name. This method can only be called by certification bodies.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Languages$Productcertifications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductCertification>;
+    get(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductCertification>,
+      callback: BodyResponseCallback<Schema$ProductCertification>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Get,
+      callback: BodyResponseCallback<Schema$ProductCertification>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ProductCertification>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Languages$Productcertifications$Get
+        | BodyResponseCallback<Schema$ProductCertification>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductCertification>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductCertification>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProductCertification>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Languages$Productcertifications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Languages$Productcertifications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProductCertification>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProductCertification>(parameters);
+      }
+    }
+
+    /**
+     * Lists product certifications from a specified certification body. This method can only be called by certification bodies.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Languages$Productcertifications$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Languages$Productcertifications$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProductCertificationsResponse>;
+    list(
+      params: Params$Resource$Accounts$Languages$Productcertifications$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Languages$Productcertifications$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProductCertificationsResponse>,
+      callback: BodyResponseCallback<Schema$ListProductCertificationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Languages$Productcertifications$List,
+      callback: BodyResponseCallback<Schema$ListProductCertificationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListProductCertificationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Languages$Productcertifications$List
+        | BodyResponseCallback<Schema$ListProductCertificationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProductCertificationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProductCertificationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProductCertificationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Languages$Productcertifications$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Languages$Productcertifications$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/productCertifications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListProductCertificationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListProductCertificationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates (or creates if allow_missing = true) a product certification which links certifications with products. This method can only be called by certification bodies.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Accounts$Languages$Productcertifications$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProductCertification>;
+    patch(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ProductCertification>,
+      callback: BodyResponseCallback<Schema$ProductCertification>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Languages$Productcertifications$Patch,
+      callback: BodyResponseCallback<Schema$ProductCertification>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$ProductCertification>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Languages$Productcertifications$Patch
+        | BodyResponseCallback<Schema$ProductCertification>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductCertification>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductCertification>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ProductCertification>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Languages$Productcertifications$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Languages$Productcertifications$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://manufacturers.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProductCertification>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProductCertification>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Languages$Productcertifications$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the product certification to delete. Format: accounts/{account\}/languages/{language_code\}/productCertifications/{id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Languages$Productcertifications$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the product certification to get. Format: accounts/{account\}/languages/{language_code\}/productCertifications/{id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Languages$Productcertifications$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of product certifications to return. The service may return fewer than this value. If unspecified, at most 50 product certifications will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListProductCertifications` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProductCertifications` must match the call that provided the page token. Required if requesting the second or higher page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of product certifications. Format: accounts/{account\}/languages/{language_code\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Languages$Productcertifications$Patch
+    extends StandardParameters {
+    /**
+     * Required. The unique name identifier of a product certification Format: accounts/{account\}/languages/{language_code\}/productCertifications/{id\} Where `id` is a some unique identifier and `language_code` is a 2-letter ISO 639-1 code of a Shopping supported language according to https://support.google.com/merchants/answer/160637.
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update according to aip.dev/134. However, only full update is supported as of right now. Therefore, it can be either ignored or set to "*". Setting any other values will returns UNIMPLEMENTED error.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProductCertification;
   }
 
   export class Resource$Accounts$Products {
@@ -736,48 +1258,6 @@ export namespace manufacturers_v1 {
 
     /**
      * Deletes the product from a Manufacturer Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const manufacturers = google.manufacturers('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/manufacturercenter'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await manufacturers.accounts.products.delete({
-     *     // Name in the format `{target_country\}:{content_language\}:{product_id\}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
-     *     name: '[^/]+',
-     *     // Parent ID in the format `accounts/{account_id\}`. `account_id` - The ID of the Manufacturer Center account.
-     *     parent: 'accounts/my-account',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -866,59 +1346,6 @@ export namespace manufacturers_v1 {
 
     /**
      * Gets the product from a Manufacturer Center account, including product issues. A recently updated product takes around 15 minutes to process. Changes are only visible after it has been processed. While some issues may be available once the product has been processed, other issues may take days to appear.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const manufacturers = google.manufacturers('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/manufacturercenter'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await manufacturers.accounts.products.get({
-     *     // The information to be included in the response. Only sections listed here will be returned.
-     *     include: 'placeholder-value',
-     *     // Name in the format `{target_country\}:{content_language\}:{product_id\}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
-     *     name: '[^/]+',
-     *     // Parent ID in the format `accounts/{account_id\}`. `account_id` - The ID of the Manufacturer Center account.
-     *     parent: 'accounts/my-account',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attributes": {},
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "destinationStatuses": [],
-     *   //   "issues": [],
-     *   //   "name": "my_name",
-     *   //   "parent": "my_parent",
-     *   //   "productId": "my_productId",
-     *   //   "targetCountry": "my_targetCountry"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1007,55 +1434,6 @@ export namespace manufacturers_v1 {
 
     /**
      * Lists all the products in a Manufacturer Center account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const manufacturers = google.manufacturers('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/manufacturercenter'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await manufacturers.accounts.products.list({
-     *     // The information to be included in the response. Only sections listed here will be returned.
-     *     include: 'placeholder-value',
-     *     // Maximum number of product statuses to return in the response, used for paging.
-     *     pageSize: 'placeholder-value',
-     *     // The token returned by the previous request.
-     *     pageToken: 'placeholder-value',
-     *     // Parent ID in the format `accounts/{account_id\}`. `account_id` - The ID of the Manufacturer Center account.
-     *     parent: 'accounts/my-account',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "products": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1149,94 +1527,6 @@ export namespace manufacturers_v1 {
 
     /**
      * Inserts or updates the attributes of the product in a Manufacturer Center account. Creates a product with the provided attributes. If the product already exists, then all attributes are replaced with the new ones. The checks at upload time are minimal. All required attributes need to be present for a product to be valid. Issues may show up later after the API has accepted a new upload for a product and it is possible to overwrite an existing valid product with an invalid product. To detect this, you should retrieve the product and check it for issues once the new version is available. Uploaded attributes first need to be processed before they can be retrieved. Until then, new products will be unavailable, and retrieval of previously uploaded products will return the original state of the product.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/manufacturers.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const manufacturers = google.manufacturers('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/manufacturercenter'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await manufacturers.accounts.products.update({
-     *     // Name in the format `{target_country\}:{content_language\}:{product_id\}`. `target_country` - The target country of the product as a CLDR territory code (for example, US). `content_language` - The content language of the product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
-     *     name: '[^/]+',
-     *     // Parent ID in the format `accounts/{account_id\}`. `account_id` - The ID of the Manufacturer Center account.
-     *     parent: 'accounts/my-account',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "additionalImageLink": [],
-     *       //   "ageGroup": "my_ageGroup",
-     *       //   "brand": "my_brand",
-     *       //   "capacity": {},
-     *       //   "color": "my_color",
-     *       //   "count": {},
-     *       //   "description": "my_description",
-     *       //   "disclosureDate": "my_disclosureDate",
-     *       //   "excludedDestination": [],
-     *       //   "featureDescription": [],
-     *       //   "flavor": "my_flavor",
-     *       //   "format": "my_format",
-     *       //   "gender": "my_gender",
-     *       //   "grocery": {},
-     *       //   "gtin": [],
-     *       //   "imageLink": {},
-     *       //   "includedDestination": [],
-     *       //   "itemGroupId": "my_itemGroupId",
-     *       //   "material": "my_material",
-     *       //   "mpn": "my_mpn",
-     *       //   "nutrition": {},
-     *       //   "pattern": "my_pattern",
-     *       //   "productDetail": [],
-     *       //   "productHighlight": [],
-     *       //   "productLine": "my_productLine",
-     *       //   "productName": "my_productName",
-     *       //   "productPageUrl": "my_productPageUrl",
-     *       //   "productType": [],
-     *       //   "releaseDate": "my_releaseDate",
-     *       //   "richProductContent": [],
-     *       //   "scent": "my_scent",
-     *       //   "size": "my_size",
-     *       //   "sizeSystem": "my_sizeSystem",
-     *       //   "sizeType": [],
-     *       //   "suggestedRetailPrice": {},
-     *       //   "targetClientId": "my_targetClientId",
-     *       //   "theme": "my_theme",
-     *       //   "title": "my_title",
-     *       //   "videoLink": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

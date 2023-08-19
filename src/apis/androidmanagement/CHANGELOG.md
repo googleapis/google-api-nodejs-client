@@ -1,5 +1,138 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v10.0.0...androidmanagement-v10.0.1) (2023-08-15)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([b6e3344](https://github.com/googleapis/google-api-nodejs-client/commit/b6e33442cb67aeedd83f16bfa398a1da2ff24adb))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v9.1.0...androidmanagement-v10.0.0) (2023-08-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **androidmanagement:** This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([d885722](https://github.com/googleapis/google-api-nodejs-client/commit/d885722fa78010271e255b3dcae6c8156cca1c45))
+
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v9.0.0...androidmanagement-v9.1.0) (2023-07-11)
+
+
+### Features
+
+* **androidmanagement:** update the API ([d4e697c](https://github.com/googleapis/google-api-nodejs-client/commit/d4e697c9f5c45a1145ab0583070eb7d00a3f0c66))
+* regenerate index files ([d121ab4](https://github.com/googleapis/google-api-nodejs-client/commit/d121ab4cb630dd1c77a228166da2788bd2bd1175))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v8.0.0...androidmanagement-v9.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([78e4619](https://github.com/googleapis/google-api-nodejs-client/commit/78e46199e058a33d64c3e4b8f8464d471fdfca4e))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([0679f9d](https://github.com/googleapis/google-api-nodejs-client/commit/0679f9d660208f6569eed3c83db3fec3b52982aa))
+* **androidmanagement:** update the API ([e90a7a3](https://github.com/googleapis/google-api-nodejs-client/commit/e90a7a3ffd1fb871c45c592ad2fafe1ee6248536))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v7.0.0...androidmanagement-v8.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([78e4619](https://github.com/googleapis/google-api-nodejs-client/commit/78e46199e058a33d64c3e4b8f8464d471fdfca4e))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([0679f9d](https://github.com/googleapis/google-api-nodejs-client/commit/0679f9d660208f6569eed3c83db3fec3b52982aa))
+* **androidmanagement:** update the API ([e90a7a3](https://github.com/googleapis/google-api-nodejs-client/commit/e90a7a3ffd1fb871c45c592ad2fafe1ee6248536))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v6.0.2...androidmanagement-v7.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [6.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v6.0.1...androidmanagement-v6.0.2) (2023-05-02)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([0679f9d](https://github.com/googleapis/google-api-nodejs-client/commit/0679f9d660208f6569eed3c83db3fec3b52982aa))
+
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v6.0.0...androidmanagement-v6.0.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([e90a7a3](https://github.com/googleapis/google-api-nodejs-client/commit/e90a7a3ffd1fb871c45c592ad2fafe1ee6248536))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v5.1.1...androidmanagement-v6.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([9325719](https://github.com/googleapis/google-api-nodejs-client/commit/93257194e2563d96c982ddb94cf45794861c7c37))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([080e682](https://github.com/googleapis/google-api-nodejs-client/commit/080e682796aca945201ccf975dfce69457f58da5))
+
+## [5.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v5.1.0...androidmanagement-v5.1.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([080e682](https://github.com/googleapis/google-api-nodejs-client/commit/080e682796aca945201ccf975dfce69457f58da5))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v5.0.0...androidmanagement-v5.1.0) (2022-12-22)
+
+
+### Features
+
+* **androidmanagement:** update the API ([9325719](https://github.com/googleapis/google-api-nodejs-client/commit/93257194e2563d96c982ddb94cf45794861c7c37))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v4.1.2...androidmanagement-v5.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [4.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v4.1.1...androidmanagement-v4.1.2) (2022-09-21)
 
 

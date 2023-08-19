@@ -37,7 +37,7 @@ export function youtubeAnalytics(
 export function youtubeAnalytics<
   T =
     | youtubeAnalytics_v1.Youtubeanalytics
-    | youtubeAnalytics_v2.Youtubeanalytics
+    | youtubeAnalytics_v2.Youtubeanalytics,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

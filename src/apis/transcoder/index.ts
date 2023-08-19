@@ -31,7 +31,7 @@ export function transcoder(
   options: transcoder_v1beta1.Options
 ): transcoder_v1beta1.Transcoder;
 export function transcoder<
-  T = transcoder_v1.Transcoder | transcoder_v1beta1.Transcoder
+  T = transcoder_v1.Transcoder | transcoder_v1beta1.Transcoder,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

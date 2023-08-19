@@ -1,5 +1,108 @@
 # Changelog
 
+## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v5.1.1...androidenterprise-v5.2.0) (2023-08-17)
+
+
+### Features
+
+* **androidenterprise:** update the API ([ff76150](https://github.com/googleapis/google-api-nodejs-client/commit/ff76150ea586830e42350537edbe5d50f4db974b))
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+
+
+### Bug Fixes
+
+* **androidenterprise:** update the API ([93f7c0c](https://github.com/googleapis/google-api-nodejs-client/commit/93f7c0c99965074abe256132100290de43933246))
+
+## [5.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v5.1.0...androidenterprise-v5.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **androidenterprise:** update the API ([93f7c0c](https://github.com/googleapis/google-api-nodejs-client/commit/93f7c0c99965074abe256132100290de43933246))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v5.0.0...androidenterprise-v5.1.0) (2023-07-18)
+
+
+### Features
+
+* **androidenterprise:** update the API ([ff76150](https://github.com/googleapis/google-api-nodejs-client/commit/ff76150ea586830e42350537edbe5d50f4db974b))
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v4.0.0...androidenterprise-v5.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v3.0.0...androidenterprise-v4.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v2.0.0...androidenterprise-v3.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v1.2.0...androidenterprise-v2.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **androidenterprise:** update the API ([bd0d5e5](https://github.com/googleapis/google-api-nodejs-client/commit/bd0d5e5a0f31a55acf4bb013918fe2091bd37f8e))
+* **androidenterprise:** update the API ([27be4ae](https://github.com/googleapis/google-api-nodejs-client/commit/27be4ae2e586960343e4a47294f9720e8ebecdd0))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v1.1.0...androidenterprise-v1.2.0) (2023-02-10)
+
+
+### Features
+
+* **androidenterprise:** update the API ([bd0d5e5](https://github.com/googleapis/google-api-nodejs-client/commit/bd0d5e5a0f31a55acf4bb013918fe2091bd37f8e))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v1.0.0...androidenterprise-v1.1.0) (2022-12-22)
+
+
+### Features
+
+* **androidenterprise:** update the API ([27be4ae](https://github.com/googleapis/google-api-nodejs-client/commit/27be4ae2e586960343e4a47294f9720e8ebecdd0))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v0.6.1...androidenterprise-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.6.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v0.6.0...androidenterprise-v0.6.1) (2022-09-21)
 
 

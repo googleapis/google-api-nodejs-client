@@ -124,6 +124,10 @@
     "package": "@google-cloud/datastream"
   },
   {
+    "api": "clouddebugger",
+    "package": "@google-cloud/debug-agent"
+  },
+  {
     "api": "clouddeploy",
     "package": "@google-cloud/deploy"
   },
@@ -144,6 +148,10 @@
     "package": "@google-cloud/documentai"
   },
   {
+    "api": "contentwarehouse",
+    "package": "@google-cloud/contentwarehouse"
+  },
+  {
     "api": "domains",
     "package": "@google-cloud/domains"
   },
@@ -160,7 +168,7 @@
     "package": "@google-cloud/eventarc"
   },
   {
-    "api": "publishing",
+    "api": "eventarcpublishing",
     "package": "@google-cloud/eventarc-publishing"
   },
   {
@@ -226,6 +234,10 @@
   {
     "api": "iamcredentials",
     "package": "@google-cloud/iam-credentials"
+  },
+  {
+    "api": "google",
+    "package": "@google-cloud/iam"
   },
   {
     "api": "iap",
@@ -344,6 +356,10 @@
     "package": "@google-cloud/retail"
   },
   {
+    "api": "run",
+    "package": "@google-cloud/run"
+  },
+  {
     "api": "cloudscheduler",
     "package": "@google-cloud/scheduler"
   },
@@ -382,10 +398,6 @@
   {
     "api": "speech",
     "package": "@google-cloud/speech"
-  },
-  {
-    "api": "clouddebugger",
-    "package": "@google-cloud/debug-agent"
   },
   {
     "api": "monitoring",
@@ -432,12 +444,20 @@
     "package": "@google-cloud/video-intelligence"
   },
   {
+    "api": "stitcher",
+    "package": "@google-cloud/video-stitcher"
+  },
+  {
     "api": "vpcaccess",
     "package": "@google-cloud/vpc-access"
   },
   {
     "api": "vision",
     "package": "@google-cloud/vision"
+  },
+  {
+    "api": "vmwareengine",
+    "package": "@google-cloud/vmwareengine"
   },
   {
     "api": "webrisk",
@@ -452,8 +472,28 @@
     "package": "@google-cloud/workflows"
   },
   {
-    "api": "analyticshub",
+    "api": "google",
+    "package": "@google-cloud/bigquery-datapolicies"
+  },
+  {
+    "api": "advisorynotifications",
+    "package": "@google-cloud/advisorynotifications"
+  },
+  {
+    "api": "alloydb",
+    "package": "@google-cloud/alloydb"
+  },
+  {
+    "api": "bigquerydatapolicy",
     "package": "@google-cloud/bigquery-data-exchange"
+  },
+  {
+    "api": "gkemulticloud",
+    "package": "@google-cloud/gkemulticloud"
+  },
+  {
+    "api": "apikeys",
+    "package": "@google-cloud/apikeys"
   },
   {
     "api": "apigeeregistry",
@@ -468,23 +508,27 @@
     "package": "@google-cloud/bare-metal-solution"
   },
   {
-    "api": "google",
+    "api": "batch",
+    "package": "@google-cloud/batch"
+  },
+  {
+    "api": "beyondcorp",
     "package": "@google-cloud/appconnections"
   },
   {
-    "api": "google",
+    "api": "beyondcorp",
     "package": "@google-cloud/appconnectors"
   },
   {
-    "api": "google",
+    "api": "beyondcorp",
     "package": "@google-cloud/appgateways"
   },
   {
-    "api": "google",
+    "api": "beyondcorp",
     "package": "@google-cloud/clientconnectorservices"
   },
   {
-    "api": "google",
+    "api": "analyticshub",
     "package": "@google-cloud/clientgateways"
   },
   {
@@ -492,8 +536,16 @@
     "package": "@google-cloud/bigquery-migration"
   },
   {
+    "api": "confidentialcomputing",
+    "package": "@google-cloud/confidentialcomputing"
+  },
+  {
     "api": "datalabeling",
     "package": "@google-cloud/datalabeling"
+  },
+  {
+    "api": "datalineage",
+    "package": "@google-cloud/lineage"
   },
   {
     "api": "dataqna",
@@ -508,8 +560,20 @@
     "package": "@google-cloud/dataform"
   },
   {
+    "api": "discoveryengine",
+    "package": "@google-cloud/discoveryengine"
+  },
+  {
+    "api": "generativelanguage",
+    "package": "@google-ai/generativelanguage"
+  },
+  {
     "api": "connectgateway",
     "package": "@google-cloud/gke-connect-gateway"
+  },
+  {
+    "api": "analyticsadmin",
+    "package": "@google-analytics/admin"
   },
   {
     "api": "analyticsadmin",
@@ -520,8 +584,20 @@
     "package": "@google-analytics/data"
   },
   {
+    "api": "routes",
+    "package": "@googlemaps/routing"
+  },
+  {
+    "api": "gsuiteaddons",
+    "package": "@google-cloud/gsuiteaddons"
+  },
+  {
     "api": "lifesciences",
     "package": "@google-cloud/life-sciences"
+  },
+  {
+    "api": "migrationcenter",
+    "package": "@google-cloud/migrationcenter"
   },
   {
     "api": "networksecurity",
@@ -532,19 +608,35 @@
     "package": "@google-cloud/phishing-protection"
   },
   {
+    "api": "places",
+    "package": "@googlemaps/places"
+  },
+  {
     "api": "privatecatalog",
     "package": "@google-cloud/private-catalog"
   },
   {
-    "api": "run",
-    "package": "@google-cloud/run"
+    "api": "publicca",
+    "package": "@google-cloud/publicca"
+  },
+  {
+    "api": "rapidmigrationassessment",
+    "package": "@google-cloud/rapidmigrationassessment"
+  },
+  {
+    "api": "storageinsights",
+    "package": "@google-cloud/storageinsights"
+  },
+  {
+    "api": "cloudsupport",
+    "package": "@google-cloud/support"
   },
   {
     "api": "cloudtrace",
     "package": "@google-cloud/trace-agent"
   },
   {
-    "api": "stitcher",
-    "package": "@google-cloud/video-stitcher"
+    "api": "workstations",
+    "package": "@google-cloud/workstations"
   }
 ]

@@ -387,7 +387,7 @@ export namespace realtimebidding_v1 {
      */
     native?: Schema$NativeContent;
     /**
-     * Experimental field that can be used during the [FLEDGE Origin Trial](/authorized-buyers/rtb/fledge-origin-trial). The URL to fetch an interest group ad used in [TURTLEDOVE on-device auction](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#1-browsers-record-interest-groups"). This should be unique among all creatives for a given `accountId`.
+     * Experimental field that can be used during the [FLEDGE Origin Trial](/authorized-buyers/rtb/fledge-origin-trial). The URL to fetch an interest group ad used in [TURTLEDOVE on-device auction](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#1-browsers-record-interest-groups"). This should be unique among all creatives for a given `accountId`. This URL should be the same as the URL returned by [generateBid()](https://github.com/WICG/turtledove/blob/main/FLEDGE.md#32-on-device-bidding).
      */
     renderUrl?: string | null;
     /**
@@ -898,6 +898,10 @@ export namespace realtimebidding_v1 {
      */
     helpCenterUrl?: string | null;
     /**
+     * Whether or not the policy topic is missing a certificate. Some policy topics require a certificate to unblock serving in some regions. For more information about creative certification, refer to: https://support.google.com/authorizedbuyers/answer/7450776
+     */
+    missingCertificate?: boolean | null;
+    /**
      * Policy topic this entry refers to. For example, "ALCOHOL", "TRADEMARKS_IN_AD_TEXT", or "DESTINATION_NOT_WORKING". The set of possible policy topics is not fixed for a particular API version and may change at any time. Can be used to filter the response of the creatives.list method
      */
     policyTopic?: string | null;
@@ -1248,52 +1252,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Gets a bidder account by its name.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.get({
-     *     // Required. Name of the bidder to get. Format: `bidders/{bidderAccountId\}`
-     *     name: 'bidders/my-bidder',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bypassNonguaranteedDealsPretargeting": false,
-     *   //   "cookieMatchingNetworkId": "my_cookieMatchingNetworkId",
-     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
-     *   //   "dealsBillingId": "my_dealsBillingId",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1378,51 +1336,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Lists all the bidder accounts that belong to the caller.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.list({
-     *     // The maximum number of bidders to return. If unspecified, at most 100 bidders will be returned. The maximum value is 500; values above 500 will be coerced to 500.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. This value is received from a previous `ListBidders` call in ListBiddersResponse.nextPageToken.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bidders": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1534,57 +1447,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Lists creatives as they are at the time of the initial request. This call may take multiple hours to complete. For large, paginated requests, this method returns a snapshot of creatives at the time of request for the first page. `lastStatusUpdate` and `creativeServingDecision` may be outdated for creatives on sequential pages. We recommend [Google Cloud Pub/Sub](//cloud.google.com/pubsub/docs/overview) to view the latest status.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.creatives.list({
-     *     // Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
-     *     filter: 'placeholder-value',
-     *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available through another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method. Page tokens for continued pages are valid for up to five hours, counting from the call to 'ListCreatives' for the first page.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId\}` or `bidders/{bidderAccountId\}`. For `buyers/{buyerAccountId\}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId\}`, for example, for all creatives pertaining to bidder (`123`), use `bidders/123`.
-     *     parent: 'bidders/my-bidder',
-     *     // Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creatives": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1678,55 +1540,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Watches all creatives pertaining to a bidder. It is sufficient to invoke this endpoint once per bidder. A Pub/Sub topic will be created and notifications will be pushed to the topic when any of the bidder's creatives change status. All of the bidder's service accounts will have access to read from the topic. Subsequent invocations of this method will return the existing Pub/Sub configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.creatives.watch({
-     *     // Required. To watch all creatives pertaining to the bidder and all its child seat accounts, the bidder must follow the pattern `bidders/{bidderAccountId\}`.
-     *     parent: 'bidders/my-bidder',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "subscription": "my_subscription",
-     *   //   "topic": "my_topic"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1863,52 +1676,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Gets a bidder endpoint by its name.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.endpoints.get({
-     *     // Required. Name of the bidder endpoint to get. Format: `bidders/{bidderAccountId\}/endpoints/{endpointId\}`
-     *     name: 'bidders/my-bidder/endpoints/my-endpoint',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bidProtocol": "my_bidProtocol",
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "name": "my_name",
-     *   //   "tradingLocation": "my_tradingLocation",
-     *   //   "url": "my_url"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1994,53 +1761,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Lists all the bidder's endpoints.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.endpoints.list({
-     *     // The maximum number of endpoints to return. If unspecified, at most 100 endpoints will be returned. The maximum value is 500; values above 500 will be coerced to 500.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. This value is received from a previous `ListEndpoints` call in ListEndpointsResponse.nextPageToken.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Name of the bidder whose endpoints will be listed. Format: `bidders/{bidderAccountId\}`
-     *     parent: 'bidders/my-bidder',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "endpoints": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2134,66 +1854,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Updates a bidder's endpoint.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.endpoints.patch({
-     *     // Output only. Name of the endpoint resource that must follow the pattern `bidders/{bidderAccountId\}/endpoints/{endpointId\}`, where {bidderAccountId\} is the account ID of the bidder who operates this endpoint, and {endpointId\} is a unique ID assigned by the server.
-     *     name: 'bidders/my-bidder/endpoints/my-endpoint',
-     *     // Field mask to use for partial in-place updates.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bidProtocol": "my_bidProtocol",
-     *       //   "maximumQps": "my_maximumQps",
-     *       //   "name": "my_name",
-     *       //   "tradingLocation": "my_tradingLocation",
-     *       //   "url": "my_url"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bidProtocol": "my_bidProtocol",
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "name": "my_name",
-     *   //   "tradingLocation": "my_tradingLocation",
-     *   //   "url": "my_url"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2325,76 +1985,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Activates a pretargeting configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.activate({
-     *     // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
-     *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2486,82 +2076,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Adds targeted apps to the pretargeting configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.addTargetedApps(
-     *     {
-     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
-     *       pretargetingConfig:
-     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "appIds": [],
-     *         //   "targetingMode": "my_targetingMode"
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2655,81 +2169,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Adds targeted publishers to the pretargeting config.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await realtimebidding.bidders.pretargetingConfigs.addTargetedPublishers({
-     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
-     *       pretargetingConfig:
-     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "publisherIds": [],
-     *         //   "targetingMode": "my_targetingMode"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2823,81 +2262,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Adds targeted sites to the pretargeting configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await realtimebidding.bidders.pretargetingConfigs.addTargetedSites({
-     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
-     *       pretargetingConfig:
-     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "sites": [],
-     *         //   "targetingMode": "my_targetingMode"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2991,100 +2355,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Creates a pretargeting configuration. A pretargeting configuration's state (PretargetingConfig.state) is active upon creation, and it will start to affect traffic shortly after. A bidder may create a maximum of 10 pretargeting configurations. Attempts to exceed this maximum results in a 400 bad request error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.create({
-     *     // Required. Name of the bidder to create the pretargeting configuration for. Format: bidders/{bidderAccountId\}
-     *     parent: 'bidders/my-bidder',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "allowedUserTargetingModes": [],
-     *       //   "appTargeting": {},
-     *       //   "billingId": "my_billingId",
-     *       //   "displayName": "my_displayName",
-     *       //   "excludedContentLabelIds": [],
-     *       //   "geoTargeting": {},
-     *       //   "includedCreativeDimensions": [],
-     *       //   "includedEnvironments": [],
-     *       //   "includedFormats": [],
-     *       //   "includedLanguages": [],
-     *       //   "includedMobileOperatingSystemIds": [],
-     *       //   "includedPlatforms": [],
-     *       //   "includedUserIdTypes": [],
-     *       //   "interstitialTargeting": "my_interstitialTargeting",
-     *       //   "invalidGeoIds": [],
-     *       //   "maximumQps": "my_maximumQps",
-     *       //   "minimumViewabilityDecile": 0,
-     *       //   "name": "my_name",
-     *       //   "publisherTargeting": {},
-     *       //   "state": "my_state",
-     *       //   "userListTargeting": {},
-     *       //   "verticalTargeting": {},
-     *       //   "webTargeting": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3176,46 +2446,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Deletes a pretargeting configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.delete({
-     *     // Required. The name of the pretargeting configuration to delete. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
-     *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3301,70 +2531,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Gets a pretargeting configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.get({
-     *     // Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
-     *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3453,53 +2619,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Lists all pretargeting configurations for a single bidder.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.list({
-     *     // The maximum number of pretargeting configurations to return. If unspecified, at most 10 pretargeting configurations will be returned. The maximum value is 100; values above 100 will be coerced to 100.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. This value is received from a previous `ListPretargetingConfigs` call in ListPretargetingConfigsResponse.nextPageToken.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Name of the bidder whose pretargeting configurations will be listed. Format: bidders/{bidderAccountId\}
-     *     parent: 'bidders/my-bidder',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pretargetingConfigs": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3597,102 +2716,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Updates a pretargeting configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.patch({
-     *     // Output only. Name of the pretargeting configuration that must follow the pattern `bidders/{bidder_account_id\}/pretargetingConfigs/{config_id\}`
-     *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *     // Field mask to use for partial in-place updates.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "allowedUserTargetingModes": [],
-     *       //   "appTargeting": {},
-     *       //   "billingId": "my_billingId",
-     *       //   "displayName": "my_displayName",
-     *       //   "excludedContentLabelIds": [],
-     *       //   "geoTargeting": {},
-     *       //   "includedCreativeDimensions": [],
-     *       //   "includedEnvironments": [],
-     *       //   "includedFormats": [],
-     *       //   "includedLanguages": [],
-     *       //   "includedMobileOperatingSystemIds": [],
-     *       //   "includedPlatforms": [],
-     *       //   "includedUserIdTypes": [],
-     *       //   "interstitialTargeting": "my_interstitialTargeting",
-     *       //   "invalidGeoIds": [],
-     *       //   "maximumQps": "my_maximumQps",
-     *       //   "minimumViewabilityDecile": 0,
-     *       //   "name": "my_name",
-     *       //   "publisherTargeting": {},
-     *       //   "state": "my_state",
-     *       //   "userListTargeting": {},
-     *       //   "verticalTargeting": {},
-     *       //   "webTargeting": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3781,80 +2804,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Removes targeted apps from the pretargeting configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await realtimebidding.bidders.pretargetingConfigs.removeTargetedApps({
-     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
-     *       pretargetingConfig:
-     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "appIds": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3948,80 +2897,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Removes targeted publishers from the pretargeting config.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await realtimebidding.bidders.pretargetingConfigs.removeTargetedPublishers({
-     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
-     *       pretargetingConfig:
-     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "publisherIds": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4115,80 +2990,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Removes targeted sites from the pretargeting configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await realtimebidding.bidders.pretargetingConfigs.removeTargetedSites({
-     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
-     *       pretargetingConfig:
-     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "sites": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4282,76 +3083,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Suspends a pretargeting configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.suspend({
-     *     // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
-     *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "allowedUserTargetingModes": [],
-     *   //   "appTargeting": {},
-     *   //   "billingId": "my_billingId",
-     *   //   "displayName": "my_displayName",
-     *   //   "excludedContentLabelIds": [],
-     *   //   "geoTargeting": {},
-     *   //   "includedCreativeDimensions": [],
-     *   //   "includedEnvironments": [],
-     *   //   "includedFormats": [],
-     *   //   "includedLanguages": [],
-     *   //   "includedMobileOperatingSystemIds": [],
-     *   //   "includedPlatforms": [],
-     *   //   "includedUserIdTypes": [],
-     *   //   "interstitialTargeting": "my_interstitialTargeting",
-     *   //   "invalidGeoIds": [],
-     *   //   "maximumQps": "my_maximumQps",
-     *   //   "minimumViewabilityDecile": 0,
-     *   //   "name": "my_name",
-     *   //   "publisherTargeting": {},
-     *   //   "state": "my_state",
-     *   //   "userListTargeting": {},
-     *   //   "verticalTargeting": {},
-     *   //   "webTargeting": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4604,56 +3335,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Batch approves multiple publisher connections.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.publisherConnections.batchApprove({
-     *     // Required. The bidder for whom publisher connections will be approved. Format: `bidders/{bidder\}` where `{bidder\}` is the account ID of the bidder.
-     *     parent: 'bidders/my-bidder',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "names": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "publisherConnections": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4751,56 +3432,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Batch rejects multiple publisher connections.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.publisherConnections.batchReject({
-     *     // Required. The bidder for whom publisher connections will be rejected. Format: `bidders/{bidder\}` where `{bidder\}` is the account ID of the bidder.
-     *     parent: 'bidders/my-bidder',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "names": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "publisherConnections": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4897,52 +3528,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Gets a publisher connection.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.publisherConnections.get({
-     *     // Required. Name of the publisher whose connection information is to be retrieved. In the pattern `bidders/{bidder\}/publisherConnections/{publisher\}` where `{bidder\}` is the account ID of the bidder, and `{publisher\}` is the ads.txt/app-ads.txt publisher ID. See publisherConnection.name.
-     *     name: 'bidders/my-bidder/publisherConnections/my-publisherConnection',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "biddingState": "my_biddingState",
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "publisherPlatform": "my_publisherPlatform"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5031,57 +3616,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Lists publisher connections for a given bidder.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.bidders.publisherConnections.list({
-     *     // Query string to filter publisher connections. Connections can be filtered by `displayName`, `publisherPlatform`, and `biddingState`. If no filter is specified, all publisher connections will be returned. Example: 'displayName="Great Publisher*" AND publisherPlatform=ADMOB AND biddingState != PENDING' See https://google.aip.dev/160 for more information about filtering syntax.
-     *     filter: 'placeholder-value',
-     *     // Order specification by which results should be sorted. If no sort order is specified, the results will be returned in alphabetic order based on the publisher's publisher code. Results can be sorted by `createTime`. Example: 'createTime DESC'.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. The server may return fewer results than requested (due to timeout constraint) even if more are available through another call. If unspecified, the server will pick an appropriate default. Acceptable values are 1 to 5000, inclusive.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of ListPublisherConnectionsResponse.nextPageToken returned from the previous call to the 'ListPublisherConnections' method.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Name of the bidder for which publishers have initiated connections. The pattern for this resource is `bidders/{bidder\}` where `{bidder\}` represents the account ID of the bidder.
-     *     parent: 'bidders/my-bidder',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "publisherConnections": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5245,53 +3779,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Gets a buyer account by its name.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.get({
-     *     // Required. Name of the buyer to get. Format: `buyers/{buyerId\}`
-     *     name: 'buyers/my-buyer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activeCreativeCount": "my_activeCreativeCount",
-     *   //   "bidder": "my_bidder",
-     *   //   "billingIds": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "maximumActiveCreativeCount": "my_maximumActiveCreativeCount",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5376,48 +3863,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.getRemarketingTag({
-     *     // Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId\}` where `{accountId\}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
-     *     name: 'buyers/my-buyer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "snippet": "my_snippet"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5513,51 +3958,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Lists all buyer account information the calling buyer user or service account is permissioned to manage.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.list({
-     *     // The maximum number of buyers to return. If unspecified, at most 100 buyers will be returned. The maximum value is 500; values above 500 will be coerced to 500.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. This value is received from a previous `ListBuyers` call in ListBuyersResponse.nextPageToken.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "buyers": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5676,96 +4076,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Creates a creative.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.creatives.create({
-     *     // Required. The name of the parent buyer that the new creative belongs to that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns a creative. For a bidder accessing creatives on behalf of a child seat buyer, `{buyerAccountId\}` should represent the account ID of the child seat buyer.
-     *     parent: 'buyers/my-buyer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
-     *       //   "advertiserName": "my_advertiserName",
-     *       //   "agencyId": "my_agencyId",
-     *       //   "apiUpdateTime": "my_apiUpdateTime",
-     *       //   "creativeFormat": "my_creativeFormat",
-     *       //   "creativeId": "my_creativeId",
-     *       //   "creativeServingDecision": {},
-     *       //   "dealIds": [],
-     *       //   "declaredAttributes": [],
-     *       //   "declaredClickThroughUrls": [],
-     *       //   "declaredRestrictedCategories": [],
-     *       //   "declaredVendorIds": [],
-     *       //   "html": {},
-     *       //   "impressionTrackingUrls": [],
-     *       //   "name": "my_name",
-     *       //   "native": {},
-     *       //   "renderUrl": "my_renderUrl",
-     *       //   "restrictedCategories": [],
-     *       //   "version": 0,
-     *       //   "video": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
-     *   //   "advertiserName": "my_advertiserName",
-     *   //   "agencyId": "my_agencyId",
-     *   //   "apiUpdateTime": "my_apiUpdateTime",
-     *   //   "creativeFormat": "my_creativeFormat",
-     *   //   "creativeId": "my_creativeId",
-     *   //   "creativeServingDecision": {},
-     *   //   "dealIds": [],
-     *   //   "declaredAttributes": [],
-     *   //   "declaredClickThroughUrls": [],
-     *   //   "declaredRestrictedCategories": [],
-     *   //   "declaredVendorIds": [],
-     *   //   "html": {},
-     *   //   "impressionTrackingUrls": [],
-     *   //   "name": "my_name",
-     *   //   "native": {},
-     *   //   "renderUrl": "my_renderUrl",
-     *   //   "restrictedCategories": [],
-     *   //   "version": 0,
-     *   //   "video": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5854,70 +4164,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Gets a creative.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.creatives.get({
-     *     // Required. Name of the creative to retrieve. See creative.name.
-     *     name: 'buyers/my-buyer/creatives/my-creative',
-     *     // Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
-     *   //   "advertiserName": "my_advertiserName",
-     *   //   "agencyId": "my_agencyId",
-     *   //   "apiUpdateTime": "my_apiUpdateTime",
-     *   //   "creativeFormat": "my_creativeFormat",
-     *   //   "creativeId": "my_creativeId",
-     *   //   "creativeServingDecision": {},
-     *   //   "dealIds": [],
-     *   //   "declaredAttributes": [],
-     *   //   "declaredClickThroughUrls": [],
-     *   //   "declaredRestrictedCategories": [],
-     *   //   "declaredVendorIds": [],
-     *   //   "html": {},
-     *   //   "impressionTrackingUrls": [],
-     *   //   "name": "my_name",
-     *   //   "native": {},
-     *   //   "renderUrl": "my_renderUrl",
-     *   //   "restrictedCategories": [],
-     *   //   "version": 0,
-     *   //   "video": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6003,57 +4249,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Lists creatives as they are at the time of the initial request. This call may take multiple hours to complete. For large, paginated requests, this method returns a snapshot of creatives at the time of request for the first page. `lastStatusUpdate` and `creativeServingDecision` may be outdated for creatives on sequential pages. We recommend [Google Cloud Pub/Sub](//cloud.google.com/pubsub/docs/overview) to view the latest status.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.creatives.list({
-     *     // Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
-     *     filter: 'placeholder-value',
-     *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available through another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method. Page tokens for continued pages are valid for up to five hours, counting from the call to 'ListCreatives' for the first page.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId\}` or `bidders/{bidderAccountId\}`. For `buyers/{buyerAccountId\}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId\}`, for example, for all creatives pertaining to bidder (`123`), use `bidders/123`.
-     *     parent: 'buyers/my-buyer',
-     *     // Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creatives": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6147,98 +4342,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Updates a creative.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.creatives.patch({
-     *     // Output only. Name of the creative. Follows the pattern `buyers/{buyer\}/creatives/{creative\}`, where `{buyer\}` represents the account ID of the buyer who owns the creative, and `{creative\}` is the buyer-specific creative ID that references this creative in the bid response.
-     *     name: 'buyers/my-buyer/creatives/my-creative',
-     *     // Field mask to use for partial in-place updates.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
-     *       //   "advertiserName": "my_advertiserName",
-     *       //   "agencyId": "my_agencyId",
-     *       //   "apiUpdateTime": "my_apiUpdateTime",
-     *       //   "creativeFormat": "my_creativeFormat",
-     *       //   "creativeId": "my_creativeId",
-     *       //   "creativeServingDecision": {},
-     *       //   "dealIds": [],
-     *       //   "declaredAttributes": [],
-     *       //   "declaredClickThroughUrls": [],
-     *       //   "declaredRestrictedCategories": [],
-     *       //   "declaredVendorIds": [],
-     *       //   "html": {},
-     *       //   "impressionTrackingUrls": [],
-     *       //   "name": "my_name",
-     *       //   "native": {},
-     *       //   "renderUrl": "my_renderUrl",
-     *       //   "restrictedCategories": [],
-     *       //   "version": 0,
-     *       //   "video": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "adChoicesDestinationUrl": "my_adChoicesDestinationUrl",
-     *   //   "advertiserName": "my_advertiserName",
-     *   //   "agencyId": "my_agencyId",
-     *   //   "apiUpdateTime": "my_apiUpdateTime",
-     *   //   "creativeFormat": "my_creativeFormat",
-     *   //   "creativeId": "my_creativeId",
-     *   //   "creativeServingDecision": {},
-     *   //   "dealIds": [],
-     *   //   "declaredAttributes": [],
-     *   //   "declaredClickThroughUrls": [],
-     *   //   "declaredRestrictedCategories": [],
-     *   //   "declaredVendorIds": [],
-     *   //   "html": {},
-     *   //   "impressionTrackingUrls": [],
-     *   //   "name": "my_name",
-     *   //   "native": {},
-     *   //   "renderUrl": "my_renderUrl",
-     *   //   "restrictedCategories": [],
-     *   //   "version": 0,
-     *   //   "video": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6394,59 +4497,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Change the status of a user list to CLOSED. This prevents new users from being added to the user list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.userLists.close({
-     *     // Required. The name of the user list to close. See UserList.name
-     *     name: 'buyers/my-buyer/userLists/my-userList',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "name": "my_name",
-     *   //   "status": "my_status",
-     *   //   "urlRestriction": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6532,66 +4582,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Create a new user list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.userLists.create({
-     *     // Required. The name of the parent buyer of the user list to be retrieved that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId\}` should represent the account ID of the child seat buyer.
-     *     parent: 'buyers/my-buyer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "membershipDurationDays": "my_membershipDurationDays",
-     *       //   "name": "my_name",
-     *       //   "status": "my_status",
-     *       //   "urlRestriction": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "name": "my_name",
-     *   //   "status": "my_status",
-     *   //   "urlRestriction": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6680,53 +4670,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Gets a user list by its name.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.userLists.get({
-     *     // Required. The name of the user list to be retrieved. See UserList.name.
-     *     name: 'buyers/my-buyer/userLists/my-userList',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "name": "my_name",
-     *   //   "status": "my_status",
-     *   //   "urlRestriction": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6812,48 +4755,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.userLists.getRemarketingTag({
-     *     // Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId\}` where `{accountId\}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
-     *     name: 'buyers/my-buyer/userLists/my-userList',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "snippet": "my_snippet"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6949,53 +4850,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Lists the user lists visible to the current user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.userLists.list({
-     *     // The number of results to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // Continuation page token (as received from a previous response).
-     *     pageToken: 'placeholder-value',
-     *     // Required. The name of the parent buyer for the user lists to be returned that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId\}` should represent the account ID of the child seat buyer.
-     *     parent: 'buyers/my-buyer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "userLists": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7089,59 +4943,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Change the status of a user list to OPEN. This allows new users to be added to the user list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.userLists.open({
-     *     // Required. The name of the user list to open. See UserList.name
-     *     name: 'buyers/my-buyer/userLists/my-userList',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "name": "my_name",
-     *   //   "status": "my_status",
-     *   //   "urlRestriction": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7227,66 +5028,6 @@ export namespace realtimebidding_v1 {
 
     /**
      * Update the given user list. Only user lists with URLRestrictions can be updated.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const realtimebidding = google.realtimebidding('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await realtimebidding.buyers.userLists.update({
-     *     // Output only. Name of the user list that must follow the pattern `buyers/{buyer\}/userLists/{user_list\}`, where `{buyer\}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyer\}` represents the account ID of the child seat buyer. `{user_list\}` is an int64 identifier assigned by Google to uniquely identify a user list.
-     *     name: 'buyers/my-buyer/userLists/my-userList',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "membershipDurationDays": "my_membershipDurationDays",
-     *       //   "name": "my_name",
-     *       //   "status": "my_status",
-     *       //   "urlRestriction": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "name": "my_name",
-     *   //   "status": "my_status",
-     *   //   "urlRestriction": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

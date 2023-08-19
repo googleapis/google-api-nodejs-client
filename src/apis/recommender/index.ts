@@ -33,7 +33,7 @@ export function recommender(
   options: recommender_v1beta1.Options
 ): recommender_v1beta1.Recommender;
 export function recommender<
-  T = recommender_v1.Recommender | recommender_v1beta1.Recommender
+  T = recommender_v1.Recommender | recommender_v1beta1.Recommender,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

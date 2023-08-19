@@ -37,7 +37,7 @@ export function networksecurity(
 export function networksecurity<
   T =
     | networksecurity_v1.Networksecurity
-    | networksecurity_v1beta1.Networksecurity
+    | networksecurity_v1beta1.Networksecurity,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

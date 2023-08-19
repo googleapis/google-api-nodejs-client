@@ -196,6 +196,19 @@ export namespace displayvideo_v2 {
     excludedAdlooxCategories?: string[] | null;
   }
   /**
+   * Additional URLs related to the ad, including beacons.
+   */
+  export interface Schema$AdUrl {
+    /**
+     * The type of the Ad URL.
+     */
+    type?: string | null;
+    /**
+     * The URL string value.
+     */
+    url?: string | null;
+  }
+  /**
    * A single advertiser in Display & Video 360 (DV360).
    */
   export interface Schema$Advertiser {
@@ -207,6 +220,10 @@ export namespace displayvideo_v2 {
      * Output only. The unique ID of the advertiser. Assigned by the system.
      */
     advertiserId?: string | null;
+    /**
+     * Billing related settings of the advertiser.
+     */
+    billingConfig?: Schema$AdvertiserBillingConfig;
     /**
      * Required. Creative related settings of the advertiser.
      */
@@ -264,6 +281,15 @@ export namespace displayvideo_v2 {
      * The configuration for advertisers that use third-party ad servers only.
      */
     thirdPartyOnlyConfig?: Schema$ThirdPartyOnlyConfig;
+  }
+  /**
+   * Billing related settings of an advertiser.
+   */
+  export interface Schema$AdvertiserBillingConfig {
+    /**
+     * The ID of a billing profile assigned to the advertiser. This field will default to the default billing profile ID of the advertiser's parent partner if a value is not provided.
+     */
+    billingProfileId?: string | null;
   }
   /**
    * Creatives related settings of an advertiser.
@@ -408,7 +434,7 @@ export namespace displayvideo_v2 {
      */
     content?: string | null;
     /**
-     * Media ID of the uploaded asset. This is a unique identifier for the asset. This ID can be passed to other API calls, e.g. CreateCreative to associate the asset with a creative.
+     * Media ID of the uploaded asset. This is a unique identifier for the asset. This ID can be passed to other API calls, e.g. CreateCreative to associate the asset with a creative. The Media ID space updated on **April 5, 2023**. Update media IDs cached before **April 5, 2023** by retrieving the new media ID from associated creative resources or re-uploading the asset.
      */
     mediaId?: string | null;
   }
@@ -479,6 +505,10 @@ export namespace displayvideo_v2 {
      * Output only. The unique ID of the assigned targeting option. The ID is only unique within a given resource and targeting type. It may be reused in other contexts.
      */
     assignedTargetingOptionId?: string | null;
+    /**
+     * Output only. An alias for the assigned_targeting_option_id. This value can be used in place of `assignedTargetingOptionId` when retrieving or deleting existing targeting. This field will only be supported for all assigned targeting options of the following targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` This field is also supported for line item assigned targeting options of the following targeting types: * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`
+     */
+    assignedTargetingOptionIdAlias?: string | null;
     /**
      * Audience targeting details. This field will be populated when the targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. You can only target one audience group option per resource.
      */
@@ -632,6 +662,10 @@ export namespace displayvideo_v2 {
      */
     sensitiveCategoryExclusionDetails?: Schema$SensitiveCategoryAssignedTargetingOptionDetails;
     /**
+     * Session position details. This field will be populated when the targeting_type is `TARGETING_TYPE_SESSION_POSITION`.
+     */
+    sessionPositionDetails?: Schema$SessionPositionAssignedTargetingOptionDetails;
+    /**
      * Sub-exchange details. This field will be populated when the targeting_type is `TARGETING_TYPE_SUB_EXCHANGE`.
      */
     subExchangeDetails?: Schema$SubExchangeAssignedTargetingOptionDetails;
@@ -659,6 +693,14 @@ export namespace displayvideo_v2 {
      * Viewability details. This field will be populated when the targeting_type is `TARGETING_TYPE_VIEWABILITY`. You can only target one viewability option per resource.
      */
     viewabilityDetails?: Schema$ViewabilityAssignedTargetingOptionDetails;
+    /**
+     * YouTube channel details. This field will be populated when the targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL`.
+     */
+    youtubeChannelDetails?: Schema$YoutubeChannelAssignedTargetingOptionDetails;
+    /**
+     * YouTube video details. This field will be populated when the targeting_type is `TARGETING_TYPE_YOUTUBE_VIDEO`.
+     */
+    youtubeVideoDetails?: Schema$YoutubeVideoAssignedTargetingOptionDetails;
   }
   /**
    * A single assigned user role, which defines a user's authorized interaction with a specified partner or advertiser.
@@ -709,6 +751,27 @@ export namespace displayvideo_v2 {
      * The Google audience ids of the included Google audience group. Contains Google audience ids only.
      */
     includedGoogleAudienceGroup?: Schema$GoogleAudienceGroup;
+  }
+  /**
+   * Details for an audio ad.
+   */
+  export interface Schema$AudioAd {
+    /**
+     * The webpage address that appears with the ad.
+     */
+    displayUrl?: string | null;
+    /**
+     * The URL address of the webpage that people reach after they click the ad.
+     */
+    finalUrl?: string | null;
+    /**
+     * The URL address loaded in the background for tracking purposes.
+     */
+    trackingUrl?: string | null;
+    /**
+     * The YouTube video of the ad.
+     */
+    video?: Schema$YoutubeVideoDetails;
   }
   /**
    * Details for audio content type assigned targeting option. This will be populated in the audio_content_type_details field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`. Explicitly targeting all options is not supported. Remove all audio content type targeting options to achieve this effect.
@@ -779,7 +842,7 @@ export namespace displayvideo_v2 {
     usedLineItemsCount?: string | null;
   }
   /**
-   * Represents an assigned authorized seller status. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`.
+   * Represents an assigned authorized seller status. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`. If a resource does not have an `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` assigned targeting option, it is using the "Authorized Direct Sellers and Resellers" option.
    */
   export interface Schema$AuthorizedSellerStatusAssignedTargetingOptionDetails {
     /**
@@ -944,11 +1007,11 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$BulkEditAssignedTargetingOptionsRequest {
     /**
-     * The assigned targeting options to create in batch, specified as a list of CreateAssignedTargetingOptionsRequest.
+     * The assigned targeting options to create in batch, specified as a list of CreateAssignedTargetingOptionsRequest. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`
      */
     createRequests?: Schema$CreateAssignedTargetingOptionsRequest[];
     /**
-     * The assigned targeting options to delete in batch, specified as a list of DeleteAssignedTargetingOptionsRequest.
+     * The assigned targeting options to delete in batch, specified as a list of DeleteAssignedTargetingOptionsRequest. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`
      */
     deleteRequests?: Schema$DeleteAssignedTargetingOptionsRequest[];
     /**
@@ -1060,6 +1123,16 @@ export namespace displayvideo_v2 {
      */
     sites?: Schema$Site[];
   }
+  export interface Schema$BulkListAdGroupAssignedTargetingOptionsResponse {
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent call to `BulkListAdGroupAssignedTargetingOptions` to fetch the next page of results. This token will be absent if there are no more youtube_ad_group_assigned_targeting_options to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of wrapper objects, each providing an assigned targeting option and the youtube ad group it is assigned to. This list will be absent if empty.
+     */
+    youtubeAdGroupAssignedTargetingOptions?: Schema$YoutubeAdGroupAssignedTargetingOption[];
+  }
   export interface Schema$BulkListAdvertiserAssignedTargetingOptionsResponse {
     /**
      * The list of assigned targeting options. This list will be absent if empty.
@@ -1143,6 +1216,15 @@ export namespace displayvideo_v2 {
      * The IDs of successfully updated line items.
      */
     updatedLineItemIds?: string[] | null;
+  }
+  /**
+   * Details for a bumper ad.
+   */
+  export interface Schema$BumperAd {
+    /**
+     * Common ad attributes.
+     */
+    commonInStreamAttribute?: Schema$CommonInStreamAttribute;
   }
   /**
    * Details for assigned Business chain targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`.
@@ -1491,6 +1573,39 @@ export namespace displayvideo_v2 {
     combinedAudienceId?: string | null;
   }
   /**
+   * Common attributes for in-stream, non-skippable and bumper ads.
+   */
+  export interface Schema$CommonInStreamAttribute {
+    /**
+     * The text on the call-to-action button.
+     */
+    actionButtonLabel?: string | null;
+    /**
+     * The headline of the call-to-action banner.
+     */
+    actionHeadline?: string | null;
+    /**
+     * The image which shows next to the video ad.
+     */
+    companionBanner?: Schema$ImageAsset;
+    /**
+     * The webpage address that appears with the ad.
+     */
+    displayUrl?: string | null;
+    /**
+     * The URL address of the webpage that people reach after they click the ad.
+     */
+    finalUrl?: string | null;
+    /**
+     * The URL address loaded in the background for tracking purposes.
+     */
+    trackingUrl?: string | null;
+    /**
+     * The YouTube video of the ad.
+     */
+    video?: Schema$YoutubeVideoDetails;
+  }
+  /**
    * Contact information defining a Customer Match audience member.
    */
   export interface Schema$ContactInfo {
@@ -1733,7 +1848,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$Creative {
     /**
-     * Additional dimensions. Applicable when creative_type is one of: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_TEMPLATED_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_LIGHTBOX` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_PUBLISHER_HOSTED` If this field is specified, width_pixels and height_pixels are both required and must be greater than or equal to 0.
+     * Additional dimensions. Applicable when creative_type is one of: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_LIGHTBOX` * `CREATIVE_TYPE_PUBLISHER_HOSTED` If this field is specified, width_pixels and height_pixels are both required and must be greater than or equal to 0.
      */
     additionalDimensions?: Schema$Dimensions[];
     /**
@@ -1745,7 +1860,7 @@ export namespace displayvideo_v2 {
      */
     appendedTag?: string | null;
     /**
-     * Required. Assets associated to this creative. Assets can be associated to the creative in one of following roles: * `ASSET_ROLE_UNSPECIFIED` * `ASSET_ROLE_MAIN` * `ASSET_ROLE_BACKUP` * `ASSET_ROLE_POLITE_LOAD`
+     * Required. Assets associated to this creative.
      */
     assets?: Schema$AssetAssociation[];
     /**
@@ -1753,7 +1868,7 @@ export namespace displayvideo_v2 {
      */
     cmPlacementId?: string | null;
     /**
-     * The Campaign Manager 360 tracking ad associated with the creative. Optional for the following creative_type when created by an advertiser that uses both Campaign Manager 360 and third-party ad serving: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` Output only for other cases.
+     * The Campaign Manager 360 tracking ad associated with the creative. Optional for the following creative_type when created by an advertiser that uses both Campaign Manager 360 and third-party ad serving: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` Output only for other cases.
      */
     cmTrackingAd?: Schema$CmTrackingAd;
     /**
@@ -1781,7 +1896,7 @@ export namespace displayvideo_v2 {
      */
     creativeType?: string | null;
     /**
-     * Required. Primary dimensions of the creative. Applicable to all creative types. The value of width_pixels and height_pixels defaults to `0` when creative_type is one of: * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_TEMPLATED_APP_INSTALL_INTERSTITIAL` * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO`
+     * Required. Primary dimensions of the creative. Applicable to all creative types. The value of width_pixels and height_pixels defaults to `0` when creative_type is one of: * `CREATIVE_TYPE_VIDEO` * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     dimensions?: Schema$Dimensions;
     /**
@@ -1825,7 +1940,7 @@ export namespace displayvideo_v2 {
      */
     integrationCode?: string | null;
     /**
-     * JavaScript measurement URL from supported third-party verification providers (ComScore, DoubleVerify, IAS, Moat). HTML script tags are not supported. This field is only supported in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
+     * JavaScript measurement URL from supported third-party verification providers (ComScore, DoubleVerify, IAS, Moat). HTML script tags are not supported. This field is only writeable in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     jsTrackerUrl?: string | null;
     /**
@@ -1897,7 +2012,7 @@ export namespace displayvideo_v2 {
      */
     timerEvents?: Schema$TimerEvent[];
     /**
-     * Tracking URLs for analytics providers or third-party ad technology vendors. The URLs must start with https (except on inventory that doesn't require SSL compliance). If using macros in your URL, use only macros supported by Display & Video 360. Standard URLs only, no IMG or SCRIPT tags. This field is only supported in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
+     * Tracking URLs for analytics providers or third-party ad technology vendors. The URLs must start with https (except on inventory that doesn't require SSL compliance). If using macros in your URL, use only macros supported by Display & Video 360. Standard URLs only, no IMG or SCRIPT tags. This field is only writeable in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO`
      */
     trackerUrls?: string[] | null;
     /**
@@ -2041,6 +2156,19 @@ export namespace displayvideo_v2 {
      * A resource name to be used in media.download to Download the script files. Or media.upload to Upload the script files. Resource names have the format `customBiddingAlgorithms/{custom_bidding_algorithm_id\}/scriptRef/{ref_id\}`.
      */
     resourceName?: string | null;
+  }
+  /**
+   * The key and value of a custom label.
+   */
+  export interface Schema$CustomLabel {
+    /**
+     * The key of the label.
+     */
+    key?: string | null;
+    /**
+     * The value of the label.
+     */
+    value?: string | null;
   }
   /**
    * Describes a custom list entity, such as a custom affinity or custom intent audience list.
@@ -2225,6 +2353,15 @@ export namespace displayvideo_v2 {
     widthPixels?: number | null;
   }
   /**
+   * The ad sourced from a DV360 creative.
+   */
+  export interface Schema$DisplayVideoSourceAd {
+    /**
+     * The ID of the source creative.
+     */
+    creativeId?: string | null;
+  }
+  /**
    * Details of DoubleVerify settings.
    */
   export interface Schema$DoubleVerify {
@@ -2335,16 +2472,13 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$DuplicateLineItemRequest {
     /**
-     * The display name of the resulting line item. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     * The display name of the new line item. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     targetDisplayName?: string | null;
   }
-  /**
-   * Response message for LineItemService.DuplicateLineItem.
-   */
   export interface Schema$DuplicateLineItemResponse {
     /**
-     * The ID of the successfully created line item.
+     * The ID of the created line item.
      */
     duplicateLineItemId?: string | null;
   }
@@ -2961,6 +3095,23 @@ export namespace displayvideo_v2 {
     mediaProductIds?: string[] | null;
   }
   /**
+   * Meta data of an image asset.
+   */
+  export interface Schema$ImageAsset {
+    /**
+     * File size of the image asset in bytes.
+     */
+    fileSize?: string | null;
+    /**
+     * Metadata for this image at its original size.
+     */
+    fullSize?: Schema$Dimensions;
+    /**
+     * MIME type of the image asset.
+     */
+    mimeType?: string | null;
+  }
+  /**
    * A single insertion order.
    */
   export interface Schema$InsertionOrder {
@@ -2973,7 +3124,7 @@ export namespace displayvideo_v2 {
      */
     bidStrategy?: Schema$BiddingStrategy;
     /**
-     * Immutable. The billable outcome of the insertion order.
+     * Immutable. The billable outcome of the insertion order. Outcome based buying is deprecated. `BILLABLE_OUTCOME_PAY_PER_IMPRESSION` is the only valid value.
      */
     billableOutcome?: string | null;
     /**
@@ -3067,9 +3218,22 @@ export namespace displayvideo_v2 {
      */
     dateRange?: Schema$DateRange;
     /**
-     * The budget segment description. It can be used to enter Purchase Order information for each budget segment and have that information printed on the invoices. Must be UTF-8 encoded with a length of no more than 80 characters.
+     * The budget segment description. It can be used to enter Purchase Order information for each budget segment and have that information printed on the invoices. Must be UTF-8 encoded.
      */
     description?: string | null;
+  }
+  /**
+   * Details for an in-stream ad.
+   */
+  export interface Schema$InStreamAd {
+    /**
+     * Common ad attributes.
+     */
+    commonInStreamAttribute?: Schema$CommonInStreamAttribute;
+    /**
+     * The custom parameters to pass custom values to tracking URL template.
+     */
+    customParameters?: {[key: string]: string} | null;
   }
   /**
    * Details of Integral Ad Science settings.
@@ -3217,10 +3381,6 @@ export namespace displayvideo_v2 {
      * The status settings of the inventory source.
      */
     status?: Schema$InventorySourceStatus;
-    /**
-     * Immutable. The unique ID of the sub-site property assigned to this inventory source.
-     */
-    subSitePropertyId?: string | null;
     /**
      * The time range when this inventory source starts and stops serving.
      */
@@ -3561,7 +3721,7 @@ export namespace displayvideo_v2 {
      */
     reservationType?: string | null;
     /**
-     * The [targeting expansion](https://support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item.
+     * The [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the line item. This config is only applicable for display, video, or audio line items that use automated bidding and positively target eligible audience lists.
      */
     targetingExpansion?: Schema$TargetingExpansionConfig;
     /**
@@ -3963,6 +4123,39 @@ export namespace displayvideo_v2 {
      */
     users?: Schema$User[];
   }
+  export interface Schema$ListYoutubeAdGroupAdsResponse {
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListYoutubeAdGroupAds` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of ad group ads. This list will be absent if empty.
+     */
+    youtubeAdGroupAds?: Schema$YoutubeAdGroupAd[];
+  }
+  /**
+   * Response message for ListYoutubeAdGroupAssignedTargetingOptions.
+   */
+  export interface Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options. This list will be absent if empty.
+     */
+    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent ListYoutubeAdGroupAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
+     */
+    nextPageToken?: string | null;
+  }
+  export interface Schema$ListYoutubeAdGroupsResponse {
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListYoutubeAdGroups` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of ad groups. This list will be absent if empty.
+     */
+    youtubeAdGroups?: Schema$YoutubeAdGroup[];
+  }
   /**
    * A list of locations used for targeting.
    */
@@ -4008,7 +4201,7 @@ export namespace displayvideo_v2 {
     currencyCode?: string | null;
   }
   /**
-   * A single manual trigger in Display & Video 360.
+   * A single manual trigger in Display & Video 360. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This resource will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
    */
   export interface Schema$ManualTrigger {
     /**
@@ -4039,6 +4232,55 @@ export namespace displayvideo_v2 {
      * Output only. The unique ID of the manual trigger.
      */
     triggerId?: string | null;
+  }
+  /**
+   * Details for a Masthead Ad.
+   */
+  export interface Schema$MastheadAd {
+    /**
+     * The duration of time the video will autoplay.
+     */
+    autoplayVideoDuration?: string | null;
+    /**
+     * The amount of time in milliseconds after which the video will start to play.
+     */
+    autoplayVideoStartMillisecond?: string | null;
+    /**
+     * The text on the call-to-action button.
+     */
+    callToActionButtonLabel?: string | null;
+    /**
+     * The destination URL for the call-to-action button.
+     */
+    callToActionFinalUrl?: string | null;
+    /**
+     * The tracking URL for the call-to-action button.
+     */
+    callToActionTrackingUrl?: string | null;
+    /**
+     * The videos that appear next to the Masthead Ad on desktop. Can be no more than two.
+     */
+    companionYoutubeVideos?: Schema$YoutubeVideoDetails[];
+    /**
+     * The description of the ad.
+     */
+    description?: string | null;
+    /**
+     * The headline of the ad.
+     */
+    headline?: string | null;
+    /**
+     * Whether to show a background or banner that appears at the top of a YouTube page.
+     */
+    showChannelArt?: boolean | null;
+    /**
+     * The YouTube video used by the ad.
+     */
+    video?: Schema$YoutubeVideoDetails;
+    /**
+     * The aspect ratio of the autoplaying YouTube video on the Masthead.
+     */
+    videoAspectRatio?: string | null;
   }
   /**
    * A strategy that automatically adjusts the bid to optimize a specified performance goal while spending the full budget.
@@ -4187,6 +4429,19 @@ export namespace displayvideo_v2 {
     negativeKeywordListId?: string | null;
   }
   /**
+   * Details for a non-skippable ad.
+   */
+  export interface Schema$NonSkippableAd {
+    /**
+     * Common ad attributes.
+     */
+    commonInStreamAttribute?: Schema$CommonInStreamAttribute;
+    /**
+     * The custom parameters to pass custom values to tracking URL template.
+     */
+    customParameters?: {[key: string]: string} | null;
+  }
+  /**
    * OBA Icon for a Creative
    */
   export interface Schema$ObaIcon {
@@ -4314,7 +4569,7 @@ export namespace displayvideo_v2 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -4616,6 +4871,36 @@ export namespace displayvideo_v2 {
     prismaProductCode?: string | null;
   }
   /**
+   * The details of product feed.
+   */
+  export interface Schema$ProductFeedData {
+    /**
+     * Whether the product feed has opted-out of showing products.
+     */
+    isFeedDisabled?: boolean | null;
+    /**
+     * A list of dimensions used to match products.
+     */
+    productMatchDimensions?: Schema$ProductMatchDimension[];
+    /**
+     * How products are selected by the product feed.
+     */
+    productMatchType?: string | null;
+  }
+  /**
+   * A dimension used to match products.
+   */
+  export interface Schema$ProductMatchDimension {
+    /**
+     * The custom label to match all the products with the label.
+     */
+    customLabel?: Schema$CustomLabel;
+    /**
+     * The ID of the product offer to match with a product with the same offer ID.
+     */
+    productOfferId?: string | null;
+  }
+  /**
    * Targeting details for proximity location list. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_PROXIMITY_LOCATION_LIST`.
    */
   export interface Schema$ProximityLocationListAssignedTargetingOptionDetails {
@@ -4825,7 +5110,7 @@ export namespace displayvideo_v2 {
      */
     geoRegionSearchTerms?: Schema$GeoRegionSearchTerms;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number | null;
     /**
@@ -4867,6 +5152,15 @@ export namespace displayvideo_v2 {
      * Output only. An enum for the DV360 Sensitive category content classifier.
      */
     sensitiveCategory?: string | null;
+  }
+  /**
+   * Details for session position assigned targeting option. This will be populated in the session_position_details field when targeting_type is `TARGETING_TYPE_SESSION_POSITION`.
+   */
+  export interface Schema$SessionPositionAssignedTargetingOptionDetails {
+    /**
+     * The position where the ad will show in a session.
+     */
+    sessionPosition?: string | null;
   }
   /**
    * A single site. Sites are apps or websites belonging to a channel.
@@ -4917,15 +5211,32 @@ export namespace displayvideo_v2 {
     displayName?: string | null;
   }
   /**
-   * Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level.
+   * Setting that controls the average number of times the ads will show to the same person over a certain period of time.
+   */
+  export interface Schema$TargetFrequency {
+    /**
+     * The target number of times, on average, the ads will be shown to the same person in the timespan dictated by time_unit and time_unit_count.
+     */
+    targetCount?: string | null;
+    /**
+     * The unit of time in which the target frequency will be applied. The following time unit is applicable: * `TIME_UNIT_WEEKS`
+     */
+    timeUnit?: string | null;
+    /**
+     * The number of time_unit the target frequency will last. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_WEEKS` - must be 1
+     */
+    timeUnitCount?: number | null;
+  }
+  /**
+   * Settings that control the [optimized targeting](//support.google.com/displayvideo/answer/12060859) settings of the line item.
    */
   export interface Schema$TargetingExpansionConfig {
     /**
-     * Required. Whether to exclude first party audiences from targeting. Similar audiences of the excluded first party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored.
+     * Whether to exclude first-party audiences from use in targeting expansion. This field was deprecated with the launch of [optimized targeting](//support.google.com/displayvideo/answer/12060859). This field will be set to `false`. If this field is set to `true` when deprecated, all positive first-party audience targeting assigned to this line item will be replaced with negative targeting of the same first-party audiences to ensure the continued exclusion of those audiences.
      */
     excludeFirstPartyAudience?: boolean | null;
     /**
-     * Required. Magnitude of expansion for applicable targeting under this line item.
+     * Required. Whether optimized targeting is turned on. This field supports the following values: * `NO_EXPANSION`: optimized targeting is turned off * `LEAST_EXPANSION`: optimized targeting is turned on If this field is set to any other value, it will automatically be set to `LEAST_EXPANSION`. `NO_EXPANSION` will be the default value for the field and will be automatically assigned if you do not set the field.
      */
     targetingExpansionLevel?: string | null;
   }
@@ -5288,6 +5599,118 @@ export namespace displayvideo_v2 {
     userRewardedContent?: string | null;
   }
   /**
+   * Settings related to VideoAdSequence.
+   */
+  export interface Schema$VideoAdSequenceSettings {
+    /**
+     * The minimum time interval before the same user sees this sequence again.
+     */
+    minimumDuration?: string | null;
+    /**
+     * The steps of which the sequence consists.
+     */
+    steps?: Schema$VideoAdSequenceStep[];
+  }
+  /**
+   * The detail of a single step in a VideoAdSequence.
+   */
+  export interface Schema$VideoAdSequenceStep {
+    /**
+     * The ID of the corresponding ad group of the step.
+     */
+    adGroupId?: string | null;
+    /**
+     * The interaction on the previous step that will lead the viewer to this step. The first step does not have interaction_type.
+     */
+    interactionType?: string | null;
+    /**
+     * The ID of the previous step. The first step does not have previous step.
+     */
+    previousStepId?: string | null;
+    /**
+     * The ID of the step.
+     */
+    stepId?: string | null;
+  }
+  /**
+   * Details for a video discovery ad.
+   */
+  export interface Schema$VideoDiscoveryAd {
+    /**
+     * First text line for the ad.
+     */
+    description1?: string | null;
+    /**
+     * Second text line for the ad.
+     */
+    description2?: string | null;
+    /**
+     * The headline of ad.
+     */
+    headline?: string | null;
+    /**
+     * Thumbnail image used in the ad.
+     */
+    thumbnail?: string | null;
+    /**
+     * The YouTube video the ad promotes.
+     */
+    video?: Schema$YoutubeVideoDetails;
+  }
+  /**
+   * Details for a video performance ad.
+   */
+  export interface Schema$VideoPerformanceAd {
+    /**
+     * The list of text assets shown on the call-to-action button.
+     */
+    actionButtonLabels?: string[] | null;
+    /**
+     * The list of companion banners used by this ad.
+     */
+    companionBanners?: Schema$ImageAsset[];
+    /**
+     * The custom parameters to pass custom values to tracking URL template.
+     */
+    customParameters?: {[key: string]: string} | null;
+    /**
+     * The list of descriptions shown on the call-to-action banner.
+     */
+    descriptions?: string[] | null;
+    /**
+     * The first piece after the domain in the display URL.
+     */
+    displayUrlBreadcrumb1?: string | null;
+    /**
+     * The second piece after the domain in the display URL.
+     */
+    displayUrlBreadcrumb2?: string | null;
+    /**
+     * The domain of the display URL.
+     */
+    domain?: string | null;
+    /**
+     * The URL address of the webpage that people reach after they click the ad.
+     */
+    finalUrl?: string | null;
+    /**
+     * The list of headlines shown on the call-to-action banner.
+     */
+    headlines?: string[] | null;
+    /**
+     * The list of lone headlines shown on the call-to-action banner.
+     */
+    longHeadlines?: string[] | null;
+    /**
+     * The URL address loaded in the background for tracking purposes.
+     */
+    trackingUrl?: string | null;
+    /**
+     * The list of YouTube video assets used by this ad.
+     */
+    videos?: Schema$YoutubeVideoDetails[];
+  }
+  /**
    * Video player size targeting option details. This will be populated in the video_player_size_details field when targeting_type is `TARGETING_TYPE_VIDEO_PLAYER_SIZE`. Explicitly targeting all options is not supported. Remove all video player size targeting options to achieve this effect.
    */
   export interface Schema$VideoPlayerSizeAssignedTargetingOptionDetails {
@@ -5324,15 +5747,150 @@ export namespace displayvideo_v2 {
     viewability?: string | null;
   }
   /**
+   * A single YouTube ad group associated with a YouTube and Partners line item.
+   */
+  export interface Schema$YoutubeAdGroup {
+    /**
+     * The format of the ads in the ad group.
+     */
+    adGroupFormat?: string | null;
+    /**
+     * The unique ID of the ad group. Assigned by the system.
+     */
+    adGroupId?: string | null;
+    /**
+     * The unique ID of the advertiser the ad group belongs to.
+     */
+    advertiserId?: string | null;
+    /**
+     * The bidding strategy used by the ad group.
+     */
+    biddingStrategy?: Schema$YoutubeAndPartnersBiddingStrategy;
+    /**
+     * The display name of the ad group. Must be UTF-8 encoded with a maximum size of 255 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Controls whether or not the ad group can spend its budget and bid on inventory. If the ad group's parent line item is not active, the ad group can't spend its budget even if its own status is `ENTITY_STATUS_ACTIVE`.
+     */
+    entityStatus?: string | null;
+    /**
+     * The unique ID of the line item that the ad group belongs to.
+     */
+    lineItemId?: string | null;
+    /**
+     * The resource name of the ad group.
+     */
+    name?: string | null;
+    /**
+     * The settings of the product feed in this ad group.
+     */
+    productFeedData?: Schema$ProductFeedData;
+    /**
+     * The [targeting expansion](https://support.google.com/displayvideo/answer/10191558) settings of the ad group. This config is only applicable when eligible audience list targeting is assigned to the ad group.
+     */
+    targetingExpansion?: Schema$TargetingExpansionConfig;
+    /**
+     * The IDs of the youtube_ad_group_ad resources associated with the ad group.
+     */
+    youtubeAdIds?: string[] | null;
+  }
+  /**
+   * A single ad associated with a YouTube ad group.
+   */
+  export interface Schema$YoutubeAdGroupAd {
+    /**
+     * The unique ID of the ad. Assigned by the system.
+     */
+    adGroupAdId?: string | null;
+    /**
+     * The unique ID of the ad group that the ad belongs to.
+     */
+    adGroupId?: string | null;
+    /**
+     * List of URLs used by the ad.
+     */
+    adUrls?: Schema$AdUrl[];
+    /**
+     * The unique ID of the advertiser the ad belongs to.
+     */
+    advertiserId?: string | null;
+    /**
+     * Details of an [audio ad](//support.google.com/displayvideo/answer/6274216) used for reach marketing objectives.
+     */
+    audioAd?: Schema$AudioAd;
+    /**
+     * Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216), equal to or less than 6 seconds, used for reach.
+     */
+    bumperAd?: Schema$BumperAd;
+    /**
+     * The display name of the ad. Must be UTF-8 encoded with a maximum size of 255 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Details of an ad sourced from a Display & Video 360 creative.
+     */
+    displayVideoSourceAd?: Schema$DisplayVideoSourceAd;
+    /**
+     * The entity status of the ad.
+     */
+    entityStatus?: string | null;
+    /**
+     * Details of an [in-stream ad skippable after 5 seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing objectives.
+     */
+    inStreamAd?: Schema$InStreamAd;
+    /**
+     * Details of an [ad served on the YouTube Home feed](//support.google.com/google-ads/answer/9709826).
+     */
+    mastheadAd?: Schema$MastheadAd;
+    /**
+     * The resource name of the ad.
+     */
+    name?: string | null;
+    /**
+     * Details of a [non-skippable short in-stream video ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing objectives.
+     */
+    nonSkippableAd?: Schema$NonSkippableAd;
+    /**
+     * Details of an [ad promoting a video](//support.google.com/displayvideo/answer/6274216) that shows in places of discovery.
+     */
+    videoDiscoverAd?: Schema$VideoDiscoveryAd;
+    /**
+     * Details of an [ad used in a video action campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or product.
+     */
+    videoPerformanceAd?: Schema$VideoPerformanceAd;
+  }
+  /**
+   * Wrapper object associating an assigned_targeting_option resource and the youtube ad group it is assigned to.
+   */
+  export interface Schema$YoutubeAdGroupAssignedTargetingOption {
+    /**
+     * The assigned targeting option resource.
+     */
+    assignedTargetingOption?: Schema$AssignedTargetingOption;
+    /**
+     * The ID of the youtube ad group the assigned targeting option is assigned to.
+     */
+    youtubeAdGroupId?: string | null;
+  }
+  /**
    * Settings that control the bid strategy for YouTube and Partners resources.
    */
   export interface Schema$YoutubeAndPartnersBiddingStrategy {
+    /**
+     * Output only. Source of the effective targetCpa value for AdGroup.
+     */
+    adGroupEffectiveTargetCpaSource?: string | null;
+    /**
+     * Output only. The effective targetCpa for AdGroup, in micros of advertiser's currency.
+     */
+    adGroupEffectiveTargetCpaValue?: string | null;
     /**
      * The type of the bidding strategy.
      */
     type?: string | null;
     /**
-     * The value used by the bidding strategy. When the bidding strategy is assigned at the line item level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` When the bidding strategy is assigned at the ad group level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPV` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPM` If not using an applicable strategy, the value of this field will be 0.
+     * The value used by the bidding strategy. When the bidding strategy is assigned at the line item level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` When the bidding strategy is assigned at the ad group level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPV` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPM` If not using an applicable strategy, the value of this field will be 0.
      */
     value?: string | null;
   }
@@ -5370,9 +5928,29 @@ export namespace displayvideo_v2 {
      */
     inventorySourceSettings?: Schema$YoutubeAndPartnersInventorySourceConfig;
     /**
+     * The ID of the form to generate leads.
+     */
+    leadFormId?: string | null;
+    /**
+     * The ID of the merchant which is linked to the line item for product feed.
+     */
+    linkedMerchantId?: string | null;
+    /**
+     * The IDs of the videos appear below the primary video ad when the ad is playing in the YouTube app on mobile devices.
+     */
+    relatedVideoIds?: string[] | null;
+    /**
+     * The average number of times you want ads from this line item to show to the same person over a certain period of time.
+     */
+    targetFrequency?: Schema$TargetFrequency;
+    /**
      * The third-party measurement settings of the line item.
      */
     thirdPartyMeasurementSettings?: Schema$YoutubeAndPartnersThirdPartyMeasurementSettings;
+    /**
+     * The settings related to VideoAdSequence.
+     */
+    videoAdSequenceSettings?: Schema$VideoAdSequenceSettings;
     /**
      * The view frequency cap settings of the line item. The max_views field in this settings object must be used if assigning a limited cap.
      */
@@ -5399,6 +5977,45 @@ export namespace displayvideo_v2 {
      */
     viewabilityVendorConfigs?: Schema$ThirdPartyVendorConfig[];
   }
+  /**
+   * Details for YouTube channel assigned targeting option. This will be populated in the youtube_channel_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_CHANNEL`.
+   */
+  export interface Schema$YoutubeChannelAssignedTargetingOptionDetails {
+    /**
+     * The YouTube uploader channel id or the channel code of a YouTube channel.
+     */
+    channelId?: string | null;
+    /**
+     * Indicates if this option is being negatively targeted.
+     */
+    negative?: boolean | null;
+  }
+  /**
+   * Details for YouTube video assigned targeting option. This will be populated in the youtube_video_details field when targeting_type is `TARGETING_TYPE_YOUTUBE_VIDEO`.
+   */
+  export interface Schema$YoutubeVideoAssignedTargetingOptionDetails {
+    /**
+     * Indicates if this option is being negatively targeted.
+     */
+    negative?: boolean | null;
+    /**
+     * YouTube video id as it appears on the YouTube watch page.
+     */
+    videoId?: string | null;
+  }
+  /**
+   * Details of a YouTube video.
+   */
+  export interface Schema$YoutubeVideoDetails {
+    /**
+     * The YouTube video ID which can be searched on YouTube webpage.
+     */
+    id?: string | null;
+    /**
+     * The reason why the video data is not available.
+     */
+    unavailableReason?: string | null;
+  }
 
   export class Resource$Advertisers {
     context: APIRequestContext;
@@ -5413,6 +6030,8 @@ export namespace displayvideo_v2 {
     manualTriggers: Resource$Advertisers$Manualtriggers;
     negativeKeywordLists: Resource$Advertisers$Negativekeywordlists;
     targetingTypes: Resource$Advertisers$Targetingtypes;
+    youtubeAdGroupAds: Resource$Advertisers$Youtubeadgroupads;
+    youtubeAdGroups: Resource$Advertisers$Youtubeadgroups;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Advertisers$Assets(this.context);
@@ -5434,61 +6053,16 @@ export namespace displayvideo_v2 {
       this.targetingTypes = new Resource$Advertisers$Targetingtypes(
         this.context
       );
+      this.youtubeAdGroupAds = new Resource$Advertisers$Youtubeadgroupads(
+        this.context
+      );
+      this.youtubeAdGroups = new Resource$Advertisers$Youtubeadgroups(
+        this.context
+      );
     }
 
     /**
      * Audits an advertiser. Returns the counts of used entities per resource type under the advertiser provided. Used entities count towards their respective resource limit. See https://support.google.com/displayvideo/answer/6071450.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.audit({
-     *     // Required. The ID of the advertiser to audit.
-     *     advertiserId: '[^/]+',
-     *     // Optional. The specific fields to return. If no mask is specified, all fields in the response proto will be filled. Valid values are: * usedLineItemsCount * usedInsertionOrdersCount * usedCampaignsCount * channelsCount * negativelyTargetedChannelsCount * negativeKeywordListsCount * adGroupCriteriaCount * campaignCriteriaCount
-     *     readMask: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adGroupCriteriaCount": "my_adGroupCriteriaCount",
-     *   //   "campaignCriteriaCount": "my_campaignCriteriaCount",
-     *   //   "channelsCount": "my_channelsCount",
-     *   //   "negativeKeywordListsCount": "my_negativeKeywordListsCount",
-     *   //   "negativelyTargetedChannelsCount": "my_negativelyTargetedChannelsCount",
-     *   //   "usedCampaignsCount": "my_usedCampaignsCount",
-     *   //   "usedInsertionOrdersCount": "my_usedInsertionOrdersCount",
-     *   //   "usedLineItemsCount": "my_usedLineItemsCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5581,77 +6155,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new advertiser. Returns the newly created advertiser if successful. This method can take up to 180 seconds to complete.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "adServerConfig": {},
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "creativeConfig": {},
-     *       //   "dataAccessConfig": {},
-     *       //   "displayName": "my_displayName",
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "generalConfig": {},
-     *       //   "integrationDetails": {},
-     *       //   "name": "my_name",
-     *       //   "partnerId": "my_partnerId",
-     *       //   "prismaEnabled": false,
-     *       //   "servingConfig": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adServerConfig": {},
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "creativeConfig": {},
-     *   //   "dataAccessConfig": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "generalConfig": {},
-     *   //   "integrationDetails": {},
-     *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "prismaEnabled": false,
-     *   //   "servingConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5736,46 +6239,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an advertiser. Deleting an advertiser will delete all of its child resources, for example, campaigns, insertion orders and line items. A deleted advertiser cannot be recovered.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.delete({
-     *     // The ID of the advertiser we need to delete.
-     *     advertiserId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5863,57 +6326,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Edits targeting options under a single advertiser. The operation will delete the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAdvertiserAssignedTargetingOptionsRequest.create_requests .
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.editAssignedTargetingOptions({
-     *     // Required. The ID of the advertiser.
-     *     advertiserId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createRequests": [],
-     *       //   "deleteRequests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createdAssignedTargetingOptions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6010,60 +6422,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets an advertiser.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.get({
-     *     // Required. The ID of the advertiser to fetch.
-     *     advertiserId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adServerConfig": {},
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "creativeConfig": {},
-     *   //   "dataAccessConfig": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "generalConfig": {},
-     *   //   "integrationDetails": {},
-     *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "prismaEnabled": false,
-     *   //   "servingConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6150,57 +6508,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists advertisers that are accessible to the current user. The order is defined by the order_by parameter. A single partner_id is required. Cross-partner listing is not supported.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.list({
-     *     // Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` * All advertisers with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All advertisers with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertisers` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The ID of the partner that the fetched advertisers should all belong to. The system only supports listing advertisers for one partner at a time.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertisers": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6289,57 +6596,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists assigned targeting options of an advertiser across targeting types.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.listAssignedTargetingOptions({
-     *     // Required. The ID of the advertiser the line item belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6436,82 +6692,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing advertiser. Returns the updated advertiser if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.patch({
-     *     // Output only. The unique ID of the advertiser. Assigned by the system.
-     *     advertiserId: '[^/]+',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "adServerConfig": {},
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "creativeConfig": {},
-     *       //   "dataAccessConfig": {},
-     *       //   "displayName": "my_displayName",
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "generalConfig": {},
-     *       //   "integrationDetails": {},
-     *       //   "name": "my_name",
-     *       //   "partnerId": "my_partnerId",
-     *       //   "prismaEnabled": false,
-     *       //   "servingConfig": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adServerConfig": {},
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "creativeConfig": {},
-     *   //   "dataAccessConfig": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "generalConfig": {},
-     *   //   "integrationDetails": {},
-     *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "prismaEnabled": false,
-     *   //   "servingConfig": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6643,15 +6823,19 @@ export namespace displayvideo_v2 {
   }
   export interface Params$Resource$Advertisers$List extends StandardParameters {
     /**
-     * Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` * All advertisers with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All advertisers with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
+     * Allows filtering by advertiser fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. * A restriction has the form of `{field\} {operator\} {value\}`. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `advertiserId` * `displayName` * `entityStatus` * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` * All advertisers with an update time less than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime<="2020-11-04T18:54:47Z"` * All advertisers with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
+    /**
+     * The config used in internal debugging and manual testing. Use comma to separate multiple values. Examples: To allow entity search to go through tangle `searchUsingTangle` To get only the advertiser Ids use `idOnly`
+     */
+    internalDebuggingConfig?: string;
     /**
      * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -6670,7 +6854,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=) operator`. Supported fields: * `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -6711,60 +6895,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Uploads an asset. Returns the ID of the newly uploaded asset if successful. The asset file size should be no more than 10 MB for images, 200 MB for ZIP files, and 1 GB for videos. Must be used within the [multipart media upload process](/display-video/api/guides/how-tos/upload#multipart). Examples using provided client libraries can be found in our [Creating Creatives guide](/display-video/api/guides/creating-creatives/overview#upload_an_asset).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.assets.upload({
-     *     // Required. The ID of the advertiser this asset belongs to.
-     *     advertiserId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "filename": "my_filename"
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "asset": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6897,77 +7027,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new campaign. Returns the newly created campaign if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/display-video',
-     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.campaigns.create({
-     *     // Output only. The unique ID of the advertiser the campaign belongs to.
-     *     advertiserId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "campaignBudgets": [],
-     *       //   "campaignFlight": {},
-     *       //   "campaignGoal": {},
-     *       //   "campaignId": "my_campaignId",
-     *       //   "displayName": "my_displayName",
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "frequencyCap": {},
-     *       //   "name": "my_name",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignBudgets": [],
-     *   //   "campaignFlight": {},
-     *   //   "campaignGoal": {},
-     *   //   "campaignId": "my_campaignId",
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "frequencyCap": {},
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7054,51 +7113,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Permanently deletes a campaign. A deleted campaign cannot be recovered. The campaign should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/display-video',
-     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.campaigns.delete({
-     *     // The ID of the advertiser this campaign belongs to.
-     *     advertiserId: '[^/]+',
-     *     // The ID of the campaign we need to delete.
-     *     campaignId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7186,62 +7200,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a campaign.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/display-video',
-     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.campaigns.get({
-     *     // Required. The ID of the advertiser this campaign belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the campaign to fetch.
-     *     campaignId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignBudgets": [],
-     *   //   "campaignFlight": {},
-     *   //   "campaignGoal": {},
-     *   //   "campaignId": "my_campaignId",
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "frequencyCap": {},
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7329,60 +7287,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists campaigns in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, campaigns with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/display-video',
-     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.campaigns.list({
-     *     // The ID of the advertiser to list campaigns for.
-     *     advertiserId: '[^/]+',
-     *     // Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All campaigns with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All campaigns with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaigns` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "campaigns": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7474,60 +7378,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists assigned targeting options of a campaign across targeting types.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.campaigns.listAssignedTargetingOptions({
-     *       // Required. The ID of the advertiser the campaign belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Required. The ID of the campaign to list assigned targeting options for.
-     *       campaignId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_LANGUAGE or TARGETING_TYPE_GENDER `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7625,81 +7475,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing campaign. Returns the updated campaign if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/display-video',
-     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.campaigns.patch({
-     *     // Output only. The unique ID of the advertiser the campaign belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Output only. The unique ID of the campaign. Assigned by the system.
-     *     campaignId: '[^/]+',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "campaignBudgets": [],
-     *       //   "campaignFlight": {},
-     *       //   "campaignGoal": {},
-     *       //   "campaignId": "my_campaignId",
-     *       //   "displayName": "my_displayName",
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "frequencyCap": {},
-     *       //   "name": "my_name",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "campaignBudgets": [],
-     *   //   "campaignFlight": {},
-     *   //   "campaignGoal": {},
-     *   //   "campaignId": "my_campaignId",
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "frequencyCap": {},
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7827,7 +7602,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All campaigns with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All campaigns with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
+     * Allows filtering by campaign fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `campaignId` * `displayName` * `entityStatus` * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All campaigns with an update time less than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime<="2020-11-04T18:54:47Z"` * All campaigns with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -7835,7 +7610,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -7854,7 +7629,7 @@ export namespace displayvideo_v2 {
      */
     campaignId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_LANGUAGE or TARGETING_TYPE_GENDER `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `targetingType` * `inheritance` Examples: * `AssignedTargetingOption` resources of targeting type `TARGETING_TYPE_LANGUAGE` or `TARGETING_TYPE_GENDER`: `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * `AssignedTargetingOption` resources with inheritance status of `NOT_INHERITED` or `INHERITED_FROM_PARTNER`: `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -7911,105 +7686,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option assigned to a campaign.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.campaigns.targetingTypes.assignedTargetingOptions.get(
-     *       {
-     *         // Required. The ID of the advertiser the campaign belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Required. An identifier unique to the targeting type in this campaign that identifies the assigned targeting option being requested.
-     *         assignedTargetingOptionId: '[^/]+',
-     *         // Required. The ID of the campaign the assigned targeting option belongs to.
-     *         campaignId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_VIEWABILITY`
-     *         targetingType: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageRangeDetails": {},
-     *   //   "appCategoryDetails": {},
-     *   //   "appDetails": {},
-     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *   //   "audienceGroupDetails": {},
-     *   //   "audioContentTypeDetails": {},
-     *   //   "authorizedSellerStatusDetails": {},
-     *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
-     *   //   "carrierAndIspDetails": {},
-     *   //   "categoryDetails": {},
-     *   //   "channelDetails": {},
-     *   //   "contentDurationDetails": {},
-     *   //   "contentGenreDetails": {},
-     *   //   "contentInstreamPositionDetails": {},
-     *   //   "contentOutstreamPositionDetails": {},
-     *   //   "contentStreamTypeDetails": {},
-     *   //   "dayAndTimeDetails": {},
-     *   //   "deviceMakeModelDetails": {},
-     *   //   "deviceTypeDetails": {},
-     *   //   "digitalContentLabelExclusionDetails": {},
-     *   //   "environmentDetails": {},
-     *   //   "exchangeDetails": {},
-     *   //   "genderDetails": {},
-     *   //   "geoRegionDetails": {},
-     *   //   "householdIncomeDetails": {},
-     *   //   "inheritance": "my_inheritance",
-     *   //   "inventorySourceDetails": {},
-     *   //   "inventorySourceGroupDetails": {},
-     *   //   "keywordDetails": {},
-     *   //   "languageDetails": {},
-     *   //   "name": "my_name",
-     *   //   "nativeContentPositionDetails": {},
-     *   //   "negativeKeywordListDetails": {},
-     *   //   "omidDetails": {},
-     *   //   "onScreenPositionDetails": {},
-     *   //   "operatingSystemDetails": {},
-     *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
-     *   //   "proximityLocationListDetails": {},
-     *   //   "regionalLocationListDetails": {},
-     *   //   "sensitiveCategoryExclusionDetails": {},
-     *   //   "subExchangeDetails": {},
-     *   //   "targetingType": "my_targetingType",
-     *   //   "thirdPartyVerifierDetails": {},
-     *   //   "urlDetails": {},
-     *   //   "userRewardedContentDetails": {},
-     *   //   "videoPlayerSizeDetails": {},
-     *   //   "viewabilityDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8113,64 +7789,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists the targeting options assigned to a campaign for a specified targeting type.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.campaigns.targetingTypes.assignedTargetingOptions.list(
-     *       {
-     *         // Required. The ID of the advertiser the campaign belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Required. The ID of the campaign to list assigned targeting options for.
-     *         campaignId: '[^/]+',
-     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *         filter: 'placeholder-value',
-     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     *         orderBy: 'placeholder-value',
-     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *         pageSize: 'placeholder-value',
-     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *         pageToken: 'placeholder-value',
-     *         // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_VIEWABILITY`
-     *         targetingType: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8297,7 +7915,7 @@ export namespace displayvideo_v2 {
      */
     campaignId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` * `inheritance` Examples: * `AssignedTargetingOption` resources with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * `AssignedTargetingOption` resources with inheritance status of `NOT_INHERITED` or `INHERITED_FROM_PARTNER` `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -8328,70 +7946,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new channel. Returns the newly created channel if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.channels.create({
-     *     // The ID of the advertiser that owns the created channel.
-     *     advertiserId: '[^/]+',
-     *     // The ID of the partner that owns the created channel.
-     *     partnerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "channelId": "my_channelId",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
-     *       //   "partnerId": "my_partnerId",
-     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "channelId": "my_channelId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8479,58 +8033,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a channel for a partner or advertiser.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.channels.get({
-     *     // The ID of the advertiser that owns the fetched channel.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the channel to fetch.
-     *     channelId: '[^/]+',
-     *     // The ID of the partner that owns the fetched channel.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "channelId": "my_channelId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8617,59 +8119,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists channels for a partner or advertiser.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.channels.list({
-     *     // The ID of the advertiser that owns the channels.
-     *     advertiserId: '[^/]+',
-     *     // Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that owns the channels.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "channels": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8762,74 +8211,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates a channel. Returns the updated channel if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.channels.patch({
-     *     // The ID of the advertiser that owns the created channel.
-     *     advertiserId: '[^/]+',
-     *     // Output only. The unique ID of the channel. Assigned by the system.
-     *     channelId: 'placeholder-value',
-     *     // The ID of the partner that owns the created channel.
-     *     partnerId: 'placeholder-value',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "channelId": "my_channelId",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
-     *       //   "partnerId": "my_partnerId",
-     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "channelId": "my_channelId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8953,7 +8334,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by channel fields. Supported syntax: * Filter expressions for channel can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -8961,7 +8342,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -9006,61 +8387,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits sites under a single channel. The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.channels.sites.bulkEdit({
-     *     // The ID of the advertiser that owns the parent channel.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the parent channel to which the sites belong.
-     *     channelId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "createdSites": [],
-     *       //   "deletedSites": [],
-     *       //   "partnerId": "my_partnerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "sites": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9155,62 +8481,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a site in a channel.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.channels.sites.create({
-     *     // The ID of the advertiser that owns the parent channel.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the parent channel in which the site will be created.
-     *     channelId: '[^/]+',
-     *     // The ID of the partner that owns the parent channel.
-     *     partnerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "name": "my_name",
-     *       //   "urlOrAppId": "my_urlOrAppId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "urlOrAppId": "my_urlOrAppId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9298,52 +8568,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a site from a channel.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.channels.sites.delete({
-     *     // The ID of the advertiser that owns the parent channel.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the parent channel to which the site belongs.
-     *     channelId: '[^/]+',
-     *     // The ID of the partner that owns the parent channel.
-     *     partnerId: 'placeholder-value',
-     *     // Required. The URL or app ID of the site to delete.
-     *     urlOrAppId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9431,61 +8655,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists sites in a channel.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.channels.sites.list({
-     *     // The ID of the advertiser that owns the parent channel.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the parent channel to which the requested sites belong.
-     *     channelId: '[^/]+',
-     *     // Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that owns the parent channel.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "sites": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9576,60 +8745,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Replaces all of the sites under a single channel. The operation will replace the sites under a channel with the sites provided in ReplaceSitesRequest.new_sites.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.channels.sites.replace({
-     *     // The ID of the advertiser that owns the parent channel.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the parent channel whose sites will be replaced.
-     *     channelId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "newSites": [],
-     *       //   "partnerId": "my_partnerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "sites": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9787,7 +8902,7 @@ export namespace displayvideo_v2 {
      */
     channelId?: string;
     /**
-     * Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     * Allows filtering by site fields. Supported syntax: * Filter expressions for site retrieval can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -9832,148 +8947,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new creative. Returns the newly created creative if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.creatives.create({
-     *     // Output only. The unique ID of the advertiser the creative belongs to.
-     *     advertiserId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "additionalDimensions": [],
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "appendedTag": "my_appendedTag",
-     *       //   "assets": [],
-     *       //   "cmPlacementId": "my_cmPlacementId",
-     *       //   "cmTrackingAd": {},
-     *       //   "companionCreativeIds": [],
-     *       //   "counterEvents": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "creativeAttributes": [],
-     *       //   "creativeId": "my_creativeId",
-     *       //   "creativeType": "my_creativeType",
-     *       //   "dimensions": {},
-     *       //   "displayName": "my_displayName",
-     *       //   "dynamic": false,
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "exitEvents": [],
-     *       //   "expandOnHover": false,
-     *       //   "expandingDirection": "my_expandingDirection",
-     *       //   "hostingSource": "my_hostingSource",
-     *       //   "html5Video": false,
-     *       //   "iasCampaignMonitoring": false,
-     *       //   "integrationCode": "my_integrationCode",
-     *       //   "jsTrackerUrl": "my_jsTrackerUrl",
-     *       //   "lineItemIds": [],
-     *       //   "mediaDuration": "my_mediaDuration",
-     *       //   "mp3Audio": false,
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "obaIcon": {},
-     *       //   "oggAudio": false,
-     *       //   "progressOffset": {},
-     *       //   "requireHtml5": false,
-     *       //   "requireMraid": false,
-     *       //   "requirePingForAttribution": false,
-     *       //   "reviewStatus": {},
-     *       //   "skipOffset": {},
-     *       //   "skippable": false,
-     *       //   "thirdPartyTag": "my_thirdPartyTag",
-     *       //   "thirdPartyUrls": [],
-     *       //   "timerEvents": [],
-     *       //   "trackerUrls": [],
-     *       //   "transcodes": [],
-     *       //   "universalAdId": {},
-     *       //   "updateTime": "my_updateTime",
-     *       //   "vastTagUrl": "my_vastTagUrl",
-     *       //   "vpaid": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalDimensions": [],
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "appendedTag": "my_appendedTag",
-     *   //   "assets": [],
-     *   //   "cmPlacementId": "my_cmPlacementId",
-     *   //   "cmTrackingAd": {},
-     *   //   "companionCreativeIds": [],
-     *   //   "counterEvents": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "creativeAttributes": [],
-     *   //   "creativeId": "my_creativeId",
-     *   //   "creativeType": "my_creativeType",
-     *   //   "dimensions": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "dynamic": false,
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "exitEvents": [],
-     *   //   "expandOnHover": false,
-     *   //   "expandingDirection": "my_expandingDirection",
-     *   //   "hostingSource": "my_hostingSource",
-     *   //   "html5Video": false,
-     *   //   "iasCampaignMonitoring": false,
-     *   //   "integrationCode": "my_integrationCode",
-     *   //   "jsTrackerUrl": "my_jsTrackerUrl",
-     *   //   "lineItemIds": [],
-     *   //   "mediaDuration": "my_mediaDuration",
-     *   //   "mp3Audio": false,
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "obaIcon": {},
-     *   //   "oggAudio": false,
-     *   //   "progressOffset": {},
-     *   //   "requireHtml5": false,
-     *   //   "requireMraid": false,
-     *   //   "requirePingForAttribution": false,
-     *   //   "reviewStatus": {},
-     *   //   "skipOffset": {},
-     *   //   "skippable": false,
-     *   //   "thirdPartyTag": "my_thirdPartyTag",
-     *   //   "thirdPartyUrls": [],
-     *   //   "timerEvents": [],
-     *   //   "trackerUrls": [],
-     *   //   "transcodes": [],
-     *   //   "universalAdId": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "vastTagUrl": "my_vastTagUrl",
-     *   //   "vpaid": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10060,48 +9033,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a creative. Returns error code `NOT_FOUND` if the creative does not exist. The creative should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, before it can be deleted.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.creatives.delete({
-     *     // The ID of the advertiser this creative belongs to.
-     *     advertiserId: '[^/]+',
-     *     // The ID of the creative to be deleted.
-     *     creativeId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10189,96 +9120,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a creative.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.creatives.get({
-     *     // Required. The ID of the advertiser this creative belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the creative to fetch.
-     *     creativeId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalDimensions": [],
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "appendedTag": "my_appendedTag",
-     *   //   "assets": [],
-     *   //   "cmPlacementId": "my_cmPlacementId",
-     *   //   "cmTrackingAd": {},
-     *   //   "companionCreativeIds": [],
-     *   //   "counterEvents": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "creativeAttributes": [],
-     *   //   "creativeId": "my_creativeId",
-     *   //   "creativeType": "my_creativeType",
-     *   //   "dimensions": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "dynamic": false,
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "exitEvents": [],
-     *   //   "expandOnHover": false,
-     *   //   "expandingDirection": "my_expandingDirection",
-     *   //   "hostingSource": "my_hostingSource",
-     *   //   "html5Video": false,
-     *   //   "iasCampaignMonitoring": false,
-     *   //   "integrationCode": "my_integrationCode",
-     *   //   "jsTrackerUrl": "my_jsTrackerUrl",
-     *   //   "lineItemIds": [],
-     *   //   "mediaDuration": "my_mediaDuration",
-     *   //   "mp3Audio": false,
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "obaIcon": {},
-     *   //   "oggAudio": false,
-     *   //   "progressOffset": {},
-     *   //   "requireHtml5": false,
-     *   //   "requireMraid": false,
-     *   //   "requirePingForAttribution": false,
-     *   //   "reviewStatus": {},
-     *   //   "skipOffset": {},
-     *   //   "skippable": false,
-     *   //   "thirdPartyTag": "my_thirdPartyTag",
-     *   //   "thirdPartyUrls": [],
-     *   //   "timerEvents": [],
-     *   //   "trackerUrls": [],
-     *   //   "transcodes": [],
-     *   //   "universalAdId": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "vastTagUrl": "my_vastTagUrl",
-     *   //   "vpaid": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10366,57 +9207,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists creatives in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, creatives with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.creatives.list({
-     *     // Required. The ID of the advertiser to list creatives for.
-     *     advertiserId: '[^/]+',
-     *     // Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * The operator must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` for the following fields: - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) * For `entityStatus`, `minDuration`, `maxDuration`, `updateTime`, and `dynamic`, there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width\}x{height\}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange\}-{reviewStatus\}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration\}s"`. Only seconds are supported with millisecond granularity. * For `updateTime`, a creative resource's field value reflects the last time that a creative has been updated, which includes updates made by the system (e.g. creative review updates). * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` * All creatives with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `creativeId` (default) * `createTime` * `mediaDuration` * `dimensions` (sorts by width first, then by height) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `createTime desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCreatives` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creatives": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10508,152 +9298,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing creative. Returns the updated creative if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.creatives.patch({
-     *     // Output only. The unique ID of the advertiser the creative belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Output only. The unique ID of the creative. Assigned by the system.
-     *     creativeId: '[^/]+',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "additionalDimensions": [],
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "appendedTag": "my_appendedTag",
-     *       //   "assets": [],
-     *       //   "cmPlacementId": "my_cmPlacementId",
-     *       //   "cmTrackingAd": {},
-     *       //   "companionCreativeIds": [],
-     *       //   "counterEvents": [],
-     *       //   "createTime": "my_createTime",
-     *       //   "creativeAttributes": [],
-     *       //   "creativeId": "my_creativeId",
-     *       //   "creativeType": "my_creativeType",
-     *       //   "dimensions": {},
-     *       //   "displayName": "my_displayName",
-     *       //   "dynamic": false,
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "exitEvents": [],
-     *       //   "expandOnHover": false,
-     *       //   "expandingDirection": "my_expandingDirection",
-     *       //   "hostingSource": "my_hostingSource",
-     *       //   "html5Video": false,
-     *       //   "iasCampaignMonitoring": false,
-     *       //   "integrationCode": "my_integrationCode",
-     *       //   "jsTrackerUrl": "my_jsTrackerUrl",
-     *       //   "lineItemIds": [],
-     *       //   "mediaDuration": "my_mediaDuration",
-     *       //   "mp3Audio": false,
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "obaIcon": {},
-     *       //   "oggAudio": false,
-     *       //   "progressOffset": {},
-     *       //   "requireHtml5": false,
-     *       //   "requireMraid": false,
-     *       //   "requirePingForAttribution": false,
-     *       //   "reviewStatus": {},
-     *       //   "skipOffset": {},
-     *       //   "skippable": false,
-     *       //   "thirdPartyTag": "my_thirdPartyTag",
-     *       //   "thirdPartyUrls": [],
-     *       //   "timerEvents": [],
-     *       //   "trackerUrls": [],
-     *       //   "transcodes": [],
-     *       //   "universalAdId": {},
-     *       //   "updateTime": "my_updateTime",
-     *       //   "vastTagUrl": "my_vastTagUrl",
-     *       //   "vpaid": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalDimensions": [],
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "appendedTag": "my_appendedTag",
-     *   //   "assets": [],
-     *   //   "cmPlacementId": "my_cmPlacementId",
-     *   //   "cmTrackingAd": {},
-     *   //   "companionCreativeIds": [],
-     *   //   "counterEvents": [],
-     *   //   "createTime": "my_createTime",
-     *   //   "creativeAttributes": [],
-     *   //   "creativeId": "my_creativeId",
-     *   //   "creativeType": "my_creativeType",
-     *   //   "dimensions": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "dynamic": false,
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "exitEvents": [],
-     *   //   "expandOnHover": false,
-     *   //   "expandingDirection": "my_expandingDirection",
-     *   //   "hostingSource": "my_hostingSource",
-     *   //   "html5Video": false,
-     *   //   "iasCampaignMonitoring": false,
-     *   //   "integrationCode": "my_integrationCode",
-     *   //   "jsTrackerUrl": "my_jsTrackerUrl",
-     *   //   "lineItemIds": [],
-     *   //   "mediaDuration": "my_mediaDuration",
-     *   //   "mp3Audio": false,
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "obaIcon": {},
-     *   //   "oggAudio": false,
-     *   //   "progressOffset": {},
-     *   //   "requireHtml5": false,
-     *   //   "requireMraid": false,
-     *   //   "requirePingForAttribution": false,
-     *   //   "reviewStatus": {},
-     *   //   "skipOffset": {},
-     *   //   "skippable": false,
-     *   //   "thirdPartyTag": "my_thirdPartyTag",
-     *   //   "thirdPartyUrls": [],
-     *   //   "timerEvents": [],
-     *   //   "trackerUrls": [],
-     *   //   "transcodes": [],
-     *   //   "universalAdId": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "vastTagUrl": "my_vastTagUrl",
-     *   //   "vpaid": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10781,7 +9425,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by creative properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restriction for the same field must be combined by `OR`. * Restriction for different fields must be combined by `AND`. * Between `(` and `)` there can only be restrictions combined by `OR` for the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)` for the following fields: - `entityStatus` - `creativeType`. - `dimensions` - `minDuration` - `maxDuration` - `approvalStatus` - `exchangeReviewStatus` - `dynamic` - `creativeId` * The operator must be `HAS (:)` for the following fields: - `lineItemIds` * The operator must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` for the following fields: - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) * For `entityStatus`, `minDuration`, `maxDuration`, `updateTime`, and `dynamic`, there may be at most one restriction. * For `dimensions`, the value is in the form of `"{width\}x{height\}"`. * For `exchangeReviewStatus`, the value is in the form of `{exchange\}-{reviewStatus\}`. * For `minDuration` and `maxDuration`, the value is in the form of `"{duration\}s"`. Only seconds are supported with millisecond granularity. * For `updateTime`, a creative resource's field value reflects the last time that a creative has been updated, which includes updates made by the system (e.g. creative review updates). * There may be multiple `lineItemIds` restrictions in order to search against multiple possible line item IDs. * There may be multiple `creativeId` restrictions in order to search against multiple possible creative IDs. Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms. `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` * All creatives with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
+     * Allows filtering by creative fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `lineItemIds` field must use the `HAS (:)` operator. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. * For `entityStatus`, `minDuration`, `maxDuration`, `updateTime`, and `dynamic` fields, there may be at most one restriction. Supported Fields: * `approvalStatus` * `creativeId` * `creativeType` * `dimensions` (input in the form of `{width\}x{height\}`) * `dynamic` * `entityStatus` * `exchangeReviewStatus` (input in the form of `{exchange\}-{reviewStatus\}`) * `lineItemIds` * `maxDuration` (input in the form of `{duration\}s`. Only seconds are supported) * `minDuration` (input in the form of `{duration\}s`. Only seconds are supported) * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Notes: * For `updateTime`, a creative resource's field value reflects the last time that a creative has been updated, which includes updates made by the system (e.g. creative review updates). Examples: * All native creatives: `creativeType="CREATIVE_TYPE_NATIVE"` * All active creatives with 300x400 or 50x100 dimensions: `entityStatus="ENTITY_STATUS_ACTIVE" AND (dimensions="300x400" OR dimensions="50x100")` * All dynamic creatives that are approved by AdX or AppNexus, with a minimum duration of 5 seconds and 200ms: `dynamic="true" AND minDuration="5.2s" AND (exchangeReviewStatus="EXCHANGE_GOOGLE_AD_MANAGER-REVIEW_STATUS_APPROVED" OR exchangeReviewStatus="EXCHANGE_APPNEXUS-REVIEW_STATUS_APPROVED")` * All video creatives that are associated with line item ID 1 or 2: `creativeType="CREATIVE_TYPE_VIDEO" AND (lineItemIds:1 OR lineItemIds:2)` * Find creatives by multiple creative IDs: `creativeId=1 OR creativeId=2` * All creatives with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -10789,7 +9433,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -10829,88 +9473,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new insertion order. Returns the newly created insertion order if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.insertionOrders.create({
-     *     // Output only. The unique ID of the advertiser the insertion order belongs to.
-     *     advertiserId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "bidStrategy": {},
-     *       //   "billableOutcome": "my_billableOutcome",
-     *       //   "budget": {},
-     *       //   "campaignId": "my_campaignId",
-     *       //   "displayName": "my_displayName",
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "frequencyCap": {},
-     *       //   "insertionOrderId": "my_insertionOrderId",
-     *       //   "insertionOrderType": "my_insertionOrderType",
-     *       //   "integrationDetails": {},
-     *       //   "name": "my_name",
-     *       //   "pacing": {},
-     *       //   "partnerCosts": [],
-     *       //   "performanceGoal": {},
-     *       //   "reservationType": "my_reservationType",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "bidStrategy": {},
-     *   //   "billableOutcome": "my_billableOutcome",
-     *   //   "budget": {},
-     *   //   "campaignId": "my_campaignId",
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "frequencyCap": {},
-     *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "insertionOrderType": "my_insertionOrderType",
-     *   //   "integrationDetails": {},
-     *   //   "name": "my_name",
-     *   //   "pacing": {},
-     *   //   "partnerCosts": [],
-     *   //   "performanceGoal": {},
-     *   //   "reservationType": "my_reservationType",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10997,48 +9559,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an insertion order. Returns error code `NOT_FOUND` if the insertion order does not exist. The insertion order should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.insertionOrders.delete({
-     *     // The ID of the advertiser this insertion order belongs to.
-     *     advertiserId: '[^/]+',
-     *     // The ID of the insertion order to delete.
-     *     insertionOrderId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11126,66 +9646,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets an insertion order. Returns error code `NOT_FOUND` if the insertion order does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.insertionOrders.get({
-     *     // Required. The ID of the advertiser this insertion order belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the insertion order to fetch.
-     *     insertionOrderId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "bidStrategy": {},
-     *   //   "billableOutcome": "my_billableOutcome",
-     *   //   "budget": {},
-     *   //   "campaignId": "my_campaignId",
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "frequencyCap": {},
-     *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "insertionOrderType": "my_insertionOrderType",
-     *   //   "integrationDetails": {},
-     *   //   "name": "my_name",
-     *   //   "pacing": {},
-     *   //   "partnerCosts": [],
-     *   //   "performanceGoal": {},
-     *   //   "reservationType": "my_reservationType",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11273,57 +9733,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists insertion orders in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, insertion orders with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.insertionOrders.list({
-     *     // Required. The ID of the advertiser to list insertion orders for.
-     *     advertiserId: '[^/]+',
-     *     // Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` * All insertion orders with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All insertion orders with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * "updateTime" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrders` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "insertionOrders": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11417,62 +9826,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists assigned targeting options of an insertion order across targeting types.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.insertionOrders.listAssignedTargetingOptions(
-     *       {
-     *         // Required. The ID of the advertiser the insertion order belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *         filter: 'placeholder-value',
-     *         // Required. The ID of the insertion order to list assigned targeting options for.
-     *         insertionOrderId: '[^/]+',
-     *         // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *         orderBy: 'placeholder-value',
-     *         // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *         pageSize: 'placeholder-value',
-     *         // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *         pageToken: 'placeholder-value',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11570,92 +9923,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing insertion order. Returns the updated insertion order if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.insertionOrders.patch({
-     *     // Output only. The unique ID of the advertiser the insertion order belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Output only. The unique ID of the insertion order. Assigned by the system.
-     *     insertionOrderId: '[^/]+',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "bidStrategy": {},
-     *       //   "billableOutcome": "my_billableOutcome",
-     *       //   "budget": {},
-     *       //   "campaignId": "my_campaignId",
-     *       //   "displayName": "my_displayName",
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "frequencyCap": {},
-     *       //   "insertionOrderId": "my_insertionOrderId",
-     *       //   "insertionOrderType": "my_insertionOrderType",
-     *       //   "integrationDetails": {},
-     *       //   "name": "my_name",
-     *       //   "pacing": {},
-     *       //   "partnerCosts": [],
-     *       //   "performanceGoal": {},
-     *       //   "reservationType": "my_reservationType",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "bidStrategy": {},
-     *   //   "billableOutcome": "my_billableOutcome",
-     *   //   "budget": {},
-     *   //   "campaignId": "my_campaignId",
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "frequencyCap": {},
-     *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "insertionOrderType": "my_insertionOrderType",
-     *   //   "integrationDetails": {},
-     *   //   "name": "my_name",
-     *   //   "pacing": {},
-     *   //   "partnerCosts": [],
-     *   //   "performanceGoal": {},
-     *   //   "reservationType": "my_reservationType",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11783,7 +10050,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` * All insertion orders with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All insertion orders with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
+     * Allows filtering by insertion order fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `campaignId` * `displayName` * `entityStatus` * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders with an update time less than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime<="2020-11-04T18:54:47Z"` * All insertion orders with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -11806,7 +10073,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `targetingType` * `inheritance` Examples: * `AssignedTargetingOption` resources of targeting type `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` or `TARGETING_TYPE_CHANNEL`: `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * `AssignedTargetingOption` resources with inheritance status of `NOT_INHERITED` or `INHERITED_FROM_PARTNER`: `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -11867,159 +10134,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Assigns a targeting option to an insertion order. Returns the assigned targeting option if successful. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIEWABILITY`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.create(
-     *       {
-     *         // Required. The ID of the advertiser the insertion order belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Required. The ID of the insertion order the assigned targeting option will belong to.
-     *         insertionOrderId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIEWABILITY`
-     *         targetingType: '[^/]+',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "ageRangeDetails": {},
-     *           //   "appCategoryDetails": {},
-     *           //   "appDetails": {},
-     *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *           //   "audienceGroupDetails": {},
-     *           //   "audioContentTypeDetails": {},
-     *           //   "authorizedSellerStatusDetails": {},
-     *           //   "browserDetails": {},
-     *           //   "businessChainDetails": {},
-     *           //   "carrierAndIspDetails": {},
-     *           //   "categoryDetails": {},
-     *           //   "channelDetails": {},
-     *           //   "contentDurationDetails": {},
-     *           //   "contentGenreDetails": {},
-     *           //   "contentInstreamPositionDetails": {},
-     *           //   "contentOutstreamPositionDetails": {},
-     *           //   "contentStreamTypeDetails": {},
-     *           //   "dayAndTimeDetails": {},
-     *           //   "deviceMakeModelDetails": {},
-     *           //   "deviceTypeDetails": {},
-     *           //   "digitalContentLabelExclusionDetails": {},
-     *           //   "environmentDetails": {},
-     *           //   "exchangeDetails": {},
-     *           //   "genderDetails": {},
-     *           //   "geoRegionDetails": {},
-     *           //   "householdIncomeDetails": {},
-     *           //   "inheritance": "my_inheritance",
-     *           //   "inventorySourceDetails": {},
-     *           //   "inventorySourceGroupDetails": {},
-     *           //   "keywordDetails": {},
-     *           //   "languageDetails": {},
-     *           //   "name": "my_name",
-     *           //   "nativeContentPositionDetails": {},
-     *           //   "negativeKeywordListDetails": {},
-     *           //   "omidDetails": {},
-     *           //   "onScreenPositionDetails": {},
-     *           //   "operatingSystemDetails": {},
-     *           //   "parentalStatusDetails": {},
-     *           //   "poiDetails": {},
-     *           //   "proximityLocationListDetails": {},
-     *           //   "regionalLocationListDetails": {},
-     *           //   "sensitiveCategoryExclusionDetails": {},
-     *           //   "subExchangeDetails": {},
-     *           //   "targetingType": "my_targetingType",
-     *           //   "thirdPartyVerifierDetails": {},
-     *           //   "urlDetails": {},
-     *           //   "userRewardedContentDetails": {},
-     *           //   "videoPlayerSizeDetails": {},
-     *           //   "viewabilityDetails": {}
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageRangeDetails": {},
-     *   //   "appCategoryDetails": {},
-     *   //   "appDetails": {},
-     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *   //   "audienceGroupDetails": {},
-     *   //   "audioContentTypeDetails": {},
-     *   //   "authorizedSellerStatusDetails": {},
-     *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
-     *   //   "carrierAndIspDetails": {},
-     *   //   "categoryDetails": {},
-     *   //   "channelDetails": {},
-     *   //   "contentDurationDetails": {},
-     *   //   "contentGenreDetails": {},
-     *   //   "contentInstreamPositionDetails": {},
-     *   //   "contentOutstreamPositionDetails": {},
-     *   //   "contentStreamTypeDetails": {},
-     *   //   "dayAndTimeDetails": {},
-     *   //   "deviceMakeModelDetails": {},
-     *   //   "deviceTypeDetails": {},
-     *   //   "digitalContentLabelExclusionDetails": {},
-     *   //   "environmentDetails": {},
-     *   //   "exchangeDetails": {},
-     *   //   "genderDetails": {},
-     *   //   "geoRegionDetails": {},
-     *   //   "householdIncomeDetails": {},
-     *   //   "inheritance": "my_inheritance",
-     *   //   "inventorySourceDetails": {},
-     *   //   "inventorySourceGroupDetails": {},
-     *   //   "keywordDetails": {},
-     *   //   "languageDetails": {},
-     *   //   "name": "my_name",
-     *   //   "nativeContentPositionDetails": {},
-     *   //   "negativeKeywordListDetails": {},
-     *   //   "omidDetails": {},
-     *   //   "onScreenPositionDetails": {},
-     *   //   "operatingSystemDetails": {},
-     *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
-     *   //   "proximityLocationListDetails": {},
-     *   //   "regionalLocationListDetails": {},
-     *   //   "sensitiveCategoryExclusionDetails": {},
-     *   //   "subExchangeDetails": {},
-     *   //   "targetingType": "my_targetingType",
-     *   //   "thirdPartyVerifierDetails": {},
-     *   //   "urlDetails": {},
-     *   //   "userRewardedContentDetails": {},
-     *   //   "videoPlayerSizeDetails": {},
-     *   //   "viewabilityDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12115,55 +10229,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an assigned targeting option from an insertion order. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIEWABILITY`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.delete(
-     *       {
-     *         // Required. The ID of the advertiser the insertion order belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Required. The ID of the assigned targeting option to delete.
-     *         assignedTargetingOptionId: '[^/]+',
-     *         // Required. The ID of the insertion order the assigned targeting option belongs to.
-     *         insertionOrderId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_VIEWABILITY`
-     *         targetingType: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12262,105 +10327,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option assigned to an insertion order.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.get(
-     *       {
-     *         // Required. The ID of the advertiser the insertion order belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Required. An identifier unique to the targeting type in this insertion order that identifies the assigned targeting option being requested.
-     *         assignedTargetingOptionId: '[^/]+',
-     *         // Required. The ID of the insertion order the assigned targeting option belongs to.
-     *         insertionOrderId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option.
-     *         targetingType: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageRangeDetails": {},
-     *   //   "appCategoryDetails": {},
-     *   //   "appDetails": {},
-     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *   //   "audienceGroupDetails": {},
-     *   //   "audioContentTypeDetails": {},
-     *   //   "authorizedSellerStatusDetails": {},
-     *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
-     *   //   "carrierAndIspDetails": {},
-     *   //   "categoryDetails": {},
-     *   //   "channelDetails": {},
-     *   //   "contentDurationDetails": {},
-     *   //   "contentGenreDetails": {},
-     *   //   "contentInstreamPositionDetails": {},
-     *   //   "contentOutstreamPositionDetails": {},
-     *   //   "contentStreamTypeDetails": {},
-     *   //   "dayAndTimeDetails": {},
-     *   //   "deviceMakeModelDetails": {},
-     *   //   "deviceTypeDetails": {},
-     *   //   "digitalContentLabelExclusionDetails": {},
-     *   //   "environmentDetails": {},
-     *   //   "exchangeDetails": {},
-     *   //   "genderDetails": {},
-     *   //   "geoRegionDetails": {},
-     *   //   "householdIncomeDetails": {},
-     *   //   "inheritance": "my_inheritance",
-     *   //   "inventorySourceDetails": {},
-     *   //   "inventorySourceGroupDetails": {},
-     *   //   "keywordDetails": {},
-     *   //   "languageDetails": {},
-     *   //   "name": "my_name",
-     *   //   "nativeContentPositionDetails": {},
-     *   //   "negativeKeywordListDetails": {},
-     *   //   "omidDetails": {},
-     *   //   "onScreenPositionDetails": {},
-     *   //   "operatingSystemDetails": {},
-     *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
-     *   //   "proximityLocationListDetails": {},
-     *   //   "regionalLocationListDetails": {},
-     *   //   "sensitiveCategoryExclusionDetails": {},
-     *   //   "subExchangeDetails": {},
-     *   //   "targetingType": "my_targetingType",
-     *   //   "thirdPartyVerifierDetails": {},
-     *   //   "urlDetails": {},
-     *   //   "userRewardedContentDetails": {},
-     *   //   "videoPlayerSizeDetails": {},
-     *   //   "viewabilityDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12464,64 +10430,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists the targeting options assigned to an insertion order.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.list(
-     *       {
-     *         // Required. The ID of the advertiser the insertion order belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *         filter: 'placeholder-value',
-     *         // Required. The ID of the insertion order to list assigned targeting options for.
-     *         insertionOrderId: '[^/]+',
-     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     *         orderBy: 'placeholder-value',
-     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *         pageSize: 'placeholder-value',
-     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *         pageToken: 'placeholder-value',
-     *         // Required. Identifies the type of assigned targeting options to list.
-     *         targetingType: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12672,7 +10580,7 @@ export namespace displayvideo_v2 {
      */
     insertionOrderId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option.
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`
      */
     targetingType?: string;
   }
@@ -12683,7 +10591,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` * `inheritance` Examples: * `AssignedTargetingOption` resources with ID 1 or 2: `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * `AssignedTargetingOption` resources with inheritance status of `NOT_INHERITED` or `INHERITED_FROM_PARTNER`: `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -12703,7 +10611,7 @@ export namespace displayvideo_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Identifies the type of assigned targeting options to list.
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`
      */
     targetingType?: string;
   }
@@ -12716,60 +10624,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists invoices posted for an advertiser in a given month. Invoices generated by billing profiles with a "Partner" invoice level are not retrievable through this method.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/display-video',
-     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.invoices.list({
-     *     // Required. The ID of the advertiser to list invoices for.
-     *     advertiserId: '[^/]+',
-     *     // The month to list the invoices for. If not set, the request will retrieve invoices for the previous month. Must be in the format YYYYMM.
-     *     issueMonth: 'placeholder-value',
-     *     // Select type of invoice to retrieve for Loi Sapin advertisers. Only applicable to Loi Sapin advertisers. Will be ignored otherwise.
-     *     loiSapinInvoiceType: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInvoices` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "invoices": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12862,53 +10716,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Retrieves the invoice currency used by an advertiser in a given month.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/display-video',
-     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.invoices.lookupInvoiceCurrency({
-     *     // Required. The ID of the advertiser to lookup currency for.
-     *     advertiserId: '[^/]+',
-     *     // Month for which the currency is needed. If not set, the request will return existing currency settings for the advertiser. Must be in the format YYYYMM.
-     *     invoiceMonth: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "currencyCode": "my_currencyCode"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13020,7 +10827,7 @@ export namespace displayvideo_v2 {
      */
     loiSapinInvoiceType?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -13051,62 +10858,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Bulk edits targeting options under multiple line items. The operation will delete the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.create_requests .
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.lineItems.bulkEditAssignedTargetingOptions({
-     *       // Required. The ID of the advertiser the line items belong to.
-     *       advertiserId: '[^/]+',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createRequests": [],
-     *         //   "deleteRequests": [],
-     *         //   "lineItemIds": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "errors": [],
-     *   //   "failedLineItemIds": [],
-     *   //   "updatedLineItemIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Bulk edits targeting options under multiple line items. The operation will delete the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkUpdate * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13204,60 +10956,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists assigned targeting options for multiple line items across targeting types.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.lineItems.bulkListAssignedTargetingOptions({
-     *       // Required. The ID of the advertiser the line items belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Required. The IDs of the line items to list assigned targeting options for.
-     *       lineItemIds: 'placeholder-value',
-     *       // Field by which to sort the list. Acceptable values are: * `lineItemId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to the `BulkListAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "lineItemAssignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13354,61 +11052,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Updates multiple line items.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.bulkUpdate({
-     *     advertisersId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "lineItemIds": [],
-     *       //   "targetLineItem": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "errors": [],
-     *   //   "failedLineItemIds": [],
-     *   //   "skippedLineItemIds": [],
-     *   //   "updatedLineItemIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Updates multiple line items. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13479,15 +11123,15 @@ export namespace displayvideo_v2 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v2/advertisers/{advertisersId}/lineItems:bulkUpdate'
+              rootUrl + '/v2/advertisers/{+advertiserId}/lineItems:bulkUpdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['advertisersId'],
-        pathParams: ['advertisersId'],
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
         context: this.context,
       };
       if (callback) {
@@ -13502,104 +11146,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new line item. Returns the newly created line item if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.create({
-     *     // Output only. The unique ID of the advertiser the line item belongs to.
-     *     advertiserId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "bidStrategy": {},
-     *       //   "budget": {},
-     *       //   "campaignId": "my_campaignId",
-     *       //   "conversionCounting": {},
-     *       //   "creativeIds": [],
-     *       //   "displayName": "my_displayName",
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "excludeNewExchanges": false,
-     *       //   "flight": {},
-     *       //   "frequencyCap": {},
-     *       //   "insertionOrderId": "my_insertionOrderId",
-     *       //   "integrationDetails": {},
-     *       //   "lineItemId": "my_lineItemId",
-     *       //   "lineItemType": "my_lineItemType",
-     *       //   "mobileApp": {},
-     *       //   "name": "my_name",
-     *       //   "pacing": {},
-     *       //   "partnerCosts": [],
-     *       //   "partnerRevenueModel": {},
-     *       //   "reservationType": "my_reservationType",
-     *       //   "targetingExpansion": {},
-     *       //   "updateTime": "my_updateTime",
-     *       //   "warningMessages": [],
-     *       //   "youtubeAndPartnersSettings": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "bidStrategy": {},
-     *   //   "budget": {},
-     *   //   "campaignId": "my_campaignId",
-     *   //   "conversionCounting": {},
-     *   //   "creativeIds": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "excludeNewExchanges": false,
-     *   //   "flight": {},
-     *   //   "frequencyCap": {},
-     *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "integrationDetails": {},
-     *   //   "lineItemId": "my_lineItemId",
-     *   //   "lineItemType": "my_lineItemType",
-     *   //   "mobileApp": {},
-     *   //   "name": "my_name",
-     *   //   "pacing": {},
-     *   //   "partnerCosts": [],
-     *   //   "partnerRevenueModel": {},
-     *   //   "reservationType": "my_reservationType",
-     *   //   "targetingExpansion": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "warningMessages": [],
-     *   //   "youtubeAndPartnersSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13686,48 +11232,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a line item. Returns error code `NOT_FOUND` if the line item does not exist. The line item should be archived first, i.e. set entity_status to `ENTITY_STATUS_ARCHIVED`, to be able to delete it.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.delete({
-     *     // The ID of the advertiser this line item belongs to.
-     *     advertiserId: '[^/]+',
-     *     // The ID of the line item to delete.
-     *     lineItemId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13814,59 +11318,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Duplicates a line item. Returns the newly created line item id if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.duplicate({
-     *     // Required. The ID of the advertiser this line item belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the line item to duplicate.
-     *     lineItemId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "targetDisplayName": "my_targetDisplayName"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "duplicateLineItemId": "my_duplicateLineItemId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Duplicates a line item. Returns the ID of the created line item if successful.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13961,83 +11413,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new line item with settings (including targeting) inherited from the insertion order and an `ENTITY_STATUS_DRAFT` entity_status. Returns the newly created line item if successful. There are default values based on the three fields: * The insertion order's insertion_order_type * The insertion order's automation_type * The given line_item_type
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.generateDefault({
-     *     // Required. The ID of the advertiser this line item belongs to.
-     *     advertiserId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "insertionOrderId": "my_insertionOrderId",
-     *       //   "lineItemType": "my_lineItemType",
-     *       //   "mobileApp": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "bidStrategy": {},
-     *   //   "budget": {},
-     *   //   "campaignId": "my_campaignId",
-     *   //   "conversionCounting": {},
-     *   //   "creativeIds": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "excludeNewExchanges": false,
-     *   //   "flight": {},
-     *   //   "frequencyCap": {},
-     *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "integrationDetails": {},
-     *   //   "lineItemId": "my_lineItemId",
-     *   //   "lineItemType": "my_lineItemType",
-     *   //   "mobileApp": {},
-     *   //   "name": "my_name",
-     *   //   "pacing": {},
-     *   //   "partnerCosts": [],
-     *   //   "partnerRevenueModel": {},
-     *   //   "reservationType": "my_reservationType",
-     *   //   "targetingExpansion": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "warningMessages": [],
-     *   //   "youtubeAndPartnersSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14125,74 +11500,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a line item.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.get({
-     *     // Required. The ID of the advertiser this line item belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the line item to fetch.
-     *     lineItemId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "bidStrategy": {},
-     *   //   "budget": {},
-     *   //   "campaignId": "my_campaignId",
-     *   //   "conversionCounting": {},
-     *   //   "creativeIds": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "excludeNewExchanges": false,
-     *   //   "flight": {},
-     *   //   "frequencyCap": {},
-     *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "integrationDetails": {},
-     *   //   "lineItemId": "my_lineItemId",
-     *   //   "lineItemType": "my_lineItemType",
-     *   //   "mobileApp": {},
-     *   //   "name": "my_name",
-     *   //   "pacing": {},
-     *   //   "partnerCosts": [],
-     *   //   "partnerRevenueModel": {},
-     *   //   "reservationType": "my_reservationType",
-     *   //   "targetingExpansion": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "warningMessages": [],
-     *   //   "youtubeAndPartnersSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14280,57 +11587,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists line items in an advertiser. The order is defined by the order_by parameter. If a filter by entity_status is not specified, line items with `ENTITY_STATUS_ARCHIVED` will not be included in the results.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.list({
-     *     // Required. The ID of the advertiser to list line items for.
-     *     advertiserId: '[^/]+',
-     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported properties: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) - `targetedChannelId` - `targetedNegativeKeywordListId` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` * All line items with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` * All line items that are using both the specified channel and specified negative keyword list in their targeting: `targetedNegativeKeywordListId=789 AND targetedChannelId=12345` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `flight.dateRange.endDate` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItems` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "lineItems": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14421,109 +11677,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.patch({
-     *     // Output only. The unique ID of the advertiser the line item belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Output only. The unique ID of the line item. Assigned by the system.
-     *     lineItemId: '[^/]+',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "bidStrategy": {},
-     *       //   "budget": {},
-     *       //   "campaignId": "my_campaignId",
-     *       //   "conversionCounting": {},
-     *       //   "creativeIds": [],
-     *       //   "displayName": "my_displayName",
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "excludeNewExchanges": false,
-     *       //   "flight": {},
-     *       //   "frequencyCap": {},
-     *       //   "insertionOrderId": "my_insertionOrderId",
-     *       //   "integrationDetails": {},
-     *       //   "lineItemId": "my_lineItemId",
-     *       //   "lineItemType": "my_lineItemType",
-     *       //   "mobileApp": {},
-     *       //   "name": "my_name",
-     *       //   "pacing": {},
-     *       //   "partnerCosts": [],
-     *       //   "partnerRevenueModel": {},
-     *       //   "reservationType": "my_reservationType",
-     *       //   "targetingExpansion": {},
-     *       //   "updateTime": "my_updateTime",
-     *       //   "warningMessages": [],
-     *       //   "youtubeAndPartnersSettings": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "bidStrategy": {},
-     *   //   "budget": {},
-     *   //   "campaignId": "my_campaignId",
-     *   //   "conversionCounting": {},
-     *   //   "creativeIds": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "excludeNewExchanges": false,
-     *   //   "flight": {},
-     *   //   "frequencyCap": {},
-     *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "integrationDetails": {},
-     *   //   "lineItemId": "my_lineItemId",
-     *   //   "lineItemType": "my_lineItemType",
-     *   //   "mobileApp": {},
-     *   //   "name": "my_name",
-     *   //   "pacing": {},
-     *   //   "partnerCosts": [],
-     *   //   "partnerRevenueModel": {},
-     *   //   "reservationType": "my_reservationType",
-     *   //   "targetingExpansion": {},
-     *   //   "updateTime": "my_updateTime",
-     *   //   "warningMessages": [],
-     *   //   "youtubeAndPartnersSettings": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdateLineItems * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14629,7 +11783,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `targetingType` * `inheritance` Examples: * `AssignedTargetingOption` resources of targeting type `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` or `TARGETING_TYPE_CHANNEL`: `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * `AssignedTargetingOption` resources with inheritance status of `NOT_INHERITED` or `INHERITED_FROM_PARTNER`: `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -14641,7 +11795,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -14652,9 +11806,9 @@ export namespace displayvideo_v2 {
   export interface Params$Resource$Advertisers$Lineitems$Bulkupdate
     extends StandardParameters {
     /**
-     *
+     * Required. The ID of the advertiser this line item belongs to.
      */
-    advertisersId?: string;
+    advertiserId?: string;
 
     /**
      * Request body metadata
@@ -14730,15 +11884,15 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported properties: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) - `targetedChannelId` - `targetedNegativeKeywordListId` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` * All line items with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` * All line items that are using both the specified channel and specified negative keyword list in their targeting: `targetedNegativeKeywordListId=789 AND targetedChannelId=12345` The length of this field should be no more than 500 characters.
+     * Allows filtering by line item fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `campaignId` * `displayName` * `entityStatus` * `insertionOrderId` * `lineItemId` * `lineItemType` * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items with an update time less than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `flight.dateRange.endDate` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -14786,160 +11940,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.create(
-     *       {
-     *         // Required. The ID of the advertiser the line item belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Required. The ID of the line item the assigned targeting option will belong to.
-     *         lineItemId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option.
-     *         targetingType: '[^/]+',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "ageRangeDetails": {},
-     *           //   "appCategoryDetails": {},
-     *           //   "appDetails": {},
-     *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *           //   "audienceGroupDetails": {},
-     *           //   "audioContentTypeDetails": {},
-     *           //   "authorizedSellerStatusDetails": {},
-     *           //   "browserDetails": {},
-     *           //   "businessChainDetails": {},
-     *           //   "carrierAndIspDetails": {},
-     *           //   "categoryDetails": {},
-     *           //   "channelDetails": {},
-     *           //   "contentDurationDetails": {},
-     *           //   "contentGenreDetails": {},
-     *           //   "contentInstreamPositionDetails": {},
-     *           //   "contentOutstreamPositionDetails": {},
-     *           //   "contentStreamTypeDetails": {},
-     *           //   "dayAndTimeDetails": {},
-     *           //   "deviceMakeModelDetails": {},
-     *           //   "deviceTypeDetails": {},
-     *           //   "digitalContentLabelExclusionDetails": {},
-     *           //   "environmentDetails": {},
-     *           //   "exchangeDetails": {},
-     *           //   "genderDetails": {},
-     *           //   "geoRegionDetails": {},
-     *           //   "householdIncomeDetails": {},
-     *           //   "inheritance": "my_inheritance",
-     *           //   "inventorySourceDetails": {},
-     *           //   "inventorySourceGroupDetails": {},
-     *           //   "keywordDetails": {},
-     *           //   "languageDetails": {},
-     *           //   "name": "my_name",
-     *           //   "nativeContentPositionDetails": {},
-     *           //   "negativeKeywordListDetails": {},
-     *           //   "omidDetails": {},
-     *           //   "onScreenPositionDetails": {},
-     *           //   "operatingSystemDetails": {},
-     *           //   "parentalStatusDetails": {},
-     *           //   "poiDetails": {},
-     *           //   "proximityLocationListDetails": {},
-     *           //   "regionalLocationListDetails": {},
-     *           //   "sensitiveCategoryExclusionDetails": {},
-     *           //   "subExchangeDetails": {},
-     *           //   "targetingType": "my_targetingType",
-     *           //   "thirdPartyVerifierDetails": {},
-     *           //   "urlDetails": {},
-     *           //   "userRewardedContentDetails": {},
-     *           //   "videoPlayerSizeDetails": {},
-     *           //   "viewabilityDetails": {}
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageRangeDetails": {},
-     *   //   "appCategoryDetails": {},
-     *   //   "appDetails": {},
-     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *   //   "audienceGroupDetails": {},
-     *   //   "audioContentTypeDetails": {},
-     *   //   "authorizedSellerStatusDetails": {},
-     *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
-     *   //   "carrierAndIspDetails": {},
-     *   //   "categoryDetails": {},
-     *   //   "channelDetails": {},
-     *   //   "contentDurationDetails": {},
-     *   //   "contentGenreDetails": {},
-     *   //   "contentInstreamPositionDetails": {},
-     *   //   "contentOutstreamPositionDetails": {},
-     *   //   "contentStreamTypeDetails": {},
-     *   //   "dayAndTimeDetails": {},
-     *   //   "deviceMakeModelDetails": {},
-     *   //   "deviceTypeDetails": {},
-     *   //   "digitalContentLabelExclusionDetails": {},
-     *   //   "environmentDetails": {},
-     *   //   "exchangeDetails": {},
-     *   //   "genderDetails": {},
-     *   //   "geoRegionDetails": {},
-     *   //   "householdIncomeDetails": {},
-     *   //   "inheritance": "my_inheritance",
-     *   //   "inventorySourceDetails": {},
-     *   //   "inventorySourceGroupDetails": {},
-     *   //   "keywordDetails": {},
-     *   //   "languageDetails": {},
-     *   //   "name": "my_name",
-     *   //   "nativeContentPositionDetails": {},
-     *   //   "negativeKeywordListDetails": {},
-     *   //   "omidDetails": {},
-     *   //   "onScreenPositionDetails": {},
-     *   //   "operatingSystemDetails": {},
-     *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
-     *   //   "proximityLocationListDetails": {},
-     *   //   "regionalLocationListDetails": {},
-     *   //   "sensitiveCategoryExclusionDetails": {},
-     *   //   "subExchangeDetails": {},
-     *   //   "targetingType": "my_targetingType",
-     *   //   "thirdPartyVerifierDetails": {},
-     *   //   "urlDetails": {},
-     *   //   "userRewardedContentDetails": {},
-     *   //   "videoPlayerSizeDetails": {},
-     *   //   "viewabilityDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdate * UpdateLineItem * DeleteLineItemAssignedTargetingOption
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15034,56 +12035,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.delete(
-     *       {
-     *         // Required. The ID of the advertiser the line item belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Required. The ID of the assigned targeting option to delete.
-     *         assignedTargetingOptionId: '[^/]+',
-     *         // Required. The ID of the line item the assigned targeting option belongs to.
-     *         lineItemId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option.
-     *         targetingType: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdate * UpdateLineItem * CreateLineItemAssignedTargetingOption
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15182,105 +12134,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option assigned to a line item.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.get(
-     *       {
-     *         // Required. The ID of the advertiser the line item belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.
-     *         assignedTargetingOptionId: '[^/]+',
-     *         // Required. The ID of the line item the assigned targeting option belongs to.
-     *         lineItemId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option.
-     *         targetingType: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageRangeDetails": {},
-     *   //   "appCategoryDetails": {},
-     *   //   "appDetails": {},
-     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *   //   "audienceGroupDetails": {},
-     *   //   "audioContentTypeDetails": {},
-     *   //   "authorizedSellerStatusDetails": {},
-     *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
-     *   //   "carrierAndIspDetails": {},
-     *   //   "categoryDetails": {},
-     *   //   "channelDetails": {},
-     *   //   "contentDurationDetails": {},
-     *   //   "contentGenreDetails": {},
-     *   //   "contentInstreamPositionDetails": {},
-     *   //   "contentOutstreamPositionDetails": {},
-     *   //   "contentStreamTypeDetails": {},
-     *   //   "dayAndTimeDetails": {},
-     *   //   "deviceMakeModelDetails": {},
-     *   //   "deviceTypeDetails": {},
-     *   //   "digitalContentLabelExclusionDetails": {},
-     *   //   "environmentDetails": {},
-     *   //   "exchangeDetails": {},
-     *   //   "genderDetails": {},
-     *   //   "geoRegionDetails": {},
-     *   //   "householdIncomeDetails": {},
-     *   //   "inheritance": "my_inheritance",
-     *   //   "inventorySourceDetails": {},
-     *   //   "inventorySourceGroupDetails": {},
-     *   //   "keywordDetails": {},
-     *   //   "languageDetails": {},
-     *   //   "name": "my_name",
-     *   //   "nativeContentPositionDetails": {},
-     *   //   "negativeKeywordListDetails": {},
-     *   //   "omidDetails": {},
-     *   //   "onScreenPositionDetails": {},
-     *   //   "operatingSystemDetails": {},
-     *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
-     *   //   "proximityLocationListDetails": {},
-     *   //   "regionalLocationListDetails": {},
-     *   //   "sensitiveCategoryExclusionDetails": {},
-     *   //   "subExchangeDetails": {},
-     *   //   "targetingType": "my_targetingType",
-     *   //   "thirdPartyVerifierDetails": {},
-     *   //   "urlDetails": {},
-     *   //   "userRewardedContentDetails": {},
-     *   //   "videoPlayerSizeDetails": {},
-     *   //   "viewabilityDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15384,64 +12237,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists the targeting options assigned to a line item.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.list(
-     *       {
-     *         // Required. The ID of the advertiser the line item belongs to.
-     *         advertiserId: '[^/]+',
-     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *         filter: 'placeholder-value',
-     *         // Required. The ID of the line item to list assigned targeting options for.
-     *         lineItemId: '[^/]+',
-     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     *         orderBy: 'placeholder-value',
-     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *         pageSize: 'placeholder-value',
-     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *         pageToken: 'placeholder-value',
-     *         // Required. Identifies the type of assigned targeting options to list.
-     *         targetingType: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15549,7 +12344,7 @@ export namespace displayvideo_v2 {
      */
     lineItemId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option.
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`
      */
     targetingType?: string;
 
@@ -15573,7 +12368,7 @@ export namespace displayvideo_v2 {
      */
     lineItemId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option.
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY`
      */
     targetingType?: string;
   }
@@ -15592,7 +12387,7 @@ export namespace displayvideo_v2 {
      */
     lineItemId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option.
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `TARGETING_TYPE_YOUTUBE_VIDEO` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)
      */
     targetingType?: string;
   }
@@ -15603,7 +12398,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` * `inheritance` Examples: * `AssignedTargetingOption` resources with ID 1 or 2: `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * `AssignedTargetingOption` resources with inheritance status of `NOT_INHERITED` or `INHERITED_FROM_PARTNER`: `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -15623,7 +12418,7 @@ export namespace displayvideo_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Identifies the type of assigned targeting options to list.
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_AUDIO_CONTENT_TYPE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_BUSINESS_CHAIN` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_CONTENT_DURATION` * `TARGETING_TYPE_CONTENT_GENRE` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_STREAM_TYPE` * `TARGETING_TYPE_DAY_AND_TIME` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_PROXIMITY_LOCATION_LIST` * `TARGETING_TYPE_REGIONAL_LOCATION_LIST` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_YOUTUBE_CHANNEL` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items) * `TARGETING_TYPE_YOUTUBE_VIDEO` (only for `LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIDEO_SEQUENCE` line items)
      */
     targetingType?: string;
   }
@@ -15639,64 +12434,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new location list. Returns the newly created location list if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.locationLists.create({
-     *     // Required. The ID of the DV360 advertiser to which the location list belongs.
-     *     advertiserId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "displayName": "my_displayName",
-     *       //   "locationListId": "my_locationListId",
-     *       //   "locationType": "my_locationType",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "locationListId": "my_locationListId",
-     *   //   "locationType": "my_locationType",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15783,54 +12520,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a location list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.locationLists.get({
-     *     // Required. The ID of the DV360 advertiser to which the fetched location list belongs.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the location list to fetch.
-     *     locationListId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "locationListId": "my_locationListId",
-     *   //   "locationType": "my_locationType",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15918,57 +12607,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists location lists based on a given advertiser id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.locationLists.list({
-     *     // Required. The ID of the DV360 advertiser to which the fetched location lists belong.
-     *     advertiserId: '[^/]+',
-     *     // Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `locationListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLocationLists` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "locationLists": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16062,68 +12700,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates a location list. Returns the updated location list if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.locationLists.patch({
-     *     // Required. The ID of the DV360 advertiser to which the location lists belongs.
-     *     advertiserId: '[^/]+',
-     *     // Output only. The unique ID of the location list. Assigned by the system.
-     *     locationListId: 'placeholder-value',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "displayName": "my_displayName",
-     *       //   "locationListId": "my_locationListId",
-     *       //   "locationType": "my_locationType",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "locationListId": "my_locationListId",
-     *   //   "locationType": "my_locationType",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16240,7 +12816,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"`
+     * Allows filtering by location list fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `locationType` Examples: * All regional location list: `locationType="TARGETING_LOCATION_TYPE_REGIONAL"` * All proximity location list: `locationType="TARGETING_LOCATION_TYPE_PROXIMITY"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -16248,7 +12824,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -16285,60 +12861,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits multiple assignments between locations and a single location list. The operation will delete the assigned locations provided in BulkEditAssignedLocationsRequest.deleted_assigned_locations and then create the assigned locations provided in BulkEditAssignedLocationsRequest.created_assigned_locations.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.locationLists.assignedLocations.bulkEdit({
-     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
-     *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the location list to which these assignments are assigned.
-     *       locationListId: '[^/]+',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createdAssignedLocations": [],
-     *         //   "deletedAssignedLocations": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedLocations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16436,63 +12958,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates an assignment between a location and a location list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.locationLists.assignedLocations.create({
-     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
-     *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the location list for which the assignment will be created.
-     *       locationListId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "assignedLocationId": "my_assignedLocationId",
-     *         //   "name": "my_name",
-     *         //   "targetingOptionId": "my_targetingOptionId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedLocationId": "my_assignedLocationId",
-     *   //   "name": "my_name",
-     *   //   "targetingOptionId": "my_targetingOptionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16581,51 +13046,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes the assignment between a location and a location list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.locationLists.assignedLocations.delete({
-     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
-     *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the assigned location to delete.
-     *       assignedLocationId: '[^/]+',
-     *       // Required. The ID of the location list to which this assignment is assigned.
-     *       locationListId: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16718,60 +13138,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists locations assigned to a location list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.locationLists.assignedLocations.list({
-     *       // Required. The ID of the DV360 advertiser to which the location list belongs.
-     *       advertiserId: 'placeholder-value',
-     *       // Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Required. The ID of the location list to which these assignments are assigned.
-     *       locationListId: 'placeholder-value',
-     *       // Field by which to sort the list. Acceptable values are: * `assignedLocationId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedLocationId desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedLocations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16922,7 +13288,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
+     * Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedLocationId` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -16934,7 +13300,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -16950,63 +13316,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Activates a manual trigger. Each activation of the manual trigger must be at least 5 minutes apart, otherwise an error will be returned.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.manualTriggers.activate({
-     *     // Required. The ID of the advertiser that the manual trigger belongs.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the manual trigger to activate.
-     *     triggerId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "latestActivationTime": "my_latestActivationTime",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "triggerId": "my_triggerId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Activates a manual trigger. Each activation of the manual trigger must be at least 5 minutes apart, otherwise an error will be returned. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17093,69 +13403,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Creates a new manual trigger. Returns the newly created manual trigger if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.manualTriggers.create({
-     *     // Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
-     *     advertiserId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "activationDurationMinutes": "my_activationDurationMinutes",
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "displayName": "my_displayName",
-     *       //   "latestActivationTime": "my_latestActivationTime",
-     *       //   "name": "my_name",
-     *       //   "state": "my_state",
-     *       //   "triggerId": "my_triggerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "latestActivationTime": "my_latestActivationTime",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "triggerId": "my_triggerId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a new manual trigger. Returns the newly created manual trigger if successful. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17241,63 +13489,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Deactivates a manual trigger.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.manualTriggers.deactivate({
-     *     // Required. The ID of the advertiser that the manual trigger belongs.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the manual trigger to deactivate.
-     *     triggerId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "latestActivationTime": "my_latestActivationTime",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "triggerId": "my_triggerId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deactivates a manual trigger. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17384,57 +13576,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Gets a manual trigger.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.manualTriggers.get({
-     *     // Required. The ID of the advertiser this manual trigger belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the manual trigger to fetch.
-     *     triggerId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "latestActivationTime": "my_latestActivationTime",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "triggerId": "my_triggerId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Gets a manual trigger. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17521,58 +13663,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Lists manual triggers that are accessible to the current user for a given advertiser ID. The order is defined by the order_by parameter. A single advertiser_id is required.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.manualTriggers.list({
-     *     // Required. The ID of the advertiser that the fetched manual triggers belong to.
-     *     advertiserId: '[^/]+',
-     *     // Allows filtering by manual trigger properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `displayName` - `state` Examples: * All active manual triggers under an advertiser: `state="ACTIVE"` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `state` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListManualTriggers` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "manualTriggers": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists manual triggers that are accessible to the current user for a given advertiser ID. The order is defined by the order_by parameter. A single advertiser_id is required. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17665,73 +13756,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Updates a manual trigger. Returns the updated manual trigger if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.manualTriggers.patch({
-     *     // Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
-     *     advertiserId: '[^/]+',
-     *     // Output only. The unique ID of the manual trigger.
-     *     triggerId: '[^/]+',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "activationDurationMinutes": "my_activationDurationMinutes",
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "displayName": "my_displayName",
-     *       //   "latestActivationTime": "my_latestActivationTime",
-     *       //   "name": "my_name",
-     *       //   "state": "my_state",
-     *       //   "triggerId": "my_triggerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "latestActivationTime": "my_latestActivationTime",
-     *   //   "name": "my_name",
-     *   //   "state": "my_state",
-     *   //   "triggerId": "my_triggerId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Updates a manual trigger. Returns the updated manual trigger if successful. **Warning:** Line Items using manual triggers no longer serve in Display & Video 360. This method will sunset on August 1, 2023. Read our [feature deprecation announcement](/display-video/api/deprecations#features.manual_triggers) for more information.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17880,7 +13905,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by manual trigger properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `displayName` - `state` Examples: * All active manual triggers under an advertiser: `state="ACTIVE"` The length of this field should be no more than 500 characters.
+     * Allows filtering by manual trigger fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `displayName` * `state` Examples: * All active manual triggers under an advertiser: `state="ACTIVE"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -17888,7 +13913,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -17930,64 +13955,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new negative keyword list. Returns the newly created negative keyword list if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.negativeKeywordLists.create({
-     *     // Required. The ID of the DV360 advertiser to which the negative keyword list will belong.
-     *     advertiserId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "negativeKeywordListId": "my_negativeKeywordListId",
-     *       //   "targetedLineItemCount": "my_targetedLineItemCount"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "negativeKeywordListId": "my_negativeKeywordListId",
-     *   //   "targetedLineItemCount": "my_targetedLineItemCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18077,48 +14044,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a negative keyword list given an advertiser ID and a negative keyword list ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.negativeKeywordLists.delete({
-     *     // Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the negative keyword list to delete.
-     *     negativeKeywordListId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18206,54 +14131,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a negative keyword list given an advertiser ID and a negative keyword list ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.negativeKeywordLists.get({
-     *     // Required. The ID of the DV360 advertiser to which the fetched negative keyword list belongs.
-     *     advertiserId: '[^/]+',
-     *     // Required. The ID of the negative keyword list to fetch.
-     *     negativeKeywordListId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "negativeKeywordListId": "my_negativeKeywordListId",
-     *   //   "targetedLineItemCount": "my_targetedLineItemCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18344,53 +14221,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists negative keyword lists based on a given advertiser id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.negativeKeywordLists.list({
-     *     // Required. The ID of the DV360 advertiser to which the fetched negative keyword lists belong.
-     *     advertiserId: '[^/]+',
-     *     // Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywordLists` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "negativeKeywordLists": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18486,68 +14316,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates a negative keyword list. Returns the updated negative keyword list if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.advertisers.negativeKeywordLists.patch({
-     *     // Required. The ID of the DV360 advertiser to which the negative keyword list belongs.
-     *     advertiserId: '[^/]+',
-     *     // Output only. The unique ID of the negative keyword list. Assigned by the system.
-     *     negativeKeywordListId: 'placeholder-value',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "negativeKeywordListId": "my_negativeKeywordListId",
-     *       //   "targetedLineItemCount": "my_targetedLineItemCount"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "negativeKeywordListId": "my_negativeKeywordListId",
-     *   //   "targetedLineItemCount": "my_targetedLineItemCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18678,7 +14446,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. Defaults to `100` if not set. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -18715,62 +14483,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits negative keywords in a single negative keyword list. The operation will delete the negative keywords provided in BulkEditNegativeKeywordsRequest.deleted_negative_keywords and then create the negative keywords provided in BulkEditNegativeKeywordsRequest.created_negative_keywords. This operation is guaranteed to be atomic and will never result in a partial success or partial failure.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit(
-     *       {
-     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     *         advertiserId: 'placeholder-value',
-     *         // Required. The ID of the parent negative keyword list to which the negative keywords belong.
-     *         negativeKeywordListId: '[^/]+',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "createdNegativeKeywords": [],
-     *           //   "deletedNegativeKeywords": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "negativeKeywords": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18868,63 +14580,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a negative keyword in a negative keyword list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create(
-     *       {
-     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     *         advertiserId: 'placeholder-value',
-     *         // Required. The ID of the parent negative keyword list in which the negative keyword will be created.
-     *         negativeKeywordListId: '[^/]+',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "keywordValue": "my_keywordValue",
-     *           //   "name": "my_name"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "keywordValue": "my_keywordValue",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19013,53 +14668,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a negative keyword from a negative keyword list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete(
-     *       {
-     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     *         advertiserId: 'placeholder-value',
-     *         // Required. The keyword value of the negative keyword to delete.
-     *         keywordValue: '[^/]+',
-     *         // Required. The ID of the parent negative keyword list to which the negative keyword belongs.
-     *         negativeKeywordListId: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19152,60 +14760,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists negative keywords in a negative keyword list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list({
-     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     *       advertiserId: '[^/]+',
-     *       // Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
-     *       filter: 'placeholder-value',
-     *       // Required. The ID of the parent negative keyword list to which the requested negative keywords belong.
-     *       negativeKeywordListId: '[^/]+',
-     *       // Field by which to sort the list. Acceptable values are: * `keywordValue` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `1000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "negativeKeywords": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19303,61 +14857,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Replaces all negative keywords in a single negative keyword list. The operation will replace the keywords in a negative keyword list with keywords provided in ReplaceNegativeKeywordsRequest.new_negative_keywords.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.replace(
-     *       {
-     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     *         advertiserId: 'placeholder-value',
-     *         // Required. The ID of the parent negative keyword list to which the negative keywords belong.
-     *         negativeKeywordListId: '[^/]+',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "newNegativeKeywords": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "negativeKeywords": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19508,7 +15007,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
+     * Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keywords can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -19565,157 +15064,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Assigns a targeting option to an advertiser. Returns the assigned targeting option if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create(
-     *       {
-     *         // Required. The ID of the advertiser.
-     *         advertiserId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
-     *         targetingType: '[^/]+',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "ageRangeDetails": {},
-     *           //   "appCategoryDetails": {},
-     *           //   "appDetails": {},
-     *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *           //   "audienceGroupDetails": {},
-     *           //   "audioContentTypeDetails": {},
-     *           //   "authorizedSellerStatusDetails": {},
-     *           //   "browserDetails": {},
-     *           //   "businessChainDetails": {},
-     *           //   "carrierAndIspDetails": {},
-     *           //   "categoryDetails": {},
-     *           //   "channelDetails": {},
-     *           //   "contentDurationDetails": {},
-     *           //   "contentGenreDetails": {},
-     *           //   "contentInstreamPositionDetails": {},
-     *           //   "contentOutstreamPositionDetails": {},
-     *           //   "contentStreamTypeDetails": {},
-     *           //   "dayAndTimeDetails": {},
-     *           //   "deviceMakeModelDetails": {},
-     *           //   "deviceTypeDetails": {},
-     *           //   "digitalContentLabelExclusionDetails": {},
-     *           //   "environmentDetails": {},
-     *           //   "exchangeDetails": {},
-     *           //   "genderDetails": {},
-     *           //   "geoRegionDetails": {},
-     *           //   "householdIncomeDetails": {},
-     *           //   "inheritance": "my_inheritance",
-     *           //   "inventorySourceDetails": {},
-     *           //   "inventorySourceGroupDetails": {},
-     *           //   "keywordDetails": {},
-     *           //   "languageDetails": {},
-     *           //   "name": "my_name",
-     *           //   "nativeContentPositionDetails": {},
-     *           //   "negativeKeywordListDetails": {},
-     *           //   "omidDetails": {},
-     *           //   "onScreenPositionDetails": {},
-     *           //   "operatingSystemDetails": {},
-     *           //   "parentalStatusDetails": {},
-     *           //   "poiDetails": {},
-     *           //   "proximityLocationListDetails": {},
-     *           //   "regionalLocationListDetails": {},
-     *           //   "sensitiveCategoryExclusionDetails": {},
-     *           //   "subExchangeDetails": {},
-     *           //   "targetingType": "my_targetingType",
-     *           //   "thirdPartyVerifierDetails": {},
-     *           //   "urlDetails": {},
-     *           //   "userRewardedContentDetails": {},
-     *           //   "videoPlayerSizeDetails": {},
-     *           //   "viewabilityDetails": {}
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageRangeDetails": {},
-     *   //   "appCategoryDetails": {},
-     *   //   "appDetails": {},
-     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *   //   "audienceGroupDetails": {},
-     *   //   "audioContentTypeDetails": {},
-     *   //   "authorizedSellerStatusDetails": {},
-     *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
-     *   //   "carrierAndIspDetails": {},
-     *   //   "categoryDetails": {},
-     *   //   "channelDetails": {},
-     *   //   "contentDurationDetails": {},
-     *   //   "contentGenreDetails": {},
-     *   //   "contentInstreamPositionDetails": {},
-     *   //   "contentOutstreamPositionDetails": {},
-     *   //   "contentStreamTypeDetails": {},
-     *   //   "dayAndTimeDetails": {},
-     *   //   "deviceMakeModelDetails": {},
-     *   //   "deviceTypeDetails": {},
-     *   //   "digitalContentLabelExclusionDetails": {},
-     *   //   "environmentDetails": {},
-     *   //   "exchangeDetails": {},
-     *   //   "genderDetails": {},
-     *   //   "geoRegionDetails": {},
-     *   //   "householdIncomeDetails": {},
-     *   //   "inheritance": "my_inheritance",
-     *   //   "inventorySourceDetails": {},
-     *   //   "inventorySourceGroupDetails": {},
-     *   //   "keywordDetails": {},
-     *   //   "languageDetails": {},
-     *   //   "name": "my_name",
-     *   //   "nativeContentPositionDetails": {},
-     *   //   "negativeKeywordListDetails": {},
-     *   //   "omidDetails": {},
-     *   //   "onScreenPositionDetails": {},
-     *   //   "operatingSystemDetails": {},
-     *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
-     *   //   "proximityLocationListDetails": {},
-     *   //   "regionalLocationListDetails": {},
-     *   //   "sensitiveCategoryExclusionDetails": {},
-     *   //   "subExchangeDetails": {},
-     *   //   "targetingType": "my_targetingType",
-     *   //   "thirdPartyVerifierDetails": {},
-     *   //   "urlDetails": {},
-     *   //   "userRewardedContentDetails": {},
-     *   //   "videoPlayerSizeDetails": {},
-     *   //   "viewabilityDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19811,53 +15159,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an assigned targeting option from an advertiser.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete(
-     *       {
-     *         // Required. The ID of the advertiser.
-     *         advertiserId: '[^/]+',
-     *         // Required. The ID of the assigned targeting option to delete.
-     *         assignedTargetingOptionId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
-     *         targetingType: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19954,101 +15255,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option assigned to an advertiser.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get({
-     *       // Required. The ID of the advertiser.
-     *       advertiserId: '[^/]+',
-     *       // Required. An identifier unique to the targeting type in this advertiser that identifies the assigned targeting option being requested.
-     *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
-     *       targetingType: '[^/]+',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageRangeDetails": {},
-     *   //   "appCategoryDetails": {},
-     *   //   "appDetails": {},
-     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *   //   "audienceGroupDetails": {},
-     *   //   "audioContentTypeDetails": {},
-     *   //   "authorizedSellerStatusDetails": {},
-     *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
-     *   //   "carrierAndIspDetails": {},
-     *   //   "categoryDetails": {},
-     *   //   "channelDetails": {},
-     *   //   "contentDurationDetails": {},
-     *   //   "contentGenreDetails": {},
-     *   //   "contentInstreamPositionDetails": {},
-     *   //   "contentOutstreamPositionDetails": {},
-     *   //   "contentStreamTypeDetails": {},
-     *   //   "dayAndTimeDetails": {},
-     *   //   "deviceMakeModelDetails": {},
-     *   //   "deviceTypeDetails": {},
-     *   //   "digitalContentLabelExclusionDetails": {},
-     *   //   "environmentDetails": {},
-     *   //   "exchangeDetails": {},
-     *   //   "genderDetails": {},
-     *   //   "geoRegionDetails": {},
-     *   //   "householdIncomeDetails": {},
-     *   //   "inheritance": "my_inheritance",
-     *   //   "inventorySourceDetails": {},
-     *   //   "inventorySourceGroupDetails": {},
-     *   //   "keywordDetails": {},
-     *   //   "languageDetails": {},
-     *   //   "name": "my_name",
-     *   //   "nativeContentPositionDetails": {},
-     *   //   "negativeKeywordListDetails": {},
-     *   //   "omidDetails": {},
-     *   //   "onScreenPositionDetails": {},
-     *   //   "operatingSystemDetails": {},
-     *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
-     *   //   "proximityLocationListDetails": {},
-     *   //   "regionalLocationListDetails": {},
-     *   //   "sensitiveCategoryExclusionDetails": {},
-     *   //   "subExchangeDetails": {},
-     *   //   "targetingType": "my_targetingType",
-     *   //   "thirdPartyVerifierDetails": {},
-     *   //   "urlDetails": {},
-     *   //   "userRewardedContentDetails": {},
-     *   //   "videoPlayerSizeDetails": {},
-     *   //   "viewabilityDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20150,62 +15356,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists the targeting options assigned to an advertiser.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list(
-     *       {
-     *         // Required. The ID of the advertiser.
-     *         advertiserId: '[^/]+',
-     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
-     *         filter: 'placeholder-value',
-     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     *         orderBy: 'placeholder-value',
-     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *         pageSize: 'placeholder-value',
-     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *         pageToken: 'placeholder-value',
-     *         // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
-     *         targetingType: '[^/]+',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20344,7 +15494,7 @@ export namespace displayvideo_v2 {
      */
     assignedTargetingOptionId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`
      */
     targetingType?: string;
   }
@@ -20355,7 +15505,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` Examples: * `AssignedTargetingOption` with ID 123456: `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -20371,9 +15521,852 @@ export namespace displayvideo_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_YOUTUBE_VIDEO` * `TARGETING_TYPE_YOUTUBE_CHANNEL`
      */
     targetingType?: string;
+  }
+
+  export class Resource$Advertisers$Youtubeadgroupads {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a YouTube ad group ad.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroupads$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Advertisers$Youtubeadgroupads$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$YoutubeAdGroupAd>;
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroupads$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroupads$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$YoutubeAdGroupAd>,
+      callback: BodyResponseCallback<Schema$YoutubeAdGroupAd>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroupads$Get,
+      callback: BodyResponseCallback<Schema$YoutubeAdGroupAd>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$YoutubeAdGroupAd>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Youtubeadgroupads$Get
+        | BodyResponseCallback<Schema$YoutubeAdGroupAd>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$YoutubeAdGroupAd>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$YoutubeAdGroupAd>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$YoutubeAdGroupAd> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Youtubeadgroupads$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Youtubeadgroupads$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}/youtubeAdGroupAds/{+youtubeAdGroupAdId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'youtubeAdGroupAdId'],
+        pathParams: ['advertiserId', 'youtubeAdGroupAdId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$YoutubeAdGroupAd>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$YoutubeAdGroupAd>(parameters);
+      }
+    }
+
+    /**
+     * Lists YouTube ad group ads.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroupads$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Youtubeadgroupads$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListYoutubeAdGroupAdsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroupads$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroupads$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>,
+      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroupads$List,
+      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Youtubeadgroupads$List
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupAdsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListYoutubeAdGroupAdsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Youtubeadgroupads$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Youtubeadgroupads$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/advertisers/{+advertiserId}/youtubeAdGroupAds'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListYoutubeAdGroupAdsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListYoutubeAdGroupAdsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Youtubeadgroupads$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser this ad group ad belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the ad group ad to fetch.
+     */
+    youtubeAdGroupAdId?: string;
+  }
+  export interface Params$Resource$Advertisers$Youtubeadgroupads$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the ad groups belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by custom YouTube ad group ad fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` * `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroupAds` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Advertisers$Youtubeadgroups {
+    context: APIRequestContext;
+    targetingTypes: Resource$Advertisers$Youtubeadgroups$Targetingtypes;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.targetingTypes =
+        new Resource$Advertisers$Youtubeadgroups$Targetingtypes(this.context);
+    }
+
+    /**
+     * Lists assigned targeting options for multiple YouTube ad groups across targeting types. Inherieted assigned targeting options are not included.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkListAdGroupAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkListAdGroupAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>;
+    bulkListAdGroupAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkListAdGroupAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListAdGroupAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions,
+      callback: BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListAdGroupAssignedTargetingOptions(
+      callback: BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListAdGroupAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions
+        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}/youtubeAdGroups:bulkListAdGroupAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkListAdGroupAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a YouTube ad group.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Advertisers$Youtubeadgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$YoutubeAdGroup>;
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$YoutubeAdGroup>,
+      callback: BodyResponseCallback<Schema$YoutubeAdGroup>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Get,
+      callback: BodyResponseCallback<Schema$YoutubeAdGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$YoutubeAdGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Youtubeadgroups$Get
+        | BodyResponseCallback<Schema$YoutubeAdGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$YoutubeAdGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$YoutubeAdGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$YoutubeAdGroup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Youtubeadgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Youtubeadgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'youtubeAdGroupId'],
+        pathParams: ['advertiserId', 'youtubeAdGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$YoutubeAdGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$YoutubeAdGroup>(parameters);
+      }
+    }
+
+    /**
+     * Lists YouTube ad groups.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Youtubeadgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListYoutubeAdGroupsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroups$List,
+      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Youtubeadgroups$List
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListYoutubeAdGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Youtubeadgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Youtubeadgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/advertisers/{+advertiserId}/youtubeAdGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListYoutubeAdGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListYoutubeAdGroupsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Youtubeadgroups$Bulklistadgroupassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the line items belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `targetingType` Examples: * `AssignedTargetingOption` resources of targeting type `TARGETING_TYPE_YOUTUBE_VIDEO` or `TARGETING_TYPE_YOUTUBE_CHANNEL`: `targetingType="TARGETING_TYPE_YOUTUBE_VIDEO" OR targetingType="TARGETING_TYPE_YOUTUBE_CHANNEL"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `youtubeAdGroupId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to the `BulkListAdGroupAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The IDs of the youtube ad groups to list assigned targeting options for.
+     */
+    youtubeAdGroupIds?: string[];
+  }
+  export interface Params$Resource$Advertisers$Youtubeadgroups$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser this ad group belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the ad group to fetch.
+     */
+    youtubeAdGroupId?: string;
+  }
+  export interface Params$Resource$Advertisers$Youtubeadgroups$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the ad groups belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by custom YouTube ad group fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported properties: * `adGroupId` * `displayName` * `entityStatus` * `lineItemId` * `adGroupFormat` Examples: * All ad groups under an line item: `lineItemId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` `YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_IN_STREAM` ad groups under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND adGroupFormat="YOUTUBE_AND_PARTNERS_AD_GROUP_FORMAT_IN_STREAM"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroups` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Advertisers$Youtubeadgroups$Targetingtypes {
+    context: APIRequestContext;
+    assignedTargetingOptions: Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.assignedTargetingOptions =
+        new Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a single targeting option assigned to a YouTube ad group. Inherited assigned targeting options are not included.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AssignedTargetingOption>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'youtubeAdGroupId',
+          'targetingType',
+          'assignedTargetingOptionId',
+        ],
+        pathParams: [
+          'advertiserId',
+          'assignedTargetingOptionId',
+          'targetingType',
+          'youtubeAdGroupId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
+      }
+    }
+
+    /**
+     * Lists the targeting options assigned to a YouTube ad group. Inherited assigned targeting options are not included.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List,
+      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2/advertisers/{+advertiserId}/youtubeAdGroups/{+youtubeAdGroupId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'youtubeAdGroupId', 'targetingType'],
+        pathParams: ['advertiserId', 'targetingType', 'youtubeAdGroupId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListYoutubeAdGroupAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the ad group belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.
+     */
+    assignedTargetingOptionId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
+     */
+    targetingType?: string;
+    /**
+     * Required. The ID of the ad group the assigned targeting option belongs to.
+     */
+    youtubeAdGroupId?: string;
+  }
+  export interface Params$Resource$Advertisers$Youtubeadgroups$Targetingtypes$Assignedtargetingoptions$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the ad group belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` Examples: * `AssignedTargetingOption` resources with ID 1 or 2: `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListYoutubeAdGroupAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types include: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_APP` * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AUDIENCE_GROUP` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_KEYWORD` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SESSION_POSITION` * `TARGETING_TYPE_URL` * `TARGETING_TYPE_YOUTUBE_CHANNEL` * `TARGETING_TYPE_YOUTUBE_VIDEO`
+     */
+    targetingType?: string;
+    /**
+     * Required. The ID of the ad group to list assigned targeting options for.
+     */
+    youtubeAdGroupId?: string;
   }
 
   export class Resource$Combinedaudiences {
@@ -20384,54 +16377,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a combined audience.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.combinedAudiences.get({
-     *     // The ID of the advertiser that has access to the fetched combined audience.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the combined audience to fetch.
-     *     combinedAudienceId: '[^/]+',
-     *     // The ID of the partner that has access to the fetched combined audience.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "combinedAudienceId": "my_combinedAudienceId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20518,59 +16463,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists combined audiences. The order is defined by the order_by parameter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.combinedAudiences.list({
-     *     // The ID of the advertiser that has access to the fetched combined audiences.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `combinedAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCombinedAudiences` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that has access to the fetched combined audiences.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "combinedAudiences": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20688,7 +16580,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by combined audience fields. Supported syntax: * Filter expressions for combined audiences can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All combined audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -20696,7 +16588,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -20719,69 +16611,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new custom bidding algorithm. Returns the newly created custom bidding algorithm if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.customBiddingAlgorithms.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *       //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
-     *       //   "displayName": "my_displayName",
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "modelDetails": [],
-     *       //   "name": "my_name",
-     *       //   "partnerId": "my_partnerId",
-     *       //   "sharedAdvertiserIds": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "modelDetails": [],
-     *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "sharedAdvertiserIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20874,60 +16703,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a custom bidding algorithm.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.customBiddingAlgorithms.get({
-     *     // The ID of the DV360 partner that has access to the custom bidding algorithm.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the custom bidding algorithm to fetch.
-     *     customBiddingAlgorithmId: '[^/]+',
-     *     // The ID of the DV360 partner that has access to the custom bidding algorithm.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "modelDetails": [],
-     *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "sharedAdvertiserIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21020,59 +16795,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists custom bidding algorithms that are accessible to the current user and can be used in bidding stratgies. The order is defined by the order_by parameter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.customBiddingAlgorithms.list({
-     *     // The ID of the DV360 advertiser that has access to the custom bidding algorithm.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingAlgorithms` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the DV360 partner that has access to the custom bidding algorithm.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customBiddingAlgorithms": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21169,74 +16891,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.customBiddingAlgorithms.patch({
-     *     // Output only. The unique ID of the custom bidding algorithm. Assigned by the system.
-     *     customBiddingAlgorithmId: '[^/]+',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *       //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
-     *       //   "displayName": "my_displayName",
-     *       //   "entityStatus": "my_entityStatus",
-     *       //   "modelDetails": [],
-     *       //   "name": "my_name",
-     *       //   "partnerId": "my_partnerId",
-     *       //   "sharedAdvertiserIds": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "modelDetails": [],
-     *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "sharedAdvertiserIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21329,52 +16983,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a custom bidding script reference object for a script file. The resulting reference object provides a resource path to which the script file should be uploaded. This reference object should be included in when creating a new custom bidding script object.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.customBiddingAlgorithms.uploadScript({
-     *     // The ID of the advertiser that owns the parent custom bidding algorithm.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the custom bidding algorithm owns the script.
-     *     customBiddingAlgorithmId: '[^/]+',
-     *     // The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "resourceName": "my_resourceName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21497,7 +17105,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
+     * Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `customBiddingAlgorithmType` field must use the `EQUALS (=)` operator. * The `displayName` field must use the `HAS (:)` operator. Supported fields: * `customBiddingAlgorithmType` * `displayName` Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:"politics"`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -21505,7 +17113,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -21557,74 +17165,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new custom bidding script. Returns the newly created script if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.customBiddingAlgorithms.scripts.create({
-     *     // The ID of the advertiser that owns the parent custom bidding algorithm.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the custom bidding algorithm that owns the script.
-     *     customBiddingAlgorithmId: '[^/]+',
-     *     // The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.
-     *     partnerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "active": false,
-     *       //   "createTime": "my_createTime",
-     *       //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *       //   "customBiddingScriptId": "my_customBiddingScriptId",
-     *       //   "errors": [],
-     *       //   "name": "my_name",
-     *       //   "script": {},
-     *       //   "state": "my_state"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "active": false,
-     *   //   "createTime": "my_createTime",
-     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *   //   "customBiddingScriptId": "my_customBiddingScriptId",
-     *   //   "errors": [],
-     *   //   "name": "my_name",
-     *   //   "script": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21715,61 +17255,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a custom bidding script.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.customBiddingAlgorithms.scripts.get({
-     *     // The ID of the advertiser that owns the parent custom bidding algorithm.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the custom bidding algorithm owns the script.
-     *     customBiddingAlgorithmId: '[^/]+',
-     *     // Required. The ID of the custom bidding script to fetch.
-     *     customBiddingScriptId: '[^/]+',
-     *     // The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "active": false,
-     *   //   "createTime": "my_createTime",
-     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
-     *   //   "customBiddingScriptId": "my_customBiddingScriptId",
-     *   //   "errors": [],
-     *   //   "name": "my_name",
-     *   //   "script": {},
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21860,59 +17345,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists custom bidding scripts that belong to the given algorithm. The order is defined by the order_by parameter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.customBiddingAlgorithms.scripts.list({
-     *     // The ID of the advertiser that owns the parent custom bidding algorithm.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the custom bidding algorithm owns the script.
-     *     customBiddingAlgorithmId: '[^/]+',
-     *     // Field by which to sort the list. Acceptable values are: * `createTime desc` (default) The default sorting order is descending. To specify ascending order for a field, the suffix "desc" should be removed. Example: `createTime`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingScripts` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customBiddingScripts": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22062,7 +17494,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -22083,52 +17515,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a custom list.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.customLists.get({
-     *     // The ID of the DV360 advertiser that has access to the fetched custom lists.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the custom list to fetch.
-     *     customListId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customListId": "my_customListId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22215,57 +17601,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists custom lists. The order is defined by the order_by parameter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.customLists.list({
-     *     // The ID of the DV360 advertiser that has access to the fetched custom lists.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `customListId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomLists` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "customLists": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22369,7 +17704,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by custom list fields. Supported syntax: * Filter expressions for custom lists can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All custom lists for which the display name contains "Google": `displayName:"Google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -22377,7 +17712,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -22394,90 +17729,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a FirstAndThirdPartyAudience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.firstAndThirdPartyAudiences.create({
-     *     // Required. The ID of the advertiser under whom the FirstAndThirdPartyAudience will be created.
-     *     advertiserId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
-     *       //   "appId": "my_appId",
-     *       //   "audienceSource": "my_audienceSource",
-     *       //   "audienceType": "my_audienceType",
-     *       //   "contactInfoList": {},
-     *       //   "description": "my_description",
-     *       //   "displayAudienceSize": "my_displayAudienceSize",
-     *       //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
-     *       //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
-     *       //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
-     *       //   "displayName": "my_displayName",
-     *       //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
-     *       //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *       //   "gmailAudienceSize": "my_gmailAudienceSize",
-     *       //   "membershipDurationDays": "my_membershipDurationDays",
-     *       //   "mobileDeviceIdList": {},
-     *       //   "name": "my_name",
-     *       //   "youtubeAudienceSize": "my_youtubeAudienceSize"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
-     *   //   "appId": "my_appId",
-     *   //   "audienceSource": "my_audienceSource",
-     *   //   "audienceType": "my_audienceType",
-     *   //   "contactInfoList": {},
-     *   //   "description": "my_description",
-     *   //   "displayAudienceSize": "my_displayAudienceSize",
-     *   //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
-     *   //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
-     *   //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
-     *   //   "displayName": "my_displayName",
-     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
-     *   //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *   //   "gmailAudienceSize": "my_gmailAudienceSize",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "mobileDeviceIdList": {},
-     *   //   "name": "my_name",
-     *   //   "youtubeAudienceSize": "my_youtubeAudienceSize"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22572,59 +17823,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates the member list of a Customer Match audience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.firstAndThirdPartyAudiences.editCustomerMatchMembers({
-     *       // Required. The ID of the Customer Match FirstAndThirdPartyAudience whose members will be edited.
-     *       firstAndThirdPartyAudienceId: '[^/]+',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "addedContactInfoList": {},
-     *         //   "addedMobileDeviceIdList": {},
-     *         //   "advertiserId": "my_advertiserId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22722,69 +17920,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a first and third party audience.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.firstAndThirdPartyAudiences.get({
-     *     // The ID of the advertiser that has access to the fetched first and third party audience.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the first and third party audience to fetch.
-     *     firstAndThirdPartyAudienceId: '[^/]+',
-     *     // The ID of the partner that has access to the fetched first and third party audience.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
-     *   //   "appId": "my_appId",
-     *   //   "audienceSource": "my_audienceSource",
-     *   //   "audienceType": "my_audienceType",
-     *   //   "contactInfoList": {},
-     *   //   "description": "my_description",
-     *   //   "displayAudienceSize": "my_displayAudienceSize",
-     *   //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
-     *   //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
-     *   //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
-     *   //   "displayName": "my_displayName",
-     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
-     *   //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *   //   "gmailAudienceSize": "my_gmailAudienceSize",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "mobileDeviceIdList": {},
-     *   //   "name": "my_name",
-     *   //   "youtubeAudienceSize": "my_youtubeAudienceSize"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22879,59 +18014,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists first and third party audiences. The order is defined by the order_by parameter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.firstAndThirdPartyAudiences.list({
-     *     // The ID of the advertiser that has access to the fetched first and third party audiences.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `firstAndThirdPartyAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListFirstAndThirdPartyAudiences` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that has access to the fetched first and third party audiences.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "firstAndThirdPartyAudiences": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23028,94 +18110,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing FirstAndThirdPartyAudience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.firstAndThirdPartyAudiences.patch({
-     *     // Required. The ID of the owner advertiser of the updated FirstAndThirdPartyAudience.
-     *     advertiserId: 'placeholder-value',
-     *     // Output only. The unique ID of the first and third party audience. Assigned by the system.
-     *     firstAndThirdPartyAudienceId: '[^/]+',
-     *     // Required. The mask to control which fields to update. Updates are only supported for the following fields: * `displayName` * `description` * `membershipDurationDays`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
-     *       //   "appId": "my_appId",
-     *       //   "audienceSource": "my_audienceSource",
-     *       //   "audienceType": "my_audienceType",
-     *       //   "contactInfoList": {},
-     *       //   "description": "my_description",
-     *       //   "displayAudienceSize": "my_displayAudienceSize",
-     *       //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
-     *       //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
-     *       //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
-     *       //   "displayName": "my_displayName",
-     *       //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
-     *       //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *       //   "gmailAudienceSize": "my_gmailAudienceSize",
-     *       //   "membershipDurationDays": "my_membershipDurationDays",
-     *       //   "mobileDeviceIdList": {},
-     *       //   "name": "my_name",
-     *       //   "youtubeAudienceSize": "my_youtubeAudienceSize"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
-     *   //   "appId": "my_appId",
-     *   //   "audienceSource": "my_audienceSource",
-     *   //   "audienceType": "my_audienceType",
-     *   //   "contactInfoList": {},
-     *   //   "description": "my_description",
-     *   //   "displayAudienceSize": "my_displayAudienceSize",
-     *   //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
-     *   //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
-     *   //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
-     *   //   "displayName": "my_displayName",
-     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
-     *   //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
-     *   //   "gmailAudienceSize": "my_gmailAudienceSize",
-     *   //   "membershipDurationDays": "my_membershipDurationDays",
-     *   //   "mobileDeviceIdList": {},
-     *   //   "name": "my_name",
-     *   //   "youtubeAudienceSize": "my_youtubeAudienceSize"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23255,7 +18249,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by first and third party audience fields. Supported syntax: * Filter expressions for first and third party audiences can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All first and third party audiences for which the display name contains "Google": `displayName:"Google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -23263,7 +18257,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -23304,56 +18298,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a Floodlight group.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.floodlightGroups.get({
-     *     // Required. The ID of the Floodlight group to fetch.
-     *     floodlightGroupId: '[^/]+',
-     *     // Required. The partner context by which the Floodlight group is being accessed.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activeViewConfig": {},
-     *   //   "customVariables": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "floodlightGroupId": "my_floodlightGroupId",
-     *   //   "lookbackWindow": {},
-     *   //   "name": "my_name",
-     *   //   "webTagType": "my_webTagType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23440,72 +18384,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing Floodlight group. Returns the updated Floodlight group if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.floodlightGroups.patch({
-     *     // Output only. The unique ID of the Floodlight group. Assigned by the system.
-     *     floodlightGroupId: 'placeholder-value',
-     *     // Required. The partner context by which the Floodlight group is being accessed.
-     *     partnerId: 'placeholder-value',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "activeViewConfig": {},
-     *       //   "customVariables": {},
-     *       //   "displayName": "my_displayName",
-     *       //   "floodlightGroupId": "my_floodlightGroupId",
-     *       //   "lookbackWindow": {},
-     *       //   "name": "my_name",
-     *       //   "webTagType": "my_webTagType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activeViewConfig": {},
-     *   //   "customVariables": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "floodlightGroupId": "my_floodlightGroupId",
-     *   //   "lookbackWindow": {},
-     *   //   "name": "my_name",
-     *   //   "webTagType": "my_webTagType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23632,55 +18510,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a Google audience.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.googleAudiences.get({
-     *     // The ID of the advertiser that has access to the fetched Google audience.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the Google audience to fetch.
-     *     googleAudienceId: '[^/]+',
-     *     // The ID of the partner that has access to the fetched Google audience.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "googleAudienceId": "my_googleAudienceId",
-     *   //   "googleAudienceType": "my_googleAudienceType",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23768,59 +18597,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists Google audiences. The order is defined by the order_by parameter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.googleAudiences.list({
-     *     // The ID of the advertiser that has access to the fetched Google audiences.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `googleAudienceId` (default) * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGoogleAudiences` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that has access to the fetched Google audiences.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "googleAudiences": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23936,7 +18712,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences currently can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName : "Google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by Google audience fields. Supported syntax: * Filter expressions for Google audiences can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All Google audiences for which the display name contains "Google": `displayName:"Google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -23944,7 +18720,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -23965,84 +18741,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new guaranteed order. Returns the newly created guaranteed order if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.guaranteedOrders.create({
-     *     // The ID of the advertiser that the request is being made within.
-     *     advertiserId: 'placeholder-value',
-     *     // The ID of the partner that the request is being made within.
-     *     partnerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "defaultAdvertiserId": "my_defaultAdvertiserId",
-     *       //   "defaultCampaignId": "my_defaultCampaignId",
-     *       //   "displayName": "my_displayName",
-     *       //   "exchange": "my_exchange",
-     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
-     *       //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
-     *       //   "name": "my_name",
-     *       //   "publisherName": "my_publisherName",
-     *       //   "readAccessInherited": false,
-     *       //   "readAdvertiserIds": [],
-     *       //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
-     *       //   "readWritePartnerId": "my_readWritePartnerId",
-     *       //   "status": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultAdvertiserId": "my_defaultAdvertiserId",
-     *   //   "defaultCampaignId": "my_defaultCampaignId",
-     *   //   "displayName": "my_displayName",
-     *   //   "exchange": "my_exchange",
-     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
-     *   //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
-     *   //   "name": "my_name",
-     *   //   "publisherName": "my_publisherName",
-     *   //   "readAccessInherited": false,
-     *   //   "readAdvertiserIds": [],
-     *   //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
-     *   //   "readWritePartnerId": "my_readWritePartnerId",
-     *   //   "status": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24130,61 +18828,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Edits read advertisers of a guaranteed order.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.guaranteedOrders.editGuaranteedOrderReadAccessors({
-     *       // Required. The ID of the guaranteed order to edit. The ID is of the format `{exchange\}-{legacy_guaranteed_order_id\}`
-     *       guaranteedOrderId: '[^/]+',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "addedAdvertisers": [],
-     *         //   "partnerId": "my_partnerId",
-     *         //   "readAccessInherited": false,
-     *         //   "removedAdvertisers": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "readAccessInherited": false,
-     *   //   "readAdvertiserIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24282,65 +18925,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a guaranteed order.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.guaranteedOrders.get({
-     *     // The ID of the advertiser that has access to the guaranteed order.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the guaranteed order to fetch. The ID is of the format `{exchange\}-{legacy_guaranteed_order_id\}`
-     *     guaranteedOrderId: '[^/]+',
-     *     // The ID of the partner that has access to the guaranteed order.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultAdvertiserId": "my_defaultAdvertiserId",
-     *   //   "defaultCampaignId": "my_defaultCampaignId",
-     *   //   "displayName": "my_displayName",
-     *   //   "exchange": "my_exchange",
-     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
-     *   //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
-     *   //   "name": "my_name",
-     *   //   "publisherName": "my_publisherName",
-     *   //   "readAccessInherited": false,
-     *   //   "readAdvertiserIds": [],
-     *   //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
-     *   //   "readWritePartnerId": "my_readWritePartnerId",
-     *   //   "status": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24427,59 +19011,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists guaranteed orders that are accessible to the current user. The order is defined by the order_by parameter. If a filter by entity_status is not specified, guaranteed orders with entity status `ENTITY_STATUS_ARCHIVED` will not be included in the results.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.guaranteedOrders.list({
-     *     // The ID of the advertiser that has access to the guaranteed order.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by guaranteed order properties. * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `guaranteed_order_id` - `exchange` - `display_name` - `status.entityStatus` Examples: * All active guaranteed orders: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Guaranteed orders belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified or greater than `100` will default to `100`.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListGuaranteedOrders` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that has access to the guaranteed order.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "guaranteedOrders": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24576,88 +19107,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing guaranteed order. Returns the updated guaranteed order if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.guaranteedOrders.patch({
-     *     // The ID of the advertiser that the request is being made within.
-     *     advertiserId: 'placeholder-value',
-     *     // Output only. The unique identifier of the guaranteed order. The guaranteed order IDs have the format `{exchange\}-{legacy_guaranteed_order_id\}`.
-     *     guaranteedOrderId: '[^/]+',
-     *     // The ID of the partner that the request is being made within.
-     *     partnerId: 'placeholder-value',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "defaultAdvertiserId": "my_defaultAdvertiserId",
-     *       //   "defaultCampaignId": "my_defaultCampaignId",
-     *       //   "displayName": "my_displayName",
-     *       //   "exchange": "my_exchange",
-     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
-     *       //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
-     *       //   "name": "my_name",
-     *       //   "publisherName": "my_publisherName",
-     *       //   "readAccessInherited": false,
-     *       //   "readAdvertiserIds": [],
-     *       //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
-     *       //   "readWritePartnerId": "my_readWritePartnerId",
-     *       //   "status": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "defaultAdvertiserId": "my_defaultAdvertiserId",
-     *   //   "defaultCampaignId": "my_defaultCampaignId",
-     *   //   "displayName": "my_displayName",
-     *   //   "exchange": "my_exchange",
-     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
-     *   //   "legacyGuaranteedOrderId": "my_legacyGuaranteedOrderId",
-     *   //   "name": "my_name",
-     *   //   "publisherName": "my_publisherName",
-     *   //   "readAccessInherited": false,
-     *   //   "readAdvertiserIds": [],
-     *   //   "readWriteAdvertiserId": "my_readWriteAdvertiserId",
-     *   //   "readWritePartnerId": "my_readWritePartnerId",
-     *   //   "status": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24793,7 +19242,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by guaranteed order properties. * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `guaranteed_order_id` - `exchange` - `display_name` - `status.entityStatus` Examples: * All active guaranteed orders: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Guaranteed orders belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
+     * Allows filtering by guaranteed order fields. * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `guaranteed_order_id` * `exchange` * `display_name` * `status.entityStatus` Examples: * All active guaranteed orders: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Guaranteed orders belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -24801,7 +19250,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified or greater than `100` will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -24851,62 +19300,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new inventory source group. Returns the newly created inventory source group if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.inventorySourceGroups.create({
-     *     // The ID of the advertiser that owns the inventory source group. The parent partner will not have access to this group.
-     *     advertiserId: 'placeholder-value',
-     *     // The ID of the partner that owns the inventory source group. Only this partner will have write access to this group. Only advertisers to which this group is explicitly shared will have read access to this group.
-     *     partnerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "inventorySourceGroupId": "my_inventorySourceGroupId",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "inventorySourceGroupId": "my_inventorySourceGroupId",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24999,50 +19392,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an inventory source group.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.inventorySourceGroups.delete({
-     *     // The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the inventory source group to delete.
-     *     inventorySourceGroupId: '[^/]+',
-     *     // The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25129,54 +19478,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets an inventory source group.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.inventorySourceGroups.get({
-     *     // The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the inventory source group to fetch.
-     *     inventorySourceGroupId: '[^/]+',
-     *     // The ID of the partner that has access to the inventory source group. A partner cannot access an advertiser-owned inventory source group.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "inventorySourceGroupId": "my_inventorySourceGroupId",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25268,59 +19569,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists inventory source groups that are accessible to the current user. The order is defined by the order_by parameter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.inventorySourceGroups.list({
-     *     // The ID of the advertiser that has access to the inventory source group. If an inventory source group is partner-owned, only advertisers to which the group is explicitly shared can access the group.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by inventory source group properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `inventorySourceGroupId` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `inventorySourceGroupId` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that has access to the inventory source group. A partner cannot access advertiser-owned inventory source groups.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "inventorySourceGroups": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25417,66 +19665,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an inventory source group. Returns the updated inventory source group if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.inventorySourceGroups.patch({
-     *     // The ID of the advertiser that owns the inventory source group. The parent partner does not have access to this group.
-     *     advertiserId: 'placeholder-value',
-     *     // Output only. The unique ID of the inventory source group. Assigned by the system.
-     *     inventorySourceGroupId: 'placeholder-value',
-     *     // The ID of the partner that owns the inventory source group. Only this partner has write access to this group.
-     *     partnerId: 'placeholder-value',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "inventorySourceGroupId": "my_inventorySourceGroupId",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "inventorySourceGroupId": "my_inventorySourceGroupId",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25620,7 +19808,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by inventory source group properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `inventorySourceGroupId` The length of this field should be no more than 500 characters.
+     * Allows filtering by inventory source group fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `inventorySourceGroupId` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -25628,7 +19816,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -25673,60 +19861,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits multiple assignments between inventory sources and a single inventory source group. The operation will delete the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.deleted_assigned_inventory_sources and then create the assigned inventory sources provided in BulkEditAssignedInventorySourcesRequest.created_assigned_inventory_sources.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit({
-     *       // Required. The ID of the inventory source group to which the assignments are assigned.
-     *       inventorySourceGroupId: '[^/]+',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "advertiserId": "my_advertiserId",
-     *         //   "createdAssignedInventorySources": [],
-     *         //   "deletedAssignedInventorySources": [],
-     *         //   "partnerId": "my_partnerId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedInventorySources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25824,65 +19958,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates an assignment between an inventory source and an inventory source group.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.inventorySourceGroups.assignedInventorySources.create({
-     *       // The ID of the advertiser that owns the parent inventory source group. The parent partner will not have access to this assigned inventory source.
-     *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the inventory source group to which the assignment will be assigned.
-     *       inventorySourceGroupId: '[^/]+',
-     *       // The ID of the partner that owns the parent inventory source group. Only this partner will have write access to this assigned inventory source.
-     *       partnerId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "assignedInventorySourceId": "my_assignedInventorySourceId",
-     *         //   "inventorySourceId": "my_inventorySourceId",
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedInventorySourceId": "my_assignedInventorySourceId",
-     *   //   "inventorySourceId": "my_inventorySourceId",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25978,53 +20053,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes the assignment between an inventory source and an inventory source group.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.inventorySourceGroups.assignedInventorySources.delete({
-     *       // The ID of the advertiser that owns the parent inventory source group. The parent partner does not have access to this assigned inventory source.
-     *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the assigned inventory source to delete.
-     *       assignedInventorySourceId: '[^/]+',
-     *       // Required. The ID of the inventory source group to which this assignment is assigned.
-     *       inventorySourceGroupId: '[^/]+',
-     *       // The ID of the partner that owns the parent inventory source group. Only this partner has write access to this assigned inventory source.
-     *       partnerId: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26113,62 +20141,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists inventory sources assigned to an inventory source group.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.inventorySourceGroups.assignedInventorySources.list({
-     *       // The ID of the advertiser that has access to the assignment. If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
-     *       advertiserId: 'placeholder-value',
-     *       // Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Required. The ID of the inventory source group to which these assignments are assigned.
-     *       inventorySourceGroupId: '[^/]+',
-     *       // Field by which to sort the list. Acceptable values are: * `assignedInventorySourceId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `assignedInventorySourceId desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedInventorySources` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *       // The ID of the partner that has access to the assignment. If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
-     *       partnerId: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedInventorySources": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26323,7 +20295,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the `OR` logical operator. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedInventorySourceId` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -26356,96 +20328,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new inventory source. Returns the newly created inventory source if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.inventorySources.create({
-     *     // The ID of the advertiser that the request is being made within.
-     *     advertiserId: 'placeholder-value',
-     *     // The ID of the partner that the request is being made within.
-     *     partnerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "commitment": "my_commitment",
-     *       //   "creativeConfigs": [],
-     *       //   "dealId": "my_dealId",
-     *       //   "deliveryMethod": "my_deliveryMethod",
-     *       //   "displayName": "my_displayName",
-     *       //   "exchange": "my_exchange",
-     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
-     *       //   "inventorySourceId": "my_inventorySourceId",
-     *       //   "inventorySourceProductType": "my_inventorySourceProductType",
-     *       //   "inventorySourceType": "my_inventorySourceType",
-     *       //   "name": "my_name",
-     *       //   "publisherName": "my_publisherName",
-     *       //   "rateDetails": {},
-     *       //   "readAdvertiserIds": [],
-     *       //   "readPartnerIds": [],
-     *       //   "readWriteAccessors": {},
-     *       //   "status": {},
-     *       //   "subSitePropertyId": "my_subSitePropertyId",
-     *       //   "timeRange": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "commitment": "my_commitment",
-     *   //   "creativeConfigs": [],
-     *   //   "dealId": "my_dealId",
-     *   //   "deliveryMethod": "my_deliveryMethod",
-     *   //   "displayName": "my_displayName",
-     *   //   "exchange": "my_exchange",
-     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
-     *   //   "inventorySourceId": "my_inventorySourceId",
-     *   //   "inventorySourceProductType": "my_inventorySourceProductType",
-     *   //   "inventorySourceType": "my_inventorySourceType",
-     *   //   "name": "my_name",
-     *   //   "publisherName": "my_publisherName",
-     *   //   "rateDetails": {},
-     *   //   "readAdvertiserIds": [],
-     *   //   "readPartnerIds": [],
-     *   //   "readWriteAccessors": {},
-     *   //   "status": {},
-     *   //   "subSitePropertyId": "my_subSitePropertyId",
-     *   //   "timeRange": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26533,60 +20415,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Edits read/write accessors of an inventory source. Returns the updated read_write_accessors for the inventory source.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.inventorySources.editInventorySourceReadWriteAccessors({
-     *       // Required. The ID of inventory source to update.
-     *       inventorySourceId: '[^/]+',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "advertisersUpdate": {},
-     *         //   "assignPartner": false,
-     *         //   "partnerId": "my_partnerId"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertisers": {},
-     *   //   "partner": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26682,69 +20510,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets an inventory source.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.inventorySources.get({
-     *     // Required. The ID of the inventory source to fetch.
-     *     inventorySourceId: '[^/]+',
-     *     // Required. The ID of the DV360 partner to which the fetched inventory source is permissioned.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "commitment": "my_commitment",
-     *   //   "creativeConfigs": [],
-     *   //   "dealId": "my_dealId",
-     *   //   "deliveryMethod": "my_deliveryMethod",
-     *   //   "displayName": "my_displayName",
-     *   //   "exchange": "my_exchange",
-     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
-     *   //   "inventorySourceId": "my_inventorySourceId",
-     *   //   "inventorySourceProductType": "my_inventorySourceProductType",
-     *   //   "inventorySourceType": "my_inventorySourceType",
-     *   //   "name": "my_name",
-     *   //   "publisherName": "my_publisherName",
-     *   //   "rateDetails": {},
-     *   //   "readAdvertiserIds": [],
-     *   //   "readPartnerIds": [],
-     *   //   "readWriteAccessors": {},
-     *   //   "status": {},
-     *   //   "subSitePropertyId": "my_subSitePropertyId",
-     *   //   "timeRange": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26831,59 +20596,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists inventory sources that are accessible to the current user. The order is defined by the order_by parameter. If a filter by entity_status is not specified, inventory sources with entity status `ENTITY_STATUS_ARCHIVED` will not be included in the results.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.inventorySources.list({
-     *     // The ID of the advertiser that has access to the inventory source.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by inventory source properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `status.entityStatus` - `commitment` - `deliveryMethod` - `rateDetails.rateType` - `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInventorySources` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that has access to the inventory source.
-     *     partnerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "inventorySources": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26980,100 +20692,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates an existing inventory source. Returns the updated inventory source if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.inventorySources.patch({
-     *     // The ID of the advertiser that the request is being made within.
-     *     advertiserId: 'placeholder-value',
-     *     // Output only. The unique ID of the inventory source. Assigned by the system.
-     *     inventorySourceId: '[^/]+',
-     *     // The ID of the partner that the request is being made within.
-     *     partnerId: 'placeholder-value',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "commitment": "my_commitment",
-     *       //   "creativeConfigs": [],
-     *       //   "dealId": "my_dealId",
-     *       //   "deliveryMethod": "my_deliveryMethod",
-     *       //   "displayName": "my_displayName",
-     *       //   "exchange": "my_exchange",
-     *       //   "guaranteedOrderId": "my_guaranteedOrderId",
-     *       //   "inventorySourceId": "my_inventorySourceId",
-     *       //   "inventorySourceProductType": "my_inventorySourceProductType",
-     *       //   "inventorySourceType": "my_inventorySourceType",
-     *       //   "name": "my_name",
-     *       //   "publisherName": "my_publisherName",
-     *       //   "rateDetails": {},
-     *       //   "readAdvertiserIds": [],
-     *       //   "readPartnerIds": [],
-     *       //   "readWriteAccessors": {},
-     *       //   "status": {},
-     *       //   "subSitePropertyId": "my_subSitePropertyId",
-     *       //   "timeRange": {},
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "commitment": "my_commitment",
-     *   //   "creativeConfigs": [],
-     *   //   "dealId": "my_dealId",
-     *   //   "deliveryMethod": "my_deliveryMethod",
-     *   //   "displayName": "my_displayName",
-     *   //   "exchange": "my_exchange",
-     *   //   "guaranteedOrderId": "my_guaranteedOrderId",
-     *   //   "inventorySourceId": "my_inventorySourceId",
-     *   //   "inventorySourceProductType": "my_inventorySourceProductType",
-     *   //   "inventorySourceType": "my_inventorySourceType",
-     *   //   "name": "my_name",
-     *   //   "publisherName": "my_publisherName",
-     *   //   "rateDetails": {},
-     *   //   "readAdvertiserIds": [],
-     *   //   "readPartnerIds": [],
-     *   //   "readWriteAccessors": {},
-     *   //   "status": {},
-     *   //   "subSitePropertyId": "my_subSitePropertyId",
-     *   //   "timeRange": {},
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27190,6 +20808,10 @@ export namespace displayvideo_v2 {
   export interface Params$Resource$Inventorysources$Get
     extends StandardParameters {
     /**
+     * Optional. The advertiser_id is optional, when it is provided, the advertiser access is used.
+     */
+    advertiserId?: string;
+    /**
      * Required. The ID of the inventory source to fetch.
      */
     inventorySourceId?: string;
@@ -27205,7 +20827,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by inventory source properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `status.entityStatus` - `commitment` - `deliveryMethod` - `rateDetails.rateType` - `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters.
+     * Allows filtering by inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `status.entityStatus` * `commitment` * `deliveryMethod` * `rateDetails.rateType` * `exchange` Examples: * All active inventory sources: `status.entityStatus="ENTITY_STATUS_ACTIVE"` * Inventory sources belonging to Google Ad Manager or Rubicon exchanges: `exchange="EXCHANGE_GOOGLE_AD_MANAGER" OR exchange="EXCHANGE_RUBICON"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -27213,7 +20835,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -27258,51 +20880,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Downloads media. Download is supported on the URI `/download/{resource_name=**\}?alt=media.` **Note**: Download requests will not be successful without including `alt=media` query string.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/display-video',
-     *       'https://www.googleapis.com/auth/doubleclickbidmanager',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.media.download({
-     *     // Name of the media that is being downloaded. See ReadRequest.resource_name.
-     *     resourceName: '.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "resourceName": "my_resourceName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27396,63 +20973,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Uploads media. Upload is supported on the URI `/upload/media/{resource_name=**\}?upload_type=media.` **Note**: Upload requests will not be successful without including `upload_type=media` query string.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/display-video',
-     *       'https://www.googleapis.com/auth/doubleclickbidmanager',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.media.upload({
-     *     // Name of the media that is being downloaded. See ReadRequest.resource_name.
-     *     resourceName: '.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "resourceName": "my_resourceName"
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "resourceName": "my_resourceName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27592,57 +21112,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Edits targeting options under a single partner. The operation will delete the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.deleteRequests and then create the assigned targeting options provided in BulkEditPartnerAssignedTargetingOptionsRequest.createRequests .
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.editAssignedTargetingOptions({
-     *     // Required. The ID of the partner.
-     *     partnerId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createRequests": [],
-     *       //   "deleteRequests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createdAssignedTargetingOptions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27738,56 +21207,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a partner.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.get({
-     *     // Required. The ID of the partner to fetch.
-     *     partnerId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "adServerConfig": {},
-     *   //   "dataAccessConfig": {},
-     *   //   "displayName": "my_displayName",
-     *   //   "entityStatus": "my_entityStatus",
-     *   //   "exchangeConfig": {},
-     *   //   "generalConfig": {},
-     *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27874,55 +21293,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists partners that are accessible to the current user. The order is defined by the order_by parameter.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.list({
-     *     // Allows filtering by partner properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartners` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "partners": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28030,7 +21400,7 @@ export namespace displayvideo_v2 {
   }
   export interface Params$Resource$Partners$List extends StandardParameters {
     /**
-     * Allows filtering by partner properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     * Allows filtering by partner fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `entityStatus` Examples: * All active partners: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -28038,7 +21408,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**
@@ -28057,70 +21427,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a new channel. Returns the newly created channel if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.channels.create({
-     *     // The ID of the advertiser that owns the created channel.
-     *     advertiserId: 'placeholder-value',
-     *     // The ID of the partner that owns the created channel.
-     *     partnerId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "channelId": "my_channelId",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
-     *       //   "partnerId": "my_partnerId",
-     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "channelId": "my_channelId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28208,58 +21514,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a channel for a partner or advertiser.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.channels.get({
-     *     // The ID of the advertiser that owns the fetched channel.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the channel to fetch.
-     *     channelId: '[^/]+',
-     *     // The ID of the partner that owns the fetched channel.
-     *     partnerId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "channelId": "my_channelId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28346,59 +21600,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists channels for a partner or advertiser.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.channels.list({
-     *     // The ID of the advertiser that owns the channels.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `channelId` The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListChannels` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that owns the channels.
-     *     partnerId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "channels": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28491,74 +21692,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Updates a channel. Returns the updated channel if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.channels.patch({
-     *     // The ID of the advertiser that owns the created channel.
-     *     advertiserId: 'placeholder-value',
-     *     // Output only. The unique ID of the channel. Assigned by the system.
-     *     channelId: 'placeholder-value',
-     *     // The ID of the partner that owns the created channel.
-     *     partnerId: '[^/]+',
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "channelId": "my_channelId",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
-     *       //   "partnerId": "my_partnerId",
-     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "channelId": "my_channelId",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
-     *   //   "partnerId": "my_partnerId",
-     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28682,7 +21815,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by channel fields. Supported syntax: * Filter expressions for channel currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by channel fields. Supported syntax: * Filter expressions for channel can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `displayName` Examples: * All channels for which the display name contains "google": `displayName : "google"`. The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -28690,7 +21823,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -28735,61 +21868,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Bulk edits sites under a single channel. The operation will delete the sites provided in BulkEditSitesRequest.deleted_sites and then create the sites provided in BulkEditSitesRequest.created_sites.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.channels.sites.bulkEdit({
-     *     // Required. The ID of the parent channel to which the sites belong.
-     *     channelId: '[^/]+',
-     *     // The ID of the partner that owns the parent channel.
-     *     partnerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "createdSites": [],
-     *       //   "deletedSites": [],
-     *       //   "partnerId": "my_partnerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "sites": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28884,62 +21962,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates a site in a channel.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.channels.sites.create({
-     *     // The ID of the advertiser that owns the parent channel.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the parent channel in which the site will be created.
-     *     channelId: '[^/]+',
-     *     // The ID of the partner that owns the parent channel.
-     *     partnerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "name": "my_name",
-     *       //   "urlOrAppId": "my_urlOrAppId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "urlOrAppId": "my_urlOrAppId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29026,52 +22048,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes a site from a channel.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.channels.sites.delete({
-     *     // The ID of the advertiser that owns the parent channel.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the parent channel to which the site belongs.
-     *     channelId: '[^/]+',
-     *     // The ID of the partner that owns the parent channel.
-     *     partnerId: 'placeholder-value',
-     *     // Required. The URL or app ID of the site to delete.
-     *     urlOrAppId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29159,61 +22135,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists sites in a channel.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.channels.sites.list({
-     *     // The ID of the advertiser that owns the parent channel.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the parent channel to which the requested sites belong.
-     *     channelId: '[^/]+',
-     *     // Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // The ID of the partner that owns the parent channel.
-     *     partnerId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "sites": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29303,60 +22224,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Replaces all of the sites under a single channel. The operation will replace the sites under a channel with the sites provided in ReplaceSitesRequest.new_sites.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.partners.channels.sites.replace({
-     *     // Required. The ID of the parent channel whose sites will be replaced.
-     *     channelId: '[^/]+',
-     *     // The ID of the partner that owns the parent channel.
-     *     partnerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "newSites": [],
-     *       //   "partnerId": "my_partnerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "sites": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29514,7 +22381,7 @@ export namespace displayvideo_v2 {
      */
     channelId?: string;
     /**
-     * Allows filtering by site fields. Supported syntax: * Filter expressions for site currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"`
+     * Allows filtering by site fields. Supported syntax: * Filter expressions for site retrieval can only contain at most one restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `HAS (:)` operator. Supported fields: * `urlOrAppId` Examples: * All sites for which the URL or app ID contains "google": `urlOrAppId : "google"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -29571,155 +22438,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Assigns a targeting option to a partner. Returns the assigned targeting option if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.create({
-     *       // Required. The ID of the partner.
-     *       partnerId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
-     *       targetingType: '[^/]+',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "ageRangeDetails": {},
-     *         //   "appCategoryDetails": {},
-     *         //   "appDetails": {},
-     *         //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *         //   "audienceGroupDetails": {},
-     *         //   "audioContentTypeDetails": {},
-     *         //   "authorizedSellerStatusDetails": {},
-     *         //   "browserDetails": {},
-     *         //   "businessChainDetails": {},
-     *         //   "carrierAndIspDetails": {},
-     *         //   "categoryDetails": {},
-     *         //   "channelDetails": {},
-     *         //   "contentDurationDetails": {},
-     *         //   "contentGenreDetails": {},
-     *         //   "contentInstreamPositionDetails": {},
-     *         //   "contentOutstreamPositionDetails": {},
-     *         //   "contentStreamTypeDetails": {},
-     *         //   "dayAndTimeDetails": {},
-     *         //   "deviceMakeModelDetails": {},
-     *         //   "deviceTypeDetails": {},
-     *         //   "digitalContentLabelExclusionDetails": {},
-     *         //   "environmentDetails": {},
-     *         //   "exchangeDetails": {},
-     *         //   "genderDetails": {},
-     *         //   "geoRegionDetails": {},
-     *         //   "householdIncomeDetails": {},
-     *         //   "inheritance": "my_inheritance",
-     *         //   "inventorySourceDetails": {},
-     *         //   "inventorySourceGroupDetails": {},
-     *         //   "keywordDetails": {},
-     *         //   "languageDetails": {},
-     *         //   "name": "my_name",
-     *         //   "nativeContentPositionDetails": {},
-     *         //   "negativeKeywordListDetails": {},
-     *         //   "omidDetails": {},
-     *         //   "onScreenPositionDetails": {},
-     *         //   "operatingSystemDetails": {},
-     *         //   "parentalStatusDetails": {},
-     *         //   "poiDetails": {},
-     *         //   "proximityLocationListDetails": {},
-     *         //   "regionalLocationListDetails": {},
-     *         //   "sensitiveCategoryExclusionDetails": {},
-     *         //   "subExchangeDetails": {},
-     *         //   "targetingType": "my_targetingType",
-     *         //   "thirdPartyVerifierDetails": {},
-     *         //   "urlDetails": {},
-     *         //   "userRewardedContentDetails": {},
-     *         //   "videoPlayerSizeDetails": {},
-     *         //   "viewabilityDetails": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageRangeDetails": {},
-     *   //   "appCategoryDetails": {},
-     *   //   "appDetails": {},
-     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *   //   "audienceGroupDetails": {},
-     *   //   "audioContentTypeDetails": {},
-     *   //   "authorizedSellerStatusDetails": {},
-     *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
-     *   //   "carrierAndIspDetails": {},
-     *   //   "categoryDetails": {},
-     *   //   "channelDetails": {},
-     *   //   "contentDurationDetails": {},
-     *   //   "contentGenreDetails": {},
-     *   //   "contentInstreamPositionDetails": {},
-     *   //   "contentOutstreamPositionDetails": {},
-     *   //   "contentStreamTypeDetails": {},
-     *   //   "dayAndTimeDetails": {},
-     *   //   "deviceMakeModelDetails": {},
-     *   //   "deviceTypeDetails": {},
-     *   //   "digitalContentLabelExclusionDetails": {},
-     *   //   "environmentDetails": {},
-     *   //   "exchangeDetails": {},
-     *   //   "genderDetails": {},
-     *   //   "geoRegionDetails": {},
-     *   //   "householdIncomeDetails": {},
-     *   //   "inheritance": "my_inheritance",
-     *   //   "inventorySourceDetails": {},
-     *   //   "inventorySourceGroupDetails": {},
-     *   //   "keywordDetails": {},
-     *   //   "languageDetails": {},
-     *   //   "name": "my_name",
-     *   //   "nativeContentPositionDetails": {},
-     *   //   "negativeKeywordListDetails": {},
-     *   //   "omidDetails": {},
-     *   //   "onScreenPositionDetails": {},
-     *   //   "operatingSystemDetails": {},
-     *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
-     *   //   "proximityLocationListDetails": {},
-     *   //   "regionalLocationListDetails": {},
-     *   //   "sensitiveCategoryExclusionDetails": {},
-     *   //   "subExchangeDetails": {},
-     *   //   "targetingType": "my_targetingType",
-     *   //   "thirdPartyVerifierDetails": {},
-     *   //   "urlDetails": {},
-     *   //   "userRewardedContentDetails": {},
-     *   //   "videoPlayerSizeDetails": {},
-     *   //   "viewabilityDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29815,51 +22533,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Deletes an assigned targeting option from a partner.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.delete({
-     *       // Required. The ID of the assigned targeting option to delete.
-     *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. The ID of the partner.
-     *       partnerId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
-     *       targetingType: '[^/]+',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29952,101 +22625,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option assigned to a partner.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.get({
-     *       // Required. An identifier unique to the targeting type in this partner that identifies the assigned targeting option being requested.
-     *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. The ID of the partner.
-     *       partnerId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
-     *       targetingType: '[^/]+',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageRangeDetails": {},
-     *   //   "appCategoryDetails": {},
-     *   //   "appDetails": {},
-     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *   //   "audienceGroupDetails": {},
-     *   //   "audioContentTypeDetails": {},
-     *   //   "authorizedSellerStatusDetails": {},
-     *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
-     *   //   "carrierAndIspDetails": {},
-     *   //   "categoryDetails": {},
-     *   //   "channelDetails": {},
-     *   //   "contentDurationDetails": {},
-     *   //   "contentGenreDetails": {},
-     *   //   "contentInstreamPositionDetails": {},
-     *   //   "contentOutstreamPositionDetails": {},
-     *   //   "contentStreamTypeDetails": {},
-     *   //   "dayAndTimeDetails": {},
-     *   //   "deviceMakeModelDetails": {},
-     *   //   "deviceTypeDetails": {},
-     *   //   "digitalContentLabelExclusionDetails": {},
-     *   //   "environmentDetails": {},
-     *   //   "exchangeDetails": {},
-     *   //   "genderDetails": {},
-     *   //   "geoRegionDetails": {},
-     *   //   "householdIncomeDetails": {},
-     *   //   "inheritance": "my_inheritance",
-     *   //   "inventorySourceDetails": {},
-     *   //   "inventorySourceGroupDetails": {},
-     *   //   "keywordDetails": {},
-     *   //   "languageDetails": {},
-     *   //   "name": "my_name",
-     *   //   "nativeContentPositionDetails": {},
-     *   //   "negativeKeywordListDetails": {},
-     *   //   "omidDetails": {},
-     *   //   "onScreenPositionDetails": {},
-     *   //   "operatingSystemDetails": {},
-     *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
-     *   //   "proximityLocationListDetails": {},
-     *   //   "regionalLocationListDetails": {},
-     *   //   "sensitiveCategoryExclusionDetails": {},
-     *   //   "subExchangeDetails": {},
-     *   //   "targetingType": "my_targetingType",
-     *   //   "thirdPartyVerifierDetails": {},
-     *   //   "urlDetails": {},
-     *   //   "userRewardedContentDetails": {},
-     *   //   "videoPlayerSizeDetails": {},
-     *   //   "viewabilityDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30144,60 +22722,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists the targeting options assigned to a partner.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.list({
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListPartnerAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The ID of the partner.
-     *       partnerId: '[^/]+',
-     *       // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
-     *       targetingType: '[^/]+',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedTargetingOptions": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30343,7 +22867,7 @@ export namespace displayvideo_v2 {
   export interface Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List
     extends StandardParameters {
     /**
-     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     * Allows filtering by assigned targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `assignedTargetingOptionId` Examples: * `AssignedTargetingOption` resource with ID 123456: `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -30351,7 +22875,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -30378,62 +22902,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Creates an SDF Download Task. Returns an Operation. An SDF Download Task is a long-running, asynchronous operation. The metadata type of this operation is SdfDownloadTaskMetadata. If the request is successful, the response type of the operation is SdfDownloadTask. The response will not include the download files, which must be retrieved with media.download. The state of operation can be retrieved with sdfdownloadtask.operations.get. Any errors can be found in the error.message. Note that error.details is expected to be empty.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.sdfdownloadtasks.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "idFilter": {},
-     *       //   "inventorySourceFilter": {},
-     *       //   "parentEntityFilter": {},
-     *       //   "partnerId": "my_partnerId",
-     *       //   "version": "my_version"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30536,55 +23004,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/display-video',
-     *       'https://www.googleapis.com/auth/doubleclickbidmanager',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.sdfdownloadtasks.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'sdfdownloadtasks/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30695,87 +23114,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Gets a single targeting option.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.targetingTypes.targetingOptions.get({
-     *     // Required. The Advertiser this request is being made in the context of.
-     *     advertiserId: 'placeholder-value',
-     *     // Required. The ID of the of targeting option to retrieve.
-     *     targetingOptionId: '[^/]+',
-     *     // Required. The type of targeting option to retrieve. Accepted values are: * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID`
-     *     targetingType: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "ageRangeDetails": {},
-     *   //   "appCategoryDetails": {},
-     *   //   "audioContentTypeDetails": {},
-     *   //   "authorizedSellerStatusDetails": {},
-     *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
-     *   //   "carrierAndIspDetails": {},
-     *   //   "categoryDetails": {},
-     *   //   "contentDurationDetails": {},
-     *   //   "contentGenreDetails": {},
-     *   //   "contentInstreamPositionDetails": {},
-     *   //   "contentOutstreamPositionDetails": {},
-     *   //   "contentStreamTypeDetails": {},
-     *   //   "deviceMakeModelDetails": {},
-     *   //   "deviceTypeDetails": {},
-     *   //   "digitalContentLabelDetails": {},
-     *   //   "environmentDetails": {},
-     *   //   "exchangeDetails": {},
-     *   //   "genderDetails": {},
-     *   //   "geoRegionDetails": {},
-     *   //   "householdIncomeDetails": {},
-     *   //   "languageDetails": {},
-     *   //   "name": "my_name",
-     *   //   "nativeContentPositionDetails": {},
-     *   //   "omidDetails": {},
-     *   //   "onScreenPositionDetails": {},
-     *   //   "operatingSystemDetails": {},
-     *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
-     *   //   "sensitiveCategoryDetails": {},
-     *   //   "subExchangeDetails": {},
-     *   //   "targetingOptionId": "my_targetingOptionId",
-     *   //   "targetingType": "my_targetingType",
-     *   //   "userRewardedContentDetails": {},
-     *   //   "videoPlayerSizeDetails": {},
-     *   //   "viewabilityDetails": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30863,59 +23201,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Lists targeting options of a given type.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.targetingTypes.targetingOptions.list({
-     *     // Required. The Advertiser this request is being made in the context of.
-     *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be "=" (equal sign). * Supported fields: - `carrierAndIspDetails.type` - `geoRegionDetails.geoRegionType` - `targetingOptionId` Examples: * All `GEO REGION` targeting options that belong to sub type `GEO_REGION_TYPE_COUNTRY` or `GEO_REGION_TYPE_STATE`: `geoRegionDetails.geoRegionType="GEO_REGION_TYPE_COUNTRY" OR geoRegionDetails.geoRegionType="GEO_REGION_TYPE_STATE"` * All `CARRIER AND ISP` targeting options that belong to sub type `CARRIER_AND_ISP_TYPE_CARRIER`: `carrierAndIspDetails.type="CARRIER_AND_ISP_TYPE_CARRIER"`. The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `targetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingOptionId desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListTargetingOptions` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The type of targeting option to be listed. Accepted values are: * `TARGETING_TYPE_APP_CATEGORY` * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_VIDEO_PLAYER_SIZE` * `TARGETING_TYPE_USER_REWARDED_CONTENT` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DEVICE_TYPE` * `TARGETING_TYPE_BROWSER` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_CARRIER_AND_ISP` * `TARGETING_TYPE_OPERATING_SYSTEM` * `TARGETING_TYPE_DEVICE_MAKE_MODEL` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_CATEGORY` * `TARGETING_TYPE_VIEWABILITY` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_NATIVE_CONTENT_POSITION` * `TARGETING_TYPE_OMID`
-     *     targetingType: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "targetingOptions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31011,62 +23296,6 @@ export namespace displayvideo_v2 {
 
     /**
      * Searches for targeting options of a given type based on the given search terms.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.targetingTypes.targetingOptions.search({
-     *     // Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_BUSINESS_CHAIN`
-     *     targetingType: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "advertiserId": "my_advertiserId",
-     *       //   "businessChainSearchTerms": {},
-     *       //   "geoRegionSearchTerms": {},
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken",
-     *       //   "poiSearchTerms": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "targetingOptions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31184,7 +23413,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be "=" (equal sign). * Supported fields: - `carrierAndIspDetails.type` - `geoRegionDetails.geoRegionType` - `targetingOptionId` Examples: * All `GEO REGION` targeting options that belong to sub type `GEO_REGION_TYPE_COUNTRY` or `GEO_REGION_TYPE_STATE`: `geoRegionDetails.geoRegionType="GEO_REGION_TYPE_COUNTRY" OR geoRegionDetails.geoRegionType="GEO_REGION_TYPE_STATE"` * All `CARRIER AND ISP` targeting options that belong to sub type `CARRIER_AND_ISP_TYPE_CARRIER`: `carrierAndIspDetails.type="CARRIER_AND_ISP_TYPE_CARRIER"`. The length of this field should be no more than 500 characters.
+     * Allows filtering by targeting option fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `OR` logical operators. * A restriction has the form of `{field\} {operator\} {value\}`. * All fields must use the `EQUALS (=)` operator. Supported fields: * `carrierAndIspDetails.type` * `geoRegionDetails.geoRegionType` * `targetingOptionId` Examples: * All `GEO REGION` targeting options that belong to sub type `GEO_REGION_TYPE_COUNTRY` or `GEO_REGION_TYPE_STATE`: `geoRegionDetails.geoRegionType="GEO_REGION_TYPE_COUNTRY" OR geoRegionDetails.geoRegionType="GEO_REGION_TYPE_STATE"` * All `CARRIER AND ISP` targeting options that belong to sub type `CARRIER_AND_ISP_TYPE_CARRIER`: `carrierAndIspDetails.type="CARRIER_AND_ISP_TYPE_CARRIER"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -31192,7 +23421,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -31224,58 +23453,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Bulk edits user roles for a user. The operation will delete the assigned user roles provided in BulkEditAssignedUserRolesRequest.deletedAssignedUserRoles and then assign the user roles provided in BulkEditAssignedUserRolesRequest.createdAssignedUserRoles.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.users.bulkEditAssignedUserRoles({
-     *     // Required. The ID of the user to which the assigned user roles belong.
-     *     userId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createdAssignedUserRoles": [],
-     *       //   "deletedAssignedUserRoles": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createdAssignedUserRoles": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Bulk edits user roles for a user. The operation will delete the assigned user roles provided in BulkEditAssignedUserRolesRequest.deletedAssignedUserRoles and then assign the user roles provided in BulkEditAssignedUserRolesRequest.createdAssignedUserRoles. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31370,62 +23548,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Creates a new user. Returns the newly created user if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.users.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "assignedUserRoles": [],
-     *       //   "displayName": "my_displayName",
-     *       //   "email": "my_email",
-     *       //   "name": "my_name",
-     *       //   "userId": "my_userId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedUserRoles": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "email": "my_email",
-     *   //   "name": "my_name",
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a new user. Returns the newly created user if successful. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31508,47 +23631,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Deletes a user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.users.delete({
-     *     // Required. The ID of the user to delete.
-     *     userId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Deletes a user. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31634,53 +23717,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Gets a user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.users.get({
-     *     // Required. The ID of the user to fetch.
-     *     userId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedUserRoles": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "email": "my_email",
-     *   //   "name": "my_name",
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Gets a user. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31766,56 +23803,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Lists users that are accessible to the current user. If two users have user roles on the same partner or advertiser, they can access each other.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.users.list({
-     *     // Allows filtering by user properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following fields: - `displayName` - `email` * The operator must be `EQUALS (=)` for the following fields: - `assignedUserRole.userRole` - `assignedUserRole.partnerId` - `assignedUserRole.advertiserId` - `assignedUserRole.entityType`: A synthetic field of AssignedUserRole used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. - `assignedUserRole.parentPartnerId`: A synthetic field of AssignedUserRole used for filtering. Identifies the parent partner of the entity to which the user role is assigned." Examples: * The user with displayName containing `foo`: `displayName:"foo"` * The user with email containing `bar`: `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
-     *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListUsers` method. If not specified, the first page of results will be returned.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "users": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists users that are accessible to the current user. If two users have user roles on the same partner or advertiser, they can access each other. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31901,67 +23889,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Updates an existing user. Returns the updated user if successful.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const displayvideo = google.displayvideo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/display-video-user-management'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await displayvideo.users.patch({
-     *     // Required. The mask to control which fields to update.
-     *     updateMask: 'placeholder-value',
-     *     // Output only. The unique ID of the user. Assigned by the system.
-     *     userId: '[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "assignedUserRoles": [],
-     *       //   "displayName": "my_displayName",
-     *       //   "email": "my_email",
-     *       //   "name": "my_name",
-     *       //   "userId": "my_userId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "assignedUserRoles": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "email": "my_email",
-     *   //   "name": "my_name",
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Updates an existing user. Returns the updated user if successful. This method has unique authentication requirements. Read the prerequisites in our [Managing Users guide](/display-video/api/guides/users/overview#prerequisites) before using this method. The "Try this method" feature does not work for this method.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32079,7 +24007,7 @@ export namespace displayvideo_v2 {
   }
   export interface Params$Resource$Users$List extends StandardParameters {
     /**
-     * Allows filtering by user properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following fields: - `displayName` - `email` * The operator must be `EQUALS (=)` for the following fields: - `assignedUserRole.userRole` - `assignedUserRole.partnerId` - `assignedUserRole.advertiserId` - `assignedUserRole.entityType`: A synthetic field of AssignedUserRole used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. - `assignedUserRole.parentPartnerId`: A synthetic field of AssignedUserRole used for filtering. Identifies the parent partner of the entity to which the user role is assigned." Examples: * The user with displayName containing `foo`: `displayName:"foo"` * The user with email containing `bar`: `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters.
+     * Allows filtering by user fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The `budget.budget_segments.date_range.end_date` field must use the `LESS THAN (<)` operator. * The `displayName and `email` field must use the `HAS (:)` operator. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `assignedUserRole.advertiserId` * `assignedUserRole.entityType` * This is synthetic field of `AssignedUserRole` used for filtering. Identifies the type of entity to which the user role is assigned. Valid values are `Partner` and `Advertiser`. * `assignedUserRole.parentPartnerId` * This is a synthetic field of `AssignedUserRole` used for filtering. Identifies the parent partner of the entity to which the user role is assigned. * `assignedUserRole.partnerId` * `assignedUserRole.userRole` * `displayName` * `email` Examples: * The user with `displayName` containing "foo": `displayName:"foo"` * The user with `email` containing "bar": `email:"bar"` * All users with standard user roles: `assignedUserRole.userRole="STANDARD"` * All users with user roles for partner 123: `assignedUserRole.partnerId="123"` * All users with user roles for advertiser 123: `assignedUserRole.advertiserId="123"` * All users with partner level user roles: `entityType="PARTNER"` * All users with user roles for partner 123 and advertisers under partner 123: `parentPartnerId="123"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
     /**
@@ -32087,7 +24015,7 @@ export namespace displayvideo_v2 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     * Requested page size. Must be between `1` and `200`. If unspecified will default to `100`.
      */
     pageSize?: number;
     /**

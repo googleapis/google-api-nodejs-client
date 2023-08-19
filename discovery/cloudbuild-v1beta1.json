@@ -322,7 +322,7 @@
       }
     }
   },
-  "revision": "20221020",
+  "revision": "20221219",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -515,6 +515,20 @@
           "description": "Time the operation was created.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchCreateRepositoriesResponse": {
+      "description": "Message for response of creating repositories in batch.",
+      "id": "BatchCreateRepositoriesResponse",
+      "properties": {
+        "repositories": {
+          "description": "Repository resources created.",
+          "items": {
+            "$ref": "Repository"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -801,7 +815,7 @@
       "id": "BuildOptions",
       "properties": {
         "diskSizeGb": {
-          "description": "Requested disk size for the VM that runs the build. Note that this is *NOT* \"disk free\"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.",
+          "description": "Requested disk size for the VM that runs the build. Note that this is *NOT* \"disk free\"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 2000GB; builds that request more than the maximum are rejected with an error.",
           "format": "int64",
           "type": "string"
         },
@@ -1773,6 +1787,44 @@
         },
         "tagName": {
           "description": "Regex matching tags to build. The syntax of the regular expressions accepted is the syntax accepted by RE2 and described at https://github.com/google/re2/wiki/Syntax",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Repository": {
+      "description": "A repository associated to a parent connection.",
+      "id": "Repository",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Allows clients to store small amounts of arbitrary data.",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. Server assigned timestamp for when the connection was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Resource name of the repository, in the format `projects/*/locations/*/connections/*/repositories/*`.",
+          "type": "string"
+        },
+        "remoteUri": {
+          "description": "Required. Git Clone HTTPS URI.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Server assigned timestamp for when the connection was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },

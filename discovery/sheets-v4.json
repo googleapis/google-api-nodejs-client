@@ -169,7 +169,7 @@
           ]
         },
         "get": {
-          "description": "Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. By default, data within grids is not returned. You can include grid data in one of 2 ways: * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData URL parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want. To retrieve only subsets of spreadsheet data, use the ranges URL parameter. Ranges are specified using [A1 notation](/sheets/api/guides/concepts#cell). You can define a single cell (for example, `A1`) or multiple cells (for example, `A1:D5`). You can also get cells from other sheets within the same spreadsheet (for example, `Sheet2!A1:C4`) or retrieve multiple ranges at once (for example, `?ranges=A1:D5&ranges=Sheet2!A1:C4`). Limiting the range returns only the portions of the spreadsheet that intersect the requested ranges.",
+          "description": "Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. By default, data within grids is not returned. You can include grid data in one of 2 ways: * Specify a [field mask](https://developers.google.com/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData URL parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want. To retrieve only subsets of spreadsheet data, use the ranges URL parameter. Ranges are specified using [A1 notation](/sheets/api/guides/concepts#cell). You can define a single cell (for example, `A1`) or multiple cells (for example, `A1:D5`). You can also get cells from other sheets within the same spreadsheet (for example, `Sheet2!A1:C4`) or retrieve multiple ranges at once (for example, `?ranges=A1:D5&ranges=Sheet2!A1:C4`). Limiting the range returns only the portions of the spreadsheet that intersect the requested ranges.",
           "flatPath": "v4/spreadsheets/{spreadsheetId}",
           "httpMethod": "GET",
           "id": "sheets.spreadsheets.get",
@@ -208,7 +208,7 @@
           ]
         },
         "getByDataFilter": {
-          "description": "Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters returns the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids is not returned. You can include grid data one of 2 ways: * Specify a field mask listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want.",
+          "description": "Returns the spreadsheet at the given ID. The caller must specify the spreadsheet ID. This method differs from GetSpreadsheet in that it allows selecting which subsets of spreadsheet data to return by specifying a dataFilters parameter. Multiple DataFilters can be specified. Specifying one or more data filters returns the portions of the spreadsheet that intersect ranges matched by any of the filters. By default, data within grids is not returned. You can include grid data one of 2 ways: * Specify a [field mask](https://developers.google.com/sheets/api/guides/field-masks) listing your desired fields using the `fields` URL parameter in HTTP * Set the includeGridData parameter to true. If a field mask is set, the `includeGridData` parameter is ignored For large spreadsheets, as a best practice, retrieve only the specific spreadsheet fields that you want.",
           "flatPath": "v4/spreadsheets/{spreadsheetId}:getByDataFilter",
           "httpMethod": "POST",
           "id": "sheets.spreadsheets.getByDataFilter",
@@ -403,9 +403,9 @@
                     "FORMULA"
                   ],
                   "enumDescriptions": [
-                    "Values will be calculated & formatted in the reply according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
+                    "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
                     "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`."
+                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
                   ],
                   "location": "query",
                   "type": "string"
@@ -560,9 +560,9 @@
                     "FORMULA"
                   ],
                   "enumDescriptions": [
-                    "Values will be calculated & formatted in the reply according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
+                    "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
                     "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`."
+                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
                   ],
                   "location": "query",
                   "type": "string"
@@ -761,9 +761,9 @@
                     "FORMULA"
                   ],
                   "enumDescriptions": [
-                    "Values will be calculated & formatted in the reply according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
+                    "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
                     "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`."
+                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
                   ],
                   "location": "query",
                   "type": "string"
@@ -823,9 +823,9 @@
                     "FORMULA"
                   ],
                   "enumDescriptions": [
-                    "Values will be calculated & formatted in the reply according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
+                    "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
                     "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`."
+                    "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
                   ],
                   "location": "query",
                   "type": "string"
@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20221018",
+  "revision": "20230808",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -1232,6 +1232,7 @@
       "properties": {
         "firstBandColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The first color that is alternating. (Required) Deprecated: Use first_band_color_style."
         },
         "firstBandColorStyle": {
@@ -1240,6 +1241,7 @@
         },
         "footerColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the last row or column. If this field is not set, the last row or column is filled with either first_band_color or second_band_color, depending on the color of the previous row or column. Deprecated: Use footer_color_style."
         },
         "footerColorStyle": {
@@ -1248,6 +1250,7 @@
         },
         "headerColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the first row or column. If this field is set, the first row or column is filled with this color and the colors alternate between first_band_color and second_band_color starting from the second row or column. Otherwise, the first row or column is filled with first_band_color and the colors proceed to alternate as they normally would. Deprecated: Use header_color_style."
         },
         "headerColorStyle": {
@@ -1256,6 +1259,7 @@
         },
         "secondBandColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The second color that is alternating. (Required) Deprecated: Use second_band_color_style."
         },
         "secondBandColorStyle": {
@@ -1289,6 +1293,7 @@
         },
         "negativeColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "Color to be used, in case baseline value represents a negative change for key value. This field is optional. Deprecated: Use negative_color_style."
         },
         "negativeColorStyle": {
@@ -1301,6 +1306,7 @@
         },
         "positiveColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "Color to be used, in case baseline value represents a positive change for key value. This field is optional. Deprecated: Use positive_color_style."
         },
         "positiveColorStyle": {
@@ -1374,6 +1380,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color for elements (such as bars, lines, and points) associated with this series. If empty, a default color is used. Deprecated: Use color_style."
         },
         "colorStyle": {
@@ -1577,6 +1584,7 @@
           "additionalProperties": {
             "$ref": "FilterCriteria"
           },
+          "deprecated": true,
           "description": "The criteria for showing/hiding values per column. The map's key is the column index, and the value is the criteria for that column. This field is deprecated in favor of filter_specs.",
           "type": "object"
         },
@@ -1607,6 +1615,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "Color of the series data point. If empty, the series default is used. Deprecated: Use color_style."
         },
         "colorStyle": {
@@ -1734,9 +1743,9 @@
             "FORMULA"
           ],
           "enumDescriptions": [
-            "Values will be calculated & formatted in the reply according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
+            "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
             "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`."
+            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
           ],
           "type": "string"
         }
@@ -1865,9 +1874,9 @@
             "FORMULA"
           ],
           "enumDescriptions": [
-            "Values will be calculated & formatted in the reply according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
+            "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
             "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`."
+            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
           ],
           "type": "string"
         },
@@ -1961,9 +1970,9 @@
             "FORMULA"
           ],
           "enumDescriptions": [
-            "Values will be calculated & formatted in the reply according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
+            "Values will be calculated & formatted in the response according to the cell's formatting. Formatting is based on the spreadsheet's locale, not the requesting user's locale. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return `\"$1.23\"`.",
             "Values will be calculated, but not formatted in the reply. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then `A2` would return the number `1.23`.",
-            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`."
+            "Values will not be calculated. The reply will include the formulas. For example, if `A1` is `1.23` and `A2` is `=A1` and formatted as currency, then A2 would return `\"=A1\"`. Sheets treats date and time values as decimal values. This lets you perform arithmetic on them in formulas. For more information on interpreting date and time values, see [About date & time values](https://developers.google.com/sheets/api/guides/formats#about_date_time_values)."
           ],
           "type": "string"
         },
@@ -2109,7 +2118,8 @@
             "CUSTOM_FORMULA",
             "BOOLEAN",
             "TEXT_NOT_EQ",
-            "DATE_NOT_EQ"
+            "DATE_NOT_EQ",
+            "FILTER_EXPRESSION"
           ],
           "enumDescriptions": [
             "The default value, do not use.",
@@ -2143,7 +2153,8 @@
             "The condition's formula must evaluate to true. Supported by data validation, conditional formatting and filters. Not supported by data source sheet filters. Requires a single ConditionValue.",
             "The cell's value must be TRUE/FALSE or in the list of condition values. Supported by data validation. Renders as a cell checkbox. Supports zero, one or two ConditionValues. No values indicates the cell must be TRUE or FALSE, where TRUE renders as checked and FALSE renders as unchecked. One value indicates the cell will render as checked when it contains that value and unchecked when it is blank. Two values indicate that the cell will render as checked when it contains the first value and unchecked when it contains the second value. For example, [\"Yes\",\"No\"] indicates that the cell will render a checked box when it has the value \"Yes\" and an unchecked box when it has the value \"No\".",
             "The cell's value must be exactly not the condition's value. Supported by filters on data source objects. Requires at least one ConditionValue.",
-            "The cell's value must be exactly not the condition's value. Supported by filters on data source objects. Requires at least one ConditionValue."
+            "The cell's value must be exactly not the condition's value. Supported by filters on data source objects. Requires at least one ConditionValue.",
+            "The cell's value must follow the pattern specified. Requires a single ConditionValue."
           ],
           "type": "string"
         },
@@ -2178,6 +2189,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the border. Deprecated: Use color_style."
         },
         "colorStyle": {
@@ -2209,6 +2221,7 @@
           "type": "string"
         },
         "width": {
+          "deprecated": true,
           "description": "The width of the border, in pixels. Deprecated; the width is determined by the \"style\" field.",
           "format": "int32",
           "type": "integer"
@@ -2245,6 +2258,7 @@
       "properties": {
         "bubbleBorderColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The bubble border color. Deprecated: Use bubble_border_color_style."
         },
         "bubbleBorderColorStyle": {
@@ -2436,7 +2450,7 @@
         },
         "userEnteredValue": {
           "$ref": "ExtendedValue",
-          "description": "The value the user entered in the cell. e.g, `1234`, `'Hello'`, or `=NOW()` Note: Dates, Times and DateTimes are represented as doubles in serial number format."
+          "description": "The value the user entered in the cell. e.g., `1234`, `'Hello'`, or `=NOW()` Note: Dates, Times and DateTimes are represented as doubles in serial number format."
         }
       },
       "type": "object"
@@ -2447,6 +2461,7 @@
       "properties": {
         "backgroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color of the cell. Deprecated: Use background_color_style."
         },
         "backgroundColorStyle": {
@@ -2751,6 +2766,7 @@
         },
         "backgroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color of the entire chart. Not applicable to Org charts. Deprecated: Use background_color_style."
         },
         "backgroundColorStyle": {
@@ -2898,7 +2914,7 @@
       "type": "object"
     },
     "Color": {
-      "description": "Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ...",
+      "description": "Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ...",
       "id": "Color",
       "properties": {
         "alpha": {
@@ -4342,6 +4358,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the border. Deprecated: Use color_style."
         },
         "colorStyle": {
@@ -4455,6 +4472,7 @@
         },
         "visibleBackgroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background fill color to filter by; only cells with this fill color are shown. Mutually exclusive with visible_foreground_color. Deprecated: Use visible_background_color_style."
         },
         "visibleBackgroundColorStyle": {
@@ -4463,6 +4481,7 @@
         },
         "visibleForegroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The foreground color to filter by; only cells with this foreground color are shown. Mutually exclusive with visible_background_color. Deprecated: Use visible_foreground_color_style."
         },
         "visibleForegroundColorStyle": {
@@ -4500,6 +4519,7 @@
           "additionalProperties": {
             "$ref": "FilterCriteria"
           },
+          "deprecated": true,
           "description": "The criteria for showing/hiding values per column. The map's key is the column index, and the value is the criteria for that column. This field is deprecated in favor of filter_specs.",
           "type": "object"
         },
@@ -4859,6 +4879,7 @@
       "properties": {
         "barColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the column representing this series in each bucket. This field is optional. Deprecated: Use bar_color_style."
         },
         "barColorStyle": {
@@ -4918,6 +4939,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color this interpolation point should use. Deprecated: Use color_style."
         },
         "colorStyle": {
@@ -5224,6 +5246,7 @@
         },
         "nodeColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the org chart nodes. Deprecated: Use node_color_style."
         },
         "nodeColorStyle": {
@@ -5252,6 +5275,7 @@
         },
         "selectedNodeColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the selected org chart nodes. Deprecated: Use selected_node_color_style."
         },
         "selectedNodeColorStyle": {
@@ -5602,6 +5626,7 @@
           "additionalProperties": {
             "$ref": "PivotFilterCriteria"
           },
+          "deprecated": true,
           "description": "An optional mapping of filters per source column offset. The filters are applied before aggregating data into the pivot table. The map's key is the column offset of the source range that you want to filter, and the value is the criteria for that column. For example, if the source was `C10:E15`, a key of `0` will have the filter for column `C`, whereas the key `1` is for column `D`. This field is deprecated in favor of filter_specs.",
           "type": "object"
         },
@@ -6062,7 +6087,7 @@
         },
         "refreshDataSource": {
           "$ref": "RefreshDataSourceRequest",
-          "description": "Refreshs one or multiple data sources and associated dbobjects."
+          "description": "Refreshes one or multiple data sources and associated dbobjects."
         },
         "repeatCell": {
           "$ref": "RepeatCellRequest",
@@ -6539,6 +6564,7 @@
         },
         "tabColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the tab in the UI. Deprecated: Use tab_color_style."
         },
         "tabColorStyle": {
@@ -6582,6 +6608,7 @@
         },
         "backgroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color of the slicer. Deprecated: Use background_color_style."
         },
         "backgroundColorStyle": {
@@ -6652,6 +6679,7 @@
       "properties": {
         "backgroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background fill color to sort by; cells with this fill color are sorted to the top. Mutually exclusive with foreground_color. Deprecated: Use background_color_style."
         },
         "backgroundColorStyle": {
@@ -6669,6 +6697,7 @@
         },
         "foregroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The foreground color to sort by; cells with this foreground color are sorted to the top. Mutually exclusive with background_color. Deprecated: Use foreground_color_style."
         },
         "foregroundColorStyle": {
@@ -6861,6 +6890,7 @@
         },
         "foregroundColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The foreground color of the text. Deprecated: Use foreground_color_style."
         },
         "foregroundColorStyle": {
@@ -6895,7 +6925,7 @@
           "description": "The format of this run. Absent values inherit the cell's format."
         },
         "startIndex": {
-          "description": "The character index where this run starts.",
+          "description": "The zero-based character index where this run starts, in UTF-16 code units.",
           "format": "int32",
           "type": "integer"
         }
@@ -7050,6 +7080,7 @@
       "properties": {
         "maxValueColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color for cells with a color value greater than or equal to maxValue. Defaults to #109618 if not specified. Deprecated: Use max_value_color_style."
         },
         "maxValueColorStyle": {
@@ -7058,6 +7089,7 @@
         },
         "midValueColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color for cells with a color value at the midpoint between minValue and maxValue. Defaults to #efe6dc if not specified. Deprecated: Use mid_value_color_style."
         },
         "midValueColorStyle": {
@@ -7066,6 +7098,7 @@
         },
         "minValueColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color for cells with a color value less than or equal to minValue. Defaults to #dc3912 if not specified. Deprecated: Use min_value_color_style."
         },
         "minValueColorStyle": {
@@ -7074,6 +7107,7 @@
         },
         "noDataColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color for cells that have no color data associated with them. Defaults to #000000 if not specified. Deprecated: Use no_data_color_style."
         },
         "noDataColorStyle": {
@@ -7097,6 +7131,7 @@
         },
         "headerColor": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The background color for header cells. Deprecated: Use header_color_style."
         },
         "headerColorStyle": {
@@ -7696,6 +7731,7 @@
       "properties": {
         "color": {
           "$ref": "Color",
+          "deprecated": true,
           "description": "The color of the column. Deprecated: Use color_style."
         },
         "colorStyle": {

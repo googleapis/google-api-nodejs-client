@@ -254,7 +254,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
+                  "description": "Required. The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
                   "location": "path",
                   "pattern": "^namespaces/[^/]+$",
                   "required": true,
@@ -297,7 +297,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
+                  "description": "Required. The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
                   "location": "path",
                   "pattern": "^namespaces/[^/]+/domainmappings/[^/]+$",
                   "required": true,
@@ -327,7 +327,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
+                  "description": "Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
                   "location": "path",
                   "pattern": "^namespaces/[^/]+/domainmappings/[^/]+$",
                   "required": true,
@@ -378,7 +378,7 @@
                   "type": "integer"
                 },
                 "parent": {
-                  "description": "The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
+                  "description": "Required. The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
                   "location": "path",
                   "pattern": "^namespaces/[^/]+$",
                   "required": true,
@@ -462,7 +462,7 @@
                   "type": "string"
                 },
                 "propagationPolicy": {
-                  "description": "Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see https://kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.",
+                  "description": "Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting.",
                   "location": "query",
                   "type": "string"
                 }
@@ -811,7 +811,7 @@
                   "type": "string"
                 },
                 "propagationPolicy": {
-                  "description": "Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see https://kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.",
+                  "description": "Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1062,7 +1062,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
+                  "description": "Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` (only when the `endpoint` is regional) * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
                   "location": "path",
                   "pattern": "^namespaces/[^/]+/services/[^/]+$",
                   "required": true,
@@ -1092,7 +1092,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
+                  "description": "Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` (only when the `endpoint` is regional) * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
                   "location": "path",
                   "pattern": "^namespaces/[^/]+/services/[^/]+$",
                   "required": true,
@@ -1183,7 +1183,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
+                  "description": "Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` (only when the `endpoint` is regional) * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
                   "location": "path",
                   "pattern": "^namespaces/[^/]+/services/[^/]+$",
                   "required": true,
@@ -1529,7 +1529,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
+                      "description": "Required. The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1572,7 +1572,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
+                      "description": "Required. The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/domainmappings/[^/]+$",
                       "required": true,
@@ -1602,7 +1602,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
+                      "description": "Required. The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/domainmappings/[^/]+$",
                       "required": true,
@@ -1653,7 +1653,7 @@
                       "type": "integer"
                     },
                     "parent": {
-                      "description": "The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
+                      "description": "Required. The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace} with the project ID or number. It takes the form namespaces/{namespace}. For example: namespaces/PROJECT_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1805,7 +1805,7 @@
                       "type": "string"
                     },
                     "propagationPolicy": {
-                      "description": "Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see https://kubernetes.io/docs/concepts/architecture/garbage-collection/ for more information.",
+                      "description": "Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2056,7 +2056,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
+                      "description": "Required. The fully qualified name of the service to delete. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` (only when the `endpoint` is regional) * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                       "required": true,
@@ -2086,7 +2086,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
+                      "description": "Required. The fully qualified name of the service to retrieve. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` (only when the `endpoint` is regional) * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                       "required": true,
@@ -2208,7 +2208,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
+                      "description": "Required. The fully qualified name of the service to replace. It can be any of the following forms: * `namespaces/{project_id_or_number}/services/{service_name}` (only when the `endpoint` is regional) * `projects/{project_id_or_number}/locations/{region}/services/{service_name}` * `projects/{project_id_or_number}/regions/{region}/services/{service_name}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                       "required": true,
@@ -2289,7 +2289,7 @@
       }
     }
   },
-  "revision": "20221023",
+  "revision": "20230806",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2351,7 +2351,7 @@
       "type": "object"
     },
     "AuthorizedDomain": {
-      "description": "A domain that a user has been authorized to administer. To authorize use of a domain, verify ownership via [Webmaster Central](https://www.google.com/webmasters/verification/home).",
+      "description": "A domain that a user has been authorized to administer. To authorize use of a domain, verify ownership via [Search Console](https://search.google.com/search-console/welcome).",
       "id": "AuthorizedDomain",
       "properties": {
         "id": {
@@ -2359,6 +2359,7 @@
           "type": "string"
         },
         "name": {
+          "deprecated": true,
           "description": "Deprecated Read only. Full path to the `AuthorizedDomain` resource in the API. Example: `projects/myproject/authorizedDomains/example.com`.",
           "type": "string"
         }
@@ -2374,7 +2375,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
           "items": {
             "type": "string"
           },
@@ -2399,6 +2400,7 @@
       "properties": {
         "localObjectReference": {
           "$ref": "LocalObjectReference",
+          "deprecated": true,
           "description": "This field should not be used directly as it is meant to be inlined directly into the message. Use the \"name\" field instead."
         },
         "name": {
@@ -2422,6 +2424,7 @@
         },
         "localObjectReference": {
           "$ref": "LocalObjectReference",
+          "deprecated": true,
           "description": "Not supported by Cloud Run."
         },
         "name": {
@@ -2463,7 +2466,7 @@
       "type": "object"
     },
     "Configuration": {
-      "description": "Configuration represents the \"floating HEAD\" of a linear history of Revisions, and optionally how the containers those revisions reference are built. Users create new Revisions by updating the Configuration's spec. The \"latest created\" revision's name is available under status, as is the \"latest ready\" revision's name. See also: https://github.com/knative/specs/blob/main/specs/serving/overview.md#configuration",
+      "description": "Configuration represents the \"floating HEAD\" of a linear history of Revisions, and optionally how the containers those revisions reference are built. Users create new Revisions by updating the Configuration's spec. The \"latest created\" revision's name is available under status, as is the \"latest ready\" revision's name.",
       "id": "Configuration",
       "properties": {
         "apiVersion": {
@@ -2546,7 +2549,7 @@
           "type": "array"
         },
         "env": {
-          "description": "List of environment variables to set in the container.",
+          "description": "List of environment variables to set in the container. EnvVar with duplicate names are generally allowed; if referencing a secret, the name must be unique for the container. For non-secret EnvVar names, the Container will only get the last-declared one.",
           "items": {
             "$ref": "EnvVar"
           },
@@ -2560,19 +2563,19 @@
           "type": "array"
         },
         "image": {
-          "description": "Required. URL of the Container image in Google Container Registry or Google Artifact Registry. More info: https://kubernetes.io/docs/concepts/containers/images",
+          "description": "Required. Name of the container image in Dockerhub, Google Artifact Registry, or Google Container Registry. If the host is not provided, Dockerhub is assumed.",
           "type": "string"
         },
         "imagePullPolicy": {
-          "description": "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise. More info: https://kubernetes.io/docs/concepts/containers/images#updating-images",
+          "description": "Image pull policy. One of Always, Never, IfNotPresent. Defaults to Always if :latest tag is specified, or IfNotPresent otherwise.",
           "type": "string"
         },
         "livenessProbe": {
           "$ref": "Probe",
-          "description": "Periodic probe of container liveness. Container will be restarted if the probe fails. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes"
+          "description": "Periodic probe of container liveness. Container will be restarted if the probe fails."
         },
         "name": {
-          "description": "Name of the container specified as a DNS_LABEL. Currently unused in Cloud Run. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names",
+          "description": "Name of the container specified as a DNS_LABEL (RFC 1123).",
           "type": "string"
         },
         "ports": {
@@ -2588,7 +2591,7 @@
         },
         "resources": {
           "$ref": "ResourceRequirements",
-          "description": "Compute Resources required by this container. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources"
+          "description": "Compute Resources required by this container."
         },
         "securityContext": {
           "$ref": "SecurityContext",
@@ -2596,7 +2599,7 @@
         },
         "startupProbe": {
           "$ref": "Probe",
-          "description": "Startup probe of application within the container. All other probes are disabled if a startup probe is provided, until it succeeds. Container will not receive traffic if the probe fails. If not provided, a default startup probe with TCP socket action is used. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes"
+          "description": "Startup probe of application within the container. All other probes are disabled if a startup probe is provided, until it succeeds. Container will not receive traffic if the probe fails. If not provided, a default startup probe with TCP socket action is used."
         },
         "terminationMessagePath": {
           "description": "Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log.",
@@ -2620,12 +2623,41 @@
       },
       "type": "object"
     },
+    "ContainerOverride": {
+      "description": "Per container override specification.",
+      "id": "ContainerOverride",
+      "properties": {
+        "args": {
+          "description": "Arguments to the entrypoint. The specified arguments replace and override any existing entrypoint arguments. Must be empty if `clear_args` is set to true.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clearArgs": {
+          "description": "Optional. Set to True to clear all existing arguments.",
+          "type": "boolean"
+        },
+        "env": {
+          "description": "List of environment variables to set in the container. All specified environment variables are merged with existing environment variables. When the specified environment variables exist, these values override any existing values.",
+          "items": {
+            "$ref": "EnvVar"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The name of the container specified as a DNS_LABEL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ContainerPort": {
       "description": "ContainerPort represents a network port in a single container.",
       "id": "ContainerPort",
       "properties": {
         "containerPort": {
-          "description": "Port number the container listens on. This must be a valid port number, 0 < x < 65536.",
+          "description": "Port number the container listens on. If present, this must be a valid port number, 0 < x < 65536. If not present, it will default to port 8080. For more information, see https://cloud.google.com/run/docs/container-contract#port",
           "format": "int32",
           "type": "integer"
         },
@@ -2730,6 +2762,21 @@
       },
       "type": "object"
     },
+    "EmptyDirVolumeSource": {
+      "description": "In memory (tmpfs) ephemeral storage. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).",
+      "id": "EmptyDirVolumeSource",
+      "properties": {
+        "medium": {
+          "description": "The medium on which the data is stored. The default is \"\" which means to use the node's default medium. Must be an empty string (default) or Memory. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir",
+          "type": "string"
+        },
+        "sizeLimit": {
+          "description": "Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers. The default is nil which means that the limit is undefined. More info: https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume. Info in Kubernetes: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EnvFromSource": {
       "description": "Not supported by Cloud Run. EnvFromSource represents the source of a set of ConfigMaps",
       "id": "EnvFromSource",
@@ -2802,24 +2849,24 @@
       "id": "Execution",
       "properties": {
         "apiVersion": {
-          "description": "Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "description": "Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.",
           "type": "string"
         },
         "kind": {
-          "description": "Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "description": "Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase.",
           "type": "string"
         },
         "metadata": {
           "$ref": "ObjectMeta",
-          "description": "Optional. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          "description": "Optional. Standard object's metadata."
         },
         "spec": {
           "$ref": "ExecutionSpec",
-          "description": "Optional. Specification of the desired behavior of an execution. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
+          "description": "Optional. Specification of the desired behavior of an execution."
         },
         "status": {
           "$ref": "ExecutionStatus",
-          "description": "Output only. Current status of an execution. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+          "description": "Output only. Current status of an execution.",
           "readOnly": true
         }
       },
@@ -2856,7 +2903,7 @@
           "type": "integer"
         },
         "taskCount": {
-          "description": "Optional. Specifies the desired number of tasks the execution should run. Setting to 1 means that parallelism is limited to 1 and the success of that task signals the success of the execution.",
+          "description": "Optional. Specifies the desired number of tasks the execution should run. Setting to 1 means that parallelism is limited to 1 and the success of that task signals the success of the execution. Defaults to 1.",
           "format": "int32",
           "type": "integer"
         },
@@ -2926,7 +2973,7 @@
       "type": "object"
     },
     "ExecutionTemplateSpec": {
-      "description": "ExecutionTemplateSpec describes the metadata and spec an Execution should have when created from a job. Based on: https://github.com/kubernetes/api/blob/e771f807/core/v1/types.go#L3179-L3190",
+      "description": "ExecutionTemplateSpec describes the metadata and spec an Execution should have when created from a job.",
       "id": "ExecutionTemplateSpec",
       "properties": {
         "metadata": {
@@ -2973,7 +3020,7 @@
           "type": "integer"
         },
         "service": {
-          "description": "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
+          "description": "Service is the name of the service to place in the gRPC HealthCheckRequest. If this is not specified, the default behavior is defined by gRPC.",
           "type": "string"
         }
       },
@@ -3005,7 +3052,7 @@
           "type": "string"
         },
         "type": {
-          "description": "type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/main/docs/spec/errors.md#error-conditions-and-reporting Types common to all resources include: * \"Ready\" or \"Completed\": True when the Resource is ready.",
+          "description": "type is used to communicate the status of the reconciliation process. Types common to all resources include: * \"Ready\" or \"Completed\": True when the Resource is ready.",
           "type": "string"
         }
       },
@@ -3057,6 +3104,11 @@
           "description": "Path to access on the HTTP server.",
           "type": "string"
         },
+        "port": {
+          "description": "Port number to access on the container. Number must be in the range 1 to 65535.",
+          "format": "int32",
+          "type": "integer"
+        },
         "scheme": {
           "description": "Not supported by Cloud Run.",
           "type": "string"
@@ -3084,24 +3136,24 @@
       "id": "Job",
       "properties": {
         "apiVersion": {
-          "description": "Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "description": "Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.",
           "type": "string"
         },
         "kind": {
-          "description": "Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "description": "Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase.",
           "type": "string"
         },
         "metadata": {
           "$ref": "ObjectMeta",
-          "description": "Optional. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          "description": "Optional. Standard object's metadata."
         },
         "spec": {
           "$ref": "JobSpec",
-          "description": "Optional. Specification of the desired behavior of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
+          "description": "Optional. Specification of the desired behavior of a job."
         },
         "status": {
           "$ref": "JobStatus",
-          "description": "Output only. Current status of a job. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+          "description": "Output only. Current status of a job.",
           "readOnly": true
         }
       },
@@ -3151,7 +3203,7 @@
       "id": "KeyToPath",
       "properties": {
         "key": {
-          "description": "The Cloud Secret Manager secret version. Can be 'latest' for the latest value or an integer for a specific version. The key to project.",
+          "description": "The Cloud Secret Manager secret version. Can be 'latest' for the latest value, or an integer or a secret alias for a specific version. The key to project.",
           "type": "string"
         },
         "mode": {
@@ -3343,7 +3395,7 @@
           "type": "string"
         },
         "resourceVersion": {
-          "description": "Opaque string that identifies the server's internal version of this object. It can be used by clients to determine when objects have changed. If the message is passed back to the server, it must be left unmodified. https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency",
+          "description": "Opaque string that identifies the server's internal version of this object. It can be used by clients to determine when objects have changed. If the message is passed back to the server, it must be left unmodified.",
           "type": "string"
         },
         "selfLink": {
@@ -3490,14 +3542,14 @@
       "id": "LocalObjectReference",
       "properties": {
         "name": {
-          "description": "Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names",
+          "description": "Name of the referent.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -3538,7 +3590,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution. Execution. More info: https://kubernetes.io/docs/user-guide/annotations",
+          "description": "Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision. * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.",
           "type": "object"
         },
         "clusterName": {
@@ -3546,7 +3598,7 @@
           "type": "string"
         },
         "creationTimestamp": {
-          "description": "UTC timestamp representing the server time when this object was created. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata",
+          "description": "UTC timestamp representing the server time when this object was created.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3580,11 +3632,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and routes. More info: https://kubernetes.io/docs/user-guide/labels",
+          "description": "Map of string keys and values that can be used to organize and categorize (scope and select) objects. May match selectors of replication controllers and routes.",
           "type": "object"
         },
         "name": {
-          "description": "Required. The name of the resource. In Cloud Run, name is required when creating top-level resources (Service, Job), must be unique within a Cloud Run project/region, and cannot be changed once created. More info: https://kubernetes.io/docs/user-guide/identifiers#names If ObjectMeta is part of a CreateServiceRequest, name must contain fewer than 50 characters.",
+          "description": "Required. The name of the resource. Name is required when creating top-level resources (Service, Job), must be unique within a Cloud Run project/region, and cannot be changed once created.",
           "type": "string"
         },
         "namespace": {
@@ -3599,7 +3651,7 @@
           "type": "array"
         },
         "resourceVersion": {
-          "description": "Opaque, system-generated value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server or omit the value to disable conflict-detection. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+          "description": "Opaque, system-generated value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server or omit the value to disable conflict-detection.",
           "type": "string"
         },
         "selfLink": {
@@ -3607,8 +3659,32 @@
           "type": "string"
         },
         "uid": {
-          "description": "Unique, system-generated identifier for this resource. More info: https://kubernetes.io/docs/user-guide/identifiers#uids",
+          "description": "Unique, system-generated identifier for this resource.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Overrides": {
+      "description": "RunJob Overrides that contains Execution fields to be overridden on the go.",
+      "id": "Overrides",
+      "properties": {
+        "containerOverrides": {
+          "description": "Per container override specification.",
+          "items": {
+            "$ref": "ContainerOverride"
+          },
+          "type": "array"
+        },
+        "taskCount": {
+          "description": "The desired number of tasks the execution should run. Will replace existing task_count value.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "timeoutSeconds": {
+          "description": "Duration in seconds the task may be active before the system will actively try to mark it failed and kill associated containers. Will replace existing timeout_seconds value.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3645,7 +3721,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -3697,7 +3773,7 @@
           "description": "HTTPGet specifies the http request to perform."
         },
         "initialDelaySeconds": {
-          "description": "Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+          "description": "Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240.",
           "format": "int32",
           "type": "integer"
         },
@@ -3716,7 +3792,7 @@
           "description": "TCPSocket specifies an action involving a TCP port."
         },
         "timeoutSeconds": {
-          "description": "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+          "description": "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds; if period_seconds is not set, must be less or equal than 10.",
           "format": "int32",
           "type": "integer"
         }
@@ -3762,14 +3838,14 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Only memory and CPU are supported. Limits describes the maximum amount of compute resources allowed. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go",
+          "description": "Limits describes the maximum amount of compute resources allowed. Only 'cpu' and 'memory' keys are supported. * For supported 'cpu' values, go to https://cloud.google.com/run/docs/configuring/cpu. * For supported 'memory' values and syntax, go to https://cloud.google.com/run/docs/configuring/memory-limits",
           "type": "object"
         },
         "requests": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Only memory and CPU are supported. Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go",
+          "description": "Requests describes the minimum amount of compute resources required. Only `cpu` and `memory` are supported. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. * For supported 'cpu' values, go to https://cloud.google.com/run/docs/configuring/cpu. * For supported 'memory' values and syntax, go to https://cloud.google.com/run/docs/configuring/memory-limits",
           "type": "object"
         }
       },
@@ -3812,7 +3888,7 @@
           "type": "integer"
         },
         "containers": {
-          "description": "Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided. The runtime contract is documented here: https://github.com/knative/specs/blob/main/specs/serving/runtime-contract.md",
+          "description": "Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided.",
           "items": {
             "$ref": "Container"
           },
@@ -3879,7 +3955,7 @@
       "type": "object"
     },
     "RevisionTemplate": {
-      "description": "RevisionTemplateSpec describes the data a revision should have when created from a template. Based on: https://github.com/kubernetes/api/blob/e771f807/core/v1/types.go#L3179-L3190",
+      "description": "RevisionTemplateSpec describes the data a revision should have when created from a template.",
       "id": "RevisionTemplate",
       "properties": {
         "metadata": {
@@ -3894,7 +3970,7 @@
       "type": "object"
     },
     "Route": {
-      "description": "Route is responsible for configuring ingress over a collection of Revisions. Some of the Revisions a Route distributes traffic over may be specified by referencing the Configuration responsible for creating them; in these cases the Route is additionally responsible for monitoring the Configuration for \"latest ready\" revision changes, and smoothly rolling out latest revisions. See also: https://github.com/knative/specs/blob/main/specs/serving/overview.md#route Cloud Run currently supports referencing a single Configuration to automatically deploy the \"latest ready\" Revision from that Configuration.",
+      "description": "Route is responsible for configuring ingress over a collection of Revisions. Some of the Revisions a Route distributes traffic over may be specified by referencing the Configuration responsible for creating them; in these cases the Route is additionally responsible for monitoring the Configuration for \"latest ready\" revision changes, and smoothly rolling out latest revisions. Cloud Run currently supports referencing a single Configuration to automatically deploy the \"latest ready\" Revision from that Configuration.",
       "id": "Route",
       "properties": {
         "apiVersion": {
@@ -3950,7 +4026,7 @@
           "type": "array"
         },
         "observedGeneration": {
-          "description": "ObservedGeneration is the 'Generation' of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False. Note that providing a trafficTarget that only has a configurationName will result in a Route that does not increment either its metadata.generation or its observedGeneration, as new \"latest ready\" revisions from the Configuration are processed without an update to the Route's spec.",
+          "description": "ObservedGeneration is the 'Generation' of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False. Note that providing a TrafficTarget that has latest_revision=True will result in a Route that does not increment either its metadata.generation or its observedGeneration, as new \"latest ready\" revisions from the Configuration are processed without an update to the Route's spec.",
           "format": "int32",
           "type": "integer"
         },
@@ -3971,7 +4047,12 @@
     "RunJobRequest": {
       "description": "Request message for creating a new execution of a job.",
       "id": "RunJobRequest",
-      "properties": {},
+      "properties": {
+        "overrides": {
+          "$ref": "Overrides",
+          "description": "Optional. Private preview feature. Currently only available by invitation. Overrides specification for a given execution of a job. The specified values update the specification of the created execution."
+        }
+      },
       "type": "object"
     },
     "SecretEnvSource": {
@@ -3980,6 +4061,7 @@
       "properties": {
         "localObjectReference": {
           "$ref": "LocalObjectReference",
+          "deprecated": true,
           "description": "This field should not be used directly as it is meant to be inlined directly into the message. Use the \"name\" field instead."
         },
         "name": {
@@ -3998,11 +4080,12 @@
       "id": "SecretKeySelector",
       "properties": {
         "key": {
-          "description": "Required. A Cloud Secret Manager secret version. Must be 'latest' for the latest version or an integer for a specific version. The key of the secret to select from. Must be a valid secret key.",
+          "description": "Required. A Cloud Secret Manager secret version. Must be 'latest' for the latest version, an integer for a specific version, or a version alias. The key of the secret to select from. Must be a valid secret key.",
           "type": "string"
         },
         "localObjectReference": {
           "$ref": "LocalObjectReference",
+          "deprecated": true,
           "description": "This field should not be used directly as it is meant to be inlined directly into the message. Use the \"name\" field instead."
         },
         "name": {
@@ -4056,7 +4139,7 @@
       "type": "object"
     },
     "Service": {
-      "description": "Service acts as a top-level container that manages a set of Routes and Configurations which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. Service acts only as an orchestrator of the underlying Routes and Configurations (much as a kubernetes Deployment orchestrates ReplicaSets). The Service's controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own. See also: https://github.com/knative/serving/blob/main/docs/spec/overview.md#service",
+      "description": "Service acts as a top-level container that manages a set of Routes and Configurations which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. Service acts only as an orchestrator of the underlying Routes and Configurations (much as a kubernetes Deployment orchestrates ReplicaSets). The Service's controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own.",
       "id": "Service",
       "properties": {
         "apiVersion": {
@@ -4177,14 +4260,14 @@
         },
         "metadata": {
           "$ref": "ListMeta",
-          "description": "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+          "description": "Standard list metadata."
         },
         "reason": {
           "description": "A machine-readable description of why this operation is in the \"Failure\" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it.",
           "type": "string"
         },
         "status": {
-          "description": "Status of the operation. One of: \"Success\" or \"Failure\". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+          "description": "Status of the operation. One of: \"Success\" or \"Failure\".",
           "type": "string"
         }
       },
@@ -4225,7 +4308,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "description": "The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind.",
           "type": "string"
         },
         "name": {
@@ -4238,7 +4321,7 @@
           "type": "integer"
         },
         "uid": {
-          "description": "UID of the resource. (when there is a single resource which can be described). More info: https://kubernetes.io/docs/user-guide/identifiers#uids",
+          "description": "UID of the resource. (when there is a single resource which can be described).",
           "type": "string"
         }
       },
@@ -4265,24 +4348,24 @@
       "id": "Task",
       "properties": {
         "apiVersion": {
-          "description": "Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources",
+          "description": "Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values.",
           "type": "string"
         },
         "kind": {
-          "description": "Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds",
+          "description": "Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase.",
           "type": "string"
         },
         "metadata": {
           "$ref": "ObjectMeta",
-          "description": "Optional. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+          "description": "Optional. Standard object's metadata."
         },
         "spec": {
           "$ref": "TaskSpec",
-          "description": "Optional. Specification of the desired behavior of a task. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
+          "description": "Optional. Specification of the desired behavior of a task."
         },
         "status": {
           "$ref": "TaskStatus",
-          "description": "Output only. Current status of a task. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status",
+          "description": "Output only. Current status of a task.",
           "readOnly": true
         }
       },
@@ -4316,7 +4399,7 @@
           "type": "array"
         },
         "maxRetries": {
-          "description": "Optional. Number of retries allowed per task, before marking this job failed.",
+          "description": "Optional. Number of retries allowed per task, before marking this job failed. Defaults to 3.",
           "format": "int32",
           "type": "integer"
         },
@@ -4325,12 +4408,12 @@
           "type": "string"
         },
         "timeoutSeconds": {
-          "description": "Optional. Duration in seconds the task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout.",
+          "description": "Optional. Duration in seconds the task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout. Defaults to 600 seconds.",
           "format": "int64",
           "type": "string"
         },
         "volumes": {
-          "description": "Optional. List of volumes that can be mounted by containers belonging to the task. More info: https://kubernetes.io/docs/concepts/storage/volumes",
+          "description": "Optional. List of volumes that can be mounted by containers belonging to the task.",
           "items": {
             "$ref": "Volume"
           },
@@ -4392,7 +4475,7 @@
       "properties": {
         "spec": {
           "$ref": "TaskSpec",
-          "description": "Optional. Specification of the desired behavior of the task. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
+          "description": "Optional. Specification of the desired behavior of the task."
         }
       },
       "type": "object"
@@ -4430,11 +4513,12 @@
       "id": "TrafficTarget",
       "properties": {
         "configurationName": {
-          "description": "ConfigurationName of a configuration to whose latest revision which will be sent this portion of traffic. When the \"status.latestReadyRevisionName\" of the referenced configuration changes, traffic will automatically migrate from the prior \"latest ready\" revision to the new one. This field is never set in Route's status, only its spec. This is mutually exclusive with RevisionName. Cloud Run currently supports a single ConfigurationName.",
+          "deprecated": true,
+          "description": "[Deprecated] Not supported in Cloud Run. It must be empty.",
           "type": "string"
         },
         "latestRevision": {
-          "description": "Optional. LatestRevision may be provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty in spec. When shown in status, this indicates that the RevisionName was resolved from a spec's ConfigurationName.",
+          "description": "Uses the \"status.latestReadyRevisionName\" of the Service to determine the traffic target. When it changes, traffic will automatically migrate from the prior \"latest ready\" revision to the new one. This field must be false if RevisionName is set. This field defaults to true otherwise. If the field is set to true on Status, this means that the Revision was resolved from the Service's latest ready revision.",
           "type": "boolean"
         },
         "percent": {
@@ -4443,15 +4527,16 @@
           "type": "integer"
         },
         "revisionName": {
-          "description": "RevisionName of a specific revision to which to send this portion of traffic. This is mutually exclusive with ConfigurationName.",
+          "description": "Points this traffic target to a specific Revision. This field is mutually exclusive with latest_revision.",
           "type": "string"
         },
         "tag": {
-          "description": "Optional. Tag is used to expose a dedicated url for referencing this target exclusively.",
+          "description": "Tag is used to expose a dedicated url for referencing this target exclusively.",
           "type": "string"
         },
         "url": {
           "description": "Output only. URL displays the URL for accessing tagged traffic targets. URL is displayed in status, and is disallowed on spec. URL must contain a scheme (e.g. https://) and a hostname, but may not contain anything else (e.g. basic auth, url path, etc.)",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4464,6 +4549,10 @@
         "configMap": {
           "$ref": "ConfigMapVolumeSource",
           "description": "Not supported in Cloud Run."
+        },
+        "emptyDir": {
+          "$ref": "EmptyDirVolumeSource",
+          "description": "Ephemeral storage used as a shared volume."
         },
         "name": {
           "description": "Volume's name. In Cloud Run Fully Managed, the name 'cloudsql' is reserved.",

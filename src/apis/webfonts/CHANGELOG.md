@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/webfonts-v1.1.0...webfonts-v1.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **webfonts:** update the API ([f0a4421](https://github.com/googleapis/google-api-nodejs-client/commit/f0a44217601e0fb49d1f8627ea28035812830bb1))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/webfonts-v1.0.0...webfonts-v1.1.0) (2023-05-02)
+
+
+### Features
+
+* **webfonts:** update the API ([609207d](https://github.com/googleapis/google-api-nodejs-client/commit/609207dfe47ec8a7d6c5823d695f5be0b3dd1037))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/webfonts-v0.3.2...webfonts-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/webfonts-v0.3.1...webfonts-v0.3.2) (2022-09-21)
 
 

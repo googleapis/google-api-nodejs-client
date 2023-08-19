@@ -33,7 +33,7 @@ export function analyticshub(
   options: analyticshub_v1beta1.Options
 ): analyticshub_v1beta1.Analyticshub;
 export function analyticshub<
-  T = analyticshub_v1.Analyticshub | analyticshub_v1beta1.Analyticshub
+  T = analyticshub_v1.Analyticshub | analyticshub_v1beta1.Analyticshub,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

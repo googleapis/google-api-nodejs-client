@@ -274,6 +274,10 @@ export namespace language_v1beta2 {
      */
     language?: string | null;
     /**
+     * Harmful and sensitive categories identified in the input document.
+     */
+    moderationCategories?: Schema$ClassificationCategory[];
+    /**
      * Sentences in the input document. Populated if the user enables AnnotateTextRequest.Features.extract_syntax.
      */
     sentences?: Schema$Sentence[];
@@ -291,7 +295,7 @@ export namespace language_v1beta2 {
      */
     confidence?: number | null;
     /**
-     * The name of the category representing the document, from the [predefined taxonomy](https://cloud.google.com/natural-language/docs/categories).
+     * The name of the category representing the document.
      */
     name?: string | null;
   }
@@ -419,7 +423,7 @@ export namespace language_v1beta2 {
     type?: string | null;
   }
   /**
-   * All available features for sentiment, syntax, and semantic analysis. Setting each one to true will enable that specific analysis for the input. Next ID: 11
+   * All available features for sentiment, syntax, and semantic analysis. Setting each one to true will enable that specific analysis for the input. Next ID: 12
    */
   export interface Schema$Features {
     /**
@@ -446,6 +450,28 @@ export namespace language_v1beta2 {
      * Extract syntax information.
      */
     extractSyntax?: boolean | null;
+    /**
+     * Moderate the document for harmful and sensitive categories.
+     */
+    moderateText?: boolean | null;
+  }
+  /**
+   * The document moderation request message.
+   */
+  export interface Schema$ModerateTextRequest {
+    /**
+     * Required. Input document.
+     */
+    document?: Schema$Document;
+  }
+  /**
+   * The document moderation response message.
+   */
+  export interface Schema$ModerateTextResponse {
+    /**
+     * Harmful and sensitive categories representing the input document.
+     */
+    moderationCategories?: Schema$ClassificationCategory[];
   }
   /**
    * Represents part of speech information for a token.
@@ -544,7 +570,7 @@ export namespace language_v1beta2 {
     message?: string | null;
   }
   /**
-   * Represents an output piece of text.
+   * Represents a text span in the input document.
    */
   export interface Schema$TextSpan {
     /**
@@ -552,7 +578,7 @@ export namespace language_v1beta2 {
      */
     beginOffset?: number | null;
     /**
-     * The content of the output text.
+     * The content of the text span, which is a substring of the document.
      */
     content?: string | null;
   }
@@ -599,58 +625,6 @@ export namespace language_v1beta2 {
 
     /**
      * Finds named entities (currently proper names and common nouns) in the text along with entity types, salience, mentions for each entity, and other properties.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/language.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const language = google.language('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-language',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await language.documents.analyzeEntities({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "document": {},
-     *       //   "encodingType": "my_encodingType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entities": [],
-     *   //   "language": "my_language"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -745,58 +719,6 @@ export namespace language_v1beta2 {
 
     /**
      * Finds entities, similar to AnalyzeEntities in the text and analyzes sentiment associated with each entity and its mentions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/language.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const language = google.language('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-language',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await language.documents.analyzeEntitySentiment({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "document": {},
-     *       //   "encodingType": "my_encodingType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entities": [],
-     *   //   "language": "my_language"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -892,59 +814,6 @@ export namespace language_v1beta2 {
 
     /**
      * Analyzes the sentiment of the provided text.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/language.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const language = google.language('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-language',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await language.documents.analyzeSentiment({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "document": {},
-     *       //   "encodingType": "my_encodingType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "documentSentiment": {},
-     *   //   "language": "my_language",
-     *   //   "sentences": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1039,59 +908,6 @@ export namespace language_v1beta2 {
 
     /**
      * Analyzes the syntax of the text and provides sentence boundaries and tokenization along with part of speech tags, dependency trees, and other properties.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/language.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const language = google.language('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-language',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await language.documents.analyzeSyntax({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "document": {},
-     *       //   "encodingType": "my_encodingType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "language": "my_language",
-     *   //   "sentences": [],
-     *   //   "tokens": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1186,63 +1002,6 @@ export namespace language_v1beta2 {
 
     /**
      * A convenience method that provides all syntax, sentiment, entity, and classification features in one call.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/language.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const language = google.language('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-language',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await language.documents.annotateText({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "document": {},
-     *       //   "encodingType": "my_encodingType",
-     *       //   "features": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "categories": [],
-     *   //   "documentSentiment": {},
-     *   //   "entities": [],
-     *   //   "language": "my_language",
-     *   //   "sentences": [],
-     *   //   "tokens": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1337,57 +1096,6 @@ export namespace language_v1beta2 {
 
     /**
      * Classifies a document into categories.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/language.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const language = google.language('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-language',
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await language.documents.classifyText({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "classificationModelOptions": {},
-     *       //   "document": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "categories": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1479,6 +1187,100 @@ export namespace language_v1beta2 {
         return createAPIRequest<Schema$ClassifyTextResponse>(parameters);
       }
     }
+
+    /**
+     * Moderates a document for harmful and sensitive categories.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    moderateText(
+      params: Params$Resource$Documents$Moderatetext,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    moderateText(
+      params?: Params$Resource$Documents$Moderatetext,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ModerateTextResponse>;
+    moderateText(
+      params: Params$Resource$Documents$Moderatetext,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    moderateText(
+      params: Params$Resource$Documents$Moderatetext,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ModerateTextResponse>,
+      callback: BodyResponseCallback<Schema$ModerateTextResponse>
+    ): void;
+    moderateText(
+      params: Params$Resource$Documents$Moderatetext,
+      callback: BodyResponseCallback<Schema$ModerateTextResponse>
+    ): void;
+    moderateText(
+      callback: BodyResponseCallback<Schema$ModerateTextResponse>
+    ): void;
+    moderateText(
+      paramsOrCallback?:
+        | Params$Resource$Documents$Moderatetext
+        | BodyResponseCallback<Schema$ModerateTextResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ModerateTextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ModerateTextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ModerateTextResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Documents$Moderatetext;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Documents$Moderatetext;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/documents:moderateText').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ModerateTextResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ModerateTextResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Documents$Analyzeentities
@@ -1522,5 +1324,12 @@ export namespace language_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$ClassifyTextRequest;
+  }
+  export interface Params$Resource$Documents$Moderatetext
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ModerateTextRequest;
   }
 }

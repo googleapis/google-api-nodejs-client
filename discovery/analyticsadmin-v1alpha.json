@@ -21,7 +21,7 @@
   "baseUrl": "https://analyticsadmin.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Google Analytics Admin",
-  "description": "",
+  "description": "Manage properties in Google Analytics. Warning: Creating multiple Customer Applications, Accounts, or Projects to simulate or act as a single Customer Application, Account, or Project (respectively) or to circumvent Service-specific usage limits or quotas is a direct violation of Google Cloud Platform Terms of Service as well as Google APIs Terms of Service. These actions can result in immediate termination of your GCP project(s) without any warning.",
   "discoveryVersion": "v1",
   "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",
   "fullyEncodeReservedExpansion": true,
@@ -275,7 +275,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+              "description": "Required. The list of fields to be updated. Field names must be in snake case (for example, \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -310,6 +310,35 @@
             "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
+        "runAccessReport": {
+          "description": "Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. The property must be in Google Analytics 360. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).",
+          "flatPath": "v1alpha/accounts/{accountsId}:runAccessReport",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.accounts.runAccessReport",
+          "parameterOrder": [
+            "entity"
+          ],
+          "parameters": {
+            "entity": {
+              "description": "The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if \"123\" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if \"1234\" is your GA4 Account ID.",
+              "location": "path",
+              "pattern": "^accounts/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+entity}:runAccessReport",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaRunAccessReportRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaRunAccessReportResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
         "searchChangeHistoryEvents": {
           "description": "Searches through all changes to an account or its children given the specified set of filters.",
           "flatPath": "v1alpha/accounts/{accountsId}:searchChangeHistoryEvents",
@@ -340,6 +369,270 @@
         }
       },
       "resources": {
+        "accessBindings": {
+          "methods": {
+            "batchCreate": {
+              "description": "Creates information about multiple access bindings to an account or property. This method is transactional. If any AccessBinding cannot be created, none of the AccessBindings will be created.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings:batchCreate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.accessBindings.batchCreate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent field in the CreateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchCreate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchDelete": {
+              "description": "Deletes information about multiple users' links to an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings:batchDelete",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.accessBindings.batchDelete",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field in DeleteAccessBindingRequest messages must match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchDelete",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchGet": {
+              "description": "Gets information about multiple access bindings to an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings:batchGet",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.accounts.accessBindings.batchGet",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "names": {
+                  "description": "Required. The names of the access bindings to retrieve. A maximum of 1000 access bindings can be retrieved in a batch. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field must match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchGet",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "batchUpdate": {
+              "description": "Updates information about multiple access bindings to an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings:batchUpdate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.accessBindings.batchUpdate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided AccessBinding in UpdateAccessBindingRequest messages must match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchUpdate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "create": {
+              "description": "Creates an access binding on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.accounts.accessBindings.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an access binding on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.accounts.accessBindings.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "get": {
+              "description": "Gets information about an access binding.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.accounts.accessBindings.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the access binding to retrieve. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists all access bindings on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.accounts.accessBindings.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of access bindings to return. The service may return fewer than this value. If unspecified, at most 200 access bindings will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListAccessBindings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccessBindings` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates an access binding on an account or property.",
+              "flatPath": "v1alpha/accounts/{accountsId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.accounts.accessBindings.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this binding. Format: accounts/{account}/accessBindings/{access_binding} or properties/{property}/accessBindings/{access_binding} Example: \"accounts/100/accessBindings/200\"",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            }
+          }
+        },
         "userLinks": {
           "methods": {
             "audit": {
@@ -643,7 +936,7 @@
     "properties": {
       "methods": {
         "acknowledgeUserDataCollection": {
-          "description": "Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or via this API) before MeasurementProtocolSecret resources may be created.",
+          "description": "Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or through this API) before MeasurementProtocolSecret resources may be created.",
           "flatPath": "v1alpha/properties/{propertiesId}:acknowledgeUserDataCollection",
           "httpMethod": "POST",
           "id": "analyticsadmin.properties.acknowledgeUserDataCollection",
@@ -688,8 +981,26 @@
             "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
+        "createConnectedSiteTag": {
+          "description": "Creates a connected site tag for a Universal Analytics property. You can create a maximum of 20 connected site tags per property. Note: This API cannot be used on GA4 properties.",
+          "flatPath": "v1alpha/properties:createConnectedSiteTag",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.createConnectedSiteTag",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:createConnectedSiteTag",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
         "delete": {
-          "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not an GA4 Property.",
+          "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
           "httpMethod": "DELETE",
           "id": "analyticsadmin.properties.delete",
@@ -711,6 +1022,65 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "deleteConnectedSiteTag": {
+          "description": "Deletes a connected site tag for a Universal Analytics property. Note: this has no effect on GA4 properties.",
+          "flatPath": "v1alpha/properties:deleteConnectedSiteTag",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.deleteConnectedSiteTag",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:deleteConnectedSiteTag",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest"
+          },
+          "response": {
+            "$ref": "GoogleProtobufEmpty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "fetchAutomatedGa4ConfigurationOptOut": {
+          "description": "Fetches the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.",
+          "flatPath": "v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.fetchAutomatedGa4ConfigurationOptOut",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
+        "fetchConnectedGa4Property": {
+          "description": "Given a specified UA property, looks up the GA4 property connected to it. Note: this cannot be used with GA4 properties.",
+          "flatPath": "v1alpha/properties:fetchConnectedGa4Property",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.properties.fetchConnectedGa4Property",
+          "parameterOrder": [],
+          "parameters": {
+            "property": {
+              "description": "Required. The UA property for which to look up the connected GA4 property. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internal_web_property_id} Example: properties/1234",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/properties:fetchConnectedGa4Property",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
         "get": {
@@ -855,6 +1225,25 @@
             "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
+        "listConnectedSiteTags": {
+          "description": "Lists the connected site tags for a Universal Analytics property. A maximum of 20 connected site tags will be returned. Note: this has no effect on GA4 property.",
+          "flatPath": "v1alpha/properties:listConnectedSiteTags",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.listConnectedSiteTags",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:listConnectedSiteTags",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
         "patch": {
           "description": "Updates a property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
@@ -899,7 +1288,7 @@
           ],
           "parameters": {
             "entity": {
-              "description": "The Data Access Report is requested for this property. For example if \"123\" is your GA4 property ID, then entity should be \"properties/123\".",
+              "description": "The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if \"123\" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if \"1234\" is your GA4 Account ID.",
               "location": "path",
               "pattern": "^properties/[^/]+$",
               "required": true,
@@ -916,6 +1305,24 @@
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit",
             "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
+        "setAutomatedGa4ConfigurationOptOut": {
+          "description": "Sets the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.",
+          "flatPath": "v1alpha/properties:setAutomatedGa4ConfigurationOptOut",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.setAutomatedGa4ConfigurationOptOut",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:setAutomatedGa4ConfigurationOptOut",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
         "updateAttributionSettings": {
@@ -1022,6 +1429,376 @@
         }
       },
       "resources": {
+        "accessBindings": {
+          "methods": {
+            "batchCreate": {
+              "description": "Creates information about multiple access bindings to an account or property. This method is transactional. If any AccessBinding cannot be created, none of the AccessBindings will be created.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings:batchCreate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.accessBindings.batchCreate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent field in the CreateAccessBindingRequest messages must either be empty or match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchCreate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchDelete": {
+              "description": "Deletes information about multiple users' links to an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings:batchDelete",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.accessBindings.batchDelete",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field in DeleteAccessBindingRequest messages must match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchDelete",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "batchGet": {
+              "description": "Gets information about multiple access bindings to an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings:batchGet",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.accessBindings.batchGet",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "names": {
+                  "description": "Required. The names of the access bindings to retrieve. A maximum of 1000 access bindings can be retrieved in a batch. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided values for the 'names' field must match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchGet",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "batchUpdate": {
+              "description": "Updates information about multiple access bindings to an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings:batchUpdate",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.accessBindings.batchUpdate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account or property that owns the access bindings. The parent of all provided AccessBinding in UpdateAccessBindingRequest messages must match this field. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings:batchUpdate",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "create": {
+              "description": "Creates an access binding on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.accessBindings.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an access binding on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.accessBindings.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            },
+            "get": {
+              "description": "Gets information about an access binding.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.accessBindings.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the access binding to retrieve. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists all access bindings on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.accessBindings.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of access bindings to return. The service may return fewer than this value. If unspecified, at most 200 access bindings will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListAccessBindings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccessBindings` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Formats: - accounts/{account} - properties/{property}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/accessBindings",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListAccessBindingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users",
+                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates an access binding on an account or property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/accessBindings/{accessBindingsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.accessBindings.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this binding. Format: accounts/{account}/accessBindings/{access_binding} or properties/{property}/accessBindings/{access_binding} Example: \"accounts/100/accessBindings/200\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/accessBindings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.manage.users"
+              ]
+            }
+          }
+        },
+        "adSenseLinks": {
+          "methods": {
+            "create": {
+              "description": "Creates an AdSenseLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/adSenseLinks",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.adSenseLinks.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The property for which to create an AdSense Link. Format: properties/{propertyId} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/adSenseLinks",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink"
+              }
+            },
+            "delete": {
+              "description": "Deletes an AdSenseLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/adSenseLinks/{adSenseLinksId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.adSenseLinks.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Unique identifier for the AdSense Link to be deleted. Format: properties/{propertyId}/adSenseLinks/{linkId} Example: properties/1234/adSenseLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/adSenseLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              }
+            },
+            "get": {
+              "description": "Looks up a single AdSenseLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/adSenseLinks/{adSenseLinksId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.adSenseLinks.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Unique identifier for the AdSense Link requested. Format: properties/{propertyId}/adSenseLinks/{linkId} Example: properties/1234/adSenseLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/adSenseLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink"
+              }
+            },
+            "list": {
+              "description": "Lists AdSenseLinks on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/adSenseLinks",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.adSenseLinks.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from a previous `ListAdSenseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAdSenseLinks` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the parent property. Format: properties/{propertyId} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/adSenseLinks",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse"
+              }
+            }
+          }
+        },
         "audiences": {
           "methods": {
             "archive": {
@@ -1179,6 +1956,227 @@
             }
           }
         },
+        "bigQueryLinks": {
+          "methods": {
+            "get": {
+              "description": "Lookup for a single BigQuery Link.",
+              "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks/{bigQueryLinksId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.bigQueryLinks.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the BigQuery link to lookup. Format: properties/{property_id}/bigQueryLinks/{bigquery_link_id} Example: properties/123/bigQueryLinks/456",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/bigQueryLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists BigQuery Links on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.bigQueryLinks.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListBigQueryLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryLinks` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the property to list BigQuery links under. Format: properties/{property_id} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/bigQueryLinks",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            }
+          }
+        },
+        "channelGroups": {
+          "methods": {
+            "create": {
+              "description": "Creates a ChannelGroup.",
+              "flatPath": "v1alpha/properties/{propertiesId}/channelGroups",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.channelGroups.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The property for which to create a ChannelGroup. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/channelGroups",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a ChannelGroup on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/channelGroups/{channelGroupsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.channelGroups.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The ChannelGroup to delete. Example format: properties/1234/channelGroups/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/channelGroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single ChannelGroup.",
+              "flatPath": "v1alpha/properties/{propertiesId}/channelGroups/{channelGroupsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.channelGroups.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The ChannelGroup to get. Example format: properties/1234/channelGroups/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/channelGroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists ChannelGroups on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/channelGroups",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.channelGroups.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListChannelGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListChannelGroups` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The property for which to list ChannelGroups. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/channelGroups",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListChannelGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a ChannelGroup.",
+              "flatPath": "v1alpha/properties/{propertiesId}/channelGroups/{channelGroupsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.channelGroups.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The resource name for this Channel Group resource. Format: properties/{property}/channelGroups/{channel_group}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/channelGroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
         "conversionEvents": {
           "methods": {
             "create": {
@@ -1295,6 +2293,40 @@
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit",
                 "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a conversion event with the specified attributes.",
+              "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.conversionEvents.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this conversion event. Format: properties/{property}/conversionEvents/{conversion_event}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/conversionEvents/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaConversionEvent"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaConversionEvent"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
               ]
             }
           }
@@ -1694,6 +2726,32 @@
                 "https://www.googleapis.com/auth/analytics.readonly"
               ]
             },
+            "getEnhancedMeasurementSettings": {
+              "description": "Returns the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/enhancedMeasurementSettings",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.dataStreams.getEnhancedMeasurementSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the settings to lookup. Format: properties/{property}/dataStreams/{data_stream}/enhancedMeasurementSettings Example: \"properties/1000/dataStreams/2000/enhancedMeasurementSettings\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/dataStreams/[^/]+/enhancedMeasurementSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
             "getGlobalSiteTag": {
               "description": "Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.",
               "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/globalSiteTag",
@@ -1790,9 +2848,197 @@
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit"
               ]
+            },
+            "updateEnhancedMeasurementSettings": {
+              "description": "Updates the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/enhancedMeasurementSettings",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.dataStreams.updateEnhancedMeasurementSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of the Enhanced Measurement Settings. Format: properties/{property_id}/dataStreams/{data_stream}/enhancedMeasurementSettings Example: \"properties/1000/dataStreams/2000/enhancedMeasurementSettings\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/dataStreams/[^/]+/enhancedMeasurementSettings$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
             }
           },
           "resources": {
+            "eventCreateRules": {
+              "methods": {
+                "create": {
+                  "description": "Creates an EventCreateRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventCreateRules",
+                  "httpMethod": "POST",
+                  "id": "analyticsadmin.properties.dataStreams.eventCreateRules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Example format: properties/123/dataStreams/456",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/eventCreateRules",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+                  },
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an EventCreateRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventCreateRules/{eventCreateRulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "analyticsadmin.properties.dataStreams.eventCreateRules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Example format: properties/123/dataStreams/456/eventCreateRules/789",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/eventCreateRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
+                "get": {
+                  "description": "Lookup for a single EventCreateRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventCreateRules/{eventCreateRulesId}",
+                  "httpMethod": "GET",
+                  "id": "analyticsadmin.properties.dataStreams.eventCreateRules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EventCreateRule to get. Example format: properties/123/dataStreams/456/eventCreateRules/789",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/eventCreateRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit",
+                    "https://www.googleapis.com/auth/analytics.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "Lists EventCreateRules on a web data stream.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventCreateRules",
+                  "httpMethod": "GET",
+                  "id": "analyticsadmin.properties.dataStreams.eventCreateRules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListEventCreateRules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEventCreateRules` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Example format: properties/123/dataStreams/456",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/eventCreateRules",
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit",
+                    "https://www.googleapis.com/auth/analytics.readonly"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an EventCreateRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventCreateRules/{eventCreateRulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "analyticsadmin.properties.dataStreams.eventCreateRules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name for this EventCreateRule resource. Format: properties/{property}/dataStreams/{data_stream}/eventCreateRules/{event_create_rule}",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/eventCreateRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+                  },
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                }
+              }
+            },
             "measurementProtocolSecrets": {
               "methods": {
                 "create": {
@@ -1928,7 +3174,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to be updated. Omitted fields will not be updated.",
+                      "description": "Required. The list of fields to be updated. Omitted fields will not be updated.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -2279,6 +3525,160 @@
             }
           }
         },
+        "expandedDataSets": {
+          "methods": {
+            "create": {
+              "description": "Creates a ExpandedDataSet.",
+              "flatPath": "v1alpha/properties/{propertiesId}/expandedDataSets",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.expandedDataSets.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/expandedDataSets",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a ExpandedDataSet on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/expandedDataSets/{expandedDataSetsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.expandedDataSets.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Example format: properties/1234/expandedDataSets/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/expandedDataSets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single ExpandedDataSet.",
+              "flatPath": "v1alpha/properties/{propertiesId}/expandedDataSets/{expandedDataSetsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.expandedDataSets.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the ExpandedDataSet to get. Example format: properties/1234/expandedDataSets/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/expandedDataSets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists ExpandedDataSets on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/expandedDataSets",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.expandedDataSets.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListExpandedDataSets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExpandedDataSet` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/expandedDataSets",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a ExpandedDataSet on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/expandedDataSets/{expandedDataSetsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.expandedDataSets.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The resource name for this ExpandedDataSet resource. Format: properties/{property_id}/expandedDataSets/{expanded_data_set}",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/expandedDataSets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
         "firebaseLinks": {
           "methods": {
             "create": {
@@ -2350,7 +3750,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.",
+                  "description": "A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFirebaseLinks` must match the call that provided the page token.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2956,7 +4356,7 @@
       }
     }
   },
-  "revision": "20221027",
+  "revision": "20230814",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -2970,6 +4370,29 @@
         "toValue": {
           "$ref": "GoogleAnalyticsAdminV1alphaNumericValue",
           "description": "Ends with this number."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAccessBinding": {
+      "description": "A binding of a user to a set of roles.",
+      "id": "GoogleAnalyticsAdminV1alphaAccessBinding",
+      "properties": {
+        "name": {
+          "description": "Output only. Resource name of this binding. Format: accounts/{account}/accessBindings/{access_binding} or properties/{property}/accessBindings/{access_binding} Example: \"accounts/100/accessBindings/200\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "roles": {
+          "description": "A list of roles for to grant to the parent resource. Valid values: predefinedRoles/viewer predefinedRoles/analyst predefinedRoles/editor predefinedRoles/admin predefinedRoles/no-cost-data predefinedRoles/no-revenue-data For users, if an empty list of roles is set, this AccessBinding will be deleted.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "user": {
+          "description": "If set, the email address of the user to set roles for. Format: \"someuser@gmail.com\"",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3407,6 +4830,22 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaAdSenseLink": {
+      "description": "A link between a GA4 Property and an AdSense for Content ad client.",
+      "id": "GoogleAnalyticsAdminV1alphaAdSenseLink",
+      "properties": {
+        "adClientCode": {
+          "description": "Immutable. The AdSense ad client code that the GA4 property is linked to. Example format: \"ca-pub-1234567890\"",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name for this AdSense Link resource. Format: properties/{propertyId}/adSenseLinks/{linkId} Example: properties/1234/adSenseLinks/6789",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRequest": {
       "description": "Request message for ApproveDisplayVideo360AdvertiserLinkProposal RPC.",
       "id": "GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRequest",
@@ -3460,6 +4899,22 @@
           ],
           "type": "string"
         },
+        "adsWebConversionDataExportScope": {
+          "description": "Required. The Conversion Export Scope for data exported to linked Ads Accounts.",
+          "enum": [
+            "ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED",
+            "NOT_SELECTED_YET",
+            "PAID_AND_ORGANIC_CHANNELS",
+            "GOOGLE_PAID_CHANNELS"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "No data export scope selected yet. Export scope can never be changed back to this value.",
+            "Paid and organic channels are eligible to receive conversion credit, but only credit assigned to Google Ads channels will appear in your Ads accounts. To learn more, see [Paid and Organic channels](https://support.google.com/analytics/answer/10632359).",
+            "Only Google Ads paid channels are eligible to receive conversion credit. To learn more, see [Google Paid channels](https://support.google.com/analytics/answer/10632359)."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "Output only. Resource name of this attribution settings resource. Format: properties/{property_id}/attributionSettings Example: \"properties/1000/attributionSettings\"",
           "readOnly": true,
@@ -3485,23 +4940,23 @@
           "description": "Required. The reporting attribution model used to calculate conversion credit in this property's reports. Changing the attribution model will apply to both historical and future data. These changes will be reflected in reports with conversion and revenue data. User and session data will be unaffected.",
           "enum": [
             "REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED",
-            "CROSS_CHANNEL_DATA_DRIVEN",
-            "CROSS_CHANNEL_LAST_CLICK",
-            "CROSS_CHANNEL_FIRST_CLICK",
-            "CROSS_CHANNEL_LINEAR",
-            "CROSS_CHANNEL_POSITION_BASED",
-            "CROSS_CHANNEL_TIME_DECAY",
-            "ADS_PREFERRED_LAST_CLICK"
+            "PAID_AND_ORGANIC_CHANNELS_DATA_DRIVEN",
+            "PAID_AND_ORGANIC_CHANNELS_LAST_CLICK",
+            "PAID_AND_ORGANIC_CHANNELS_FIRST_CLICK",
+            "PAID_AND_ORGANIC_CHANNELS_LINEAR",
+            "PAID_AND_ORGANIC_CHANNELS_POSITION_BASED",
+            "PAID_AND_ORGANIC_CHANNELS_TIME_DECAY",
+            "GOOGLE_PAID_CHANNELS_LAST_CLICK"
           ],
           "enumDescriptions": [
             "Reporting attribution model unspecified.",
-            "Data-driven attribution distributes credit for the conversion based on data for each conversion event. Each Data-driven model is specific to each advertiser and each conversion event.",
-            "Ignores direct traffic and attributes 100% of the conversion value to the last channel that the customer clicked through (or engaged view through for YouTube) before converting.",
-            "Gives all credit for the conversion to the first channel that a customer clicked (or engaged view through for YouTube) before converting.",
-            "Distributes the credit for the conversion equally across all the channels a customer clicked (or engaged view through for YouTube) before converting.",
-            "Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions.",
-            "Gives more credit to the touchpoints that happened closer in time to the conversion.",
-            "Attributes 100% of the conversion value to the last Google Ads channel that the customer clicked through before converting."
+            "Data-driven attribution distributes credit for the conversion based on data for each conversion event. Each Data-driven model is specific to each advertiser and each conversion event. Previously CROSS_CHANNEL_DATA_DRIVEN",
+            "Ignores direct traffic and attributes 100% of the conversion value to the last channel that the customer clicked through (or engaged view through for YouTube) before converting. Previously CROSS_CHANNEL_LAST_CLICK",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives all credit for the conversion to the first channel that a customer clicked (or engaged view through for YouTube) before converting. Previously CROSS_CHANNEL_FIRST_CLICK",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Distributes the credit for the conversion equally across all the channels a customer clicked (or engaged view through for YouTube) before converting. Previously CROSS_CHANNEL_LINEAR",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Attributes 40% credit to the first and last interaction, and the remaining 20% credit is distributed evenly to the middle interactions. Previously CROSS_CHANNEL_POSITION_BASED",
+            "Starting in June 2023, new properties can no longer use this model. See [Analytics Help](https://support.google.com/analytics/answer/9164320#040623) for more details. Starting in September 2023, we will sunset this model for all properties. Gives more credit to the touchpoints that happened closer in time to the conversion. Previously CROSS_CHANNEL_TIME_DECAY",
+            "Attributes 100% of the conversion value to the last Google Paid channel that the customer clicked through before converting. Previously ADS_PREFERRED_LAST_CLICK"
           ],
           "type": "string"
         }
@@ -3544,7 +4999,7 @@
           "type": "string"
         },
         "filterClauses": {
-          "description": "Required. Immutable. null Filter clauses that define the Audience. All clauses will be AND’ed together.",
+          "description": "Required. Immutable. Unordered list. Filter clauses that define the Audience. All clauses will be AND’ed together.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterClause"
           },
@@ -3576,11 +5031,11 @@
           "description": "A filter for numeric or date values between certain values on a dimension or metric."
         },
         "fieldName": {
-          "description": "Required. Immutable. The dimension name or metric name to filter.",
+          "description": "Required. Immutable. The dimension name or metric name to filter. If the field name refers to a custom dimension or metric, a scope prefix will be added to the front of the custom dimensions or metric name. For more on scope prefixes or custom dimensions/metrics, reference the [Google Analytics Data API documentation] (https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#custom_dimensions).",
           "type": "string"
         },
         "inAnyNDayPeriod": {
-          "description": "Optional. If set, specifies the time window for which to evaluate data in number of days. If not set, then audience data is evaluated against lifetime data (i.e., infinite time window). For example, if set to 1 day, only the current day's data is evaluated. The reference point is the current day when at_any_point_in_time is unset or false. It can only be set when Audience scope is ACROSS_ALL_SESSIONS and cannot be greater than 60 days.",
+          "description": "Optional. If set, specifies the time window for which to evaluate data in number of days. If not set, then audience data is evaluated against lifetime data (For example, infinite time window). For example, if set to 1 day, only the current day's data is evaluated. The reference point is the current day when at_any_point_in_time is unset or false. It can only be set when Audience scope is ACROSS_ALL_SESSIONS and cannot be greater than 60 days.",
           "format": "int32",
           "type": "integer"
         },
@@ -3721,7 +5176,7 @@
         },
         "eventParameterFilterExpression": {
           "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpression",
-          "description": "Optional. If specified, this filter matches events that match both the single event name and the parameter filter expressions. AudienceEventFilter inside the parameter filter expression cannot be set (i.e., nested event filters are not supported). This should be a single and_group of dimension_or_metric_filter or not_expression; ANDs of ORs are not supported. Also, if it includes a filter for \"eventCount\", only that one will be considered; all the other filters will be ignored."
+          "description": "Optional. If specified, this filter matches events that match both the single event name and the parameter filter expressions. AudienceEventFilter inside the parameter filter expression cannot be set (For example, nested event filters are not supported). This should be a single and_group of dimension_or_metric_filter or not_expression; ANDs of ORs are not supported. Also, if it includes a filter for \"eventCount\", only that one will be considered; all the other filters will be ignored."
         }
       },
       "type": "object"
@@ -3752,7 +5207,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaAudienceFilterClause": {
-      "description": "A clause for defining either a simple or sequence filter. A filter can be inclusive (i.e., users satisfying the filter clause are included in the Audience) or exclusive (i.e., users satisfying the filter clause are excluded from the Audience).",
+      "description": "A clause for defining either a simple or sequence filter. A filter can be inclusive (For example, users satisfying the filter clause are included in the Audience) or exclusive (For example, users satisfying the filter clause are excluded from the Audience).",
       "id": "GoogleAnalyticsAdminV1alphaAudienceFilterClause",
       "properties": {
         "clauseType": {
@@ -3798,7 +5253,7 @@
         },
         "notExpression": {
           "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpression",
-          "description": "A filter expression to be NOT'ed (i.e., inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level AudienceFilterExpression."
+          "description": "A filter expression to be NOT'ed (For example, inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level AudienceFilterExpression."
         },
         "orGroup": {
           "$ref": "GoogleAnalyticsAdminV1alphaAudienceFilterExpressionList",
@@ -3861,7 +5316,7 @@
       "id": "GoogleAnalyticsAdminV1alphaAudienceSequenceFilterAudienceSequenceStep",
       "properties": {
         "constraintDuration": {
-          "description": "Optional. When set, this step must be satisfied within the constraint_duration of the previous step (i.e., t[i] - t[i-1] <= constraint_duration). If not set, there is no duration requirement (the duration is effectively unlimited). It is ignored for the first step.",
+          "description": "Optional. When set, this step must be satisfied within the constraint_duration of the previous step (For example, t[i] - t[i-1] <= constraint_duration). If not set, there is no duration requirement (the duration is effectively unlimited). It is ignored for the first step.",
           "format": "google-duration",
           "type": "string"
         },
@@ -3982,6 +5437,34 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest": {
+      "description": "Request message for BatchCreateAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The requests specifying the access bindings to create. A maximum of 1000 access bindings can be created in a batch.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse": {
+      "description": "Response message for BatchCreateAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse",
+      "properties": {
+        "accessBindings": {
+          "description": "The access bindings created.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest": {
       "description": "Request message for BatchCreateUserLinks RPC.",
       "id": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest",
@@ -4014,6 +5497,20 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest": {
+      "description": "Request message for BatchDeleteAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The requests specifying the access bindings to delete. A maximum of 1000 access bindings can be deleted in a batch.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest": {
       "description": "Request message for BatchDeleteUserLinks RPC.",
       "id": "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest",
@@ -4028,6 +5525,20 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse": {
+      "description": "Response message for BatchGetAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse",
+      "properties": {
+        "accessBindings": {
+          "description": "The requested access bindings.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse": {
       "description": "Response message for BatchGetUserLinks RPC.",
       "id": "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse",
@@ -4036,6 +5547,34 @@
           "description": "The requested user links.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest": {
+      "description": "Request message for BatchUpdateAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The requests specifying the access bindings to update. A maximum of 1000 access bindings can be updated in a batch.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse": {
+      "description": "Response message for BatchUpdateAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse",
+      "properties": {
+        "accessBindings": {
+          "description": "The access bindings updated.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
           },
           "type": "array"
         }
@@ -4066,6 +5605,58 @@
             "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaBigQueryLink": {
+      "description": "A link between a GA4 Property and BigQuery project.",
+      "id": "GoogleAnalyticsAdminV1alphaBigQueryLink",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the link was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dailyExportEnabled": {
+          "description": "If set true, enables daily data export to the linked Google Cloud project.",
+          "type": "boolean"
+        },
+        "enterpriseExportEnabled": {
+          "description": "If set true, enables enterprise export to the linked Google Cloud project.",
+          "type": "boolean"
+        },
+        "excludedEvents": {
+          "description": "The list of event names that will be excluded from exports.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "exportStreams": {
+          "description": "The list of streams under the parent property for which data will be exported. Format: properties/{property_id}/dataStreams/{stream_id} Example: ['properties/1000/dataStreams/2000']",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeAdvertisingId": {
+          "description": "If set true, exported data will include advertising identifiers for mobile app streams.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. Resource name of this BigQuery link. Format: 'properties/{property_id}/bigQueryLinks/{bigquery_link_id}' Format: 'properties/1234/bigQueryLinks/abc567'",
+          "readOnly": true,
+          "type": "string"
+        },
+        "project": {
+          "description": "Immutable. The linked Google Cloud project. When creating a BigQueryLink, you may provide this resource name using either a project number or project ID. Once this resource has been created, the returned project will always have a project that contains a project number. Format: 'projects/{project number}' Example: 'projects/1234'",
+          "type": "string"
+        },
+        "streamingExportEnabled": {
+          "description": "If set true, enables streaming export to the linked Google Cloud project.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4119,9 +5710,25 @@
           "$ref": "GoogleAnalyticsAdminV1alphaAccount",
           "description": "A snapshot of an Account resource in change history."
         },
+        "adsenseLink": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink",
+          "description": "A snapshot of an AdSenseLink resource in change history."
+        },
         "attributionSettings": {
           "$ref": "GoogleAnalyticsAdminV1alphaAttributionSettings",
           "description": "A snapshot of AttributionSettings resource in change history."
+        },
+        "audience": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAudience",
+          "description": "A snapshot of an Audience resource in change history."
+        },
+        "bigqueryLink": {
+          "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink",
+          "description": "A snapshot of a BigQuery link resource in change history."
+        },
+        "channelGroup": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup",
+          "description": "A snapshot of a ChannelGroup resource in change history."
         },
         "conversionEvent": {
           "$ref": "GoogleAnalyticsAdminV1alphaConversionEvent",
@@ -4150,6 +5757,14 @@
         "displayVideo360AdvertiserLinkProposal": {
           "$ref": "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal",
           "description": "A snapshot of a DisplayVideo360AdvertiserLinkProposal resource in change history."
+        },
+        "enhancedMeasurementSettings": {
+          "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings",
+          "description": "A snapshot of EnhancedMeasurementSettings resource in change history."
+        },
+        "eventCreateRule": {
+          "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule",
+          "description": "A snapshot of an EventCreateRule resource in change history."
         },
         "expandedDataSet": {
           "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet",
@@ -4229,10 +5844,174 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaChannelGroup": {
+      "description": "A resource message representing a Channel Group.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroup",
+      "properties": {
+        "description": {
+          "description": "The description of the Channel Group. Max length of 256 characters.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the Channel Group. Max length of 80 characters.",
+          "type": "string"
+        },
+        "groupingRule": {
+          "description": "Required. The grouping rules of channels. Maximum number of rules is 25.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaGroupingRule"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The resource name for this Channel Group resource. Format: properties/{property}/channelGroups/{channel_group}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "systemDefined": {
+          "description": "Output only. Default Channel Group defined by Google, which cannot be updated.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroupFilter": {
+      "description": "A specific filter for a single dimension.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroupFilter",
+      "properties": {
+        "fieldName": {
+          "description": "Required. Immutable. The dimension name to filter.",
+          "type": "string"
+        },
+        "inListFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter",
+          "description": "A filter for a string dimension that matches a particular list of options."
+        },
+        "stringFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter",
+          "description": "A filter for a string-type dimension that matches a particular pattern."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression": {
+      "description": "A logical expression of Channel Group dimension filters.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression",
+      "properties": {
+        "andGroup": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList",
+          "description": "A list of expressions to be AND’ed together. It can only contain ChannelGroupFilterExpressions with or_group. This must be set for the top level ChannelGroupFilterExpression."
+        },
+        "filter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilter",
+          "description": "A filter on a single dimension. This cannot be set on the top level ChannelGroupFilterExpression."
+        },
+        "notExpression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression",
+          "description": "A filter expression to be NOT'ed (that is inverted, complemented). It can only include a dimension_or_metric_filter. This cannot be set on the top level ChannelGroupFilterExpression."
+        },
+        "orGroup": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList",
+          "description": "A list of expressions to OR’ed together. It cannot contain ChannelGroupFilterExpressions with and_group or or_group."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList": {
+      "description": "A list of Channel Group filter expressions.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList",
+      "properties": {
+        "filterExpressions": {
+          "description": "A list of Channel Group filter expressions.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter": {
+      "description": "A filter for a string dimension that matches a particular list of options. The match is case insensitive.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter",
+      "properties": {
+        "values": {
+          "description": "Required. The list of possible string values to match against. Must be non-empty.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter": {
+      "description": "Filter where the field value is a String. The match is case insensitive.",
+      "id": "GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter",
+      "properties": {
+        "matchType": {
+          "description": "Required. The match type for the string filter.",
+          "enum": [
+            "MATCH_TYPE_UNSPECIFIED",
+            "EXACT",
+            "BEGINS_WITH",
+            "ENDS_WITH",
+            "CONTAINS",
+            "FULL_REGEXP",
+            "PARTIAL_REGEXP"
+          ],
+          "enumDescriptions": [
+            "Default match type.",
+            "Exact match of the string value.",
+            "Begins with the string value.",
+            "Ends with the string value.",
+            "Contains the string value.",
+            "Full regular expression match with the string value.",
+            "Partial regular expression match with the string value."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The string value to be matched against.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaConnectedSiteTag": {
+      "description": "Configuration for a specific Connected Site Tag.",
+      "id": "GoogleAnalyticsAdminV1alphaConnectedSiteTag",
+      "properties": {
+        "displayName": {
+          "description": "Required. User-provided display name for the connected site tag. Must be less than 256 characters.",
+          "type": "string"
+        },
+        "tagId": {
+          "description": "Required. \"Tag ID to forward events to. Also known as the Measurement ID, or the \"G-ID\" (For example: G-12345).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaConversionEvent": {
       "description": "A conversion event in a Google Analytics property.",
       "id": "GoogleAnalyticsAdminV1alphaConversionEvent",
       "properties": {
+        "countingMethod": {
+          "description": "Optional. The method by which conversions will be counted across multiple events within a session. If this value is not provided, it will be set to `ONCE_PER_EVENT`.",
+          "enum": [
+            "CONVERSION_COUNTING_METHOD_UNSPECIFIED",
+            "ONCE_PER_EVENT",
+            "ONCE_PER_SESSION"
+          ],
+          "enumDescriptions": [
+            "Counting method not specified.",
+            "Each Event instance is considered a Conversion.",
+            "An Event instance is considered a Conversion at most once per session per user."
+          ],
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Time when this conversion event was created in the property.",
           "format": "google-datetime",
@@ -4245,7 +6024,7 @@
           "type": "boolean"
         },
         "deletable": {
-          "description": "Output only. If set, this event can currently be deleted via DeleteConversionEvent.",
+          "description": "Output only. If set, this event can currently be deleted with DeleteConversionEvent.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -4259,6 +6038,42 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest": {
+      "description": "Request message for CreateAccessBinding RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest",
+      "properties": {
+        "accessBinding": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding",
+          "description": "Required. The access binding to create."
+        },
+        "parent": {
+          "description": "Required. Formats: - accounts/{account} - properties/{property}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest": {
+      "description": "Request message for CreateConnectedSiteTag RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest",
+      "properties": {
+        "connectedSiteTag": {
+          "$ref": "GoogleAnalyticsAdminV1alphaConnectedSiteTag",
+          "description": "Required. The tag to add to the Universal Analytics property"
+        },
+        "property": {
+          "description": "The Universal Analytics property to create connected site tags for. This API does not support GA4 properties. Format: properties/{universalAnalyticsPropertyId} Example: properties/1234",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse": {
+      "description": "Response message for CreateConnectedSiteTag RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaCreateUserLinkRequest": {
@@ -4302,7 +6117,7 @@
           "type": "string"
         },
         "parameterName": {
-          "description": "Required. Immutable. Tagging parameter name for this custom dimension. If this is a user-scoped dimension, then this is the user property name. If this is an event-scoped dimension, then this is the event parameter name. May only contain alphanumeric and underscore characters, starting with a letter. Max length of 24 characters for user-scoped dimensions, 40 characters for event-scoped dimensions.",
+          "description": "Required. Immutable. Tagging parameter name for this custom dimension. If this is a user-scoped dimension, then this is the user property name. If this is an event-scoped dimension, then this is the event parameter name. If this is an item-scoped dimension, then this is the parameter name found in the eCommerce items array. May only contain alphanumeric and underscore characters, starting with a letter. Max length of 24 characters for user-scoped dimensions, 40 characters for event-scoped dimensions.",
           "type": "string"
         },
         "scope": {
@@ -4310,12 +6125,14 @@
           "enum": [
             "DIMENSION_SCOPE_UNSPECIFIED",
             "EVENT",
-            "USER"
+            "USER",
+            "ITEM"
           ],
           "enumDescriptions": [
             "Scope unknown or not specified.",
             "Dimension scoped to an event.",
-            "Dimension scoped to a user."
+            "Dimension scoped to a user.",
+            "Dimension scoped to eCommerce items"
           ],
           "type": "string"
         }
@@ -4566,7 +6383,7 @@
       "id": "GoogleAnalyticsAdminV1alphaDataStreamWebStreamData",
       "properties": {
         "defaultUri": {
-          "description": "Immutable. Domain name of the web app being measured, or empty. Example: \"http://www.google.com\", \"https://www.google.com\"",
+          "description": "Domain name of the web app being measured, or empty. Example: \"http://www.google.com\", \"https://www.google.com\"",
           "type": "string"
         },
         "firebaseAppId": {
@@ -4575,8 +6392,34 @@
           "type": "string"
         },
         "measurementId": {
-          "description": "Output only. Analytics \"Measurement ID\", without the \"G-\" prefix. Example: \"G-1A2BCD345E\" would just be \"1A2BCD345E\"",
+          "description": "Output only. Analytics Measurement ID. Example: \"G-1A2BCD345E\"",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest": {
+      "description": "Request message for DeleteAccessBinding RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest",
+      "properties": {
+        "name": {
+          "description": "Required. Formats: - accounts/{account}/accessBindings/{accessBinding} - properties/{property}/accessBindings/{accessBinding}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest": {
+      "description": "Request message for DeleteConnectedSiteTag RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest",
+      "properties": {
+        "property": {
+          "description": "The Universal Analytics property to delete connected site tags for. This API does not support GA4 properties. Format: properties/{universalAnalyticsPropertyId} Example: properties/1234",
+          "type": "string"
+        },
+        "tagId": {
+          "description": "Tag ID to forward events to. Also known as the Measurement ID, or the \"G-ID\" (For example: G-12345).",
           "type": "string"
         }
       },
@@ -4668,6 +6511,92 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings": {
+      "description": "Singleton resource under a web DataStream, configuring measurement of additional site interactions and content.",
+      "id": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings",
+      "properties": {
+        "fileDownloadsEnabled": {
+          "description": "If enabled, capture a file download event each time a link is clicked with a common document, compressed file, application, video, or audio extension.",
+          "type": "boolean"
+        },
+        "formInteractionsEnabled": {
+          "description": "If enabled, capture a form interaction event each time a visitor interacts with a form on your website. False by default.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. Resource name of the Enhanced Measurement Settings. Format: properties/{property_id}/dataStreams/{data_stream}/enhancedMeasurementSettings Example: \"properties/1000/dataStreams/2000/enhancedMeasurementSettings\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "outboundClicksEnabled": {
+          "description": "If enabled, capture an outbound click event each time a visitor clicks a link that leads them away from your domain.",
+          "type": "boolean"
+        },
+        "pageChangesEnabled": {
+          "description": "If enabled, capture a page view event each time the website changes the browser history state.",
+          "type": "boolean"
+        },
+        "scrollsEnabled": {
+          "description": "If enabled, capture scroll events each time a visitor gets to the bottom of a page.",
+          "type": "boolean"
+        },
+        "searchQueryParameter": {
+          "description": "Required. URL query parameters to interpret as site search parameters. Max length is 1024 characters. Must not be empty.",
+          "type": "string"
+        },
+        "siteSearchEnabled": {
+          "description": "If enabled, capture a view search results event each time a visitor performs a search on your site (based on a query parameter).",
+          "type": "boolean"
+        },
+        "streamEnabled": {
+          "description": "Indicates whether Enhanced Measurement Settings will be used to automatically measure interactions and content on this web stream. Changing this value does not affect the settings themselves, but determines whether they are respected.",
+          "type": "boolean"
+        },
+        "uriQueryParameter": {
+          "description": "Additional URL query parameters. Max length is 1024 characters.",
+          "type": "string"
+        },
+        "videoEngagementEnabled": {
+          "description": "If enabled, capture video play, progress, and complete events as visitors view embedded videos on your site.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaEventCreateRule": {
+      "description": "An Event Create Rule defines conditions that will trigger the creation of an entirely new event based upon matched criteria of a source event. Additional mutations of the parameters from the source event can be defined. Unlike Event Edit rules, Event Creation Rules have no defined order. They will all be run independently. Event Edit and Event Create rules can't be used to modify an event created from an Event Create rule.",
+      "id": "GoogleAnalyticsAdminV1alphaEventCreateRule",
+      "properties": {
+        "destinationEvent": {
+          "description": "Required. The name of the new event to be created. This value must: * be less than 40 characters * consist only of letters, digits or _ (underscores) * start with a letter",
+          "type": "string"
+        },
+        "eventConditions": {
+          "description": "Required. Must have at least one condition, and can have up to 10 max. Conditions on the source event must match for this rule to be applied.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaMatchingCondition"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Resource name for this EventCreateRule resource. Format: properties/{property}/dataStreams/{data_stream}/eventCreateRules/{event_create_rule}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parameterMutations": {
+          "description": "Parameter mutations define parameter behavior on the new event, and are applied in order. A maximum of 20 mutations can be applied.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaParameterMutation"
+          },
+          "type": "array"
+        },
+        "sourceCopyParameters": {
+          "description": "If true, the source parameters are copied to the new event. If false, or unset, all non-internal parameters are not copied from the source event. Parameter mutations are applied after the parameters have been copied.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaExpandedDataSet": {
       "description": "A resource message representing a GA4 ExpandedDataSet.",
       "id": "GoogleAnalyticsAdminV1alphaExpandedDataSet",
@@ -4684,7 +6613,7 @@
         },
         "dimensionFilterExpression": {
           "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression",
-          "description": "Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the change of encountering `other row`."
+          "description": "Immutable. A logical expression of ExpandedDataSet filters applied to dimension included in the ExpandedDataSet. This filter is used to reduce the number of rows and thus the chance of encountering `other` row."
         },
         "dimensionNames": {
           "description": "Immutable. The list of dimensions included in the ExpandedDataSet. See the [API Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions) for the list of dimension names.",
@@ -4745,7 +6674,7 @@
         },
         "notExpression": {
           "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression",
-          "description": "A filter expression to be NOT'ed (i.e., inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression."
+          "description": "A filter expression to be NOT'ed (that is, inverted, complemented). It must include a dimension_filter. This cannot be set on the top level ExpandedDataSetFilterExpression."
         }
       },
       "type": "object"
@@ -4806,6 +6735,39 @@
         },
         "value": {
           "description": "Required. The string value to be matched against.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest": {
+      "description": "Request for fetching the opt out status for the automated GA4 setup process.",
+      "id": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest",
+      "properties": {
+        "property": {
+          "description": "Required. The UA property to get the opt out status. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internalWebPropertyId} Example: properties/1234",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse": {
+      "description": "Response message for fetching the opt out status for the automated GA4 setup process.",
+      "id": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse",
+      "properties": {
+        "optOut": {
+          "description": "The opt out status for the UA property.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse": {
+      "description": "Response for looking up GA4 property connected to a UA property.",
+      "id": "GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse",
+      "properties": {
+        "property": {
+          "description": "The GA4 property connected to the UA property. An empty string is returned when there is no connected GA4 property. Format: properties/{property_id} Example: properties/1234",
           "type": "string"
         }
       },
@@ -4932,6 +6894,21 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaGroupingRule": {
+      "description": "The rules that govern how traffic is grouped into one channel.",
+      "id": "GoogleAnalyticsAdminV1alphaGroupingRule",
+      "properties": {
+        "displayName": {
+          "description": "Required. Customer defined display name for the channel.",
+          "type": "string"
+        },
+        "expression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression",
+          "description": "Required. The Filter Expression that defines the Grouping Rule."
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails": {
       "description": "Status information for a link proposal.",
       "id": "GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails",
@@ -4982,6 +6959,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListAccessBindingsResponse": {
+      "description": "Response message for ListAccessBindings RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListAccessBindingsResponse",
+      "properties": {
+        "accessBindings": {
+          "description": "List of AccessBindings. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListAccountSummariesResponse": {
       "description": "Response message for ListAccountSummaries RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListAccountSummariesResponse",
@@ -5018,6 +7013,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse": {
+      "description": "Response message for ListAdSenseLinks method.",
+      "id": "GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse",
+      "properties": {
+        "adsenseLinks": {
+          "description": "List of AdSenseLinks.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListAudiencesResponse": {
       "description": "Response message for ListAudiences RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListAudiencesResponse",
@@ -5032,6 +7045,67 @@
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse": {
+      "description": "Response message for ListBigQueryLinks RPC",
+      "id": "GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse",
+      "properties": {
+        "bigqueryLinks": {
+          "description": "List of BigQueryLinks.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListChannelGroupsResponse": {
+      "description": "Response message for ListChannelGroups RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListChannelGroupsResponse",
+      "properties": {
+        "channelGroups": {
+          "description": "List of ChannelGroup. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaChannelGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest": {
+      "description": "Request message for ListConnectedSiteTags RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest",
+      "properties": {
+        "property": {
+          "description": "The Universal Analytics property to fetch connected site tags for. This does not work on GA4 properties. A maximum of 20 connected site tags will be returned. Example Format: `properties/1234`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse": {
+      "description": "Response message for ListConnectedSiteTags RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse",
+      "properties": {
+        "connectedSiteTags": {
+          "description": "The site tags for the Universal Analytics property. A maximum of 20 connected site tags will be returned.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaConnectedSiteTag"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5134,6 +7208,42 @@
           "description": "List of DisplayVideo360AdvertiserLinks.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse": {
+      "description": "Response message for ListEventCreateRules RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse",
+      "properties": {
+        "eventCreateRules": {
+          "description": "List of EventCreateRules. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaEventCreateRule"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse": {
+      "description": "Response message for ListExpandedDataSets RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse",
+      "properties": {
+        "expandedDataSets": {
+          "description": "List of ExpandedDataSet. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaExpandedDataSet"
           },
           "type": "array"
         },
@@ -5252,6 +7362,63 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaMatchingCondition": {
+      "description": "Defines a condition for when an Event Edit or Event Creation rule applies to an event.",
+      "id": "GoogleAnalyticsAdminV1alphaMatchingCondition",
+      "properties": {
+        "comparisonType": {
+          "description": "Required. The type of comparison to be applied to the value.",
+          "enum": [
+            "COMPARISON_TYPE_UNSPECIFIED",
+            "EQUALS",
+            "EQUALS_CASE_INSENSITIVE",
+            "CONTAINS",
+            "CONTAINS_CASE_INSENSITIVE",
+            "STARTS_WITH",
+            "STARTS_WITH_CASE_INSENSITIVE",
+            "ENDS_WITH",
+            "ENDS_WITH_CASE_INSENSITIVE",
+            "GREATER_THAN",
+            "GREATER_THAN_OR_EQUAL",
+            "LESS_THAN",
+            "LESS_THAN_OR_EQUAL",
+            "REGULAR_EXPRESSION",
+            "REGULAR_EXPRESSION_CASE_INSENSITIVE"
+          ],
+          "enumDescriptions": [
+            "Unknown",
+            "Equals, case sensitive",
+            "Equals, case insensitive",
+            "Contains, case sensitive",
+            "Contains, case insensitive",
+            "Starts with, case sensitive",
+            "Starts with, case insensitive",
+            "Ends with, case sensitive",
+            "Ends with, case insensitive",
+            "Greater than",
+            "Greater than or equal",
+            "Less than",
+            "Less than or equal",
+            "regular expression. Only supported for web streams.",
+            "regular expression, case insensitive. Only supported for web streams."
+          ],
+          "type": "string"
+        },
+        "field": {
+          "description": "Required. The name of the field that is compared against for the condition. If 'event_name' is specified this condition will apply to the name of the event. Otherwise the condition will apply to a parameter with the specified name. This value cannot contain spaces.",
+          "type": "string"
+        },
+        "negated": {
+          "description": "Whether or not the result of the comparison should be negated. For example, if `negated` is true, then 'equals' comparisons would function as 'not equals'.",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "Required. The value being compared against for this condition. The runtime implementation may perform type coercion of this value to evaluate this condition based on the type of the parameter value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret": {
       "description": "A secret value used for sending hits to Measurement Protocol.",
       "id": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret",
@@ -5285,6 +7452,21 @@
         "int64Value": {
           "description": "Integer value",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaParameterMutation": {
+      "description": "Defines an event parameter to mutate.",
+      "id": "GoogleAnalyticsAdminV1alphaParameterMutation",
+      "properties": {
+        "parameter": {
+          "description": "Required. The name of the parameter to mutate. This value must: * be less than 40 characters. * be unique across across all mutations within the rule * consist only of letters, digits or _ (underscores) For event edit rules, the name may also be set to 'event_name' to modify the event_name in place.",
+          "type": "string"
+        },
+        "parameterValue": {
+          "description": "Required. The value mutation to perform. * Must be less than 100 characters. * To specify a constant value for the param, use the value's string. * To copy value from another parameter, use syntax like \"[[other_parameter]]\" For more details, see this [help center article](https://support.google.com/analytics/answer/10085872#modify-an-event&zippy=%2Cin-this-article%2Cmodify-parameters).",
           "type": "string"
         }
       },
@@ -5396,7 +7578,7 @@
           "type": "string"
         },
         "propertyType": {
-          "description": "Immutable. The property type for this Property resource. When creating a property, if the type is \"PROPERTY_TYPE_UNSPECIFIED\", then \"ORDINARY_PROPERTY\" will be implied. \"SUBPROPERTY\" and \"ROLLUP_PROPERTY\" types cannot yet be created via Google Analytics Admin API.",
+          "description": "Immutable. The property type for this Property resource. When creating a property, if the type is \"PROPERTY_TYPE_UNSPECIFIED\", then \"ORDINARY_PROPERTY\" will be implied. \"SUBPROPERTY\" and \"ROLLUP_PROPERTY\" types cannot yet be created with the Google Analytics Admin API.",
           "enum": [
             "PROPERTY_TYPE_UNSPECIFIED",
             "PROPERTY_TYPE_ORDINARY",
@@ -5483,7 +7665,7 @@
           "description": "The account to create."
         },
         "redirectUri": {
-          "description": "Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Developers Console as a Redirect URI",
+          "description": "Redirect URI where the user will be sent after accepting Terms of Service. Must be configured in Cloud Console as a Redirect URI.",
           "type": "string"
         }
       },
@@ -5513,7 +7695,7 @@
         },
         "dimensionFilter": {
           "$ref": "GoogleAnalyticsAdminV1alphaAccessFilterExpression",
-          "description": "Dimension filters allow you to restrict report response to specific dimension values which match the filter. For example, filtering on access records of a single user. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter."
+          "description": "Dimension filters let you restrict report response to specific dimension values which match the filter. For example, filtering on access records of a single user. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter."
         },
         "dimensions": {
           "description": "The dimensions requested and displayed in the response. Requests are allowed up to 9 dimensions.",
@@ -5551,7 +7733,7 @@
           "type": "array"
         },
         "returnEntityQuota": {
-          "description": "Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [AccessQuota](#AccessQuota).",
+          "description": "Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [AccessQuota](#AccessQuota). For account-level requests, this field must be false.",
           "type": "boolean"
         },
         "timeZone": {
@@ -5581,7 +7763,7 @@
         },
         "quota": {
           "$ref": "GoogleAnalyticsAdminV1alphaAccessQuota",
-          "description": "The quota state for this Analytics property including this request."
+          "description": "The quota state for this Analytics property including this request. This field doesn't work with account-level requests."
         },
         "rowCount": {
           "description": "The total number of rows in the query result. `rowCount` is independent of the number of rows returned in the response, the `limit` request parameter, and the `offset` request parameter. For example if a query returns 175 rows and includes `limit` of 50 in the API request, the response will contain `rowCount` of 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).",
@@ -5709,7 +7891,11 @@
               "DATA_STREAM",
               "ATTRIBUTION_SETTINGS",
               "EXPANDED_DATA_SET",
-              "CHANNEL_GROUPING"
+              "CHANNEL_GROUP",
+              "ENHANCED_MEASUREMENT_SETTINGS",
+              "ADSENSE_LINK",
+              "AUDIENCE",
+              "EVENT_CREATE_RULE"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -5729,7 +7915,11 @@
               "DataStream resource",
               "AttributionSettings resource",
               "ExpandedDataSet resource",
-              "ChannelGrouping resource"
+              "ChannelGroup resource",
+              "EnhancedMeasurementSettings resource",
+              "AdSenseLink resource",
+              "Audience resource",
+              "EventCreateRule resource"
             ],
             "type": "string"
           },
@@ -5752,6 +7942,38 @@
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest": {
+      "description": "Request for setting the opt out status for the automated GA4 setup process.",
+      "id": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest",
+      "properties": {
+        "optOut": {
+          "description": "The status to set.",
+          "type": "boolean"
+        },
+        "property": {
+          "description": "Required. The UA property to set the opt out status. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internalWebPropertyId} Example: properties/1234",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse": {
+      "description": "Response message for setting the opt out status for the automated GA4 setup process.",
+      "id": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest": {
+      "description": "Request message for UpdateAccessBinding RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest",
+      "properties": {
+        "accessBinding": {
+          "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding",
+          "description": "Required. The access binding to update."
         }
       },
       "type": "object"

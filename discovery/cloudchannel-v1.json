@@ -4,6 +4,9 @@
       "scopes": {
         "https://www.googleapis.com/auth/apps.order": {
           "description": "Manage users on your domain"
+        },
+        "https://www.googleapis.com/auth/apps.reports.usage.readonly": {
+          "description": "View usage reports for your G Suite domain"
         }
       }
     }
@@ -172,7 +175,7 @@
           ]
         },
         "listTransferableOffers": {
-          "description": "List TransferableOffers of a customer based on Cloud Identity ID or Customer Name in the request. Use this method when a reseller gets the entitlement information of an unowned customer. The reseller should provide the customer's Cloud Identity ID or Customer Name. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller and has no auth token. * The customer provided incorrect reseller information when generating auth token. * The reseller account making the request is different from the reseller account in the query. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: List of TransferableOffer for the given customer and SKU.",
+          "description": "List TransferableOffers of a customer based on Cloud Identity ID or Customer Name in the request. Use this method when a reseller gets the entitlement information of an unowned customer. The reseller should provide the customer's Cloud Identity ID or Customer Name. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller and has no auth token. * The customer provided incorrect reseller information when generating auth token. * The reseller account making the request is different from the reseller account in the query. * The reseller is not authorized to transact on this Product. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: List of TransferableOffer for the given customer and SKU.",
           "flatPath": "v1/accounts/{accountsId}:listTransferableOffers",
           "httpMethod": "POST",
           "id": "cloudchannel.accounts.listTransferableOffers",
@@ -439,7 +442,7 @@
             "channelPartnerRepricingConfigs": {
               "methods": {
                 "create": {
-                  "description": "Creates a ChannelPartnerRepricingConfig. Call this method to set modifications for a specific ChannelPartner's bill. You can only create configs if the RepricingConfig.effective_invoice_month is a future month. If needed, you can create a config for the current month, with some restrictions. When creating a config for a future month, make sure there are no existing configs for that RepricingConfig.effective_invoice_month. The following restrictions are for creating configs in the current month. * This functionality is reserved for recovering from an erroneous config, and should not be used for regular business cases. * The new config will not modify exports used with other configs. Changes to the config may be immediate, but may take up to 24 hours. * There is a limit of ten configs for any ChannelPartner or RepricingConfig.effective_invoice_month. * The contained ChannelPartnerRepricingConfig.repricing_config vaule must be different from the value used in the current config for a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated ChannelPartnerRepricingConfig resource, otherwise returns an error.",
+                  "description": "Creates a ChannelPartnerRepricingConfig. Call this method to set modifications for a specific ChannelPartner's bill. You can only create configs if the RepricingConfig.effective_invoice_month is a future month. If needed, you can create a config for the current month, with some restrictions. When creating a config for a future month, make sure there are no existing configs for that RepricingConfig.effective_invoice_month. The following restrictions are for creating configs in the current month. * This functionality is reserved for recovering from an erroneous config, and should not be used for regular business cases. * The new config will not modify exports used with other configs. Changes to the config may be immediate, but may take up to 24 hours. * There is a limit of ten configs for any ChannelPartner or RepricingConfig.EntitlementGranularity.entitlement, for any RepricingConfig.effective_invoice_month. * The contained ChannelPartnerRepricingConfig.repricing_config value must be different from the value used in the current config for a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated ChannelPartnerRepricingConfig resource, otherwise returns an error.",
                   "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/channelPartnerRepricingConfigs",
                   "httpMethod": "POST",
                   "id": "cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.create",
@@ -517,7 +520,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists information about how a Reseller modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * channel partner ID * RepricingConfig.effective_invoice_month * ChannelPartnerRepricingConfig.update_time If unsuccessful, returns an error.",
+                  "description": "Lists information about how a Reseller modifies their bill before sending it to a ChannelPartner. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The ChannelPartnerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the ChannelPartnerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * Channel Partner ID * RepricingConfig.effective_invoice_month * ChannelPartnerRepricingConfig.update_time If unsuccessful, returns an error.",
                   "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/channelPartnerRepricingConfigs",
                   "httpMethod": "GET",
                   "id": "cloudchannel.accounts.channelPartnerLinks.channelPartnerRepricingConfigs.list",
@@ -590,7 +593,7 @@
             "customers": {
               "methods": {
                 "create": {
-                  "description": "Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.",
+                  "description": "Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: * The reseller account making the request is different from the reseller account in the API request. * You are not authorized to create a customer. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.",
                   "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/customers",
                   "httpMethod": "POST",
                   "id": "cloudchannel.accounts.channelPartnerLinks.customers.create",
@@ -668,7 +671,7 @@
                   ]
                 },
                 "import": {
-                  "description": "Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.",
+                  "description": "Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: * The reseller account making the request is different from the reseller account in the API request. * You are not authorized to import the customer. See https://support.google.com/channelservices/answer/9759265 * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.",
                   "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/customers:import",
                   "httpMethod": "POST",
                   "id": "cloudchannel.accounts.channelPartnerLinks.customers.import",
@@ -777,7 +780,7 @@
         "customers": {
           "methods": {
             "create": {
-              "description": "Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.",
+              "description": "Creates a new Customer resource under the reseller or distributor account. Possible error codes: * PERMISSION_DENIED: * The reseller account making the request is different from the reseller account in the API request. * You are not authorized to create a customer. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * Domain field value doesn't match the primary email domain. Return value: The newly created Customer resource.",
               "flatPath": "v1/accounts/{accountsId}/customers",
               "httpMethod": "POST",
               "id": "cloudchannel.accounts.customers.create",
@@ -855,7 +858,7 @@
               ]
             },
             "import": {
-              "description": "Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.",
+              "description": "Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: * The reseller account making the request is different from the reseller account in the API request. * You are not authorized to import the customer. See https://support.google.com/channelservices/answer/9759265 * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.",
               "flatPath": "v1/accounts/{accountsId}/customers:import",
               "httpMethod": "POST",
               "id": "cloudchannel.accounts.customers.import",
@@ -924,7 +927,7 @@
               ]
             },
             "listPurchasableOffers": {
-              "description": "Lists the following: * Offers that you can purchase for a customer. * Offers that you can change for an entitlement. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller * INVALID_ARGUMENT: Required request parameters are missing or invalid.",
+              "description": "Lists the following: * Offers that you can purchase for a customer. * Offers that you can change for an entitlement. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller * The reseller is not authorized to transact on this Product. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: Required request parameters are missing or invalid.",
               "flatPath": "v1/accounts/{accountsId}/customers/{customersId}:listPurchasableOffers",
               "httpMethod": "GET",
               "id": "cloudchannel.accounts.customers.listPurchasableOffers",
@@ -932,6 +935,11 @@
                 "customer"
               ],
               "parameters": {
+                "changeOfferPurchase.billingAccount": {
+                  "description": "Optional. Resource name of the new target Billing Account. Provide this Billing Account when setting up billing for a trial subscription. Format: accounts/{account_id}/billingAccounts/{billing_account_id}. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "changeOfferPurchase.entitlement": {
                   "description": "Required. Resource name of the entitlement. Format: accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}",
                   "location": "query",
@@ -939,6 +947,11 @@
                 },
                 "changeOfferPurchase.newSku": {
                   "description": "Optional. Resource name of the new target SKU. Provide this SKU when upgrading or downgrading an entitlement. Format: products/{product_id}/skus/{sku_id}",
+                  "location": "query",
+                  "type": "string"
+                },
+                "createEntitlementPurchase.billingAccount": {
+                  "description": "Optional. Billing account that the result should be restricted to. Format: accounts/{account_id}/billingAccounts/{billing_account_id}.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1080,7 +1093,7 @@
               ]
             },
             "provisionCloudIdentity": {
-              "description": "Creates a Cloud Identity for the given customer using the customer's information, or the information provided here. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer was not found. * ALREADY_EXISTS: The customer's primary email already exists. Retry after changing the customer's primary contact email. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata contains an instance of OperationMetadata.",
+              "description": "Creates a Cloud Identity for the given customer using the customer's information, or the information provided here. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller. * You are not authorized to provision cloud identity id. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer was not found. * ALREADY_EXISTS: The customer's primary email already exists. Retry after changing the customer's primary contact email. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata contains an instance of OperationMetadata.",
               "flatPath": "v1/accounts/{accountsId}/customers/{customersId}:provisionCloudIdentity",
               "httpMethod": "POST",
               "id": "cloudchannel.accounts.customers.provisionCloudIdentity",
@@ -1107,8 +1120,39 @@
                 "https://www.googleapis.com/auth/apps.order"
               ]
             },
+            "queryEligibleBillingAccounts": {
+              "description": "Lists the billing accounts that are eligible to purchase particular SKUs for a given customer. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: Based on the provided list of SKUs, returns a list of SKU groups that must be purchased using the same billing account and the billing accounts eligible to purchase each SKU group.",
+              "flatPath": "v1/accounts/{accountsId}/customers/{customersId}:queryEligibleBillingAccounts",
+              "httpMethod": "GET",
+              "id": "cloudchannel.accounts.customers.queryEligibleBillingAccounts",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. The resource name of the customer to list eligible billing accounts for. Format: accounts/{account_id}/customers/{customer_id}.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "skus": {
+                  "description": "Required. List of SKUs to list eligible billing accounts for. At least one SKU is required. Format: products/{product_id}/skus/{sku_id}.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}:queryEligibleBillingAccounts",
+              "response": {
+                "$ref": "GoogleCloudChannelV1QueryEligibleBillingAccountsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/apps.order"
+              ]
+            },
             "transferEntitlements": {
-              "description": "Transfers customer entitlements to new reseller. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer or offer resource was not found. * ALREADY_EXISTS: The SKU was already transferred for the customer. * CONDITION_NOT_MET or FAILED_PRECONDITION: * The SKU requires domain verification to transfer, but the domain is not verified. * An Add-On SKU (example, Vault or Drive) is missing the pre-requisite SKU (example, G Suite Basic). * (Developer accounts only) Reseller and resold domain must meet the following naming requirements: * Domain names must start with goog-test. * Domain names must include the reseller domain. * Specify all transferring entitlements. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.",
+              "description": "Transfers customer entitlements to new reseller. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller. * The reseller is not authorized to transact on this Product. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer or offer resource was not found. * ALREADY_EXISTS: The SKU was already transferred for the customer. * CONDITION_NOT_MET or FAILED_PRECONDITION: * The SKU requires domain verification to transfer, but the domain is not verified. * An Add-On SKU (example, Vault or Drive) is missing the pre-requisite SKU (example, G Suite Basic). * (Developer accounts only) Reseller and resold domain must meet the following naming requirements: * Domain names must start with goog-test. * Domain names must include the reseller domain. * Specify all transferring entitlements. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.",
               "flatPath": "v1/accounts/{accountsId}/customers/{customersId}:transferEntitlements",
               "httpMethod": "POST",
               "id": "cloudchannel.accounts.customers.transferEntitlements",
@@ -1168,7 +1212,7 @@
             "customerRepricingConfigs": {
               "methods": {
                 "create": {
-                  "description": "Creates a CustomerRepricingConfig. Call this method to set modifications for a specific customer's bill. You can only create configs if the RepricingConfig.effective_invoice_month is a future month. If needed, you can create a config for the current month, with some restrictions. When creating a config for a future month, make sure there are no existing configs for that RepricingConfig.effective_invoice_month. The following restrictions are for creating configs in the current month. * This functionality is reserved for recovering from an erroneous config, and should not be used for regular business cases. * The new config will not modify exports used with other configs. Changes to the config may be immediate, but may take up to 24 hours. * There is a limit of ten configs for any RepricingConfig.EntitlementGranularity.entitlement or RepricingConfig.effective_invoice_month. * The contained CustomerRepricingConfig.repricing_config vaule must be different from the value used in the current config for a RepricingConfig.EntitlementGranularity.entitlement. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated CustomerRepricingConfig resource, otherwise returns an error.",
+                  "description": "Creates a CustomerRepricingConfig. Call this method to set modifications for a specific customer's bill. You can only create configs if the RepricingConfig.effective_invoice_month is a future month. If needed, you can create a config for the current month, with some restrictions. When creating a config for a future month, make sure there are no existing configs for that RepricingConfig.effective_invoice_month. The following restrictions are for creating configs in the current month. * This functionality is reserved for recovering from an erroneous config, and should not be used for regular business cases. * The new config will not modify exports used with other configs. Changes to the config may be immediate, but may take up to 24 hours. * There is a limit of ten configs for any RepricingConfig.EntitlementGranularity.entitlement, for any RepricingConfig.effective_invoice_month. * The contained CustomerRepricingConfig.repricing_config value must be different from the value used in the current config for a RepricingConfig.EntitlementGranularity.entitlement. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * INVALID_ARGUMENT: Missing or invalid required parameters in the request. Also displays if the updated config is for the current month or past months. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the updated CustomerRepricingConfig resource, otherwise returns an error.",
                   "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/customerRepricingConfigs",
                   "httpMethod": "POST",
                   "id": "cloudchannel.accounts.customers.customerRepricingConfigs.create",
@@ -1246,7 +1290,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * customer ID * RepricingConfig.EntitlementGranularity.entitlement * RepricingConfig.effective_invoice_month * CustomerRepricingConfig.update_time If unsuccessful, returns an error.",
+                  "description": "Lists information about how a Reseller modifies their bill before sending it to a Customer. Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different. * NOT_FOUND: The CustomerRepricingConfig specified does not exist or is not associated with the given account. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the CustomerRepricingConfig resources. The data for each resource is displayed in the ascending order of: * Customer ID * RepricingConfig.EntitlementGranularity.entitlement * RepricingConfig.effective_invoice_month * CustomerRepricingConfig.update_time If unsuccessful, returns an error.",
                   "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/customerRepricingConfigs",
                   "httpMethod": "GET",
                   "id": "cloudchannel.accounts.customers.customerRepricingConfigs.list",
@@ -1459,7 +1503,7 @@
                   ]
                 },
                 "create": {
-                  "description": "Creates an entitlement for a customer. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * There is already a customer entitlement for a SKU from the same product family. * INVALID_VALUE: Make sure the OfferId is valid. If it is, contact Google Channel support for further troubleshooting. * NOT_FOUND: The customer or offer resource was not found. * ALREADY_EXISTS: * The SKU was already purchased for the customer. * The customer's primary email already exists. Retry after changing the customer's primary contact email. * CONDITION_NOT_MET or FAILED_PRECONDITION: * The domain required for purchasing a SKU has not been verified. * A pre-requisite SKU required to purchase an Add-On SKU is missing. For example, Google Workspace Business Starter is required to purchase Vault or Drive. * (Developer accounts only) Reseller and resold domain must meet the following naming requirements: * Domain names must start with goog-test. * Domain names must include the reseller domain. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.",
+                  "description": "Creates an entitlement for a customer. Possible error codes: * PERMISSION_DENIED: * The customer doesn't belong to the reseller. * The reseller is not authorized to transact on this Product. See https://support.google.com/channelservices/answer/9759265 * INVALID_ARGUMENT: * Required request parameters are missing or invalid. * There is already a customer entitlement for a SKU from the same product family. * INVALID_VALUE: Make sure the OfferId is valid. If it is, contact Google Channel support for further troubleshooting. * NOT_FOUND: The customer or offer resource was not found. * ALREADY_EXISTS: * The SKU was already purchased for the customer. * The customer's primary email already exists. Retry after changing the customer's primary contact email. * CONDITION_NOT_MET or FAILED_PRECONDITION: * The domain required for purchasing a SKU has not been verified. * A pre-requisite SKU required to purchase an Add-On SKU is missing. For example, Google Workspace Business Starter is required to purchase Vault or Drive. * (Developer accounts only) Reseller and resold domain must meet the following naming requirements: * Domain names must start with goog-test. * Domain names must include the reseller domain. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.",
                   "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/entitlements",
                   "httpMethod": "POST",
                   "id": "cloudchannel.accounts.customers.entitlements.create",
@@ -1542,6 +1586,47 @@
                   "path": "v1/{+parent}/entitlements",
                   "response": {
                     "$ref": "GoogleCloudChannelV1ListEntitlementsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
+                "listEntitlementChanges": {
+                  "description": "List entitlement history. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different. * INVALID_ARGUMENT: Missing or invalid required fields in the request. * NOT_FOUND: The parent resource doesn't exist. Usually the result of an invalid name parameter. * INTERNAL: Any non-user error related to a technical issue in the backend. In this case, contact CloudChannel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. In this case, contact Cloud Channel support. Return value: List of EntitlementChanges.",
+                  "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/entitlements/{entitlementsId}:listEntitlementChanges",
+                  "httpMethod": "GET",
+                  "id": "cloudchannel.accounts.customers.entitlements.listEntitlementChanges",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filters applied to the list results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of entitlement changes to return. The service may return fewer than this value. If unspecified, returns at most 10 entitlement changes. The maximum value is 50; the server will coerce values above 50.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous CloudChannelService.ListEntitlementChanges call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to CloudChannelService.ListEntitlementChanges must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the entitlement for which to list entitlement changes. The `-` wildcard may be used to match entitlements across a customer. Formats: * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id} * accounts/{account_id}/customers/{customer_id}/entitlements/-",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/customers/[^/]+/entitlements/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:listEntitlementChanges",
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1ListEntitlementChangesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/apps.order"
@@ -1670,6 +1755,11 @@
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "showFutureOffers": {
+                  "description": "Optional. A boolean flag that determines if a response returns future offers 30 days from now. If the show_future_offers is true, the response will only contain offers that are scheduled to be available 30 days from now.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+parent}/offers",
@@ -1679,6 +1769,193 @@
               "scopes": [
                 "https://www.googleapis.com/auth/apps.order"
               ]
+            }
+          }
+        },
+        "reportJobs": {
+          "methods": {
+            "fetchReportResults": {
+              "description": "Retrieves data generated by CloudChannelReportsService.RunReportJob.",
+              "flatPath": "v1/accounts/{accountsId}/reportJobs/{reportJobsId}:fetchReportResults",
+              "httpMethod": "POST",
+              "id": "cloudchannel.accounts.reportJobs.fetchReportResults",
+              "parameterOrder": [
+                "reportJob"
+              ],
+              "parameters": {
+                "reportJob": {
+                  "description": "Required. The report job created by CloudChannelReportsService.RunReportJob. Report_job uses the format: accounts/{account_id}/reportJobs/{report_job_id}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/reportJobs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+reportJob}:fetchReportResults",
+              "request": {
+                "$ref": "GoogleCloudChannelV1FetchReportResultsRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudChannelV1FetchReportResultsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/apps.reports.usage.readonly"
+              ]
+            }
+          }
+        },
+        "reports": {
+          "methods": {
+            "list": {
+              "description": "Lists the reports that RunReportJob can run. These reports include an ID, a description, and the list of columns that will be in the result.",
+              "flatPath": "v1/accounts/{accountsId}/reports",
+              "httpMethod": "GET",
+              "id": "cloudchannel.accounts.reports.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "languageCode": {
+                  "description": "Optional. The BCP-47 language code, such as \"en-US\". If specified, the response is localized to the corresponding language code if the original data sources support it. Default is \"en-US\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. Requested page size of the report. The server might return fewer results than requested. If unspecified, returns 20 reports. The maximum value is 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A token that specifies a page of results beyond the first page. Obtained through ListReportsResponse.next_page_token of the previous CloudChannelReportsService.ListReports call.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The resource name of the partner account to list available reports for. Parent uses the format: accounts/{account_id}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/reports",
+              "response": {
+                "$ref": "GoogleCloudChannelV1ListReportsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/apps.reports.usage.readonly"
+              ]
+            },
+            "run": {
+              "description": "Begins generation of data for a given report. The report identifier is a UID (for example, `613bf59q`). Possible error codes: * PERMISSION_DENIED: The user doesn't have access to this report. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The report identifier was not found. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata contains an instance of OperationMetadata. To get the results of report generation, call CloudChannelReportsService.FetchReportResults with the RunReportJobResponse.report_job.",
+              "flatPath": "v1/accounts/{accountsId}/reports/{reportsId}:run",
+              "httpMethod": "POST",
+              "id": "cloudchannel.accounts.reports.run",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id}/reports/{report_id}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/reports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:run",
+              "request": {
+                "$ref": "GoogleCloudChannelV1RunReportJobRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/apps.reports.usage.readonly"
+              ]
+            }
+          }
+        },
+        "skuGroups": {
+          "methods": {
+            "list": {
+              "description": "Lists the Rebilling supported SKU groups the account is authorized to sell. Reference: https://cloud.google.com/skus/sku-groups Possible Error Codes: * PERMISSION_DENIED: If the account making the request and the account being queried are different, or the account doesn't exist. * INTERNAL: Any non-user error related to technical issues in the backend. In this case, contact Cloud Channel support. Return Value: If successful, the SkuGroup resources. The data for each resource is displayed in the alphabetical order of SKU group display name. The data for each resource is displayed in the ascending order of SkuGroup.display_name If unsuccessful, returns an error.",
+              "flatPath": "v1/accounts/{accountsId}/skuGroups",
+              "httpMethod": "GET",
+              "id": "cloudchannel.accounts.skuGroups.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of SKU groups to return. The service may return fewer than this value. If unspecified, returns a maximum of 1000 SKU groups. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroups.next_page_token of the previous CloudChannelService.ListSkuGroups call.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The resource name of the account from which to list SKU groups. Parent uses the format: accounts/{account}.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/skuGroups",
+              "response": {
+                "$ref": "GoogleCloudChannelV1ListSkuGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/apps.order"
+              ]
+            }
+          },
+          "resources": {
+            "billableSkus": {
+              "methods": {
+                "list": {
+                  "description": "Lists the Billable SKUs in a given SKU group. Possible error codes: PERMISSION_DENIED: If the account making the request and the account being queried for are different, or the account doesn't exist. INVALID_ARGUMENT: Missing or invalid required parameters in the request. INTERNAL: Any non-user error related to technical issue in the backend. In this case, contact cloud channel support. Return Value: If successful, the BillableSku resources. The data for each resource is displayed in the ascending order of: * BillableSku.service_display_name * BillableSku.sku_display_name If unsuccessful, returns an error.",
+                  "flatPath": "v1/accounts/{accountsId}/skuGroups/{skuGroupsId}/billableSkus",
+                  "httpMethod": "GET",
+                  "id": "cloudchannel.accounts.skuGroups.billableSkus.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of SKUs to return. The service may return fewer than this value. If unspecified, returns a maximum of 100000 SKUs. The maximum value is 100000; values above 100000 will be coerced to 100000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroupBillableSkus.next_page_token of the previous CloudChannelService.ListSkuGroupBillableSkus call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Resource name of the SKU group. Format: accounts/{account}/skuGroups/{sku_group}.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/skuGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/billableSkus",
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1ListSkuGroupBillableSkusResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                }
+              }
             }
           }
         }
@@ -1765,7 +2042,7 @@
           ]
         },
         "list": {
-          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
           "flatPath": "v1/operations",
           "httpMethod": "GET",
           "id": "cloudchannel.operations.list",
@@ -1901,7 +2178,7 @@
       }
     }
   },
-  "revision": "20221027",
+  "revision": "20230807",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -1945,6 +2222,72 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1BillableSku": {
+      "description": "Represents the Billable SKU information.",
+      "id": "GoogleCloudChannelV1BillableSku",
+      "properties": {
+        "service": {
+          "description": "Resource name of Service which contains Repricing SKU. Format: services/{service}. Example: \"services/B7D9-FDCB-15D8\".",
+          "type": "string"
+        },
+        "serviceDisplayName": {
+          "description": "Unique human readable name for the Service.",
+          "type": "string"
+        },
+        "sku": {
+          "description": "Resource name of Billable SKU. Format: billableSkus/{sku}. Example: billableSkus/6E1B-6634-470F\".",
+          "type": "string"
+        },
+        "skuDisplayName": {
+          "description": "Unique human readable name for the SKU.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1BillingAccount": {
+      "description": "Represents a billing account.",
+      "id": "GoogleCloudChannelV1BillingAccount",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when this billing account was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "Output only. The 3-letter currency code defined in ISO 4217.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name of the billing account.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name of the billing account. Format: accounts/{account_id}/billingAccounts/{billing_account_id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Output only. The CLDR region code.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1BillingAccountPurchaseInfo": {
+      "description": "Represents a billing account that can be used to make a purchase.",
+      "id": "GoogleCloudChannelV1BillingAccountPurchaseInfo",
+      "properties": {
+        "billingAccount": {
+          "$ref": "GoogleCloudChannelV1BillingAccount",
+          "description": "The billing account resource."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1CancelEntitlementRequest": {
       "description": "Request message for CloudChannelService.CancelEntitlement.",
       "id": "GoogleCloudChannelV1CancelEntitlementRequest",
@@ -1960,6 +2303,10 @@
       "description": "Request message for CloudChannelService.ChangeOffer.",
       "id": "GoogleCloudChannelV1ChangeOfferRequest",
       "properties": {
+        "billingAccount": {
+          "description": "Optional. The billing account resource name that is used to pay for this entitlement when setting up billing on a trial subscription. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.",
+          "type": "string"
+        },
         "offer": {
           "description": "Required. New Offer. Format: accounts/{account_id}/offers/{offer_id}.",
           "type": "string"
@@ -2202,6 +2549,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1Column": {
+      "description": "The definition of a report column. Specifies the data properties in the corresponding position of the report rows.",
+      "id": "GoogleCloudChannelV1Column",
+      "properties": {
+        "columnId": {
+          "description": "The unique name of the column (for example, customer_domain, channel_partner, customer_cost). You can use column IDs in RunReportJobRequest.filter. To see all reports and their columns, call CloudChannelReportsService.ListReports.",
+          "type": "string"
+        },
+        "dataType": {
+          "description": "The type of the values for this column.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "STRING",
+            "INT",
+            "DECIMAL",
+            "MONEY",
+            "DATE",
+            "DATE_TIME"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "ReportValues for this column will use string_value.",
+            "ReportValues for this column will use int_value.",
+            "ReportValues for this column will use decimal_value.",
+            "ReportValues for this column will use money_value.",
+            "ReportValues for this column will use date_value.",
+            "ReportValues for this column will use date_time_value."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The column's display name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1CommitmentSettings": {
       "description": "Commitment settings for commitment-based offers.",
       "id": "GoogleCloudChannelV1CommitmentSettings",
@@ -2221,6 +2605,35 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ConditionalOverride": {
+      "description": "Specifies the override to conditionally apply.",
+      "id": "GoogleCloudChannelV1ConditionalOverride",
+      "properties": {
+        "adjustment": {
+          "$ref": "GoogleCloudChannelV1RepricingAdjustment",
+          "description": "Required. Information about the applied override's adjustment."
+        },
+        "rebillingBasis": {
+          "description": "Required. The RebillingBasis to use for the applied override. Shows the relative cost based on your repricing costs.",
+          "enum": [
+            "REBILLING_BASIS_UNSPECIFIED",
+            "COST_AT_LIST",
+            "DIRECT_CUSTOMER_COST"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Use the list cost, also known as the MSRP.",
+            "Pass through all discounts except the Reseller Program Discount. If this is the default cost base and no adjustments are specified, the output cost will be exactly what the customer would see if they viewed the bill in the Google Cloud Console."
+          ],
+          "type": "string"
+        },
+        "repricingCondition": {
+          "$ref": "GoogleCloudChannelV1RepricingCondition",
+          "description": "Required. Specifies the condition which, if met, will apply the override."
         }
       },
       "type": "object"
@@ -2304,6 +2717,10 @@
           "$ref": "GoogleCloudChannelV1CloudIdentityInfo",
           "description": "Output only. Cloud Identity information for the customer. Populated only if a Cloud Identity account exists for this customer.",
           "readOnly": true
+        },
+        "correlationId": {
+          "description": "Optional. External CRM ID for the customer. Populated only if a CRM ID exists for this customer.",
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. Time when the customer was created.",
@@ -2442,6 +2859,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1DateRange": {
+      "description": "A representation of usage or invoice date ranges.",
+      "id": "GoogleCloudChannelV1DateRange",
+      "properties": {
+        "invoiceEndDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "The latest invoice date (inclusive). If this value is not the last day of a month, this will move it forward to the last day of the given month."
+        },
+        "invoiceStartDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "The earliest invoice date (inclusive). If this value is not the first day of a month, this will move it back to the first day of the given month."
+        },
+        "usageEndDateTime": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "The latest usage date time (exclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage end date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time."
+        },
+        "usageStartDateTime": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "The earliest usage date time (inclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage start date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1EduData": {
       "description": "Required Edu Attributes",
       "id": "GoogleCloudChannelV1EduData",
@@ -2499,6 +2939,10 @@
           "$ref": "GoogleCloudChannelV1AssociationInfo",
           "description": "Association information to other entitlements."
         },
+        "billingAccount": {
+          "description": "Optional. The billing account resource name that is used to pay for this entitlement.",
+          "type": "string"
+        },
         "commitmentSettings": {
           "$ref": "GoogleCloudChannelV1CommitmentSettings",
           "description": "Commitment settings for a commitment-based Offer. Required for commitment based offers."
@@ -2519,7 +2963,7 @@
           "type": "string"
         },
         "parameters": {
-          "description": "Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. The response may include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. - max_units: The maximum assignable units for a flexible offer. - num_units: The total commitment for commitment-based offers.",
+          "description": "Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For Google Cloud billing subaccounts, the following Parameter may be accepted as input: - display_name: The display name of the billing subaccount.",
           "items": {
             "$ref": "GoogleCloudChannelV1Parameter"
           },
@@ -2587,6 +3031,155 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1EntitlementChange": {
+      "description": "Change event entry for Entitlement order history",
+      "id": "GoogleCloudChannelV1EntitlementChange",
+      "properties": {
+        "activationReason": {
+          "description": "The Entitlement's activation reason",
+          "enum": [
+            "ACTIVATION_REASON_UNSPECIFIED",
+            "RESELLER_REVOKED_SUSPENSION",
+            "CUSTOMER_ACCEPTED_PENDING_TOS",
+            "RENEWAL_SETTINGS_CHANGED",
+            "OTHER_ACTIVATION_REASON"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Reseller reactivated a suspended Entitlement.",
+            "Customer accepted pending terms of service.",
+            "Reseller updated the renewal settings on an entitlement that was suspended due to cancellation, and this update reactivated the entitlement.",
+            "Other reasons (Activated temporarily for cancellation, added a payment plan to a trial entitlement, etc.)"
+          ],
+          "type": "string"
+        },
+        "cancellationReason": {
+          "description": "Cancellation reason for the Entitlement.",
+          "enum": [
+            "CANCELLATION_REASON_UNSPECIFIED",
+            "SERVICE_TERMINATED",
+            "RELATIONSHIP_ENDED",
+            "PARTIAL_TRANSFER"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Reseller triggered a cancellation of the service.",
+            "Relationship between the reseller and customer has ended due to a transfer.",
+            "Entitlement transferred away from reseller while still keeping other entitlement(s) with the reseller."
+          ],
+          "type": "string"
+        },
+        "changeType": {
+          "description": "The change action type.",
+          "enum": [
+            "CHANGE_TYPE_UNSPECIFIED",
+            "CREATED",
+            "PRICE_PLAN_SWITCHED",
+            "COMMITMENT_CHANGED",
+            "RENEWED",
+            "SUSPENDED",
+            "ACTIVATED",
+            "CANCELLED",
+            "SKU_CHANGED",
+            "RENEWAL_SETTING_CHANGED",
+            "PAID_SUBSCRIPTION_STARTED",
+            "LICENSE_CAP_CHANGED",
+            "SUSPENSION_DETAILS_CHANGED",
+            "TRIAL_END_DATE_EXTENDED",
+            "TRIAL_STARTED"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "New Entitlement was created.",
+            "Price plan associated with an Entitlement was changed.",
+            "Number of seats committed for a commitment Entitlement was changed.",
+            "An annual Entitlement was renewed.",
+            "Entitlement was suspended.",
+            "Entitlement was activated.",
+            "Entitlement was cancelled.",
+            "Entitlement was upgraded or downgraded for ex. from Google Workspace Business Standard to Google Workspace Business Plus.",
+            "The settings for renewal of an Entitlement have changed.",
+            "Use for Google Workspace subscription. Either a trial was converted to a paid subscription or a new subscription with no trial is created.",
+            "License cap was changed for the entitlement.",
+            "The suspension details have changed (but it is still suspended).",
+            "The trial end date was extended.",
+            "Entitlement started trial."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "The submitted time of the change.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "entitlement": {
+          "description": "Required. Resource name of an entitlement in the form: accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}",
+          "type": "string"
+        },
+        "offer": {
+          "description": "Required. Resource name of the Offer at the time of change. Takes the form: accounts/{account_id}/offers/{offer_id}.",
+          "type": "string"
+        },
+        "operator": {
+          "description": "Human-readable identifier that shows what operator made a change. When the operator_type is RESELLER, this is the user's email address. For all other operator types, this is empty.",
+          "type": "string"
+        },
+        "operatorType": {
+          "description": "Operator type responsible for the change.",
+          "enum": [
+            "OPERATOR_TYPE_UNSPECIFIED",
+            "CUSTOMER_SERVICE_REPRESENTATIVE",
+            "SYSTEM",
+            "CUSTOMER",
+            "RESELLER"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Customer service representative.",
+            "System auto job.",
+            "Customer user.",
+            "Reseller user."
+          ],
+          "type": "string"
+        },
+        "otherChangeReason": {
+          "description": "e.g. purchase_number change reason, entered by CRS.",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Extended parameters, such as: purchase_order_number, gcp_details; internal_correlation_id, long_running_operation_id, order_id; etc.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1Parameter"
+          },
+          "type": "array"
+        },
+        "provisionedService": {
+          "$ref": "GoogleCloudChannelV1ProvisionedService",
+          "description": "Service provisioned for an Entitlement."
+        },
+        "suspensionReason": {
+          "description": "Suspension reason for the Entitlement.",
+          "enum": [
+            "SUSPENSION_REASON_UNSPECIFIED",
+            "RESELLER_INITIATED",
+            "TRIAL_ENDED",
+            "RENEWAL_WITH_TYPE_CANCEL",
+            "PENDING_TOS_ACCEPTANCE",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Entitlement was manually suspended by the Reseller.",
+            "Trial ended.",
+            "Entitlement renewal was canceled.",
+            "Entitlement was automatically suspended on creation for pending ToS acceptance on customer.",
+            "Other reasons (internal reasons, abuse, etc.)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1EntitlementEvent": {
       "description": "Represents Pub/Sub message content describing entitlement update.",
       "id": "GoogleCloudChannelV1EntitlementEvent",
@@ -2628,6 +3221,51 @@
             "License cap was changed for the entitlement."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1FetchReportResultsRequest": {
+      "description": "Request message for CloudChannelReportsService.FetchReportResults.",
+      "id": "GoogleCloudChannelV1FetchReportResultsRequest",
+      "properties": {
+        "pageSize": {
+          "description": "Optional. Requested page size of the report. The server may return fewer results than requested. If you don't specify a page size, the server uses a sensible default (may change over time). The maximum value is 30,000; the server will change larger values to 30,000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A token that specifies a page of results beyond the first page. Obtained through FetchReportResultsResponse.next_page_token of the previous CloudChannelReportsService.FetchReportResults call.",
+          "type": "string"
+        },
+        "partitionKeys": {
+          "description": "Optional. List of keys specifying which report partitions to return. If empty, returns all partitions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1FetchReportResultsResponse": {
+      "description": "Response message for CloudChannelReportsService.FetchReportResults. Contains a tabular representation of the report results.",
+      "id": "GoogleCloudChannelV1FetchReportResultsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Pass this token to FetchReportResultsRequest.page_token to retrieve the next page of results.",
+          "type": "string"
+        },
+        "reportMetadata": {
+          "$ref": "GoogleCloudChannelV1ReportResultsMetadata",
+          "description": "The metadata for the report results (display name, columns, row count, and date ranges)."
+        },
+        "rows": {
+          "description": "The report's lists of values. Each row follows the settings and ordering of the columns from `report_metadata`.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1Row"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2735,6 +3373,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1ListEntitlementChangesResponse": {
+      "description": "Response message for CloudChannelService.ListEntitlementChanges",
+      "id": "GoogleCloudChannelV1ListEntitlementChangesResponse",
+      "properties": {
+        "entitlementChanges": {
+          "description": "The list of entitlement changes.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1EntitlementChange"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to list the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1ListEntitlementsResponse": {
       "description": "Response message for CloudChannelService.ListEntitlements.",
       "id": "GoogleCloudChannelV1ListEntitlementsResponse",
@@ -2825,6 +3481,60 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1ListReportsResponse": {
+      "description": "Response message for CloudChannelReportsService.ListReports.",
+      "id": "GoogleCloudChannelV1ListReportsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Pass this token to FetchReportResultsRequest.page_token to retrieve the next page of results.",
+          "type": "string"
+        },
+        "reports": {
+          "description": "The reports available to the partner.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1Report"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ListSkuGroupBillableSkusResponse": {
+      "description": "Response message for ListSkuGroupBillableSkus.",
+      "id": "GoogleCloudChannelV1ListSkuGroupBillableSkusResponse",
+      "properties": {
+        "billableSkus": {
+          "description": "The list of billable SKUs in the requested SKU group.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1BillableSku"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass to ListSkuGroupBillableSkus.page_token to obtain that page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ListSkuGroupsResponse": {
+      "description": "Response message for ListSkuGroups.",
+      "id": "GoogleCloudChannelV1ListSkuGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass to ListSkuGroups.page_token to obtain that page.",
+          "type": "string"
+        },
+        "skuGroups": {
+          "description": "The list of SKU groups requested.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1SkuGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1ListSkusResponse": {
       "description": "Response message for ListSkus.",
       "id": "GoogleCloudChannelV1ListSkusResponse",
@@ -2869,6 +3579,10 @@
       "description": "Request message for CloudChannelService.ListTransferableOffers",
       "id": "GoogleCloudChannelV1ListTransferableOffersRequest",
       "properties": {
+        "billingAccount": {
+          "description": "Optional. The Billing Account to look up Offers for. Format: accounts/{account_id}/billingAccounts/{billing_account_id}. This field is only relevant for multi-currency accounts. It should be left empty for single currency accounts.",
+          "type": "string"
+        },
         "cloudIdentityId": {
           "description": "Customer's Cloud Identity ID",
           "type": "string"
@@ -3019,6 +3733,10 @@
           "$ref": "GoogleCloudChannelV1Constraints",
           "description": "Constraints on transacting the Offer."
         },
+        "dealCode": {
+          "description": "The deal code of the offer to get a special promotion or discount.",
+          "type": "string"
+        },
         "endTime": {
           "description": "Output only. End of the Offer validity time.",
           "format": "google-datetime",
@@ -3155,13 +3873,15 @@
             "PARAMETER_TYPE_UNSPECIFIED",
             "INT64",
             "STRING",
-            "DOUBLE"
+            "DOUBLE",
+            "BOOLEAN"
           ],
           "enumDescriptions": [
             "Not used.",
             "Int64 type.",
             "String type.",
-            "Double type."
+            "Double type.",
+            "Boolean type."
           ],
           "type": "string"
         }
@@ -3212,7 +3932,7 @@
       "id": "GoogleCloudChannelV1Plan",
       "properties": {
         "billingAccount": {
-          "description": "Reseller Billing account to charge after an offer transaction. Only present for Google Cloud Platform offers.",
+          "description": "Reseller Billing account to charge after an offer transaction. Only present for Google Cloud offers.",
           "type": "string"
         },
         "paymentCycle": {
@@ -3318,8 +4038,8 @@
             "GB (used for storage SKUs).",
             "Active licensed users(for Voice SKUs).",
             "Voice usage.",
-            "For IaaS SKUs like Google Cloud Platform, monetization is based on usage accrued on your billing account irrespective of the type of monetizable resource. This enum represents an aggregated resource/container for all usage SKUs on a billing account. Currently, only applicable to Google Cloud Platform.",
-            "For Google Cloud Platform subscriptions like Anthos or SAP."
+            "For IaaS SKUs like Google Cloud, monetization is based on usage accrued on your billing account irrespective of the type of monetizable resource. This enum represents an aggregated resource/container for all usage SKUs on a billing account. Currently, only applicable to Google Cloud.",
+            "For Google Cloud subscriptions like Anthos or SAP."
           ],
           "type": "string"
         }
@@ -3435,7 +4155,7 @@
           "type": "string"
         },
         "provisioningId": {
-          "description": "Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud Platform, this is the Billing Account ID of the billing subaccount.\"",
+          "description": "Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud, this is the Billing Account ID of the billing subaccount.",
           "readOnly": true,
           "type": "string"
         },
@@ -3465,6 +4185,20 @@
         "sku": {
           "$ref": "GoogleCloudChannelV1Sku",
           "description": "SKU"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1QueryEligibleBillingAccountsResponse": {
+      "description": "Response message for QueryEligibleBillingAccounts.",
+      "id": "GoogleCloudChannelV1QueryEligibleBillingAccountsResponse",
+      "properties": {
+        "skuPurchaseGroups": {
+          "description": "List of SKU purchase groups where each group represents a set of SKUs that must be purchased using the same billing account. Each SKU from [QueryEligibleBillingAccountsRequest.skus] will appear in exactly one SKU group.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1SkuPurchaseGroup"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3530,6 +4264,138 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1Report": {
+      "description": "The ID and description of a report that was used to generate report data. For example, \"Google Cloud Daily Spend\", \"Google Workspace License Activity\", etc.",
+      "id": "GoogleCloudChannelV1Report",
+      "properties": {
+        "columns": {
+          "description": "The list of columns included in the report. This defines the schema of the report results.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1Column"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "A description of other aspects of the report, such as the products it supports.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "A human-readable name for this report.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id}/reports/{report_id}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ReportJob": {
+      "description": "The result of a RunReportJob operation. Contains the name to use in FetchReportResultsRequest.report_job and the status of the operation.",
+      "id": "GoogleCloudChannelV1ReportJob",
+      "properties": {
+        "name": {
+          "description": "Required. The resource name of a report job. Name uses the format: `accounts/{account_id}/reportJobs/{report_job_id}`",
+          "type": "string"
+        },
+        "reportStatus": {
+          "$ref": "GoogleCloudChannelV1ReportStatus",
+          "description": "The current status of report generation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ReportResultsMetadata": {
+      "description": "The features describing the data. Returned by CloudChannelReportsService.RunReportJob and CloudChannelReportsService.FetchReportResults.",
+      "id": "GoogleCloudChannelV1ReportResultsMetadata",
+      "properties": {
+        "dateRange": {
+          "$ref": "GoogleCloudChannelV1DateRange",
+          "description": "The date range of reported usage."
+        },
+        "precedingDateRange": {
+          "$ref": "GoogleCloudChannelV1DateRange",
+          "description": "The usage dates immediately preceding `date_range` with the same duration. Use this to calculate trending usage and costs. This is only populated if you request trending data. For example, if `date_range` is July 1-15, `preceding_date_range` will be June 16-30."
+        },
+        "report": {
+          "$ref": "GoogleCloudChannelV1Report",
+          "description": "Details of the completed report."
+        },
+        "rowCount": {
+          "description": "The total number of rows of data in the final report.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ReportStatus": {
+      "description": "Status of a report generation process.",
+      "id": "GoogleCloudChannelV1ReportStatus",
+      "properties": {
+        "endTime": {
+          "description": "The report generation's completion time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The report generation's start time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The current state of the report generation process.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STARTED",
+            "WRITING",
+            "AVAILABLE",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Report processing started.",
+            "Data generated from the report is being staged.",
+            "Report data is available for access.",
+            "Report failed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ReportValue": {
+      "description": "A single report value.",
+      "id": "GoogleCloudChannelV1ReportValue",
+      "properties": {
+        "dateTimeValue": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "A value of type `google.type.DateTime` (year, month, day, hour, minute, second, and UTC offset or timezone.)"
+        },
+        "dateValue": {
+          "$ref": "GoogleTypeDate",
+          "description": "A value of type `google.type.Date` (year, month, day)."
+        },
+        "decimalValue": {
+          "$ref": "GoogleTypeDecimal",
+          "description": "A value of type `google.type.Decimal`, representing non-integer numeric values."
+        },
+        "intValue": {
+          "description": "A value of type `int`.",
+          "format": "int64",
+          "type": "string"
+        },
+        "moneyValue": {
+          "$ref": "GoogleTypeMoney",
+          "description": "A value of type `google.type.Money` (currency code, whole units, decimal units)."
+        },
+        "stringValue": {
+          "description": "A value of type `string`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1RepricingAdjustment": {
       "description": "A type that represents the various adjustments you can apply to a bill.",
       "id": "GoogleCloudChannelV1RepricingAdjustment",
@@ -3537,6 +4403,17 @@
         "percentageAdjustment": {
           "$ref": "GoogleCloudChannelV1PercentageAdjustment",
           "description": "Flat markup or markdown on an entire bill."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1RepricingCondition": {
+      "description": "Represents the various repricing conditions you can use for a conditional override.",
+      "id": "GoogleCloudChannelV1RepricingCondition",
+      "properties": {
+        "skuGroupCondition": {
+          "$ref": "GoogleCloudChannelV1SkuGroupCondition",
+          "description": "SKU Group condition for override."
         }
       },
       "type": "object"
@@ -3551,7 +4428,14 @@
         },
         "channelPartnerGranularity": {
           "$ref": "GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity",
-          "description": "Applies the repricing configuration at the channel partner level. This is the only supported value for ChannelPartnerRepricingConfig."
+          "description": "Applies the repricing configuration at the channel partner level. Only ChannelPartnerRepricingConfig supports this value."
+        },
+        "conditionalOverrides": {
+          "description": "The conditional overrides to apply for this configuration. If you list multiple overrides, only the first valid override is used. If you don't list any overrides, the API uses the normal adjustment and rebilling basis.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1ConditionalOverride"
+          },
+          "type": "array"
         },
         "effectiveInvoiceMonth": {
           "$ref": "GoogleTypeDate",
@@ -3559,7 +4443,7 @@
         },
         "entitlementGranularity": {
           "$ref": "GoogleCloudChannelV1RepricingConfigEntitlementGranularity",
-          "description": "Applies the repricing configuration at the entitlement level. This is the only supported value for CustomerRepricingConfig."
+          "description": "Applies the repricing configuration at the entitlement level. Note: If a ChannelPartnerRepricingConfig using RepricingConfig.EntitlementGranularity becomes effective, then no existing or future RepricingConfig.ChannelPartnerGranularity will apply to the RepricingConfig.EntitlementGranularity.entitlement. This is the recommended value for both CustomerRepricingConfig and ChannelPartnerRepricingConfig."
         },
         "rebillingBasis": {
           "description": "Required. The RebillingBasis to use for this bill. Specifies the relative cost based on repricing costs you will apply.",
@@ -3595,6 +4479,58 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1Row": {
+      "description": "A row of report values.",
+      "id": "GoogleCloudChannelV1Row",
+      "properties": {
+        "partitionKey": {
+          "description": "The key for the partition this row belongs to. This field is empty if the report is not partitioned.",
+          "type": "string"
+        },
+        "values": {
+          "description": "The list of values in the row.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1ReportValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1RunReportJobRequest": {
+      "description": "Request message for CloudChannelReportsService.RunReportJob.",
+      "id": "GoogleCloudChannelV1RunReportJobRequest",
+      "properties": {
+        "dateRange": {
+          "$ref": "GoogleCloudChannelV1DateRange",
+          "description": "Optional. The range of usage or invoice dates to include in the result."
+        },
+        "filter": {
+          "description": "Optional. A structured string that defines conditions on dimension columns to restrict the report output. Filters support logical operators (AND, OR, NOT) and conditional operators (=, !=, <, >, <=, and >=) using `column_id` as keys. For example: `(customer:\"accounts/C123abc/customers/S456def\" OR customer:\"accounts/C123abc/customers/S789ghi\") AND invoice_start_date.year >= 2022`",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Optional. The BCP-47 language code, such as \"en-US\". If specified, the response is localized to the corresponding language code if the original data sources support it. Default is \"en-US\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1RunReportJobResponse": {
+      "description": "Response message for CloudChannelReportsService.RunReportJob.",
+      "id": "GoogleCloudChannelV1RunReportJobResponse",
+      "properties": {
+        "reportJob": {
+          "$ref": "GoogleCloudChannelV1ReportJob",
+          "description": "Pass `report_job.name` to FetchReportResultsRequest.report_job to retrieve the report's results."
+        },
+        "reportMetadata": {
+          "$ref": "GoogleCloudChannelV1ReportResultsMetadata",
+          "description": "The metadata for the report's results (display name, columns, row count, and date range). If you view this before the operation finishes, you may see incomplete data."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1Sku": {
       "description": "Represents a product's purchasable Stock Keeping Unit (SKU). SKUs represent the different variations of the product. For example, Google Workspace Business Standard and Google Workspace Business Plus are Google Workspace product SKUs.",
       "id": "GoogleCloudChannelV1Sku",
@@ -3610,6 +4546,53 @@
         "product": {
           "$ref": "GoogleCloudChannelV1Product",
           "description": "Product the SKU is associated with."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1SkuGroup": {
+      "description": "Represents the SKU group information.",
+      "id": "GoogleCloudChannelV1SkuGroup",
+      "properties": {
+        "displayName": {
+          "description": "Unique human readable identifier for the SKU group.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name of SKU group. Format: accounts/{account}/skuGroups/{sku_group}. Example: \"accounts/C01234/skuGroups/3d50fd57-3157-4577-a5a9-a219b8490041\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1SkuGroupCondition": {
+      "description": "A condition that applies the override if a line item SKU is found in the SKU group.",
+      "id": "GoogleCloudChannelV1SkuGroupCondition",
+      "properties": {
+        "skuGroup": {
+          "description": "Specifies a SKU group (https://cloud.google.com/skus/sku-groups). Resource name of SKU group. Format: accounts/{account}/skuGroups/{sku_group}. Example: \"accounts/C01234/skuGroups/3d50fd57-3157-4577-a5a9-a219b8490041\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1SkuPurchaseGroup": {
+      "description": "Represents a set of SKUs that must be purchased using the same billing account.",
+      "id": "GoogleCloudChannelV1SkuPurchaseGroup",
+      "properties": {
+        "billingAccountPurchaseInfos": {
+          "description": "List of billing accounts that are eligible to purhcase these SKUs.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1BillingAccountPurchaseInfo"
+          },
+          "type": "array"
+        },
+        "skus": {
+          "description": "Resource names of the SKUs included in this group. Format: products/{product_id}/skus/{sku_id}.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3665,13 +4648,15 @@
             "REASON_UNSPECIFIED",
             "PENDING_TOS_ACCEPTANCE",
             "SKU_NOT_ELIGIBLE",
-            "SKU_SUSPENDED"
+            "SKU_SUSPENDED",
+            "CHANNEL_PARTNER_NOT_AUTHORIZED_FOR_SKU"
           ],
           "enumDescriptions": [
             "Not used.",
             "Reseller needs to accept TOS before transferring the SKU.",
             "Reseller not eligible to sell the SKU.",
-            "SKU subscription is suspended"
+            "SKU subscription is suspended",
+            "The reseller is not authorized to transact on this Product. See https://support.google.com/channelservices/answer/9759265"
           ],
           "type": "string"
         },
@@ -3889,6 +4874,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1alpha1Column": {
+      "description": "The definition of a report column. Specifies the data properties in the corresponding position of the report rows.",
+      "id": "GoogleCloudChannelV1alpha1Column",
+      "properties": {
+        "columnId": {
+          "description": "The unique name of the column (for example, customer_domain, channel_partner, customer_cost). You can use column IDs in RunReportJobRequest.filter. To see all reports and their columns, call CloudChannelReportsService.ListReports.",
+          "type": "string"
+        },
+        "dataType": {
+          "description": "The type of the values for this column.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "STRING",
+            "INT",
+            "DECIMAL",
+            "MONEY",
+            "DATE",
+            "DATE_TIME"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "ReportValues for this column will use string_value.",
+            "ReportValues for this column will use int_value.",
+            "ReportValues for this column will use decimal_value.",
+            "ReportValues for this column will use money_value.",
+            "ReportValues for this column will use date_value.",
+            "ReportValues for this column will use date_time_value."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The column's display name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1alpha1CommitmentSettings": {
       "description": "Commitment settings for commitment-based offers.",
       "id": "GoogleCloudChannelV1alpha1CommitmentSettings",
@@ -3937,11 +4959,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudChannelV1alpha1DateRange": {
+      "description": "A representation of usage or invoice date ranges.",
+      "id": "GoogleCloudChannelV1alpha1DateRange",
+      "properties": {
+        "invoiceEndDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "The latest invoice date (inclusive). If this value is not the last day of a month, this will move it forward to the last day of the given month."
+        },
+        "invoiceStartDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "The earliest invoice date (inclusive). If this value is not the first day of a month, this will move it back to the first day of the given month."
+        },
+        "usageEndDateTime": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "The latest usage date time (exclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage end date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time."
+        },
+        "usageStartDateTime": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "The earliest usage date time (inclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage start date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudChannelV1alpha1Entitlement": {
       "description": "An entitlement is a representation of a customer's ability to use a service.",
       "id": "GoogleCloudChannelV1alpha1Entitlement",
       "properties": {
         "assignedUnits": {
+          "deprecated": true,
           "description": "The current number of users that are assigned a license for the product defined in provisioned_service.skuId. Read-only. Deprecated: Use `parameters` instead.",
           "format": "int32",
           "type": "integer"
@@ -3950,7 +4996,12 @@
           "$ref": "GoogleCloudChannelV1alpha1AssociationInfo",
           "description": "Association information to other entitlements."
         },
+        "billingAccount": {
+          "description": "Optional. The billing account resource name that is used to pay for this entitlement.",
+          "type": "string"
+        },
         "channelPartnerId": {
+          "deprecated": true,
           "description": "Cloud Identity ID of a channel partner who will be the direct reseller for the customer's order. This field is generally used in 2-tier ordering, where the order is placed by a top-level distributor on behalf of their channel partner or reseller. Required for distributors. Deprecated: `channel_partner_id` has been moved to the Customer.",
           "type": "string"
         },
@@ -3965,6 +5016,7 @@
           "type": "string"
         },
         "maxUnits": {
+          "deprecated": true,
           "description": "Maximum number of units for a non commitment-based Offer, such as Flexible, Trial or Free entitlements. For commitment-based entitlements, this is a read-only field, which only the internal support team can update. Deprecated: Use `parameters` instead.",
           "format": "int32",
           "type": "integer"
@@ -3975,6 +5027,7 @@
           "type": "string"
         },
         "numUnits": {
+          "deprecated": true,
           "description": "Number of units for a commitment-based Offer. For example, for seat-based Offers, this would be the number of seats; for license-based Offers, this would be the number of licenses. Required for creating commitment-based Offers. Deprecated: Use `parameters` instead.",
           "format": "int32",
           "type": "integer"
@@ -3984,7 +5037,7 @@
           "type": "string"
         },
         "parameters": {
-          "description": "Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. The response may include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. - max_units: The maximum assignable units for a flexible offer. - num_units: The total commitment for commitment-based offers.",
+          "description": "Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. For Google Workspace, the following Parameters may be accepted as input: - max_units: The maximum assignable units for a flexible offer OR - num_units: The total commitment for commitment-based offers The response may additionally include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. For Google Cloud billing subaccounts, the following Parameter may be accepted as input: - display_name: The display name of the billing subaccount.",
           "items": {
             "$ref": "GoogleCloudChannelV1alpha1Parameter"
           },
@@ -4004,6 +5057,14 @@
             "COMPLETE",
             "PENDING",
             "SUSPENDED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            false
           ],
           "enumDescriptions": [
             "Not used.",
@@ -4206,7 +5267,7 @@
           "type": "string"
         },
         "provisioningId": {
-          "description": "Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud Platform, this is the Billing Account ID of the billing subaccount.\"",
+          "description": "Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud, this is the Billing Account ID of the billing subaccount.",
           "readOnly": true,
           "type": "string"
         },
@@ -4223,6 +5284,7 @@
       "id": "GoogleCloudChannelV1alpha1RenewalSettings",
       "properties": {
         "disableCommitment": {
+          "deprecated": true,
           "description": "If true, disables commitment-based offer on renewal and switches to flexible or pay as you go. Deprecated: Use `payment_plan` instead.",
           "type": "boolean"
         },
@@ -4235,6 +5297,7 @@
           "description": "Describes how frequently the reseller will be billed, such as once per month."
         },
         "paymentOption": {
+          "deprecated": true,
           "description": "Set if enable_renewal=true. Deprecated: Use `payment_cycle` instead.",
           "enum": [
             "PAYMENT_OPTION_UNSPECIFIED",
@@ -4271,6 +5334,126 @@
         "resizeUnitCount": {
           "description": "If true and enable_renewal = true, the unit (for example seats or licenses) will be set to the number of active units at renewal time.",
           "type": "boolean"
+        },
+        "scheduledRenewalOffer": {
+          "description": "Output only. The offer resource name that the entitlement will renew on at the end date. Takes the form: accounts/{account_id}/offers/{offer_id}.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1alpha1Report": {
+      "description": "The ID and description of a report that was used to generate report data. For example, \"Google Cloud Daily Spend\", \"Google Workspace License Activity\", etc.",
+      "id": "GoogleCloudChannelV1alpha1Report",
+      "properties": {
+        "columns": {
+          "description": "The list of columns included in the report. This defines the schema of the report results.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1alpha1Column"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "A description of other aspects of the report, such as the products it supports.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "A human-readable name for this report.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The report's resource name. Specifies the account and report used to generate report data. The report_id identifier is a UID (for example, `613bf59q`). Name uses the format: accounts/{account_id}/reports/{report_id}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1alpha1ReportJob": {
+      "description": "The result of a RunReportJob operation. Contains the name to use in FetchReportResultsRequest.report_job and the status of the operation.",
+      "id": "GoogleCloudChannelV1alpha1ReportJob",
+      "properties": {
+        "name": {
+          "description": "Required. The resource name of a report job. Name uses the format: `accounts/{account_id}/reportJobs/{report_job_id}`",
+          "type": "string"
+        },
+        "reportStatus": {
+          "$ref": "GoogleCloudChannelV1alpha1ReportStatus",
+          "description": "The current status of report generation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1alpha1ReportResultsMetadata": {
+      "description": "The features describing the data. Returned by CloudChannelReportsService.RunReportJob and CloudChannelReportsService.FetchReportResults.",
+      "id": "GoogleCloudChannelV1alpha1ReportResultsMetadata",
+      "properties": {
+        "dateRange": {
+          "$ref": "GoogleCloudChannelV1alpha1DateRange",
+          "description": "The date range of reported usage."
+        },
+        "precedingDateRange": {
+          "$ref": "GoogleCloudChannelV1alpha1DateRange",
+          "description": "The usage dates immediately preceding `date_range` with the same duration. Use this to calculate trending usage and costs. This is only populated if you request trending data. For example, if `date_range` is July 1-15, `preceding_date_range` will be June 16-30."
+        },
+        "report": {
+          "$ref": "GoogleCloudChannelV1alpha1Report",
+          "description": "Details of the completed report."
+        },
+        "rowCount": {
+          "description": "The total number of rows of data in the final report.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1alpha1ReportStatus": {
+      "description": "Status of a report generation process.",
+      "id": "GoogleCloudChannelV1alpha1ReportStatus",
+      "properties": {
+        "endTime": {
+          "description": "The report generation's completion time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The report generation's start time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The current state of the report generation process.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STARTED",
+            "WRITING",
+            "AVAILABLE",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Report processing started.",
+            "Data generated from the report is being staged.",
+            "Report data is available for access.",
+            "Report failed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1alpha1RunReportJobResponse": {
+      "description": "Response message for CloudChannelReportsService.RunReportJob.",
+      "id": "GoogleCloudChannelV1alpha1RunReportJobResponse",
+      "properties": {
+        "reportJob": {
+          "$ref": "GoogleCloudChannelV1alpha1ReportJob",
+          "description": "Pass `report_job.name` to FetchReportResultsRequest.report_job to retrieve the report's results."
+        },
+        "reportMetadata": {
+          "$ref": "GoogleCloudChannelV1alpha1ReportResultsMetadata",
+          "description": "The metadata for the report's results (display name, columns, row count, and date range). If you view this before the operation finishes, you may see incomplete data."
         }
       },
       "type": "object"
@@ -4410,7 +5593,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -4465,6 +5648,57 @@
         },
         "year": {
           "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeDateTime": {
+      "description": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.",
+      "id": "GoogleTypeDateTime",
+      "properties": {
+        "day": {
+          "description": "Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hours": {
+          "description": "Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "timeZone": {
+          "$ref": "GoogleTypeTimeZone",
+          "description": "Time zone."
+        },
+        "utcOffset": {
+          "description": "UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 }.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "year": {
+          "description": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.",
           "format": "int32",
           "type": "integer"
         }
@@ -4556,6 +5790,21 @@
         },
         "sublocality": {
           "description": "Optional. Sublocality of the address. For example, this can be neighborhoods, boroughs, districts.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeTimeZone": {
+      "description": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).",
+      "id": "GoogleTypeTimeZone",
+      "properties": {
+        "id": {
+          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
           "type": "string"
         }
       },

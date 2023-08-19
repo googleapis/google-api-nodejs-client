@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20220627",
+  "revision": "20230327",
   "rootUrl": "https://cloudprofiler.googleapis.com/",
   "schemas": {
     "CreateProfileRequest": {
@@ -225,10 +225,10 @@
       "properties": {
         "deployment": {
           "$ref": "Deployment",
-          "description": "Required. Deployment details."
+          "description": "Deployment details."
         },
         "profileType": {
-          "description": "Required. One or more profile types that the agent is capable of providing.",
+          "description": "One or more profile types that the agent is capable of providing.",
           "items": {
             "enum": [
               "PROFILE_TYPE_UNSPECIFIED",
@@ -338,7 +338,7 @@
     }
   },
   "servicePath": "",
-  "title": "Stackdriver Profiler API",
+  "title": "Cloud Profiler API",
   "version": "v2",
   "version_module": true
 }

@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20220915",
+  "revision": "20230728",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -377,6 +377,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
+          "deprecated": true,
           "description": "Deprecated. Use the `metadata` field instead. Other service-specific data about the request, response, and other activities.",
           "type": "object"
         },
@@ -454,6 +455,10 @@
         "serviceAccountKeyName": {
           "description": "The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example: \"//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}\"",
           "type": "string"
+        },
+        "serviceDelegationHistory": {
+          "$ref": "ServiceDelegationHistory",
+          "description": "Records the history of delegated resource access across Google services."
         },
         "thirdPartyPrincipal": {
           "additionalProperties": {
@@ -1176,12 +1181,14 @@
           "enum": [
             "LOW",
             "HIGH",
-            "DEBUG"
+            "DEBUG",
+            "PROMOTED"
           ],
           "enumDescriptions": [
             "Allows data caching, batching, and aggregation. It provides higher performance with higher data loss risk.",
             "Disables data aggregation to minimize data loss. It is for operations that contains significant monetary value or audit trail. This feature only applies to the client libraries.",
-            "Deprecated. Do not use. Disables data aggregation and enables additional validation logic. It should only be used during the onboarding process. It is only available to Google internal services, and the service must be approved by chemist-dev@google.com in order to use this level."
+            "Deprecated. Do not use. Disables data aggregation and enables additional validation logic. It should only be used during the onboarding process. It is only available to Google internal services, and the service must be approved by chemist-dev@google.com in order to use this level.",
+            "Used internally by Chemist."
           ],
           "type": "string"
         },
@@ -1382,6 +1389,7 @@
       "id": "QuotaInfo",
       "properties": {
         "limitExceeded": {
+          "deprecated": true,
           "description": "Quota Metrics that have exceeded quota limits. For QuotaGroup-based quota, this is QuotaGroup.name For QuotaLimit-based quota, this is QuotaLimit.name See: google.api.Quota Deprecated: Use quota_metrics to get per quota group limit exceeded status.",
           "items": {
             "type": "string"
@@ -1466,14 +1474,12 @@
           "enum": [
             "ACQUIRE",
             "ACQUIRE_BEST_EFFORT",
-            "CHECK",
-            "RELEASE"
+            "CHECK"
           ],
           "enumDescriptions": [
             "Decreases available quota by the cost specified for the operation. If cost is higher than available quota, operation fails and returns error.",
             "Decreases available quota by the cost specified for the operation. If cost is higher than available quota, operation does not fail and available quota goes down to zero but it returns error.",
-            "Does not change any available quota. Only checks if there is enough quota. No lock is placed on the checked tokens neither.",
-            "DEPRECATED: Increases available quota by the operation cost specified for the operation."
+            "Does not change any available quota. Only checks if there is enough quota. No lock is placed on the checked tokens neither."
           ],
           "type": "string"
         }
@@ -1600,7 +1606,7 @@
       "id": "RequestMetadata",
       "properties": {
         "callerIp": {
-          "description": "The IP address of the caller. For caller from internet, this will be public IPv4 or IPv6 address. For caller from a Compute Engine VM with external IP address, this will be the VM's external IP address. For caller from a Compute Engine VM without external IP address, if the VM is in the same organization (or project) as the accessed resource, `caller_ip` will be the VM's internal IPv4 address, otherwise the `caller_ip` will be redacted to \"gce-internal-ip\". See https://cloud.google.com/compute/docs/vpc/ for more information.",
+          "description": "The IP address of the caller. For a caller from the internet, this will be the public IPv4 or IPv6 address. For calls made from inside Google's internal production network from one GCP service to another, `caller_ip` will be redacted to \"private\". For a caller from a Compute Engine VM with a external IP address, `caller_ip` will be the VM's external IP address. For a caller from a Compute Engine VM without a external IP address, if the VM is in the same organization (or project) as the accessed resource, `caller_ip` will be the VM's internal IPv4 address, otherwise `caller_ip` will be redacted to \"gce-internal-ip\". See https://cloud.google.com/compute/docs/vpc/ for more information.",
           "type": "string"
         },
         "callerNetwork": {
@@ -1608,7 +1614,7 @@
           "type": "string"
         },
         "callerSuppliedUserAgent": {
-          "description": "The user agent of the caller. This information is not authenticated and should be treated accordingly. For example: + `google-api-python-client/1.4.0`: The request was made by the Google API client for Python. + `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`: The request was made by the Google Cloud SDK CLI (gcloud). + `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`: The request was made from the `my-project` App Engine app. NOLINT",
+          "description": "The user agent of the caller. This information is not authenticated and should be treated accordingly. For example: + `google-api-python-client/1.4.0`: The request was made by the Google API client for Python. + `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`: The request was made by the Google Cloud SDK CLI (gcloud). + `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`: The request was made from the `my-project` App Engine app.",
           "type": "string"
         },
         "destinationAttributes": {
@@ -1630,7 +1636,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations",
+          "description": "Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
           "type": "object"
         },
         "createTime": {
@@ -1690,6 +1696,10 @@
       "description": "Describes a resource associated with this operation.",
       "id": "ResourceInfo",
       "properties": {
+        "permission": {
+          "description": "The resource permission required for this request.",
+          "type": "string"
+        },
         "resourceContainer": {
           "description": "The identifier of the parent of this resource instance. Must be in one of the following formats: - `projects/` - `folders/` - `organizations/`",
           "type": "string"
@@ -1741,6 +1751,47 @@
         "thirdPartyPrincipal": {
           "$ref": "ThirdPartyPrincipal",
           "description": "Third party identity as the real authority."
+        }
+      },
+      "type": "object"
+    },
+    "ServiceDelegationHistory": {
+      "description": "The history of delegation across multiple services as the result of the original user's action. Such as \"service A uses its own account to do something for user B\". This differs from ServiceAccountDelegationInfo, which only tracks the history of direct token exchanges (impersonation).",
+      "id": "ServiceDelegationHistory",
+      "properties": {
+        "originalPrincipal": {
+          "description": "The original end user who initiated the request to GCP.",
+          "type": "string"
+        },
+        "serviceMetadata": {
+          "description": "Data identifying the service specific jobs or units of work that were involved in a chain of service calls.",
+          "items": {
+            "$ref": "ServiceMetadata"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceMetadata": {
+      "description": "Metadata describing the service and additional service specific information used to identify the job or unit of work at hand.",
+      "id": "ServiceMetadata",
+      "properties": {
+        "jobMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Additional metadata provided by service teams to describe service specific job information that was triggered by the original principal.",
+          "type": "object"
+        },
+        "principalSubject": {
+          "description": "A string representing the principal_subject associated with the identity. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name}[{subject}]` If the identity is a Google account (e.g. workspace user account or service account), this will be the email of the prefixed by `serviceAccount:`. For example: `serviceAccount:my-service-account@project-1.iam.gserviceaccount.com`. If the identity is an individual user, the identity will be formatted as: `user:user_ABC@email.com`.",
+          "type": "string"
+        },
+        "serviceDomain": {
+          "description": "The service's fully qualified domain name, e.g. \"dataproc.googleapis.com\".",
+          "type": "string"
         }
       },
       "type": "object"

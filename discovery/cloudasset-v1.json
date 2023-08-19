@@ -12,7 +12,7 @@
   "baseUrl": "https://cloudasset.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Cloud Asset",
-  "description": "The cloud asset API manages the history and inventory of cloud resources.",
+  "description": "The Cloud Asset API manages the history and inventory of Google Cloud resources.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/asset-inventory/docs/quickstart",
   "fullyEncodeReservedExpansion": true,
@@ -137,8 +137,8 @@
                 "Unspecified content type.",
                 "Resource metadata.",
                 "The actual IAM policy set on a resource.",
-                "The Cloud Organization Policy set on an asset.",
-                "The Cloud Access context manager Policy set on an asset.",
+                "The organization policy set on an asset.",
+                "The Access Context Manager policy set on an asset.",
                 "The runtime OS Inventory information.",
                 "The related resources."
               ],
@@ -233,7 +233,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. The name of the project/folder/organization where this feed should be created in. It can only be an organization number (such as \"organizations/123\"), a folder number (such as \"folders/123\"), a project ID (such as \"projects/my-project-id\")\", or a project number (such as \"projects/12345\").",
+              "description": "Required. The name of the project/folder/organization where this feed should be created in. It can only be an organization number (such as \"organizations/123\"), a folder number (such as \"folders/123\"), a project ID (such as \"projects/my-project-id\"), or a project number (such as \"projects/12345\").",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -397,14 +397,14 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. The name of the project/folder/organization where this saved_query should be created in. It can only be an organization number (such as \"organizations/123\"), a folder number (such as \"folders/123\"), a project ID (such as \"projects/my-project-id\")\", or a project number (such as \"projects/12345\").",
+              "description": "Required. The name of the project/folder/organization where this saved_query should be created in. It can only be an organization number (such as \"organizations/123\"), a folder number (such as \"folders/123\"), a project ID (such as \"projects/my-project-id\"), or a project number (such as \"projects/12345\").",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
               "type": "string"
             },
             "savedQueryId": {
-              "description": "Required. The ID to use for the saved query, which must be unique in the specified parent. It will become the final component of the saved query's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Notice that this field is required in the saved query creation, and the `name` field of the `saved_query` will be ignored.",
+              "description": "Required. The ID to use for the saved query, which must be unique in the specified parent. It will become the final component of the saved query's resource name. This value should be 4-63 characters, and valid characters are `a-z-`. Notice that this field is required in the saved query creation, and the `name` field of the `saved_query` will be ignored.",
               "location": "query",
               "type": "string"
             }
@@ -582,7 +582,7 @@
               "type": "string"
             },
             "analysisQuery.options.analyzeServiceAccountImpersonation": {
-              "description": "Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.AnalyzeIamPolicyLongrunning rpc instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Only the following permissions are considered in this analysis: * `iam.serviceAccounts.actAs` * `iam.serviceAccounts.signBlob` * `iam.serviceAccounts.signJwt` * `iam.serviceAccounts.getAccessToken` * `iam.serviceAccounts.getOpenIdToken` * `iam.serviceAccounts.implicitDelegation` Default is false.",
+              "description": "Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.AnalyzeIamPolicyLongrunning RPC instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a Google Cloud folder F, then user A potentially has access to the Google Cloud folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a Google Cloud folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the Google Cloud folder F, then user A potentially has access to the Google Cloud folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Only the following permissions are considered in this analysis: * `iam.serviceAccounts.actAs` * `iam.serviceAccounts.signBlob` * `iam.serviceAccounts.signJwt` * `iam.serviceAccounts.getAccessToken` * `iam.serviceAccounts.getOpenIdToken` * `iam.serviceAccounts.implicitDelegation` Default is false.",
               "location": "query",
               "type": "boolean"
             },
@@ -592,7 +592,7 @@
               "type": "boolean"
             },
             "analysisQuery.options.expandResources": {
-              "description": "Optional. If true and IamPolicyAnalysisQuery.resource_selector is not specified, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P. If true and IamPolicyAnalysisQuery.resource_selector is specified, the resource section of the result will expand the specified resource to include resources lower in the resource hierarchy. Only project or lower resources are supported. Folder and organization resource cannot be used together with this option. For example, if the request analyzes for which users have permission P on a GCP project with this option enabled, the results will include all users who have permission P on that project or any lower resource. If true, the default max expansion per resource is 1000 for AssetService.AnalyzeIamPolicy][] and 100000 for AssetService.AnalyzeIamPolicyLongrunning][]. Default is false.",
+              "description": "Optional. If true and IamPolicyAnalysisQuery.resource_selector is not specified, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a Google Cloud folder, the results will also include resources in that folder with permission P. If true and IamPolicyAnalysisQuery.resource_selector is specified, the resource section of the result will expand the specified resource to include resources lower in the resource hierarchy. Only project or lower resources are supported. Folder and organization resources cannot be used together with this option. For example, if the request analyzes for which users have permission P on a Google Cloud project with this option enabled, the results will include all users who have permission P on that project or any lower resource. If true, the default max expansion per resource is 1000 for AssetService.AnalyzeIamPolicy][] and 100000 for AssetService.AnalyzeIamPolicyLongrunning][]. Default is false.",
               "location": "query",
               "type": "boolean"
             },
@@ -681,12 +681,12 @@
           ],
           "parameters": {
             "destinationParent": {
-              "description": "Required. Name of the GCP Folder or Organization to reparent the target resource. The analysis will be performed against hypothetically moving the resource to this specified desitination parent. This can only be a Folder number (such as \"folders/123\") or an Organization number (such as \"organizations/123\").",
+              "description": "Required. Name of the Google Cloud folder or organization to reparent the target resource. The analysis will be performed against hypothetically moving the resource to this specified desitination parent. This can only be a folder number (such as \"folders/123\") or an organization number (such as \"organizations/123\").",
               "location": "query",
               "type": "string"
             },
             "resource": {
-              "description": "Required. Name of the resource to perform the analysis against. Only GCP Project are supported as of today. Hence, this can only be Project ID (such as \"projects/my-project-id\") or a Project Number (such as \"projects/12345\").",
+              "description": "Required. Name of the resource to perform the analysis against. Only Google Cloud projects are supported as of today. Hence, this can only be a project ID (such as \"projects/my-project-id\") or a project number (such as \"projects/12345\").",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -711,6 +711,144 @@
           "path": "v1/{+resource}:analyzeMove",
           "response": {
             "$ref": "AnalyzeMoveResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "analyzeOrgPolicies": {
+          "description": "Analyzes organization policies under a scope.",
+          "flatPath": "v1/{v1Id}/{v1Id1}:analyzeOrgPolicies",
+          "httpMethod": "GET",
+          "id": "cloudasset.analyzeOrgPolicies",
+          "parameterOrder": [
+            "scope"
+          ],
+          "parameters": {
+            "constraint": {
+              "description": "Required. The name of the constraint to analyze organization policies for. The response only contains analyzed organization policies for the provided constraint.",
+              "location": "query",
+              "type": "string"
+            },
+            "filter": {
+              "description": "The expression to filter AnalyzeOrgPoliciesResponse.org_policy_results. The only supported field is `consolidated_policy.attached_resource`, and the only supported operator is `=`. Example: consolidated_policy.attached_resource=\"//cloudresourcemanager.googleapis.com/folders/001\" will return the org policy results of\"folders/001\".",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of items to return per page. If unspecified, AnalyzeOrgPoliciesResponse.org_policy_results will contain 20 items with a maximum of 200.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "The pagination token to retrieve the next page.",
+              "location": "query",
+              "type": "string"
+            },
+            "scope": {
+              "description": "Required. The organization to scope the request. Only organization policies within the scope will be analyzed. * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+scope}:analyzeOrgPolicies",
+          "response": {
+            "$ref": "AnalyzeOrgPoliciesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "analyzeOrgPolicyGovernedAssets": {
+          "description": "Analyzes organization policies governed assets (Google Cloud resources or policies) under a scope. This RPC supports custom constraints and the following 10 canned constraints: * storage.uniformBucketLevelAccess * iam.disableServiceAccountKeyCreation * iam.allowedPolicyMemberDomains * compute.vmExternalIpAccess * appengine.enforceServiceAccountActAsCheck * gcp.resourceLocations * compute.trustedImageProjects * compute.skipDefaultNetworkCreation * compute.requireOsLogin * compute.disableNestedVirtualization This RPC only returns either resources of types supported by [searchable asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types), or IAM policies.",
+          "flatPath": "v1/{v1Id}/{v1Id1}:analyzeOrgPolicyGovernedAssets",
+          "httpMethod": "GET",
+          "id": "cloudasset.analyzeOrgPolicyGovernedAssets",
+          "parameterOrder": [
+            "scope"
+          ],
+          "parameters": {
+            "constraint": {
+              "description": "Required. The name of the constraint to analyze governed assets for. The analysis only contains analyzed organization policies for the provided constraint.",
+              "location": "query",
+              "type": "string"
+            },
+            "filter": {
+              "description": "The expression to filter the governed assets in result. The only supported fields for governed resources are `governed_resource.project` and `governed_resource.folders`. The only supported fields for governed iam policies are `governed_iam_policy.project` and `governed_iam_policy.folders`. The only supported operator is `=`. Example 1: governed_resource.project=\"projects/12345678\" filter will return all governed resources under projects/12345678 including the project ifself, if applicable. Example 2: governed_iam_policy.folders=\"folders/12345678\" filter will return all governed iam policies under folders/12345678, if applicable.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of items to return per page. If unspecified, AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets will contain 100 items with a maximum of 200.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "The pagination token to retrieve the next page.",
+              "location": "query",
+              "type": "string"
+            },
+            "scope": {
+              "description": "Required. The organization to scope the request. Only organization policies within the scope will be analyzed. The output assets will also be limited to the ones governed by those in-scope organization policies. * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+scope}:analyzeOrgPolicyGovernedAssets",
+          "response": {
+            "$ref": "AnalyzeOrgPolicyGovernedAssetsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "analyzeOrgPolicyGovernedContainers": {
+          "description": "Analyzes organization policies governed containers (projects, folders or organization) under a scope.",
+          "flatPath": "v1/{v1Id}/{v1Id1}:analyzeOrgPolicyGovernedContainers",
+          "httpMethod": "GET",
+          "id": "cloudasset.analyzeOrgPolicyGovernedContainers",
+          "parameterOrder": [
+            "scope"
+          ],
+          "parameters": {
+            "constraint": {
+              "description": "Required. The name of the constraint to analyze governed containers for. The analysis only contains organization policies for the provided constraint.",
+              "location": "query",
+              "type": "string"
+            },
+            "filter": {
+              "description": "The expression to filter the governed containers in result. The only supported field is `parent`, and the only supported operator is `=`. Example: parent=\"//cloudresourcemanager.googleapis.com/folders/001\" will return all containers under \"folders/001\".",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of items to return per page. If unspecified, AnalyzeOrgPolicyGovernedContainersResponse.governed_containers will contain 100 items with a maximum of 200.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "The pagination token to retrieve the next page.",
+              "location": "query",
+              "type": "string"
+            },
+            "scope": {
+              "description": "Required. The organization to scope the request. Only organization policies within the scope will be analyzed. The output containers will also be limited to the ones governed by those in-scope organization policies. * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+scope}:analyzeOrgPolicyGovernedContainers",
+          "response": {
+            "$ref": "AnalyzeOrgPolicyGovernedContainersResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -746,8 +884,8 @@
                 "Unspecified content type.",
                 "Resource metadata.",
                 "The actual IAM policy set on a resource.",
-                "The Cloud Organization Policy set on an asset.",
-                "The Cloud Access context manager Policy set on an asset.",
+                "The organization policy set on an asset.",
+                "The Access Context Manager policy set on an asset.",
                 "The runtime OS Inventory information.",
                 "The related resources."
               ],
@@ -816,6 +954,34 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "queryAssets": {
+          "description": "Issue a job that queries assets using a SQL statement compatible with [BigQuery SQL](https://cloud.google.com/bigquery/docs/introduction-sql). If the query execution finishes within timeout and there's no pagination, the full query results will be returned in the `QueryAssetsResponse`. Otherwise, full query results can be obtained by issuing extra requests with the `job_reference` from the a previous `QueryAssets` call. Note, the query result has approximately 10 GB limitation enforced by [BigQuery](https://cloud.google.com/bigquery/docs/best-practices-performance-output). Queries return larger results will result in errors.",
+          "flatPath": "v1/{v1Id}/{v1Id1}:queryAssets",
+          "httpMethod": "POST",
+          "id": "cloudasset.queryAssets",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The relative name of the root asset. This can only be an organization number (such as \"organizations/123\"), a project ID (such as \"projects/my-project-id\"), or a project number (such as \"projects/12345\"), or a folder number (such as \"folders/123\"). Only assets belonging to the `parent` will be returned.",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}:queryAssets",
+          "request": {
+            "$ref": "QueryAssetsRequest"
+          },
+          "response": {
+            "$ref": "QueryAssetsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "searchAllIamPolicies": {
           "description": "Searches all IAM policies within the specified scope, such as a project, folder, or organization. The caller must be granted the `cloudasset.assets.searchAllIamPolicies` permission on the desired scope, otherwise the request will be rejected.",
           "flatPath": "v1/{v1Id}/{v1Id1}:searchAllIamPolicies",
@@ -837,7 +1003,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.",
+              "description": "Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero or a negative value, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -848,7 +1014,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Optional. The query statement. See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query) for more information. If not specified or empty, it will search all the IAM policies within the specified `scope`. Note that the query string is compared against each Cloud IAM policy binding, including its principals, roles, and Cloud IAM conditions. The returned Cloud IAM policies will only contain the bindings that match your query. To learn more about the IAM policy structure, see the [IAM policy documentation](https://cloud.google.com/iam/help/allow-policies/structure). Examples: * `policy:amy@gmail.com` to find IAM policy bindings that specify user \"amy@gmail.com\". * `policy:roles/compute.admin` to find IAM policy bindings that specify the Compute Admin role. * `policy:comp*` to find IAM policy bindings that contain \"comp\" as a prefix of any word in the binding. * `policy.role.permissions:storage.buckets.update` to find IAM policy bindings that specify a role containing \"storage.buckets.update\" permission. Note that if callers don't have `iam.roles.get` access to a role's included permissions, policy bindings that specify this role will be dropped from the search results. * `policy.role.permissions:upd*` to find IAM policy bindings that specify a role containing \"upd\" as a prefix of any word in the role permission. Note that if callers don't have `iam.roles.get` access to a role's included permissions, policy bindings that specify this role will be dropped from the search results. * `resource:organizations/123456` to find IAM policy bindings that are set on \"organizations/123456\". * `resource=//cloudresourcemanager.googleapis.com/projects/myproject` to find IAM policy bindings that are set on the project named \"myproject\". * `Important` to find IAM policy bindings that contain \"Important\" as a word in any of the searchable fields (except for the included permissions). * `resource:(instance1 OR instance2) policy:amy` to find IAM policy bindings that are set on resources \"instance1\" or \"instance2\" and also specify user \"amy\". * `roles:roles/compute.admin` to find IAM policy bindings that specify the Compute Admin role. * `memberTypes:user` to find IAM policy bindings that contain the principal type \"user\".",
+              "description": "Optional. The query statement. See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-iam-policies#how_to_construct_a_query) for more information. If not specified or empty, it will search all the IAM policies within the specified `scope`. Note that the query string is compared against each IAM policy binding, including its principals, roles, and IAM conditions. The returned IAM policies will only contain the bindings that match your query. To learn more about the IAM policy structure, see the [IAM policy documentation](https://cloud.google.com/iam/help/allow-policies/structure). Examples: * `policy:amy@gmail.com` to find IAM policy bindings that specify user \"amy@gmail.com\". * `policy:roles/compute.admin` to find IAM policy bindings that specify the Compute Admin role. * `policy:comp*` to find IAM policy bindings that contain \"comp\" as a prefix of any word in the binding. * `policy.role.permissions:storage.buckets.update` to find IAM policy bindings that specify a role containing \"storage.buckets.update\" permission. Note that if callers don't have `iam.roles.get` access to a role's included permissions, policy bindings that specify this role will be dropped from the search results. * `policy.role.permissions:upd*` to find IAM policy bindings that specify a role containing \"upd\" as a prefix of any word in the role permission. Note that if callers don't have `iam.roles.get` access to a role's included permissions, policy bindings that specify this role will be dropped from the search results. * `resource:organizations/123456` to find IAM policy bindings that are set on \"organizations/123456\". * `resource=//cloudresourcemanager.googleapis.com/projects/myproject` to find IAM policy bindings that are set on the project named \"myproject\". * `Important` to find IAM policy bindings that contain \"Important\" as a word in any of the searchable fields (except for the included permissions). * `resource:(instance1 OR instance2) policy:amy` to find IAM policy bindings that are set on resources \"instance1\" or \"instance2\" and also specify user \"amy\". * `roles:roles/compute.admin` to find IAM policy bindings that specify the Compute Admin role. * `memberTypes:user` to find IAM policy bindings that contain the principal type \"user\".",
               "location": "query",
               "type": "string"
             },
@@ -869,7 +1035,7 @@
           ]
         },
         "searchAllResources": {
-          "description": "Searches all Cloud resources within the specified scope, such as a project, folder, or organization. The caller must be granted the `cloudasset.assets.searchAllResources` permission on the desired scope, otherwise the request will be rejected.",
+          "description": "Searches all Google Cloud resources within the specified scope, such as a project, folder, or organization. The caller must be granted the `cloudasset.assets.searchAllResources` permission on the desired scope, otherwise the request will be rejected.",
           "flatPath": "v1/{v1Id}/{v1Id1}:searchAllResources",
           "httpMethod": "GET",
           "id": "cloudasset.searchAllResources",
@@ -889,7 +1055,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.",
+              "description": "Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero or a negative value, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -900,12 +1066,12 @@
               "type": "string"
             },
             "query": {
-              "description": "Optional. The query statement. See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more information. If not specified or empty, it will search all the resources within the specified `scope`. Examples: * `name:Important` to find Cloud resources whose name contains \"Important\" as a word. * `name=Important` to find the Cloud resource whose name is exactly \"Important\". * `displayName:Impor*` to find Cloud resources whose display name contains \"Impor\" as a prefix of any word in the field. * `location:us-west*` to find Cloud resources whose location contains both \"us\" and \"west\" as prefixes. * `labels:prod` to find Cloud resources whose labels contain \"prod\" as a key or value. * `labels.env:prod` to find Cloud resources that have a label \"env\" and its value is \"prod\". * `labels.env:*` to find Cloud resources that have a label \"env\". * `kmsKey:key` to find Cloud resources encrypted with a customer-managed encryption key whose name contains \"key\" as a word. This field is deprecated. Please use the `kmsKeys` field to retrieve KMS key information. * `kmsKeys:key` to find Cloud resources encrypted with customer-managed encryption keys whose name contains the word \"key\". * `relationships:instance-group-1` to find Cloud resources that have relationships with \"instance-group-1\" in the related resource name. * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that have relationships of type \"INSTANCE_TO_INSTANCEGROUP\". * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find compute instances that have relationships with \"instance-group-1\" in the compute instance group resource name, for relationship type \"INSTANCE_TO_INSTANCEGROUP\". * `state:ACTIVE` to find Cloud resources whose state contains \"ACTIVE\" as a word. * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain \"ACTIVE\" as a word. * `createTime<1609459200` to find Cloud resources that were created before \"2021-01-01 00:00:00 UTC\". 1609459200 is the epoch timestamp of \"2021-01-01 00:00:00 UTC\" in seconds. * `updateTime>1609459200` to find Cloud resources that were updated after \"2021-01-01 00:00:00 UTC\". 1609459200 is the epoch timestamp of \"2021-01-01 00:00:00 UTC\" in seconds. * `Important` to find Cloud resources that contain \"Important\" as a word in any of the searchable fields. * `Impor*` to find Cloud resources that contain \"Impor\" as a prefix of any word in any of the searchable fields. * `Important location:(us-west1 OR global)` to find Cloud resources that contain \"Important\" as a word in any of the searchable fields and are also located in the \"us-west1\" region or the \"global\" location.",
+              "description": "Optional. The query statement. See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more information. If not specified or empty, it will search all the resources within the specified `scope`. Examples: * `name:Important` to find Google Cloud resources whose name contains \"Important\" as a word. * `name=Important` to find the Google Cloud resource whose name is exactly \"Important\". * `displayName:Impor*` to find Google Cloud resources whose display name contains \"Impor\" as a prefix of any word in the field. * `location:us-west*` to find Google Cloud resources whose location contains both \"us\" and \"west\" as prefixes. * `labels:prod` to find Google Cloud resources whose labels contain \"prod\" as a key or value. * `labels.env:prod` to find Google Cloud resources that have a label \"env\" and its value is \"prod\". * `labels.env:*` to find Google Cloud resources that have a label \"env\". * `kmsKey:key` to find Google Cloud resources encrypted with a customer-managed encryption key whose name contains \"key\" as a word. This field is deprecated. Please use the `kmsKeys` field to retrieve Cloud KMS key information. * `kmsKeys:key` to find Google Cloud resources encrypted with customer-managed encryption keys whose name contains the word \"key\". * `relationships:instance-group-1` to find Google Cloud resources that have relationships with \"instance-group-1\" in the related resource name. * `relationships:INSTANCE_TO_INSTANCEGROUP` to find Compute Engine instances that have relationships of type \"INSTANCE_TO_INSTANCEGROUP\". * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find Compute Engine instances that have relationships with \"instance-group-1\" in the Compute Engine instance group resource name, for relationship type \"INSTANCE_TO_INSTANCEGROUP\". * `state:ACTIVE` to find Google Cloud resources whose state contains \"ACTIVE\" as a word. * `NOT state:ACTIVE` to find Google Cloud resources whose state doesn't contain \"ACTIVE\" as a word. * `createTime<1609459200` to find Google Cloud resources that were created before \"2021-01-01 00:00:00 UTC\". 1609459200 is the epoch timestamp of \"2021-01-01 00:00:00 UTC\" in seconds. * `updateTime>1609459200` to find Google Cloud resources that were updated after \"2021-01-01 00:00:00 UTC\". 1609459200 is the epoch timestamp of \"2021-01-01 00:00:00 UTC\" in seconds. * `Important` to find Google Cloud resources that contain \"Important\" as a word in any of the searchable fields. * `Impor*` to find Google Cloud resources that contain \"Impor\" as a prefix of any word in any of the searchable fields. * `Important location:(us-west1 OR global)` to find Google Cloud resources that contain \"Important\" as a word in any of the searchable fields and are also located in the \"us-west1\" region or the \"global\" location.",
               "location": "query",
               "type": "string"
             },
             "readMask": {
-              "description": "Optional. A comma-separated list of fields specifying which fields to be returned in ResourceSearchResult. Only '*' or combination of top level fields can be specified. Field names of both snake_case and camelCase are supported. Examples: `\"*\"`, `\"name,location\"`, `\"name,versionedResources\"`. The read_mask paths must be valid field paths listed but not limited to (both snake_case and camelCase are supported): * name * assetType * project * displayName * description * location * tagKeys * tagValues * tagValueIds * labels * networkTags * kmsKey (This field is deprecated. Please use the `kmsKeys` field to retrieve KMS key information.) * kmsKeys * createTime * updateTime * state * additionalAttributes * versionedResources If read_mask is not specified, all fields except versionedResources will be returned. If only '*' is specified, all fields including versionedResources will be returned. Any invalid field path will trigger INVALID_ARGUMENT error.",
+              "description": "Optional. A comma-separated list of fields that you want returned in the results. The following fields are returned by default if not specified: * `name` * `assetType` * `project` * `folders` * `organization` * `displayName` * `description` * `location` * `labels` * `networkTags` * `kmsKeys` * `createTime` * `updateTime` * `state` * `additionalAttributes` * `parentFullResourceName` * `parentAssetType` Some fields of large size, such as `versionedResources` and `attachedResources`, are not returned by default, but you can specify them in the `read_mask` parameter if you want to include them. If `\"*\"` is specified, all [available fields](https://cloud.google.com/asset-inventory/docs/reference/rest/v1/TopLevel/searchAllResources#resourcesearchresult) are returned. Examples: `\"name,location\"`, `\"name,versionedResources\"`, `\"*\"`. Any invalid field path will trigger INVALID_ARGUMENT error.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -929,7 +1095,7 @@
       }
     }
   },
-  "revision": "20221021",
+  "revision": "20230805",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -954,7 +1120,7 @@
       "type": "object"
     },
     "AnalyzeIamPolicyLongrunningMetadata": {
-      "description": "Represents the metadata of the longrunning operation for the AnalyzeIamPolicyLongrunning rpc.",
+      "description": "Represents the metadata of the longrunning operation for the AnalyzeIamPolicyLongrunning RPC.",
       "id": "AnalyzeIamPolicyLongrunningMetadata",
       "properties": {
         "createTime": {
@@ -1018,7 +1184,7 @@
       "id": "AnalyzeMoveResponse",
       "properties": {
         "moveAnalysis": {
-          "description": "The list of analyses returned from performing the intended resource move analysis. The analysis is grouped by different Cloud services.",
+          "description": "The list of analyses returned from performing the intended resource move analysis. The analysis is grouped by different Google Cloud services.",
           "items": {
             "$ref": "MoveAnalysis"
           },
@@ -1027,8 +1193,119 @@
       },
       "type": "object"
     },
+    "AnalyzeOrgPoliciesResponse": {
+      "description": "The response message for AssetService.AnalyzeOrgPolicies.",
+      "id": "AnalyzeOrgPoliciesResponse",
+      "properties": {
+        "constraint": {
+          "$ref": "AnalyzerOrgPolicyConstraint",
+          "description": "The definition of the constraint in the request."
+        },
+        "nextPageToken": {
+          "description": "The page token to fetch the next page for AnalyzeOrgPoliciesResponse.org_policy_results.",
+          "type": "string"
+        },
+        "orgPolicyResults": {
+          "description": "The organization policies under the AnalyzeOrgPoliciesRequest.scope with the AnalyzeOrgPoliciesRequest.constraint.",
+          "items": {
+            "$ref": "OrgPolicyResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AnalyzeOrgPolicyGovernedAssetsResponse": {
+      "description": "The response message for AssetService.AnalyzeOrgPolicyGovernedAssets.",
+      "id": "AnalyzeOrgPolicyGovernedAssetsResponse",
+      "properties": {
+        "constraint": {
+          "$ref": "AnalyzerOrgPolicyConstraint",
+          "description": "The definition of the constraint in the request."
+        },
+        "governedAssets": {
+          "description": "The list of the analyzed governed assets.",
+          "items": {
+            "$ref": "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedAsset"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The page token to fetch the next page for AnalyzeOrgPolicyGovernedAssetsResponse.governed_assets.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AnalyzeOrgPolicyGovernedContainersResponse": {
+      "description": "The response message for AssetService.AnalyzeOrgPolicyGovernedContainers.",
+      "id": "AnalyzeOrgPolicyGovernedContainersResponse",
+      "properties": {
+        "constraint": {
+          "$ref": "AnalyzerOrgPolicyConstraint",
+          "description": "The definition of the constraint in the request."
+        },
+        "governedContainers": {
+          "description": "The list of the analyzed governed containers.",
+          "items": {
+            "$ref": "GoogleCloudAssetV1GovernedContainer"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The page token to fetch the next page for AnalyzeOrgPolicyGovernedContainersResponse.governed_containers.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AnalyzerOrgPolicy": {
+      "description": "This organization policy message is a modified version of the one defined in the Organization Policy system. This message contains several fields defined in the original organization policy with some new fields for analysis purpose.",
+      "id": "AnalyzerOrgPolicy",
+      "properties": {
+        "appliedResource": {
+          "description": "The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of an organization/folder/project resource where this organization policy applies to. For any user defined org policies, this field has the same value as the [attached_resource] field. Only for default policy, this field has the different value.",
+          "type": "string"
+        },
+        "attachedResource": {
+          "description": "The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of an organization/folder/project resource where this organization policy is set. Notice that some type of constraints are defined with default policy. This field will be empty for them.",
+          "type": "string"
+        },
+        "inheritFromParent": {
+          "description": "If `inherit_from_parent` is true, Rules set higher up in the hierarchy (up to the closest root) are inherited and present in the effective policy. If it is false, then no rules are inherited, and this policy becomes the effective root for evaluation.",
+          "type": "boolean"
+        },
+        "reset": {
+          "description": "Ignores policies set above this resource and restores the default behavior of the constraint at this resource. This field can be set in policies for either list or boolean constraints. If set, `rules` must be empty and `inherit_from_parent` must be set to false.",
+          "type": "boolean"
+        },
+        "rules": {
+          "description": "List of rules for this organization policy.",
+          "items": {
+            "$ref": "GoogleCloudAssetV1Rule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AnalyzerOrgPolicyConstraint": {
+      "description": "The organization policy constraint definition.",
+      "id": "AnalyzerOrgPolicyConstraint",
+      "properties": {
+        "customConstraint": {
+          "$ref": "GoogleCloudAssetV1CustomConstraint",
+          "description": "The definition of the custom constraint."
+        },
+        "googleDefinedConstraint": {
+          "$ref": "GoogleCloudAssetV1Constraint",
+          "description": "The definition of the canned constraint defined by Google."
+        }
+      },
+      "type": "object"
+    },
     "Asset": {
-      "description": "An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy), or a relationship (e.g. an INSTANCE_TO_INSTANCEGROUP relationship). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
+      "description": "An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. IAM policy), or a relationship (e.g. an INSTANCE_TO_INSTANCEGROUP relationship). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
       "id": "Asset",
       "properties": {
         "accessLevel": {
@@ -1052,7 +1329,7 @@
         },
         "iamPolicy": {
           "$ref": "Policy",
-          "description": "A representation of the Cloud IAM policy set on a Google Cloud resource. There can be a maximum of one Cloud IAM policy set on any given resource. In addition, Cloud IAM policies inherit their granted access scope from any policies set on parent resources in the resource hierarchy. Therefore, the effectively policy is the union of both the policy set on this resource and each policy set on all of the resource's ancestry resource levels in the hierarchy. See [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance) for more information."
+          "description": "A representation of the IAM policy set on a Google Cloud resource. There can be a maximum of one IAM policy set on any given resource. In addition, IAM policies inherit their granted access scope from any policies set on parent resources in the resource hierarchy. Therefore, the effectively policy is the union of both the policy set on this resource and each policy set on all of the resource's ancestry resource levels in the hierarchy. See [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance) for more information."
         },
         "name": {
           "description": "The full name of the asset. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1` See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.",
@@ -1075,6 +1352,7 @@
         },
         "relatedAssets": {
           "$ref": "RelatedAssets",
+          "deprecated": true,
           "description": "DEPRECATED. This field only presents for the purpose of backward-compatibility. The server will never generate responses with this field. The related assets of the asset of one relationship type. One asset only represents one type of relationship."
         },
         "resource": {
@@ -1223,7 +1501,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
           "items": {
             "type": "string"
           },
@@ -1372,8 +1650,8 @@
             "Unspecified content type.",
             "Resource metadata.",
             "The actual IAM policy set on a resource.",
-            "The Cloud Organization Policy set on an asset.",
-            "The Cloud Access context manager Policy set on an asset.",
+            "The organization policy set on an asset.",
+            "The Access Context Manager policy set on an asset.",
             "The runtime OS Inventory information.",
             "The related resources."
           ],
@@ -1458,8 +1736,8 @@
             "Unspecified content type.",
             "Resource metadata.",
             "The actual IAM policy set on a resource.",
-            "The Cloud Organization Policy set on an asset.",
-            "The Cloud Access context manager Policy set on an asset.",
+            "The organization policy set on an asset.",
+            "The Access Context Manager policy set on an asset.",
             "The runtime OS Inventory information.",
             "The related resources."
           ],
@@ -1499,11 +1777,11 @@
       "id": "GcsDestination",
       "properties": {
         "uri": {
-          "description": "The uri of the Cloud Storage object. It's the same uri that is used by gsutil. Example: \"gs://bucket_name/object_name\". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information. If the specified Cloud Storage object already exists and there is no [hold](https://cloud.google.com/storage/docs/object-holds), it will be overwritten with the exported result.",
+          "description": "The URI of the Cloud Storage object. It's the same URI that is used by gsutil. Example: \"gs://bucket_name/object_name\". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information. If the specified Cloud Storage object already exists and there is no [hold](https://cloud.google.com/storage/docs/object-holds), it will be overwritten with the exported result.",
           "type": "string"
         },
         "uriPrefix": {
-          "description": "The uri prefix of all generated Cloud Storage objects. Example: \"gs://bucket_name/object_name_prefix\". Each object uri is in format: \"gs://bucket_name/object_name_prefix// and only contains assets for that type. starts from 0. Example: \"gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0\" is the first shard of output objects containing all compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be returned if file with the same name \"gs://bucket_name/object_name_prefix\" already exists.",
+          "description": "The URI prefix of all generated Cloud Storage objects. Example: \"gs://bucket_name/object_name_prefix\". Each object URI is in format: \"gs://bucket_name/object_name_prefix// and only contains assets for that type. starts from 0. Example: \"gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0\" is the first shard of output objects containing all compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be returned if file with the same name \"gs://bucket_name/object_name_prefix\" already exists.",
           "type": "string"
         }
       },
@@ -1560,6 +1838,92 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedAsset": {
+      "description": "Represents a Google Cloud asset(resource or IAM policy) governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.",
+      "id": "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedAsset",
+      "properties": {
+        "consolidatedPolicy": {
+          "$ref": "AnalyzerOrgPolicy",
+          "description": "The consolidated policy for the analyzed asset. The consolidated policy is computed by merging and evaluating AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset.policy_bundle. The evaluation will respect the organization policy [hierarchy rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy)."
+        },
+        "governedIamPolicy": {
+          "$ref": "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy",
+          "description": "An IAM policy governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint."
+        },
+        "governedResource": {
+          "$ref": "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource",
+          "description": "A Google Cloud resource governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint."
+        },
+        "policyBundle": {
+          "description": "The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.",
+          "items": {
+            "$ref": "AnalyzerOrgPolicy"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy": {
+      "description": "The IAM policies governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.",
+      "id": "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy",
+      "properties": {
+        "attachedResource": {
+          "description": "The full resource name of the resource on which this IAM policy is set. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information.",
+          "type": "string"
+        },
+        "folders": {
+          "description": "The folder(s) that this IAM policy belongs to, in the format of folders/{FOLDER_NUMBER}. This field is available when the IAM policy belongs (directly or cascadingly) to one or more folders.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "organization": {
+          "description": "The organization that this IAM policy belongs to, in the format of organizations/{ORGANIZATION_NUMBER}. This field is available when the IAM policy belongs (directly or cascadingly) to an organization.",
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "Policy",
+          "description": "The IAM policy directly set on the given resource."
+        },
+        "project": {
+          "description": "The project that this IAM policy belongs to, in the format of projects/{PROJECT_NUMBER}. This field is available when the IAM policy belongs to a project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource": {
+      "description": "The Google Cloud resources governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint.",
+      "id": "GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource",
+      "properties": {
+        "folders": {
+          "description": "The folder(s) that this resource belongs to, in the format of folders/{FOLDER_NUMBER}. This field is available when the resource belongs (directly or cascadingly) to one or more folders.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fullResourceName": {
+          "description": "The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of the Google Cloud resource.",
+          "type": "string"
+        },
+        "organization": {
+          "description": "The organization that this resource belongs to, in the format of organizations/{ORGANIZATION_NUMBER}. This field is available when the resource belongs (directly or cascadingly) to an organization.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of the parent of AnalyzeOrgPolicyGovernedAssetsResponse.GovernedResource.full_resource_name.",
+          "type": "string"
+        },
+        "project": {
+          "description": "The project that this resource belongs to, in the format of projects/{PROJECT_NUMBER}. This field is available when the resource belongs to a project.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssetV1BigQueryDestination": {
       "description": "A BigQuery destination.",
       "id": "GoogleCloudAssetV1BigQueryDestination",
@@ -1591,6 +1955,116 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssetV1BooleanConstraint": {
+      "description": "A `Constraint` that is either enforced or not. For example a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.",
+      "id": "GoogleCloudAssetV1BooleanConstraint",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAssetV1Constraint": {
+      "description": "The definition of a constraint.",
+      "id": "GoogleCloudAssetV1Constraint",
+      "properties": {
+        "booleanConstraint": {
+          "$ref": "GoogleCloudAssetV1BooleanConstraint",
+          "description": "Defines this constraint as being a BooleanConstraint."
+        },
+        "constraintDefault": {
+          "description": "The evaluation behavior of this constraint in the absence of 'Policy'.",
+          "enum": [
+            "CONSTRAINT_DEFAULT_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "This is only used for distinguishing unset values and should never be used.",
+            "Indicate that all values are allowed for list constraints. Indicate that enforcement is off for boolean constraints.",
+            "Indicate that all values are denied for list constraints. Indicate that enforcement is on for boolean constraints."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Detailed description of what this `Constraint` controls as well as how and where it is enforced.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The human readable name of the constraint.",
+          "type": "string"
+        },
+        "listConstraint": {
+          "$ref": "GoogleCloudAssetV1ListConstraint",
+          "description": "Defines this constraint as being a ListConstraint."
+        },
+        "name": {
+          "description": "The unique name of the constraint. Format of the name should be * `constraints/{constraint_name}` For example, `constraints/compute.disableSerialPortAccess`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1CustomConstraint": {
+      "description": "The definition of a custom constraint.",
+      "id": "GoogleCloudAssetV1CustomConstraint",
+      "properties": {
+        "actionType": {
+          "description": "Allow or deny type.",
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Will results in user error.",
+            "Allowed action type.",
+            "Deny action type."
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "description": "Organization Policy condition/expression. For example: `resource.instanceName.matches(\"[production|test]_.*_(\\d)+\")'` or, `resource.management.auto_upgrade == true`",
+          "type": "string"
+        },
+        "description": {
+          "description": "Detailed information about this custom policy constraint.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "One line display name for the UI.",
+          "type": "string"
+        },
+        "methodTypes": {
+          "description": "All the operations being applied for this constraint.",
+          "items": {
+            "enum": [
+              "METHOD_TYPE_UNSPECIFIED",
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ],
+            "enumDescriptions": [
+              "Unspecified. Will results in user error.",
+              "Constraint applied when creating the resource.",
+              "Constraint applied when updating the resource.",
+              "Constraint applied when deleting the resource."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example : \"organizations/123/customConstraints/custom.createOnlyE2TypeVms\"",
+          "type": "string"
+        },
+        "resourceTypes": {
+          "description": "The Resource Instance type on which this policy applies to. Format will be of the form : \"/\" Example: * `compute.googleapis.com/Instance`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssetV1Edge": {
       "description": "A directional edge.",
       "id": "GoogleCloudAssetV1Edge",
@@ -1611,8 +2085,34 @@
       "id": "GoogleCloudAssetV1GcsDestination",
       "properties": {
         "uri": {
-          "description": "Required. The uri of the Cloud Storage object. It's the same uri that is used by gsutil. Example: \"gs://bucket_name/object_name\". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information. If the specified Cloud Storage object already exists and there is no [hold](https://cloud.google.com/storage/docs/object-holds), it will be overwritten with the analysis result.",
+          "description": "Required. The URI of the Cloud Storage object. It's the same URI that is used by gsutil. Example: \"gs://bucket_name/object_name\". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information. If the specified Cloud Storage object already exists and there is no [hold](https://cloud.google.com/storage/docs/object-holds), it will be overwritten with the analysis result.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1GovernedContainer": {
+      "description": "The organization/folder/project resource governed by organization policies of AnalyzeOrgPolicyGovernedContainersRequest.constraint.",
+      "id": "GoogleCloudAssetV1GovernedContainer",
+      "properties": {
+        "consolidatedPolicy": {
+          "$ref": "AnalyzerOrgPolicy",
+          "description": "The consolidated organization policy for the analyzed resource. The consolidated organization policy is computed by merging and evaluating AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer.policy_bundle. The evaluation will respect the organization policy [hierarchy rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy)."
+        },
+        "fullResourceName": {
+          "description": "The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of an organization/folder/project resource.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of the parent of AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer.full_resource_name.",
+          "type": "string"
+        },
+        "policyBundle": {
+          "description": "The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.",
+          "items": {
+            "$ref": "AnalyzerOrgPolicy"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1626,7 +2126,7 @@
           "description": "The analysis state of this identity."
         },
         "name": {
-          "description": "The identity name in any form of members appear in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding), such as: - user:foo@google.com - group:group1@google.com - serviceAccount:s1@prj1.iam.gserviceaccount.com - projectOwner:some_project_id - domain:google.com - allUsers - etc.",
+          "description": "The identity of members, formatted as appear in an [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). For example, they might be formatted like the following: - user:foo@google.com - group:group1@google.com - serviceAccount:s1@prj1.iam.gserviceaccount.com - projectOwner:some_project_id - domain:google.com - allUsers",
           "type": "string"
         }
       },
@@ -1653,6 +2153,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssetV1ListConstraint": {
+      "description": "A `Constraint` that allows or disallows a list of string values, which are configured by an organization's policy administrator with a `Policy`.",
+      "id": "GoogleCloudAssetV1ListConstraint",
+      "properties": {
+        "supportsIn": {
+          "description": "Indicates whether values grouped into categories can be used in `Policy.allowed_values` and `Policy.denied_values`. For example, `\"in:Python\"` would match any value in the 'Python' group.",
+          "type": "boolean"
+        },
+        "supportsUnder": {
+          "description": "Indicates whether subtrees of Cloud Resource Manager resource hierarchy can be used in `Policy.allowed_values` and `Policy.denied_values`. For example, `\"under:folders/123\"` would match any resource under the 'folders/123' folder.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1QueryAssetsOutputConfigBigQueryDestination": {
+      "description": "BigQuery destination.",
+      "id": "GoogleCloudAssetV1QueryAssetsOutputConfigBigQueryDestination",
+      "properties": {
+        "dataset": {
+          "description": "Required. The BigQuery dataset where the query results will be saved. It has the format of \"projects/{projectId}/datasets/{datasetId}\".",
+          "type": "string"
+        },
+        "table": {
+          "description": "Required. The BigQuery table where the query results will be saved. If this table does not exist, a new table with the given name will be created.",
+          "type": "string"
+        },
+        "writeDisposition": {
+          "description": "Specifies the action that occurs if the destination table or partition already exists. The following values are supported: * WRITE_TRUNCATE: If the table or partition already exists, BigQuery overwrites the entire table or all the partitions data. * WRITE_APPEND: If the table or partition already exists, BigQuery appends the data to the table or the latest partition. * WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssetV1Resource": {
       "description": "A Google Cloud resource under analysis.",
       "id": "GoogleCloudAssetV1Resource",
@@ -1668,8 +2202,56 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssetV1Rule": {
+      "description": "This rule message is a customized version of the one defined in the Organization Policy system. In addition to the fields defined in the original organization policy, it contains additional field(s) under specific circumstances to support analysis results.",
+      "id": "GoogleCloudAssetV1Rule",
+      "properties": {
+        "allowAll": {
+          "description": "Setting this to true means that all values are allowed. This field can be set only in Policies for list constraints.",
+          "type": "boolean"
+        },
+        "condition": {
+          "$ref": "Expr",
+          "description": "The evaluating condition for this rule."
+        },
+        "denyAll": {
+          "description": "Setting this to true means that all values are denied. This field can be set only in Policies for list constraints.",
+          "type": "boolean"
+        },
+        "enforce": {
+          "description": "If `true`, then the `Policy` is enforced. If `false`, then any configuration is acceptable. This field can be set only in Policies for boolean constraints.",
+          "type": "boolean"
+        },
+        "values": {
+          "$ref": "GoogleCloudAssetV1StringValues",
+          "description": "List of values to be used for this PolicyRule. This field can be set only in Policies for list constraints."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1StringValues": {
+      "description": "The string values for the list constraints.",
+      "id": "GoogleCloudAssetV1StringValues",
+      "properties": {
+        "allowedValues": {
+          "description": "List of values allowed at this resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "deniedValues": {
+          "description": "List of values denied at this resource.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssetV1p7beta1Asset": {
-      "description": "An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
+      "description": "An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
       "id": "GoogleCloudAssetV1p7beta1Asset",
       "properties": {
         "accessLevel": {
@@ -1693,7 +2275,7 @@
         },
         "iamPolicy": {
           "$ref": "Policy",
-          "description": "A representation of the Cloud IAM policy set on a Google Cloud resource. There can be a maximum of one Cloud IAM policy set on any given resource. In addition, Cloud IAM policies inherit their granted access scope from any policies set on parent resources in the resource hierarchy. Therefore, the effectively policy is the union of both the policy set on this resource and each policy set on all of the resource's ancestry resource levels in the hierarchy. See [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance) for more information."
+          "description": "A representation of the IAM policy set on a Google Cloud resource. There can be a maximum of one IAM policy set on any given resource. In addition, IAM policies inherit their granted access scope from any policies set on parent resources in the resource hierarchy. Therefore, the effectively policy is the union of both the policy set on this resource and each policy set on all of the resource's ancestry resource levels in the hierarchy. See [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance) for more information."
         },
         "name": {
           "description": "The full name of the asset. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1` See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.",
@@ -1727,7 +2309,7 @@
       "type": "object"
     },
     "GoogleCloudAssetV1p7beta1RelatedAsset": {
-      "description": "An asset identify in Google Cloud which contains its name, type and ancestors. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
+      "description": "An asset identify in Google Cloud which contains its name, type and ancestors. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
       "id": "GoogleCloudAssetV1p7beta1RelatedAsset",
       "properties": {
         "ancestors": {
@@ -1814,7 +2396,7 @@
           "type": "string"
         },
         "parent": {
-          "description": "The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information. For Google Cloud assets, this value is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). Example: `//cloudresourcemanager.googleapis.com/projects/my_project_123` For third-party assets, this field may be set differently.",
+          "description": "The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information. For Google Cloud assets, this value is the parent resource defined in the [IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). Example: `//cloudresourcemanager.googleapis.com/projects/my_project_123` For third-party assets, this field may be set differently.",
           "type": "string"
         },
         "resourceUrl": {
@@ -1943,7 +2525,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy}/accessLevels/{access_level}`. The maximum length of the `access_level` component is 50 characters.",
+          "description": "Resource name for the `AccessLevel`. Format: `accessPolicies/{access_policy}/accessLevels/{access_level}`. The `access_level` component must begin with a letter, followed by alphanumeric characters or `_`. Its maximum length is 50 characters. After you create an `AccessLevel`, you cannot change its `name`.",
           "type": "string"
         },
         "title": {
@@ -2050,7 +2632,7 @@
           "type": "array"
         },
         "negate": {
-          "description": "Whether to negate the Condition. If true, the Condition becomes a NAND over its non-empty fields, each field must be false for the Condition overall to be satisfied. Defaults to false.",
+          "description": "Whether to negate the Condition. If true, the Condition becomes a NAND over its non-empty fields. Any non-empty field criteria evaluating to false will result in the Condition to be satisfied. Defaults to false.",
           "type": "boolean"
         },
         "regions": {
@@ -2279,7 +2861,7 @@
           "type": "string"
         },
         "resource": {
-          "description": "A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format: `projects/{project_number}` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. `*` is not allowed, the case of allowing all Google Cloud resources only is not supported.",
+          "description": "A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects and VPCs are allowed. Project format: `projects/{project_number}` VPC network format: `//compute.googleapis.com/projects/{PROJECT_ID}/global/networks/{NAME}`. The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. `*` is not allowed, the case of allowing all Google Cloud resources only is not supported.",
           "type": "string"
         }
       },
@@ -2359,7 +2941,7 @@
       "type": "object"
     },
     "GoogleIdentityAccesscontextmanagerV1ServicePerimeter": {
-      "description": "`ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges.",
+      "description": "`ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project or VPC network can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges.",
       "id": "GoogleIdentityAccesscontextmanagerV1ServicePerimeter",
       "properties": {
         "description": {
@@ -2367,17 +2949,17 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`",
+          "description": "Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.",
           "type": "string"
         },
         "perimeterType": {
-          "description": "Perimeter type indicator. A single project is allowed to be a member of single regular perimeter, but multiple service perimeter bridges. A project cannot be a included in a perimeter bridge without being included in regular perimeter. For perimeter bridges, the restricted service list as well as access level lists must be empty.",
+          "description": "Perimeter type indicator. A single project or VPC network is allowed to be a member of single regular perimeter, but multiple service perimeter bridges. A project cannot be a included in a perimeter bridge without being included in regular perimeter. For perimeter bridges, the restricted service list as well as access level lists must be empty.",
           "enum": [
             "PERIMETER_TYPE_REGULAR",
             "PERIMETER_TYPE_BRIDGE"
           ],
           "enumDescriptions": [
-            "Regular Perimeter.",
+            "Regular Perimeter. When no value is specified, the perimeter uses this type.",
             "Perimeter Bridge."
           ],
           "type": "string"
@@ -2427,7 +3009,7 @@
           "type": "array"
         },
         "resources": {
-          "description": "A list of Google Cloud resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number}`",
+          "description": "A list of Google Cloud resources that are inside of the service perimeter. Currently only projects and VPCs are allowed. Project format: `projects/{project_number}` VPC network format: `//compute.googleapis.com/projects/{PROJECT_ID}/global/networks/{NAME}`.",
           "items": {
             "type": "string"
           },
@@ -2561,7 +3143,7 @@
         },
         "iamBinding": {
           "$ref": "Binding",
-          "description": "The Cloud IAM policy binding under analysis."
+          "description": "The IAM policy binding under analysis."
         },
         "identityList": {
           "$ref": "GoogleCloudAssetV1IdentityList",
@@ -2651,7 +3233,7 @@
           "description": "The IAM policy directly set on the given resource. Note that the original IAM policy can contain multiple bindings. This only contains the bindings that match the given query. For queries that don't contain a constrain on policies (e.g., an empty query), this contains all the bindings. To search against the `policy` bindings: * use a field query: - query by the policy contained members. Example: `policy:amy@gmail.com` - query by the policy contained roles. Example: `policy:roles/compute.admin` - query by the policy contained roles' included permissions. Example: `policy.role.permissions:compute.instances.create`"
         },
         "project": {
-          "description": "The project that the associated GCP resource belongs to, in the form of projects/{PROJECT_NUMBER}. If an IAM policy is set on a resource (like VM instance, Cloud Storage bucket), the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or orgnization, this field will be empty. To search against the `project`: * specify the `scope` field as this project in your search request.",
+          "description": "The project that the associated Google Cloud resource belongs to, in the form of projects/{PROJECT_NUMBER}. If an IAM policy is set on a resource (like VM instance, Cloud Storage bucket), the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or orgnization, this field will be empty. To search against the `project`: * specify the `scope` field as this project in your search request.",
           "type": "string"
         },
         "resource": {
@@ -2819,7 +3401,7 @@
           "description": "Analysis result of moving the target resource."
         },
         "displayName": {
-          "description": "The user friendly display name of the analysis. E.g. IAM, Organization Policy etc.",
+          "description": "The user friendly display name of the analysis. E.g. IAM, organization policy etc.",
           "type": "string"
         },
         "error": {
@@ -2890,7 +3472,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -2901,7 +3483,7 @@
       "id": "Options",
       "properties": {
         "analyzeServiceAccountImpersonation": {
-          "description": "Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.AnalyzeIamPolicyLongrunning rpc instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Only the following permissions are considered in this analysis: * `iam.serviceAccounts.actAs` * `iam.serviceAccounts.signBlob` * `iam.serviceAccounts.signJwt` * `iam.serviceAccounts.getAccessToken` * `iam.serviceAccounts.getOpenIdToken` * `iam.serviceAccounts.implicitDelegation` Default is false.",
+          "description": "Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.AnalyzeIamPolicyLongrunning RPC instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a Google Cloud folder F, then user A potentially has access to the Google Cloud folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a Google Cloud folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the Google Cloud folder F, then user A potentially has access to the Google Cloud folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Only the following permissions are considered in this analysis: * `iam.serviceAccounts.actAs` * `iam.serviceAccounts.signBlob` * `iam.serviceAccounts.signJwt` * `iam.serviceAccounts.getAccessToken` * `iam.serviceAccounts.getOpenIdToken` * `iam.serviceAccounts.implicitDelegation` Default is false.",
           "type": "boolean"
         },
         "expandGroups": {
@@ -2909,7 +3491,7 @@
           "type": "boolean"
         },
         "expandResources": {
-          "description": "Optional. If true and IamPolicyAnalysisQuery.resource_selector is not specified, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P. If true and IamPolicyAnalysisQuery.resource_selector is specified, the resource section of the result will expand the specified resource to include resources lower in the resource hierarchy. Only project or lower resources are supported. Folder and organization resource cannot be used together with this option. For example, if the request analyzes for which users have permission P on a GCP project with this option enabled, the results will include all users who have permission P on that project or any lower resource. If true, the default max expansion per resource is 1000 for AssetService.AnalyzeIamPolicy][] and 100000 for AssetService.AnalyzeIamPolicyLongrunning][]. Default is false.",
+          "description": "Optional. If true and IamPolicyAnalysisQuery.resource_selector is not specified, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a Google Cloud folder, the results will also include resources in that folder with permission P. If true and IamPolicyAnalysisQuery.resource_selector is specified, the resource section of the result will expand the specified resource to include resources lower in the resource hierarchy. Only project or lower resources are supported. Folder and organization resources cannot be used together with this option. For example, if the request analyzes for which users have permission P on a Google Cloud project with this option enabled, the results will include all users who have permission P on that project or any lower resource. If true, the default max expansion per resource is 1000 for AssetService.AnalyzeIamPolicy][] and 100000 for AssetService.AnalyzeIamPolicyLongrunning][]. Default is false.",
           "type": "boolean"
         },
         "expandRoles": {
@@ -2923,6 +3505,24 @@
         "outputResourceEdges": {
           "description": "Optional. If true, the result will output the relevant parent/child relationships between resources. Default is false.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "OrgPolicyResult": {
+      "description": "The organization policy result to the query.",
+      "id": "OrgPolicyResult",
+      "properties": {
+        "consolidatedPolicy": {
+          "$ref": "AnalyzerOrgPolicy",
+          "description": "The consolidated organization policy for the analyzed resource. The consolidated organization policy is computed by merging and evaluating AnalyzeOrgPoliciesResponse.policy_bundle. The evaluation will respect the organization policy [hierarchy rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy)."
+        },
+        "policyBundle": {
+          "description": "The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.",
+          "items": {
+            "$ref": "AnalyzerOrgPolicy"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3017,7 +3617,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -3073,19 +3673,130 @@
       },
       "type": "object"
     },
+    "QueryAssetsOutputConfig": {
+      "description": "Output configuration query assets.",
+      "id": "QueryAssetsOutputConfig",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudAssetV1QueryAssetsOutputConfigBigQueryDestination",
+          "description": "BigQuery destination where the query results will be saved."
+        }
+      },
+      "type": "object"
+    },
+    "QueryAssetsRequest": {
+      "description": "QueryAssets request.",
+      "id": "QueryAssetsRequest",
+      "properties": {
+        "jobReference": {
+          "description": "Optional. Reference to the query job, which is from the `QueryAssetsResponse` of previous `QueryAssets` call.",
+          "type": "string"
+        },
+        "outputConfig": {
+          "$ref": "QueryAssetsOutputConfig",
+          "description": "Optional. Destination where the query results will be saved. When this field is specified, the query results won't be saved in the [QueryAssetsResponse.query_result]. Instead [QueryAssetsResponse.output_config] will be set. Meanwhile, [QueryAssetsResponse.job_reference] will be set and can be used to check the status of the query job when passed to a following [QueryAssets] API call."
+        },
+        "pageSize": {
+          "description": "Optional. The maximum number of rows to return in the results. Responses are limited to 10 MB and 1000 rows. By default, the maximum row count is 1000. When the byte or row count limit is reached, the rest of the query results will be paginated. The field will be ignored when [output_config] is specified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A page token received from previous `QueryAssets`. The field will be ignored when [output_config] is specified.",
+          "type": "string"
+        },
+        "readTime": {
+          "description": "Optional. Queries cloud assets as they appeared at the specified point in time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "readTimeWindow": {
+          "$ref": "TimeWindow",
+          "description": "Optional. [start_time] is required. [start_time] must be less than [end_time] Defaults [end_time] to now if [start_time] is set and [end_time] isn't. Maximum permitted time range is 7 days."
+        },
+        "statement": {
+          "description": "Optional. A SQL statement that's compatible with [BigQuery SQL](https://cloud.google.com/bigquery/docs/introduction-sql).",
+          "type": "string"
+        },
+        "timeout": {
+          "description": "Optional. Specifies the maximum amount of time that the client is willing to wait for the query to complete. By default, this limit is 5 min for the first query, and 1 minute for the following queries. If the query is complete, the `done` field in the `QueryAssetsResponse` is true, otherwise false. Like BigQuery [jobs.query API](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest) The call is not guaranteed to wait for the specified timeout; it typically returns after around 200 seconds (200,000 milliseconds), even if the query is not complete. The field will be ignored when [output_config] is specified.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueryAssetsResponse": {
+      "description": "QueryAssets response.",
+      "id": "QueryAssetsResponse",
+      "properties": {
+        "done": {
+          "description": "The query response, which can be either an `error` or a valid `response`. If `done` == `false` and the query result is being saved in a output, the output_config field will be set. If `done` == `true`, exactly one of `error`, `query_result` or `output_config` will be set.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "Error status."
+        },
+        "jobReference": {
+          "description": "Reference to a query job.",
+          "type": "string"
+        },
+        "outputConfig": {
+          "$ref": "QueryAssetsOutputConfig",
+          "description": "Output configuration which indicates instead of being returned in API response on the fly, the query result will be saved in a specific output."
+        },
+        "queryResult": {
+          "$ref": "QueryResult",
+          "description": "Result of the query."
+        }
+      },
+      "type": "object"
+    },
     "QueryContent": {
       "description": "The query content.",
       "id": "QueryContent",
       "properties": {
         "iamPolicyAnalysisQuery": {
           "$ref": "IamPolicyAnalysisQuery",
-          "description": "An IAM Policy Analysis query, which could be used in the AssetService.AnalyzeIamPolicy rpc or the AssetService.AnalyzeIamPolicyLongrunning rpc."
+          "description": "An IAM Policy Analysis query, which could be used in the AssetService.AnalyzeIamPolicy RPC or the AssetService.AnalyzeIamPolicyLongrunning RPC."
+        }
+      },
+      "type": "object"
+    },
+    "QueryResult": {
+      "description": "Execution results of the query. The result is formatted as rows represented by BigQuery compatible [schema]. When pagination is necessary, it will contains the page token to retrieve the results of following pages.",
+      "id": "QueryResult",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of the results.",
+          "type": "string"
+        },
+        "rows": {
+          "description": "Each row hold a query result in the format of `Struct`.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "schema": {
+          "$ref": "TableSchema",
+          "description": "Describes the format of the [rows]."
+        },
+        "totalRows": {
+          "description": "Total rows of the whole query results.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
     },
     "RelatedAsset": {
-      "description": "An asset identifier in Google Cloud which contains its name, type and ancestors. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
+      "description": "An asset identifier in Google Cloud which contains its name, type and ancestors. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
       "id": "RelatedAsset",
       "properties": {
         "ancestors": {
@@ -3111,6 +3822,7 @@
       "type": "object"
     },
     "RelatedAssets": {
+      "deprecated": true,
       "description": "DEPRECATED. This message only presents for the purpose of backward-compatibility. The server will never populate this message in responses. The detailed related assets with the `relationship_type`.",
       "id": "RelatedAssets",
       "properties": {
@@ -3158,6 +3870,7 @@
       "type": "object"
     },
     "RelationshipAttributes": {
+      "deprecated": true,
       "description": "DEPRECATED. This message only presents for the purpose of backward-compatibility. The server will never populate this message in responses. The relationship attributes which include `type`, `source_resource_type`, `target_resource_type` and `action`.",
       "id": "RelationshipAttributes",
       "properties": {
@@ -3205,7 +3918,7 @@
           "type": "string"
         },
         "parent": {
-          "description": "The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information. For Google Cloud assets, this value is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). Example: `//cloudresourcemanager.googleapis.com/projects/my_project_123` For third-party assets, this field may be set differently.",
+          "description": "The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information. For Google Cloud assets, this value is the parent resource defined in the [IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). Example: `//cloudresourcemanager.googleapis.com/projects/my_project_123` For third-party assets, this field may be set differently.",
           "type": "string"
         },
         "resourceUrl": {
@@ -3220,7 +3933,7 @@
       "type": "object"
     },
     "ResourceSearchResult": {
-      "description": "A result of Resource Search, containing information of a cloud resource. Next ID: 31",
+      "description": "A result of Resource Search, containing information of a cloud resource. Next ID: 34",
       "id": "ResourceSearchResult",
       "properties": {
         "additionalAttributes": {
@@ -3228,7 +3941,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "The additional searchable attributes of this resource. The attributes may vary from one resource type to another. Examples: `projectId` for Project, `dnsName` for DNS ManagedZone. This field contains a subset of the resource metadata fields that are returned by the List or Get APIs provided by the corresponding GCP service (e.g., Compute Engine). see [API references and supported searchable attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types) to see which fields are included. You can search values of these fields through free text search. However, you should not consume the field programically as the field names and values may change as the GCP service updates to a new incompatible API version. To search against the `additional_attributes`: * Use a free text query to match the attributes values. Example: to search `additional_attributes = { dnsName: \"foobar\" }`, you can issue a query `foobar`.",
+          "description": "The additional searchable attributes of this resource. The attributes may vary from one resource type to another. Examples: `projectId` for Project, `dnsName` for DNS ManagedZone. This field contains a subset of the resource metadata fields that are returned by the List or Get APIs provided by the corresponding Google Cloud service (e.g., Compute Engine). see [API references and supported searchable attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types) to see which fields are included. You can search values of these fields through free text search. However, you should not consume the field programically as the field names and values may change as the Google Cloud service updates to a new incompatible API version. To search against the `additional_attributes`: * Use a free text query to match the attributes values. Example: to search `additional_attributes = { dnsName: \"foobar\" }`, you can issue a query `foobar`.",
           "type": "object"
         },
         "assetType": {
@@ -3263,7 +3976,8 @@
           "type": "array"
         },
         "kmsKey": {
-          "description": "The Cloud KMS [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys) name or [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions) name. This field only presents for the purpose of backward compatibility. Please use the `kms_keys` field to retrieve KMS key information. This field is available only when the resource's Protobuf contains it and will only be populated for [these resource types](https://cloud.google.com/asset-inventory/docs/legacy-field-names#resource_types_with_the_to_be_deprecated_kmskey_field) for backward compatible purposes. To search against the `kms_key`: * Use a field query. Example: `kmsKey:key` * Use a free text query. Example: `key`",
+          "deprecated": true,
+          "description": "The Cloud KMS [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys) name or [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions) name. This field only presents for the purpose of backward compatibility. Please use the `kms_keys` field to retrieve Cloud KMS key information. This field is available only when the resource's Protobuf contains it and will only be populated for [these resource types](https://cloud.google.com/asset-inventory/docs/legacy-field-names#resource_types_with_the_to_be_deprecated_kmskey_field) for backward compatible purposes. To search against the `kms_key`: * Use a field query. Example: `kmsKey:key` * Use a free text query. Example: `key`",
           "type": "string"
         },
         "kmsKeys": {
@@ -3277,7 +3991,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels associated with this resource. See [Labelling and grouping GCP resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information. This field is available only when the resource's Protobuf contains it. To search against the `labels`: * Use a field query: - query on any label's key or value. Example: `labels:prod` - query by a given label. Example: `labels.env:prod` - query by a given label's existence. Example: `labels.env:*` * Use a free text query. Example: `prod`",
+          "description": "Labels associated with this resource. See [Labelling and grouping Google Cloud resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information. This field is available only when the resource's Protobuf contains it. To search against the `labels`: * Use a field query: - query on any label's key or value. Example: `labels:prod` - query by a given label. Example: `labels.env:prod` - query by a given label's existence. Example: `labels.env:*` * Use a free text query. Example: `prod`",
           "type": "object"
         },
         "location": {
@@ -3289,7 +4003,7 @@
           "type": "string"
         },
         "networkTags": {
-          "description": "Network tags associated with this resource. Like labels, network tags are a type of annotations used to group GCP resources. See [Labelling GCP resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information. This field is available only when the resource's Protobuf contains it. To search against the `network_tags`: * Use a field query. Example: `networkTags:internal` * Use a free text query. Example: `internal`",
+          "description": "Network tags associated with this resource. Like labels, network tags are a type of annotations used to group Google Cloud resources. See [Labelling Google Cloud resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information. This field is available only when the resource's Protobuf contains it. To search against the `network_tags`: * Use a field query. Example: `networkTags:internal` * Use a free text query. Example: `internal`",
           "items": {
             "type": "string"
           },
@@ -3319,7 +4033,7 @@
           "type": "object"
         },
         "state": {
-          "description": "The state of this resource. Different resources types have different state definitions that are mapped from various fields of different resource types. This field is available only when the resource's Protobuf contains it. Example: If the resource is an instance provided by Compute Engine, its state will include PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, REPAIRING, and TERMINATED. See `status` definition in [API Reference](https://cloud.google.com/compute/docs/reference/rest/v1/instances). If the resource is a project provided by Cloud Resource Manager, its state will include LIFECYCLE_STATE_UNSPECIFIED, ACTIVE, DELETE_REQUESTED and DELETE_IN_PROGRESS. See `lifecycleState` definition in [API Reference](https://cloud.google.com/resource-manager/reference/rest/v1/projects). To search against the `state`: * Use a field query. Example: `state:RUNNING` * Use a free text query. Example: `RUNNING`",
+          "description": "The state of this resource. Different resources types have different state definitions that are mapped from various fields of different resource types. This field is available only when the resource's Protobuf contains it. Example: If the resource is an instance provided by Compute Engine, its state will include PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, REPAIRING, and TERMINATED. See `status` definition in [API Reference](https://cloud.google.com/compute/docs/reference/rest/v1/instances). If the resource is a project provided by Resource Manager, its state will include LIFECYCLE_STATE_UNSPECIFIED, ACTIVE, DELETE_REQUESTED and DELETE_IN_PROGRESS. See `lifecycleState` definition in [API Reference](https://cloud.google.com/resource-manager/reference/rest/v1/projects). To search against the `state`: * Use a field query. Example: `state:RUNNING` * Use a free text query. Example: `RUNNING`",
           "type": "string"
         },
         "tagKeys": {
@@ -3330,7 +4044,7 @@
           "type": "array"
         },
         "tagValueIds": {
-          "description": "TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}. To search against the `tagValueIds`: * Use a field query. Example: - `tagValueIds:\"456\"` - `tagValueIds=\"tagValues/456\"` * Use a free text query. Example: - `456`",
+          "description": "TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}. To search against the `tagValueIds`: * Use a field query. Example: - `tagValueIds=\"tagValues/456\"`",
           "items": {
             "type": "string"
           },
@@ -3426,7 +4140,7 @@
           "type": "string"
         },
         "results": {
-          "description": "A list of IamPolicy that match the search query. Related information such as the associated resource is returned along with the policy.",
+          "description": "A list of IAM policies that match the search query. Related information such as the associated resource is returned along with the policy.",
           "items": {
             "$ref": "IamPolicySearchResult"
           },
@@ -3519,6 +4233,46 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TableFieldSchema": {
+      "description": "A field in TableSchema.",
+      "id": "TableFieldSchema",
+      "properties": {
+        "field": {
+          "description": "The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 128 characters.",
+          "type": "string"
+        },
+        "fields": {
+          "description": "Describes the nested schema fields if the type property is set to RECORD.",
+          "items": {
+            "$ref": "TableFieldSchema"
+          },
+          "type": "array"
+        },
+        "mode": {
+          "description": "The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The field data type. Possible values include * STRING * BYTES * INTEGER * FLOAT * BOOLEAN * TIMESTAMP * DATE * TIME * DATETIME * GEOGRAPHY, * NUMERIC, * BIGNUMERIC, * RECORD (where RECORD indicates that the field contains a nested schema).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TableSchema": {
+      "description": "BigQuery Compatible table schema.",
+      "id": "TableSchema",
+      "properties": {
+        "fields": {
+          "description": "Describes the fields in a table.",
+          "items": {
+            "$ref": "TableFieldSchema"
+          },
+          "type": "array"
         }
       },
       "type": "object"

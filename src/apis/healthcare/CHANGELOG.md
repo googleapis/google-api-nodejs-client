@@ -1,5 +1,150 @@
 # Changelog
 
+## [10.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v10.1.0...healthcare-v10.2.0) (2023-08-15)
+
+
+### Features
+
+* **healthcare:** update the API ([9dc7235](https://github.com/googleapis/google-api-nodejs-client/commit/9dc723542dadac52e3c9a363f212c552932a69ab))
+
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v10.0.0...healthcare-v10.1.0) (2023-08-09)
+
+
+### Features
+
+* **healthcare:** update the API ([1d0354c](https://github.com/googleapis/google-api-nodejs-client/commit/1d0354c855ab68bc9d654e2b8b7d52cb53246000))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v9.0.0...healthcare-v10.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **healthcare:** update the API ([4e4d479](https://github.com/googleapis/google-api-nodejs-client/commit/4e4d4797c31c46db6fb8cf74e1f859c5ea302ee7))
+* **healthcare:** update the API ([5d56c94](https://github.com/googleapis/google-api-nodejs-client/commit/5d56c94d35794688c0899707e2ddf33cf0285c1e))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **healthcare:** update the API ([94d6545](https://github.com/googleapis/google-api-nodejs-client/commit/94d6545d3d0756c9e8838da9ff3de1accc7084ef))
+* **healthcare:** update the API ([12cc950](https://github.com/googleapis/google-api-nodejs-client/commit/12cc950ef7f778720e698c5b2dee4b69ff6e8ca4))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v8.0.0...healthcare-v9.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **healthcare:** update the API ([4e4d479](https://github.com/googleapis/google-api-nodejs-client/commit/4e4d4797c31c46db6fb8cf74e1f859c5ea302ee7))
+* **healthcare:** update the API ([5d56c94](https://github.com/googleapis/google-api-nodejs-client/commit/5d56c94d35794688c0899707e2ddf33cf0285c1e))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **healthcare:** update the API ([94d6545](https://github.com/googleapis/google-api-nodejs-client/commit/94d6545d3d0756c9e8838da9ff3de1accc7084ef))
+* **healthcare:** update the API ([12cc950](https://github.com/googleapis/google-api-nodejs-client/commit/12cc950ef7f778720e698c5b2dee4b69ff6e8ca4))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v7.1.0...healthcare-v8.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v7.0.0...healthcare-v7.1.0) (2023-05-02)
+
+
+### Features
+
+* **healthcare:** update the API ([5d56c94](https://github.com/googleapis/google-api-nodejs-client/commit/5d56c94d35794688c0899707e2ddf33cf0285c1e))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v6.0.2...healthcare-v7.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+
+## [6.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v6.0.1...healthcare-v6.0.2) (2023-03-22)
+
+
+### Bug Fixes
+
+* **healthcare:** update the API ([94d6545](https://github.com/googleapis/google-api-nodejs-client/commit/94d6545d3d0756c9e8838da9ff3de1accc7084ef))
+
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v6.0.0...healthcare-v6.0.1) (2023-03-13)
+
+
+### Bug Fixes
+
+* **healthcare:** update the API ([12cc950](https://github.com/googleapis/google-api-nodejs-client/commit/12cc950ef7f778720e698c5b2dee4b69ff6e8ca4))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v5.1.1...healthcare-v6.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **healthcare:** update the API ([efac2d5](https://github.com/googleapis/google-api-nodejs-client/commit/efac2d504b0ec232fff2462c47b4dcc699b01421))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+
+### Bug Fixes
+
+* **healthcare:** update the API ([fa9914f](https://github.com/googleapis/google-api-nodejs-client/commit/fa9914febbf99733117748d0d404b42318aa5870))
+
+## [5.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v5.1.0...healthcare-v5.1.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **healthcare:** update the API ([fa9914f](https://github.com/googleapis/google-api-nodejs-client/commit/fa9914febbf99733117748d0d404b42318aa5870))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v5.0.0...healthcare-v5.1.0) (2022-12-22)
+
+
+### Features
+
+* **healthcare:** update the API ([efac2d5](https://github.com/googleapis/google-api-nodejs-client/commit/efac2d504b0ec232fff2462c47b4dcc699b01421))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v4.1.1...healthcare-v5.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [4.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v4.1.0...healthcare-v4.1.1) (2022-09-21)
 
 

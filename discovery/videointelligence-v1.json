@@ -281,7 +281,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "videointelligence.projects.locations.operations.list",
@@ -350,7 +350,7 @@
       }
     }
   },
-  "revision": "20220913",
+  "revision": "20230706",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -561,6 +561,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1_FaceAnnotation": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1_FaceAnnotation",
       "properties": {
@@ -629,6 +630,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1_FaceFrame": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1_FaceFrame",
       "properties": {
@@ -1282,6 +1284,7 @@
           "description": "Explicit content annotation."
         },
         "faceAnnotations": {
+          "deprecated": true,
           "description": "Deprecated. Please use `face_detection_annotations` instead.",
           "items": {
             "$ref": "GoogleCloudVideointelligenceV1_FaceAnnotation"
@@ -1617,6 +1620,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1beta2_FaceAnnotation": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1beta2_FaceAnnotation",
       "properties": {
@@ -1666,6 +1670,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1beta2_FaceFrame": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1beta2_FaceFrame",
       "properties": {
@@ -2153,6 +2158,7 @@
           "description": "Explicit content annotation."
         },
         "faceAnnotations": {
+          "deprecated": true,
           "description": "Deprecated. Please use `face_detection_annotations` instead.",
           "items": {
             "$ref": "GoogleCloudVideointelligenceV1beta2_FaceAnnotation"
@@ -2442,6 +2448,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation",
       "properties": {
@@ -2491,6 +2498,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p1beta1_FaceFrame": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p1beta1_FaceFrame",
       "properties": {
@@ -2978,6 +2986,7 @@
           "description": "Explicit content annotation."
         },
         "faceAnnotations": {
+          "deprecated": true,
           "description": "Deprecated. Please use `face_detection_annotations` instead.",
           "items": {
             "$ref": "GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation"
@@ -3267,6 +3276,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation",
       "properties": {
@@ -3316,6 +3326,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p2beta1_FaceFrame": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p2beta1_FaceFrame",
       "properties": {
@@ -3803,6 +3814,7 @@
           "description": "Explicit content annotation."
         },
         "faceAnnotations": {
+          "deprecated": true,
           "description": "Deprecated. Please use `face_detection_annotations` instead.",
           "items": {
             "$ref": "GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation"
@@ -4147,6 +4159,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation",
       "properties": {
@@ -4196,6 +4209,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p3beta1_FaceFrame": {
+      "deprecated": true,
       "description": "Deprecated. No effect.",
       "id": "GoogleCloudVideointelligenceV1p3beta1_FaceFrame",
       "properties": {
@@ -4761,6 +4775,7 @@
           "description": "Explicit content annotation."
         },
         "faceAnnotations": {
+          "deprecated": true,
           "description": "Deprecated. Please use `face_detection_annotations` instead.",
           "items": {
             "$ref": "GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation"

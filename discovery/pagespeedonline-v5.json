@@ -193,7 +193,7 @@
       }
     }
   },
-  "revision": "20210603",
+  "revision": "20230705",
   "rootUrl": "https://pagespeedonline.googleapis.com/",
   "schemas": {
     "AuditRefs": {
@@ -300,6 +300,7 @@
           "type": "string"
         },
         "emulatedFormFactor": {
+          "deprecated": true,
           "description": "The form factor the emulation should use. This field is deprecated, form_factor should be used instead.",
           "type": "string"
         },
@@ -327,6 +328,13 @@
           "format": "double",
           "type": "number"
         },
+        "credits": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The version of libraries with which these results were generated. Ex: axe-core.",
+          "type": "object"
+        },
         "hostUserAgent": {
           "description": "The user agent string of the version of Chrome used.",
           "type": "string"
@@ -345,6 +353,40 @@
         "rendererFormattedStrings": {
           "$ref": "RendererFormattedStrings",
           "description": "Internationalized strings that are formatted to the locale in configSettings."
+        }
+      },
+      "type": "object"
+    },
+    "LhrEntity": {
+      "description": "Message containing an Entity.",
+      "id": "LhrEntity",
+      "properties": {
+        "category": {
+          "description": "Optional. An optional category name for the entity.",
+          "type": "string"
+        },
+        "homepage": {
+          "description": "Optional. An optional homepage URL of the entity.",
+          "type": "string"
+        },
+        "isFirstParty": {
+          "description": "Optional. An optional flag indicating if the entity is the first party.",
+          "type": "boolean"
+        },
+        "isUnrecognized": {
+          "description": "Optional. An optional flag indicating if the entity is not recognized.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Required. Name of the entity.",
+          "type": "string"
+        },
+        "origins": {
+          "description": "Required. A list of URL origin strings that belong to this entity.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -469,6 +511,13 @@
           "$ref": "ConfigSettings",
           "description": "The configuration settings for this LHR."
         },
+        "entities": {
+          "description": "Entity classification data.",
+          "items": {
+            "$ref": "LhrEntity"
+          },
+          "type": "array"
+        },
         "environment": {
           "$ref": "Environment",
           "description": "Environment settings that were used when making this LHR."
@@ -477,9 +526,17 @@
           "description": "The time that this run was fetched.",
           "type": "string"
         },
+        "finalDisplayedUrl": {
+          "description": "URL displayed on the page after Lighthouse finishes.",
+          "type": "string"
+        },
         "finalUrl": {
           "description": "The final resolved url that was audited.",
           "type": "string"
+        },
+        "fullPageScreenshot": {
+          "description": "Screenshot data of the full page, along with node rects relevant to the audit results.",
+          "type": "any"
         },
         "i18n": {
           "$ref": "I18n",
@@ -487,6 +544,10 @@
         },
         "lighthouseVersion": {
           "description": "The lighthouse version that was used to generate this LHR.",
+          "type": "string"
+        },
+        "mainDocumentUrl": {
+          "description": "URL of the main document request of the final navigation.",
           "type": "string"
         },
         "requestedUrl": {

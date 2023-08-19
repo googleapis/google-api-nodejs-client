@@ -415,13 +415,83 @@
       }
     }
   },
-  "revision": "20220319",
+  "revision": "20230806",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1Progress": {
+      "description": "Describes the progress of the operation. Unit of work is generic and must be interpreted based on where Progress is used.",
+      "id": "GoogleFirestoreAdminV1Progress",
+      "properties": {
+        "completedWork": {
+          "description": "The amount of work completed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "estimatedWork": {
+          "description": "The amount of work estimated.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1RestoreDatabaseMetadata": {
+      "description": "Metadata for the long-running operation from the RestoreDatabase request.",
+      "id": "GoogleFirestoreAdminV1RestoreDatabaseMetadata",
+      "properties": {
+        "backup": {
+          "description": "The name of the backup restoring from.",
+          "type": "string"
+        },
+        "database": {
+          "description": "The name of the database being restored to.",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the restore finished, unset for ongoing restores.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "operationState": {
+          "description": "The operation state of the restore.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "PROCESSING",
+            "CANCELLING",
+            "FINALIZING",
+            "SUCCESSFUL",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Request is being prepared for processing.",
+            "Request is actively being processed.",
+            "Request is in the process of being cancelled after user called google.longrunning.Operations.CancelOperation on the operation.",
+            "Request has been processed and is in its finalization stage.",
+            "Request has completed successfully.",
+            "Request has finished being processed, but encountered an error.",
+            "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        },
+        "progressPercentage": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "How far along the restore is as an estimated percentage of remaining time."
+        },
+        "startTime": {
+          "description": "The time the restore was started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleFirestoreAdminV1UpdateDatabaseMetadata": {
@@ -943,7 +1013,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },

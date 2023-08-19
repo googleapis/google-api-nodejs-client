@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v1.1.1...blogger-v1.1.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **blogger:** update the API ([975da3e](https://github.com/googleapis/google-api-nodejs-client/commit/975da3e0ed4604f3951eac2abd3a39623958a496))
+
+## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v1.1.0...blogger-v1.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **blogger:** update the API ([975da3e](https://github.com/googleapis/google-api-nodejs-client/commit/975da3e0ed4604f3951eac2abd3a39623958a496))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v1.0.0...blogger-v1.1.0) (2022-12-22)
+
+
+### Features
+
+* **blogger:** update the API ([45ac065](https://github.com/googleapis/google-api-nodejs-client/commit/45ac065fb17f0ae8c0c2f988cfc82458dfed84a0))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v0.4.1...blogger-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/blogger-v0.4.0...blogger-v0.4.1) (2022-09-21)
 
 

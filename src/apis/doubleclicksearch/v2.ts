@@ -573,71 +573,6 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Retrieves a list of conversions from a DoubleClick Search engine account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.conversion.get({
-     *     // Numeric ID of the ad group.
-     *     adGroupId: 'placeholder-value',
-     *     // Numeric ID of the ad.
-     *     adId: 'placeholder-value',
-     *     // Numeric ID of the advertiser.
-     *     advertiserId: 'placeholder-value',
-     *     // Numeric ID of the agency.
-     *     agencyId: 'placeholder-value',
-     *     // Numeric ID of the campaign.
-     *     campaignId: 'placeholder-value',
-     *     // Numeric ID of the criterion.
-     *     criterionId: 'placeholder-value',
-     *     // Customer ID of a client account in the new Search Ads 360 experience.
-     *     customerId: 'placeholder-value',
-     *     // Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     *     endDate: 'placeholder-value',
-     *     // Numeric ID of the engine account.
-     *     engineAccountId: 'placeholder-value',
-     *     // The number of conversions to return per call.
-     *     rowCount: 'placeholder-value',
-     *     // First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     *     startDate: 'placeholder-value',
-     *     // The 0-based starting index for retrieving conversions results.
-     *     startRow: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "conversion": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -733,103 +668,40 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Retrieves a list of conversions from a DoubleClick Search engine account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.conversion.GetCustomerId({
-     *     // Numeric ID of the ad group.
-     *     adGroupId: 'placeholder-value',
-     *     // Numeric ID of the ad.
-     *     adId: 'placeholder-value',
-     *     // Numeric ID of the advertiser.
-     *     advertiserId: 'placeholder-value',
-     *     // Numeric ID of the agency.
-     *     agencyId: 'placeholder-value',
-     *     // Numeric ID of the campaign.
-     *     campaignId: 'placeholder-value',
-     *     // Numeric ID of the criterion.
-     *     criterionId: 'placeholder-value',
-     *     // Customer ID of a client account in the new Search Ads 360 experience.
-     *     customerId: 'placeholder-value',
-     *     // Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     *     endDate: 'placeholder-value',
-     *     // Numeric ID of the engine account.
-     *     engineAccountId: 'placeholder-value',
-     *     // The number of conversions to return per call.
-     *     rowCount: 'placeholder-value',
-     *     // First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     *     startDate: 'placeholder-value',
-     *     // The 0-based starting index for retrieving conversions results.
-     *     startRow: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "conversion": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    GetCustomerId(
-      params: Params$Resource$Conversion$Getcustomerid,
+    getByCustomerId(
+      params: Params$Resource$Conversion$Getbycustomerid,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    GetCustomerId(
-      params?: Params$Resource$Conversion$Getcustomerid,
+    getByCustomerId(
+      params?: Params$Resource$Conversion$Getbycustomerid,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ConversionList>;
-    GetCustomerId(
-      params: Params$Resource$Conversion$Getcustomerid,
+    getByCustomerId(
+      params: Params$Resource$Conversion$Getbycustomerid,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    GetCustomerId(
-      params: Params$Resource$Conversion$Getcustomerid,
+    getByCustomerId(
+      params: Params$Resource$Conversion$Getbycustomerid,
       options: MethodOptions | BodyResponseCallback<Schema$ConversionList>,
       callback: BodyResponseCallback<Schema$ConversionList>
     ): void;
-    GetCustomerId(
-      params: Params$Resource$Conversion$Getcustomerid,
+    getByCustomerId(
+      params: Params$Resource$Conversion$Getbycustomerid,
       callback: BodyResponseCallback<Schema$ConversionList>
     ): void;
-    GetCustomerId(callback: BodyResponseCallback<Schema$ConversionList>): void;
-    GetCustomerId(
+    getByCustomerId(
+      callback: BodyResponseCallback<Schema$ConversionList>
+    ): void;
+    getByCustomerId(
       paramsOrCallback?:
-        | Params$Resource$Conversion$Getcustomerid
+        | Params$Resource$Conversion$Getbycustomerid
         | BodyResponseCallback<Schema$ConversionList>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -842,12 +714,12 @@ export namespace doubleclicksearch_v2 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$ConversionList> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Conversion$Getcustomerid;
+        {}) as Params$Resource$Conversion$Getbycustomerid;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Conversion$Getcustomerid;
+        params = {} as Params$Resource$Conversion$Getbycustomerid;
         options = {};
       }
 
@@ -891,55 +763,6 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Inserts a batch of new conversions into DoubleClick Search.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.conversion.insert({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "conversion": [],
-     *       //   "kind": "my_kind"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "conversion": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1028,55 +851,6 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Updates a batch of conversions in DoubleClick Search.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.conversion.update({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "conversion": [],
-     *       //   "kind": "my_kind"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "conversion": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1165,53 +939,6 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Updates the availabilities of a batch of floodlight activities in DoubleClick Search.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.conversion.updateAvailability({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "availabilities": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "availabilities": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1355,7 +1082,7 @@ export namespace doubleclicksearch_v2 {
      */
     startRow?: number;
   }
-  export interface Params$Resource$Conversion$Getcustomerid
+  export interface Params$Resource$Conversion$Getbycustomerid
     extends StandardParameters {
     /**
      * Numeric ID of the ad group.
@@ -1436,74 +1163,6 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Generates and returns a report immediately.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.reports.generate({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "columns": [],
-     *       //   "downloadFormat": "my_downloadFormat",
-     *       //   "filters": [],
-     *       //   "includeDeletedEntities": false,
-     *       //   "includeRemovedEntities": false,
-     *       //   "maxRowsPerFile": 0,
-     *       //   "orderBy": [],
-     *       //   "reportScope": {},
-     *       //   "reportType": "my_reportType",
-     *       //   "rowCount": 0,
-     *       //   "startRow": 0,
-     *       //   "statisticsCurrency": "my_statisticsCurrency",
-     *       //   "timeRange": {},
-     *       //   "verifySingleTimeZone": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "files": [],
-     *   //   "id": "my_id",
-     *   //   "isReportReady": false,
-     *   //   "kind": "my_kind",
-     *   //   "request": {},
-     *   //   "rowCount": 0,
-     *   //   "rows": [],
-     *   //   "statisticsCurrencyCode": "my_statisticsCurrencyCode",
-     *   //   "statisticsTimeZone": "my_statisticsTimeZone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1591,56 +1250,6 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Polls for the status of a report request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.reports.get({
-     *     // ID of the report request being polled.
-     *     reportId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "files": [],
-     *   //   "id": "my_id",
-     *   //   "isReportReady": false,
-     *   //   "kind": "my_kind",
-     *   //   "request": {},
-     *   //   "rowCount": 0,
-     *   //   "rows": [],
-     *   //   "statisticsCurrencyCode": "my_statisticsCurrencyCode",
-     *   //   "statisticsTimeZone": "my_statisticsTimeZone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1728,45 +1337,6 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Downloads a report file encoded in UTF-8.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.reports.getFile({
-     *     // The index of the report fragment to download.
-     *     reportFragment: 'placeholder-value',
-     *     // ID of the report.
-     *     reportId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1852,48 +1422,6 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Downloads a csv file(encoded in UTF-8) that contains ID mappings between legacy SA360 and new SA360. The file includes all children entities of the given advertiser(e.g. engine accounts, campaigns, ad groups, etc.) that exist in both legacy SA360 and new SA360.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.reports.getIdMappingFile({
-     *     // Legacy SA360 advertiser ID.
-     *     advertiserId: 'placeholder-value',
-     *     // Legacy SA360 agency ID.
-     *     agencyId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1984,74 +1512,6 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Inserts a report request into the reporting system.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.reports.request({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "columns": [],
-     *       //   "downloadFormat": "my_downloadFormat",
-     *       //   "filters": [],
-     *       //   "includeDeletedEntities": false,
-     *       //   "includeRemovedEntities": false,
-     *       //   "maxRowsPerFile": 0,
-     *       //   "orderBy": [],
-     *       //   "reportScope": {},
-     *       //   "reportType": "my_reportType",
-     *       //   "rowCount": 0,
-     *       //   "startRow": 0,
-     *       //   "statisticsCurrency": "my_statisticsCurrency",
-     *       //   "timeRange": {},
-     *       //   "verifySingleTimeZone": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "files": [],
-     *   //   "id": "my_id",
-     *   //   "isReportReady": false,
-     *   //   "kind": "my_kind",
-     *   //   "request": {},
-     *   //   "rowCount": 0,
-     *   //   "rows": [],
-     *   //   "statisticsCurrencyCode": "my_statisticsCurrencyCode",
-     *   //   "statisticsTimeZone": "my_statisticsTimeZone"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2186,51 +1646,6 @@ export namespace doubleclicksearch_v2 {
 
     /**
      * Retrieve the list of saved columns for a specified advertiser.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const doubleclicksearch = google.doubleclicksearch('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/doubleclicksearch'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await doubleclicksearch.savedColumns.list({
-     *     // DS ID of the advertiser.
-     *     advertiserId: 'placeholder-value',
-     *     // DS ID of the agency.
-     *     agencyId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

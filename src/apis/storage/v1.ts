@@ -942,50 +942,6 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes the ACL entry for the specified entity on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.bucketAccessControls.delete({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1071,65 +1027,6 @@ export namespace storage_v1 {
 
     /**
      * Returns the ACL entry for the specified entity on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.bucketAccessControls.get({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1220,81 +1117,6 @@ export namespace storage_v1 {
 
     /**
      * Creates a new ACL entry on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.bucketAccessControls.insert({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bucket": "my_bucket",
-     *       //   "domain": "my_domain",
-     *       //   "email": "my_email",
-     *       //   "entity": "my_entity",
-     *       //   "entityId": "my_entityId",
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "projectTeam": {},
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1385,54 +1207,6 @@ export namespace storage_v1 {
 
     /**
      * Retrieves ACL entries on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.bucketAccessControls.list({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1525,83 +1299,6 @@ export namespace storage_v1 {
 
     /**
      * Patches an ACL entry on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.bucketAccessControls.patch({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bucket": "my_bucket",
-     *       //   "domain": "my_domain",
-     *       //   "email": "my_email",
-     *       //   "entity": "my_entity",
-     *       //   "entityId": "my_entityId",
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "projectTeam": {},
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1692,83 +1389,6 @@ export namespace storage_v1 {
 
     /**
      * Updates an ACL entry on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.bucketAccessControls.update({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bucket": "my_bucket",
-     *       //   "domain": "my_domain",
-     *       //   "email": "my_email",
-     *       //   "entity": "my_entity",
-     *       //   "entityId": "my_entityId",
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "projectTeam": {},
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1964,53 +1584,6 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes an empty bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.buckets.delete({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // If set, only deletes the bucket if its metageneration matches this value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // If set, only deletes the bucket if its metageneration does not match this value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2095,91 +1668,6 @@ export namespace storage_v1 {
 
     /**
      * Returns metadata for the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.buckets.get({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Set of properties to return. Defaults to noAcl.
-     *     projection: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "autoclass": {},
-     *   //   "billing": {},
-     *   //   "cors": [],
-     *   //   "customPlacementConfig": {},
-     *   //   "defaultEventBasedHold": false,
-     *   //   "defaultObjectAcl": [],
-     *   //   "encryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "iamConfiguration": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "labels": {},
-     *   //   "lifecycle": {},
-     *   //   "location": "my_location",
-     *   //   "locationType": "my_locationType",
-     *   //   "logging": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "projectNumber": "my_projectNumber",
-     *   //   "retentionPolicy": {},
-     *   //   "rpo": "my_rpo",
-     *   //   "satisfiesPZS": false,
-     *   //   "selfLink": "my_selfLink",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "updated": "my_updated",
-     *   //   "versioning": {},
-     *   //   "website": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2266,59 +1754,6 @@ export namespace storage_v1 {
 
     /**
      * Returns an IAM policy for the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.buckets.getIamPolicy({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The IAM policy format version to be returned. If the optionsRequestedPolicyVersion is for an older version that doesn't support part of the requested IAM policy, the request fails.
-     *     optionsRequestedPolicyVersion: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "kind": "my_kind",
-     *   //   "resourceId": "my_resourceId",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2406,126 +1841,6 @@ export namespace storage_v1 {
 
     /**
      * Creates a new bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.buckets.insert({
-     *     // Apply a predefined set of access controls to this bucket.
-     *     predefinedAcl: 'placeholder-value',
-     *     // Apply a predefined set of default object access controls to this bucket.
-     *     predefinedDefaultObjectAcl: 'placeholder-value',
-     *     // A valid API project identifier.
-     *     project: 'placeholder-value',
-     *     // Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
-     *     projection: 'placeholder-value',
-     *     // The project to be billed for this request.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acl": [],
-     *       //   "autoclass": {},
-     *       //   "billing": {},
-     *       //   "cors": [],
-     *       //   "customPlacementConfig": {},
-     *       //   "defaultEventBasedHold": false,
-     *       //   "defaultObjectAcl": [],
-     *       //   "encryption": {},
-     *       //   "etag": "my_etag",
-     *       //   "iamConfiguration": {},
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "labels": {},
-     *       //   "lifecycle": {},
-     *       //   "location": "my_location",
-     *       //   "locationType": "my_locationType",
-     *       //   "logging": {},
-     *       //   "metageneration": "my_metageneration",
-     *       //   "name": "my_name",
-     *       //   "owner": {},
-     *       //   "projectNumber": "my_projectNumber",
-     *       //   "retentionPolicy": {},
-     *       //   "rpo": "my_rpo",
-     *       //   "satisfiesPZS": false,
-     *       //   "selfLink": "my_selfLink",
-     *       //   "storageClass": "my_storageClass",
-     *       //   "timeCreated": "my_timeCreated",
-     *       //   "updated": "my_updated",
-     *       //   "versioning": {},
-     *       //   "website": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "autoclass": {},
-     *   //   "billing": {},
-     *   //   "cors": [],
-     *   //   "customPlacementConfig": {},
-     *   //   "defaultEventBasedHold": false,
-     *   //   "defaultObjectAcl": [],
-     *   //   "encryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "iamConfiguration": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "labels": {},
-     *   //   "lifecycle": {},
-     *   //   "location": "my_location",
-     *   //   "locationType": "my_locationType",
-     *   //   "logging": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "projectNumber": "my_projectNumber",
-     *   //   "retentionPolicy": {},
-     *   //   "rpo": "my_rpo",
-     *   //   "satisfiesPZS": false,
-     *   //   "selfLink": "my_selfLink",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "updated": "my_updated",
-     *   //   "versioning": {},
-     *   //   "website": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2609,66 +1924,6 @@ export namespace storage_v1 {
 
     /**
      * Retrieves a list of buckets for a given project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.buckets.list({
-     *     // Maximum number of buckets to return in a single response. The service will use this parameter or 1,000 items, whichever is smaller.
-     *     maxResults: 'placeholder-value',
-     *     // A previously-returned page token representing part of the larger set of results to view.
-     *     pageToken: 'placeholder-value',
-     *     // Filter results to buckets whose names begin with this prefix.
-     *     prefix: 'placeholder-value',
-     *     // A valid API project identifier.
-     *     project: 'placeholder-value',
-     *     // Set of properties to return. Defaults to noAcl.
-     *     projection: 'placeholder-value',
-     *     // The project to be billed for this request.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2752,85 +2007,6 @@ export namespace storage_v1 {
 
     /**
      * Locks retention policy on a bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.buckets.lockRetentionPolicy({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // Makes the operation conditional on whether bucket's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "autoclass": {},
-     *   //   "billing": {},
-     *   //   "cors": [],
-     *   //   "customPlacementConfig": {},
-     *   //   "defaultEventBasedHold": false,
-     *   //   "defaultObjectAcl": [],
-     *   //   "encryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "iamConfiguration": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "labels": {},
-     *   //   "lifecycle": {},
-     *   //   "location": "my_location",
-     *   //   "locationType": "my_locationType",
-     *   //   "logging": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "projectNumber": "my_projectNumber",
-     *   //   "retentionPolicy": {},
-     *   //   "rpo": "my_rpo",
-     *   //   "satisfiesPZS": false,
-     *   //   "selfLink": "my_selfLink",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "updated": "my_updated",
-     *   //   "versioning": {},
-     *   //   "website": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2917,129 +2093,6 @@ export namespace storage_v1 {
 
     /**
      * Patches a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.buckets.patch({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Apply a predefined set of access controls to this bucket.
-     *     predefinedAcl: 'placeholder-value',
-     *     // Apply a predefined set of default object access controls to this bucket.
-     *     predefinedDefaultObjectAcl: 'placeholder-value',
-     *     // Set of properties to return. Defaults to full.
-     *     projection: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acl": [],
-     *       //   "autoclass": {},
-     *       //   "billing": {},
-     *       //   "cors": [],
-     *       //   "customPlacementConfig": {},
-     *       //   "defaultEventBasedHold": false,
-     *       //   "defaultObjectAcl": [],
-     *       //   "encryption": {},
-     *       //   "etag": "my_etag",
-     *       //   "iamConfiguration": {},
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "labels": {},
-     *       //   "lifecycle": {},
-     *       //   "location": "my_location",
-     *       //   "locationType": "my_locationType",
-     *       //   "logging": {},
-     *       //   "metageneration": "my_metageneration",
-     *       //   "name": "my_name",
-     *       //   "owner": {},
-     *       //   "projectNumber": "my_projectNumber",
-     *       //   "retentionPolicy": {},
-     *       //   "rpo": "my_rpo",
-     *       //   "satisfiesPZS": false,
-     *       //   "selfLink": "my_selfLink",
-     *       //   "storageClass": "my_storageClass",
-     *       //   "timeCreated": "my_timeCreated",
-     *       //   "updated": "my_updated",
-     *       //   "versioning": {},
-     *       //   "website": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "autoclass": {},
-     *   //   "billing": {},
-     *   //   "cors": [],
-     *   //   "customPlacementConfig": {},
-     *   //   "defaultEventBasedHold": false,
-     *   //   "defaultObjectAcl": [],
-     *   //   "encryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "iamConfiguration": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "labels": {},
-     *   //   "lifecycle": {},
-     *   //   "location": "my_location",
-     *   //   "locationType": "my_locationType",
-     *   //   "logging": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "projectNumber": "my_projectNumber",
-     *   //   "retentionPolicy": {},
-     *   //   "rpo": "my_rpo",
-     *   //   "satisfiesPZS": false,
-     *   //   "selfLink": "my_selfLink",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "updated": "my_updated",
-     *   //   "versioning": {},
-     *   //   "website": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3126,69 +2179,6 @@ export namespace storage_v1 {
 
     /**
      * Updates an IAM policy for the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.buckets.setIamPolicy({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bindings": [],
-     *       //   "etag": "my_etag",
-     *       //   "kind": "my_kind",
-     *       //   "resourceId": "my_resourceId",
-     *       //   "version": 0
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "kind": "my_kind",
-     *   //   "resourceId": "my_resourceId",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3276,59 +2266,6 @@ export namespace storage_v1 {
 
     /**
      * Tests a set of permissions on the given bucket to see which, if any, are held by the caller.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.buckets.testIamPermissions({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // Permissions to test.
-     *     permissions: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3422,129 +2359,6 @@ export namespace storage_v1 {
 
     /**
      * Updates a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.buckets.update({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Apply a predefined set of access controls to this bucket.
-     *     predefinedAcl: 'placeholder-value',
-     *     // Apply a predefined set of default object access controls to this bucket.
-     *     predefinedDefaultObjectAcl: 'placeholder-value',
-     *     // Set of properties to return. Defaults to full.
-     *     projection: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acl": [],
-     *       //   "autoclass": {},
-     *       //   "billing": {},
-     *       //   "cors": [],
-     *       //   "customPlacementConfig": {},
-     *       //   "defaultEventBasedHold": false,
-     *       //   "defaultObjectAcl": [],
-     *       //   "encryption": {},
-     *       //   "etag": "my_etag",
-     *       //   "iamConfiguration": {},
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "labels": {},
-     *       //   "lifecycle": {},
-     *       //   "location": "my_location",
-     *       //   "locationType": "my_locationType",
-     *       //   "logging": {},
-     *       //   "metageneration": "my_metageneration",
-     *       //   "name": "my_name",
-     *       //   "owner": {},
-     *       //   "projectNumber": "my_projectNumber",
-     *       //   "retentionPolicy": {},
-     *       //   "rpo": "my_rpo",
-     *       //   "satisfiesPZS": false,
-     *       //   "selfLink": "my_selfLink",
-     *       //   "storageClass": "my_storageClass",
-     *       //   "timeCreated": "my_timeCreated",
-     *       //   "updated": "my_updated",
-     *       //   "versioning": {},
-     *       //   "website": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "autoclass": {},
-     *   //   "billing": {},
-     *   //   "cors": [],
-     *   //   "customPlacementConfig": {},
-     *   //   "defaultEventBasedHold": false,
-     *   //   "defaultObjectAcl": [],
-     *   //   "encryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "iamConfiguration": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "labels": {},
-     *   //   "lifecycle": {},
-     *   //   "location": "my_location",
-     *   //   "locationType": "my_locationType",
-     *   //   "logging": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "projectNumber": "my_projectNumber",
-     *   //   "retentionPolicy": {},
-     *   //   "rpo": "my_rpo",
-     *   //   "satisfiesPZS": false,
-     *   //   "selfLink": "my_selfLink",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "updated": "my_updated",
-     *   //   "versioning": {},
-     *   //   "website": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3863,63 +2677,6 @@ export namespace storage_v1 {
 
     /**
      * Stop watching resources through this channel
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.channels.stop({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "address": "my_address",
-     *       //   "expiration": "my_expiration",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "params": {},
-     *       //   "payload": false,
-     *       //   "resourceId": "my_resourceId",
-     *       //   "resourceUri": "my_resourceUri",
-     *       //   "token": "my_token",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4018,50 +2775,6 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes the default object ACL entry for the specified entity on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.defaultObjectAccessControls.delete({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4146,67 +2859,6 @@ export namespace storage_v1 {
 
     /**
      * Returns the default object ACL entry for the specified entity on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.defaultObjectAccessControls.get({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "object": "my_object",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4296,85 +2948,6 @@ export namespace storage_v1 {
 
     /**
      * Creates a new default object ACL entry on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.defaultObjectAccessControls.insert({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bucket": "my_bucket",
-     *       //   "domain": "my_domain",
-     *       //   "email": "my_email",
-     *       //   "entity": "my_entity",
-     *       //   "entityId": "my_entityId",
-     *       //   "etag": "my_etag",
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "object": "my_object",
-     *       //   "projectTeam": {},
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "object": "my_object",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4465,58 +3038,6 @@ export namespace storage_v1 {
 
     /**
      * Retrieves default object ACL entries on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.defaultObjectAccessControls.list({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // If present, only return default ACL listing if the bucket's current metageneration matches this value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4609,87 +3130,6 @@ export namespace storage_v1 {
 
     /**
      * Patches a default object ACL entry on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.defaultObjectAccessControls.patch({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bucket": "my_bucket",
-     *       //   "domain": "my_domain",
-     *       //   "email": "my_email",
-     *       //   "entity": "my_entity",
-     *       //   "entityId": "my_entityId",
-     *       //   "etag": "my_etag",
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "object": "my_object",
-     *       //   "projectTeam": {},
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "object": "my_object",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4779,87 +3219,6 @@ export namespace storage_v1 {
 
     /**
      * Updates a default object ACL entry on the specified bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.defaultObjectAccessControls.update({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bucket": "my_bucket",
-     *       //   "domain": "my_domain",
-     *       //   "email": "my_email",
-     *       //   "entity": "my_entity",
-     *       //   "entityId": "my_entityId",
-     *       //   "etag": "my_etag",
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "object": "my_object",
-     *       //   "projectTeam": {},
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "object": "my_object",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5062,51 +3421,6 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes a notification subscription.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.notifications.delete({
-     *     // The parent bucket of the notification.
-     *     bucket: 'placeholder-value',
-     *     // ID of the notification to delete.
-     *     notification: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5192,66 +3506,6 @@ export namespace storage_v1 {
 
     /**
      * View a notification configuration.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.notifications.get({
-     *     // The parent bucket of the notification.
-     *     bucket: 'placeholder-value',
-     *     // Notification ID
-     *     notification: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "custom_attributes": {},
-     *   //   "etag": "my_etag",
-     *   //   "event_types": [],
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "object_name_prefix": "my_object_name_prefix",
-     *   //   "payload_format": "my_payload_format",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "topic": "my_topic"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5339,78 +3593,6 @@ export namespace storage_v1 {
 
     /**
      * Creates a notification subscription for a given bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.notifications.insert({
-     *     // The parent bucket of the notification.
-     *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "custom_attributes": {},
-     *       //   "etag": "my_etag",
-     *       //   "event_types": [],
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "object_name_prefix": "my_object_name_prefix",
-     *       //   "payload_format": "my_payload_format",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "topic": "my_topic"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "custom_attributes": {},
-     *   //   "etag": "my_etag",
-     *   //   "event_types": [],
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "object_name_prefix": "my_object_name_prefix",
-     *   //   "payload_format": "my_payload_format",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "topic": "my_topic"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5497,57 +3679,6 @@ export namespace storage_v1 {
 
     /**
      * Retrieves a list of notification subscriptions for a given bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.notifications.list({
-     *     // Name of a Google Cloud Storage bucket.
-     *     bucket: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5699,54 +3830,6 @@ export namespace storage_v1 {
 
     /**
      * Permanently deletes the ACL entry for the specified entity on the specified object.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objectAccessControls.delete({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5831,71 +3914,6 @@ export namespace storage_v1 {
 
     /**
      * Returns the ACL entry for the specified entity on the specified object.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objectAccessControls.get({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "object": "my_object",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5985,89 +4003,6 @@ export namespace storage_v1 {
 
     /**
      * Creates a new ACL entry on the specified object.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objectAccessControls.insert({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bucket": "my_bucket",
-     *       //   "domain": "my_domain",
-     *       //   "email": "my_email",
-     *       //   "entity": "my_entity",
-     *       //   "entityId": "my_entityId",
-     *       //   "etag": "my_etag",
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "object": "my_object",
-     *       //   "projectTeam": {},
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "object": "my_object",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6158,58 +4093,6 @@ export namespace storage_v1 {
 
     /**
      * Retrieves ACL entries on the specified object.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objectAccessControls.list({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6302,91 +4185,6 @@ export namespace storage_v1 {
 
     /**
      * Patches an ACL entry on the specified object.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objectAccessControls.patch({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bucket": "my_bucket",
-     *       //   "domain": "my_domain",
-     *       //   "email": "my_email",
-     *       //   "entity": "my_entity",
-     *       //   "entityId": "my_entityId",
-     *       //   "etag": "my_etag",
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "object": "my_object",
-     *       //   "projectTeam": {},
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "object": "my_object",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6476,91 +4274,6 @@ export namespace storage_v1 {
 
     /**
      * Updates an ACL entry on the specified object.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objectAccessControls.update({
-     *     // Name of a bucket.
-     *     bucket: 'placeholder-value',
-     *     // The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     *     entity: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bucket": "my_bucket",
-     *       //   "domain": "my_domain",
-     *       //   "email": "my_email",
-     *       //   "entity": "my_entity",
-     *       //   "entityId": "my_entityId",
-     *       //   "etag": "my_etag",
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "object": "my_object",
-     *       //   "projectTeam": {},
-     *       //   "role": "my_role",
-     *       //   "selfLink": "my_selfLink"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bucket": "my_bucket",
-     *   //   "domain": "my_domain",
-     *   //   "email": "my_email",
-     *   //   "entity": "my_entity",
-     *   //   "entityId": "my_entityId",
-     *   //   "etag": "my_etag",
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "object": "my_object",
-     *   //   "projectTeam": {},
-     *   //   "role": "my_role",
-     *   //   "selfLink": "my_selfLink"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6664,7 +4377,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6687,7 +4400,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6706,7 +4419,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6730,7 +4443,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6753,7 +4466,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6781,7 +4494,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -6803,105 +4516,6 @@ export namespace storage_v1 {
 
     /**
      * Concatenates a list of existing objects into a new object in the same bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.compose({
-     *     // Name of the bucket containing the source objects. The destination object is stored in this bucket.
-     *     destinationBucket: 'placeholder-value',
-     *     // Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     destinationObject: 'placeholder-value',
-     *     // Apply a predefined set of access controls to the destination object.
-     *     destinationPredefinedAcl: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     *     ifGenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     *     kmsKeyName: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "destination": {},
-     *       //   "kind": "my_kind",
-     *       //   "sourceObjects": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "bucket": "my_bucket",
-     *   //   "cacheControl": "my_cacheControl",
-     *   //   "componentCount": 0,
-     *   //   "contentDisposition": "my_contentDisposition",
-     *   //   "contentEncoding": "my_contentEncoding",
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "contentType": "my_contentType",
-     *   //   "crc32c": "my_crc32c",
-     *   //   "customTime": "my_customTime",
-     *   //   "customerEncryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "eventBasedHold": false,
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "kmsKeyName": "my_kmsKeyName",
-     *   //   "md5Hash": "my_md5Hash",
-     *   //   "mediaLink": "my_mediaLink",
-     *   //   "metadata": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "size": "my_size",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "temporaryHold": false,
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "timeDeleted": "my_timeDeleted",
-     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6988,154 +4602,6 @@ export namespace storage_v1 {
 
     /**
      * Copies a source object to a destination object. Optionally overrides metadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.copy({
-     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     destinationBucket: 'placeholder-value',
-     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     *     destinationKmsKeyName: 'placeholder-value',
-     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
-     *     destinationObject: 'placeholder-value',
-     *     // Apply a predefined set of access controls to the destination object.
-     *     destinationPredefinedAcl: 'placeholder-value',
-     *     // Makes the operation conditional on whether the destination object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     *     ifGenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the destination object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     *     ifGenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the destination object's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the source object's current generation matches the given value.
-     *     ifSourceGenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the source object's current generation does not match the given value.
-     *     ifSourceGenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the source object's current metageneration matches the given value.
-     *     ifSourceMetagenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the source object's current metageneration does not match the given value.
-     *     ifSourceMetagenerationNotMatch: 'placeholder-value',
-     *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     *     projection: 'placeholder-value',
-     *     // Name of the bucket in which to find the source object.
-     *     sourceBucket: 'placeholder-value',
-     *     // If present, selects a specific revision of the source object (as opposed to the latest version, the default).
-     *     sourceGeneration: 'placeholder-value',
-     *     // Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     sourceObject: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acl": [],
-     *       //   "bucket": "my_bucket",
-     *       //   "cacheControl": "my_cacheControl",
-     *       //   "componentCount": 0,
-     *       //   "contentDisposition": "my_contentDisposition",
-     *       //   "contentEncoding": "my_contentEncoding",
-     *       //   "contentLanguage": "my_contentLanguage",
-     *       //   "contentType": "my_contentType",
-     *       //   "crc32c": "my_crc32c",
-     *       //   "customTime": "my_customTime",
-     *       //   "customerEncryption": {},
-     *       //   "etag": "my_etag",
-     *       //   "eventBasedHold": false,
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "kmsKeyName": "my_kmsKeyName",
-     *       //   "md5Hash": "my_md5Hash",
-     *       //   "mediaLink": "my_mediaLink",
-     *       //   "metadata": {},
-     *       //   "metageneration": "my_metageneration",
-     *       //   "name": "my_name",
-     *       //   "owner": {},
-     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "size": "my_size",
-     *       //   "storageClass": "my_storageClass",
-     *       //   "temporaryHold": false,
-     *       //   "timeCreated": "my_timeCreated",
-     *       //   "timeDeleted": "my_timeDeleted",
-     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *       //   "updated": "my_updated"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "bucket": "my_bucket",
-     *   //   "cacheControl": "my_cacheControl",
-     *   //   "componentCount": 0,
-     *   //   "contentDisposition": "my_contentDisposition",
-     *   //   "contentEncoding": "my_contentEncoding",
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "contentType": "my_contentType",
-     *   //   "crc32c": "my_crc32c",
-     *   //   "customTime": "my_customTime",
-     *   //   "customerEncryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "eventBasedHold": false,
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "kmsKeyName": "my_kmsKeyName",
-     *   //   "md5Hash": "my_md5Hash",
-     *   //   "mediaLink": "my_mediaLink",
-     *   //   "metadata": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "size": "my_size",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "temporaryHold": false,
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "timeDeleted": "my_timeDeleted",
-     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7232,61 +4698,6 @@ export namespace storage_v1 {
 
     /**
      * Deletes an object and its metadata. Deletions are permanent if versioning is not enabled for the bucket, or if the generation parameter is used.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.delete({
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'placeholder-value',
-     *     // If present, permanently deletes a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     *     ifGenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     *     ifGenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7371,101 +4782,6 @@ export namespace storage_v1 {
 
     /**
      * Retrieves an object or its metadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.get({
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     *     ifGenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     *     ifGenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // Set of properties to return. Defaults to noAcl.
-     *     projection: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "bucket": "my_bucket",
-     *   //   "cacheControl": "my_cacheControl",
-     *   //   "componentCount": 0,
-     *   //   "contentDisposition": "my_contentDisposition",
-     *   //   "contentEncoding": "my_contentEncoding",
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "contentType": "my_contentType",
-     *   //   "crc32c": "my_crc32c",
-     *   //   "customTime": "my_customTime",
-     *   //   "customerEncryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "eventBasedHold": false,
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "kmsKeyName": "my_kmsKeyName",
-     *   //   "md5Hash": "my_md5Hash",
-     *   //   "mediaLink": "my_mediaLink",
-     *   //   "metadata": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "size": "my_size",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "temporaryHold": false,
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "timeDeleted": "my_timeDeleted",
-     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7552,64 +4868,6 @@ export namespace storage_v1 {
 
     /**
      * Returns an IAM policy for the specified object.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.getIamPolicy({
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "kind": "my_kind",
-     *   //   "resourceId": "my_resourceId",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7697,146 +4955,6 @@ export namespace storage_v1 {
 
     /**
      * Stores a new object and metadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.insert({
-     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
-     *     bucket: 'placeholder-value',
-     *     // If set, sets the contentEncoding property of the final object to this value. Setting this parameter is equivalent to setting the contentEncoding metadata property. This can be useful when uploading an object with uploadType=media to indicate the encoding of the content being uploaded.
-     *     contentEncoding: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     *     ifGenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     *     ifGenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     *     kmsKeyName: 'placeholder-value',
-     *     // Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     name: 'placeholder-value',
-     *     // Apply a predefined set of access controls to this object.
-     *     predefinedAcl: 'placeholder-value',
-     *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     *     projection: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acl": [],
-     *       //   "bucket": "my_bucket",
-     *       //   "cacheControl": "my_cacheControl",
-     *       //   "componentCount": 0,
-     *       //   "contentDisposition": "my_contentDisposition",
-     *       //   "contentEncoding": "my_contentEncoding",
-     *       //   "contentLanguage": "my_contentLanguage",
-     *       //   "contentType": "my_contentType",
-     *       //   "crc32c": "my_crc32c",
-     *       //   "customTime": "my_customTime",
-     *       //   "customerEncryption": {},
-     *       //   "etag": "my_etag",
-     *       //   "eventBasedHold": false,
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "kmsKeyName": "my_kmsKeyName",
-     *       //   "md5Hash": "my_md5Hash",
-     *       //   "mediaLink": "my_mediaLink",
-     *       //   "metadata": {},
-     *       //   "metageneration": "my_metageneration",
-     *       //   "name": "my_name",
-     *       //   "owner": {},
-     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "size": "my_size",
-     *       //   "storageClass": "my_storageClass",
-     *       //   "temporaryHold": false,
-     *       //   "timeCreated": "my_timeCreated",
-     *       //   "timeDeleted": "my_timeDeleted",
-     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *       //   "updated": "my_updated"
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "bucket": "my_bucket",
-     *   //   "cacheControl": "my_cacheControl",
-     *   //   "componentCount": 0,
-     *   //   "contentDisposition": "my_contentDisposition",
-     *   //   "contentEncoding": "my_contentEncoding",
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "contentType": "my_contentType",
-     *   //   "crc32c": "my_crc32c",
-     *   //   "customTime": "my_customTime",
-     *   //   "customerEncryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "eventBasedHold": false,
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "kmsKeyName": "my_kmsKeyName",
-     *   //   "md5Hash": "my_md5Hash",
-     *   //   "mediaLink": "my_mediaLink",
-     *   //   "metadata": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "size": "my_size",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "temporaryHold": false,
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "timeDeleted": "my_timeDeleted",
-     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7927,77 +5045,6 @@ export namespace storage_v1 {
 
     /**
      * Retrieves a list of objects matching the criteria.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.list({
-     *     // Name of the bucket in which to look for objects.
-     *     bucket: 'placeholder-value',
-     *     // Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     *     delimiter: 'placeholder-value',
-     *     // Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     *     endOffset: 'placeholder-value',
-     *     // If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
-     *     includeTrailingDelimiter: 'placeholder-value',
-     *     // Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
-     *     maxResults: 'placeholder-value',
-     *     // A previously-returned page token representing part of the larger set of results to view.
-     *     pageToken: 'placeholder-value',
-     *     // Filter results to objects whose names begin with this prefix.
-     *     prefix: 'placeholder-value',
-     *     // Set of properties to return. Defaults to noAcl.
-     *     projection: 'placeholder-value',
-     *     // Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     *     startOffset: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *     // If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
-     *     versions: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "prefixes": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8084,139 +5131,6 @@ export namespace storage_v1 {
 
     /**
      * Patches an object's metadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.patch({
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     *     ifGenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     *     ifGenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // Apply a predefined set of access controls to this object.
-     *     predefinedAcl: 'placeholder-value',
-     *     // Set of properties to return. Defaults to full.
-     *     projection: 'placeholder-value',
-     *     // The project to be billed for this request, for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acl": [],
-     *       //   "bucket": "my_bucket",
-     *       //   "cacheControl": "my_cacheControl",
-     *       //   "componentCount": 0,
-     *       //   "contentDisposition": "my_contentDisposition",
-     *       //   "contentEncoding": "my_contentEncoding",
-     *       //   "contentLanguage": "my_contentLanguage",
-     *       //   "contentType": "my_contentType",
-     *       //   "crc32c": "my_crc32c",
-     *       //   "customTime": "my_customTime",
-     *       //   "customerEncryption": {},
-     *       //   "etag": "my_etag",
-     *       //   "eventBasedHold": false,
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "kmsKeyName": "my_kmsKeyName",
-     *       //   "md5Hash": "my_md5Hash",
-     *       //   "mediaLink": "my_mediaLink",
-     *       //   "metadata": {},
-     *       //   "metageneration": "my_metageneration",
-     *       //   "name": "my_name",
-     *       //   "owner": {},
-     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "size": "my_size",
-     *       //   "storageClass": "my_storageClass",
-     *       //   "temporaryHold": false,
-     *       //   "timeCreated": "my_timeCreated",
-     *       //   "timeDeleted": "my_timeDeleted",
-     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *       //   "updated": "my_updated"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "bucket": "my_bucket",
-     *   //   "cacheControl": "my_cacheControl",
-     *   //   "componentCount": 0,
-     *   //   "contentDisposition": "my_contentDisposition",
-     *   //   "contentEncoding": "my_contentEncoding",
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "contentType": "my_contentType",
-     *   //   "crc32c": "my_crc32c",
-     *   //   "customTime": "my_customTime",
-     *   //   "customerEncryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "eventBasedHold": false,
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "kmsKeyName": "my_kmsKeyName",
-     *   //   "md5Hash": "my_md5Hash",
-     *   //   "mediaLink": "my_mediaLink",
-     *   //   "metadata": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "size": "my_size",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "temporaryHold": false,
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "timeDeleted": "my_timeDeleted",
-     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8303,132 +5217,6 @@ export namespace storage_v1 {
 
     /**
      * Rewrites a source object to a destination object. Optionally overrides metadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.rewrite({
-     *     // Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
-     *     destinationBucket: 'placeholder-value',
-     *     // Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     *     destinationKmsKeyName: 'placeholder-value',
-     *     // Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     destinationObject: 'placeholder-value',
-     *     // Apply a predefined set of access controls to the destination object.
-     *     destinationPredefinedAcl: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     *     ifGenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     *     ifGenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the destination object's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the source object's current generation matches the given value.
-     *     ifSourceGenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the source object's current generation does not match the given value.
-     *     ifSourceGenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the source object's current metageneration matches the given value.
-     *     ifSourceMetagenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the source object's current metageneration does not match the given value.
-     *     ifSourceMetagenerationNotMatch: 'placeholder-value',
-     *     // The maximum number of bytes that will be rewritten per rewrite request. Most callers shouldn't need to specify this parameter - it is primarily in place to support testing. If specified the value must be an integral multiple of 1 MiB (1048576). Also, this only applies to requests where the source and destination span locations and/or storage classes. Finally, this value must not change across rewrite calls else you'll get an error that the rewriteToken is invalid.
-     *     maxBytesRewrittenPerCall: 'placeholder-value',
-     *     // Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     *     projection: 'placeholder-value',
-     *     // Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
-     *     rewriteToken: 'placeholder-value',
-     *     // Name of the bucket in which to find the source object.
-     *     sourceBucket: 'placeholder-value',
-     *     // If present, selects a specific revision of the source object (as opposed to the latest version, the default).
-     *     sourceGeneration: 'placeholder-value',
-     *     // Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     sourceObject: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acl": [],
-     *       //   "bucket": "my_bucket",
-     *       //   "cacheControl": "my_cacheControl",
-     *       //   "componentCount": 0,
-     *       //   "contentDisposition": "my_contentDisposition",
-     *       //   "contentEncoding": "my_contentEncoding",
-     *       //   "contentLanguage": "my_contentLanguage",
-     *       //   "contentType": "my_contentType",
-     *       //   "crc32c": "my_crc32c",
-     *       //   "customTime": "my_customTime",
-     *       //   "customerEncryption": {},
-     *       //   "etag": "my_etag",
-     *       //   "eventBasedHold": false,
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "kmsKeyName": "my_kmsKeyName",
-     *       //   "md5Hash": "my_md5Hash",
-     *       //   "mediaLink": "my_mediaLink",
-     *       //   "metadata": {},
-     *       //   "metageneration": "my_metageneration",
-     *       //   "name": "my_name",
-     *       //   "owner": {},
-     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "size": "my_size",
-     *       //   "storageClass": "my_storageClass",
-     *       //   "temporaryHold": false,
-     *       //   "timeCreated": "my_timeCreated",
-     *       //   "timeDeleted": "my_timeDeleted",
-     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *       //   "updated": "my_updated"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "kind": "my_kind",
-     *   //   "objectSize": "my_objectSize",
-     *   //   "resource": {},
-     *   //   "rewriteToken": "my_rewriteToken",
-     *   //   "totalBytesRewritten": "my_totalBytesRewritten"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8525,74 +5313,6 @@ export namespace storage_v1 {
 
     /**
      * Updates an IAM policy for the specified object.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.setIamPolicy({
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bindings": [],
-     *       //   "etag": "my_etag",
-     *       //   "kind": "my_kind",
-     *       //   "resourceId": "my_resourceId",
-     *       //   "version": 0
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "kind": "my_kind",
-     *   //   "resourceId": "my_resourceId",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8680,63 +5400,6 @@ export namespace storage_v1 {
 
     /**
      * Tests a set of permissions on the given object to see which, if any, are held by the caller.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.testIamPermissions({
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // Permissions to test.
-     *     permissions: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8830,139 +5493,6 @@ export namespace storage_v1 {
 
     /**
      * Updates an object's metadata.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.update({
-     *     // Name of the bucket in which the object resides.
-     *     bucket: 'placeholder-value',
-     *     // If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     *     generation: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     *     ifGenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     *     ifGenerationNotMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration matches the given value.
-     *     ifMetagenerationMatch: 'placeholder-value',
-     *     // Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     *     ifMetagenerationNotMatch: 'placeholder-value',
-     *     // Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     *     object: 'placeholder-value',
-     *     // Apply a predefined set of access controls to this object.
-     *     predefinedAcl: 'placeholder-value',
-     *     // Set of properties to return. Defaults to full.
-     *     projection: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acl": [],
-     *       //   "bucket": "my_bucket",
-     *       //   "cacheControl": "my_cacheControl",
-     *       //   "componentCount": 0,
-     *       //   "contentDisposition": "my_contentDisposition",
-     *       //   "contentEncoding": "my_contentEncoding",
-     *       //   "contentLanguage": "my_contentLanguage",
-     *       //   "contentType": "my_contentType",
-     *       //   "crc32c": "my_crc32c",
-     *       //   "customTime": "my_customTime",
-     *       //   "customerEncryption": {},
-     *       //   "etag": "my_etag",
-     *       //   "eventBasedHold": false,
-     *       //   "generation": "my_generation",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "kmsKeyName": "my_kmsKeyName",
-     *       //   "md5Hash": "my_md5Hash",
-     *       //   "mediaLink": "my_mediaLink",
-     *       //   "metadata": {},
-     *       //   "metageneration": "my_metageneration",
-     *       //   "name": "my_name",
-     *       //   "owner": {},
-     *       //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "size": "my_size",
-     *       //   "storageClass": "my_storageClass",
-     *       //   "temporaryHold": false,
-     *       //   "timeCreated": "my_timeCreated",
-     *       //   "timeDeleted": "my_timeDeleted",
-     *       //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *       //   "updated": "my_updated"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acl": [],
-     *   //   "bucket": "my_bucket",
-     *   //   "cacheControl": "my_cacheControl",
-     *   //   "componentCount": 0,
-     *   //   "contentDisposition": "my_contentDisposition",
-     *   //   "contentEncoding": "my_contentEncoding",
-     *   //   "contentLanguage": "my_contentLanguage",
-     *   //   "contentType": "my_contentType",
-     *   //   "crc32c": "my_crc32c",
-     *   //   "customTime": "my_customTime",
-     *   //   "customerEncryption": {},
-     *   //   "etag": "my_etag",
-     *   //   "eventBasedHold": false,
-     *   //   "generation": "my_generation",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "kmsKeyName": "my_kmsKeyName",
-     *   //   "md5Hash": "my_md5Hash",
-     *   //   "mediaLink": "my_mediaLink",
-     *   //   "metadata": {},
-     *   //   "metageneration": "my_metageneration",
-     *   //   "name": "my_name",
-     *   //   "owner": {},
-     *   //   "retentionExpirationTime": "my_retentionExpirationTime",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "size": "my_size",
-     *   //   "storageClass": "my_storageClass",
-     *   //   "temporaryHold": false,
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "timeDeleted": "my_timeDeleted",
-     *   //   "timeStorageClassUpdated": "my_timeStorageClassUpdated",
-     *   //   "updated": "my_updated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9049,100 +5579,6 @@ export namespace storage_v1 {
 
     /**
      * Watch for changes on all objects in a bucket.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.objects.watchAll({
-     *     // Name of the bucket in which to look for objects.
-     *     bucket: 'placeholder-value',
-     *     // Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     *     delimiter: 'placeholder-value',
-     *     // Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     *     endOffset: 'placeholder-value',
-     *     // If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
-     *     includeTrailingDelimiter: 'placeholder-value',
-     *     // Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
-     *     maxResults: 'placeholder-value',
-     *     // A previously-returned page token representing part of the larger set of results to view.
-     *     pageToken: 'placeholder-value',
-     *     // Filter results to objects whose names begin with this prefix.
-     *     prefix: 'placeholder-value',
-     *     // Set of properties to return. Defaults to noAcl.
-     *     projection: 'placeholder-value',
-     *     // Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     *     startOffset: 'placeholder-value',
-     *     // The project to be billed for this request. Required for Requester Pays buckets.
-     *     userProject: 'placeholder-value',
-     *     // If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
-     *     versions: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "address": "my_address",
-     *       //   "expiration": "my_expiration",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "params": {},
-     *       //   "payload": false,
-     *       //   "resourceId": "my_resourceId",
-     *       //   "resourceUri": "my_resourceUri",
-     *       //   "token": "my_token",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "address": "my_address",
-     *   //   "expiration": "my_expiration",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "params": {},
-     *   //   "payload": false,
-     *   //   "resourceId": "my_resourceId",
-     *   //   "resourceUri": "my_resourceUri",
-     *   //   "token": "my_token",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9234,7 +5670,7 @@ export namespace storage_v1 {
      */
     destinationBucket?: string;
     /**
-     * Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the new object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     destinationObject?: string;
     /**
@@ -9265,7 +5701,7 @@ export namespace storage_v1 {
   }
   export interface Params$Resource$Objects$Copy extends StandardParameters {
     /**
-     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     destinationBucket?: string;
     /**
@@ -9325,7 +5761,7 @@ export namespace storage_v1 {
      */
     sourceGeneration?: string;
     /**
-     * Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     sourceObject?: string;
     /**
@@ -9364,7 +5800,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9398,7 +5834,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9421,7 +5857,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9459,7 +5895,7 @@ export namespace storage_v1 {
      */
     kmsKeyName?: string;
     /**
-     * Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     name?: string;
     /**
@@ -9512,6 +5948,10 @@ export namespace storage_v1 {
      * If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
      */
     includeTrailingDelimiter?: boolean;
+    /**
+     * Filter results to objects and prefixes that match this glob pattern.
+     */
+    matchGlob?: string;
     /**
      * Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
      */
@@ -9567,7 +6007,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9598,7 +6038,7 @@ export namespace storage_v1 {
      */
     destinationKmsKeyName?: string;
     /**
-     * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     destinationObject?: string;
     /**
@@ -9658,7 +6098,7 @@ export namespace storage_v1 {
      */
     sourceGeneration?: string;
     /**
-     * Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     sourceObject?: string;
     /**
@@ -9682,7 +6122,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9706,7 +6146,7 @@ export namespace storage_v1 {
      */
     generation?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9744,7 +6184,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9836,57 +6276,6 @@ export namespace storage_v1 {
 
     /**
      * Creates a new HMAC key for the specified service account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.projects.hmacKeys.create({
-     *     // Project ID owning the service account.
-     *     projectId: 'placeholder-value',
-     *     // Email address of the service account.
-     *     serviceAccountEmail: 'placeholder-value',
-     *     // The project to be billed for this request.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "metadata": {},
-     *   //   "secret": "my_secret"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9973,51 +6362,6 @@ export namespace storage_v1 {
 
     /**
      * Deletes an HMAC key.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.projects.hmacKeys.delete({
-     *     // Name of the HMAC key to be deleted.
-     *     accessId: 'placeholder-value',
-     *     // Project ID owning the requested key
-     *     projectId: 'placeholder-value',
-     *     // The project to be billed for this request.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10102,66 +6446,6 @@ export namespace storage_v1 {
 
     /**
      * Retrieves an HMAC key's metadata
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.projects.hmacKeys.get({
-     *     // Name of the HMAC key.
-     *     accessId: 'placeholder-value',
-     *     // Project ID owning the service account of the requested key.
-     *     projectId: 'placeholder-value',
-     *     // The project to be billed for this request.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accessId": "my_accessId",
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "projectId": "my_projectId",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "serviceAccountEmail": "my_serviceAccountEmail",
-     *   //   "state": "my_state",
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "updated": "my_updated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10248,65 +6532,6 @@ export namespace storage_v1 {
 
     /**
      * Retrieves a list of HMAC keys matching the criteria.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.projects.hmacKeys.list({
-     *     // Maximum number of items to return in a single page of responses. The service uses this parameter or 250 items, whichever is smaller. The max number of items per page will also be limited by the number of distinct service accounts in the response. If the number of service accounts in a single response is too high, the page will truncated and a next page token will be returned.
-     *     maxResults: 'placeholder-value',
-     *     // A previously-returned page token representing part of the larger set of results to view.
-     *     pageToken: 'placeholder-value',
-     *     // Name of the project in which to look for HMAC keys.
-     *     projectId: 'placeholder-value',
-     *     // If present, only keys for the given service account are returned.
-     *     serviceAccountEmail: 'placeholder-value',
-     *     // Whether or not to show keys in the DELETED state.
-     *     showDeletedKeys: 'placeholder-value',
-     *     // The project to be billed for this request.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "items": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10393,81 +6618,6 @@ export namespace storage_v1 {
 
     /**
      * Updates the state of an HMAC key. See the HMAC Key resource descriptor for valid states.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.projects.hmacKeys.update({
-     *     // Name of the HMAC key being updated.
-     *     accessId: 'placeholder-value',
-     *     // Project ID owning the service account of the updated key.
-     *     projectId: 'placeholder-value',
-     *     // The project to be billed for this request.
-     *     userProject: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accessId": "my_accessId",
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "projectId": "my_projectId",
-     *       //   "selfLink": "my_selfLink",
-     *       //   "serviceAccountEmail": "my_serviceAccountEmail",
-     *       //   "state": "my_state",
-     *       //   "timeCreated": "my_timeCreated",
-     *       //   "updated": "my_updated"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accessId": "my_accessId",
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "projectId": "my_projectId",
-     *   //   "selfLink": "my_selfLink",
-     *   //   "serviceAccountEmail": "my_serviceAccountEmail",
-     *   //   "state": "my_state",
-     *   //   "timeCreated": "my_timeCreated",
-     *   //   "updated": "my_updated"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10654,57 +6804,6 @@ export namespace storage_v1 {
 
     /**
      * Get the email address of this project's Google Cloud Storage service account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/storage.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const storage = google.storage('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *       'https://www.googleapis.com/auth/devstorage.full_control',
-     *       'https://www.googleapis.com/auth/devstorage.read_only',
-     *       'https://www.googleapis.com/auth/devstorage.read_write',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await storage.projects.serviceAccount.get({
-     *     // Project ID
-     *     projectId: 'placeholder-value',
-     *     // The project to be billed for this request.
-     *     userProject: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "email_address": "my_email_address",
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -47,7 +47,7 @@ export function dfareporting<
     | dfareporting_v3_3.Dfareporting
     | dfareporting_v3_4.Dfareporting
     | dfareporting_v3_5.Dfareporting
-    | dfareporting_v4.Dfareporting
+    | dfareporting_v4.Dfareporting,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

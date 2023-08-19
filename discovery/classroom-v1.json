@@ -170,7 +170,7 @@
     "courses": {
       "methods": {
         "create": {
-          "description": "Creates a course. The user specified in `ownerId` is the owner of the created course and added as a teacher. A non-admin requesting user can only create a course with themselves as the owner. Domain admins can create courses owned by any user within their domain. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create courses or for access errors. * `NOT_FOUND` if the primary teacher is not a valid user. * `FAILED_PRECONDITION` if the course owner's account is disabled or for the following request errors: * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if an alias was specified in the `id` and already exists.",
+          "description": "Creates a course. The user specified in `ownerId` is the owner of the created course and added as a teacher. A non-admin requesting user can only create a course with themselves as the owner. Domain admins can create courses owned by any user within their domain. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create courses or for access errors. * `NOT_FOUND` if the primary teacher is not a valid user. * `FAILED_PRECONDITION` if the course owner's account is disabled or for the following request errors: * UserCannotOwnCourse * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if an alias was specified in the `id` and already exists.",
           "flatPath": "v1/courses",
           "httpMethod": "POST",
           "id": "classroom.courses.create",
@@ -297,7 +297,7 @@
           ]
         },
         "patch": {
-          "description": "Updates one or more fields in a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID. * `INVALID_ARGUMENT` if invalid fields are specified in the update mask or if no update mask is supplied. * `FAILED_PRECONDITION` for the following request errors: * CourseNotModifiable * InactiveCourseOwner",
+          "description": "Updates one or more fields in a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID. * `INVALID_ARGUMENT` if invalid fields are specified in the update mask or if no update mask is supplied. * `FAILED_PRECONDITION` for the following request errors: * CourseNotModifiable * InactiveCourseOwner * IneligibleOwner",
           "flatPath": "v1/courses/{id}",
           "httpMethod": "PATCH",
           "id": "classroom.courses.patch",
@@ -1383,7 +1383,7 @@
                   "enumDescriptions": [
                     "No state specified. This is never returned.",
                     "Status for course work material that has been published. This is the default state.",
-                    "Status for an course work material that is not yet published. Course work material in this state is visible only to course teachers and domain administrators.",
+                    "Status for a course work material that is not yet published. Course work material in this state is visible only to course teachers and domain administrators.",
                     "Status for course work material that was published but is now deleted. Course work material in this state is visible only to course teachers and domain administrators. Course work material in this state is deleted after some time."
                   ],
                   "location": "query",
@@ -1944,7 +1944,7 @@
           ]
         },
         "create": {
-          "description": "Creates an invitation. Only one invitation for a user and course may exist at a time. Delete and re-create an invitation to make changes. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create invitations for this course or for access errors. * `NOT_FOUND` if the course or the user does not exist. * `FAILED_PRECONDITION` if the requested user's account is disabled or if the user already has this role or a role with greater permissions. * `ALREADY_EXISTS` if an invitation for the specified user and course already exists.",
+          "description": "Creates an invitation. Only one invitation for a user and course may exist at a time. Delete and re-create an invitation to make changes. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create invitations for this course or for access errors. * `NOT_FOUND` if the course or the user does not exist. * `FAILED_PRECONDITION`: * if the requested user's account is disabled. * if the user already has this role or a role with greater permissions. * for the following request errors: * IneligibleOwner * `ALREADY_EXISTS` if an invitation for the specified user and course already exists.",
           "flatPath": "v1/invitations",
           "httpMethod": "POST",
           "id": "classroom.invitations.create",
@@ -2400,7 +2400,7 @@
       }
     }
   },
-  "revision": "20220324",
+  "revision": "20230708",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "Announcement": {
@@ -2554,7 +2554,7 @@
           "type": "string"
         },
         "calendarId": {
-          "description": "The Calendar ID for a calendar that all course members can see, to which Classroom adds events for course work and announcements in the course. Read-only.",
+          "description": "The Calendar ID for a calendar that all course members can see, to which Classroom adds events for course work and announcements in the course. The Calendar for a course is created asynchronously when the course is set to `CourseState.ACTIVE` for the first time (at creation time or when it is updated to `ACTIVE` through the UI or the API). The Calendar ID will not be populated until the creation process is completed. Read-only.",
           "type": "string"
         },
         "courseGroupEmail": {
@@ -2562,6 +2562,7 @@
           "type": "string"
         },
         "courseMaterialSets": {
+          "deprecated": true,
           "description": "Sets of materials that appear on the \"about\" page of this course. Read-only.",
           "items": {
             "$ref": "CourseMaterialSet"
@@ -2943,7 +2944,7 @@
           "enumDescriptions": [
             "No state specified. This is never returned.",
             "Status for course work material that has been published. This is the default state.",
-            "Status for an course work material that is not yet published. Course work material in this state is visible only to course teachers and domain administrators.",
+            "Status for a course work material that is not yet published. Course work material in this state is visible only to course teachers and domain administrators.",
             "Status for course work material that was published but is now deleted. Course work material in this state is visible only to course teachers and domain administrators. Course work material in this state is deleted after some time."
           ],
           "type": "string"
@@ -3074,7 +3075,7 @@
           "type": "string"
         },
         "responseUrl": {
-          "description": "URL of the form responses document. Only set if respsonses have been recorded and only when the requesting user is an editor of the form. Read-only.",
+          "description": "URL of the form responses document. Only set if responses have been recorded and only when the requesting user is an editor of the form. Read-only.",
           "type": "string"
         },
         "thumbnailUrl": {
@@ -4054,7 +4055,7 @@
       "id": "UserProfile",
       "properties": {
         "emailAddress": {
-          "description": "Email address of the user. Read-only.",
+          "description": "Email address of the user. Must request `https://www.googleapis.com/auth/classroom.profile.emails` scope for this field to be populated in a response body. Read-only.",
           "type": "string"
         },
         "id": {
@@ -4073,11 +4074,11 @@
           "type": "array"
         },
         "photoUrl": {
-          "description": "URL of user's profile photo. Read-only.",
+          "description": "URL of user's profile photo. Must request `https://www.googleapis.com/auth/classroom.profile.photos` scope for this field to be populated in a response body. Read-only.",
           "type": "string"
         },
         "verifiedTeacher": {
-          "description": "Represents whether a G Suite for Education user's domain administrator has explicitly verified them as being a teacher. If the user is not a member of a G Suite for Education domain, than this field is always false. Read-only",
+          "description": "Represents whether a Google Workspace for Education user's domain administrator has explicitly verified them as being a teacher. This field is always false if the user is not a member of a Google Workspace for Education domain. Read-only",
           "type": "boolean"
         }
       },

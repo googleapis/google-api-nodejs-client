@@ -203,7 +203,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -236,7 +236,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -315,7 +315,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "An expression that filters the results listed in the response.",
+                          "description": "An expression that filters the list of results.",
                           "location": "query",
                           "type": "string"
                         },
@@ -325,7 +325,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "The maximum number of results per page that should be returned.",
+                          "description": "The maximum number of results per page to return.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -351,6 +351,73 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "listSpokes": {
+                      "description": "Lists the Network Connectivity Center spokes associated with a specified hub and location. The list includes both spokes that are attached to the hub and spokes that have been proposed but not yet accepted.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}:listSpokes",
+                      "httpMethod": "GET",
+                      "id": "networkconnectivity.projects.locations.global.hubs.listSpokes",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "An expression that filters the list of results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The name of the hub.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Sort the results by name or create_time.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of results to return per page.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "spokeLocations": {
+                          "description": "A list of locations. Specify one of the following: `[global]`, a single region (for example, `[us-central1]`), or a combination of values (for example, `[global, us-central1, us-west1]`). If the spoke_locations field is populated, the list of results includes only spokes in the specified location. If the spoke_locations field is not populated, the list of results includes spokes in all locations.",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "The view of the spoke to return. The view that you use determines which spoke fields are included in the response.",
+                          "enum": [
+                            "SPOKE_VIEW_UNSPECIFIED",
+                            "BASIC",
+                            "DETAILED"
+                          ],
+                          "enumDescriptions": [
+                            "The spoke view is unspecified. When the spoke view is unspecified, the API returns the same fields as the `BASIC` view.",
+                            "Includes `name`, `create_time`, `hub`, `unique_id`, `state`, `reasons`, and `spoke_type`. This is the default value.",
+                            "Includes all spoke fields except `labels`. You can use the `DETAILED` view only when you set the `spoke_locations` field to `[global]`."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:listSpokes",
+                      "response": {
+                        "$ref": "ListHubSpokesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "patch": {
                       "description": "Updates the description and/or labels of a Network Connectivity Center hub.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}",
@@ -368,7 +435,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
@@ -445,6 +512,322 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  },
+                  "resources": {
+                    "groups": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets details about a Network Connectivity Center group.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups/{groupsId}",
+                          "httpMethod": "GET",
+                          "id": "networkconnectivity.projects.locations.global.hubs.groups.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the route table resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+/groups/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "Group"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "getIamPolicy": {
+                          "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups/{groupsId}:getIamPolicy",
+                          "httpMethod": "GET",
+                          "id": "networkconnectivity.projects.locations.global.hubs.groups.getIamPolicy",
+                          "parameterOrder": [
+                            "resource"
+                          ],
+                          "parameters": {
+                            "options.requestedPolicyVersion": {
+                              "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "resource": {
+                              "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+/groups/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+resource}:getIamPolicy",
+                          "response": {
+                            "$ref": "Policy"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists groups in a given hub.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups",
+                          "httpMethod": "GET",
+                          "id": "networkconnectivity.projects.locations.global.hubs.groups.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "An expression that filters the list of results.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Sort the results by a certain order.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The maximum number of results to return per page.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource's name.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/groups",
+                          "response": {
+                            "$ref": "ListGroupsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "setIamPolicy": {
+                          "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups/{groupsId}:setIamPolicy",
+                          "httpMethod": "POST",
+                          "id": "networkconnectivity.projects.locations.global.hubs.groups.setIamPolicy",
+                          "parameterOrder": [
+                            "resource"
+                          ],
+                          "parameters": {
+                            "resource": {
+                              "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+/groups/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+resource}:setIamPolicy",
+                          "request": {
+                            "$ref": "SetIamPolicyRequest"
+                          },
+                          "response": {
+                            "$ref": "Policy"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "testIamPermissions": {
+                          "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/groups/{groupsId}:testIamPermissions",
+                          "httpMethod": "POST",
+                          "id": "networkconnectivity.projects.locations.global.hubs.groups.testIamPermissions",
+                          "parameterOrder": [
+                            "resource"
+                          ],
+                          "parameters": {
+                            "resource": {
+                              "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+/groups/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+resource}:testIamPermissions",
+                          "request": {
+                            "$ref": "TestIamPermissionsRequest"
+                          },
+                          "response": {
+                            "$ref": "TestIamPermissionsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "routeTables": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets details about a Network Connectivity Center route table.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/routeTables/{routeTablesId}",
+                          "httpMethod": "GET",
+                          "id": "networkconnectivity.projects.locations.global.hubs.routeTables.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the route table resource.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+/routeTables/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "RouteTable"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists route tables in a given project.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/routeTables",
+                          "httpMethod": "GET",
+                          "id": "networkconnectivity.projects.locations.global.hubs.routeTables.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "An expression that filters the list of results.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Sort the results by a certain order.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The maximum number of results to return per page.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource's name.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/routeTables",
+                          "response": {
+                            "$ref": "ListRouteTablesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      },
+                      "resources": {
+                        "routes": {
+                          "methods": {
+                            "get": {
+                              "description": "Gets details about the specified route.",
+                              "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/routeTables/{routeTablesId}/routes/{routesId}",
+                              "httpMethod": "GET",
+                              "id": "networkconnectivity.projects.locations.global.hubs.routeTables.routes.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The name of the route resource.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+/routeTables/[^/]+/routes/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}",
+                              "response": {
+                                "$ref": "Route"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "Lists routes in a given project.",
+                              "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}/routeTables/{routeTablesId}/routes",
+                              "httpMethod": "GET",
+                              "id": "networkconnectivity.projects.locations.global.hubs.routeTables.routes.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "filter": {
+                                  "description": "An expression that filters the list of results.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "orderBy": {
+                                  "description": "Sort the results by a certain order.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "pageSize": {
+                                  "description": "The maximum number of results to return per page.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "The page token.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent resource's name.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+/routeTables/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/routes",
+                              "response": {
+                                "$ref": "ListRoutesResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 },
@@ -544,7 +927,7 @@
             "internalRanges": {
               "methods": {
                 "create": {
-                  "description": "Creates a new InternalRange in a given project and location.",
+                  "description": "Creates a new internal range in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/internalRanges",
                   "httpMethod": "POST",
                   "id": "networkconnectivity.projects.locations.internalRanges.create",
@@ -558,14 +941,14 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource's name of the InternalRange.",
+                      "description": "Required. The parent resource's name of the internal range.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -582,7 +965,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single InternalRange.",
+                  "description": "Deletes a single internal range.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/internalRanges/{internalRangesId}",
                   "httpMethod": "DELETE",
                   "id": "networkconnectivity.projects.locations.internalRanges.delete",
@@ -591,14 +974,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the InternalRange to delete.",
+                      "description": "Required. The name of the internal range to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/internalRanges/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -612,7 +995,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single InternalRange.",
+                  "description": "Gets details of a single internal range.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/internalRanges/{internalRangesId}",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.internalRanges.get",
@@ -637,7 +1020,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists InternalRanges in a given project and location.",
+                  "description": "Lists internal ranges in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/internalRanges",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.internalRanges.list",
@@ -683,7 +1066,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the parameters of a single InternalRange.",
+                  "description": "Updates the parameters of a single internal range.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/internalRanges/{internalRangesId}",
                   "httpMethod": "PATCH",
                   "id": "networkconnectivity.projects.locations.internalRanges.patch",
@@ -692,14 +1075,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. The name of a InternalRange. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
+                      "description": "Immutable. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/internalRanges/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -804,7 +1187,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.operations.list",
@@ -848,6 +1231,66 @@
             },
             "serviceClasses": {
               "methods": {
+                "delete": {
+                  "description": "Deletes a single ServiceClass.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceClasses/{serviceClassesId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkconnectivity.projects.locations.serviceClasses.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the ServiceClass to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceClasses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single ServiceClass.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceClasses/{serviceClassesId}",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.serviceClasses.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the ServiceClass to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceClasses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "ServiceClass"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceClasses/{serviceClassesId}:getIamPolicy",
@@ -874,6 +1317,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ServiceClasses in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceClasses",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.serviceClasses.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "A filter expression that filters the results listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of results per page that should be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource's name. ex. projects/123/locations/us-east1",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/serviceClasses",
+                  "response": {
+                    "$ref": "ListServiceClassesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single ServiceClass.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceClasses/{serviceClassesId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkconnectivity.projects.locations.serviceClasses.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The name of a ServiceClass resource. Format: projects/{project}/locations/{location}/serviceClasses/{service_class} See: https://google.aip.dev/122#fields-representing-resource-names",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceClasses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the ServiceClass resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "ServiceClass"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -939,6 +1467,104 @@
             },
             "serviceConnectionMaps": {
               "methods": {
+                "create": {
+                  "description": "Creates a new ServiceConnectionMap in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionMaps",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionMaps.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource's name of the ServiceConnectionMap. ex. projects/123/locations/us-east1",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "serviceConnectionMapId": {
+                      "description": "Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/serviceConnectionMaps/foo') See https://google.aip.dev/122#resource-id-segments Unique per location. If one is not provided, one will be generated.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/serviceConnectionMaps",
+                  "request": {
+                    "$ref": "ServiceConnectionMap"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single ServiceConnectionMap.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionMaps/{serviceConnectionMapsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionMaps.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the ServiceConnectionMap to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionMaps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single ServiceConnectionMap.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionMaps/{serviceConnectionMapsId}",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionMaps.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the ServiceConnectionMap to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionMaps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "ServiceConnectionMap"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionMaps/{serviceConnectionMapsId}:getIamPolicy",
@@ -965,6 +1591,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ServiceConnectionMaps in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionMaps",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionMaps.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "A filter expression that filters the results listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of results per page that should be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource's name. ex. projects/123/locations/us-east1",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/serviceConnectionMaps",
+                  "response": {
+                    "$ref": "ListServiceConnectionMapsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single ServiceConnectionMap.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionMaps/{serviceConnectionMapsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionMaps.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The name of a ServiceConnectionMap. Format: projects/{project}/locations/{location}/serviceConnectionMaps/{service_connection_map} See: https://google.aip.dev/122#fields-representing-resource-names",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionMaps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the ServiceConnectionMap resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "ServiceConnectionMap"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1030,6 +1741,104 @@
             },
             "serviceConnectionPolicies": {
               "methods": {
+                "create": {
+                  "description": "Creates a new ServiceConnectionPolicy in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionPolicies",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionPolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource's name of the ServiceConnectionPolicy. ex. projects/123/locations/us-east1",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "serviceConnectionPolicyId": {
+                      "description": "Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/serviceConnectionPolicies/foo') See https://google.aip.dev/122#resource-id-segments Unique per location.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/serviceConnectionPolicies",
+                  "request": {
+                    "$ref": "ServiceConnectionPolicy"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single ServiceConnectionPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionPolicies/{serviceConnectionPoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionPolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the ServiceConnectionPolicy to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single ServiceConnectionPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionPolicies/{serviceConnectionPoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionPolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the ServiceConnectionPolicy to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "ServiceConnectionPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionPolicies/{serviceConnectionPoliciesId}:getIamPolicy",
@@ -1056,6 +1865,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ServiceConnectionPolicies in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionPolicies",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "A filter expression that filters the results listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of results per page that should be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource's name. ex. projects/123/locations/us-east1",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/serviceConnectionPolicies",
+                  "response": {
+                    "$ref": "ListServiceConnectionPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single ServiceConnectionPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionPolicies/{serviceConnectionPoliciesId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionPolicies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The name of a ServiceConnectionPolicy. Format: projects/{project}/locations/{location}/serviceConnectionPolicies/{service_connection_policy} See: https://google.aip.dev/122#fields-representing-resource-names",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the ServiceConnectionPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "ServiceConnectionPolicy"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1119,8 +2013,184 @@
                 }
               }
             },
+            "serviceConnectionTokens": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new ServiceConnectionToken in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionTokens",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionTokens.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource's name of the ServiceConnectionToken. ex. projects/123/locations/us-east1",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "serviceConnectionTokenId": {
+                      "description": "Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/ServiceConnectionTokens/foo') See https://google.aip.dev/122#resource-id-segments Unique per location. If one is not provided, one will be generated.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/serviceConnectionTokens",
+                  "request": {
+                    "$ref": "ServiceConnectionToken"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single ServiceConnectionToken.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionTokens/{serviceConnectionTokensId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionTokens.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "etag": {
+                      "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the ServiceConnectionToken to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionTokens/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single ServiceConnectionToken.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionTokens/{serviceConnectionTokensId}",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionTokens.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the ServiceConnectionToken to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceConnectionTokens/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "ServiceConnectionToken"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists ServiceConnectionTokens in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceConnectionTokens",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.serviceConnectionTokens.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "A filter expression that filters the results listed in the response.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sort the results by a certain order.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of results per page that should be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource's name. ex. projects/123/locations/us-east1",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/serviceConnectionTokens",
+                  "response": {
+                    "$ref": "ListServiceConnectionTokensResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "spokes": {
               "methods": {
+                "accept": {
+                  "description": "Accepts a proposal to attach a Network Connectivity Center spoke to the hub.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}:accept",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.spokes.accept",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the spoke to accept.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/spokes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:accept",
+                  "request": {
+                    "$ref": "AcceptSpokeRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a Network Connectivity Center spoke.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes",
@@ -1138,7 +2208,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1176,7 +2246,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -1255,7 +2325,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "An expression that filters the results listed in the response.",
+                      "description": "An expression that filters the list of results.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1265,7 +2335,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of results per page that should be returned.",
+                      "description": "The maximum number of results to return per page.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1308,7 +2378,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1322,6 +2392,34 @@
                   "path": "v1/{+name}",
                   "request": {
                     "$ref": "Spoke"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "reject": {
+                  "description": "Rejects a Network Connectivity Center spoke from being attached to the hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/spokes/{spokesId}:reject",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.spokes.reject",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the spoke to reject.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/spokes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:reject",
+                  "request": {
+                    "$ref": "RejectSpokeRequest"
                   },
                   "response": {
                     "$ref": "GoogleLongrunningOperation"
@@ -1393,9 +2491,20 @@
       }
     }
   },
-  "revision": "20221020",
+  "revision": "20230804",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
+    "AcceptSpokeRequest": {
+      "description": "The request for HubService.AcceptSpoke.",
+      "id": "AcceptSpokeRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AuditConfig": {
       "description": "Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { \"audit_configs\": [ { \"service\": \"allServices\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" }, { \"log_type\": \"ADMIN_READ\" } ] }, { \"service\": \"sampleservice.googleapis.com\", \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\" }, { \"log_type\": \"DATA_WRITE\", \"exempted_members\": [ \"user:aliya@example.com\" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.",
       "id": "AuditConfig",
@@ -1453,7 +2562,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
           "items": {
             "type": "string"
           },
@@ -1461,6 +2570,120 @@
         },
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConsumerPscConfig": {
+      "description": "Allow the producer to specify which consumers can connect to it.",
+      "id": "ConsumerPscConfig",
+      "properties": {
+        "disableGlobalAccess": {
+          "description": "This is used in PSC consumer ForwardingRule to control whether the PSC endpoint can be accessed from another region.",
+          "type": "boolean"
+        },
+        "network": {
+          "description": "The resource path of the consumer network where PSC connections are allowed to be created in. Note, this network does not need be in the ConsumerPscConfig.project in the case of SharedVPC. Example: projects/{projectNumOrId}/global/networks/{networkId}.",
+          "type": "string"
+        },
+        "project": {
+          "description": "The consumer project where PSC connections are allowed to be created in.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Overall state of PSC Connections management for this consumer psc config.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "VALID",
+            "CONNECTION_POLICY_MISSING",
+            "POLICY_LIMIT_REACHED"
+          ],
+          "enumDescriptions": [
+            "Default state, when Connection Map is created initially.",
+            "Set when policy and map configuration is valid, and their matching can lead to allowing creation of PSC Connections subject to other constraints like connections limit.",
+            "No Service Connection Policy found for this network and Service Class",
+            "Service Connection Policy limit reached for this network and Service Class"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConsumerPscConnection": {
+      "description": "PSC connection details on consumer side.",
+      "id": "ConsumerPscConnection",
+      "properties": {
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The most recent error during operating this connection."
+        },
+        "errorInfo": {
+          "$ref": "GoogleRpcErrorInfo",
+          "description": "Output only. The error info for the latest error during operating this connection.",
+          "readOnly": true
+        },
+        "errorType": {
+          "description": "The error type indicates whether the error is consumer facing, producer facing or system internal.",
+          "enum": [
+            "CONNECTION_ERROR_TYPE_UNSPECIFIED",
+            "ERROR_INTERNAL",
+            "ERROR_CONSUMER_SIDE",
+            "ERROR_PRODUCER_SIDE"
+          ],
+          "enumDescriptions": [
+            "An invalid error type as the default case.",
+            "The error is due to Service Automation system internal.",
+            "The error is due to the setup on consumer side.",
+            "The error is due to the setup on producer side."
+          ],
+          "type": "string"
+        },
+        "forwardingRule": {
+          "description": "The URI of the consumer forwarding rule created. Example: projects/{projectNumOrId}/regions/us-east1/networks/{resourceId}.",
+          "type": "string"
+        },
+        "gceOperation": {
+          "description": "The last Compute Engine operation to setup PSC connection.",
+          "type": "string"
+        },
+        "ip": {
+          "description": "The IP literal allocated on the consumer network for the PSC forwarding rule that is created to connect to the producer service attachment in this service connection map.",
+          "type": "string"
+        },
+        "network": {
+          "description": "The consumer network whose PSC forwarding rule is connected to the service attachments in this service connection map. Note that the network could be on a different project (shared VPC).",
+          "type": "string"
+        },
+        "project": {
+          "description": "The consumer project whose PSC forwarding rule is connected to the service attachments in this service connection map.",
+          "type": "string"
+        },
+        "pscConnectionId": {
+          "description": "The PSC connection id of the PSC forwarding rule connected to the service attachments in this service connection map.",
+          "type": "string"
+        },
+        "serviceAttachmentUri": {
+          "description": "The URI of a service attachment which is the target of the PSC connection.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the PSC connection.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "FAILED",
+            "CREATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "An invalid state as the default case.",
+            "The connection is fully established and ready to use.",
+            "The connection is not functional since some resources on the connection fail to be created.",
+            "The connection is being created.",
+            "The connection is being deleted."
+          ],
           "type": "string"
         }
       },
@@ -1548,8 +2771,30 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleRpcErrorInfo": {
+      "description": "Describes the cause of the error with structured details. Example of an error when contacting the \"pubsub.googleapis.com\" API when it is not enabled: { \"reason\": \"API_DISABLED\" \"domain\": \"googleapis.com\" \"metadata\": { \"resource\": \"projects/123\", \"service\": \"pubsub.googleapis.com\" } } This response indicates that the pubsub.googleapis.com API is not enabled. Example of an error that is returned when attempting to create a Spanner instance in a region that is out of stock: { \"reason\": \"STOCKOUT\" \"domain\": \"spanner.googleapis.com\", \"metadata\": { \"availableRegions\": \"us-central1,us-east2\" } }",
+      "id": "GoogleRpcErrorInfo",
+      "properties": {
+        "domain": {
+          "description": "The logical grouping to which the \"reason\" belongs. The error domain is typically the registered service name of the tool or product that generates the error. Example: \"pubsub.googleapis.com\". If the error is generated by some common infrastructure, the error domain must be a globally unique value that identifies the infrastructure. For Google API infrastructure, the error domain is \"googleapis.com\".",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional structured details about this error. Keys should match /[a-zA-Z0-9-_]/ and be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than {\"instanceLimit\": \"100/request\"}, should be returned as, {\"instanceLimitPerRequest\": \"100\"}, if the client exceeds the number of instances that can be created in a single (batch) request.",
+          "type": "object"
+        },
+        "reason": {
+          "description": "The reason of the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1581,8 +2826,74 @@
       },
       "type": "object"
     },
+    "Group": {
+      "description": "A group is a set of spokes to which you can apply policies. Each group of spokes has its own route table. For each group, you can also set different rules for whether spokes can be automatically attached to the hub.",
+      "id": "Group",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the group was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the group.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. The name of the group. Group names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub}/groups/{group_id}`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current lifecycle state of this group.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE"
+          ],
+          "enumDescriptions": [
+            "No state information available",
+            "The resource's create operation is in progress.",
+            "The resource is active",
+            "The resource's delete operation is in progress.",
+            "The resource's accept operation is in progress.",
+            "The resource's reject operation is in progress.",
+            "The resource's update operation is in progress.",
+            "The resource is inactive.",
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The Google-generated UUID for the group. This value is unique across all group resources. If a group is deleted and another with the same name is created, the new route table is assigned a different unique_id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the group was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Hub": {
-      "description": "A Network Connectivity Center hub is a collection of spokes. A single hub can contain spokes from multiple regions. However, if any of a hub's spokes use the data transfer feature, the resources associated with those spokes must all reside in the same VPC network. Spokes that do not use data transfer can be associated with any VPC network in your project.",
+      "description": "A Network Connectivity Center hub is a global management resource to which you attach spokes. A single hub can contain spokes from multiple regions. However, if any of a hub's spokes use the site-to-site data transfer feature, the resources associated with those spokes must all be in the same VPC network. Spokes that do not use site-to-site data transfer can be associated with any VPC network in your project.",
       "id": "Hub",
       "properties": {
         "createTime": {
@@ -1606,12 +2917,25 @@
           "description": "Immutable. The name of the hub. Hub names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub_id}`",
           "type": "string"
         },
+        "routeTables": {
+          "description": "Output only. The route tables that belong to this hub. They use the following form: `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}` This field is read-only. Network Connectivity Center automatically populates it based on the route tables nested under the hub.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "routingVpcs": {
           "description": "The VPC networks associated with this hub's spokes. This field is read-only. Network Connectivity Center automatically populates it based on the set of spokes attached to the hub.",
           "items": {
             "$ref": "RoutingVPC"
           },
           "type": "array"
+        },
+        "spokeSummary": {
+          "$ref": "SpokeSummary",
+          "description": "Output only. A summary of the spokes associated with a hub. The summary includes a count of spokes according to type and according to state. If any spokes are inactive, the summary also lists the reasons they are inactive, including a count for each reason.",
+          "readOnly": true
         },
         "state": {
           "description": "Output only. The current lifecycle state of this hub.",
@@ -1620,14 +2944,22 @@
             "CREATING",
             "ACTIVE",
             "DELETING",
-            "UPDATING"
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE"
           ],
           "enumDescriptions": [
             "No state information available",
-            "The resource's create operation is in progress",
+            "The resource's create operation is in progress.",
             "The resource is active",
-            "The resource's Delete operation is in progress",
-            "The resource's Update operation is in progress"
+            "The resource's delete operation is in progress.",
+            "The resource's accept operation is in progress.",
+            "The resource's reject operation is in progress.",
+            "The resource's update operation is in progress.",
+            "The resource is inactive.",
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
           ],
           "readOnly": true,
           "type": "string"
@@ -1647,11 +2979,11 @@
       "type": "object"
     },
     "InternalRange": {
-      "description": "The InternalRange resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characterstics of that range (it's usage and peering behavior). Networking resources can link to this range if they are created as belonging to it. Next id: 14",
+      "description": "The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characterstics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.",
       "id": "InternalRange",
       "properties": {
         "createTime": {
-          "description": "Time when the InternalRange was created.",
+          "description": "Time when the internal range was created.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1660,7 +2992,7 @@
           "type": "string"
         },
         "ipCidrRange": {
-          "description": "IP range that this InternalRange defines.",
+          "description": "The IP range that this internal range defines.",
           "type": "string"
         },
         "labels": {
@@ -1671,30 +3003,32 @@
           "type": "object"
         },
         "name": {
-          "description": "Immutable. The name of a InternalRange. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
+          "description": "Immutable. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
           "type": "string"
         },
         "network": {
-          "description": "The URL or resource ID of the network in which to reserve the Internal Range. The network cannot be deleted if there are any reserved Internal Ranges referring to it. Legacy network is not supported. This can only be specified for a global internal address. Example: - URL: /compute/v1/projects/{project}/global/networks/{resourceId} - ID: network123",
+          "description": "The URL or resource ID of the network in which to reserve the internal range. The network cannot be deleted if there are any reserved internal ranges referring to it. Legacy networks are not supported. This can only be specified for a global internal address. Example: - URL: /compute/v1/projects/{project}/global/networks/{resourceId} - ID: network123",
           "type": "string"
         },
         "overlaps": {
-          "description": "Optional. Types of resources that are allowed to overlap with the current InternalRange.",
+          "description": "Optional. Types of resources that are allowed to overlap with the current internal range.",
           "items": {
             "enum": [
               "OVERLAP_UNSPECIFIED",
-              "OVERLAP_ROUTE_RANGE"
+              "OVERLAP_ROUTE_RANGE",
+              "OVERLAP_EXISTING_SUBNET_RANGE"
             ],
             "enumDescriptions": [
               "No overlap overrides.",
-              "Allow creation of static routes more specific that the current InternalRange."
+              "Allow creation of static routes more specific that the current internal range.",
+              "Allow creation of internal ranges that overlap with existing subnets."
             ],
             "type": "string"
           },
           "type": "array"
         },
         "peering": {
-          "description": "The type of peering set for this InternalRange.",
+          "description": "The type of peering set for this internal range.",
           "enum": [
             "PEERING_UNSPECIFIED",
             "FOR_SELF",
@@ -1703,14 +3037,14 @@
           ],
           "enumDescriptions": [
             "If Peering is left unspecified in CreateInternalRange or UpdateInternalRange, it will be defaulted to FOR_SELF.",
-            "This is the default behavior and represents the case that this InternalRange is intended to be used in the VPC on which it is created and is accessible from it’s peers. This implies that peers or peer-of-peer’s cannot use this range.",
-            "This behavior can be set when the Internal Range is being reserved for usage by the peers. This means that no resource within the VPC in which it is being created can use this to associate with a GCP resource, but one of the peer’s can. This represents \"donating\" a range for peers to use.",
-            "This behavior can be set when the Internal Range is being reserved for usage by the VPC on which it is created but not shared with the peers. In a sense it is local to the VPC. This can be used to create Internal Ranges for various purposes like HTTP_INTERNAL_LOAD_BALANCER or for interconnect routes that are not shared with peers. This also implies that peer’s cannot use this range in a way that is visible to this VPC, but can re-use this range as long as it is NOT_SHARED from the peer VPC too."
+            "This is the default behavior and represents the case that this internal range is intended to be used in the VPC in which it is created and is accessible from its peers. This implies that peers or peers-of-peers cannot use this range.",
+            "This behavior can be set when the internal range is being reserved for usage by peers. This means that no resource within the VPC in which it is being created can use this to associate with a VPC resource, but one of the peers can. This represents donating a range for peers to use.",
+            "This behavior can be set when the internal range is being reserved for usage by the VPC in which it is created, but not shared with peers. In a sense, it is local to the VPC. This can be used to create internal ranges for various purposes like HTTP_INTERNAL_LOAD_BALANCER or for Interconnect routes that are not shared with peers. This also implies that peers cannot use this range in a way that is visible to this VPC, but can re-use this range as long as it is NOT_SHARED from the peer VPC, too."
           ],
           "type": "string"
         },
         "prefixLength": {
-          "description": "An alternate to ip_cidr_range. Can be set when trying to create a reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, it's an error if the range sizes don't match. Can also be used during updates to change the range size.",
+          "description": "An alternate to ip_cidr_range. Can be set when trying to create a reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size.",
           "format": "int32",
           "type": "integer"
         },
@@ -1722,7 +3056,7 @@
           "type": "array"
         },
         "updateTime": {
-          "description": "Time when the InternalRange was updated.",
+          "description": "Time when the internal range was updated.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1734,14 +3068,14 @@
             "EXTERNAL_TO_VPC"
           ],
           "enumDescriptions": [
-            "Unspecified usage is allowed in calls which identify the resource by other fields and do not need Usage set to complete. These are i.e.: GetInternalRange and DeleteInternalRange. Usage needs to be specified explicitly in CreateInternalRange or UpdateInternalRange calls.",
-            "A GCP resource can use the reserved CIDR block by associating it with the Internal Range resource if usage is set to FOR_VPC.",
-            "Ranges created with EXTERNAL_TO_VPC cannot be associated with GCP resources and are meant to block out address ranges for various use cases, like for example, usage on-prem, with dynamic route announcements via interconnect."
+            "Unspecified usage is allowed in calls which identify the resource by other fields and do not need Usage set to complete. These are, i.e.: GetInternalRange and DeleteInternalRange. Usage needs to be specified explicitly in CreateInternalRange or UpdateInternalRange calls.",
+            "A VPC resource can use the reserved CIDR block by associating it with the internal range resource if usage is set to FOR_VPC.",
+            "Ranges created with EXTERNAL_TO_VPC cannot be associated with VPC resources and are meant to block out address ranges for various use cases, like for example, usage on-prem, with dynamic route announcements via interconnect."
           ],
           "type": "string"
         },
         "users": {
-          "description": "Output only. The list of resources that refer to this internal range. Resources that use the InternalRange for their range allocation are referred to as users of the range. Other resources mark themselves as users while doing so by creating a reference to this InternalRange. Having a user, based on this reference, prevents deletion of the InternalRange referred to. Can be empty.",
+          "description": "Output only. The list of resources that refer to this internal range. Resources that use the internal range for their range allocation are referred to as users of the range. Other resources mark themselves as users while doing so by creating a reference to this internal range. Having a user, based on this reference, prevents deletion of the internal range referred to. Can be empty.",
           "items": {
             "type": "string"
           },
@@ -1797,6 +3131,24 @@
       },
       "type": "object"
     },
+    "LinkedVpcNetwork": {
+      "description": "An existing VPC network.",
+      "id": "LinkedVpcNetwork",
+      "properties": {
+        "excludeExportRanges": {
+          "description": "Optional. IP ranges encompassing the subnets to be excluded from peering.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "description": "Required. The URI of the VPC network resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LinkedVpnTunnels": {
       "description": "A collection of Cloud VPN tunnel resources. These resources should be redundant HA VPN tunnels that all advertise the same prefixes to Google Cloud. Alternatively, in a passive/active configuration, all tunnels should be capable of advertising the same prefixes.",
       "id": "LinkedVpnTunnels",
@@ -1820,6 +3172,56 @@
       },
       "type": "object"
     },
+    "ListGroupsResponse": {
+      "description": "Response for HubService.ListGroups method.",
+      "id": "ListGroupsResponse",
+      "properties": {
+        "groups": {
+          "description": "The requested groups.",
+          "items": {
+            "$ref": "Group"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Hubs that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListHubSpokesResponse": {
+      "description": "The response for HubService.ListHubSpokes.",
+      "id": "ListHubSpokesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.",
+          "type": "string"
+        },
+        "spokes": {
+          "description": "The requested spokes. The spoke fields can be partially populated based on the `view` field in the request message.",
+          "items": {
+            "$ref": "Spoke"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListHubsResponse": {
       "description": "Response for HubService.ListHubs method.",
       "id": "ListHubsResponse",
@@ -1832,7 +3234,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.",
+          "description": "The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.",
           "type": "string"
         },
         "unreachable": {
@@ -1850,7 +3252,7 @@
       "id": "ListInternalRangesResponse",
       "properties": {
         "internalRanges": {
-          "description": "InternalRanges to be returned.",
+          "description": "Internal ranges to be returned.",
           "items": {
             "$ref": "InternalRange"
           },
@@ -1888,12 +3290,162 @@
       },
       "type": "object"
     },
+    "ListRouteTablesResponse": {
+      "description": "Response for HubService.ListRouteTables method.",
+      "id": "ListRouteTablesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.",
+          "type": "string"
+        },
+        "routeTables": {
+          "description": "The requested route tables.",
+          "items": {
+            "$ref": "RouteTable"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Hubs that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListRoutesResponse": {
+      "description": "Response for HubService.ListRoutes method.",
+      "id": "ListRoutesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.",
+          "type": "string"
+        },
+        "routes": {
+          "description": "The requested routes.",
+          "items": {
+            "$ref": "Route"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "RouteTables that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListServiceClassesResponse": {
+      "description": "Response for ListServiceClasses.",
+      "id": "ListServiceClassesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.",
+          "type": "string"
+        },
+        "serviceClasses": {
+          "description": "ServiceClasses to be returned.",
+          "items": {
+            "$ref": "ServiceClass"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListServiceConnectionMapsResponse": {
+      "description": "Response for ListServiceConnectionMaps.",
+      "id": "ListServiceConnectionMapsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.",
+          "type": "string"
+        },
+        "serviceConnectionMaps": {
+          "description": "ServiceConnectionMaps to be returned.",
+          "items": {
+            "$ref": "ServiceConnectionMap"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListServiceConnectionPoliciesResponse": {
+      "description": "Response for ListServiceConnectionPolicies.",
+      "id": "ListServiceConnectionPoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.",
+          "type": "string"
+        },
+        "serviceConnectionPolicies": {
+          "description": "ServiceConnectionPolicies to be returned.",
+          "items": {
+            "$ref": "ServiceConnectionPolicy"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListServiceConnectionTokensResponse": {
+      "description": "Response for ListServiceConnectionTokens.",
+      "id": "ListServiceConnectionTokensResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.",
+          "type": "string"
+        },
+        "serviceConnectionTokens": {
+          "description": "ServiceConnectionTokens to be returned.",
+          "items": {
+            "$ref": "ServiceConnectionToken"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSpokesResponse": {
       "description": "The response for HubService.ListSpokes.",
       "id": "ListSpokesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.",
+          "description": "The token for the next page of the response. To see more results, use this value as the page_token for your next request. If this value is empty, there are no more results.",
           "type": "string"
         },
         "spokes": {
@@ -1914,7 +3466,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -1971,6 +3523,16 @@
       },
       "type": "object"
     },
+    "NextHopVpcNetwork": {
+      "id": "NextHopVpcNetwork",
+      "properties": {
+        "uri": {
+          "description": "The URI of the VPC network resource",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OperationMetadata": {
       "description": "Represents the metadata of the long-running operation.",
       "id": "OperationMetadata",
@@ -2016,7 +3578,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -2042,6 +3604,284 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ProducerPscConfig": {
+      "description": "The PSC configurations on producer side.",
+      "id": "ProducerPscConfig",
+      "properties": {
+        "serviceAttachmentUri": {
+          "description": "The resource path of a service attachment. Example: projects/{projectNumOrId}/regions/{region}/serviceAttachments/{resourceId}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscConfig": {
+      "description": "Configuration used for Private Service Connect connections. Used when Infrastructure is PSC.",
+      "id": "PscConfig",
+      "properties": {
+        "limit": {
+          "description": "Optional. Max number of PSC connections for this policy.",
+          "format": "int64",
+          "type": "string"
+        },
+        "subnetworks": {
+          "description": "The resource paths of subnetworks to use for IP address management. Example: projects/{projectNumOrId}/regions/{region}/subnetworks/{resourceId}.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PscConnection": {
+      "description": "Information about a specific Private Service Connect connection.",
+      "id": "PscConnection",
+      "properties": {
+        "consumerAddress": {
+          "description": "The resource reference of the consumer address.",
+          "type": "string"
+        },
+        "consumerForwardingRule": {
+          "description": "The resource reference of the PSC Forwarding Rule within the consumer VPC.",
+          "type": "string"
+        },
+        "consumerTargetProject": {
+          "description": "The project where the PSC connection is created.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The most recent error during operating this connection."
+        },
+        "errorInfo": {
+          "$ref": "GoogleRpcErrorInfo",
+          "description": "Output only. The error info for the latest error during operating this connection.",
+          "readOnly": true
+        },
+        "errorType": {
+          "description": "The error type indicates whether the error is consumer facing, producer facing or system internal.",
+          "enum": [
+            "CONNECTION_ERROR_TYPE_UNSPECIFIED",
+            "ERROR_INTERNAL",
+            "ERROR_CONSUMER_SIDE",
+            "ERROR_PRODUCER_SIDE"
+          ],
+          "enumDescriptions": [
+            "An invalid error type as the default case.",
+            "The error is due to Service Automation system internal.",
+            "The error is due to the setup on consumer side.",
+            "The error is due to the setup on producer side."
+          ],
+          "type": "string"
+        },
+        "gceOperation": {
+          "description": "The last Compute Engine operation to setup PSC connection.",
+          "type": "string"
+        },
+        "pscConnectionId": {
+          "description": "The PSC connection id of the PSC forwarding rule.",
+          "type": "string"
+        },
+        "state": {
+          "description": "State of the PSC Connection",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "FAILED",
+            "CREATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "An invalid state as the default case.",
+            "The connection is fully established and ready to use.",
+            "The connection is not functional since some resources on the connection fail to be created.",
+            "The connection is being created.",
+            "The connection is being deleted."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RejectSpokeRequest": {
+      "description": "The request for HubService.RejectSpoke.",
+      "id": "RejectSpokeRequest",
+      "properties": {
+        "details": {
+          "description": "Optional. Additional information provided by the hub administrator in the `RejectSpoke` call.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Route": {
+      "description": "A route defines a path from VM instances within a spoke to a specific destination resource. Only VPC spokes have routes.",
+      "id": "Route",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the route was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "An optional description of the route.",
+          "type": "string"
+        },
+        "ipCidrRange": {
+          "description": "The destination IP address range.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
+          "type": "object"
+        },
+        "location": {
+          "description": "Output only. The location of the route. Uses the following form: \"projects/{project}/locations/{location}\" Example: projects/1234/locations/us-central1",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The name of the route. Route names must be unique. Route names use the following form: `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}/routes/{route_id}`",
+          "type": "string"
+        },
+        "nextHopVpcNetwork": {
+          "$ref": "NextHopVpcNetwork",
+          "description": "Immutable. The destination VPC network for packets on this route."
+        },
+        "spoke": {
+          "description": "Immutable. The spoke that this route leads to. Example: projects/12345/locations/global/spokes/SPOKE",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current lifecycle state of the route.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE"
+          ],
+          "enumDescriptions": [
+            "No state information available",
+            "The resource's create operation is in progress.",
+            "The resource is active",
+            "The resource's delete operation is in progress.",
+            "The resource's accept operation is in progress.",
+            "The resource's reject operation is in progress.",
+            "The resource's update operation is in progress.",
+            "The resource is inactive.",
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The route's type. Its type is determined by the properties of its IP address range.",
+          "enum": [
+            "ROUTE_TYPE_UNSPECIFIED",
+            "VPC_PRIMARY_SUBNET",
+            "VPC_SECONDARY_SUBNET"
+          ],
+          "enumDescriptions": [
+            "No route type information specified",
+            "The route leads to a destination within the primary address range of the VPC network's subnet.",
+            "The route leads to a destination within the secondary address range of the VPC network's subnet."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The Google-generated UUID for the route. This value is unique across all Network Connectivity Center route resources. If a route is deleted and another with the same name is created, the new route is assigned a different `uid`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the route was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RouteTable": {
+      "id": "RouteTable",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the route table was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "An optional description of the route table.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. The name of the route table. Route table names must be unique. They use the following form: `projects/{project_number}/locations/global/hubs/{hub}/routeTables/{route_table_id}`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current lifecycle state of this route table.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE"
+          ],
+          "enumDescriptions": [
+            "No state information available",
+            "The resource's create operation is in progress.",
+            "The resource is active",
+            "The resource's delete operation is in progress.",
+            "The resource's accept operation is in progress.",
+            "The resource's reject operation is in progress.",
+            "The resource's update operation is in progress.",
+            "The resource is inactive.",
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. The Google-generated UUID for the route table. This value is unique across all route table resources. If a route table is deleted and another with the same name is created, the new route table is assigned a different `uid`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the route table was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2077,6 +3917,259 @@
       },
       "type": "object"
     },
+    "ServiceClass": {
+      "description": "The ServiceClass resource. Next id: 9",
+      "id": "ServiceClass",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the ServiceClass was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of this resource.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-defined labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. The name of a ServiceClass resource. Format: projects/{project}/locations/{location}/serviceClasses/{service_class} See: https://google.aip.dev/122#fields-representing-resource-names",
+          "type": "string"
+        },
+        "serviceClass": {
+          "description": "Output only. The generated service class name. Use this name to refer to the Service class in Service Connection Maps and Service Connection Policies.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the ServiceClass was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceConnectionMap": {
+      "description": "The ServiceConnectionMap resource. Next id: 15",
+      "id": "ServiceConnectionMap",
+      "properties": {
+        "consumerPscConfigs": {
+          "description": "The PSC configurations on consumer side.",
+          "items": {
+            "$ref": "ConsumerPscConfig"
+          },
+          "type": "array"
+        },
+        "consumerPscConnections": {
+          "description": "Output only. PSC connection details on consumer side.",
+          "items": {
+            "$ref": "ConsumerPscConnection"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. Time when the ServiceConnectionMap was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of this resource.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "infrastructure": {
+          "description": "Output only. The infrastructure used for connections between consumers/producers.",
+          "enum": [
+            "INFRASTRUCTURE_UNSPECIFIED",
+            "PSC"
+          ],
+          "enumDescriptions": [
+            "An invalid infrastructure as the default case.",
+            "Private Service Connect is used for connections."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-defined labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. The name of a ServiceConnectionMap. Format: projects/{project}/locations/{location}/serviceConnectionMaps/{service_connection_map} See: https://google.aip.dev/122#fields-representing-resource-names",
+          "type": "string"
+        },
+        "producerPscConfigs": {
+          "description": "The PSC configurations on producer side.",
+          "items": {
+            "$ref": "ProducerPscConfig"
+          },
+          "type": "array"
+        },
+        "serviceClass": {
+          "description": "The service class identifier this ServiceConnectionMap is for. The user of ServiceConnectionMap create API needs to have networkconnecitivty.serviceclasses.use iam permission for the service class.",
+          "type": "string"
+        },
+        "serviceClassUri": {
+          "description": "Output only. The service class uri this ServiceConnectionMap is for.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "token": {
+          "description": "The token provided by the consumer. This token authenticates that the consumer can create a connecton within the specified project and network.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the ServiceConnectionMap was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceConnectionPolicy": {
+      "description": "The ServiceConnectionPolicy resource. Next id: 12",
+      "id": "ServiceConnectionPolicy",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the ServiceConnectionMap was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of this resource.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "infrastructure": {
+          "description": "Output only. The type of underlying resources used to create the connection.",
+          "enum": [
+            "INFRASTRUCTURE_UNSPECIFIED",
+            "PSC"
+          ],
+          "enumDescriptions": [
+            "An invalid infrastructure as the default case.",
+            "Private Service Connect is used for connections."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-defined labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. The name of a ServiceConnectionPolicy. Format: projects/{project}/locations/{location}/serviceConnectionPolicies/{service_connection_policy} See: https://google.aip.dev/122#fields-representing-resource-names",
+          "type": "string"
+        },
+        "network": {
+          "description": "The resource path of the consumer network. Example: - projects/{projectNumOrId}/global/networks/{resourceId}.",
+          "type": "string"
+        },
+        "pscConfig": {
+          "$ref": "PscConfig",
+          "description": "Configuration used for Private Service Connect connections. Used when Infrastructure is PSC."
+        },
+        "pscConnections": {
+          "description": "Output only. [Output only] Information about each Private Service Connect connection.",
+          "items": {
+            "$ref": "PscConnection"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "serviceClass": {
+          "description": "The service class identifier for which this ServiceConnectionPolicy is for. The service class identifier is a unique, symbolic representation of a ServiceClass. It is provided by the Service Producer. Google services have a prefix of gcp. For example, gcp-cloud-sql. 3rd party services do not. For example, test-service-a3dfcx.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the ServiceConnectionMap was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceConnectionToken": {
+      "description": "The ServiceConnectionToken resource. Next id: 10",
+      "id": "ServiceConnectionToken",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the ServiceConnectionToken was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of this resource.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. The time to which this token is valid.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-defined labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. The name of a ServiceConnectionToken. Format: projects/{project}/locations/{location}/ServiceConnectionTokens/{service_connection_token} See: https://google.aip.dev/122#fields-representing-resource-names",
+          "type": "string"
+        },
+        "network": {
+          "description": "The resource path of the network associated with this token. Example: projects/{projectNumOrId}/global/networks/{resourceId}.",
+          "type": "string"
+        },
+        "token": {
+          "description": "Output only. The token generated by Automation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the ServiceConnectionToken was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -2094,7 +4187,7 @@
       "type": "object"
     },
     "Spoke": {
-      "description": "A Network Connectivity Center spoke represents a connection between your Google Cloud network resources and a non-Google-Cloud network. When you create a spoke, you associate it with a hub. You must also identify a value for exactly one of the following fields: * linked_vpn_tunnels * linked_interconnect_attachments * linked_router_appliance_instances",
+      "description": "A Network Connectivity Center spoke represents one or more network connectivity resources. When you create a spoke, you associate it with a hub. You must also identify a value for exactly one of the following fields: * linked_vpn_tunnels * linked_interconnect_attachments * linked_router_appliance_instances * linked_vpc_network",
       "id": "Spoke",
       "properties": {
         "createTime": {
@@ -2105,6 +4198,10 @@
         },
         "description": {
           "description": "An optional description of the spoke.",
+          "type": "string"
+        },
+        "group": {
+          "description": "The name of the group that this spoke is associated with.",
           "type": "string"
         },
         "hub": {
@@ -2126,12 +4223,43 @@
           "$ref": "LinkedRouterApplianceInstances",
           "description": "Router appliance instances that are associated with the spoke."
         },
+        "linkedVpcNetwork": {
+          "$ref": "LinkedVpcNetwork",
+          "description": "Optional. VPC network that is associated with the spoke."
+        },
         "linkedVpnTunnels": {
           "$ref": "LinkedVpnTunnels",
           "description": "VPN tunnels that are associated with the spoke."
         },
         "name": {
           "description": "Immutable. The name of the spoke. Spoke names must be unique. They use the following form: `projects/{project_number}/locations/{region}/spokes/{spoke_id}`",
+          "type": "string"
+        },
+        "reasons": {
+          "description": "Output only. The reasons for current state of the spoke. Only present when the spoke is in the `INACTIVE` state.",
+          "items": {
+            "$ref": "StateReason"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "spokeType": {
+          "description": "Output only. The type of resource associated with the spoke.",
+          "enum": [
+            "SPOKE_TYPE_UNSPECIFIED",
+            "VPN_TUNNEL",
+            "INTERCONNECT_ATTACHMENT",
+            "ROUTER_APPLIANCE",
+            "VPC_NETWORK"
+          ],
+          "enumDescriptions": [
+            "Unspecified spoke type.",
+            "Spokes associated with VPN tunnels.",
+            "Spokes associated with VLAN attachments.",
+            "Spokes associated with router appliance instances.",
+            "Spokes associated with VPC networks."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -2141,20 +4269,28 @@
             "CREATING",
             "ACTIVE",
             "DELETING",
-            "UPDATING"
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE"
           ],
           "enumDescriptions": [
             "No state information available",
-            "The resource's create operation is in progress",
+            "The resource's create operation is in progress.",
             "The resource is active",
-            "The resource's Delete operation is in progress",
-            "The resource's Update operation is in progress"
+            "The resource's delete operation is in progress.",
+            "The resource's accept operation is in progress.",
+            "The resource's reject operation is in progress.",
+            "The resource's update operation is in progress.",
+            "The resource is inactive.",
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
           ],
           "readOnly": true,
           "type": "string"
         },
         "uniqueId": {
-          "description": "Output only. The Google-generated UUID for the spoke. This value is unique across all spoke resources. If a spoke is deleted and another with the same name is created, the new spoke is assigned a different unique_id.",
+          "description": "Output only. The Google-generated UUID for the spoke. This value is unique across all spoke resources. If a spoke is deleted and another with the same name is created, the new spoke is assigned a different `unique_id`.",
           "readOnly": true,
           "type": "string"
         },
@@ -2162,6 +4298,174 @@
           "description": "Output only. The time the spoke was last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SpokeStateCount": {
+      "description": "The number of spokes that are in a particular state and associated with a given hub.",
+      "id": "SpokeStateCount",
+      "properties": {
+        "count": {
+          "description": "Output only. The total number of spokes that are in this state and associated with a given hub.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the spokes.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "ACCEPTING",
+            "REJECTING",
+            "UPDATING",
+            "INACTIVE",
+            "OBSOLETE"
+          ],
+          "enumDescriptions": [
+            "No state information available",
+            "The resource's create operation is in progress.",
+            "The resource is active",
+            "The resource's delete operation is in progress.",
+            "The resource's accept operation is in progress.",
+            "The resource's reject operation is in progress.",
+            "The resource's update operation is in progress.",
+            "The resource is inactive.",
+            "The hub associated with this spoke resource has been deleted. This state applies to spoke resources only."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SpokeStateReasonCount": {
+      "description": "The number of spokes in the hub that are inactive for this reason.",
+      "id": "SpokeStateReasonCount",
+      "properties": {
+        "count": {
+          "description": "Output only. The total number of spokes that are inactive for a particular reason and associated with a given hub.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateReasonCode": {
+          "description": "Output only. The reason that a spoke is inactive.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "PENDING_REVIEW",
+            "REJECTED",
+            "PAUSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "No information available.",
+            "The proposed spoke is pending review.",
+            "The proposed spoke has been rejected by the hub administrator.",
+            "The spoke has been deactivated internally.",
+            "Network Connectivity Center encountered errors while accepting the spoke."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SpokeSummary": {
+      "description": "Summarizes information about the spokes associated with a hub. The summary includes a count of spokes according to type and according to state. If any spokes are inactive, the summary also lists the reasons they are inactive, including a count for each reason.",
+      "id": "SpokeSummary",
+      "properties": {
+        "spokeStateCounts": {
+          "description": "Output only. Counts the number of spokes that are in each state and associated with a given hub.",
+          "items": {
+            "$ref": "SpokeStateCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "spokeStateReasonCounts": {
+          "description": "Output only. Counts the number of spokes that are inactive for each possible reason and associated with a given hub.",
+          "items": {
+            "$ref": "SpokeStateReasonCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "spokeTypeCounts": {
+          "description": "Output only. Counts the number of spokes of each type that are associated with a specific hub.",
+          "items": {
+            "$ref": "SpokeTypeCount"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SpokeTypeCount": {
+      "description": "The number of spokes of a given type that are associated with a specific hub. The type indicates what kind of resource is associated with the spoke.",
+      "id": "SpokeTypeCount",
+      "properties": {
+        "count": {
+          "description": "Output only. The total number of spokes of this type that are associated with the hub.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "spokeType": {
+          "description": "Output only. The type of the spokes.",
+          "enum": [
+            "SPOKE_TYPE_UNSPECIFIED",
+            "VPN_TUNNEL",
+            "INTERCONNECT_ATTACHMENT",
+            "ROUTER_APPLIANCE",
+            "VPC_NETWORK"
+          ],
+          "enumDescriptions": [
+            "Unspecified spoke type.",
+            "Spokes associated with VPN tunnels.",
+            "Spokes associated with VLAN attachments.",
+            "Spokes associated with router appliance instances.",
+            "Spokes associated with VPC networks."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StateReason": {
+      "description": "The reason a spoke is inactive.",
+      "id": "StateReason",
+      "properties": {
+        "code": {
+          "description": "The code associated with this reason.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "PENDING_REVIEW",
+            "REJECTED",
+            "PAUSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "No information available.",
+            "The proposed spoke is pending review.",
+            "The proposed spoke has been rejected by the hub administrator.",
+            "The spoke has been deactivated internally.",
+            "Network Connectivity Center encountered errors while accepting the spoke."
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "Human-readable details about this reason.",
+          "type": "string"
+        },
+        "userDetails": {
+          "description": "Additional information provided by the user in the RejectSpoke call.",
           "type": "string"
         }
       },

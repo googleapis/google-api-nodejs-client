@@ -112,7 +112,7 @@
             "jobs": {
               "methods": {
                 "create": {
-                  "description": "Create a Job.",
+                  "description": "Creates a Job.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs",
                   "httpMethod": "POST",
                   "id": "run.projects.locations.jobs.create",
@@ -126,7 +126,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location and project in which this Job should be created. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The location and project in which this Job should be created. Format: projects/{project}/locations/{location}, where {project} can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -164,7 +164,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The full name of the Job. Format: projects/{project}/locations/{location}/jobs/{job}",
+                      "description": "Required. The full name of the Job. Format: projects/{project}/locations/{location}/jobs/{job}, where {project} can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+$",
                       "required": true,
@@ -194,7 +194,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The full name of the Job. Format: projects/{project}/locations/{location}/jobs/{job}",
+                      "description": "Required. The full name of the Job. Format: projects/{project}/locations/{location}/jobs/{job}, where {project} can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+$",
                       "required": true,
@@ -210,7 +210,7 @@
                   ]
                 },
                 "getIamPolicy": {
-                  "description": "Get the IAM Access Control policy currently in effect for the given Job. This result does not include any inherited policies.",
+                  "description": "Gets the IAM Access Control policy currently in effect for the given Job. This result does not include any inherited policies.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "run.projects.locations.jobs.getIamPolicy",
@@ -241,7 +241,7 @@
                   ]
                 },
                 "list": {
-                  "description": "List Jobs.",
+                  "description": "Lists Jobs.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs",
                   "httpMethod": "GET",
                   "id": "run.projects.locations.jobs.list",
@@ -261,7 +261,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location and project to list resources on. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The location and project to list resources on. Format: projects/{project}/locations/{location}, where {project} can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -329,7 +329,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The full name of the Job. Format: projects/{project}/locations/{location}/jobs/{job}",
+                      "description": "Required. The full name of the Job. Format: projects/{project}/locations/{location}/jobs/{job}, where {project} can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+$",
                       "required": true,
@@ -407,8 +407,36 @@
               "resources": {
                 "executions": {
                   "methods": {
+                    "cancel": {
+                      "description": "Cancels an Execution.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}/executions/{executionsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "run.projects.locations.jobs.executions.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the Execution to cancel. Format: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}, where {project} can be project id or number.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+/executions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}:cancel",
+                      "request": {
+                        "$ref": "GoogleCloudRunV2CancelExecutionRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "delete": {
-                      "description": "Delete an Execution.",
+                      "description": "Deletes an Execution.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}/executions/{executionsId}",
                       "httpMethod": "DELETE",
                       "id": "run.projects.locations.jobs.executions.delete",
@@ -422,7 +450,7 @@
                           "type": "string"
                         },
                         "name": {
-                          "description": "Required. The name of the Execution to delete. Format: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}",
+                          "description": "Required. The name of the Execution to delete. Format: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}, where {project} can be project id or number.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+/executions/[^/]+$",
                           "required": true,
@@ -443,7 +471,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets information about a Execution.",
+                      "description": "Gets information about an Execution.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}/executions/{executionsId}",
                       "httpMethod": "GET",
                       "id": "run.projects.locations.jobs.executions.get",
@@ -452,7 +480,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The full name of the Execution. Format: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}",
+                          "description": "Required. The full name of the Execution. Format: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}, where {project} can be project id or number.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+/executions/[^/]+$",
                           "required": true,
@@ -468,7 +496,7 @@
                       ]
                     },
                     "list": {
-                      "description": "List Executions from a Job.",
+                      "description": "Lists Executions from a Job.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}/executions",
                       "httpMethod": "GET",
                       "id": "run.projects.locations.jobs.executions.list",
@@ -488,7 +516,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use \"-\" instead of Job name. Format: projects/{project}/locations/{location}/jobs/{job}",
+                          "description": "Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use \"-\" instead of Job name. Format: projects/{project}/locations/{location}/jobs/{job}, where {project} can be project id or number.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+$",
                           "required": true,
@@ -538,7 +566,7 @@
                           ]
                         },
                         "list": {
-                          "description": "List Tasks from an Execution of a Job.",
+                          "description": "Lists Tasks from an Execution of a Job.",
                           "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/jobs/{jobsId}/executions/{executionsId}/tasks",
                           "httpMethod": "GET",
                           "id": "run.projects.locations.jobs.executions.tasks.list",
@@ -637,7 +665,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "run.projects.locations.operations.list",
@@ -676,6 +704,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "wait": {
+                  "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:wait",
+                  "httpMethod": "POST",
+                  "id": "run.projects.locations.operations.wait",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to wait on.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:wait",
+                  "request": {
+                    "$ref": "GoogleLongrunningWaitOperationRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -691,14 +747,14 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The location and project in which this service should be created. Format: projects/{project}/locations/{location} Only lowercase characters, digits, and hyphens.",
+                      "description": "Required. The location and project in which this service should be created. Format: projects/{project}/locations/{location}, where {project} can be project id or number. Only lowercase characters, digits, and hyphens.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "serviceId": {
-                      "description": "Required. The unique identifier for the Service. It must begin with letter, and may not end with hyphen; must contain fewer than 50 characters. The name of the service becomes {parent}/services/{service_id}.",
+                      "description": "Required. The unique identifier for the Service. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the service becomes {parent}/services/{service_id}.",
                       "location": "query",
                       "type": "string"
                     },
@@ -734,7 +790,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The full name of the Service. Format: projects/{project}/locations/{location}/services/{service}",
+                      "description": "Required. The full name of the Service. Format: projects/{project}/locations/{location}/services/{service}, where {project} can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                       "required": true,
@@ -764,7 +820,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The full name of the Service. Format: projects/{project}/locations/{location}/services/{service}",
+                      "description": "Required. The full name of the Service. Format: projects/{project}/locations/{location}/services/{service}, where {project} can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                       "required": true,
@@ -780,7 +836,7 @@
                   ]
                 },
                 "getIamPolicy": {
-                  "description": "Get the IAM Access Control policy currently in effect for the given Cloud Run Service. This result does not include any inherited policies.",
+                  "description": "Gets the IAM Access Control policy currently in effect for the given Cloud Run Service. This result does not include any inherited policies.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "run.projects.locations.services.getIamPolicy",
@@ -811,7 +867,7 @@
                   ]
                 },
                 "list": {
-                  "description": "List Services.",
+                  "description": "Lists Services.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/services",
                   "httpMethod": "GET",
                   "id": "run.projects.locations.services.list",
@@ -831,7 +887,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location and project to list resources on. Location must be a valid GCP region, and may not be the \"-\" wildcard. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The location and project to list resources on. Location must be a valid Google Cloud region, and cannot be the \"-\" wildcard. Format: projects/{project}/locations/{location}, where {project} can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -861,7 +917,7 @@
                   ],
                   "parameters": {
                     "allowMissing": {
-                      "description": "If set to true, and if the Service does not exist, it will create a new one. Caller must have both create and update permissions for this call if this is set to true.",
+                      "description": "If set to true, and if the Service does not exist, it will create a new one. The caller must have 'run.services.create' permissions if this is set to true and the Service does not exist.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -950,7 +1006,7 @@
                 "revisions": {
                   "methods": {
                     "delete": {
-                      "description": "Delete a Revision.",
+                      "description": "Deletes a Revision.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/revisions/{revisionsId}",
                       "httpMethod": "DELETE",
                       "id": "run.projects.locations.services.revisions.delete",
@@ -1010,7 +1066,7 @@
                       ]
                     },
                     "list": {
-                      "description": "List Revisions from a given Service, or from a given location.",
+                      "description": "Lists Revisions from a given Service, or from a given location.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/revisions",
                       "httpMethod": "GET",
                       "id": "run.projects.locations.services.revisions.list",
@@ -1059,7 +1115,7 @@
       }
     }
   },
-  "revision": "20221023",
+  "revision": "20230806",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1077,8 +1133,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2CancelExecutionRequest": {
+      "description": "Request message for deleting an Execution.",
+      "id": "GoogleCloudRunV2CancelExecutionRequest",
+      "properties": {
+        "etag": {
+          "description": "A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Indicates that the request should be validated without actually cancelling any resources.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2CloudSqlInstance": {
-      "description": "Represents a specific Cloud SQL instance.",
+      "description": "Represents a set of Cloud SQL instances. Each one will be available under /cloudsql/[instance]. Visit https://cloud.google.com/sql/docs/mysql/connect-run for more information on how to connect Cloud SQL and Cloud Run.",
       "id": "GoogleCloudRunV2CloudSqlInstance",
       "properties": {
         "instances": {
@@ -1101,13 +1172,17 @@
             "EXECUTION_REASON_UNDEFINED",
             "JOB_STATUS_SERVICE_POLLING_ERROR",
             "NON_ZERO_EXIT_CODE",
-            "CANCELLED"
+            "CANCELLED",
+            "CANCELLING",
+            "DELETED"
           ],
           "enumDescriptions": [
             "Default value.",
             "Internal system error getting execution status. System will retry.",
             "A task reached its retry limit and the last attempt failed due to the user container exiting with a non-zero exit code.",
-            "The execution was cancelled by users."
+            "The execution was cancelled by users.",
+            "The execution is in the process of being cancelled.",
+            "The execution was deleted."
           ],
           "type": "string"
         },
@@ -1172,7 +1247,8 @@
             "MIN_INSTANCES_NOT_PROVISIONED",
             "ACTIVE_REVISION_LIMIT_REACHED",
             "NO_DEPLOYMENT",
-            "HEALTH_CHECK_SKIPPED"
+            "HEALTH_CHECK_SKIPPED",
+            "MIN_INSTANCES_WARMING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -1186,7 +1262,8 @@
             "A revision with min_instance_count > 0 was created and is reserved, but it was not configured to serve traffic, so it's not live. This can also happen momentarily during traffic migration.",
             "The maximum allowed number of active revisions has been reached.",
             "There was no deployment defined. This value is no longer used, but Services created in older versions of the API might contain this value.",
-            "A revision's container has no port specified since the revision is of a manually scaled service with 0 instance count"
+            "A revision's container has no port specified since the revision is of a manually scaled service with 0 instance count",
+            "A revision with min_instance_count > 0 was created and is waiting for enough instances to begin a traffic migration."
           ],
           "type": "string"
         },
@@ -1232,18 +1309,25 @@
       "type": "object"
     },
     "GoogleCloudRunV2Container": {
-      "description": "A single application container. This specifies both the container to run, the command to run in the container and the arguments to supply to it. Note that additional arguments may be supplied by the system to the container at runtime.",
+      "description": "A single application container. This specifies both the container to run, the command to run in the container and the arguments to supply to it. Note that additional arguments can be supplied by the system to the container at runtime.",
       "id": "GoogleCloudRunV2Container",
       "properties": {
         "args": {
-          "description": "Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+          "description": "Arguments to the entrypoint. The docker image's CMD is used if this is not provided.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "command": {
-          "description": "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell",
+          "description": "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dependsOn": {
+          "description": "Names of the containers that must start before this container.",
           "items": {
             "type": "string"
           },
@@ -1257,15 +1341,15 @@
           "type": "array"
         },
         "image": {
-          "description": "Required. URL of the Container image in Google Container Registry or Google Artifact Registry. More info: https://kubernetes.io/docs/concepts/containers/images",
+          "description": "Required. Name of the container image in Dockerhub, Google Artifact Registry, or Google Container Registry. If the host is not provided, Dockerhub is assumed.",
           "type": "string"
         },
         "livenessProbe": {
           "$ref": "GoogleCloudRunV2Probe",
-          "description": "Periodic probe of container liveness. Container will be restarted if the probe fails. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes"
+          "description": "Periodic probe of container liveness. Container will be restarted if the probe fails."
         },
         "name": {
-          "description": "Name of the container specified as a DNS_LABEL.",
+          "description": "Name of the container specified as a DNS_LABEL (RFC 1123).",
           "type": "string"
         },
         "ports": {
@@ -1277,11 +1361,11 @@
         },
         "resources": {
           "$ref": "GoogleCloudRunV2ResourceRequirements",
-          "description": "Compute Resource requirements by this container. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources"
+          "description": "Compute Resource requirements by this container."
         },
         "startupProbe": {
           "$ref": "GoogleCloudRunV2Probe",
-          "description": "Startup probe of application within the container. All other probes are disabled if a startup probe is provided, until it succeeds. Container will not be added to service endpoints if the probe fails. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes"
+          "description": "Startup probe of application within the container. All other probes are disabled if a startup probe is provided, until it succeeds. Container will not be added to service endpoints if the probe fails."
         },
         "volumeMounts": {
           "description": "Volume to mount into the container's filesystem.",
@@ -1313,12 +1397,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2EmptyDirVolumeSource": {
+      "description": "In memory (tmpfs) ephemeral storage. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).",
+      "id": "GoogleCloudRunV2EmptyDirVolumeSource",
+      "properties": {
+        "medium": {
+          "description": "The medium on which the data is stored. Acceptable values today is only MEMORY or none. When none, the default will currently be backed by memory but could change over time. +optional",
+          "enum": [
+            "MEDIUM_UNSPECIFIED",
+            "MEMORY"
+          ],
+          "enumDescriptions": [
+            "When not specified, falls back to the default implementation which is currently in memory (this may change over time).",
+            "Explicitly set the EmptyDir to be in memory. Uses tmpfs."
+          ],
+          "type": "string"
+        },
+        "sizeLimit": {
+          "description": "Limit on the storage usable by this EmptyDir volume. The size limit is also applicable for memory medium. The maximum usage on memory medium EmptyDir would be the minimum value between the SizeLimit specified here and the sum of memory limits of all containers. The default is nil which means that the limit is undefined. More info: https://cloud.google.com/run/docs/configuring/in-memory-volumes#configure-volume. Info in Kubernetes: https://kubernetes.io/docs/concepts/storage/volumes/#emptydir",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2EnvVar": {
       "description": "EnvVar represents an environment variable present in a Container.",
       "id": "GoogleCloudRunV2EnvVar",
       "properties": {
         "name": {
-          "description": "Required. Name of the environment variable. Must be a C_IDENTIFIER, and mnay not exceed 32768 characters.",
+          "description": "Required. Name of the environment variable. Must be a C_IDENTIFIER, and must not exceed 32768 characters.",
           "type": "string"
         },
         "value": {
@@ -1351,8 +1458,15 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style annotations for the resource.",
+          "description": "Output only. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects.",
+          "readOnly": true,
           "type": "object"
+        },
+        "cancelledCount": {
+          "description": "Output only. The number of tasks which reached phase Cancelled.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "completionTime": {
           "description": "Output only. Represents time when the execution was completed. It is not guaranteed to be set in happens-before order across separate operations.",
@@ -1412,11 +1526,12 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run will populate some labels with 'run.googleapis.com' or 'serving.knative.dev' namespaces. Those labels are read-only, and user changes will not be preserved.",
+          "description": "Output only. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels",
+          "readOnly": true,
           "type": "object"
         },
         "launchStage": {
-          "description": "Set the launch stage to a preview stage on write to allow use of preview features in that stage. On read, describes whether the resource uses preview features. Launch Stages are defined at [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages).",
+          "description": "The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are were, this field will be BETA.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
             "UNIMPLEMENTED",
@@ -1439,6 +1554,11 @@
           ],
           "type": "string"
         },
+        "logUri": {
+          "description": "Output only. URI where logs for this execution can be found in Cloud Console.",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Output only. The unique name of this Execution.",
           "readOnly": true,
@@ -1451,7 +1571,7 @@
           "type": "string"
         },
         "parallelism": {
-          "description": "Output only. Specifies the maximum desired number of tasks the execution should run at any given time. Must be <= task_count. The actual number of tasks running in steady state will be less than this number when ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/",
+          "description": "Output only. Specifies the maximum desired number of tasks the execution should run at any given time. Must be <= task_count. The actual number of tasks running in steady state will be less than this number when ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -1461,11 +1581,22 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "retriedCount": {
+          "description": "Output only. The number of tasks which have retried at least once.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "runningCount": {
           "description": "Output only. The number of actively running tasks.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "startTime": {
           "description": "Output only. Represents time when the execution started to run. It is not guaranteed to be set in happens-before order across separate operations.",
@@ -1480,7 +1611,7 @@
           "type": "integer"
         },
         "taskCount": {
-          "description": "Output only. Specifies the desired number of tasks the execution should run. Setting to 1 means that parallelism is limited to 1 and the success of that task signals the success of the execution. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/",
+          "description": "Output only. Specifies the desired number of tasks the execution should run. Setting to 1 means that parallelism is limited to 1 and the success of that task signals the success of the execution.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -1533,14 +1664,14 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style annotations for the resource.",
+          "description": "Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 ExecutionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.",
           "type": "object"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style labels for the resource.",
+          "description": "Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 ExecutionTemplate.",
           "type": "object"
         },
         "parallelism": {
@@ -1549,13 +1680,29 @@
           "type": "integer"
         },
         "taskCount": {
-          "description": "Specifies the desired number of tasks the execution should run. Setting to 1 means that parallelism is limited to 1 and the success of that task signals the success of the execution. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/",
+          "description": "Specifies the desired number of tasks the execution should run. Setting to 1 means that parallelism is limited to 1 and the success of that task signals the success of the execution. Defaults to 1.",
           "format": "int32",
           "type": "integer"
         },
         "template": {
           "$ref": "GoogleCloudRunV2TaskTemplate",
           "description": "Required. Describes the task(s) that will be created when executing an execution."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2GRPCAction": {
+      "description": "GRPCAction describes an action involving a GRPC port.",
+      "id": "GoogleCloudRunV2GRPCAction",
+      "properties": {
+        "port": {
+          "description": "Port number of the gRPC service. Number must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "service": {
+          "description": "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1574,6 +1721,11 @@
         "path": {
           "description": "Path to access on the HTTP server. Defaults to '/'.",
           "type": "string"
+        },
+        "port": {
+          "description": "Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1594,14 +1746,14 @@
       "type": "object"
     },
     "GoogleCloudRunV2Job": {
-      "description": "Job represents the configuration of a single job. A job an immutable resource that references a container image which is run to completion.",
+      "description": "Job represents the configuration of a single job, which references a container image that is run to completion.",
       "id": "GoogleCloudRunV2Job",
       "properties": {
         "annotations": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style annotations for the resource. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run will populate some annotations using 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field follows Kubernetes annotations' namespacing, limits, and rules. More info: https://kubernetes.io/docs/user-guide/annotations",
+          "description": "Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected on new resources. All system annotations in v1 now have a corresponding field in v2 Job. This field follows Kubernetes annotations' namespacing, limits, and rules.",
           "type": "object"
         },
         "binaryAuthorization": {
@@ -1668,7 +1820,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run will populate some labels with 'run.googleapis.com' or 'serving.knative.dev' namespaces. Those labels are read-only, and user changes will not be preserved.",
+          "description": "Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 Job.",
           "type": "object"
         },
         "lastModifier": {
@@ -1682,7 +1834,7 @@
           "readOnly": true
         },
         "launchStage": {
-          "description": "The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed.",
+          "description": "The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
             "UNIMPLEMENTED",
@@ -1717,6 +1869,11 @@
         },
         "reconciling": {
           "description": "Output only. Returns true if the Job is currently being acted upon by the system to bring it into the desired state. When a new Job is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the Job to the desired state. This process is called reconciliation. While reconciliation is in process, `observed_generation` and `latest_succeeded_execution`, will have transient values that might mismatch the intended state: Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the state matches the Job, or there was an error, and reconciliation failed. This state can be found in `terminal_condition.state`. If reconciliation succeeded, the following fields will match: `observed_generation` and `generation`, `latest_succeeded_execution` and `latest_created_execution`. If reconciliation failed, `observed_generation` and `latest_succeeded_execution` will have the state of the last succeeded execution or empty for newly created Job. Additional information on the failure can be found in `terminal_condition` and `conditions`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1842,12 +1999,16 @@
           "format": "int32",
           "type": "integer"
         },
+        "grpc": {
+          "$ref": "GoogleCloudRunV2GRPCAction",
+          "description": "GRPC specifies an action involving a gRPC port. Exactly one of httpGet, tcpSocket, or grpc must be specified."
+        },
         "httpGet": {
           "$ref": "GoogleCloudRunV2HTTPGetAction",
-          "description": "HTTPGet specifies the http request to perform. Exactly one of HTTPGet or TCPSocket must be specified."
+          "description": "HTTPGet specifies the http request to perform. Exactly one of httpGet, tcpSocket, or grpc must be specified."
         },
         "initialDelaySeconds": {
-          "description": "Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+          "description": "Number of seconds after the container has started before the probe is initiated. Defaults to 0 seconds. Minimum value is 0. Maximum value for liveness probe is 3600. Maximum value for startup probe is 240.",
           "format": "int32",
           "type": "integer"
         },
@@ -1858,10 +2019,10 @@
         },
         "tcpSocket": {
           "$ref": "GoogleCloudRunV2TCPSocketAction",
-          "description": "TCPSocket specifies an action involving a TCP port. Exactly one of HTTPGet or TCPSocket must be specified."
+          "description": "TCPSocket specifies an action involving a TCP port. Exactly one of httpGet, tcpSocket, or grpc must be specified."
         },
         "timeoutSeconds": {
-          "description": "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes",
+          "description": "Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. Maximum value is 3600. Must be smaller than period_seconds.",
           "format": "int32",
           "type": "integer"
         }
@@ -1880,8 +2041,12 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Only memory and CPU are supported. Note: The only supported values for CPU are '1', '2', and '4'. Setting 4 CPU requires at least 2Gi of memory. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go",
+          "description": "Only ´memory´ and 'cpu' are supported. Notes: * The only supported values for CPU are '1', '2', '4', and '8'. Setting 4 CPU requires at least 2Gi of memory. For more information, go to https://cloud.google.com/run/docs/configuring/cpu. * For supported 'memory' values and syntax, go to https://cloud.google.com/run/docs/configuring/memory-limits",
           "type": "object"
+        },
+        "startupCpuBoost": {
+          "description": "Determines whether CPU should be boosted on startup of a new container instance above the requested CPU threshold, this can help reduce cold-start latency.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1894,7 +2059,8 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style annotations for the resource.",
+          "description": "Output only. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects.",
+          "readOnly": true,
           "type": "object"
         },
         "conditions": {
@@ -1926,6 +2092,25 @@
         },
         "encryptionKey": {
           "description": "A reference to a customer managed encryption key (CMEK) to use to encrypt this container image. For more information, go to https://cloud.google.com/run/docs/securing/using-cmek",
+          "type": "string"
+        },
+        "encryptionKeyRevocationAction": {
+          "description": "The action to take if the encryption key is revoked.",
+          "enum": [
+            "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED",
+            "PREVENT_NEW",
+            "SHUTDOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Prevents the creation of new instances.",
+            "Shuts down existing instances, and prevents creation of new ones."
+          ],
+          "type": "string"
+        },
+        "encryptionKeyShutdownDuration": {
+          "description": "If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.",
+          "format": "google-duration",
           "type": "string"
         },
         "etag": {
@@ -1963,11 +2148,12 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run will populate some labels with 'run.googleapis.com' or 'serving.knative.dev' namespaces. Those labels are read-only, and user changes will not be preserved.",
+          "description": "Output only. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels.",
+          "readOnly": true,
           "type": "object"
         },
         "launchStage": {
-          "description": "Set the launch stage to a preview stage on write to allow use of preview features in that stage. On read, describes whether the resource uses preview features. Launch Stages are defined at [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages).",
+          "description": "The least stable launch stage needed to create this resource, as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. Note that this value might not be what was used as input. For example, if ALPHA was provided as input in the parent resource, but only BETA and GA-level features are were, this field will be BETA.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
             "UNIMPLEMENTED",
@@ -2016,6 +2202,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "scaling": {
           "$ref": "GoogleCloudRunV2RevisionScaling",
           "description": "Scaling settings for this revision."
@@ -2028,6 +2219,10 @@
         "serviceAccount": {
           "description": "Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has.",
           "type": "string"
+        },
+        "sessionAffinity": {
+          "description": "Enable session affinity.",
+          "type": "boolean"
         },
         "timeout": {
           "description": "Max allowed time for an instance to respond to a request.",
@@ -2084,7 +2279,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style annotations for the resource.",
+          "description": "Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system annotations in v1 now have a corresponding field in v2 RevisionTemplate. This field follows Kubernetes annotations' namespacing, limits, and rules.",
           "type": "object"
         },
         "containers": {
@@ -2116,7 +2311,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style labels for the resource.",
+          "description": "Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 RevisionTemplate.",
           "type": "object"
         },
         "maxInstanceRequestConcurrency": {
@@ -2135,6 +2330,10 @@
         "serviceAccount": {
           "description": "Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.",
           "type": "string"
+        },
+        "sessionAffinity": {
+          "description": "Enable session affinity.",
+          "type": "boolean"
         },
         "timeout": {
           "description": "Max allowed time for an instance to respond to a request.",
@@ -2179,7 +2378,7 @@
           "type": "string"
         },
         "version": {
-          "description": "The Cloud Secret Manager secret version. Can be 'latest' for the latest value or an integer for a specific version.",
+          "description": "The Cloud Secret Manager secret version. Can be 'latest' for the latest version, an integer for a specific version, or a version alias.",
           "type": "string"
         }
       },
@@ -2216,7 +2415,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run will populate some annotations using 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field follows Kubernetes annotations' namespacing, limits, and rules. More info: https://kubernetes.io/docs/user-guide/annotations",
+          "description": "Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected in new resources. All system annotations in v1 now have a corresponding field in v2 Service. This field follows Kubernetes annotations' namespacing, limits, and rules.",
           "type": "object"
         },
         "binaryAuthorization": {
@@ -2249,6 +2448,13 @@
           "description": "Output only. Email address of the authenticated creator.",
           "readOnly": true,
           "type": "string"
+        },
+        "customAudiences": {
+          "description": "One or more custom audiences that you want this service to support. Specify each custom audience as the full URL in a string. The custom audiences are encoded in the token and used to authenticate requests. For more information, see https://cloud.google.com/run/docs/configuring/custom-audiences.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "deleteTime": {
           "description": "Output only. The deletion time.",
@@ -2297,7 +2503,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Map of string keys and values that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run will populate some labels with 'run.googleapis.com' or 'serving.knative.dev' namespaces. Those labels are read-only, and user changes will not be preserved.",
+          "description": "Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 Service.",
           "type": "object"
         },
         "lastModifier": {
@@ -2316,7 +2522,7 @@
           "type": "string"
         },
         "launchStage": {
-          "description": "The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed.",
+          "description": "The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output.",
           "enum": [
             "LAUNCH_STAGE_UNSPECIFIED",
             "UNIMPLEMENTED",
@@ -2354,6 +2560,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "template": {
           "$ref": "GoogleCloudRunV2RevisionTemplate",
           "description": "Required. The template used to create revisions for this Service."
@@ -2377,6 +2588,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "trafficTagsCleanupThreshold": {
+          "description": "Optional. Override the traffic tag threshold limit. Garbage collection will start cleaning up non-serving tagged traffic targets based on creation item. The default value is 2000.",
+          "format": "int64",
+          "type": "string"
         },
         "uid": {
           "description": "Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.",
@@ -2402,7 +2618,7 @@
       "id": "GoogleCloudRunV2TCPSocketAction",
       "properties": {
         "port": {
-          "description": "Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to 8080.",
+          "description": "Port number to access on the container. Must be in the range 1 to 65535. If not specified, defaults to the exposed port of the container, which is the value of container.ports[0].containerPort.",
           "format": "int32",
           "type": "integer"
         }
@@ -2417,7 +2633,8 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style annotations for the resource.",
+          "description": "Output only. Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects.",
+          "readOnly": true,
           "type": "object"
         },
         "completionTime": {
@@ -2442,7 +2659,7 @@
           "type": "array"
         },
         "createTime": {
-          "description": "Output only. Represents time when the task was created by the job controller. It is not guaranteed to be set in happens-before order across separate operations.",
+          "description": "Output only. Represents time when the task was created by the system. It is not guaranteed to be set in happens-before order across separate operations.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2509,7 +2726,8 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "KRM-style labels for the resource. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels Cloud Run will populate some labels with 'run.googleapis.com' or 'serving.knative.dev' namespaces. Those labels are read-only, and user changes will not be preserved.",
+          "description": "Output only. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels",
+          "readOnly": true,
           "type": "object"
         },
         "lastAttemptResult": {
@@ -2517,28 +2735,9 @@
           "description": "Output only. Result of the last attempt of this Task.",
           "readOnly": true
         },
-        "launchStage": {
-          "description": "Set the launch stage to a preview stage on write to allow use of preview features in that stage. On read, describes whether the resource uses preview features. Launch Stages are defined at [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages).",
-          "enum": [
-            "LAUNCH_STAGE_UNSPECIFIED",
-            "UNIMPLEMENTED",
-            "PRELAUNCH",
-            "EARLY_ACCESS",
-            "ALPHA",
-            "BETA",
-            "GA",
-            "DEPRECATED"
-          ],
-          "enumDescriptions": [
-            "Do not use this default value.",
-            "The feature is not yet implemented. Users can not use it.",
-            "Prelaunch features are hidden from users and are only visible internally.",
-            "Early Access features are limited to a closed group of testers. To use these features, you must sign up in advance and sign a Trusted Tester agreement (which includes confidentiality provisions). These features may be unstable, changed in backward-incompatible ways, and are not guaranteed to be released.",
-            "Alpha is a limited availability test for releases before they are cleared for widespread use. By Alpha, all significant design issues are resolved and we are in the process of verifying functionality. Alpha customers need to apply for access, agree to applicable terms, and have their projects allowlisted. Alpha releases don't have to be feature complete, no SLAs are provided, and there are no technical support obligations, but they will be far enough along that customers can actually use them in test environments or for limited-use tests -- just like they would in normal production cases.",
-            "Beta is the point at which we are ready to open a release for any customer to use. There are no SLA or technical support obligations in a Beta release. Products will be complete from a feature perspective, but may have some open outstanding issues. Beta releases are suitable for limited production use cases.",
-            "GA features are open to all developers and are considered stable and fully qualified for production use.",
-            "Deprecated features are scheduled to be shut down and removed. For more information, see the \"Deprecation Policy\" section of our [Terms of Service](https://cloud.google.com/terms/) and the [Google Cloud Platform Subject to the Deprecation Policy](https://cloud.google.com/terms/deprecation) documentation."
-          ],
+        "logUri": {
+          "description": "Output only. URI where logs for this execution can be found in Cloud Console.",
+          "readOnly": true,
           "type": "string"
         },
         "maxRetries": {
@@ -2567,6 +2766,11 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "serviceAccount": {
           "description": "Email address of the IAM service account associated with the Task of a Job. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.",
@@ -2657,7 +2861,7 @@
           "type": "string"
         },
         "maxRetries": {
-          "description": "Number of retries allowed per Task, before marking this Task failed.",
+          "description": "Number of retries allowed per Task, before marking this Task failed. Defaults to 3.",
           "format": "int32",
           "type": "integer"
         },
@@ -2666,7 +2870,7 @@
           "type": "string"
         },
         "timeout": {
-          "description": "Max allowed time duration the Task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout.",
+          "description": "Max allowed time duration the Task may be active before the system will actively try to mark it failed and kill associated containers. This applies per attempt of a task, meaning each retry can run for the full timeout. Defaults to 600 seconds.",
           "format": "google-duration",
           "type": "string"
         },
@@ -2770,7 +2974,7 @@
           "type": "string"
         },
         "version": {
-          "description": "The Cloud Secret Manager secret version. Can be 'latest' for the latest value or an integer for a specific version.",
+          "description": "The Cloud Secret Manager secret version. Can be 'latest' for the latest value, or an integer or a secret alias for a specific version.",
           "type": "string"
         }
       },
@@ -2784,13 +2988,17 @@
           "$ref": "GoogleCloudRunV2CloudSqlInstance",
           "description": "For Cloud SQL volumes, contains the specific instances that should be mounted. Visit https://cloud.google.com/sql/docs/mysql/connect-run for more information on how to connect Cloud SQL and Cloud Run."
         },
+        "emptyDir": {
+          "$ref": "GoogleCloudRunV2EmptyDirVolumeSource",
+          "description": "Ephemeral storage used as a shared volume."
+        },
         "name": {
           "description": "Required. Volume's name.",
           "type": "string"
         },
         "secret": {
           "$ref": "GoogleCloudRunV2SecretVolumeSource",
-          "description": "Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret"
+          "description": "Secret represents a secret that should populate this volume."
         }
       },
       "type": "object"
@@ -2815,11 +3023,11 @@
       "id": "GoogleCloudRunV2VpcAccess",
       "properties": {
         "connector": {
-          "description": "VPC Access connector name. Format: projects/{project}/locations/{location}/connectors/{connector}",
+          "description": "VPC Access connector name. Format: projects/{project}/locations/{location}/connectors/{connector}, where {project} can be project id or number.",
           "type": "string"
         },
         "egress": {
-          "description": "Traffic VPC egress settings.",
+          "description": "Traffic VPC egress settings. If not provided, it defaults to PRIVATE_RANGES_ONLY.",
           "enum": [
             "VPC_EGRESS_UNSPECIFIED",
             "ALL_TRAFFIC",
@@ -2892,7 +3100,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
           "items": {
             "type": "string"
           },
@@ -2906,7 +3114,7 @@
       "type": "object"
     },
     "GoogleIamV1Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "GoogleIamV1Policy",
       "properties": {
         "auditConfigs": {
@@ -3027,8 +3235,20 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleLongrunningWaitOperationRequest": {
+      "description": "The request message for Operations.WaitOperation.",
+      "id": "GoogleLongrunningWaitOperationRequest",
+      "properties": {
+        "timeout": {
+          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"

@@ -1327,7 +1327,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1385,7 +1385,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1448,7 +1448,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1506,7 +1506,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1597,7 +1597,7 @@
           "parameterOrder": [],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill in this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. Either the `customer` or the `domain` parameter must be provided.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "query",
               "type": "string"
             },
@@ -1933,7 +1933,7 @@
           ]
         },
         "list": {
-          "description": "Retrieves a paginated list of all members in a group.",
+          "description": "Retrieves a paginated list of all members in a group. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/admin-sdk/directory/v1/guides/troubleshoot-error-codes).",
           "flatPath": "admin/directory/v1/groups/{groupKey}/members",
           "httpMethod": "GET",
           "id": "directory.members.list",
@@ -2163,7 +2163,7 @@
           ]
         },
         "list": {
-          "description": "Retrieves a paginated list of all user-owned mobile devices for an account. To retrieve a list that includes company-owned devices, use the Cloud Identity [Devices API](https://cloud.google.com/identity/docs/concepts/overview-devices) instead.",
+          "description": "Retrieves a paginated list of all user-owned mobile devices for an account. To retrieve a list that includes company-owned devices, use the Cloud Identity [Devices API](https://cloud.google.com/identity/docs/concepts/overview-devices) instead. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/admin-sdk/directory/v1/guides/troubleshoot-error-codes).",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/mobile",
           "httpMethod": "GET",
           "id": "directory.mobiledevices.list",
@@ -2376,11 +2376,13 @@
               "description": "Whether to return all sub-organizations or just immediate children.",
               "enum": [
                 "all",
-                "children"
+                "children",
+                "allIncludingParent"
               ],
               "enumDescriptions": [
                 "All sub-organizational units.",
-                "Immediate children only (default)."
+                "Immediate children only (default).",
+                "All sub-organizational units and the specified organizational unit (root if not specified)."
               ],
               "location": "query",
               "type": "string"
@@ -2479,7 +2481,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3221,7 +3223,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3279,10 +3281,15 @@
           ],
           "parameters": {
             "customer": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
+            },
+            "includeIndirectRoleAssignments": {
+              "description": "When set to `true`, fetches indirect role assignments (i.e. role assignment via a group) as well as direct ones. Defaults to `false`. You must specify `user_key` or the indirect role assignments will not be included.",
+              "location": "query",
+              "type": "boolean"
             },
             "maxResults": {
               "description": "Maximum number of results to return.",
@@ -3303,7 +3310,7 @@
               "type": "string"
             },
             "userKey": {
-              "description": "The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.",
+              "description": "The primary email address, alias email address, or unique user or group ID. If included in the request, returns role assignments only for this user or group.",
               "location": "query",
               "type": "string"
             }
@@ -3360,7 +3367,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3418,7 +3425,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3557,7 +3564,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3615,7 +3622,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the Google Workspace account.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3896,12 +3903,18 @@
           ]
         },
         "insert": {
-          "description": "Creates a user.",
+          "description": "Creates a user. Mutate calls immediately following user creation might sometimes fail as the user isn't fully created due to propagation delay in our backends. Check the error details for the \"User creation is not complete\" message to see if this is the case. Retrying the calls after some time can help in this case.",
           "flatPath": "admin/directory/v1/users",
           "httpMethod": "POST",
           "id": "directory.users.insert",
           "parameterOrder": [],
-          "parameters": {},
+          "parameters": {
+            "resolveConflictAccount": {
+              "description": "Optional. If set to `true`, the option selected for [handling unmanaged user accounts](https://support.google.com/a/answer/11112794) will apply. Default: `false`",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
           "path": "admin/directory/v1/users",
           "request": {
             "$ref": "User"
@@ -3926,7 +3939,7 @@
               "type": "string"
             },
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users). Either the `customer` or the `domain` parameter must be provided.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "query",
               "type": "string"
             },
@@ -4072,7 +4085,7 @@
           ]
         },
         "patch": {
-          "description": "Updates a user using patch semantics. The update method should be used instead, since it also supports patch semantics and has better performance. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.",
+          "description": "Updates a user using patch semantics. The update method should be used instead, because it also supports patch semantics and has better performance. If you're mapping an external identity to a Google identity, use the [`update`](https://developers.google.com/admin-sdk/directory/v1/reference/users/update) method instead of the `patch` method. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.",
           "flatPath": "admin/directory/v1/users/{userKey}",
           "httpMethod": "PATCH",
           "id": "directory.users.patch",
@@ -4144,7 +4157,7 @@
           ]
         },
         "update": {
-          "description": "Updates a user. This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved, and fields set to `null` will be cleared.",
+          "description": "Updates a user. This method supports patch semantics, meaning that you only need to include the fields you wish to update. Fields that are not present in the request will be preserved, and fields set to `null` will be cleared. For repeating fields that contain arrays, individual items in the array can't be patched piecemeal; they must be supplied in the request body with the desired values for all items. See the [user accounts guide](https://developers.google.com/admin-sdk/directory/v1/guides/manage-users#update_user) for more information.",
           "flatPath": "admin/directory/v1/users/{userKey}",
           "httpMethod": "PUT",
           "id": "directory.users.update",
@@ -4630,7 +4643,7 @@
       }
     }
   },
-  "revision": "20221020",
+  "revision": "20230815",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5340,6 +5353,36 @@
           },
           "type": "array"
         },
+        "deprovisionReason": {
+          "description": "(Read-only) Deprovision reason.",
+          "enum": [
+            "deprovisionReasonUnspecified",
+            "deprovisionReasonSameModelReplacement",
+            "deprovisionReasonUpgrade",
+            "deprovisionReasonDomainMove",
+            "deprovisionReasonServiceExpiration",
+            "deprovisionReasonOther",
+            "deprovisionReasonDifferentModelReplacement",
+            "deprovisionReasonRetiringDevice",
+            "deprovisionReasonUpgradeTransfer",
+            "deprovisionReasonNotRequired",
+            "deprovisionReasonRepairCenter"
+          ],
+          "enumDescriptions": [
+            "The deprovision reason is unknown.",
+            "The device was replaced by a device with the same model.",
+            "The device was upgraded.",
+            "The device's domain was changed.",
+            "Service expired for the device.",
+            "The device was deprovisioned for a legacy reason that is no longer supported.",
+            "The device was replaced by a device with a different model.",
+            "The device was retired.",
+            "The device's perpetual upgrade was transferred to a new device.",
+            "A reason was not required. For example, the licenses were returned to the customer's license pool.",
+            "The device was deprovisioned by a repair service center."
+          ],
+          "type": "string"
+        },
         "deviceFiles": {
           "description": "A list of device files to download (Read-only)",
           "items": {
@@ -5368,6 +5411,29 @@
         },
         "deviceId": {
           "description": "The unique ID of the Chrome device.",
+          "type": "string"
+        },
+        "deviceLicenseType": {
+          "description": "Output only. Device license type.",
+          "enum": [
+            "deviceLicenseTypeUnspecified",
+            "enterprise",
+            "enterpriseUpgrade",
+            "educationUpgrade",
+            "education",
+            "terminal",
+            "kioskUpgrade"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED type.",
+            "Indicating the device is a Chromebook/Chromebox/Chromebase enterprise, which is packaged with an upgrade(license).",
+            "Indicating the device is consuming standalone Chrome Enterprise Upgrade, a Chrome Enterprise license.",
+            "Indicating the device is consuming Chrome Education Upgrade(AKA Chrome EDU perpetual license).",
+            "Packaged with a license as education.",
+            "Packaged with a license as terminal.",
+            "Indicating the device is consuming standalone Chrome Kiosk Upgrade, a Chrome Kiosk (annual) license."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "diskVolumeReports": {
@@ -5429,6 +5495,10 @@
         "kind": {
           "default": "admin#directory#chromeosdevice",
           "description": "The type of resource. For the Chromeosdevices resource, the value is `admin#directory#chromeosdevice`.",
+          "type": "string"
+        },
+        "lastDeprovisionTimestamp": {
+          "description": "(Read-only) Date and time for the last deprovision of the device.",
           "type": "string"
         },
         "lastEnrollmentTime": {
@@ -5860,7 +5930,9 @@
             "TAKE_A_SCREENSHOT",
             "SET_VOLUME",
             "WIPE_USERS",
-            "REMOTE_POWERWASH"
+            "REMOTE_POWERWASH",
+            "DEVICE_START_CRD_SESSION",
+            "CAPTURE_LOGS"
           ],
           "enumDescriptions": [
             "The command type was unspecified.",
@@ -5868,7 +5940,9 @@
             "Take a screenshot of the device. Only available if the device is in Kiosk Mode.",
             "Set the volume of the device. Can only be issued to Kiosk and managed guest session devices.",
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
-            "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!"
+            "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
+            "Starts a Chrome Remote Desktop session.",
+            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         }
@@ -5879,6 +5953,10 @@
       "description": "The result of executing a command.",
       "id": "DirectoryChromeosdevicesCommandResult",
       "properties": {
+        "commandResultPayload": {
+          "description": "The payload for the command result. The following commands respond with a payload: * `DEVICE_START_CRD_SESSION`: Payload is a stringified JSON object in the form: { \"url\": url }. The URL provides a link to the Chrome Remote Desktop session.",
+          "type": "string"
+        },
         "errorMessage": {
           "description": "The error message with a short explanation as to why the command failed. Only present if the command failed.",
           "type": "string"
@@ -5919,7 +5997,9 @@
             "TAKE_A_SCREENSHOT",
             "SET_VOLUME",
             "WIPE_USERS",
-            "REMOTE_POWERWASH"
+            "REMOTE_POWERWASH",
+            "DEVICE_START_CRD_SESSION",
+            "CAPTURE_LOGS"
           ],
           "enumDescriptions": [
             "The command type was unspecified.",
@@ -5927,12 +6007,14 @@
             "Take a screenshot of the device. Only available if the device is in Kiosk Mode.",
             "Set the volume of the device. Can only be issued to Kiosk and managed guest session devices.",
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
-            "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!"
+            "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
+            "Starts a Chrome Remote Desktop session.",
+            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         },
         "payload": {
-          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100].",
+          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: * `SET_VOLUME`: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100]. * `DEVICE_START_CRD_SESSION`: Payload is optionally a stringified JSON object in the form: { \"ackedUserPresence\": true }. `ackedUserPresence` is a boolean. By default, `ackedUserPresence` is set to `false`. To start a Chrome Remote Desktop session for an active device, set `ackedUserPresence` to `true`.",
           "type": "string"
         }
       },
@@ -6221,7 +6303,7 @@
       "type": "object"
     },
     "Group": {
-      "description": "Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-groups).",
+      "description": "Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](https://developers.google.com/admin-sdk/directory/v1/guides/manage-groups). For information about other types of groups, see the [Cloud Identity Groups API documentation](https://cloud.google.com/identity/docs/groups). Note: The user calling the API (or being impersonated by a service account) must have an assigned [role](https://developers.google.com/admin-sdk/directory/v1/guides/manage-roles) that includes Admin API Groups permissions, such as Super Admin or Groups Admin.",
       "id": "Group",
       "properties": {
         "adminCreated": {
@@ -6391,7 +6473,7 @@
       "id": "Member",
       "properties": {
         "delivery_settings": {
-          "description": "Defines mail delivery preferences of member. This is only supported by create/update/get.",
+          "description": "Defines mail delivery preferences of member. This field is only supported by `insert`, `update`, and `get` methods.",
           "type": "string"
         },
         "email": {
@@ -6719,7 +6801,7 @@
       "id": "OrgUnit",
       "properties": {
         "blockInheritance": {
-          "description": "Determines if a sub-organizational unit can inherit the settings of the parent organization. The default value is `false`, meaning a sub-organizational unit inherits the settings of the nearest parent organizational unit. For more information on inheritance and users in an organization structure, see the [administration help center](https://support.google.com/a/answer/4352075).",
+          "description": "Determines if a sub-organizational unit can inherit the settings of the parent organization. The default value is `false`, meaning a sub-organizational unit inherits the settings of the nearest parent organizational unit. We recommend using the default value because setting `block_inheritance` to `true` can have _unintended consequences_. For more information about inheritance and users in an organization structure, see the [administration help center](https://support.google.com/a/answer/4352075).",
           "type": "boolean"
         },
         "description": {
@@ -7126,7 +7208,20 @@
       "id": "RoleAssignment",
       "properties": {
         "assignedTo": {
-          "description": "The unique ID of the entity this role is assigned to—either the `user_id` of a user or the `uniqueId` of a service account, as defined in [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/reference/rest/v1/projects.serviceAccounts).",
+          "description": "The unique ID of the entity this role is assigned to—either the `user_id` of a user, the `group_id` of a group, or the `uniqueId` of a service account as defined in [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/reference/rest/v1/projects.serviceAccounts).",
+          "type": "string"
+        },
+        "assigneeType": {
+          "description": "Output only. The type of the assignee (`USER` or `GROUP`).",
+          "enum": [
+            "user",
+            "group"
+          ],
+          "enumDescriptions": [
+            "An individual user within the domain.",
+            "A group within the domain."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "etag": {
@@ -7430,11 +7525,11 @@
       "type": "object"
     },
     "User": {
-      "description": "The Directory API allows you to create and manage your account's users, user aliases, and user Gmail chat profile photos. For more information about common tasks, see the [User Accounts Developer's Guide](/admin-sdk/directory/v1/guides/manage-users.html) and the [User Aliases Developer's Guide](/admin-sdk/directory/v1/guides/manage-user-aliases.html).",
+      "description": "The Directory API allows you to create and manage your account's users, user aliases, and user Google profile photos. For more information about common tasks, see the [User Accounts Developer's Guide](/admin-sdk/directory/v1/guides/manage-users.html) and the [User Aliases Developer's Guide](/admin-sdk/directory/v1/guides/manage-user-aliases.html).",
       "id": "User",
       "properties": {
         "addresses": {
-          "description": "The list of the user's addresses. The maximum allowed data size for this field is 10Kb.",
+          "description": "The list of the user's addresses. The maximum allowed data size for this field is 10KB.",
           "type": "any"
         },
         "agreedToTerms": {
@@ -7482,7 +7577,7 @@
           "type": "string"
         },
         "emails": {
-          "description": "The list of the user's email addresses. The maximum allowed data size for this field is 10Kb.",
+          "description": "The list of the user's email addresses. The maximum allowed data size for this field is 10KB.",
           "type": "any"
         },
         "etag": {
@@ -7491,11 +7586,11 @@
           "type": "string"
         },
         "externalIds": {
-          "description": "The list of external IDs for the user, such as an employee or network ID. The maximum allowed data size for this field is 2Kb.",
+          "description": "The list of external IDs for the user, such as an employee or network ID. The maximum allowed data size for this field is 2KB.",
           "type": "any"
         },
         "gender": {
-          "description": "The user's gender. The maximum allowed data size for this field is 1Kb.",
+          "description": "The user's gender. The maximum allowed data size for this field is 1KB.",
           "type": "any"
         },
         "hashFunction": {
@@ -7507,7 +7602,7 @@
           "type": "string"
         },
         "ims": {
-          "description": "The list of the user's Instant Messenger (IM) accounts. A user account can have multiple ims properties. But, only one of these ims properties can be the primary IM contact. The maximum allowed data size for this field is 2Kb.",
+          "description": "The list of the user's Instant Messenger (IM) accounts. A user account can have multiple ims properties. But, only one of these ims properties can be the primary IM contact. The maximum allowed data size for this field is 2KB.",
           "type": "any"
         },
         "includeInGlobalAddressList": {
@@ -7515,7 +7610,7 @@
           "type": "boolean"
         },
         "ipWhitelisted": {
-          "description": "If `true`, the user's IP address is [whitelisted](https://support.google.com/a/answer/60752).",
+          "description": "If `true`, the user's IP address is subject to a deprecated IP address [`allowlist`](https://support.google.com/a/answer/60752) configuration.",
           "type": "boolean"
         },
         "isAdmin": {
@@ -7544,7 +7639,7 @@
           "type": "boolean"
         },
         "keywords": {
-          "description": "The list of the user's keywords. The maximum allowed data size for this field is 1Kb.",
+          "description": "The list of the user's keywords. The maximum allowed data size for this field is 1KB.",
           "type": "any"
         },
         "kind": {
@@ -7554,7 +7649,7 @@
           "type": "string"
         },
         "languages": {
-          "description": "The user's languages. The maximum allowed data size for this field is 1Kb.",
+          "description": "The user's languages. The maximum allowed data size for this field is 1KB.",
           "type": "any"
         },
         "lastLoginTime": {
@@ -7564,7 +7659,7 @@
           "type": "string"
         },
         "locations": {
-          "description": "The user's locations. The maximum allowed data size for this field is 10Kb.",
+          "description": "The user's locations. The maximum allowed data size for this field is 10KB.",
           "type": "any"
         },
         "name": {
@@ -7574,7 +7669,7 @@
               "directory.users.insert"
             ]
           },
-          "description": "Holds the given and family names of the user, and the read-only `fullName` value. The maximum number of characters in the `givenName` and in the `familyName` values is 60. In addition, name values support unicode/UTF-8 characters, and can contain spaces, letters (a-z), numbers (0-9), dashes (-), forward slashes (/), and periods (.). For more information about character usage rules, see the [administration help center](https://support.google.com/a/answer/9193374). Maximum allowed data size for this field is 1Kb."
+          "description": "Holds the given and family names of the user, and the read-only `fullName` value. The maximum number of characters in the `givenName` and in the `familyName` values is 60. In addition, name values support unicode/UTF-8 characters, and can contain spaces, letters (a-z), numbers (0-9), dashes (-), forward slashes (/), and periods (.). For more information about character usage rules, see the [administration help center](https://support.google.com/a/answer/9193374). Maximum allowed data size for this field is 1KB."
         },
         "nonEditableAliases": {
           "description": "Output only. The list of the user's non-editable alias email addresses. These are typically outside the account's primary domain or sub-domain.",
@@ -7593,7 +7688,7 @@
           "type": "string"
         },
         "organizations": {
-          "description": "The list of organizations the user belongs to. The maximum allowed data size for this field is 10Kb.",
+          "description": "The list of organizations the user belongs to. The maximum allowed data size for this field is 10KB.",
           "type": "any"
         },
         "password": {
@@ -7606,7 +7701,7 @@
           "type": "string"
         },
         "phones": {
-          "description": "The list of the user's phone numbers. The maximum allowed data size for this field is 1Kb.",
+          "description": "The list of the user's phone numbers. The maximum allowed data size for this field is 1KB.",
           "type": "any"
         },
         "posixAccounts": {
@@ -7631,7 +7726,7 @@
           "type": "string"
         },
         "relations": {
-          "description": "The list of the user's relationships to other users. The maximum allowed data size for this field is 2Kb.",
+          "description": "The list of the user's relationships to other users. The maximum allowed data size for this field is 2KB.",
           "type": "any"
         },
         "sshPublicKeys": {
@@ -7653,12 +7748,12 @@
           "type": "string"
         },
         "thumbnailPhotoUrl": {
-          "description": "Output only. Photo Url of the user (Read-only)",
+          "description": "Output only. The URL of the user's profile photo. The URL might be temporary or private.",
           "readOnly": true,
           "type": "string"
         },
         "websites": {
-          "description": "The user's websites. The maximum allowed data size for this field is 2Kb.",
+          "description": "The user's websites. The maximum allowed data size for this field is 2KB.",
           "type": "any"
         }
       },
@@ -7955,6 +8050,10 @@
     "UserName": {
       "id": "UserName",
       "properties": {
+        "displayName": {
+          "description": "The user's display name. Limit: 256 characters.",
+          "type": "string"
+        },
         "familyName": {
           "annotations": {
             "required": [

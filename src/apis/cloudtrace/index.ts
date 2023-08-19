@@ -40,7 +40,7 @@ export function cloudtrace<
   T =
     | cloudtrace_v1.Cloudtrace
     | cloudtrace_v2.Cloudtrace
-    | cloudtrace_v2beta1.Cloudtrace
+    | cloudtrace_v2beta1.Cloudtrace,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

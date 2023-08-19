@@ -14,14 +14,20 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {metastore_v1} from './v1';
 import {metastore_v1alpha} from './v1alpha';
 import {metastore_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: metastore_v1.Metastore,
   v1alpha: metastore_v1alpha.Metastore,
   v1beta: metastore_v1beta.Metastore,
 };
 
+export function metastore(version: 'v1'): metastore_v1.Metastore;
+export function metastore(
+  options: metastore_v1.Options
+): metastore_v1.Metastore;
 export function metastore(version: 'v1alpha'): metastore_v1alpha.Metastore;
 export function metastore(
   options: metastore_v1alpha.Options
@@ -31,10 +37,15 @@ export function metastore(
   options: metastore_v1beta.Options
 ): metastore_v1beta.Metastore;
 export function metastore<
-  T = metastore_v1alpha.Metastore | metastore_v1beta.Metastore
+  T =
+    | metastore_v1.Metastore
+    | metastore_v1alpha.Metastore
+    | metastore_v1beta.Metastore,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
+    | 'v1'
+    | metastore_v1.Options
     | 'v1alpha'
     | metastore_v1alpha.Options
     | 'v1beta'
@@ -45,6 +56,7 @@ export function metastore<
 
 const auth = new AuthPlus();
 export {auth};
+export {metastore_v1};
 export {metastore_v1alpha};
 export {metastore_v1beta};
 export {

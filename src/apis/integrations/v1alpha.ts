@@ -136,58 +136,6 @@ export namespace integrations_v1alpha {
   export interface Schema$CrmlogErrorCode {
     commonErrorCode?: string | null;
   }
-  export interface Schema$EnterpriseCrmCardsCellValue {
-    booleanValue?: boolean | null;
-    doubleValue?: number | null;
-    empty?: Schema$GoogleProtobufEmpty;
-    longValue?: string | null;
-    stringValue?: string | null;
-  }
-  export interface Schema$EnterpriseCrmCardsRow {
-    /**
-     * Ordered list of cell values within a row.
-     */
-    cells?: Schema$EnterpriseCrmCardsCellValue[];
-  }
-  /**
-   * The generic data format returned from all connectors.
-   */
-  export interface Schema$EnterpriseCrmCardsTabularData {
-    /**
-     * Ordered list of column headers.
-     */
-    headers?: string[] | null;
-    /**
-     * Ordered list of table rows.
-     */
-    rows?: Schema$EnterpriseCrmCardsRow[];
-  }
-  /**
-   * Data used to render an Aplos Series card.
-   */
-  export interface Schema$EnterpriseCrmCardsTemplatesAplosSeriesData {
-    /**
-     * A single Series Row
-     */
-    rows?: Schema$EnterpriseCrmCardsTemplatesAplosSeriesDataRow[];
-  }
-  /**
-   * Aplos series row is exactly two columns labeled x and y.
-   */
-  export interface Schema$EnterpriseCrmCardsTemplatesAplosSeriesDataRow {
-    x?: Schema$EnterpriseCrmCardsCellValue;
-    y?: Schema$EnterpriseCrmCardsCellValue;
-  }
-  /**
-   * Data used for Aplos charts that accept multiple Series.
-   */
-  export interface Schema$EnterpriseCrmCardsTemplatesAplosSeriesListData {
-    series?: Schema$EnterpriseCrmCardsTemplatesAplosSeriesListDataSeries[];
-  }
-  export interface Schema$EnterpriseCrmCardsTemplatesAplosSeriesListDataSeries {
-    data?: Schema$EnterpriseCrmCardsTemplatesAplosSeriesData;
-    name?: string | null;
-  }
   export interface Schema$EnterpriseCrmEventbusAuthconfigAuthConfigTaskParam {
     /**
      * Defines the credential types to be supported as Task may restrict specific types to use, e.g. Cloud SQL Task will use username/password type only.
@@ -216,7 +164,7 @@ export namespace integrations_v1alpha {
     tokens?: Schema$EnterpriseCrmEventbusProtoToken[];
   }
   /**
-   * Attributes are additional options that can be associated with each event property. For more information, see go/integration-platform/event_bus/attributes_registry.md. Next available: 8
+   * Attributes are additional options that can be associated with each event property. For more information, see
    */
   export interface Schema$EnterpriseCrmEventbusProtoAttributes {
     /**
@@ -236,7 +184,7 @@ export namespace integrations_v1alpha {
      */
     isSearchable?: boolean | null;
     /**
-     * See go/integration-platform/analytics/logging_task.md for details.
+     * See
      */
     logSettings?: Schema$EnterpriseCrmEventbusProtoLogSettings;
     searchable?: string | null;
@@ -253,7 +201,7 @@ export namespace integrations_v1alpha {
     filterType?: string | null;
   }
   /**
-   * The threshold value of the metric, above or below which the alert should be triggered. See EventAlertConfig or TaskAlertConfig for the different alert metric types in each case. For the *RATE metrics, one or both of these fields may be set. Zero is the default value and can be left at that. For *PERCENTILE_DURATION metrics, one or both of these fields may be set, and also, the duration threshold value should be specified in the threshold_duration_ms member below. For *AVERAGE_DURATION metrics, these fields should not be set at all. A different member, threshold_duration_ms, must be set in the EventAlertConfig or the TaskAlertConfig. See go/eventbus-alert-config-examples
+   * The threshold value of the metric, above or below which the alert should be triggered. See EventAlertConfig or TaskAlertConfig for the different alert metric types in each case. For the *RATE metrics, one or both of these fields may be set. Zero is the default value and can be left at that. For *PERCENTILE_DURATION metrics, one or both of these fields may be set, and also, the duration threshold value should be specified in the threshold_duration_ms member below. For *AVERAGE_DURATION metrics, these fields should not be set at all. A different member, threshold_duration_ms, must be set in the EventAlertConfig or the TaskAlertConfig.
    */
   export interface Schema$EnterpriseCrmEventbusProtoBaseAlertConfigThresholdValue {
     absolute?: string | null;
@@ -302,6 +250,28 @@ export namespace integrations_v1alpha {
      * Title of the issue to be created. Required.
      */
     title?: string | null;
+  }
+  export interface Schema$EnterpriseCrmEventbusProtoCloudKmsConfig {
+    /**
+     * Optional. The id of GCP project where the KMS key is stored. If not provided, assume the key is stored in the same GCP project defined in Client (tag 14).
+     */
+    gcpProjectId?: string | null;
+    /**
+     * A Cloud KMS key is a named object containing one or more key versions, along with metadata for the key. A key exists on exactly one key ring tied to a specific location.
+     */
+    keyName?: string | null;
+    /**
+     * A key ring organizes keys in a specific Google Cloud location and allows you to manage access control on groups of keys. A key ring's name does not need to be unique across a Google Cloud project, but must be unique within a given location.
+     */
+    keyRingName?: string | null;
+    /**
+     * Optional. Each version of a key contains key material used for encryption or signing. A key's version is represented by an integer, starting at 1. To decrypt data or verify a signature, you must use the same key version that was used to encrypt or sign the data.
+     */
+    keyVersionName?: string | null;
+    /**
+     * Location name of the key ring, e.g. "us-west1".
+     */
+    locationName?: string | null;
   }
   /**
    * Cloud Scheduler Trigger configuration
@@ -442,7 +412,7 @@ export namespace integrations_v1alpha {
     taskNumber?: number | null;
   }
   /**
-   * LINT.IfChange This message is used for storing key value pair properties for each Event / Task in the EventBus. Please see go/cloud-crm-eng/platform/event_bus.md for more details.
+   * LINT.IfChange This message is used for storing key value pair properties for each Event / Task in the EventBus.
    */
   export interface Schema$EnterpriseCrmEventbusProtoEventBusProperties {
     /**
@@ -544,6 +514,10 @@ export namespace integrations_v1alpha {
      */
     taskAttemptNum?: number | null;
     /**
+     * the task label associated with this snapshot. Could be empty.
+     */
+    taskLabel?: string | null;
+    /**
      * the task name associated with this snapshot. Could be empty.
      */
     taskName?: string | null;
@@ -553,7 +527,7 @@ export namespace integrations_v1alpha {
     taskNumber?: string | null;
   }
   /**
-   * LINT.IfChange This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Please see go/integration-platform/event_bus.md for more details. Next id: 4
+   * LINT.IfChange This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Please see
    */
   export interface Schema$EnterpriseCrmEventbusProtoEventParameters {
     /**
@@ -613,7 +587,7 @@ export namespace integrations_v1alpha {
     retryStrategy?: string | null;
   }
   /**
-   * Information about the value and type of the field. Next Id: 8
+   * Information about the value and type of the field.
    */
   export interface Schema$EnterpriseCrmEventbusProtoField {
     /**
@@ -621,7 +595,7 @@ export namespace integrations_v1alpha {
      */
     cardinality?: string | null;
     /**
-     * This holds the default values for the fields. This value is supplied by user so may or may not contain PII or SPII data. This field will be scrubbed using DatapolScrubber#maybeScrub() with go/proto-sanitizer#level3
+     * This holds the default values for the fields. This value is supplied by user so may or may not contain PII or SPII data.
      */
     defaultValue?: Schema$EnterpriseCrmEventbusProtoParameterValueType;
     /**
@@ -637,12 +611,12 @@ export namespace integrations_v1alpha {
      */
     referenceKey?: string | null;
     /**
-     * This is the transform expression to fetch the input field value. for e.g. $param1$.CONCAT('test'). See go/transform-functions-design for more details. Keep points - 1. Only input field can have a transform expression. 2. If a transform expression is provided, reference_key will be ignored. 3. If no value is returned after evaluation of transform expression, default_value can be mapped if provided. 4. The field_type should be the type of the final object returned after the transform expression is evaluated. Scrubs the transform expression before logging as value provided by user so may or may not contain PII or SPII data.
+     * This is the transform expression to fetch the input field value. for e.g. $param1$.CONCAT('test'). Keep points - 1. Only input field can have a transform expression. 2. If a transform expression is provided, reference_key will be ignored. 3. If no value is returned after evaluation of transform expression, default_value can be mapped if provided. 4. The field_type should be the type of the final object returned after the transform expression is evaluated. Scrubs the transform expression before logging as value provided by user so may or may not contain PII or SPII data.
      */
     transformExpression?: Schema$EnterpriseCrmEventbusProtoTransformExpression;
   }
   /**
-   * Field Mapping Config to map multiple output fields values from input fields values. Next id: 2
+   * Field Mapping Config to map multiple output fields values from input fields values.
    */
   export interface Schema$EnterpriseCrmEventbusProtoFieldMappingConfig {
     mappedFields?: Schema$EnterpriseCrmEventbusProtoMappedField[];
@@ -693,7 +667,7 @@ export namespace integrations_v1alpha {
     functionName?: string | null;
   }
   /**
-   * The LogSettings define the logging attributes for an event property. These attributes are used to map the property to the parameter in the log proto. Also used to define scrubbing/truncation behavior and PII information. See go/integration-platform/analytics/logging_task.md for details.
+   * The LogSettings define the logging attributes for an event property. These attributes are used to map the property to the parameter in the log proto. Also used to define scrubbing/truncation behavior and PII information.
    */
   export interface Schema$EnterpriseCrmEventbusProtoLogSettings {
     /**
@@ -730,7 +704,7 @@ export namespace integrations_v1alpha {
     failureLocation?: string | null;
   }
   /**
-   * Mapped field is a pair of input field and output field. Next Id: 3
+   * Mapped field is a pair of input field and output field.
    */
   export interface Schema$EnterpriseCrmEventbusProtoMappedField {
     /**
@@ -1065,9 +1039,21 @@ export namespace integrations_v1alpha {
   export interface Schema$EnterpriseCrmEventbusProtoSuspensionResolutionInfo {
     audit?: Schema$EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit;
     /**
+     * The event data user sends as request.
+     */
+    clientId?: string | null;
+    /**
+     * KMS info, used by cmek/gmek integration
+     */
+    cloudKmsConfig?: Schema$EnterpriseCrmEventbusProtoCloudKmsConfig;
+    /**
      * Auto-generated.
      */
     createdTimestamp?: string | null;
+    /**
+     * Encrypted SuspensionResolutionInfo
+     */
+    encryptedSuspensionResolutionInfo?: string | null;
     /**
      * Required. ID of the associated execution.
      */
@@ -1098,13 +1084,18 @@ export namespace integrations_v1alpha {
      * Required. The name of the originating workflow.
      */
     workflowName?: string | null;
+    /**
+     * Wrapped dek
+     */
+    wrappedDek?: string | null;
   }
   export interface Schema$EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit {
     resolvedBy?: string | null;
+    resolvedByCpi?: string | null;
     timestamp?: string | null;
   }
   /**
-   * Message to be used to configure alerting in the {@code TaskConfig\} protos for tasks in an event. See go/eventbus-alert-config-examples for examples of the different alerts that can be configured.
+   * Message to be used to configure alerting in the {@code TaskConfig\} protos for tasks in an event.
    */
   export interface Schema$EnterpriseCrmEventbusProtoTaskAlertConfig {
     /**
@@ -1173,7 +1164,7 @@ export namespace integrations_v1alpha {
     startTime?: string | null;
   }
   /**
-   * TaskMetadata are attributes that are associated to every common Task we have. Next available: 26
+   * TaskMetadata are attributes that are associated to every common Task we have.
    */
   export interface Schema$EnterpriseCrmEventbusProtoTaskMetadata {
     /**
@@ -1228,7 +1219,7 @@ export namespace integrations_v1alpha {
      */
     g3DocLink?: string | null;
     /**
-     * URL to gstatic image icon for this task. This icon shows up on the task list panel along with the task name in the Workflow Editor screen. Use the 24p, 2x, gray color icon image format. See go/icons.
+     * URL to gstatic image icon for this task. This icon shows up on the task list panel along with the task name in the Workflow Editor screen. Use the 24p, 2x, gray color icon image format.
      */
     iconLink?: string | null;
     /**
@@ -1261,7 +1252,7 @@ export namespace integrations_v1alpha {
     userEmail?: string | null;
   }
   /**
-   * Task authors would use this type to configure the UI for a particular task by specifying what UI config modules should be included to compose the UI. Learn more about config module framework: go/integration-platform-config-module-framework
+   * Task authors would use this type to configure the UI for a particular task by specifying what UI config modules should be included to compose the UI. Learn more about config module framework:
    */
   export interface Schema$EnterpriseCrmEventbusProtoTaskUiConfig {
     /**
@@ -1346,7 +1337,7 @@ export namespace integrations_v1alpha {
     stringValue?: string | null;
   }
   /**
-   * Message to be used to configure custom alerting in the {@code EventConfig\} protos for an event. See go/eventbus-alert-config-examples for examples of the different alerts that can be configured.
+   * Message to be used to configure custom alerting in the {@code EventConfig\} protos for an event.
    */
   export interface Schema$EnterpriseCrmEventbusProtoWorkflowAlertConfig {
     /**
@@ -1388,7 +1379,7 @@ export namespace integrations_v1alpha {
      */
     thresholdType?: string | null;
     /**
-     * The metric value, above or below which the alert should be triggered. See go/eventbus-alert-config-examples.
+     * The metric value, above or below which the alert should be triggered.
      */
     thresholdValue?: Schema$EnterpriseCrmEventbusProtoBaseAlertConfigThresholdValue;
     warningEnumList?: Schema$EnterpriseCrmEventbusProtoBaseAlertConfigErrorEnumList;
@@ -1597,7 +1588,7 @@ export namespace integrations_v1alpha {
     taskName?: string | null;
   }
   /**
-   * LINT.IfChange This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Please see go/integration-platform/event_bus.md for more details. Next id: 4
+   * LINT.IfChange This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus. Please see
    */
   export interface Schema$EnterpriseCrmFrontendsEventbusProtoEventParameters {
     /**
@@ -1753,7 +1744,7 @@ export namespace integrations_v1alpha {
     stringValues?: string[] | null;
   }
   /**
-   * The task configuration details. This is not the implementation of Task. There might be multiple TaskConfigs for the same Task. Next available id: 27
+   * The task configuration details. This is not the implementation of Task. There might be multiple TaskConfigs for the same Task.
    */
   export interface Schema$EnterpriseCrmFrontendsEventbusProtoTaskConfig {
     /**
@@ -1776,6 +1767,11 @@ export namespace integrations_v1alpha {
      * If this config contains a TypedTask, allow validation to succeed if an input is read from the output of another TypedTask whose output type is declared as a superclass of the requested input type. For instance, if the previous task declares an output of type Message, any task with this flag enabled will pass validation when attempting to read any proto Message type from the resultant Event parameter.
      */
     disableStrictTypeValidation?: boolean | null;
+    /**
+     * Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task
+     */
+    errorCatcherId?: string | null;
+    externalTaskType?: string | null;
     /**
      * Optional. Determines the number of times the task will be retried on failure and with what retry strategy. This is applicable for asynchronous calls to Eventbus alone (Post To Queue, Schedule etc.).
      */
@@ -1851,7 +1847,7 @@ export namespace integrations_v1alpha {
      */
     taskNumber?: string | null;
     /**
-     * A string template that allows user to configure task parameters (with either literal default values or tokens which will be resolved at execution time) for the task. It will eventually replace the old "parameters" field. Please refer to go/eventbus-task-spec-example for detailed usage example.
+     * A string template that allows user to configure task parameters (with either literal default values or tokens which will be resolved at execution time) for the task. It will eventually replace the old "parameters" field.
      */
     taskSpec?: string | null;
     /**
@@ -1893,7 +1889,7 @@ export namespace integrations_v1alpha {
     uiConfig?: Schema$EnterpriseCrmEventbusProtoTaskUiConfig;
   }
   /**
-   * Configuration detail of a trigger. Next available id: 17
+   * Configuration detail of a trigger. Next available id: 19
    */
   export interface Schema$EnterpriseCrmFrontendsEventbusProtoTriggerConfig {
     /**
@@ -1909,6 +1905,10 @@ export namespace integrations_v1alpha {
      * Required. The list of client ids which are enabled to execute the workflow using this trigger. In other words, these clients have the workflow execution privledges for this trigger. For API trigger, the client id in the incoming request is validated against the list of enabled clients. For non-API triggers, one workflow execution is triggered on behalf of each enabled client.
      */
     enabledClients?: string[] | null;
+    /**
+     * Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task
+     */
+    errorCatcherId?: string | null;
     /**
      * The user created label for a particular trigger.
      */
@@ -1969,7 +1969,7 @@ export namespace integrations_v1alpha {
      */
     inOutType?: string | null;
     /**
-     * Whether this parameter is a transient parameter. go/ip-transient-parameters
+     * Whether this parameter is a transient parameter.
      */
     isTransient?: boolean | null;
     /**
@@ -2054,6 +2054,10 @@ export namespace integrations_v1alpha {
      */
     authType?: string | null;
     /**
+     * Oauth2AuthCodeFlow.
+     */
+    oauth2AuthCodeFlow?: Schema$GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow;
+    /**
      * Oauth2ClientCredentials.
      */
     oauth2ClientCredentials?: Schema$GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials;
@@ -2069,6 +2073,39 @@ export namespace integrations_v1alpha {
      * UserPassword.
      */
     userPassword?: Schema$GoogleCloudConnectorsV1AuthConfigUserPassword;
+  }
+  /**
+   * Parameters to support Oauth 2.0 Auth Code Grant Authentication. See https://www.rfc-editor.org/rfc/rfc6749#section-1.3.1 for more details.
+   */
+  export interface Schema$GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow {
+    /**
+     * Authorization code to be exchanged for access and refresh tokens.
+     */
+    authCode?: string | null;
+    /**
+     * Client ID for user-provided OAuth app.
+     */
+    clientId?: string | null;
+    /**
+     * Client secret for user-provided OAuth app.
+     */
+    clientSecret?: Schema$GoogleCloudConnectorsV1Secret;
+    /**
+     * Whether to enable PKCE when the user performs the auth code flow.
+     */
+    enablePkce?: boolean | null;
+    /**
+     * PKCE verifier to be used during the auth code exchange.
+     */
+    pkceVerifier?: string | null;
+    /**
+     * Redirect URI to be provided during the auth code exchange.
+     */
+    redirectUri?: string | null;
+    /**
+     * Scopes the connection will request when the user performs the auth code flow.
+     */
+    scopes?: string[] | null;
   }
   /**
    * Parameters to support Oauth 2.0 Client Credentials Grant Authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details.
@@ -2217,11 +2254,15 @@ export namespace integrations_v1alpha {
      */
     lockConfig?: Schema$GoogleCloudConnectorsV1LockConfig;
     /**
+     * Optional. Log configuration for the connection.
+     */
+    logConfig?: Schema$GoogleCloudConnectorsV1LogConfig;
+    /**
      * Output only. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      */
     name?: string | null;
     /**
-     * Optional. Configuration for the connection.
+     * Optional. Node configuration for the connection.
      */
     nodeConfig?: Schema$GoogleCloudConnectorsV1NodeConfig;
     /**
@@ -2232,6 +2273,10 @@ export namespace integrations_v1alpha {
      * Output only. The name of the Service Directory service name. Used for Private Harpoon to resolve the ILB address. e.g. "projects/cloud-connectors-e2e-testing/locations/us-central1/namespaces/istio-system/services/istio-ingressgateway-connectors"
      */
     serviceDirectory?: string | null;
+    /**
+     * Optional. Ssl config of a connection
+     */
+    sslConfig?: Schema$GoogleCloudConnectorsV1SslConfig;
     /**
      * Output only. Current status of the connection.
      */
@@ -2303,7 +2348,16 @@ export namespace integrations_v1alpha {
     reason?: string | null;
   }
   /**
-   * Configuration for the connection.
+   * Log configuration for the connection.
+   */
+  export interface Schema$GoogleCloudConnectorsV1LogConfig {
+    /**
+     * Enabled represents whether logging is enabled or not for a connection.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Node configuration for the connection.
    */
   export interface Schema$GoogleCloudConnectorsV1NodeConfig {
     /**
@@ -2323,6 +2377,51 @@ export namespace integrations_v1alpha {
      * The resource name of the secret version in the format, format as: `projects/x/secrets/x/versions/x`.
      */
     secretVersion?: string | null;
+  }
+  /**
+   * SSL Configuration of a connection
+   */
+  export interface Schema$GoogleCloudConnectorsV1SslConfig {
+    /**
+     * Additional SSL related field values
+     */
+    additionalVariables?: Schema$GoogleCloudConnectorsV1ConfigVariable[];
+    /**
+     * Client Certificate
+     */
+    clientCertificate?: Schema$GoogleCloudConnectorsV1Secret;
+    /**
+     * Type of Client Cert (PEM/JKS/.. etc.)
+     */
+    clientCertType?: string | null;
+    /**
+     * Client Private Key
+     */
+    clientPrivateKey?: Schema$GoogleCloudConnectorsV1Secret;
+    /**
+     * Secret containing the passphrase protecting the Client Private Key
+     */
+    clientPrivateKeyPass?: Schema$GoogleCloudConnectorsV1Secret;
+    /**
+     * Private Server Certificate. Needs to be specified if trust model is `PRIVATE`.
+     */
+    privateServerCertificate?: Schema$GoogleCloudConnectorsV1Secret;
+    /**
+     * Type of Server Cert (PEM/JKS/.. etc.)
+     */
+    serverCertType?: string | null;
+    /**
+     * Trust Model of the SSL connection
+     */
+    trustModel?: string | null;
+    /**
+     * Controls the ssl type for the given connector version.
+     */
+    type?: string | null;
+    /**
+     * Bool for enabling SSL
+     */
+    useSsl?: boolean | null;
   }
   /**
    * The access token represents the authorization of a specific application to access specific parts of a user’s data.
@@ -2349,22 +2448,6 @@ export namespace integrations_v1alpha {
      */
     tokenType?: string | null;
   }
-  /**
-   * Request for ArchiveBundle.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaArchiveBundleRequest {}
-  /**
-   * Response for ArchiveBundle.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse {}
-  /**
-   * Request for ArchiveIntegrationVersion.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionRequest {}
-  /**
-   * Response for ArchiveIntegrationVersion.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse {}
   /**
    * Status for the execution attempt.
    */
@@ -2579,6 +2662,19 @@ export namespace integrations_v1alpha {
     entities?: string[] | null;
   }
   /**
+   * Configuration detail of coordinate, it used for UI
+   */
+  export interface Schema$GoogleCloudIntegrationsV1alphaCoordinate {
+    /**
+     * Required. X axis of the coordinate
+     */
+    x?: number | null;
+    /**
+     * Required. Y axis of the coordinate
+     */
+    y?: number | null;
+  }
+  /**
    * Request for CreateAppsScriptProject rpc call.
    */
   export interface Schema$GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectRequest {
@@ -2599,36 +2695,6 @@ export namespace integrations_v1alpha {
      * The created AppsScriptProject ID.
      */
     projectId?: string | null;
-  }
-  /**
-   * PROTECT WITH A VISIBILITY LABEL. THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. Request to create a new Bundle.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaCreateBundleRequest {
-    /**
-     * Required. name of the bundle that will be created
-     */
-    bundleId?: string | null;
-    /**
-     * A list of integrations that can be executed by the bundle
-     */
-    integrations?: string[] | null;
-    /**
-     * Optional. The prefix for the SA, it should be in the format "o". This is an optional field, and if empty service account will be created per project, where we are creating bundle. This should only be used as the org ID for which we want to run the integrations in the bundle.
-     */
-    secondaryCustomerOrgId?: string | null;
-  }
-  /**
-   * Response for create bundle.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse {
-    /**
-     * It contains the bundle data
-     */
-    config?: Schema$GoogleCloudIntegrationsV1alphaIntegrationBundleConfig;
-    /**
-     * trigger_id of the bundle task
-     */
-    triggerId?: string | null;
   }
   /**
    * Defines parameters for a single, canonical credential.
@@ -2672,14 +2738,6 @@ export namespace integrations_v1alpha {
     usernameAndPassword?: Schema$GoogleCloudIntegrationsV1alphaUsernameAndPassword;
   }
   /**
-   * Request for DeactivateIntegrationVersion.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionRequest {}
-  /**
-   * Response for DeactivateIntegrationVersion.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse {}
-  /**
    * This message only contains a field of double number array.
    */
   export interface Schema$GoogleCloudIntegrationsV1alphaDoubleParameterArray {
@@ -2705,6 +2763,35 @@ export namespace integrations_v1alpha {
      * All regions where Connector Platform is provisioned.
      */
     regions?: string[] | null;
+  }
+  /**
+   * Configuration detail of a error catch task
+   */
+  export interface Schema$GoogleCloudIntegrationsV1alphaErrorCatcherConfig {
+    /**
+     * Optional. User-provided description intended to give more business context about the error catcher config.
+     */
+    description?: string | null;
+    /**
+     * Required. An error catcher id is string representation for the error catcher config. Within a workflow, error_catcher_id uniquely identifies an error catcher config among all error catcher configs for the workflow
+     */
+    errorCatcherId?: string | null;
+    /**
+     * Required. A number to uniquely identify each error catcher config within the workflow on UI.
+     */
+    errorCatcherNumber?: string | null;
+    /**
+     * Optional. The user created label for a particular error catcher. Optional.
+     */
+    label?: string | null;
+    /**
+     * Optional. Informs the front-end application where to draw this error catcher config on the UI.
+     */
+    position?: Schema$GoogleCloudIntegrationsV1alphaCoordinate;
+    /**
+     * Required. The set of start tasks that are to be executed for the error catch flow
+     */
+    startErrorTasks?: Schema$GoogleCloudIntegrationsV1alphaNextTask[];
   }
   /**
    * This message is used for processing and persisting (when applicable) key value pair parameters for each event in the event bus.
@@ -2750,7 +2837,7 @@ export namespace integrations_v1alpha {
      */
     requestId?: string | null;
     /**
-     * Optional. Matched against all {@link TriggerConfig\}s across all integrations. i.e. TriggerConfig.trigger_id.equals(trigger_id)
+     * Required. Matched against all {@link TriggerConfig\}s across all integrations. i.e. TriggerConfig.trigger_id.equals(trigger_id). The trigger_id is in the format of `api_trigger/TRIGGER_NAME`.
      */
     triggerId?: string | null;
   }
@@ -2893,6 +2980,10 @@ export namespace integrations_v1alpha {
      */
     taskAttempt?: number | null;
     /**
+     * the task label associated with this snapshot. Could be empty.
+     */
+    taskLabel?: string | null;
+    /**
      * The task number associated with this snapshot.
      */
     taskNumber?: string | null;
@@ -2922,15 +3013,6 @@ export namespace integrations_v1alpha {
      * The message that notifies the user if the request succeeded or not.
      */
     message?: string | null;
-  }
-  /**
-   * Response for GetBundle.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse {
-    /**
-     * It contains the bundle data
-     */
-    config?: Schema$GoogleCloudIntegrationsV1alphaIntegrationBundleConfig;
   }
   /**
    * The integration definition.
@@ -3008,19 +3090,6 @@ export namespace integrations_v1alpha {
     percentage?: number | null;
   }
   /**
-   * This proto holds the core runner data in the bundle task. It is not expected to be directly edited by the user. Instead, a default value will be provided at the task creation time.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaIntegrationBundleConfig {
-    /**
-     * A bundle of integrations that can be executed by the task at runtime.
-     */
-    integrations?: string[] | null;
-    /**
-     * Output only. The service account created and owned by IP and added to the customers GCP project.
-     */
-    serviceAccount?: string | null;
-  }
-  /**
    * Integration Parameter is defined in the integration config and are used to provide information about data types of the expected parameters and provide any default values if needed. They can also be used to add custom attributes. These are static in nature and should not be used for dynamic event definition.
    */
   export interface Schema$GoogleCloudIntegrationsV1alphaIntegrationParameter {
@@ -3077,6 +3146,10 @@ export namespace integrations_v1alpha {
      * Optional. The templateversion description. Permitted format is alphanumeric with underscores and no spaces.
      */
     description?: string | null;
+    /**
+     * Optional. Error Catch Task configuration for the IntegrationTemplateVersion. It's optional.
+     */
+    errorCatcherConfigs?: Schema$GoogleCloudIntegrationsV1alphaErrorCatcherConfig[];
     /**
      * Optional. The last modifier's email address. Generated based on the End User Credentials/LOAS role of the user making the call.
      */
@@ -3139,6 +3212,10 @@ export namespace integrations_v1alpha {
      */
     description?: string | null;
     /**
+     * Optional. Error Catch Task configuration for the integration. It's optional.
+     */
+    errorCatcherConfigs?: Schema$GoogleCloudIntegrationsV1alphaErrorCatcherConfig[];
+    /**
      * Optional. Parameters that are expected to be passed to the integration when an event is triggered. This consists of all the parameters that are expected in the integration execution. This gives the user the ability to provide default values, add information like PII and also provide data types of each parameter.
      */
     integrationParameters?: Schema$GoogleCloudIntegrationsV1alphaIntegrationParameter[];
@@ -3166,6 +3243,10 @@ export namespace integrations_v1alpha {
      * Optional. The id of the template which was used to create this integration_version.
      */
     parentTemplateId?: string | null;
+    /**
+     * Optional. The run-as service account email, if set and auth config is not configured, that will be used to generate auth token to be used in Connector task, Rest caller task and Cloud function task.
+     */
+    runAsServiceAccount?: string | null;
     /**
      * Optional. An increasing sequence that is set when a new snapshot is created. The last created snapshot can be identified by [workflow_name, org_id latest(snapshot_number)]. However, last created snapshot need not be same as the HEAD. So users should always use "HEAD" tag to identify the head.
      */
@@ -3313,19 +3394,6 @@ export namespace integrations_v1alpha {
     nextPageToken?: string | null;
   }
   /**
-   * Response for listing the integration execution snapshot.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse {
-    /**
-     * Required. The detailed information for the execution snapshot.
-     */
-    executionSnapshots?: Schema$EnterpriseCrmEventbusProtoEventExecutionSnapshot[];
-    /**
-     * The token returned in the previous response.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
    * Response for listing the integration execution data.
    */
   export interface Schema$GoogleCloudIntegrationsV1alphaListExecutionsResponse {
@@ -3449,146 +3517,6 @@ export namespace integrations_v1alpha {
      * The suspensions for the relevant execution which the caller has permissions to view and resolve.
      */
     suspensions?: Schema$GoogleCloudIntegrationsV1alphaSuspension[];
-  }
-  /**
-   * This is a UI only method and will be moved away. Response for ListTaskEntities.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse {
-    /**
-     * The list of the tasks.
-     */
-    taskEntities?: Schema$EnterpriseCrmFrontendsEventbusProtoTaskEntity[];
-  }
-  /**
-   * The request to get data for monarch connector config.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequest {
-    /**
-     * How long the series data range: "1h","1d",etc.
-     */
-    duration?: string | null;
-    /**
-     * Final time to query over, or the current time if left unset.
-     */
-    endTime?: string | null;
-    /**
-     * Required. Query for searching data in monarch.
-     */
-    mashQuery?: Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQuery;
-    /**
-     * Returns a table of all possible metric field values within the specified duration, ignoring any data samples. Useful for autocomplete functionality.
-     */
-    metricFieldTable?: boolean | null;
-    /**
-     * The output period for the query. Must be set if there is a window operation within the query and unset otherwise.
-     */
-    outputPeriod?: string | null;
-    /**
-     * Required. Template for response.
-     */
-    responseTemplate?: string | null;
-  }
-  /**
-   * MashQuery GroupBy parameters.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestGroupBy {
-    /**
-     * Optional. optional, metrics list for GroupBy.
-     */
-    fields?: string[] | null;
-    /**
-     * Optional. optional, reduce function for GroupBy.
-     */
-    reducer?: string | null;
-  }
-  /**
-   * The MashQuery for searching data, set both queries for Join Operation.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQuery {
-    /**
-     * Required. The components for constructing a mash query. Set "point_operation" if this is a single query
-     */
-    firstQuery?: Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent;
-    /**
-     * Optional. optional, only set when joining 2 queries. By default join 2 queries with join operation.
-     */
-    operationMode?: Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationMode;
-    /**
-     * Optional. optional, only set when joining 2 queries. Set "point_operation" for joined query.
-     */
-    secondQuery?: Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent;
-  }
-  /**
-   * The components for constructing MashQuery.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent {
-    /**
-     * Required. The metric for monarch.BorgTask.
-     */
-    borgTaskMetric?: string | null;
-    /**
-     * Optional. optional, filters on fetched data, "metric:client_id" not supported.
-     */
-    dataFilters?: string[] | null;
-    /**
-     * Optional. optional, filters for Fetch Raw, "metric:client_id" not supported.
-     */
-    fetchFilters?: string[] | null;
-    /**
-     * Optional. optional, GroupBy variables.
-     */
-    groupBy?: Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestGroupBy;
-    /**
-     * Optional. optional, Point Operation on single query or joined query.
-     */
-    pointOperation?: string | null;
-    /**
-     * Required. Window time delta.
-     */
-    timeDelta?: string | null;
-  }
-  /**
-   * Operation between 2 query
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationMode {
-    /**
-     * Optional. join operation
-     */
-    joinConfig?: Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeJoinConfig;
-    /**
-     * Optional. optional operation types.
-     */
-    operationType?: string | null;
-    /**
-     * Optional. union operation
-     */
-    unionConfig?: Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeUnionConfig;
-  }
-  /**
-   * Join Operation
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeJoinConfig {}
-  /**
-   * Union operation
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeUnionConfig {
-    /**
-     * Optional. optional, reduce function
-     */
-    reducer?: string | null;
-  }
-  /**
-   * The response for getting Execution stats.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse {
-    /**
-     * List of points.
-     */
-    aplosSeriesListData?: Schema$EnterpriseCrmCardsTemplatesAplosSeriesListData;
-    /**
-     * Data in form of table.
-     */
-    tableData?: Schema$EnterpriseCrmCardsTabularData;
   }
   /**
    * The task that is next in line to be executed, if the condition specified evaluated to true.
@@ -4128,6 +4056,14 @@ export namespace integrations_v1alpha {
      */
     displayName?: string | null;
     /**
+     * Optional. Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task
+     */
+    errorCatcherId?: string | null;
+    /**
+     * Optional. External task type of the task
+     */
+    externalTaskType?: string | null;
+    /**
      * Optional. Determines the number of times the task will be retried on failure and with what retry strategy. This is applicable for asynchronous calls to Eventbus alone (Post To Queue, Schedule etc.).
      */
     failurePolicy?: Schema$GoogleCloudIntegrationsV1alphaFailurePolicy;
@@ -4149,6 +4085,10 @@ export namespace integrations_v1alpha {
     parameters?: {
       [key: string]: Schema$GoogleCloudIntegrationsV1alphaEventParameter;
     } | null;
+    /**
+     * Optional. Informs the front-end application where to draw this error catcher config on the UI.
+     */
+    position?: Schema$GoogleCloudIntegrationsV1alphaCoordinate;
     /**
      * Optional. Determines what action to take upon successful task completion.
      */
@@ -4208,6 +4148,10 @@ export namespace integrations_v1alpha {
      */
     description?: string | null;
     /**
+     * Optional. Optional Error catcher id of the error catch flow which will be executed when execution error happens in the task
+     */
+    errorCatcherId?: string | null;
+    /**
      * Optional. The user created label for a particular trigger.
      */
     label?: string | null;
@@ -4215,6 +4159,10 @@ export namespace integrations_v1alpha {
      * Optional. Dictates how next tasks will be executed.
      */
     nextTasksExecutionPolicy?: string | null;
+    /**
+     * Optional. Informs the front-end application where to draw this error catcher config on the UI.
+     */
+    position?: Schema$GoogleCloudIntegrationsV1alphaCoordinate;
     /**
      * Optional. Configurable properties of the trigger, not to be confused with integration parameters. E.g. "name" is a property for API triggers and "subscription" is a property for Pub/sub triggers.
      */
@@ -4237,23 +4185,9 @@ export namespace integrations_v1alpha {
     triggerType?: string | null;
   }
   /**
-   * THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. Request message for Bundle update
+   * Request for UnpublishIntegrationVersion.
    */
-  export interface Schema$GoogleCloudIntegrationsV1alphaUpdateBundleRequest {
-    /**
-     * It contains the updated bundle data
-     */
-    config?: Schema$GoogleCloudIntegrationsV1alphaIntegrationBundleConfig;
-  }
-  /**
-   * Response message for Bundle update
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse {
-    /**
-     * Contains updated bundle config
-     */
-    config?: Schema$GoogleCloudIntegrationsV1alphaIntegrationBundleConfig;
-  }
+  export interface Schema$GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest {}
   /**
    * Request for UploadIntegrationVersion.
    */
@@ -4289,14 +4223,6 @@ export namespace integrations_v1alpha {
      */
     username?: string | null;
   }
-  /**
-   * Request for ValidateIntegrationVersion.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionRequest {}
-  /**
-   * Response for ValidateIntegrationVersion.
-   */
-  export interface Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse {}
   /**
    * The type of the parameter.
    */
@@ -4744,152 +4670,6 @@ export namespace integrations_v1alpha {
         this.context
       );
     }
-
-    /**
-     * This is a UI only method and will be moved away. Returns a list of common tasks.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const integrations = google.integrations('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await integrations.projects.locations.listTaskEntities({
-     *     // Required. The location resource of the request. This is not going to be used but preserve the field for future.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "taskEntities": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    listTaskEntities(
-      params: Params$Resource$Projects$Locations$Listtaskentities,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    listTaskEntities(
-      params?: Params$Resource$Projects$Locations$Listtaskentities,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>;
-    listTaskEntities(
-      params: Params$Resource$Projects$Locations$Listtaskentities,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    listTaskEntities(
-      params: Params$Resource$Projects$Locations$Listtaskentities,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-    ): void;
-    listTaskEntities(
-      params: Params$Resource$Projects$Locations$Listtaskentities,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-    ): void;
-    listTaskEntities(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-    ): void;
-    listTaskEntities(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Listtaskentities
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Listtaskentities;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Listtaskentities;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}:listTaskEntities').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Listtaskentities
-    extends StandardParameters {
-    /**
-     * Required. The location resource of the request. This is not going to be used but preserve the field for future.
-     */
-    parent?: string;
   }
 
   export class Resource$Projects$Locations$Appsscriptprojects {
@@ -6969,6 +6749,133 @@ export namespace integrations_v1alpha {
     }
 
     /**
+     * Delete the selected integration and all versions inside
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const integrations = google.integrations('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await integrations.projects.locations.integrations.delete({
+     *     // Required. The location resource of the request.
+     *     name: 'projects/my-project/locations/my-location/integrations/my-integration',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Integrations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Integrations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Integrations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Integrations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Integrations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Integrations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Integrations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Integrations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
      * Executes integrations synchronously by passing the trigger id in the request body. The request is not returned until the requested executions are either fulfilled or experienced an error. If the integration name is not specified (passing `-`), all of the associated integration under the given trigger_id will be executed. Otherwise only the specified integration for the given `trigger_id` is executed. This is helpful for execution the integration from UI.
      * @example
      * ```js
@@ -7272,161 +7179,6 @@ export namespace integrations_v1alpha {
     }
 
     /**
-     * Get execution stats
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const integrations = google.integrations('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await integrations.projects.locations.integrations.monitorexecutionstats({
-     *       // Required. The parent resource name: {parent=projects/x/locations/x\}.
-     *       parent:
-     *         'projects/my-project/locations/my-location/integrations/my-integration',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "duration": "my_duration",
-     *         //   "endTime": "my_endTime",
-     *         //   "mashQuery": {},
-     *         //   "metricFieldTable": false,
-     *         //   "outputPeriod": "my_outputPeriod",
-     *         //   "responseTemplate": "my_responseTemplate"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "aplosSeriesListData": {},
-     *   //   "tableData": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    monitorexecutionstats(
-      params: Params$Resource$Projects$Locations$Integrations$Monitorexecutionstats,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    monitorexecutionstats(
-      params?: Params$Resource$Projects$Locations$Integrations$Monitorexecutionstats,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>;
-    monitorexecutionstats(
-      params: Params$Resource$Projects$Locations$Integrations$Monitorexecutionstats,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    monitorexecutionstats(
-      params: Params$Resource$Projects$Locations$Integrations$Monitorexecutionstats,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-    ): void;
-    monitorexecutionstats(
-      params: Params$Resource$Projects$Locations$Integrations$Monitorexecutionstats,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-    ): void;
-    monitorexecutionstats(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-    ): void;
-    monitorexecutionstats(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Integrations$Monitorexecutionstats
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Integrations$Monitorexecutionstats;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Integrations$Monitorexecutionstats;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}:monitorexecutionstats').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Schedules an integration for execution by passing the trigger id and the scheduled time in the request body.
      * @example
      * ```js
@@ -7578,6 +7330,13 @@ export namespace integrations_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Integrations$Delete
+    extends StandardParameters {
+    /**
+     * Required. The location resource of the request.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Integrations$Execute
     extends StandardParameters {
     /**
@@ -7613,18 +7372,6 @@ export namespace integrations_v1alpha {
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Locations$Integrations$Monitorexecutionstats
-    extends StandardParameters {
-    /**
-     * Required. The parent resource name: {parent=projects/x/locations/x\}.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequest;
-  }
   export interface Params$Resource$Projects$Locations$Integrations$Schedule
     extends StandardParameters {
     /**
@@ -7640,12 +7387,17 @@ export namespace integrations_v1alpha {
 
   export class Resource$Projects$Locations$Integrations$Executions {
     context: APIRequestContext;
+    suspensions: Resource$Projects$Locations$Integrations$Executions$Suspensions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.suspensions =
+        new Resource$Projects$Locations$Integrations$Executions$Suspensions(
+          this.context
+        );
     }
 
     /**
-     * Lists the status of the integration executions.
+     * Lists the results of all the integration executions. The response includes the same information as the [execution log](https://cloud.google.com/application-integration/docs/viewing-logs) in the Integration UI.
      * @example
      * ```js
      * // Before running the sample:
@@ -7672,7 +7424,7 @@ export namespace integrations_v1alpha {
      *   // Do the magic
      *   const res =
      *     await integrations.projects.locations.integrations.executions.list({
-     *       // Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: "parameter_value" HAS \"parameter1\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND event_execution_state=\"FAILED\"
+     *       // Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: "parameter_type" HAS \"string\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND workflow_name=\"testWorkflow\"
      *       filter: 'placeholder-value',
      *       // Optional user-provided custom filter.
      *       'filterParams.customFilter': 'placeholder-value',
@@ -7829,7 +7581,7 @@ export namespace integrations_v1alpha {
   export interface Params$Resource$Projects$Locations$Integrations$Executions$List
     extends StandardParameters {
     /**
-     * Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: "parameter_value" HAS \"parameter1\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND event_execution_state=\"FAILED\"
+     * Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: "parameter_type" HAS \"string\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND workflow_name=\"testWorkflow\"
      */
     filter?: string;
     /**
@@ -7910,14 +7662,14 @@ export namespace integrations_v1alpha {
     truncateParams?: boolean;
   }
 
-  export class Resource$Projects$Locations$Integrations$Versions {
+  export class Resource$Projects$Locations$Integrations$Executions$Suspensions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * Soft-deletes the integration. Changes the status of the integration to ARCHIVED. If the integration being ARCHIVED is tagged as "HEAD", the tag is removed from this snapshot and set to the previous non-ARCHIVED snapshot. The PUBLISH_REQUESTED, DUE_FOR_DELETION tags are removed too. This RPC throws an exception if the version being archived is DRAFT, and if the `locked_by` user is not the same as the user performing the Archive. Audit fields updated include last_modified_timestamp, last_modified_by. Any existing lock is released when Archiving a integration. Currently, there is no unarchive mechanism.
+     * * Lifts suspension for advanced suspension task. Fetch corresponding suspension with provided suspension Id, resolve suspension, and set up suspension result for the Suspension Task.
      * @example
      * ```js
      * // Before running the sample:
@@ -7943,16 +7695,322 @@ export namespace integrations_v1alpha {
      *
      *   // Do the magic
      *   const res =
-     *     await integrations.projects.locations.integrations.versions.archive({
-     *       // Required. The version to archive. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
-     *       name: 'projects/my-project/locations/my-location/integrations/my-integration/versions/my-version',
+     *     await integrations.projects.locations.integrations.executions.suspensions.lift(
+     *       {
+     *         // Required. The resource that the suspension belongs to. "projects/{project\}/locations/{location\}/products/{product\}/integrations/{integration\}/executions/{execution\}/suspensions/{suspenion\}" format.
+     *         name: 'projects/my-project/locations/my-location/integrations/my-integration/executions/my-execution/suspensions/my-suspension',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     });
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "suspensionResult": "my_suspensionResult"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eventExecutionInfoId": "my_eventExecutionInfoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lift(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lift(
+      params?: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>;
+    lift(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lift(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>
+    ): void;
+    lift(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift,
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>
+    ): void;
+    lift(
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>
+    ): void;
+    lift(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:lift').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * * Lists suspensions associated with a specific execution. Only those with permissions to resolve the relevant suspensions will be able to view them.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const integrations = google.integrations('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await integrations.projects.locations.integrations.executions.suspensions.list(
+     *       {
+     *         // Standard filter field.
+     *         filter: 'placeholder-value',
+     *         // Field name to order by.
+     *         orderBy: 'placeholder-value',
+     *         // Maximum number of entries in the response.
+     *         pageSize: 'placeholder-value',
+     *         // Token to retrieve a specific page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. projects/{gcp_project_id\}/locations/{location\}/products/{product\}/integrations/{integration_name\}/executions/{execution_name\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/integrations/my-integration/executions/my-execution',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "suspensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/suspensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaListSuspensionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * * Resolves (lifts/rejects) any number of suspensions. If the integration is already running, only the status of the suspension is updated. Otherwise, the suspended integration will begin execution again.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const integrations = google.integrations('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await integrations.projects.locations.integrations.executions.suspensions.resolve(
+     *       {
+     *         // Required. projects/{gcp_project_id\}/locations/{location\}/products/{product\}/integrations/{integration_name\}/executions/{execution_name\}/suspensions/{suspension_id\}
+     *         name: 'projects/my-project/locations/my-location/integrations/my-integration/executions/my-execution/suspensions/my-suspension',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "suspension": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -7971,58 +8029,58 @@ export namespace integrations_v1alpha {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    archive(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Archive,
+    resolve(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    archive(
-      params?: Params$Resource$Projects$Locations$Integrations$Versions$Archive,
+    resolve(
+      params?: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>;
-    archive(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Archive,
+    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>;
+    resolve(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    archive(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Archive,
+    resolve(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>
     ): void;
-    archive(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Archive,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
+    resolve(
+      params: Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve,
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>
     ): void;
-    archive(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
+    resolve(
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>
     ): void;
-    archive(
+    resolve(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Integrations$Versions$Archive
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
+        | Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
+      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Integrations$Versions$Archive;
+        {}) as Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Integrations$Versions$Archive;
+          {} as Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve;
         options = {};
       }
 
@@ -8035,7 +8093,7 @@ export namespace integrations_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}:archive').replace(
+            url: (rootUrl + '/v1alpha/{+name}:resolve').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8049,15 +8107,70 @@ export namespace integrations_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>(
+        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>(
+        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionResponse>(
           parameters
         );
       }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Lift
+    extends StandardParameters {
+    /**
+     * Required. The resource that the suspension belongs to. "projects/{project\}/locations/{location\}/products/{product\}/integrations/{integration\}/executions/{execution\}/suspensions/{suspenion\}" format.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudIntegrationsV1alphaLiftSuspensionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$List
+    extends StandardParameters {
+    /**
+     * Standard filter field.
+     */
+    filter?: string;
+    /**
+     * Field name to order by.
+     */
+    orderBy?: string;
+    /**
+     * Maximum number of entries in the response.
+     */
+    pageSize?: number;
+    /**
+     * Token to retrieve a specific page.
+     */
+    pageToken?: string;
+    /**
+     * Required. projects/{gcp_project_id\}/locations/{location\}/products/{product\}/integrations/{integration_name\}/executions/{execution_name\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Integrations$Executions$Suspensions$Resolve
+    extends StandardParameters {
+    /**
+     * Required. projects/{gcp_project_id\}/locations/{location\}/products/{product\}/integrations/{integration_name\}/executions/{execution_name\}/suspensions/{suspension_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionRequest;
+  }
+
+  export class Resource$Projects$Locations$Integrations$Versions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
     }
 
     /**
@@ -8090,7 +8203,7 @@ export namespace integrations_v1alpha {
      *     await integrations.projects.locations.integrations.versions.create({
      *       // Set this flag to true, if draft version is to be created for a brand new integration. False, if the request is for an existing integration. For backward compatibility reasons, even if this flag is set to `false` and no existing integration is found, a new draft integration will still be created.
      *       newIntegration: 'placeholder-value',
-     *       // Required. The parent resource where this version will be created. Format: projects/{project\}/integrations/{integration\}
+     *       // Required. The parent resource where this version will be created. Format: projects/{project\}/locations/{location\}/integrations/{integration\}
      *       parent:
      *         'projects/my-project/locations/my-location/integrations/my-integration',
      *
@@ -8101,6 +8214,7 @@ export namespace integrations_v1alpha {
      *         //   "createTime": "my_createTime",
      *         //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *         //   "description": "my_description",
+     *         //   "errorCatcherConfigs": [],
      *         //   "integrationParameters": [],
      *         //   "integrationParametersInternal": {},
      *         //   "lastModifierEmail": "my_lastModifierEmail",
@@ -8108,6 +8222,7 @@ export namespace integrations_v1alpha {
      *         //   "name": "my_name",
      *         //   "origin": "my_origin",
      *         //   "parentTemplateId": "my_parentTemplateId",
+     *         //   "runAsServiceAccount": "my_runAsServiceAccount",
      *         //   "snapshotNumber": "my_snapshotNumber",
      *         //   "state": "my_state",
      *         //   "status": "my_status",
@@ -8128,6 +8243,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -8135,6 +8251,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -8250,7 +8367,7 @@ export namespace integrations_v1alpha {
     }
 
     /**
-     * Sets the status of the ACTIVE integration to SNAPSHOT with a new tag "PREVIOUSLY_PUBLISHED" after validating it. The "HEAD" and "PUBLISH_REQUESTED" tags do not change. This RPC throws an exception if the version being snapshot is not ACTIVE. Audit fields added include action, action_by, action_timestamp.
+     * Soft-deletes the integration. Changes the status of the integration to ARCHIVED. If the integration being ARCHIVED is tagged as "HEAD", the tag is removed from this snapshot and set to the previous non-ARCHIVED snapshot. The PUBLISH_REQUESTED, DUE_FOR_DELETION tags are removed too. This RPC throws an exception if the version being deleted is DRAFT, and if the `locked_by` user is not the same as the user performing the Delete. Audit fields updated include last_modified_timestamp, last_modified_by. Any existing lock is released when Deleting a integration. Currently, there is no undelete mechanism.
      * @example
      * ```js
      * // Before running the sample:
@@ -8276,15 +8393,9 @@ export namespace integrations_v1alpha {
      *
      *   // Do the magic
      *   const res =
-     *     await integrations.projects.locations.integrations.versions.deactivate({
-     *       // Required. The version to deactivate. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     *     await integrations.projects.locations.integrations.versions.delete({
+     *       // Required. The version to delete. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *       name: 'projects/my-project/locations/my-location/integrations/my-integration/versions/my-version',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
      *     });
      *   console.log(res.data);
      *
@@ -8304,58 +8415,54 @@ export namespace integrations_v1alpha {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    deactivate(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Deactivate,
+    delete(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Delete,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    deactivate(
-      params?: Params$Resource$Projects$Locations$Integrations$Versions$Deactivate,
+    delete(
+      params?: Params$Resource$Projects$Locations$Integrations$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>;
-    deactivate(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Deactivate,
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    deactivate(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Deactivate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+    delete(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    deactivate(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Deactivate,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+    delete(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    deactivate(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
-    ): void;
-    deactivate(
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Integrations$Versions$Deactivate
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+        | Params$Resource$Projects$Locations$Integrations$Versions$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Integrations$Versions$Deactivate;
+        {}) as Params$Resource$Projects$Locations$Integrations$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Integrations$Versions$Deactivate;
+          {} as Params$Resource$Projects$Locations$Integrations$Versions$Delete;
         options = {};
       }
 
@@ -8368,11 +8475,8 @@ export namespace integrations_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}:deactivate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
           },
           options
         ),
@@ -8382,12 +8486,152 @@ export namespace integrations_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>(
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>(
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Downloads an integration. Retrieves the `IntegrationVersion` for a given `integration_id` and returns the response as a string.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const integrations = google.integrations('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await integrations.projects.locations.integrations.versions.download({
+     *       // File format for download request.
+     *       fileFormat: 'placeholder-value',
+     *       // Required. The version to download. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
+     *       name: 'projects/my-project/locations/my-location/integrations/my-integration/versions/my-version',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "content": "my_content"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    download(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Download,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    download(
+      params?: Params$Resource$Projects$Locations$Integrations$Versions$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>;
+    download(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Download,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    download(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Download,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>
+    ): void;
+    download(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Download,
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>
+    ): void;
+    download(
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>
+    ): void;
+    download(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Integrations$Versions$Download
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Integrations$Versions$Download;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Integrations$Versions$Download;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:download').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse>(
           parameters
         );
       }
@@ -8420,7 +8664,7 @@ export namespace integrations_v1alpha {
      *
      *   // Do the magic
      *   const res = await integrations.projects.locations.integrations.versions.get({
-     *     // Required. The version to retrieve. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     *     // Required. The version to retrieve. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *     name: 'projects/my-project/locations/my-location/integrations/my-integration/versions/my-version',
      *   });
      *   console.log(res.data);
@@ -8430,6 +8674,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -8437,6 +8682,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -8585,7 +8831,7 @@ export namespace integrations_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListIntegrationVersions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIntegrationVersions` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource where this version will be created. Format: projects/{project\}/integrations/{integration\} Specifically, when parent equals: 1. projects//locations//integrations/, Meaning: "List versions (with filter) for a particular integration". 2. projects//locations//integrations/- Meaning: "List versions (with filter) for a client within a particular region". 3. projects//locations/-/integrations/- Meaning: "List versions (with filter) for a client".
+     *     // Required. The parent resource where this version will be created. Format: projects/{project\}/locations/{location\}/integrations/{integration\} Specifically, when parent equals: 1. projects//locations//integrations/, Meaning: "List versions (with filter) for a particular integration". 2. projects//locations//integrations/- Meaning: "List versions (with filter) for a client within a particular region". 3. projects//locations/-/integrations/- Meaning: "List versions (with filter) for a client".
      *     parent:
      *       'projects/my-project/locations/my-location/integrations/my-integration',
      *   });
@@ -8740,6 +8986,7 @@ export namespace integrations_v1alpha {
      *         //   "createTime": "my_createTime",
      *         //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *         //   "description": "my_description",
+     *         //   "errorCatcherConfigs": [],
      *         //   "integrationParameters": [],
      *         //   "integrationParametersInternal": {},
      *         //   "lastModifierEmail": "my_lastModifierEmail",
@@ -8747,6 +8994,7 @@ export namespace integrations_v1alpha {
      *         //   "name": "my_name",
      *         //   "origin": "my_origin",
      *         //   "parentTemplateId": "my_parentTemplateId",
+     *         //   "runAsServiceAccount": "my_runAsServiceAccount",
      *         //   "snapshotNumber": "my_snapshotNumber",
      *         //   "state": "my_state",
      *         //   "status": "my_status",
@@ -8768,6 +9016,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -8775,6 +9024,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -8914,7 +9164,7 @@ export namespace integrations_v1alpha {
      *   // Do the magic
      *   const res =
      *     await integrations.projects.locations.integrations.versions.publish({
-     *       // Required. The version to publish. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     *       // Required. The version to publish. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *       name: 'projects/my-project/locations/my-location/integrations/my-integration/versions/my-version',
      *
      *       // Request body metadata
@@ -9059,7 +9309,7 @@ export namespace integrations_v1alpha {
      *   const res =
      *     await integrations.projects.locations.integrations.versions.takeoverEditLock(
      *       {
-     *         // Required. The version to take over edit lock. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     *         // Required. The version to take over edit lock. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *         integrationVersion:
      *           'projects/my-project/locations/my-location/integrations/my-integration/versions/my-version',
      *
@@ -9179,7 +9429,7 @@ export namespace integrations_v1alpha {
     }
 
     /**
-     * Validates the given integration. If the id doesn't exist, a NotFoundException is thrown. If validation fails a CanonicalCodeException is thrown. If there was no failure an empty response is returned.
+     * Sets the status of the ACTIVE integration to SNAPSHOT with a new tag "PREVIOUSLY_PUBLISHED" after validating it. The "HEAD" and "PUBLISH_REQUESTED" tags do not change. This RPC throws an exception if the version being snapshot is not ACTIVE. Audit fields added include action, action_by, action_timestamp.
      * @example
      * ```js
      * // Before running the sample:
@@ -9205,8 +9455,8 @@ export namespace integrations_v1alpha {
      *
      *   // Do the magic
      *   const res =
-     *     await integrations.projects.locations.integrations.versions.validate({
-     *       // Required. The version to validate. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     *     await integrations.projects.locations.integrations.versions.unpublish({
+     *       // Required. The version to deactivate. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *       name: 'projects/my-project/locations/my-location/integrations/my-integration/versions/my-version',
      *
      *       // Request body metadata
@@ -9233,58 +9483,54 @@ export namespace integrations_v1alpha {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    validate(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Validate,
+    unpublish(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Unpublish,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    validate(
-      params?: Params$Resource$Projects$Locations$Integrations$Versions$Validate,
+    unpublish(
+      params?: Params$Resource$Projects$Locations$Integrations$Versions$Unpublish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>;
-    validate(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Validate,
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    unpublish(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Unpublish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    validate(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Validate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
+    unpublish(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Unpublish,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    validate(
-      params: Params$Resource$Projects$Locations$Integrations$Versions$Validate,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
+    unpublish(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Unpublish,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    validate(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
-    ): void;
-    validate(
+    unpublish(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    unpublish(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Integrations$Versions$Validate
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
+        | Params$Resource$Projects$Locations$Integrations$Versions$Unpublish
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Integrations$Versions$Validate;
+        {}) as Params$Resource$Projects$Locations$Integrations$Versions$Unpublish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Integrations$Versions$Validate;
+          {} as Params$Resource$Projects$Locations$Integrations$Versions$Unpublish;
         options = {};
       }
 
@@ -9297,7 +9543,7 @@ export namespace integrations_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}:validate').replace(
+            url: (rootUrl + '/v1alpha/{+name}:unpublish').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -9311,30 +9557,166 @@ export namespace integrations_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>(
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>(
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Uploads an integration. The content can be a previously downloaded integration. Performs the same function as CreateDraftIntegrationVersion, but accepts input in a string format, which holds the complete representation of the IntegrationVersion content.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const integrations = google.integrations('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await integrations.projects.locations.integrations.versions.upload({
+     *       // Required. The version to upload. Format: projects/{project\}/locations/{location\}/integrations/{integration\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/integrations/my-integration',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "content": "my_content",
+     *         //   "fileFormat": "my_fileFormat"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "integrationVersion": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Integrations$Versions$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>;
+    upload(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Integrations$Versions$Upload,
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Integrations$Versions$Upload
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Integrations$Versions$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Integrations$Versions$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/versions:upload').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse>(
           parameters
         );
       }
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Integrations$Versions$Archive
-    extends StandardParameters {
-    /**
-     * Required. The version to archive. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionRequest;
-  }
   export interface Params$Resource$Projects$Locations$Integrations$Versions$Create
     extends StandardParameters {
     /**
@@ -9342,7 +9724,7 @@ export namespace integrations_v1alpha {
      */
     newIntegration?: boolean;
     /**
-     * Required. The parent resource where this version will be created. Format: projects/{project\}/integrations/{integration\}
+     * Required. The parent resource where this version will be created. Format: projects/{project\}/locations/{location\}/integrations/{integration\}
      */
     parent?: string;
 
@@ -9351,22 +9733,28 @@ export namespace integrations_v1alpha {
      */
     requestBody?: Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion;
   }
-  export interface Params$Resource$Projects$Locations$Integrations$Versions$Deactivate
+  export interface Params$Resource$Projects$Locations$Integrations$Versions$Delete
     extends StandardParameters {
     /**
-     * Required. The version to deactivate. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     * Required. The version to delete. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     name?: string;
-
+  }
+  export interface Params$Resource$Projects$Locations$Integrations$Versions$Download
+    extends StandardParameters {
     /**
-     * Request body metadata
+     * File format for download request.
      */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionRequest;
+    fileFormat?: string;
+    /**
+     * Required. The version to download. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
+     */
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Integrations$Versions$Get
     extends StandardParameters {
     /**
-     * Required. The version to retrieve. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     * Required. The version to retrieve. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     name?: string;
   }
@@ -9393,7 +9781,7 @@ export namespace integrations_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource where this version will be created. Format: projects/{project\}/integrations/{integration\} Specifically, when parent equals: 1. projects//locations//integrations/, Meaning: "List versions (with filter) for a particular integration". 2. projects//locations//integrations/- Meaning: "List versions (with filter) for a client within a particular region". 3. projects//locations/-/integrations/- Meaning: "List versions (with filter) for a client".
+     * Required. The parent resource where this version will be created. Format: projects/{project\}/locations/{location\}/integrations/{integration\} Specifically, when parent equals: 1. projects//locations//integrations/, Meaning: "List versions (with filter) for a particular integration". 2. projects//locations//integrations/- Meaning: "List versions (with filter) for a client within a particular region". 3. projects//locations/-/integrations/- Meaning: "List versions (with filter) for a client".
      */
     parent?: string;
   }
@@ -9416,7 +9804,7 @@ export namespace integrations_v1alpha {
   export interface Params$Resource$Projects$Locations$Integrations$Versions$Publish
     extends StandardParameters {
     /**
-     * Required. The version to publish. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     * Required. The version to publish. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     name?: string;
 
@@ -9428,7 +9816,7 @@ export namespace integrations_v1alpha {
   export interface Params$Resource$Projects$Locations$Integrations$Versions$Takeovereditlock
     extends StandardParameters {
     /**
-     * Required. The version to take over edit lock. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     * Required. The version to take over edit lock. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     integrationVersion?: string;
 
@@ -9437,17 +9825,29 @@ export namespace integrations_v1alpha {
      */
     requestBody?: Schema$GoogleCloudIntegrationsV1alphaTakeoverEditLockRequest;
   }
-  export interface Params$Resource$Projects$Locations$Integrations$Versions$Validate
+  export interface Params$Resource$Projects$Locations$Integrations$Versions$Unpublish
     extends StandardParameters {
     /**
-     * Required. The version to validate. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     * Required. The version to deactivate. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     name?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionRequest;
+    requestBody?: Schema$GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Integrations$Versions$Upload
+    extends StandardParameters {
+    /**
+     * Required. The version to upload. Format: projects/{project\}/locations/{location\}/integrations/{integration\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest;
   }
 
   export class Resource$Projects$Locations$Products {
@@ -9475,314 +9875,6 @@ export namespace integrations_v1alpha {
       this.sfdcInstances =
         new Resource$Projects$Locations$Products$Sfdcinstances(this.context);
     }
-
-    /**
-     * PROTECT WITH A VISIBILITY LABEL. THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. Create a bundle.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const integrations = google.integrations('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await integrations.projects.locations.products.createBundle({
-     *     // Required. The location resource of the request.
-     *     parent: 'projects/my-project/locations/my-location/products/my-product',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bundleId": "my_bundleId",
-     *       //   "integrations": [],
-     *       //   "secondaryCustomerOrgId": "my_secondaryCustomerOrgId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "triggerId": "my_triggerId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    createBundle(
-      params: Params$Resource$Projects$Locations$Products$Createbundle,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    createBundle(
-      params?: Params$Resource$Projects$Locations$Products$Createbundle,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>;
-    createBundle(
-      params: Params$Resource$Projects$Locations$Products$Createbundle,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    createBundle(
-      params: Params$Resource$Projects$Locations$Products$Createbundle,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>
-    ): void;
-    createBundle(
-      params: Params$Resource$Projects$Locations$Products$Createbundle,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>
-    ): void;
-    createBundle(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>
-    ): void;
-    createBundle(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Products$Createbundle
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Products$Createbundle;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Products$Createbundle;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}:createBundle').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaCreateBundleResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * This is a UI only method and will be moved away. Returns a list of common tasks.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const integrations = google.integrations('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await integrations.projects.locations.products.listTaskEntities({
-     *     // Required. The location resource of the request. This is not going to be used but preserve the field for future.
-     *     parent: 'projects/my-project/locations/my-location/products/my-product',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "taskEntities": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    listTaskEntities(
-      params: Params$Resource$Projects$Locations$Products$Listtaskentities,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    listTaskEntities(
-      params?: Params$Resource$Projects$Locations$Products$Listtaskentities,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>;
-    listTaskEntities(
-      params: Params$Resource$Projects$Locations$Products$Listtaskentities,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    listTaskEntities(
-      params: Params$Resource$Projects$Locations$Products$Listtaskentities,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-    ): void;
-    listTaskEntities(
-      params: Params$Resource$Projects$Locations$Products$Listtaskentities,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-    ): void;
-    listTaskEntities(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-    ): void;
-    listTaskEntities(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Products$Listtaskentities
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Products$Listtaskentities;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Products$Listtaskentities;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}:listTaskEntities').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Products$Createbundle
-    extends StandardParameters {
-    /**
-     * Required. The location resource of the request.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaCreateBundleRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Products$Listtaskentities
-    extends StandardParameters {
-    /**
-     * Required. The location resource of the request. This is not going to be used but preserve the field for future.
-     */
-    parent?: string;
   }
 
   export class Resource$Projects$Locations$Products$Authconfigs {
@@ -11508,16 +11600,11 @@ export namespace integrations_v1alpha {
   export class Resource$Projects$Locations$Products$Integrations {
     context: APIRequestContext;
     executions: Resource$Projects$Locations$Products$Integrations$Executions;
-    executionsnapshots: Resource$Projects$Locations$Products$Integrations$Executionsnapshots;
     versions: Resource$Projects$Locations$Products$Integrations$Versions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.executions =
         new Resource$Projects$Locations$Products$Integrations$Executions(
-          this.context
-        );
-      this.executionsnapshots =
-        new Resource$Projects$Locations$Products$Integrations$Executionsnapshots(
           this.context
         );
       this.versions =
@@ -11527,7 +11614,7 @@ export namespace integrations_v1alpha {
     }
 
     /**
-     * PROTECT WITH A VISIBILITY LABEL. THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. Soft-deletes the bundle.
+     * Delete the selected integration and all versions inside
      * @example
      * ```js
      * // Before running the sample:
@@ -11553,15 +11640,9 @@ export namespace integrations_v1alpha {
      *
      *   // Do the magic
      *   const res =
-     *     await integrations.projects.locations.products.integrations.archiveBundle({
-     *       // Required. The bundle to archive. Format: projects/{project\}/integrations/{integration\}
+     *     await integrations.projects.locations.products.integrations.delete({
+     *       // Required. The location resource of the request.
      *       name: 'projects/my-project/locations/my-location/products/my-product/integrations/my-integration',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
      *     });
      *   console.log(res.data);
      *
@@ -11581,58 +11662,54 @@ export namespace integrations_v1alpha {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    archiveBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Archivebundle,
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Delete,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    archiveBundle(
-      params?: Params$Resource$Projects$Locations$Products$Integrations$Archivebundle,
+    delete(
+      params?: Params$Resource$Projects$Locations$Products$Integrations$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>;
-    archiveBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Archivebundle,
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    archiveBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Archivebundle,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    archiveBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Archivebundle,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    archiveBundle(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>
-    ): void;
-    archiveBundle(
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Products$Integrations$Archivebundle
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>
+        | Params$Resource$Projects$Locations$Products$Integrations$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Products$Integrations$Archivebundle;
+        {}) as Params$Resource$Projects$Locations$Products$Integrations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Products$Integrations$Archivebundle;
+          {} as Params$Resource$Projects$Locations$Products$Integrations$Delete;
         options = {};
       }
 
@@ -11645,11 +11722,8 @@ export namespace integrations_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}:archiveBundle').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
           },
           options
         ),
@@ -11659,14 +11733,12 @@ export namespace integrations_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>(
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaArchiveBundleResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
     }
 
@@ -11977,163 +12049,6 @@ export namespace integrations_v1alpha {
     }
 
     /**
-     * Get execution stats
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const integrations = google.integrations('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await integrations.projects.locations.products.integrations.monitorexecutionstats(
-     *       {
-     *         // Required. The parent resource name: {parent=projects/x/locations/x\}.
-     *         parent:
-     *           'projects/my-project/locations/my-location/products/my-product/integrations/my-integration',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "duration": "my_duration",
-     *           //   "endTime": "my_endTime",
-     *           //   "mashQuery": {},
-     *           //   "metricFieldTable": false,
-     *           //   "outputPeriod": "my_outputPeriod",
-     *           //   "responseTemplate": "my_responseTemplate"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "aplosSeriesListData": {},
-     *   //   "tableData": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    monitorexecutionstats(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Monitorexecutionstats,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    monitorexecutionstats(
-      params?: Params$Resource$Projects$Locations$Products$Integrations$Monitorexecutionstats,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>;
-    monitorexecutionstats(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Monitorexecutionstats,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    monitorexecutionstats(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Monitorexecutionstats,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-    ): void;
-    monitorexecutionstats(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Monitorexecutionstats,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-    ): void;
-    monitorexecutionstats(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-    ): void;
-    monitorexecutionstats(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Products$Integrations$Monitorexecutionstats
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Products$Integrations$Monitorexecutionstats;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Products$Integrations$Monitorexecutionstats;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}:monitorexecutionstats').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Schedules an integration for execution by passing the trigger id and the scheduled time in the request body.
      * @example
      * ```js
@@ -12287,17 +12202,12 @@ export namespace integrations_v1alpha {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Products$Integrations$Archivebundle
+  export interface Params$Resource$Projects$Locations$Products$Integrations$Delete
     extends StandardParameters {
     /**
-     * Required. The bundle to archive. Format: projects/{project\}/integrations/{integration\}
+     * Required. The location resource of the request.
      */
     name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaArchiveBundleRequest;
   }
   export interface Params$Resource$Projects$Locations$Products$Integrations$Execute
     extends StandardParameters {
@@ -12333,18 +12243,6 @@ export namespace integrations_v1alpha {
      * Required. Project and location from which the integrations should be listed. Format: projects/{project\}
      */
     parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Products$Integrations$Monitorexecutionstats
-    extends StandardParameters {
-    /**
-     * Required. The parent resource name: {parent=projects/x/locations/x\}.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequest;
   }
   export interface Params$Resource$Projects$Locations$Products$Integrations$Schedule
     extends StandardParameters {
@@ -12667,7 +12565,7 @@ export namespace integrations_v1alpha {
     }
 
     /**
-     * Lists the status of the integration executions.
+     * Lists the results of all the integration executions. The response includes the same information as the [execution log](https://cloud.google.com/application-integration/docs/viewing-logs) in the Integration UI.
      * @example
      * ```js
      * // Before running the sample:
@@ -12695,7 +12593,7 @@ export namespace integrations_v1alpha {
      *   const res =
      *     await integrations.projects.locations.products.integrations.executions.list(
      *       {
-     *         // Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: "parameter_value" HAS \"parameter1\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND event_execution_state=\"FAILED\"
+     *         // Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: "parameter_type" HAS \"string\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND workflow_name=\"testWorkflow\"
      *         filter: 'placeholder-value',
      *         // Optional user-provided custom filter.
      *         'filterParams.customFilter': 'placeholder-value',
@@ -12872,7 +12770,7 @@ export namespace integrations_v1alpha {
   export interface Params$Resource$Projects$Locations$Products$Integrations$Executions$List
     extends StandardParameters {
     /**
-     * Optional. Standard filter field, we support filtering on all fields in EventExecutionParamIndexes table. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterKey, ParameterValue, ParameterType support for HAS For example: "parameter_value" HAS \"parameter1\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND event_execution_state=\"FAILED\"
+     * Optional. Standard filter field, we support filtering on following fields: workflow_name: the name of the integration. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: "parameter_type" HAS \"string\" Also supports operators like AND, OR, NOT For example, trigger_id=\"id1\" AND workflow_name=\"testWorkflow\"
      */
     filter?: string;
     /**
@@ -13458,339 +13356,10 @@ export namespace integrations_v1alpha {
     requestBody?: Schema$GoogleCloudIntegrationsV1alphaResolveSuspensionRequest;
   }
 
-  export class Resource$Projects$Locations$Products$Integrations$Executionsnapshots {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists the snapshots of a given integration executions. This RPC is not being used.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const integrations = google.integrations('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await integrations.projects.locations.products.integrations.executionsnapshots.list(
-     *       {
-     *         // Currently supports filter by `execution_info_id` or `execution_snapshot_id`.
-     *         filter: 'placeholder-value',
-     *         // Number of entries to be returned in a page.
-     *         pageSize: 'placeholder-value',
-     *         // The token used to retrieve the next page results.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The parent resource name of the integration execution.
-     *         parent:
-     *           'projects/my-project/locations/my-location/products/my-product/integrations/my-integration',
-     *         // View mask for the response data. If set, only the field specified will be returned as part of the result. If not set, all fields in event execution snapshot will be filled and returned.
-     *         readMask: 'placeholder-value',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "executionSnapshots": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Executionsnapshots$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Products$Integrations$Executionsnapshots$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Executionsnapshots$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Executionsnapshots$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Executionsnapshots$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Products$Integrations$Executionsnapshots$List
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Products$Integrations$Executionsnapshots$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Products$Integrations$Executionsnapshots$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/executionsnapshots').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Products$Integrations$Executionsnapshots$List
-    extends StandardParameters {
-    /**
-     * Currently supports filter by `execution_info_id` or `execution_snapshot_id`.
-     */
-    filter?: string;
-    /**
-     * Number of entries to be returned in a page.
-     */
-    pageSize?: number;
-    /**
-     * The token used to retrieve the next page results.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent resource name of the integration execution.
-     */
-    parent?: string;
-    /**
-     * View mask for the response data. If set, only the field specified will be returned as part of the result. If not set, all fields in event execution snapshot will be filled and returned.
-     */
-    readMask?: string;
-  }
-
   export class Resource$Projects$Locations$Products$Integrations$Versions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
-    }
-
-    /**
-     * Soft-deletes the integration. Changes the status of the integration to ARCHIVED. If the integration being ARCHIVED is tagged as "HEAD", the tag is removed from this snapshot and set to the previous non-ARCHIVED snapshot. The PUBLISH_REQUESTED, DUE_FOR_DELETION tags are removed too. This RPC throws an exception if the version being archived is DRAFT, and if the `locked_by` user is not the same as the user performing the Archive. Audit fields updated include last_modified_timestamp, last_modified_by. Any existing lock is released when Archiving a integration. Currently, there is no unarchive mechanism.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const integrations = google.integrations('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await integrations.projects.locations.products.integrations.versions.archive(
-     *       {
-     *         // Required. The version to archive. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
-     *         name: 'projects/my-project/locations/my-location/products/my-product/integrations/my-integration/versions/my-version',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    archive(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Archive,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    archive(
-      params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Archive,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>;
-    archive(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Archive,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    archive(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Archive,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
-    ): void;
-    archive(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Archive,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
-    ): void;
-    archive(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
-    ): void;
-    archive(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Products$Integrations$Versions$Archive
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Archive;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Products$Integrations$Versions$Archive;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}:archive').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse>(
-          parameters
-        );
-      }
     }
 
     /**
@@ -13824,7 +13393,7 @@ export namespace integrations_v1alpha {
      *       {
      *         // Set this flag to true, if draft version is to be created for a brand new integration. False, if the request is for an existing integration. For backward compatibility reasons, even if this flag is set to `false` and no existing integration is found, a new draft integration will still be created.
      *         newIntegration: 'placeholder-value',
-     *         // Required. The parent resource where this version will be created. Format: projects/{project\}/integrations/{integration\}
+     *         // Required. The parent resource where this version will be created. Format: projects/{project\}/locations/{location\}/integrations/{integration\}
      *         parent:
      *           'projects/my-project/locations/my-location/products/my-product/integrations/my-integration',
      *
@@ -13835,6 +13404,7 @@ export namespace integrations_v1alpha {
      *           //   "createTime": "my_createTime",
      *           //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *           //   "description": "my_description",
+     *           //   "errorCatcherConfigs": [],
      *           //   "integrationParameters": [],
      *           //   "integrationParametersInternal": {},
      *           //   "lastModifierEmail": "my_lastModifierEmail",
@@ -13842,6 +13412,7 @@ export namespace integrations_v1alpha {
      *           //   "name": "my_name",
      *           //   "origin": "my_origin",
      *           //   "parentTemplateId": "my_parentTemplateId",
+     *           //   "runAsServiceAccount": "my_runAsServiceAccount",
      *           //   "snapshotNumber": "my_snapshotNumber",
      *           //   "state": "my_state",
      *           //   "status": "my_status",
@@ -13863,6 +13434,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -13870,6 +13442,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -13985,7 +13558,7 @@ export namespace integrations_v1alpha {
     }
 
     /**
-     * Sets the status of the ACTIVE integration to SNAPSHOT with a new tag "PREVIOUSLY_PUBLISHED" after validating it. The "HEAD" and "PUBLISH_REQUESTED" tags do not change. This RPC throws an exception if the version being snapshot is not ACTIVE. Audit fields added include action, action_by, action_timestamp.
+     * Soft-deletes the integration. Changes the status of the integration to ARCHIVED. If the integration being ARCHIVED is tagged as "HEAD", the tag is removed from this snapshot and set to the previous non-ARCHIVED snapshot. The PUBLISH_REQUESTED, DUE_FOR_DELETION tags are removed too. This RPC throws an exception if the version being deleted is DRAFT, and if the `locked_by` user is not the same as the user performing the Delete. Audit fields updated include last_modified_timestamp, last_modified_by. Any existing lock is released when Deleting a integration. Currently, there is no undelete mechanism.
      * @example
      * ```js
      * // Before running the sample:
@@ -14011,16 +13584,10 @@ export namespace integrations_v1alpha {
      *
      *   // Do the magic
      *   const res =
-     *     await integrations.projects.locations.products.integrations.versions.deactivate(
+     *     await integrations.projects.locations.products.integrations.versions.delete(
      *       {
-     *         // Required. The version to deactivate. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     *         // Required. The version to delete. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *         name: 'projects/my-project/locations/my-location/products/my-product/integrations/my-integration/versions/my-version',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
      *       }
      *     );
      *   console.log(res.data);
@@ -14041,58 +13608,54 @@ export namespace integrations_v1alpha {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    deactivate(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Deactivate,
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    deactivate(
-      params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Deactivate,
+    delete(
+      params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>;
-    deactivate(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Deactivate,
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    deactivate(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Deactivate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    deactivate(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Deactivate,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+    delete(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    deactivate(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
-    ): void;
-    deactivate(
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Products$Integrations$Versions$Deactivate
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+        | Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Deactivate;
+        {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Products$Integrations$Versions$Deactivate;
+          {} as Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete;
         options = {};
       }
 
@@ -14105,11 +13668,8 @@ export namespace integrations_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}:deactivate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
           },
           options
         ),
@@ -14119,14 +13679,12 @@ export namespace integrations_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>(
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
     }
 
@@ -14161,7 +13719,7 @@ export namespace integrations_v1alpha {
      *       {
      *         // File format for download request.
      *         fileFormat: 'placeholder-value',
-     *         // Required. The version to download. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     *         // Required. The version to download. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *         name: 'projects/my-project/locations/my-location/products/my-product/integrations/my-integration/versions/my-version',
      *       }
      *     );
@@ -14302,7 +13860,7 @@ export namespace integrations_v1alpha {
      *   // Do the magic
      *   const res =
      *     await integrations.projects.locations.products.integrations.versions.get({
-     *       // Required. The version to retrieve. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     *       // Required. The version to retrieve. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *       name: 'projects/my-project/locations/my-location/products/my-product/integrations/my-integration/versions/my-version',
      *     });
      *   console.log(res.data);
@@ -14312,6 +13870,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -14319,6 +13878,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -14431,148 +13991,6 @@ export namespace integrations_v1alpha {
     }
 
     /**
-     * PROTECT WITH A VISIBILITY LABEL. THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. RPC to get details of the Bundle
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const integrations = google.integrations('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await integrations.projects.locations.products.integrations.versions.getBundle(
-     *       {
-     *         // Required. The bundle name.
-     *         name: 'projects/my-project/locations/my-location/products/my-product/integrations/my-integration/versions/my-version',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Getbundle,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getBundle(
-      params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Getbundle,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>;
-    getBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Getbundle,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Getbundle,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>
-    ): void;
-    getBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Getbundle,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>
-    ): void;
-    getBundle(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>
-    ): void;
-    getBundle(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Products$Integrations$Versions$Getbundle
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Getbundle;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Products$Integrations$Versions$Getbundle;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}:getBundle').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaGetBundleResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Returns the list of all integration versions in the specified project.
      * @example
      * ```js
@@ -14610,7 +14028,7 @@ export namespace integrations_v1alpha {
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListIntegrationVersions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIntegrationVersions` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource where this version will be created. Format: projects/{project\}/integrations/{integration\} Specifically, when parent equals: 1. projects//locations//integrations/, Meaning: "List versions (with filter) for a particular integration". 2. projects//locations//integrations/- Meaning: "List versions (with filter) for a client within a particular region". 3. projects//locations/-/integrations/- Meaning: "List versions (with filter) for a client".
+     *       // Required. The parent resource where this version will be created. Format: projects/{project\}/locations/{location\}/integrations/{integration\} Specifically, when parent equals: 1. projects//locations//integrations/, Meaning: "List versions (with filter) for a particular integration". 2. projects//locations//integrations/- Meaning: "List versions (with filter) for a client within a particular region". 3. projects//locations/-/integrations/- Meaning: "List versions (with filter) for a client".
      *       parent:
      *         'projects/my-project/locations/my-location/products/my-product/integrations/my-integration',
      *     });
@@ -14765,6 +14183,7 @@ export namespace integrations_v1alpha {
      *         //   "createTime": "my_createTime",
      *         //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *         //   "description": "my_description",
+     *         //   "errorCatcherConfigs": [],
      *         //   "integrationParameters": [],
      *         //   "integrationParametersInternal": {},
      *         //   "lastModifierEmail": "my_lastModifierEmail",
@@ -14772,6 +14191,7 @@ export namespace integrations_v1alpha {
      *         //   "name": "my_name",
      *         //   "origin": "my_origin",
      *         //   "parentTemplateId": "my_parentTemplateId",
+     *         //   "runAsServiceAccount": "my_runAsServiceAccount",
      *         //   "snapshotNumber": "my_snapshotNumber",
      *         //   "state": "my_state",
      *         //   "status": "my_status",
@@ -14792,6 +14212,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "integrationParameters": [],
      *   //   "integrationParametersInternal": {},
      *   //   "lastModifierEmail": "my_lastModifierEmail",
@@ -14799,6 +14220,7 @@ export namespace integrations_v1alpha {
      *   //   "name": "my_name",
      *   //   "origin": "my_origin",
      *   //   "parentTemplateId": "my_parentTemplateId",
+     *   //   "runAsServiceAccount": "my_runAsServiceAccount",
      *   //   "snapshotNumber": "my_snapshotNumber",
      *   //   "state": "my_state",
      *   //   "status": "my_status",
@@ -14939,7 +14361,7 @@ export namespace integrations_v1alpha {
      *   const res =
      *     await integrations.projects.locations.products.integrations.versions.publish(
      *       {
-     *         // Required. The version to publish. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     *         // Required. The version to publish. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *         name: 'projects/my-project/locations/my-location/products/my-product/integrations/my-integration/versions/my-version',
      *
      *         // Request body metadata
@@ -15085,7 +14507,7 @@ export namespace integrations_v1alpha {
      *   const res =
      *     await integrations.projects.locations.products.integrations.versions.takeoverEditLock(
      *       {
-     *         // Required. The version to take over edit lock. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     *         // Required. The version to take over edit lock. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *         integrationVersion:
      *           'projects/my-project/locations/my-location/products/my-product/integrations/my-integration/versions/my-version',
      *
@@ -15205,7 +14627,7 @@ export namespace integrations_v1alpha {
     }
 
     /**
-     * THIS METHOD WILL BE MOVED TO A SEPARATE SERVICE. RPC to update the Bundle
+     * Sets the status of the ACTIVE integration to SNAPSHOT with a new tag "PREVIOUSLY_PUBLISHED" after validating it. The "HEAD" and "PUBLISH_REQUESTED" tags do not change. This RPC throws an exception if the version being snapshot is not ACTIVE. Audit fields added include action, action_by, action_timestamp.
      * @example
      * ```js
      * // Before running the sample:
@@ -15231,26 +14653,22 @@ export namespace integrations_v1alpha {
      *
      *   // Do the magic
      *   const res =
-     *     await integrations.projects.locations.products.integrations.versions.updateBundle(
+     *     await integrations.projects.locations.products.integrations.versions.unpublish(
      *       {
-     *         // Required. Bundle name
+     *         // Required. The version to deactivate. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      *         name: 'projects/my-project/locations/my-location/products/my-product/integrations/my-integration/versions/my-version',
      *
      *         // Request body metadata
      *         requestBody: {
      *           // request body parameters
-     *           // {
-     *           //   "config": {}
-     *           // }
+     *           // {}
      *         },
      *       }
      *     );
      *   console.log(res.data);
      *
      *   // Example response
-     *   // {
-     *   //   "config": {}
-     *   // }
+     *   // {}
      * }
      *
      * main().catch(e => {
@@ -15265,58 +14683,54 @@ export namespace integrations_v1alpha {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    updateBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Updatebundle,
+    unpublish(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    updateBundle(
-      params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Updatebundle,
+    unpublish(
+      params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>;
-    updateBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Updatebundle,
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    unpublish(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    updateBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Updatebundle,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>
+    unpublish(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    updateBundle(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Updatebundle,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>
+    unpublish(
+      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    updateBundle(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>
-    ): void;
-    updateBundle(
+    unpublish(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    unpublish(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Products$Integrations$Versions$Updatebundle
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>
+        | Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Updatebundle;
+        {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Products$Integrations$Versions$Updatebundle;
+          {} as Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish;
         options = {};
       }
 
@@ -15329,11 +14743,11 @@ export namespace integrations_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}:updateBundle').replace(
+            url: (rootUrl + '/v1alpha/{+name}:unpublish').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
-            method: 'PATCH',
+            method: 'POST',
           },
           options
         ),
@@ -15343,14 +14757,12 @@ export namespace integrations_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>(
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaUpdateBundleResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
       }
     }
 
@@ -15383,7 +14795,7 @@ export namespace integrations_v1alpha {
      *   const res =
      *     await integrations.projects.locations.products.integrations.versions.upload(
      *       {
-     *         // Required. The version to upload. Format: projects/{project\}/integrations/{integration\}
+     *         // Required. The version to upload. Format: projects/{project\}/locations/{location\}/integrations/{integration\}
      *         parent:
      *           'projects/my-project/locations/my-location/products/my-product/integrations/my-integration',
      *
@@ -15505,166 +14917,8 @@ export namespace integrations_v1alpha {
         );
       }
     }
-
-    /**
-     * Validates the given integration. If the id doesn't exist, a NotFoundException is thrown. If validation fails a CanonicalCodeException is thrown. If there was no failure an empty response is returned.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/integrations.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const integrations = google.integrations('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await integrations.projects.locations.products.integrations.versions.validate(
-     *       {
-     *         // Required. The version to validate. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
-     *         name: 'projects/my-project/locations/my-location/products/my-product/integrations/my-integration/versions/my-version',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {}
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    validate(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Validate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    validate(
-      params?: Params$Resource$Projects$Locations$Products$Integrations$Versions$Validate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>;
-    validate(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Validate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    validate(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Validate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
-    ): void;
-    validate(
-      params: Params$Resource$Projects$Locations$Products$Integrations$Versions$Validate,
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
-    ): void;
-    validate(
-      callback: BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
-    ): void;
-    validate(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Products$Integrations$Versions$Validate
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Products$Integrations$Versions$Validate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Products$Integrations$Versions$Validate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://integrations.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}:validate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse>(
-          parameters
-        );
-      }
-    }
   }
 
-  export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Archive
-    extends StandardParameters {
-    /**
-     * Required. The version to archive. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionRequest;
-  }
   export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Create
     extends StandardParameters {
     /**
@@ -15672,7 +14926,7 @@ export namespace integrations_v1alpha {
      */
     newIntegration?: boolean;
     /**
-     * Required. The parent resource where this version will be created. Format: projects/{project\}/integrations/{integration\}
+     * Required. The parent resource where this version will be created. Format: projects/{project\}/locations/{location\}/integrations/{integration\}
      */
     parent?: string;
 
@@ -15681,17 +14935,12 @@ export namespace integrations_v1alpha {
      */
     requestBody?: Schema$GoogleCloudIntegrationsV1alphaIntegrationVersion;
   }
-  export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Deactivate
+  export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Delete
     extends StandardParameters {
     /**
-     * Required. The version to deactivate. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     * Required. The version to delete. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionRequest;
   }
   export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Download
     extends StandardParameters {
@@ -15700,21 +14949,14 @@ export namespace integrations_v1alpha {
      */
     fileFormat?: string;
     /**
-     * Required. The version to download. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     * Required. The version to download. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Get
     extends StandardParameters {
     /**
-     * Required. The version to retrieve. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Getbundle
-    extends StandardParameters {
-    /**
-     * Required. The bundle name.
+     * Required. The version to retrieve. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     name?: string;
   }
@@ -15741,7 +14983,7 @@ export namespace integrations_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource where this version will be created. Format: projects/{project\}/integrations/{integration\} Specifically, when parent equals: 1. projects//locations//integrations/, Meaning: "List versions (with filter) for a particular integration". 2. projects//locations//integrations/- Meaning: "List versions (with filter) for a client within a particular region". 3. projects//locations/-/integrations/- Meaning: "List versions (with filter) for a client".
+     * Required. The parent resource where this version will be created. Format: projects/{project\}/locations/{location\}/integrations/{integration\} Specifically, when parent equals: 1. projects//locations//integrations/, Meaning: "List versions (with filter) for a particular integration". 2. projects//locations//integrations/- Meaning: "List versions (with filter) for a client within a particular region". 3. projects//locations/-/integrations/- Meaning: "List versions (with filter) for a client".
      */
     parent?: string;
   }
@@ -15764,7 +15006,7 @@ export namespace integrations_v1alpha {
   export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Publish
     extends StandardParameters {
     /**
-     * Required. The version to publish. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     * Required. The version to publish. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     name?: string;
 
@@ -15776,7 +15018,7 @@ export namespace integrations_v1alpha {
   export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Takeovereditlock
     extends StandardParameters {
     /**
-     * Required. The version to take over edit lock. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
+     * Required. The version to take over edit lock. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     integrationVersion?: string;
 
@@ -15785,22 +15027,22 @@ export namespace integrations_v1alpha {
      */
     requestBody?: Schema$GoogleCloudIntegrationsV1alphaTakeoverEditLockRequest;
   }
-  export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Updatebundle
+  export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Unpublish
     extends StandardParameters {
     /**
-     * Required. Bundle name
+     * Required. The version to deactivate. Format: projects/{project\}/locations/{location\}/integrations/{integration\}/versions/{version\}
      */
     name?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaUpdateBundleRequest;
+    requestBody?: Schema$GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest;
   }
   export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Upload
     extends StandardParameters {
     /**
-     * Required. The version to upload. Format: projects/{project\}/integrations/{integration\}
+     * Required. The version to upload. Format: projects/{project\}/locations/{location\}/integrations/{integration\}
      */
     parent?: string;
 
@@ -15808,18 +15050,6 @@ export namespace integrations_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Products$Integrations$Versions$Validate
-    extends StandardParameters {
-    /**
-     * Required. The version to validate. Format: projects/{project\}/integrations/{integration\}/versions/{version\}
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudIntegrationsV1alphaValidateIntegrationVersionRequest;
   }
 
   export class Resource$Projects$Locations$Products$Integrationtemplates {
@@ -15880,6 +15110,7 @@ export namespace integrations_v1alpha {
      *           //   "createTime": "my_createTime",
      *           //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *           //   "description": "my_description",
+     *           //   "errorCatcherConfigs": [],
      *           //   "lastModifierEmail": "my_lastModifierEmail",
      *           //   "name": "my_name",
      *           //   "parentIntegrationVersionId": "my_parentIntegrationVersionId",
@@ -15902,6 +15133,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "lastModifierEmail": "my_lastModifierEmail",
      *   //   "name": "my_name",
      *   //   "parentIntegrationVersionId": "my_parentIntegrationVersionId",
@@ -16057,6 +15289,7 @@ export namespace integrations_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databasePersistencePolicy": "my_databasePersistencePolicy",
      *   //   "description": "my_description",
+     *   //   "errorCatcherConfigs": [],
      *   //   "lastModifierEmail": "my_lastModifierEmail",
      *   //   "name": "my_name",
      *   //   "parentIntegrationVersionId": "my_parentIntegrationVersionId",

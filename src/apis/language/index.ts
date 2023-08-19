@@ -17,11 +17,13 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {language_v1} from './v1';
 import {language_v1beta1} from './v1beta1';
 import {language_v1beta2} from './v1beta2';
+import {language_v2} from './v2';
 
 export const VERSIONS = {
   v1: language_v1.Language,
   v1beta1: language_v1beta1.Language,
   v1beta2: language_v1beta2.Language,
+  v2: language_v2.Language,
 };
 
 export function language(version: 'v1'): language_v1.Language;
@@ -34,11 +36,14 @@ export function language(version: 'v1beta2'): language_v1beta2.Language;
 export function language(
   options: language_v1beta2.Options
 ): language_v1beta2.Language;
+export function language(version: 'v2'): language_v2.Language;
+export function language(options: language_v2.Options): language_v2.Language;
 export function language<
   T =
     | language_v1.Language
     | language_v1beta1.Language
     | language_v1beta2.Language
+    | language_v2.Language,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -48,6 +53,8 @@ export function language<
     | language_v1beta1.Options
     | 'v1beta2'
     | language_v1beta2.Options
+    | 'v2'
+    | language_v2.Options
 ) {
   return getAPI<T>('language', versionOrOptions, VERSIONS, this);
 }
@@ -57,6 +64,7 @@ export {auth};
 export {language_v1};
 export {language_v1beta1};
 export {language_v1beta2};
+export {language_v2};
 export {
   AuthPlus,
   GlobalOptions,

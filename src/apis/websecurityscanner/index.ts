@@ -46,7 +46,7 @@ export function websecurityscanner<
   T =
     | websecurityscanner_v1.Websecurityscanner
     | websecurityscanner_v1alpha.Websecurityscanner
-    | websecurityscanner_v1beta.Websecurityscanner
+    | websecurityscanner_v1beta.Websecurityscanner,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

@@ -825,7 +825,7 @@
       }
     }
   },
-  "revision": "20221026",
+  "revision": "20230620",
   "rootUrl": "https://androiddeviceprovisioning.googleapis.com/",
   "schemas": {
     "ClaimDeviceRequest": {
@@ -865,6 +865,11 @@
             "SIM-lock section type.",
             "Zero-touch enrollment section type."
           ],
+          "type": "string"
+        },
+        "simlockProfileId": {
+          "description": "Optional. Must and can only be set when DeviceProvisioningSectionType is SECTION_TYPE_SIM_LOCK. The unique identifier of the SimLock profile.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1002,6 +1007,11 @@
         },
         "dpcResourcePath": {
           "description": "Required. The resource name of the selected DPC (device policy controller) in the format `customers/[CUSTOMER_ID]/dpcs/*`. To list the supported DPCs, call `customers.dpcs.list`.",
+          "type": "string"
+        },
+        "forcedResetTime": {
+          "description": "Optional. The timeout before forcing factory reset the device if the device doesn't go through provisioning in the setup wizard, usually due to lack of network connectivity during setup wizard. Ranges from 0-6 hours, with 2 hours being the default if unset.",
+          "format": "google-duration",
           "type": "string"
         },
         "isDefault": {
@@ -1187,7 +1197,7 @@
           "type": "string"
         },
         "ownerCompanyId": {
-          "description": "The ID of the Customer that purchased the Android device.",
+          "description": "The ID of the Customer that purchased the device.",
           "format": "int64",
           "type": "string"
         },
@@ -1259,7 +1269,7 @@
           "type": "string"
         },
         "model": {
-          "description": "The device model's name. Allowed values are listed in [Android models](/zero-touch/resources/manufacturer-names#model-names) and [Chrome OS models](https://support.google.com/chrome/a/answer/10130175?hl=en#identify_compatible).",
+          "description": "The device model's name. Allowed values are listed in [Android models](/zero-touch/resources/manufacturer-names#model-names) and [Chrome OS models](https://support.google.com/chrome/a/answer/10130175#identify_compatible).",
           "type": "string"
         },
         "serialNumber": {
@@ -1674,6 +1684,11 @@
             "Zero-touch enrollment section type."
           ],
           "type": "string"
+        },
+        "simlockProfileId": {
+          "description": "Optional. Must and can only be set when DeviceProvisioningSectionType is SECTION_TYPE_SIM_LOCK. The unique identifier of the SimLock profile.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1723,7 +1738,7 @@
       "id": "PerDeviceStatusInBatch",
       "properties": {
         "deviceId": {
-          "description": "If processing succeeds, the device ID of the Android device.",
+          "description": "If processing succeeds, the device ID of the device.",
           "format": "int64",
           "type": "string"
         },
@@ -1747,7 +1762,8 @@
             "SINGLE_DEVICE_STATUS_INVALID_SECTION_TYPE",
             "SINGLE_DEVICE_STATUS_SECTION_NOT_YOURS",
             "SINGLE_DEVICE_STATUS_INVALID_TOKEN",
-            "SINGLE_DEVICE_STATUS_REVOKED_TOKEN"
+            "SINGLE_DEVICE_STATUS_REVOKED_TOKEN",
+            "SINGLE_DEVICE_STATUS_DEVICE_LIMIT_EXCEEDED"
           ],
           "enumDescriptions": [
             "Invalid code. Shouldn't be used.",
@@ -1759,7 +1775,8 @@
             "Invalid section type.",
             "This section is claimed by another company.",
             "Invalid pre-provisioning token.",
-            "Revoked pre-provisioning token."
+            "Revoked pre-provisioning token.",
+            "Status used to indicate a failure due to a device limit being exceeded"
           ],
           "type": "string"
         }

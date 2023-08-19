@@ -142,7 +142,7 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$Attributes {
     /**
-     * A set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the boolean values `true` or `false`. For example: "/instance_id": { "string_value": { "value": "my-instance" \} \} "/http/request_bytes": { "int_value": 300 \} "abc.com/myattribute": { "bool_value": false \}
+     * A set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the boolean values `true` or `false`. For example: "/instance_id": { "string_value": { "value": "my-instance" \} \} "/http/request_bytes": { "int_value": 300 \} "example.com/myattribute": { "bool_value": false \}
      */
     attributeMap?: {[key: string]: Schema$AttributeValue} | null;
     /**
@@ -249,7 +249,7 @@ export namespace cloudtrace_v2 {
     module?: Schema$TruncatableString;
   }
   /**
-   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous—there might be gaps or overlaps between spans in a trace.
+   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous. There might be gaps or overlaps between spans in a trace.
    */
   export interface Schema$Span {
     /**
@@ -334,7 +334,7 @@ export namespace cloudtrace_v2 {
      */
     loadModule?: Schema$Module;
     /**
-     * An un-mangled function name, if `function_name` is [mangled](http://www.avabodh.com/cxxin/namemangling.html). The name can be fully-qualified (up to 1024 bytes).
+     * An un-mangled function name, if `function_name` is mangled. To get information about name mangling, run [this search](https://www.google.com/search?q=cxx+name+mangling). The name can be fully-qualified (up to 1024 bytes).
      */
     originalFunctionName?: Schema$TruncatableString;
     /**
@@ -452,57 +452,6 @@ export namespace cloudtrace_v2 {
 
     /**
      * Batch writes new spans to new or existing traces. You cannot update existing spans.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudtrace = google.cloudtrace('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/trace.append',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudtrace.projects.traces.batchWrite({
-     *     // Required. The name of the project where the spans belong. The format is `projects/[PROJECT_ID]`.
-     *     name: 'projects/my-project',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "spans": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -610,85 +559,6 @@ export namespace cloudtrace_v2 {
 
     /**
      * Creates a new span.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudtrace = google.cloudtrace('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/trace.append',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudtrace.projects.traces.spans.createSpan({
-     *     // Required. The resource name of the span in the following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]` `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. It should not be zero. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero. .
-     *     name: 'projects/my-project/traces/my-trace/spans/my-span',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "attributes": {},
-     *       //   "childSpanCount": 0,
-     *       //   "displayName": {},
-     *       //   "endTime": "my_endTime",
-     *       //   "links": {},
-     *       //   "name": "my_name",
-     *       //   "parentSpanId": "my_parentSpanId",
-     *       //   "sameProcessAsParentSpan": false,
-     *       //   "spanId": "my_spanId",
-     *       //   "spanKind": "my_spanKind",
-     *       //   "stackTrace": {},
-     *       //   "startTime": "my_startTime",
-     *       //   "status": {},
-     *       //   "timeEvents": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attributes": {},
-     *   //   "childSpanCount": 0,
-     *   //   "displayName": {},
-     *   //   "endTime": "my_endTime",
-     *   //   "links": {},
-     *   //   "name": "my_name",
-     *   //   "parentSpanId": "my_parentSpanId",
-     *   //   "sameProcessAsParentSpan": false,
-     *   //   "spanId": "my_spanId",
-     *   //   "spanKind": "my_spanKind",
-     *   //   "stackTrace": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "status": {},
-     *   //   "timeEvents": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -123,7 +123,7 @@
           ]
         },
         "claimwebsite": {
-          "description": "Claims the website of a Merchant Center sub-account.",
+          "description": "Claims the website of a Merchant Center sub-account. Merchant accounts with approved third-party CSSs aren't required to claim a website.",
           "flatPath": "{merchantId}/accounts/{accountId}/claimwebsite",
           "httpMethod": "POST",
           "id": "content.accounts.claimwebsite",
@@ -1506,6 +1506,213 @@
         }
       }
     },
+    "conversionsources": {
+      "methods": {
+        "create": {
+          "description": "Creates a new conversion source.",
+          "flatPath": "{merchantId}/conversionsources",
+          "httpMethod": "POST",
+          "id": "content.conversionsources.create",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The ID of the account that owns the new conversion source.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/conversionsources",
+          "request": {
+            "$ref": "ConversionSource"
+          },
+          "response": {
+            "$ref": "ConversionSource"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "delete": {
+          "description": "Archives an existing conversion source. It will be recoverable for 30 days. This archiving behavior is not typical in the Content API and unique to this service.",
+          "flatPath": "{merchantId}/conversionsources/{conversionSourceId}",
+          "httpMethod": "DELETE",
+          "id": "content.conversionsources.delete",
+          "parameterOrder": [
+            "merchantId",
+            "conversionSourceId"
+          ],
+          "parameters": {
+            "conversionSourceId": {
+              "description": "Required. The ID of the conversion source to be deleted.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the account that owns the new conversion source.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/conversionsources/{conversionSourceId}",
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "get": {
+          "description": "Fetches a conversion source.",
+          "flatPath": "{merchantId}/conversionsources/{conversionSourceId}",
+          "httpMethod": "GET",
+          "id": "content.conversionsources.get",
+          "parameterOrder": [
+            "merchantId",
+            "conversionSourceId"
+          ],
+          "parameters": {
+            "conversionSourceId": {
+              "description": "Required. The REST ID of the collection.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the account that owns the new conversion source.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/conversionsources/{conversionSourceId}",
+          "response": {
+            "$ref": "ConversionSource"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "list": {
+          "description": "Retrieves the list of conversion sources the caller has access to.",
+          "flatPath": "{merchantId}/conversionsources",
+          "httpMethod": "GET",
+          "id": "content.conversionsources.list",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The ID of the account that owns the new conversion source.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of conversion sources to return in a page. If no `page_size` is specified, `100` is used as the default value. The maximum value is `200`. Values above `200` will be coerced to `200`. Regardless of pagination, at most `200` conversion sources are returned in total.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "showDeleted": {
+              "description": "If true, also returns archived conversion sources.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "{merchantId}/conversionsources",
+          "response": {
+            "$ref": "ListConversionSourcesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "patch": {
+          "description": "Updates information of an existing conversion source.",
+          "flatPath": "{merchantId}/conversionsources/{conversionSourceId}",
+          "httpMethod": "PATCH",
+          "id": "content.conversionsources.patch",
+          "parameterOrder": [
+            "merchantId",
+            "conversionSourceId"
+          ],
+          "parameters": {
+            "conversionSourceId": {
+              "description": "Required. The ID of the conversion source to be updated.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the account that owns the new conversion source.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. List of fields being updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/conversionsources/{conversionSourceId}",
+          "request": {
+            "$ref": "ConversionSource"
+          },
+          "response": {
+            "$ref": "ConversionSource"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "undelete": {
+          "description": "Re-enables an archived conversion source.",
+          "flatPath": "{merchantId}/conversionsources/{conversionSourceId}:undelete",
+          "httpMethod": "POST",
+          "id": "content.conversionsources.undelete",
+          "parameterOrder": [
+            "merchantId",
+            "conversionSourceId"
+          ],
+          "parameters": {
+            "conversionSourceId": {
+              "description": "Required. The ID of the conversion source to be undeleted.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the account that owns the new conversion source.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/conversionsources/{conversionSourceId}:undelete",
+          "request": {
+            "$ref": "UndeleteConversionSourceRequest"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
     "csses": {
       "methods": {
         "get": {
@@ -1864,7 +2071,7 @@
           ],
           "parameters": {
             "country": {
-              "description": "The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.",
+              "description": "Deprecated. Use `feedLabel` instead. The country to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.",
               "location": "query",
               "type": "string"
             },
@@ -1875,8 +2082,13 @@
               "required": true,
               "type": "string"
             },
+            "feedLabel": {
+              "description": "The feed label to get the datafeed status for. If this parameter is provided then `language` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.",
+              "location": "query",
+              "type": "string"
+            },
             "language": {
-              "description": "The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.",
+              "description": "The language to get the datafeed status for. If this parameter is provided then `country` must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.",
               "location": "query",
               "type": "string"
             },
@@ -1937,7 +2149,7 @@
     "freelistingsprogram": {
       "methods": {
         "get": {
-          "description": "Retrieves the status and review eligibility for the free listing program.",
+          "description": "Retrieves the status and review eligibility for the free listing program. Returns errors and warnings if they require action to resolve, will become disapprovals, or impact impressions. Use `accountstatuses` to view all issues for an account.",
           "flatPath": "{merchantId}/freelistingsprogram",
           "httpMethod": "GET",
           "id": "content.freelistingsprogram.get",
@@ -1985,6 +2197,87 @@
           "scopes": [
             "https://www.googleapis.com/auth/content"
           ]
+        }
+      },
+      "resources": {
+        "checkoutsettings": {
+          "methods": {
+            "delete": {
+              "description": "Deletes `Checkout` settings and unenrolls merchant from `Checkout` program.",
+              "flatPath": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "httpMethod": "DELETE",
+              "id": "content.freelistingsprogram.checkoutsettings.delete",
+              "parameterOrder": [
+                "merchantId"
+              ],
+              "parameters": {
+                "merchantId": {
+                  "description": "Required. The ID of the account.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "get": {
+              "description": "Gets Checkout settings for the given merchant. This includes information about review state, enrollment state and URL settings.",
+              "flatPath": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "httpMethod": "GET",
+              "id": "content.freelistingsprogram.checkoutsettings.get",
+              "parameterOrder": [
+                "merchantId"
+              ],
+              "parameters": {
+                "merchantId": {
+                  "description": "Required. The ID of the account.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "response": {
+                "$ref": "CheckoutSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "insert": {
+              "description": "Enrolls merchant in `Checkout` program.",
+              "flatPath": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "httpMethod": "POST",
+              "id": "content.freelistingsprogram.checkoutsettings.insert",
+              "parameterOrder": [
+                "merchantId"
+              ],
+              "parameters": {
+                "merchantId": {
+                  "description": "Required. The ID of the account.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "{merchantId}/freelistingsprogram/checkoutsettings",
+              "request": {
+                "$ref": "InsertCheckoutSettingsRequest"
+              },
+              "response": {
+                "$ref": "CheckoutSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
         }
       }
     },
@@ -4217,7 +4510,7 @@
           ],
           "parameters": {
             "maxResults": {
-              "description": "The maximum number of products to return in the response, used for paging.",
+              "description": "The maximum number of products to return in the response, used for paging. The default value is 25. The maximum value is 250.",
               "format": "uint32",
               "location": "query",
               "type": "integer"
@@ -4267,7 +4560,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "The comma-separated list of product attributes to be updated. Example: `\"title,salePrice\"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.",
+              "description": "The comma-separated list of product attributes to be updated. Example: `\"title,salePrice\"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. *You must specify the update mask to delete attributes.* Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -4360,7 +4653,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of product statuses to return in the response, used for paging.",
+              "description": "The maximum number of product statuses to return in the response, used for paging. The default value is 25. The maximum value is 250.",
               "format": "uint32",
               "location": "query",
               "type": "integer"
@@ -4513,6 +4806,52 @@
           "scopes": [
             "https://www.googleapis.com/auth/content"
           ]
+        },
+        "list": {
+          "description": "List all promotions from your Merchant Center account.",
+          "flatPath": "{merchantId}/promotions",
+          "httpMethod": "GET",
+          "id": "content.promotions.list",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "countryCode": {
+              "description": "[CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (for example, \"US\"), used as a filter on promotions target country.",
+              "location": "query",
+              "type": "string"
+            },
+            "languageCode": {
+              "description": "The two-letter ISO 639-1 language code associated with the promotions, used as a filter.",
+              "location": "query",
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the account that contains the collection.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of promotions to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token, received from a previous `ListPromotion` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotion` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/promotions",
+          "response": {
+            "$ref": "ListPromotionResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
         }
       }
     },
@@ -4576,7 +4915,7 @@
     "quotas": {
       "methods": {
         "list": {
-          "description": "Lists the quota limit and quota usage per method for your Merchant Center account.",
+          "description": "Lists the daily call quota and usage per method for your Merchant Center account.",
           "flatPath": "{merchantId}/quotas",
           "httpMethod": "GET",
           "id": "content.quotas.list",
@@ -4606,6 +4945,71 @@
           "path": "{merchantId}/quotas",
           "response": {
             "$ref": "ListMethodQuotasResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
+    "recommendations": {
+      "methods": {
+        "generate": {
+          "description": "Generates recommendations for a merchant.",
+          "flatPath": "{merchantId}/recommendations/generate",
+          "httpMethod": "GET",
+          "id": "content.recommendations.generate",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "allowedTag": {
+              "description": "Optional. List of allowed tags. Tags are a set of predefined strings that describe the category that individual recommendation types belong to. User can specify zero or more tags in this field to indicate what categories of recommendations they want to receive. Current list of supported tags: - TREND",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "languageCode": {
+              "description": "Optional. Language code of the client. If not set, the result will be in default language (English). This language code affects all fields prefixed with \"localized\". This should be set to ISO 639-1 country code. List of currently verified supported language code: en, fr, cs, da, de, es, it, nl, no, pl, pt, pt, fi, sv, vi, tr, th, ko, zh-CN, zh-TW, ja, id, hi",
+              "location": "query",
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the account to fetch recommendations for.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/recommendations/generate",
+          "response": {
+            "$ref": "GenerateRecommendationsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "reportInteraction": {
+          "description": "Reports an interaction on a recommendation for a merchant.",
+          "flatPath": "{merchantId}/recommendations/reportInteraction",
+          "httpMethod": "POST",
+          "id": "content.recommendations.reportInteraction",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The ID of the account that wants to report an interaction.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/recommendations/reportInteraction",
+          "request": {
+            "$ref": "ReportInteractionRequest"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
@@ -5896,7 +6300,7 @@
     "shoppingadsprogram": {
       "methods": {
         "get": {
-          "description": "Retrieves the status and review eligibility for the Shopping Ads program.",
+          "description": "Retrieves the status and review eligibility for the Shopping Ads program. Returns errors and warnings if they require action to resolve, will become disapprovals, or impact impressions. Use `accountstatuses` to view all issues for an account.",
           "flatPath": "{merchantId}/shoppingadsprogram",
           "httpMethod": "GET",
           "id": "content.shoppingadsprogram.get",
@@ -5948,7 +6352,7 @@
       }
     }
   },
-  "revision": "20221024",
+  "revision": "20230811",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5961,7 +6365,7 @@
           "type": "string"
         },
         "adsLinks": {
-          "description": "Linked Ads accounts that are active or pending approval. To create a new link request, add a new link with status `active` to the list. It will remain in a `pending` state until approved or rejected either in the Ads interface or through the AdWords API. To delete an active link, or to cancel a link request, remove it from the list.",
+          "description": "Linked Ads accounts that are active or pending approval. To create a new link request, add a new link with status `active` to the list. It will remain in a `pending` state until approved or rejected either in the Ads interface or through the Google Ads API. To delete an active link, or to cancel a link request, remove it from the list.",
           "items": {
             "$ref": "AccountAdsLink"
           },
@@ -5986,6 +6390,10 @@
         "businessInformation": {
           "$ref": "AccountBusinessInformation",
           "description": "The business information of the account."
+        },
+        "conversionSettings": {
+          "$ref": "AccountConversionSettings",
+          "description": "Settings for conversion tracking."
         },
         "cssId": {
           "description": "ID of CSS the account belongs to.",
@@ -6118,12 +6526,23 @@
           "type": "string"
         },
         "phoneNumber": {
-          "description": "The phone number of the business. This can only be updated if a verified phone number is not already set. To replace a verified phone number use the `Accounts.requestphoneverification` and `Accounts.verifyphonenumber`.",
+          "description": "The phone number of the business in [E.164](https://en.wikipedia.org/wiki/E.164) format. This can only be updated if a verified phone number is not already set. To replace a verified phone number use the `Accounts.requestphoneverification` and `Accounts.verifyphonenumber`.",
           "type": "string"
         },
         "phoneVerificationStatus": {
           "description": "Verification status of the phone number of the business. This status is read only and can be updated only by successful phone verification. Acceptable values are: - \"`verified`\" - \"`unverified`\" ",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountConversionSettings": {
+      "description": "Settings for conversion tracking.",
+      "id": "AccountConversionSettings",
+      "properties": {
+        "freeListingsAutoTaggingEnabled": {
+          "description": "When enabled, free listing URLs have a parameter to enable conversion tracking for products owned by the current merchant account. See [auto-tagging](https://support.google.com/merchants/answer/11127659).",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6147,6 +6566,11 @@
             "ACCOUNT_CREDENTIALS_PURPOSE_UNSPECIFIED",
             "SHOPIFY_ORDER_MANAGEMENT",
             "SHOPIFY_INTEGRATION"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false
           ],
           "enumDescriptions": [
             "Unknown purpose.",
@@ -7159,6 +7583,177 @@
       },
       "type": "object"
     },
+    "AttributionSettings": {
+      "description": "Represents attribution settings for conversion sources receiving pre-attribution data.",
+      "id": "AttributionSettings",
+      "properties": {
+        "attributionLookbackWindowInDays": {
+          "description": "Required. Lookback windows (in days) used for attribution in this source. Supported values are 7, 30, 60, 90.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "attributionModel": {
+          "description": "Required. Attribution model.",
+          "enum": [
+            "ATTRIBUTION_MODEL_UNSPECIFIED",
+            "CROSS_CHANNEL_LAST_CLICK",
+            "ADS_PREFERRED_LAST_CLICK",
+            "CROSS_CHANNEL_DATA_DRIVEN",
+            "CROSS_CHANNEL_FIRST_CLICK",
+            "CROSS_CHANNEL_LINEAR",
+            "CROSS_CHANNEL_POSITION_BASED",
+            "CROSS_CHANNEL_TIME_DECAY"
+          ],
+          "enumDescriptions": [
+            "",
+            "Cross-channel Last Click model.",
+            "Ads-preferred Last Click model.",
+            "Cross-channel Data Driven model.",
+            "Cross-channel First Click model.",
+            "Cross-channel Linear model.",
+            "Cross-channel Position Based model.",
+            "Cross-channel Time Decay model."
+          ],
+          "type": "string"
+        },
+        "conversionType": {
+          "description": "Immutable. Unordered list. List of different conversion types a conversion event can be classified as. A standard \"purchase\" type will be automatically created if this list is empty at creation time.",
+          "items": {
+            "$ref": "AttributionSettingsConversionType"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AttributionSettingsConversionType": {
+      "description": "Message representing a types of conversion events",
+      "id": "AttributionSettingsConversionType",
+      "properties": {
+        "includeInReporting": {
+          "description": "Output only. Option indicating if the type should be included in Merchant Center reporting.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. Conversion event name, as it'll be reported by the client.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BestSellers": {
+      "description": "Fields related to the [Best sellers reports](https://support.google.com/merchants/answer/9488679).",
+      "id": "BestSellers",
+      "properties": {
+        "categoryId": {
+          "description": "Google product category ID to calculate the ranking for, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436). If a `WHERE` condition on `best_sellers.category_id` is not specified in the query, rankings for all top-level categories are returned.",
+          "format": "int64",
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "Country where the ranking is calculated. A `WHERE` condition on `best_sellers.country_code` is required in the query.",
+          "type": "string"
+        },
+        "previousRank": {
+          "description": "Popularity rank in the previous week or month.",
+          "format": "int64",
+          "type": "string"
+        },
+        "previousRelativeDemand": {
+          "description": "Estimated demand in relation to the item with the highest popularity rank in the same category and country in the previous week or month.",
+          "enum": [
+            "RELATIVE_DEMAND_UNSPECIFIED",
+            "VERY_LOW",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "VERY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Relative demand is unknown.",
+            "Demand is 0-5% of the demand of the highest ranked product clusters or brands.",
+            "Demand is 6-10% of the demand of the highest ranked product clusters or brands.",
+            "Demand is 11-20% of the demand of the highest ranked product clusters or brands.",
+            "Demand is 21-50% of the demand of the highest ranked product clusters or brands.",
+            "Demand is 51-100% of the demand of the highest ranked product clusters or brands."
+          ],
+          "type": "string"
+        },
+        "rank": {
+          "description": "Popularity on Shopping ads and free listings, in the selected category and country, based on the estimated number of units sold.",
+          "format": "int64",
+          "type": "string"
+        },
+        "relativeDemand": {
+          "description": "Estimated demand in relation to the item with the highest popularity rank in the same category and country.",
+          "enum": [
+            "RELATIVE_DEMAND_UNSPECIFIED",
+            "VERY_LOW",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "VERY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Relative demand is unknown.",
+            "Demand is 0-5% of the demand of the highest ranked product clusters or brands.",
+            "Demand is 6-10% of the demand of the highest ranked product clusters or brands.",
+            "Demand is 11-20% of the demand of the highest ranked product clusters or brands.",
+            "Demand is 21-50% of the demand of the highest ranked product clusters or brands.",
+            "Demand is 51-100% of the demand of the highest ranked product clusters or brands."
+          ],
+          "type": "string"
+        },
+        "relativeDemandChange": {
+          "description": "Change in the estimated demand. Whether it rose, sank or remained flat.",
+          "enum": [
+            "RELATIVE_DEMAND_CHANGE_TYPE_UNSPECIFIED",
+            "SINKER",
+            "FLAT",
+            "RISER"
+          ],
+          "enumDescriptions": [
+            "Relative demand change is unknown.",
+            "Relative demand is lower than previous time period.",
+            "Relative demand is equal to previous time period.",
+            "Relative demand is higher than the previous time period."
+          ],
+          "type": "string"
+        },
+        "reportDate": {
+          "$ref": "Date",
+          "description": "Report date. The value of this field can only be one of the following: * The first day of the week (Monday) for weekly reports. * The first day of the month for monthly reports. If a `WHERE` condition on `best_sellers.report_date` is not specified in the query, the latest available weekly or monthly report is returned."
+        },
+        "reportGranularity": {
+          "description": "Granularity of the report. The ranking can be done over a week or a month timeframe. A `WHERE` condition on `best_sellers.report_granularity` is required in the query.",
+          "enum": [
+            "REPORT_GRANULARITY_UNSPECIFIED",
+            "WEEKLY",
+            "MONTHLY"
+          ],
+          "enumDescriptions": [
+            "Report granularity is unknown.",
+            "Ranking is done over a week timeframe.",
+            "Ranking is done over a month timeframe."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Brand": {
+      "description": "Brand fields. Values are only set for fields requested explicitly in the request's search query.",
+      "id": "Brand",
+      "properties": {
+        "name": {
+          "description": "Name of the brand.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BusinessDayConfig": {
       "id": "BusinessDayConfig",
       "properties": {
@@ -7349,6 +7944,142 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CheckoutSettings": {
+      "description": "`CheckoutSettings` for a specific merchant ID.",
+      "id": "CheckoutSettings",
+      "properties": {
+        "effectiveEnrollmentState": {
+          "description": "Output only. The effective value of enrollment state for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account.",
+          "enum": [
+            "CHECKOUT_ON_MERCHANT_ENROLLMENT_STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ENROLLED"
+          ],
+          "enumDescriptions": [
+            "Default enrollment state when enrollment state is not specified.",
+            "Merchant has not enrolled into the feature.",
+            "Merchant has enrolled into the feature by providing either an account level URL or checkout URLs as part of their feed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveReviewState": {
+          "description": "Output only. The effective value of review state for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account.",
+          "enum": [
+            "CHECKOUT_ON_MERCHANT_REVIEW_STATE_UNSPECIFIED",
+            "IN_REVIEW",
+            "APPROVED",
+            "DISAPPROVED"
+          ],
+          "enumDescriptions": [
+            "Default review state when review state is not specified.",
+            "Merchant provided URLs are being reviewed for data quality issues.",
+            "Merchant account has been approved. Indicates the data quality checks have passed.",
+            "Merchant account has been disapproved due to data quality issues."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveUriSettings": {
+          "$ref": "UrlSettings",
+          "description": "The effective value of `url_settings` for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account."
+        },
+        "enrollmentState": {
+          "description": "Output only. Reflects the merchant enrollment state in `Checkout` feature.",
+          "enum": [
+            "CHECKOUT_ON_MERCHANT_ENROLLMENT_STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ENROLLED"
+          ],
+          "enumDescriptions": [
+            "Default enrollment state when enrollment state is not specified.",
+            "Merchant has not enrolled into the feature.",
+            "Merchant has enrolled into the feature by providing either an account level URL or checkout URLs as part of their feed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "merchantId": {
+          "description": "Required. The ID of the account.",
+          "format": "int64",
+          "type": "string"
+        },
+        "reviewState": {
+          "description": "Output only. Reflects the merchant review state in `Checkout` feature. This is set based on the data quality reviews of the URL provided by the merchant. A merchant with enrollment state as `ENROLLED` can be in the following review states: `IN_REVIEW`, `APPROVED` or `DISAPPROVED`. A merchant must be in an enrollment_state of `ENROLLED` before a review can begin for the merchant.",
+          "enum": [
+            "CHECKOUT_ON_MERCHANT_REVIEW_STATE_UNSPECIFIED",
+            "IN_REVIEW",
+            "APPROVED",
+            "DISAPPROVED"
+          ],
+          "enumDescriptions": [
+            "Default review state when review state is not specified.",
+            "Merchant provided URLs are being reviewed for data quality issues.",
+            "Merchant account has been approved. Indicates the data quality checks have passed.",
+            "Merchant account has been disapproved due to data quality issues."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uriSettings": {
+          "$ref": "UrlSettings",
+          "description": "URL settings for cart or checkout URL."
+        }
+      },
+      "type": "object"
+    },
+    "CloudExportAdditionalProperties": {
+      "description": "Product property for the Cloud Retail API. For example, properties for a TV product could be \"Screen-Resolution\" or \"Screen-Size\".",
+      "id": "CloudExportAdditionalProperties",
+      "properties": {
+        "boolValue": {
+          "description": "Boolean value of the given property. For example for a TV product, \"True\" or \"False\" if the screen is UHD.",
+          "type": "boolean"
+        },
+        "floatValue": {
+          "description": "Float values of the given property. For example for a TV product 1.2345. Maximum number of specified values for this field is 400. Values are stored in an arbitrary but consistent order.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "intValue": {
+          "description": "Integer values of the given property. For example, 1080 for a screen resolution of a TV product. Maximum number of specified values for this field is 400. Values are stored in an arbitrary but consistent order.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "maxValue": {
+          "description": "Maximum float value of the given property. For example for a TV product 100.00.",
+          "format": "float",
+          "type": "number"
+        },
+        "minValue": {
+          "description": "Minimum float value of the given property. For example for a TV product 1.00.",
+          "format": "float",
+          "type": "number"
+        },
+        "propertyName": {
+          "description": "Name of the given property. For example, \"Screen-Resolution\" for a TV product. Maximum string size is 256 characters.",
+          "type": "string"
+        },
+        "textValue": {
+          "description": "Text value of the given property. For example, \"8K(UHD)\" could be a text value for a TV product. Maximum number of specified values for this field is 400. Values are stored in an arbitrary but consistent order. Maximum string size is 256 characters.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "unitCode": {
+          "description": "Unit of the given property. For example, \"Pixels\" for a TV product. Maximum string size is 256 bytes.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7557,6 +8288,128 @@
       },
       "type": "object"
     },
+    "CompetitiveVisibility": {
+      "description": "Fields related to [competitive visibility reports] (https://support.google.com/merchants/answer/11366442).",
+      "id": "CompetitiveVisibility",
+      "properties": {
+        "adsOrganicRatio": {
+          "description": "[Ads / organic ratio] (https://support.google.com/merchants/answer/11366442#zippy=%2Cadsfree-ratio) shows how often a merchant receives impressions from Shopping ads compared to organic traffic. The number is rounded and bucketed. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
+          "format": "double",
+          "type": "number"
+        },
+        "categoryBenchmarkVisibilityTrend": {
+          "description": "Change in visibility based on impressions with respect to the start of the selected time range (or first day with non-zero impressions) for a combined set of merchants with highest visibility approximating the market. Available only in `CompetitiveVisibilityBenchmarkView`. Cannot be filtered on in the 'WHERE' clause.",
+          "format": "double",
+          "type": "number"
+        },
+        "categoryId": {
+          "description": "Google product category ID to calculate the report for, represented in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436). Required in the `SELECT` clause. A `WHERE` condition on `competitive_visibility.category_id` is required in the query.",
+          "format": "int64",
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "The country where impression appeared. Required in the `SELECT` clause. A `WHERE` condition on `competitive_visibility.country_code` is required in the query.",
+          "type": "string"
+        },
+        "date": {
+          "$ref": "Date",
+          "description": "Date of this row. Available only in `CompetitiveVisibilityBenchmarkView` and `CompetitiveVisibilityCompetitorView`. Required in the `SELECT` clause for `CompetitiveVisibilityMarketBenchmarkView`."
+        },
+        "domain": {
+          "description": "Domain of your competitor or your domain, if 'is_your_domain' is true. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Required in the `SELECT` clause for `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
+          "type": "string"
+        },
+        "higherPositionRate": {
+          "description": "Higher position rate shows how often a competitor’s offer got placed in a higher position on the page than your offer. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
+          "format": "double",
+          "type": "number"
+        },
+        "isYourDomain": {
+          "description": "True if this row contains data for your domain. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
+          "type": "boolean"
+        },
+        "pageOverlapRate": {
+          "description": "Page overlap rate describes how frequently competing retailers’ offers are shown together with your offers on the same page. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
+          "format": "double",
+          "type": "number"
+        },
+        "rank": {
+          "description": "Position of the domain in the top merchants ranking for the selected keys (`date`, `category_id`, `country_code`, `listing_type`) based on impressions. 1 is the highest. Available only in `CompetitiveVisibilityTopMerchantView` and `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "relativeVisibility": {
+          "description": "Relative visibility shows how often your competitors’ offers are shown compared to your offers. In other words, this is the number of displayed impressions of a competitor retailer divided by the number of your displayed impressions during a selected time range for a selected product category and country. Available only in `CompetitiveVisibilityCompetitorView`. Cannot be filtered on in the 'WHERE' clause.",
+          "format": "double",
+          "type": "number"
+        },
+        "trafficSource": {
+          "description": "Type of impression listing. Required in the `SELECT` clause. Cannot be filtered on in the 'WHERE' clause.",
+          "enum": [
+            "UNKNOWN",
+            "ORGANIC",
+            "ADS",
+            "ALL"
+          ],
+          "enumDescriptions": [
+            "Traffic source is unknown.",
+            "Organic traffic.",
+            "Traffic from Ads.",
+            "Organic and Ads traffic."
+          ],
+          "type": "string"
+        },
+        "yourDomainVisibilityTrend": {
+          "description": "Change in visibility based on impressions for your domain with respect to the start of the selected time range (or first day with non-zero impressions). Available only in `CompetitiveVisibilityBenchmarkView`. Cannot be filtered on in the 'WHERE' clause.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ConversionSource": {
+      "description": "Represents a conversion source owned by a Merchant account. A merchant account can have up to 200 conversion sources.",
+      "id": "ConversionSource",
+      "properties": {
+        "conversionSourceId": {
+          "description": "Output only. Generated by the Content API upon creation of a new `ConversionSource`. Format: [a-z]{4}:.+ The four characters before the colon represent the type of conversio source. Content after the colon represents the ID of the conversion source within that type. The ID of two different conversion sources might be the same across different types. The following type prefixes are supported: - galk: For GoogleAnalyticsLink sources. - mcdn: For MerchantCenterDestination sources.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. The time when an archived conversion source becomes permanently deleted and is no longer available to undelete.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "googleAnalyticsLink": {
+          "$ref": "GoogleAnalyticsLink",
+          "description": "Immutable. Conversion Source of type \"Link to Google Analytics Property\"."
+        },
+        "merchantCenterDestination": {
+          "$ref": "MerchantCenterDestination",
+          "description": "Conversion Source of type \"Merchant Center Tag Destination\"."
+        },
+        "state": {
+          "description": "Output only. Current state of this conversion source. Can't be edited through the API.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "ARCHIVED",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "",
+            "Conversion source is fully functional.",
+            "Conversion source has been archived in the last 30 days and not currently functional. Can be restored using the undelete method.",
+            "Conversion source creation has started but not fully finished yet."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Css": {
       "description": "Information about CSS domain.",
       "id": "Css",
@@ -7600,6 +8453,7 @@
       "type": "object"
     },
     "CustomAttribute": {
+      "description": "A message that represents custom attributes. Exactly one of `value` or `groupValues` must be provided. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per merchant, with total size of 102.4kB.",
       "id": "CustomAttribute",
       "properties": {
         "groupValues": {
@@ -7785,6 +8639,10 @@
           },
           "type": "array"
         },
+        "feedLabel": {
+          "description": "The feed label status is reported for.",
+          "type": "string"
+        },
         "itemsTotal": {
           "description": "The number of items in the feed that were processed.",
           "format": "uint64",
@@ -7872,15 +8730,19 @@
       "id": "DatafeedTarget",
       "properties": {
         "country": {
-          "description": "The country where the items in the feed will be included in the search index, represented as a CLDR territory code.",
+          "description": "Deprecated. Use `feedLabel` instead. The country where the items in the feed will be included in the search index, represented as a CLDR territory code.",
           "type": "string"
         },
         "excludedDestinations": {
-          "description": "The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center).",
+          "description": "The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center). Products that are excluded from all destinations for more than 7 days are automatically deleted.",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "feedLabel": {
+          "description": "Feed label for the DatafeedTarget. Either `country` or `feedLabel` is required. If both `feedLabel` and `country` is specified, the values must match. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-).",
+          "type": "string"
         },
         "includedDestinations": {
           "description": "The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.",
@@ -7892,6 +8754,13 @@
         "language": {
           "description": "The two-letter ISO 639-1 language of the items in the feed. Must be a valid language for `targets[].country`.",
           "type": "string"
+        },
+        "targetCountries": {
+          "description": "The countries where the items may be displayed. Represented as a CLDR territory code. Will be ignored for \"product inventory\" feeds.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8029,7 +8898,7 @@
           "type": "integer"
         },
         "country": {
-          "description": "The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that for multi-target datafeeds this parameter is required.",
+          "description": "Deprecated. Use `feedLabel` instead. The country to get the datafeed status for. If this parameter is provided, then `language` must also be provided. Note that for multi-target datafeeds this parameter is required.",
           "type": "string"
         },
         "datafeedId": {
@@ -8037,8 +8906,12 @@
           "format": "uint64",
           "type": "string"
         },
+        "feedLabel": {
+          "description": "The feed label to get the datafeed status for. If this parameter is provided, then `language` must also be provided. Note that for multi-target datafeeds this parameter is required.",
+          "type": "string"
+        },
         "language": {
-          "description": "The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that for multi-target datafeeds this parameter is required.",
+          "description": "The language to get the datafeed status for. If this parameter is provided then `country` must also be provided. Note that for multi-target datafeeds this parameter is required.",
           "type": "string"
         },
         "merchantId": {
@@ -8222,7 +9095,7 @@
       "properties": {
         "cutoffTime": {
           "$ref": "CutoffTime",
-          "description": "Business days cutoff time definition. If not configured the cutoff time will be defaulted to 8AM PST."
+          "description": "Business days cutoff time definition. If not configured, the cutoff time will be defaulted to 8AM PST. If local delivery, use Service.StoreConfig.CutoffConfig."
         },
         "handlingBusinessDayConfig": {
           "$ref": "BusinessDayConfig",
@@ -8269,6 +9142,22 @@
             "$ref": "WarehouseBasedDeliveryTime"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Distance": {
+      "description": "Distance represented by an integer and unit.",
+      "id": "Distance",
+      "properties": {
+        "unit": {
+          "description": "The distance unit. Acceptable values are `None`, `Miles`, and `Kilometers`.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The distance represented as a number.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8470,6 +9359,25 @@
       },
       "type": "object"
     },
+    "GenerateRecommendationsResponse": {
+      "description": "Response containing generated recommendations.",
+      "id": "GenerateRecommendationsResponse",
+      "properties": {
+        "recommendations": {
+          "description": "Recommendations generated for a request.",
+          "items": {
+            "$ref": "Recommendation"
+          },
+          "type": "array"
+        },
+        "responseToken": {
+          "description": "Output only. Response token is a string created for each `GenerateRecommendationsResponse`. This token doesn't expire, and is globally unique. This token must be used when reporting interactions for recommendations.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GmbAccounts": {
       "id": "GmbAccounts",
       "properties": {
@@ -8506,6 +9414,28 @@
         },
         "type": {
           "description": "The type of the Business Profile (User or Business).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsLink": {
+      "description": "\"Google Analytics Link\" sources can be used to get conversion data from an existing Google Analytics property into the linked Merchant Center account.",
+      "id": "GoogleAnalyticsLink",
+      "properties": {
+        "attributionSettings": {
+          "$ref": "AttributionSettings",
+          "description": "Output only. Attribution settings for the linked Google Analytics property.",
+          "readOnly": true
+        },
+        "propertyId": {
+          "description": "Required. Immutable. ID of the Google Analytics property the merchant is linked to.",
+          "format": "int64",
+          "type": "string"
+        },
+        "propertyName": {
+          "description": "Output only. Name of the Google Analytics property the merchant is linked to.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8645,6 +9575,17 @@
             "The floor defined in the rule is invalid. For example, it has the wrong sign which results in a floor < 0."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InsertCheckoutSettingsRequest": {
+      "description": "Request message for the `InsertCheckoutSettings` method.",
+      "id": "InsertCheckoutSettingsRequest",
+      "properties": {
+        "uriSettings": {
+          "$ref": "UrlSettings",
+          "description": "Required. The `UrlSettings` for the request. The presence of URL settings indicates `Checkout` enrollment."
         }
       },
       "type": "object"
@@ -9148,6 +10089,24 @@
       },
       "type": "object"
     },
+    "ListConversionSourcesResponse": {
+      "description": "Response message for the ListConversionSources method.",
+      "id": "ListConversionSourcesResponse",
+      "properties": {
+        "conversionSources": {
+          "description": "List of conversion sources.",
+          "items": {
+            "$ref": "ConversionSource"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to be used to fetch the next results page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListCssesResponse": {
       "description": "The response message for the `ListCsses` method",
       "id": "ListCssesResponse",
@@ -9180,6 +10139,24 @@
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListPromotionResponse": {
+      "description": "Response message for Promotions.List method.",
+      "id": "ListPromotionResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "promotions": {
+          "description": "List of all available promotions for the merchant.",
+          "items": {
+            "$ref": "Promotion"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -9437,6 +10414,30 @@
       },
       "type": "object"
     },
+    "MerchantCenterDestination": {
+      "description": "\"Merchant Center Destination\" sources can be used to send conversion events from a website using a Google tag directly to a Merchant Center account where the source is created.",
+      "id": "MerchantCenterDestination",
+      "properties": {
+        "attributionSettings": {
+          "$ref": "AttributionSettings",
+          "description": "Required. Attribution settings being used for the Merchant Center Destination."
+        },
+        "currencyCode": {
+          "description": "Required. Three-letter currency code (ISO 4217). The currency code defines in which currency the conversions sent to this destination will be reported in Merchant Center.",
+          "type": "string"
+        },
+        "destinationId": {
+          "description": "Output only. Merchant Center Destination ID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. Merchant-specified display name for the destination. This is the name that identifies the conversion source within the Merchant Center UI. Limited to 64 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MerchantOrderReturn": {
       "description": "Order return. Production access (all methods) requires the order manager role. Sandbox access does not.",
       "id": "MerchantOrderReturn",
@@ -9550,16 +10551,16 @@
       "id": "MethodQuota",
       "properties": {
         "method": {
-          "description": "The method name, for example “products.list”. Method name does not contain version because quota can be shared between different API versions of the same method.",
+          "description": "The method name, for example `products.list`. Method name does not contain version because quota can be shared between different API versions of the same method.",
           "type": "string"
         },
         "quotaLimit": {
-          "description": "The current quota limit, for example the maximum number of calls for the method.",
+          "description": "The current quota limit per day, meaning the maximum number of calls for the method.",
           "format": "int64",
           "type": "string"
         },
         "quotaUsage": {
-          "description": "The current quota usage, for example the number of calls for the method.",
+          "description": "The current quota usage, meaning the number of calls already made to the method.",
           "format": "int64",
           "type": "string"
         }
@@ -9576,7 +10577,7 @@
           "type": "number"
         },
         "aovMicros": {
-          "description": "Average order value - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions and customer_country_code.**",
+          "description": "Average order value in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions and customer_country_code.**",
           "format": "double",
           "type": "number"
         },
@@ -9591,7 +10592,7 @@
           "type": "number"
         },
         "conversionValueMicros": {
-          "description": "Value of conversions in micros attributed to the product, reported on the conversion date. The metric is currently available only for the FREE_PRODUCT_LISTING program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "description": "Value of conversions in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) attributed to the product, reported on the conversion date. The metric is currently available only for the FREE_PRODUCT_LISTING program. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
           "format": "int64",
           "type": "string"
         },
@@ -9626,7 +10627,7 @@
           "type": "number"
         },
         "orderedItemSalesMicros": {
-          "description": "Total price of ordered items. Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
+          "description": "Total price of ordered items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros). Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
@@ -9656,12 +10657,12 @@
           "type": "string"
         },
         "returnsMicros": {
-          "description": "Total price of ordered items sent back for return, reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
+          "description": "Total price of ordered items sent back for return in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
         "shippedItemSalesMicros": {
-          "description": "Total price of shipped items, reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
+          "description": "Total price of shipped items in micros (1 millionth of a standard unit, 1 USD = 1000000 micros), reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by customer_country_code.**",
           "format": "int64",
           "type": "string"
         },
@@ -10710,6 +11711,7 @@
           "type": "string"
         },
         "productDescription": {
+          "deprecated": true,
           "description": "Plain text description of this product (deprecated: Please use product_title instead).",
           "type": "string"
         },
@@ -10727,10 +11729,12 @@
           "type": "string"
         },
         "sku": {
+          "deprecated": true,
           "description": "Merchant SKU for this item (deprecated).",
           "type": "string"
         },
         "upc": {
+          "deprecated": true,
           "description": "Universal product code for this item (deprecated: Please use GTIN instead).",
           "type": "string"
         }
@@ -12171,6 +13175,14 @@
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#posInventory`\"",
           "type": "string"
         },
+        "pickupMethod": {
+          "description": "Optional. Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
+          "type": "string"
+        },
+        "pickupSla": {
+          "description": "Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
+          "type": "string"
+        },
         "price": {
           "$ref": "Price",
           "description": "Required. The current price of the item."
@@ -12208,6 +13220,14 @@
         },
         "itemId": {
           "description": "Required. A unique identifier for the item.",
+          "type": "string"
+        },
+        "pickupMethod": {
+          "description": "Optional. Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
+          "type": "string"
+        },
+        "pickupSla": {
+          "description": "Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
           "type": "string"
         },
         "price": {
@@ -12251,6 +13271,14 @@
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#posInventoryResponse`\".",
+          "type": "string"
+        },
+        "pickupMethod": {
+          "description": "Optional. Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
+          "type": "string"
+        },
+        "pickupSla": {
+          "description": "Optional. Expected date that an order will be ready for pickup relative to the order date. Must be submitted together with `pickupMethod`. For accepted attribute values, see the [local product inventory feed specification](https://support.google.com/merchants/answer/3061342).",
           "type": "string"
         },
         "price": {
@@ -12537,8 +13565,73 @@
       },
       "type": "object"
     },
+    "PriceCompetitiveness": {
+      "description": "Price competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`. https://support.google.com/merchants/answer/9626903",
+      "id": "PriceCompetitiveness",
+      "properties": {
+        "benchmarkPriceCurrencyCode": {
+          "description": "The price benchmark currency (ISO 4217 code).",
+          "type": "string"
+        },
+        "benchmarkPriceMicros": {
+          "description": "The latest available price benchmark in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) for the product's catalog in the benchmark country.",
+          "format": "int64",
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "The country of the price benchmark (ISO 3166 code).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PriceInsights": {
+      "description": "Price insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`. https://support.google.com/merchants/answer/11916926",
+      "id": "PriceInsights",
+      "properties": {
+        "predictedClicksChangeFraction": {
+          "description": "The predicted change in clicks as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in clicks.",
+          "format": "double",
+          "type": "number"
+        },
+        "predictedConversionsChangeFraction": {
+          "description": "The predicted change in conversions as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in conversions).",
+          "format": "double",
+          "type": "number"
+        },
+        "predictedGrossProfitChangeFraction": {
+          "description": "The predicted change in gross profit as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in gross profit.",
+          "format": "double",
+          "type": "number"
+        },
+        "predictedImpressionsChangeFraction": {
+          "description": "The predicted change in impressions as a fraction after introducing the suggested price compared to current active price. For example, 0.05 is a 5% predicted increase in impressions.",
+          "format": "double",
+          "type": "number"
+        },
+        "predictedMonthlyGrossProfitChangeCurrencyCode": {
+          "description": "The predicted monthly gross profit change currency (ISO 4217 code).",
+          "type": "string"
+        },
+        "predictedMonthlyGrossProfitChangeMicros": {
+          "description": "The predicted change in gross profit in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) after introducing the suggested price for a month compared to current active price.",
+          "format": "int64",
+          "type": "string"
+        },
+        "suggestedPriceCurrencyCode": {
+          "description": "The suggested price currency (ISO 4217 code).",
+          "type": "string"
+        },
+        "suggestedPriceMicros": {
+          "description": "The latest suggested price in micros (1 millionth of a standard unit, 1 USD = 1000000 micros) for the product.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Product": {
-      "description": " Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.",
+      "description": " Required product attributes are primarily defined by the product data specification. See the Product Data Specification Help Center article for information. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.",
       "id": "Product",
       "properties": {
         "additionalImageLinks": {
@@ -12591,9 +13684,23 @@
           "description": "URL for the canonical version of your item's landing page.",
           "type": "string"
         },
+        "certifications": {
+          "description": "Product [certification](https://support.google.com/merchants/answer/13528839), introduced for EU energy efficiency labeling compliance using the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database.",
+          "items": {
+            "$ref": "ProductCertification"
+          },
+          "type": "array"
+        },
         "channel": {
           "description": "Required. The item's channel (online or local). Acceptable values are: - \"`local`\" - \"`online`\" ",
           "type": "string"
+        },
+        "cloudExportAdditionalProperties": {
+          "description": "Extra fields to export to the Cloud Retail program.",
+          "items": {
+            "$ref": "CloudExportAdditionalProperties"
+          },
+          "type": "array"
         },
         "color": {
           "description": "Color of the item.",
@@ -12642,6 +13749,10 @@
           "description": "Description of the item.",
           "type": "string"
         },
+        "disclosureDate": {
+          "description": "The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information.",
+          "type": "string"
+        },
         "displayAdsId": {
           "description": "An identifier for an item for dynamic remarketing campaigns.",
           "type": "string"
@@ -12671,7 +13782,7 @@
           "type": "string"
         },
         "excludedDestinations": {
-          "description": "The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center).",
+          "description": "The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center). Products that are excluded from all destinations for more than 7 days are automatically deleted.",
           "items": {
             "type": "string"
           },
@@ -12686,7 +13797,7 @@
           "type": "string"
         },
         "feedLabel": {
-          "description": "Feed label for the item. Either `targetCountry` or `feedLabel` is required.",
+          "description": "Feed label for the item. Either `targetCountry` or `feedLabel` is required. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-).",
           "type": "string"
         },
         "gender": {
@@ -12702,7 +13813,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The REST ID of the product. Content API methods that operate on products take this as their `productId` parameter. The REST ID for a product is of the form channel:contentLanguage: targetCountry: offerId.",
+          "description": "The REST ID of the product. Content API methods that operate on products take this as their `productId` parameter. The REST ID for a product has one of the 2 forms channel:contentLanguage: targetCountry: offerId or channel:contentLanguage:feedLabel: offerId.",
           "type": "string"
         },
         "identifierExists": {
@@ -12735,6 +13846,13 @@
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#product`\"",
           "type": "string"
+        },
+        "lifestyleImageLinks": {
+          "description": "Additional URLs of lifestyle images of the item. Used to explicitly identify images that showcase your item in a real-world context. See the Help Center article for more information.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "link": {
           "description": "URL directly linking to your item's page on your website.",
@@ -12834,7 +13952,7 @@
           "description": "The length of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
         },
         "productTypes": {
-          "description": "Categories of the item (formatted as in products data specification).",
+          "description": "Categories of the item (formatted as in product data specification).",
           "items": {
             "type": "string"
           },
@@ -12860,7 +13978,7 @@
           "description": "Advertised sale price of the item."
         },
         "salePriceEffectiveDate": {
-          "description": "Date range during which the item is on sale (see products data specification ).",
+          "description": "Date range during which the item is on sale (see product data specification ).",
           "type": "string"
         },
         "sellOnGoogleQuantity": {
@@ -12926,7 +14044,7 @@
           "description": "Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract."
         },
         "targetCountry": {
-          "description": "Required. The CLDR territory code for the item.",
+          "description": "Required. The CLDR territory code for the item's country of sale.",
           "type": "string"
         },
         "taxCategory": {
@@ -12955,6 +14073,10 @@
         "unitPricingMeasure": {
           "$ref": "ProductUnitPricingMeasure",
           "description": "The measure and dimension of an item."
+        },
+        "virtualModelLink": {
+          "description": "URL of the 3D model of the item to provide more visuals.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -12973,6 +14095,99 @@
         "taxAmount": {
           "$ref": "Price",
           "description": "Tax value."
+        }
+      },
+      "type": "object"
+    },
+    "ProductCertification": {
+      "description": "Product [certification](https://support.google.com/merchants/answer/13528839), introduced for EU energy efficiency labeling compliance using the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database.",
+      "id": "ProductCertification",
+      "properties": {
+        "certificationAuthority": {
+          "description": "The certification authority, for example \"European_Commission\". Maximum length is 2000 characters.",
+          "type": "string"
+        },
+        "certificationCode": {
+          "description": "The certification code, for eaxample \"123456\". Maximum length is 2000 characters.",
+          "type": "string"
+        },
+        "certificationName": {
+          "description": "The name of the certification, for example \"EPREL\". Maximum length is 2000 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductCluster": {
+      "description": "Product cluster fields. A product cluster is a grouping for different offers that represent the same product. Values are only set for fields requested explicitly in the request's search query.",
+      "id": "ProductCluster",
+      "properties": {
+        "brand": {
+          "description": "Brand of the product cluster.",
+          "type": "string"
+        },
+        "brandInventoryStatus": {
+          "description": "Tells if there is at least one product of the brand currently `IN_STOCK` in your product feed across multiple countries, all products are `OUT_OF_STOCK` in your product feed, or `NOT_IN_INVENTORY`. The field doesn't take the Best Sellers report country filter into account.",
+          "enum": [
+            "INVENTORY_STATUS_UNSPECIFIED",
+            "IN_STOCK",
+            "OUT_OF_STOCK",
+            "NOT_IN_INVENTORY"
+          ],
+          "enumDescriptions": [
+            "Inventory status is unknown.",
+            "Merchant has a product for this product cluster or brand in stock.",
+            "Merchant has a product for this product cluster or brand in inventory but it is currently out of stock.",
+            "Merchant does not have a product for this product cluster or brand in inventory."
+          ],
+          "type": "string"
+        },
+        "categoryL1": {
+          "description": "Product category (1st level) of the product cluster, represented in Google's product taxonomy.",
+          "type": "string"
+        },
+        "categoryL2": {
+          "description": "Product category (2nd level) of the product cluster, represented in Google's product taxonomy.",
+          "type": "string"
+        },
+        "categoryL3": {
+          "description": "Product category (3rd level) of the product cluster, represented in Google's product taxonomy.",
+          "type": "string"
+        },
+        "categoryL4": {
+          "description": "Product category (4th level) of the product cluster, represented in Google's product taxonomy.",
+          "type": "string"
+        },
+        "categoryL5": {
+          "description": "Product category (5th level) of the product cluster, represented in Google's product taxonomy.",
+          "type": "string"
+        },
+        "inventoryStatus": {
+          "description": "Tells whether the product cluster is `IN_STOCK` in your product feed across multiple countries, `OUT_OF_STOCK` in your product feed, or `NOT_IN_INVENTORY` at all. The field doesn't take the Best Sellers report country filter into account.",
+          "enum": [
+            "INVENTORY_STATUS_UNSPECIFIED",
+            "IN_STOCK",
+            "OUT_OF_STOCK",
+            "NOT_IN_INVENTORY"
+          ],
+          "enumDescriptions": [
+            "Inventory status is unknown.",
+            "Merchant has a product for this product cluster or brand in stock.",
+            "Merchant has a product for this product cluster or brand in inventory but it is currently out of stock.",
+            "Merchant does not have a product for this product cluster or brand in inventory."
+          ],
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the product cluster.",
+          "type": "string"
+        },
+        "variantGtins": {
+          "description": "GTINs of example variants of the product cluster.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -13093,7 +14308,7 @@
           "type": "string"
         },
         "locationId": {
-          "description": "The numeric ID of a location that the shipping rate applies to as defined in the AdWords API.",
+          "description": "The numeric ID of a location that the shipping rate applies to as defined in the Google Ads API.",
           "format": "int64",
           "type": "string"
         },
@@ -13244,7 +14459,8 @@
           "type": "array"
         },
         "status": {
-          "description": "Destination approval status in `targetCountry` of the offer.",
+          "deprecated": true,
+          "description": "Deprecated. Destination approval status in `targetCountry` of the offer.",
           "type": "string"
         }
       },
@@ -13322,7 +14538,7 @@
           "type": "string"
         },
         "locationId": {
-          "description": "The numeric ID of a location that the tax rate applies to as defined in the AdWords API.",
+          "description": "The numeric ID of a location that the tax rate applies to as defined in the Google Ads API.",
           "format": "int64",
           "type": "string"
         },
@@ -13377,7 +14593,7 @@
       "type": "object"
     },
     "ProductView": {
-      "description": "Product fields. Values are only set for fields requested explicitly in the request's search query. Available only to selected merchants. Submit the [interest form](https://forms.gle/7Uy8htzAN8oNokz9A) to request access.",
+      "description": "Product fields. Values are only set for fields requested explicitly in the request's search query.",
       "id": "ProductView",
       "properties": {
         "aggregatedDestinationStatus": {
@@ -13404,6 +14620,26 @@
         },
         "brand": {
           "description": "Brand of the product.",
+          "type": "string"
+        },
+        "categoryL1": {
+          "description": "First level of the product category in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436).",
+          "type": "string"
+        },
+        "categoryL2": {
+          "description": "Second level of the product category in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436).",
+          "type": "string"
+        },
+        "categoryL3": {
+          "description": "Third level of the product category in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436).",
+          "type": "string"
+        },
+        "categoryL4": {
+          "description": "Fourth level of the product category in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436).",
+          "type": "string"
+        },
+        "categoryL5": {
+          "description": "Fifth level of the product category in [Google's product taxonomy](https://support.google.com/merchants/answer/6324436).",
           "type": "string"
         },
         "channel": {
@@ -13468,8 +14704,28 @@
           "type": "string"
         },
         "priceMicros": {
-          "description": "Product price specified as micros in the product currency. Absent in case the information about the price of the product is not available.",
+          "description": "Product price specified as micros (1 millionth of a standard unit, 1 USD = 1000000 micros) in the product currency. Absent in case the information about the price of the product is not available.",
           "format": "int64",
+          "type": "string"
+        },
+        "productTypeL1": {
+          "description": "First level of the product type in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324436).",
+          "type": "string"
+        },
+        "productTypeL2": {
+          "description": "Second level of the product type in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324436).",
+          "type": "string"
+        },
+        "productTypeL3": {
+          "description": "Third level of the product type in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324436).",
+          "type": "string"
+        },
+        "productTypeL4": {
+          "description": "Fourth level of the product type in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324436).",
+          "type": "string"
+        },
+        "productTypeL5": {
+          "description": "Fifth level of the product type in merchant's own [product taxonomy](https://support.google.com/merchants/answer/6324436).",
           "type": "string"
         },
         "shippingLabel": {
@@ -13574,6 +14830,10 @@
         "canonicalAttribute": {
           "description": "Canonical attribute name for attribute-specific issues.",
           "type": "string"
+        },
+        "code": {
+          "description": "Error code of the issue.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13638,7 +14898,7 @@
           "type": "string"
         },
         "updateMask": {
-          "description": "The comma-separated list of product attributes to be updated. Example: `\"title,salePrice\"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged. Only defined if the method is `update`.",
+          "description": "The comma-separated list of product attributes to be updated. Example: `\"title,salePrice\"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. *You must specify the update mask to delete attributes.* Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged. Only defined if the method is `update`.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -13736,6 +14996,7 @@
           "type": "array"
         },
         "includeAttributes": {
+          "deprecated": true,
           "description": "Deprecated: Setting this field has no effect and attributes are never included.",
           "type": "boolean"
         },
@@ -13835,7 +15096,7 @@
           "type": "array"
         },
         "contentLanguage": {
-          "description": "Required. The content language used as part of the unique identifier. `en` content language is available for all target countries. `fr` content language is available for `CA` and `FR` target countries, and `de` content language is available for `DE` target country.",
+          "description": "Required. The content language used as part of the unique identifier. `en` content language is available for all target countries. `fr` content language is available for `CA` and `FR` target countries. `de` content language is available for `DE` target country. `nl` content language is available for `NL` target country. `it` content language is available for `IT` target country. `pt` content language is available for `BR` target country. `ja` content language is available for `JP` target country. `ko` content language is available for `KR` target country.",
           "type": "string"
         },
         "couponValueType": {
@@ -14016,6 +15277,7 @@
           "type": "array"
         },
         "promotionDisplayDates": {
+          "deprecated": true,
           "description": "String representation of the promotion display dates. Deprecated. Use `promotion_display_time_period` instead.",
           "type": "string"
         },
@@ -14024,6 +15286,7 @@
           "description": "`TimePeriod` representation of the promotion's display dates."
         },
         "promotionEffectiveDates": {
+          "deprecated": true,
           "description": "String representation of the promotion effective dates. Deprecated. Use `promotion_effective_time_period` instead.",
           "type": "string"
         },
@@ -14033,6 +15296,15 @@
         },
         "promotionId": {
           "description": "Required. The user provided promotion ID to uniquely identify the promotion.",
+          "type": "string"
+        },
+        "promotionStatus": {
+          "$ref": "PromotionPromotionStatus",
+          "description": "Output only. The current status of the promotion.",
+          "readOnly": true
+        },
+        "promotionUrl": {
+          "description": "URL to the page on the merchant's site where the promotion shows. Local Inventory ads promotions throw an error if no promo url is included. URL is used to confirm that the promotion is valid and can be redeemed.",
           "type": "string"
         },
         "redemptionChannel": {
@@ -14059,8 +15331,113 @@
           },
           "type": "array"
         },
+        "storeApplicability": {
+          "description": "Whether the promotion applies to all stores, or only specified stores. Local Inventory ads promotions throw an error if no store applicability is included. An INVALID_ARGUMENT error is thrown if store_applicability is set to ALL_STORES and store_code or score_code_exclusion is set to a value.",
+          "enum": [
+            "STORE_APPLICABILITY_UNSPECIFIED",
+            "ALL_STORES",
+            "SPECIFIC_STORES"
+          ],
+          "enumDescriptions": [
+            "Which store codes the promotion applies to is unknown.",
+            "Promotion applies to all stores.",
+            "Promotion applies to only the specified stores."
+          ],
+          "type": "string"
+        },
+        "storeCode": {
+          "description": "Store codes to include for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "storeCodeExclusion": {
+          "description": "Store codes to exclude for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "targetCountry": {
-          "description": "Required. The target country used as part of the unique identifier. Can be `AU`, `CA`, `DE`, `FR`, `GB`, `IN` or `US`.",
+          "description": "Required. The target country used as part of the unique identifier. Can be `AU`, `CA`, `DE`, `FR`, `GB`, `IN`, `US`, `BR`, `ES`, `NL`, `JP`, `IT` or `KR`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PromotionPromotionStatus": {
+      "description": "The status of the promotion.",
+      "id": "PromotionPromotionStatus",
+      "properties": {
+        "creationDate": {
+          "description": "Date on which the promotion has been created in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, for example \"2020-01-02T09:00:00+01:00\" or \"2020-01-02T09:00:00Z\"",
+          "type": "string"
+        },
+        "destinationStatuses": {
+          "description": "The intended destinations for the promotion.",
+          "items": {
+            "$ref": "PromotionPromotionStatusDestinationStatus"
+          },
+          "type": "array"
+        },
+        "lastUpdateDate": {
+          "description": "Date on which the promotion status has been last updated in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, for example \"2020-01-02T09:00:00+01:00\" or \"2020-01-02T09:00:00Z\"",
+          "type": "string"
+        },
+        "promotionIssue": {
+          "description": "A list of issues associated with the promotion.",
+          "items": {
+            "$ref": "PromotionPromotionStatusPromotionIssue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PromotionPromotionStatusDestinationStatus": {
+      "description": "The destination status of the promotion.",
+      "id": "PromotionPromotionStatusDestinationStatus",
+      "properties": {
+        "destination": {
+          "description": "The name of the destination.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status for the specified destination.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "IN_REVIEW",
+            "REJECTED",
+            "LIVE",
+            "STOPPED",
+            "EXPIRED",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Unknown promotion state.",
+            "The promotion is under review.",
+            "The promotion is disapproved",
+            "The promotion is approved and active.",
+            "The promotion is stopped by merchant.",
+            "The promotion is no longer active.",
+            "The promotion is not stopped, and all reviews are approved, but the active date is in the future."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PromotionPromotionStatusPromotionIssue": {
+      "description": "The issue associated with the promotion.",
+      "id": "PromotionPromotionStatusPromotionIssue",
+      "properties": {
+        "code": {
+          "description": "Code of the issue.",
+          "type": "string"
+        },
+        "detail": {
+          "description": "Explanation of the issue.",
           "type": "string"
         }
       },
@@ -14123,6 +15500,144 @@
             "$ref": "Table"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Recommendation": {
+      "description": "Recommendations are suggested ways to improve your merchant account's performance. For example, to engage with a feature, or start using a new Google product.",
+      "id": "Recommendation",
+      "properties": {
+        "additionalCallToAction": {
+          "description": "Output only. CTAs of this recommendation. Repeated.",
+          "items": {
+            "$ref": "RecommendationCallToAction"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "additionalDescriptions": {
+          "description": "Output only. List of additional localized descriptions for a recommendation. Localication uses the `languageCode` field in `GenerateRecommendations` requests. Not all description types are guaranteed to be present and we recommend to rely on default description.",
+          "items": {
+            "$ref": "RecommendationDescription"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "creative": {
+          "description": "Output only. Any creatives attached to the recommendation. Repeated.",
+          "items": {
+            "$ref": "RecommendationCreative"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "defaultCallToAction": {
+          "$ref": "RecommendationCallToAction",
+          "description": "Optional. Default CTA of the recommendation."
+        },
+        "defaultDescription": {
+          "description": "Optional. Localized recommendation description. The localization the {@link `GenerateRecommendationsRequest.language_code`} field in {@link `GenerateRecommendationsRequest`} requests.",
+          "type": "string"
+        },
+        "numericalImpact": {
+          "description": "Optional. A numerical score of the impact from the recommendation's description. For example, a recommendation might suggest an upward trend in sales for a certain product. Higher number means larger impact.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "paid": {
+          "description": "Optional. Indicates whether a user needs to pay when they complete the user journey suggested by the recommendation.",
+          "type": "boolean"
+        },
+        "recommendationName": {
+          "description": "Optional. Localized recommendation name. The localization uses the {@link `GenerateRecommendationsRequest.language_code`} field in {@link `GenerateRecommendationsRequest`} requests.",
+          "type": "string"
+        },
+        "subType": {
+          "description": "Optional. Subtype of the recommendations. Only applicable when multiple recommendations can be generated per type, and is used as an identifier of recommendation under the same recommendation type.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Localized Recommendation Title. Localization uses the {@link `GenerateRecommendationsRequest.language_code`} field in {@link `GenerateRecommendationsRequest`} requests.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Type of the recommendation. List of currently available recommendation types: - OPPORTUNITY_CREATE_NEW_COLLECTION - OPPORTUNITY_CREATE_EMAIL_CAMPAIGN",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecommendationCallToAction": {
+      "description": "Call to action (CTA) that explains how a merchant can implement this recommendation",
+      "id": "RecommendationCallToAction",
+      "properties": {
+        "intent": {
+          "description": "Output only. Intent of the action. This value describes the intent (for example, `OPEN_CREATE_EMAIL_CAMPAIGN_FLOW`) and can vary from recommendation to recommendation. This value can change over time for the same recommendation. Currently available intent values: - OPEN_CREATE_EMAIL_CAMPAIGN_FLOW: Opens a user journey where they can create a marketing email campaign. (No default URL) - OPEN_CREATE_COLLECTION_TAB: Opens a user journey where they can [create a collection](https://support.google.com/merchants/answer/9703228) for their Merchant account. (No default URL)",
+          "readOnly": true,
+          "type": "string"
+        },
+        "localizedText": {
+          "description": "Output only. Localized text of the CTA. Optional.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Optional. URL of the CTA. This field will only be set for some recommendations where there is a suggested landing URL. Otherwise it will be set to an empty string. We recommend developers to use their own custom landing page according to the description of the intent field above when this uri field is empty.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecommendationCreative": {
+      "description": "Creative is a multimedia attachment to recommendation that can be used on the frontend.",
+      "id": "RecommendationCreative",
+      "properties": {
+        "type": {
+          "description": "Type of the creative.",
+          "enum": [
+            "CREATIVE_TYPE_UNSPECIFIED",
+            "VIDEO",
+            "PHOTO"
+          ],
+          "enumDescriptions": [
+            "Default value. If provided, shall be considered invalid.",
+            "Video creatives.",
+            "Photo creatives."
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "URL of the creative.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecommendationDescription": {
+      "description": "Google-provided description for the recommendation.",
+      "id": "RecommendationDescription",
+      "properties": {
+        "text": {
+          "description": "Output only. Text of the description.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Type of the description.",
+          "enum": [
+            "DESCRIPTION_TYPE_UNSPECIFIED",
+            "SHORT",
+            "LONG"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Short description.",
+            "Long description."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -14350,17 +15865,74 @@
       },
       "type": "object"
     },
+    "ReportInteractionRequest": {
+      "description": "Request to report interactions on a recommendation.",
+      "id": "ReportInteractionRequest",
+      "properties": {
+        "interactionType": {
+          "description": "Required. Type of the interaction that is reported, for example INTERACTION_CLICK.",
+          "enum": [
+            "INTERACTION_TYPE_UNSPECIFIED",
+            "INTERACTION_DISMISS",
+            "INTERACTION_CLICK"
+          ],
+          "enumDescriptions": [
+            "Default value. If provided, the service will throw ApiError with description \"Required parameter: interactionType\".",
+            "When a recommendation is dismissed.",
+            "When a recommendation is clicked."
+          ],
+          "type": "string"
+        },
+        "responseToken": {
+          "description": "Required. Token of the response when recommendation was returned.",
+          "type": "string"
+        },
+        "subtype": {
+          "description": "Optional. Subtype of the recommendations this interaction happened on. This field must be set only to the value that is returned by {@link `RecommendationsService.GenerateRecommendations`} call.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of the recommendations on which this interaction happened. This field must be set only to the value that is returned by {@link `GenerateRecommendationsResponse`} call.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReportRow": {
       "description": "Result row returned from the search query.",
       "id": "ReportRow",
       "properties": {
+        "bestSellers": {
+          "$ref": "BestSellers",
+          "description": "Best sellers fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersProductClusterView` or `BestSellersBrandView`."
+        },
+        "brand": {
+          "$ref": "Brand",
+          "description": "Brand fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersBrandView`."
+        },
+        "competitiveVisibility": {
+          "$ref": "CompetitiveVisibility",
+          "description": "Competitive visibility fields requested by the merchant in the query. Field values are only set if the merchant queries `CompetitiveVisibilityTopMerchantView`, `CompetitiveVisibilityBenchmarkView` or `CompetitiveVisibilityCompetitorView`."
+        },
         "metrics": {
           "$ref": "Metrics",
           "description": "Metrics requested by the merchant in the query. Metric values are only set for metrics requested explicitly in the query."
         },
+        "priceCompetitiveness": {
+          "$ref": "PriceCompetitiveness",
+          "description": "Price competitiveness fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceCompetitivenessProductView`."
+        },
+        "priceInsights": {
+          "$ref": "PriceInsights",
+          "description": "Price insights fields requested by the merchant in the query. Field values are only set if the merchant queries `PriceInsightsProductView`."
+        },
+        "productCluster": {
+          "$ref": "ProductCluster",
+          "description": "Product cluster fields requested by the merchant in the query. Field values are only set if the merchant queries `BestSellersProductClusterView`."
+        },
         "productView": {
           "$ref": "ProductView",
-          "description": "Product fields requested by the merchant in the query. Field values are only set if the merchant queries `ProductView`. Available only to selected merchants. Submit the [interest form](https://forms.gle/7Uy8htzAN8oNokz9A) to request access."
+          "description": "Product fields requested by the merchant in the query. Field values are only set if the merchant queries `ProductView`."
         },
         "segments": {
           "$ref": "Segments",
@@ -14380,6 +15952,7 @@
         },
         "buyboxWinningProductStats": {
           "$ref": "RepricingProductReportBuyboxWinningProductStats",
+          "deprecated": true,
           "description": "Stats specific to buybox winning rules for product report (deprecated)."
         },
         "date": {
@@ -14451,7 +16024,7 @@
       "type": "object"
     },
     "RepricingRule": {
-      "description": "Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met. Next ID: 24",
+      "description": "Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met.",
       "id": "RepricingRule",
       "properties": {
         "cogsBasedRule": {
@@ -14627,6 +16200,7 @@
       "properties": {
         "buyboxWinningRuleStats": {
           "$ref": "RepricingRuleReportBuyboxWinningRuleStats",
+          "deprecated": true,
           "description": "Stats specific to buybox winning rules for rule report (deprecated)."
         },
         "date": {
@@ -15656,7 +17230,74 @@
           "type": "array"
         },
         "shipmentType": {
-          "description": "Type of locations this service ships orders to. Acceptable values are: - \"`delivery`\" - \"`pickup`\" ",
+          "description": "Type of locations this service ships orders to. Acceptable values are: - \"`delivery`\" - \"`pickup`\" - \"`local_delivery`\" ",
+          "type": "string"
+        },
+        "storeConfig": {
+          "$ref": "ServiceStoreConfig",
+          "description": "A list of stores your products are delivered from. This is only available for the local delivery shipment type."
+        }
+      },
+      "type": "object"
+    },
+    "ServiceStoreConfig": {
+      "description": "Stores that provide local delivery. Only valid with local delivery fulfillment.",
+      "id": "ServiceStoreConfig",
+      "properties": {
+        "cutoffConfig": {
+          "$ref": "ServiceStoreConfigCutoffConfig",
+          "description": "Time local delivery ends for the day. This can be either `local_cutoff_time` or `store_close_offset_hours`, if both are provided an error is thrown."
+        },
+        "serviceRadius": {
+          "$ref": "Distance",
+          "description": "Maximum delivery radius. Only needed for local delivery fulfillment type."
+        },
+        "storeCodes": {
+          "description": "A list of store codes that provide local delivery. If empty, then `store_service_type` must be `all_stores`, or an error is thrown. If not empty, then `store_service_type` must be `selected_stores`, or an error is thrown.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "storeServiceType": {
+          "description": "Indicates whether all stores listed by this merchant provide local delivery or not. Acceptable values are `all stores` and `selected stores`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceStoreConfigCutoffConfig": {
+      "description": "Time local delivery ends for the day based on the local timezone of the store. `local_cutoff_time` and `store_close_offset_hours` are mutually exclusive.",
+      "id": "ServiceStoreConfigCutoffConfig",
+      "properties": {
+        "localCutoffTime": {
+          "$ref": "ServiceStoreConfigCutoffConfigLocalCutoffTime",
+          "description": "Time in hours and minutes in the local timezone when local delivery ends."
+        },
+        "noDeliveryPostCutoff": {
+          "description": "Merchants can opt-out of showing n+1 day local delivery when they have a shipping service configured to n day local delivery. For example, if the shipping service defines same-day delivery, and it's past the cut-off, setting this field to `true` results in the calculated shipping service rate returning `NO_DELIVERY_POST_CUTOFF`. In the same example, setting this field to `false` results in the calculated shipping time being one day. This is only for local delivery.",
+          "type": "boolean"
+        },
+        "storeCloseOffsetHours": {
+          "description": "Represents cutoff time as the number of hours before store closing. Mutually exclusive with other fields (hour and minute).",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceStoreConfigCutoffConfigLocalCutoffTime": {
+      "description": "Time in hours and minutes in the local timezone when local delivery ends.",
+      "id": "ServiceStoreConfigCutoffConfigLocalCutoffTime",
+      "properties": {
+        "hour": {
+          "description": "Hour local delivery orders must be placed by to process the same day.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minute": {
+          "description": "Minute local delivery orders must be placed by to process the same day.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -16604,6 +18245,12 @@
       },
       "type": "object"
     },
+    "UndeleteConversionSourceRequest": {
+      "description": "Request message for the UndeleteConversionSource method.",
+      "id": "UndeleteConversionSourceRequest",
+      "properties": {},
+      "type": "object"
+    },
     "UnitInvoice": {
       "id": "UnitInvoice",
       "properties": {
@@ -16655,6 +18302,21 @@
         },
         "taxType": {
           "description": "[required] Type of the tax. Acceptable values are: - \"`otherFee`\" - \"`otherFeeTax`\" - \"`sales`\" ",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UrlSettings": {
+      "description": "Specifications related to the `Checkout` URL. The `UriTemplate` is of the form `https://www.mystore.com/checkout?item_id={id}` where `{id}` will be automatically replaced with data from the merchant account with this attribute [offer_id](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.offer_id)",
+      "id": "UrlSettings",
+      "properties": {
+        "cartUriTemplate": {
+          "description": "URL template when the placeholders are expanded will redirect the buyer to the cart page on the merchant website with the selected item in cart.",
+          "type": "string"
+        },
+        "checkoutUriTemplate": {
+          "description": "URL template when the placeholders are expanded will redirect the buyer to the merchant checkout page with the item in the cart.",
           "type": "string"
         }
       },

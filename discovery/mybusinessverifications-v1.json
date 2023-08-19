@@ -256,7 +256,7 @@
       }
     }
   },
-  "revision": "20220817",
+  "revision": "20230207",
   "rootUrl": "https://mybusinessverifications.googleapis.com/",
   "schemas": {
     "AddressVerificationData": {
@@ -516,6 +516,10 @@
       "description": "A verification represents a verification attempt on a location.",
       "id": "Verification",
       "properties": {
+        "announcement": {
+          "description": "Optional. Response announcement set only if the method is VETTED_PARTNER.",
+          "type": "string"
+        },
         "createTime": {
           "description": "The timestamp when the verification is requested.",
           "format": "google-datetime",
@@ -539,7 +543,7 @@
             "Make a phone call with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Send an SMS with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Verify the location without additional user action. This option may not be available for all locations.",
-            "Used for vetted [partners](https://support.google.com/business/answer/7674102). This option may not be available for all locations."
+            "This option may not be available for all locations."
           ],
           "type": "string"
         },
@@ -574,6 +578,10 @@
           "$ref": "AddressVerificationData",
           "description": "Set only if the method is MAIL."
         },
+        "announcement": {
+          "description": "Set only if the method is VETTED_PARTNER.",
+          "type": "string"
+        },
         "emailData": {
           "$ref": "EmailVerificationData",
           "description": "Set only if the method is EMAIL."
@@ -600,7 +608,7 @@
             "Make a phone call with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Send an SMS with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Verify the location without additional user action. This option may not be available for all locations.",
-            "Used for vetted [partners](https://support.google.com/business/answer/7674102). This option may not be available for all locations."
+            "This option may not be available for all locations."
           ],
           "type": "string"
         }
@@ -667,7 +675,7 @@
             "Make a phone call with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Send an SMS with a verification PIN to a specific phone number. The PIN is used to complete verification with Google.",
             "Verify the location without additional user action. This option may not be available for all locations.",
-            "Used for vetted [partners](https://support.google.com/business/answer/7674102). This option may not be available for all locations."
+            "This option may not be available for all locations."
           ],
           "type": "string"
         },

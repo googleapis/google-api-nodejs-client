@@ -1,5 +1,44 @@
 # Changelog
 
+## [3.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v3.0.3...genomics-v3.0.4) (2023-08-17)
+
+
+### Bug Fixes
+
+* **genomics:** update the API ([c64bc84](https://github.com/googleapis/google-api-nodejs-client/commit/c64bc848cbdb14bc01ab7622ba433ede797b6cc1))
+
+## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v3.0.2...genomics-v3.0.3) (2023-08-09)
+
+
+### Bug Fixes
+
+* **genomics:** update the API ([c64bc84](https://github.com/googleapis/google-api-nodejs-client/commit/c64bc848cbdb14bc01ab7622ba433ede797b6cc1))
+
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v3.0.1...genomics-v3.0.2) (2023-07-10)
+
+
+### Bug Fixes
+
+* **genomics:** update the API ([3ecd158](https://github.com/googleapis/google-api-nodejs-client/commit/3ecd158d3fe250af95a8370689f7fecca3b0ef40))
+
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v3.0.0...genomics-v3.0.1) (2023-07-10)
+
+
+### Bug Fixes
+
+* **genomics:** update the API ([3ecd158](https://github.com/googleapis/google-api-nodejs-client/commit/3ecd158d3fe250af95a8370689f7fecca3b0ef40))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v2.0.3...genomics-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v2.0.2...genomics-v2.0.3) (2022-09-21)
 
 

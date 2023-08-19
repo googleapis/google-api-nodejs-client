@@ -187,7 +187,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "ondemandscanning.projects.locations.operations.list",
@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20221024",
+  "revision": "20230807",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -419,6 +419,7 @@
       "id": "AnalyzePackagesRequestV1",
       "properties": {
         "includeOsvData": {
+          "deprecated": true,
           "description": "[DEPRECATED] Whether to include OSV data in the scan. For backwards compatibility reasons, this field can be neither removed nor renamed.",
           "type": "boolean"
         },
@@ -506,10 +507,74 @@
       },
       "type": "object"
     },
+    "BinarySourceInfo": {
+      "id": "BinarySourceInfo",
+      "properties": {
+        "binaryVersion": {
+          "$ref": "PackageVersion",
+          "description": "The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed. See b/175908657#comment15."
+        },
+        "sourceVersion": {
+          "$ref": "PackageVersion",
+          "description": "The source package. Similar to the above, this is significant when the source is different than the binary itself. Since the top-level package/version fields are based on an if/else, we need a separate field for both binary and source if we want to know definitively where the data is coming from."
+        }
+      },
+      "type": "object"
+    },
+    "BuildDefinition": {
+      "id": "BuildDefinition",
+      "properties": {
+        "buildType": {
+          "type": "string"
+        },
+        "externalParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "internalParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "resolvedDependencies": {
+          "items": {
+            "$ref": "ResourceDescriptor"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BuildMetadata": {
+      "id": "BuildMetadata",
+      "properties": {
+        "finishedOn": {
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "invocationId": {
+          "type": "string"
+        },
+        "startedOn": {
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BuildOccurrence": {
       "description": "Details of a build occurrence.",
       "id": "BuildOccurrence",
       "properties": {
+        "inTotoSlsaProvenanceV1": {
+          "$ref": "InTotoSlsaProvenanceV1",
+          "description": "In-Toto Slsa Provenance V1 represents a slsa provenance meeting the slsa spec, wrapped in an in-toto statement. This allows for direct jsonification of a to-spec in-toto slsa statement with a to-spec slsa provenance."
+        },
         "intotoProvenance": {
           "$ref": "InTotoProvenance",
           "description": "Deprecated. See InTotoStatement for the replacement. In-toto Provenance representation as defined in spec."
@@ -617,9 +682,11 @@
           "enum": [
             "ATTACK_COMPLEXITY_UNSPECIFIED",
             "ATTACK_COMPLEXITY_LOW",
-            "ATTACK_COMPLEXITY_HIGH"
+            "ATTACK_COMPLEXITY_HIGH",
+            "ATTACK_COMPLEXITY_MEDIUM"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
@@ -664,9 +731,13 @@
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -684,9 +755,13 @@
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -707,9 +782,13 @@
             "IMPACT_UNSPECIFIED",
             "IMPACT_HIGH",
             "IMPACT_LOW",
-            "IMPACT_NONE"
+            "IMPACT_NONE",
+            "IMPACT_PARTIAL",
+            "IMPACT_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -1004,6 +1083,10 @@
           "description": "The last time this resource was scanned.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "sbomStatus": {
+          "$ref": "SBOMStatus",
+          "description": "The status of an SBOM generation."
         }
       },
       "type": "object"
@@ -1335,6 +1418,28 @@
       },
       "type": "object"
     },
+    "InTotoSlsaProvenanceV1": {
+      "id": "InTotoSlsaProvenanceV1",
+      "properties": {
+        "_type": {
+          "description": "InToto spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement",
+          "type": "string"
+        },
+        "predicate": {
+          "$ref": "SlsaProvenanceV1"
+        },
+        "predicateType": {
+          "type": "string"
+        },
+        "subject": {
+          "items": {
+            "$ref": "Subject"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "InTotoStatement": {
       "description": "Spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement The serialized InTotoStatement will be stored as Envelope.payload. Envelope.payloadType is always \"application/vnd.in-toto+json\".",
       "id": "InTotoStatement",
@@ -1361,6 +1466,37 @@
             "$ref": "Subject"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Justification": {
+      "description": "Justification provides the justification when the state of the assessment if NOT_AFFECTED.",
+      "id": "Justification",
+      "properties": {
+        "details": {
+          "description": "Additional details on why this justification was chosen.",
+          "type": "string"
+        },
+        "justificationType": {
+          "description": "The justification type for this vulnerability.",
+          "enum": [
+            "JUSTIFICATION_TYPE_UNSPECIFIED",
+            "COMPONENT_NOT_PRESENT",
+            "VULNERABLE_CODE_NOT_PRESENT",
+            "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+            "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+            "INLINE_MITIGATIONS_ALREADY_EXIST"
+          ],
+          "enumDescriptions": [
+            "JUSTIFICATION_TYPE_UNSPECIFIED.",
+            "The vulnerable component is not present in the product.",
+            "The vulnerable code is not present. Typically this case occurs when source code is configured or built in a way that excludes the vulnerable code.",
+            "The vulnerable code can not be executed. Typically this case occurs when the product includes the vulnerable code but does not call or use the vulnerable code.",
+            "The vulnerable code cannot be controlled by an attacker to exploit the vulnerability.",
+            "The product includes built-in protections or features that prevent exploitation of the vulnerability. These built-in protections cannot be subverted by the attacker and cannot be configured or disabled by the user. These mitigations completely prevent exploitation based on known attack vectors."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1469,6 +1605,18 @@
         "version": {
           "$ref": "Version",
           "description": "Deprecated. The version installed at this location."
+        }
+      },
+      "type": "object"
+    },
+    "Maintainer": {
+      "id": "Maintainer",
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -1590,7 +1738,9 @@
             "ATTESTATION",
             "UPGRADE",
             "COMPLIANCE",
-            "DSSE_ATTESTATION"
+            "DSSE_ATTESTATION",
+            "VULNERABILITY_ASSESSMENT",
+            "SBOM_REFERENCE"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -1603,7 +1753,9 @@
             "This represents a logical \"role\" that can attest to artifacts.",
             "This represents an available package upgrade.",
             "This represents a Compliance Note",
-            "This represents a DSSE attestation Note"
+            "This represents a DSSE attestation Note",
+            "This represents a Vulnerability Assessment.",
+            "This represents an SBOM Reference."
           ],
           "type": "string"
         },
@@ -1626,6 +1778,10 @@
         "resourceUri": {
           "description": "Required. Immutable. A URI that represents the resource for which the occurrence applies. For example, `https://gcr.io/project/image@sha256:123abc` for a Docker image.",
           "type": "string"
+        },
+        "sbomReference": {
+          "$ref": "SBOMReferenceOccurrence",
+          "description": "Describes a specific SBOM reference occurrences."
         },
         "updateTime": {
           "description": "Output only. The time this occurrence was last updated.",
@@ -1672,7 +1828,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -1681,6 +1837,21 @@
     "PackageData": {
       "id": "PackageData",
       "properties": {
+        "architecture": {
+          "description": "The architecture of the package.",
+          "type": "string"
+        },
+        "binarySourceInfo": {
+          "description": "A bundle containing the binary and source information.",
+          "items": {
+            "$ref": "BinarySourceInfo"
+          },
+          "type": "array"
+        },
+        "binaryVersion": {
+          "$ref": "PackageVersion",
+          "description": "DEPRECATED"
+        },
         "cpeUri": {
           "description": "The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which the vulnerability may manifest. Examples include distro or storage location for vulnerable jar.",
           "type": "string"
@@ -1703,6 +1874,10 @@
           "description": "HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.",
           "type": "string"
         },
+        "maintainer": {
+          "$ref": "Maintainer",
+          "description": "The maintainer of the package."
+        },
         "os": {
           "description": "The OS affected by a vulnerability Used to generate the cpe_uri for OS packages",
           "type": "string"
@@ -1722,14 +1897,18 @@
             "OS",
             "MAVEN",
             "GO",
-            "GO_STDLIB"
+            "GO_STDLIB",
+            "PYPI",
+            "NPM"
           ],
           "enumDescriptions": [
             "",
             "Operating System",
             "Java packages from Maven.",
             "Go third-party packages.",
-            "Go toolchain + standard library packages."
+            "Go toolchain + standard library packages.",
+            "Python packages.",
+            "NPM packages."
           ],
           "type": "string"
         },
@@ -1739,6 +1918,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "sourceVersion": {
+          "$ref": "PackageVersion",
+          "description": "DEPRECATED"
         },
         "unused": {
           "type": "string"
@@ -1870,6 +2053,18 @@
       },
       "type": "object"
     },
+    "PackageVersion": {
+      "id": "PackageVersion",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProjectRepoId": {
       "description": "Selects a repo using a Google Cloud Platform project ID (e.g., winged-cargo-31) and a repo name within that project.",
       "id": "ProjectRepoId",
@@ -1881,6 +2076,27 @@
         "repoName": {
           "description": "The name of the repo. Leave empty for the default repo.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProvenanceBuilder": {
+      "id": "ProvenanceBuilder",
+      "properties": {
+        "builderDependencies": {
+          "items": {
+            "$ref": "ResourceDescriptor"
+          },
+          "type": "array"
+        },
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
         }
       },
       "type": "object"
@@ -1942,6 +2158,41 @@
       },
       "type": "object"
     },
+    "Remediation": {
+      "description": "Specifies details on how to handle (and presumably, fix) a vulnerability.",
+      "id": "Remediation",
+      "properties": {
+        "details": {
+          "description": "Contains a comprehensive human-readable discussion of the remediation.",
+          "type": "string"
+        },
+        "remediationType": {
+          "description": "The type of remediation that can be applied.",
+          "enum": [
+            "REMEDIATION_TYPE_UNSPECIFIED",
+            "MITIGATION",
+            "NO_FIX_PLANNED",
+            "NONE_AVAILABLE",
+            "VENDOR_FIX",
+            "WORKAROUND"
+          ],
+          "enumDescriptions": [
+            "No remediation type specified.",
+            "A MITIGATION is available.",
+            "No fix is planned.",
+            "Not available.",
+            "A vendor fix is available.",
+            "A workaround is available."
+          ],
+          "type": "string"
+        },
+        "remediationUri": {
+          "$ref": "RelatedUrl",
+          "description": "Contains the URL where to obtain the remediation."
+        }
+      },
+      "type": "object"
+    },
     "RepoId": {
       "description": "A unique identifier for a Cloud Repo.",
       "id": "RepoId",
@@ -1952,6 +2203,157 @@
         },
         "uid": {
           "description": "A server-assigned, globally unique identifier.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceDescriptor": {
+      "id": "ResourceDescriptor",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "any"
+          },
+          "type": "object"
+        },
+        "content": {
+          "format": "byte",
+          "type": "string"
+        },
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "downloadLocation": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RunDetails": {
+      "id": "RunDetails",
+      "properties": {
+        "builder": {
+          "$ref": "ProvenanceBuilder"
+        },
+        "byproducts": {
+          "items": {
+            "$ref": "ResourceDescriptor"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "$ref": "BuildMetadata"
+        }
+      },
+      "type": "object"
+    },
+    "SBOMReferenceOccurrence": {
+      "description": "The occurrence representing an SBOM reference as applied to a specific resource. The occurrence follows the DSSE specification. See https://github.com/secure-systems-lab/dsse/blob/master/envelope.md for more details.",
+      "id": "SBOMReferenceOccurrence",
+      "properties": {
+        "payload": {
+          "$ref": "SbomReferenceIntotoPayload",
+          "description": "The actual payload that contains the SBOM reference data."
+        },
+        "payloadType": {
+          "description": "The kind of payload that SbomReferenceIntotoPayload takes. Since it's in the intoto format, this value is expected to be 'application/vnd.in-toto+json'.",
+          "type": "string"
+        },
+        "signatures": {
+          "description": "The signatures over the payload.",
+          "items": {
+            "$ref": "EnvelopeSignature"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SBOMStatus": {
+      "description": "The status of an SBOM generation.",
+      "id": "SBOMStatus",
+      "properties": {
+        "error": {
+          "description": "If there was an error generating an SBOM, this will indicate what that error was.",
+          "type": "string"
+        },
+        "sbomState": {
+          "description": "The progress of the SBOM generation.",
+          "enum": [
+            "SBOM_STATE_UNSPECIFIED",
+            "PENDING",
+            "COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Default unknown state.",
+            "SBOM scanning is pending.",
+            "SBOM scanning has completed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SbomReferenceIntotoPayload": {
+      "description": "The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details.",
+      "id": "SbomReferenceIntotoPayload",
+      "properties": {
+        "_type": {
+          "description": "Identifier for the schema of the Statement.",
+          "type": "string"
+        },
+        "predicate": {
+          "$ref": "SbomReferenceIntotoPredicate",
+          "description": "Additional parameters of the Predicate. Includes the actual data about the SBOM."
+        },
+        "predicateType": {
+          "description": "URI identifying the type of the Predicate.",
+          "type": "string"
+        },
+        "subject": {
+          "description": "Set of software artifacts that the attestation applies to. Each element represents a single software artifact.",
+          "items": {
+            "$ref": "Subject"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SbomReferenceIntotoPredicate": {
+      "description": "A predicate which describes the SBOM being referenced.",
+      "id": "SbomReferenceIntotoPredicate",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of algorithm to digest of the contents of the SBOM.",
+          "type": "object"
+        },
+        "location": {
+          "description": "The location of the SBOM.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The mime type of the SBOM.",
+          "type": "string"
+        },
+        "referrerId": {
+          "description": "The person or system referring this predicate to the consumer.",
           "type": "string"
         }
       },
@@ -2050,6 +2452,19 @@
         "recipe": {
           "$ref": "SlsaRecipe",
           "description": "Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required"
+        }
+      },
+      "type": "object"
+    },
+    "SlsaProvenanceV1": {
+      "description": "Keep in sync with schema at https://github.com/slsa-framework/slsa/blob/main/docs/provenance/schema/v1/provenance.proto Builder renamed to ProvenanceBuilder because of Java conflicts.",
+      "id": "SlsaProvenanceV1",
+      "properties": {
+        "buildDefinition": {
+          "$ref": "BuildDefinition"
+        },
+        "runDetails": {
+          "$ref": "RunDetails"
         }
       },
       "type": "object"
@@ -2313,6 +2728,69 @@
       },
       "type": "object"
     },
+    "VexAssessment": {
+      "description": "VexAssessment provides all publisher provided Vex information that is related to this vulnerability.",
+      "id": "VexAssessment",
+      "properties": {
+        "cve": {
+          "deprecated": true,
+          "description": "Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability. Deprecated: Use vulnerability_id instead to denote CVEs.",
+          "type": "string"
+        },
+        "impacts": {
+          "description": "Contains information about the impact of this vulnerability, this will change with time.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "justification": {
+          "$ref": "Justification",
+          "description": "Justification provides the justification when the state of the assessment if NOT_AFFECTED."
+        },
+        "noteName": {
+          "description": "The VulnerabilityAssessment note from which this VexAssessment was generated. This will be of the form: `projects/[PROJECT_ID]/notes/[NOTE_ID]`.",
+          "type": "string"
+        },
+        "relatedUris": {
+          "description": "Holds a list of references associated with this vulnerability item and assessment.",
+          "items": {
+            "$ref": "RelatedUrl"
+          },
+          "type": "array"
+        },
+        "remediations": {
+          "description": "Specifies details on how to handle (and presumably, fix) a vulnerability.",
+          "items": {
+            "$ref": "Remediation"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Provides the state of this Vulnerability assessment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "AFFECTED",
+            "NOT_AFFECTED",
+            "FIXED",
+            "UNDER_INVESTIGATION"
+          ],
+          "enumDescriptions": [
+            "No state is specified.",
+            "This product is known to be affected by this vulnerability.",
+            "This product is known to be not affected by this vulnerability.",
+            "This product contains a fix for this vulnerability.",
+            "It is not known yet whether these versions are or are not affected by the vulnerability. However, it is still under investigation."
+          ],
+          "type": "string"
+        },
+        "vulnerabilityId": {
+          "description": "The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "VulnerabilityOccurrence": {
       "description": "An occurrence of a severity vulnerability on a resource.",
       "id": "VulnerabilityOccurrence",
@@ -2321,6 +2799,10 @@
           "description": "Output only. The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.",
           "format": "float",
           "type": "number"
+        },
+        "cvssV2": {
+          "$ref": "CVSS",
+          "description": "The cvss v2 score for the vulnerability."
         },
         "cvssVersion": {
           "description": "Output only. CVSS version used to populate cvss_score and severity.",
@@ -2409,6 +2891,9 @@
         "type": {
           "description": "The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).",
           "type": "string"
+        },
+        "vexAssessment": {
+          "$ref": "VexAssessment"
         }
       },
       "type": "object"

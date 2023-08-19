@@ -1,5 +1,35 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v1.1.0...smartdevicemanagement-v2.0.0) (2023-08-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **smartdevicemanagement:** This release has breaking changes.
+
+### Features
+
+* **smartdevicemanagement:** update the API ([cc5c86e](https://github.com/googleapis/google-api-nodejs-client/commit/cc5c86e75815e78f3eb66823581fad281ca31be2))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v1.0.0...smartdevicemanagement-v1.1.0) (2023-07-18)
+
+
+### Features
+
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+* **smartdevicemanagement:** update the API ([dd15bc4](https://github.com/googleapis/google-api-nodejs-client/commit/dd15bc4a61d10efd612fe25df2d1d229b12a3bf4))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v0.4.2...smartdevicemanagement-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.4.2](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v0.4.1...smartdevicemanagement-v0.4.2) (2022-09-21)
 
 

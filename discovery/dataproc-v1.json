@@ -380,7 +380,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes the batch workload resource. If the batch is not in terminal state, the delete fails and the response returns FAILED_PRECONDITION.",
+                  "description": "Deletes the batch workload resource. If the batch is not in a CANCELLED, SUCCEEDED or FAILED State, the delete operation fails and the response returns FAILED_PRECONDITION.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/batches/{batchesId}",
                   "httpMethod": "DELETE",
                   "id": "dataproc.projects.locations.batches.delete",
@@ -438,6 +438,16 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter for the batches to return in the response.A filter is a logical expression constraining the values of various fields in each batch resource. Filters are case sensitive, and may contain multiple clauses combined with logical operators (AND/OR). Supported fields are batch_id, batch_uuid, state, and create_time.e.g. state = RUNNING and create_time < \"2023-01-01T00:00:00Z\" filters for batches in state RUNNING that were created before 2023-01-01See https://google.aip.dev/assets/misc/ebnf-filtering.txt for a detailed description of the filter syntax and a list of supported comparisons.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field(s) on which to sort the list of batches.Currently the only supported sort orders are unspecified (empty) and create_time desc to sort by most recently created batches first.See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of batches to return in each response. The service may return fewer than this value. The default page size is 20; the maximum page size is 1000.",
                       "format": "int32",
@@ -545,7 +555,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/*/operations. To override the binding, API services can add a binding such as \"/v1/{name=users/*}/operations\" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "dataproc.projects.locations.operations.list",
@@ -1202,6 +1212,12 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "gracefulTerminationTimeout": {
+                      "description": "Optional. The graceful termination timeout for the deletion of the cluster. Indicate the time the request will wait to complete the running jobs on the cluster before its forceful deletion. Default value is 0 indicating that the user has not enabled the graceful termination. Value can be between 60 second and 6 Hours, in case the graceful termination is enabled. (There is no separate flag to check the enabling or disabling of graceful termination, it can be checked by the values in the field).",
+                      "format": "google-duration",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "projectId": {
                       "description": "Required. The ID of the Google Cloud Platform project that the cluster belongs to.",
                       "location": "path",
@@ -1444,7 +1460,7 @@
                       "type": "string"
                     },
                     "gracefulDecommissionTimeout": {
-                      "description": "Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day. (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Only supported on Dataproc image versions 1.2 and higher.",
+                      "description": "Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning allows removing nodes from the cluster without interrupting jobs in progress. Timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day. (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Only supported on Dataproc image versions 1.2 and higher.",
                       "format": "google-duration",
                       "location": "query",
                       "type": "string"
@@ -1662,6 +1678,103 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "nodeGroups": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a node group in a cluster. The returned Operation.metadata is NodeGroupOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).",
+                      "flatPath": "v1/projects/{projectsId}/regions/{regionsId}/clusters/{clustersId}/nodeGroups",
+                      "httpMethod": "POST",
+                      "id": "dataproc.projects.regions.clusters.nodeGroups.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "nodeGroupId": {
+                          "description": "Optional. An optional node group ID. Generated if not specified.The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of from 3 to 33 characters.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource where this node group will be created. Format: projects/{project}/regions/{region}/clusters/{cluster}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/regions/[^/]+/clusters/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A unique ID used to identify the request. If the server receives two CreateNodeGroupRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateNodeGroupRequests) with the same ID, the second request is ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/nodeGroups",
+                      "request": {
+                        "$ref": "NodeGroup"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the resource representation for a node group in a cluster.",
+                      "flatPath": "v1/projects/{projectsId}/regions/{regionsId}/clusters/{clustersId}/nodeGroups/{nodeGroupsId}",
+                      "httpMethod": "GET",
+                      "id": "dataproc.projects.regions.clusters.nodeGroups.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the node group to retrieve. Format: projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/regions/[^/]+/clusters/[^/]+/nodeGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "NodeGroup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "resize": {
+                      "description": "Resizes a node group in a cluster. The returned Operation.metadata is NodeGroupOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#nodegroupoperationmetadata).",
+                      "flatPath": "v1/projects/{projectsId}/regions/{regionsId}/clusters/{clustersId}/nodeGroups/{nodeGroupsId}:resize",
+                      "httpMethod": "POST",
+                      "id": "dataproc.projects.regions.clusters.nodeGroups.resize",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the node group to resize. Format: projects/{project}/regions/{region}/clusters/{cluster}/nodeGroups/{nodeGroup}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/regions/[^/]+/clusters/[^/]+/nodeGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:resize",
+                      "request": {
+                        "$ref": "ResizeNodeGroupRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -2158,7 +2271,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/*/operations. To override the binding, API services can add a binding such as \"/v1/{name=users/*}/operations\" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.",
                   "flatPath": "v1/projects/{projectsId}/regions/{regionsId}/operations",
                   "httpMethod": "GET",
                   "id": "dataproc.projects.regions.operations.list",
@@ -2564,7 +2677,7 @@
       }
     }
   },
-  "revision": "20221025",
+  "revision": "20230804",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2577,7 +2690,7 @@
           "type": "integer"
         },
         "acceleratorTypeUri": {
-          "description": "Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes (https://cloud.google.com/compute/docs/reference/beta/acceleratorTypes).Examples: https://www.googleapis.com/compute/beta/projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 projects/[project_id]/zones/us-east1-a/acceleratorTypes/nvidia-tesla-k80 nvidia-tesla-k80Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the accelerator type resource, for example, nvidia-tesla-k80.",
+          "description": "Full URL, partial URI, or short name of the accelerator type resource to expose to this instance. See Compute Engine AcceleratorTypes (https://cloud.google.com/compute/docs/reference/v1/acceleratorTypes).Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80 projects/[project_id]/zones/[zone]/acceleratorTypes/nvidia-tesla-k80 nvidia-tesla-k80Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the accelerator type resource, for example, nvidia-tesla-k80.",
           "type": "string"
         }
       },
@@ -2624,6 +2737,21 @@
         "workerConfig": {
           "$ref": "InstanceGroupAutoscalingPolicyConfig",
           "description": "Required. Describes how the autoscaler will operate for primary workers."
+        }
+      },
+      "type": "object"
+    },
+    "AuxiliaryNodeGroup": {
+      "description": "Node group identification and configuration information.",
+      "id": "AuxiliaryNodeGroup",
+      "properties": {
+        "nodeGroup": {
+          "$ref": "NodeGroup",
+          "description": "Required. Node group configuration."
+        },
+        "nodeGroupId": {
+          "description": "Optional. A node group ID. Generated if not specified.The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of from 3 to 33 characters.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2870,7 +2998,7 @@
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. user:{emailid}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid}: An email address that represents a Google service account. For example, my-other-app@appspot.gserviceaccount.com. serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]: An identifier for a Kubernetes service account (https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, my-project.svc.id.goog[my-namespace/my-kubernetes-sa]. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. domain:{domain}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com. deleted:user:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid} and the undeleted service account retains the role in the binding. deleted:group:{emailid}?uid={uniqueid}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid} and the recovered group retains the role in the binding.",
           "items": {
             "type": "string"
           },
@@ -2937,7 +3065,7 @@
         },
         "virtualClusterConfig": {
           "$ref": "VirtualClusterConfig",
-          "description": "Optional. The virtual cluster config is used when creating a Dataproc cluster that does not directly control the underlying compute resources, for example, when creating a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke). Dataproc may set default values, and values may change when clusters are updated. Exactly one of config or virtual_cluster_config must be specified."
+          "description": "Optional. The virtual cluster config is used when creating a Dataproc cluster that does not directly control the underlying compute resources, for example, when creating a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-overview). Dataproc may set default values, and values may change when clusters are updated. Exactly one of config or virtual_cluster_config must be specified."
         }
       },
       "type": "object"
@@ -2949,6 +3077,13 @@
         "autoscalingConfig": {
           "$ref": "AutoscalingConfig",
           "description": "Optional. Autoscaling config for the policy associated with the cluster. Cluster does not autoscale if this field is unset."
+        },
+        "auxiliaryNodeGroups": {
+          "description": "Optional. The node group settings.",
+          "items": {
+            "$ref": "AuxiliaryNodeGroup"
+          },
+          "type": "array"
         },
         "configBucket": {
           "description": "Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.",
@@ -2972,6 +3107,7 @@
         },
         "gkeClusterConfig": {
           "$ref": "GkeClusterConfig",
+          "deprecated": true,
           "description": "Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. These config settings are mutually exclusive with Compute Engine-based options, such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config."
         },
         "initializationActions": {
@@ -3275,7 +3411,36 @@
     "DiagnoseClusterRequest": {
       "description": "A request to collect cluster diagnostic information.",
       "id": "DiagnoseClusterRequest",
-      "properties": {},
+      "properties": {
+        "diagnosisInterval": {
+          "$ref": "Interval",
+          "description": "Optional. Time interval in which diagnosis should be carried out on the cluster."
+        },
+        "job": {
+          "deprecated": true,
+          "description": "Optional. DEPRECATED Specifies the job on which diagnosis is to be performed. Format: projects/{project}/regions/{region}/jobs/{job}",
+          "type": "string"
+        },
+        "jobs": {
+          "description": "Optional. Specifies a list of jobs on which diagnosis is to be performed. Format: projects/{project}/regions/{region}/jobs/{job}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "yarnApplicationId": {
+          "deprecated": true,
+          "description": "Optional. DEPRECATED Specifies the yarn application on which diagnosis is to be performed.",
+          "type": "string"
+        },
+        "yarnApplicationIds": {
+          "description": "Optional. Specifies a list of yarn applications on which diagnosis is to be performed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "DiagnoseClusterResults": {
@@ -3315,6 +3480,23 @@
       },
       "type": "object"
     },
+    "DriverSchedulingConfig": {
+      "description": "Driver scheduling configuration.",
+      "id": "DriverSchedulingConfig",
+      "properties": {
+        "memoryMb": {
+          "description": "Required. The amount of memory in MB the driver is requesting.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "vcores": {
+          "description": "Required. The number of vCPUs the driver is requesting.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } ",
       "id": "Empty",
@@ -3327,6 +3509,10 @@
       "properties": {
         "gcePdKmsKeyName": {
           "description": "Optional. The Cloud KMS key name to use for PD disk encryption for all instances in the cluster.",
+          "type": "string"
+        },
+        "kmsKey": {
+          "description": "Optional. The Cloud KMS key name to use for encrypting customer core content and cluster PD disk for all instances in the cluster.",
           "type": "string"
         }
       },
@@ -3371,7 +3557,7 @@
       "id": "ExecutionConfig",
       "properties": {
         "idleTtl": {
-          "description": "Optional. The duration to keep the session alive while it's idling. Passing this threshold will cause the session to be terminated. Minimum value is 30 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).",
+          "description": "Optional. Applies to sessions only. The duration to keep the session alive while it's idling. Exceeding this threshold causes the session to terminate. This field cannot be set on a batch workload. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)). Defaults to 4 hours if not set. If both ttl and idle_ttl are specified for an interactive session, the conditions are treated as OR conditions: the workload will be terminated when it has been idle for idle_ttl or when ttl has been exceeded, whichever occurs first.",
           "format": "google-duration",
           "type": "string"
         },
@@ -3394,8 +3580,17 @@
           "description": "Optional. Service account that used to execute workload.",
           "type": "string"
         },
+        "stagingBucket": {
+          "description": "Optional. A Cloud Storage bucket used to stage workload dependencies, config files, and store workload output and other ephemeral data, such as Spark history files. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location according to the region where your workload is running, and then create and manage project-level, per-location staging and temporary buckets. This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.",
+          "type": "string"
+        },
         "subnetworkUri": {
           "description": "Optional. Subnetwork URI to connect workload to.",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Optional. The duration after which the workload will be terminated. When the workload exceeds this duration, it will be unconditionally terminated without waiting for ongoing work to finish. If ttl is not specified for a batch workload, the workload will be allowed to run until it exits naturally (or runs forever without exiting). If ttl is not specified for an interactive session, it defaults to 24h. If ttl is not specified for a batch that uses 2.1+ runtime version, it defaults to 4h. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)). If both ttl and idle_ttl are specified (for an interactive session), the conditions are treated as OR conditions: the workload will be terminated when it has been idle for idle_ttl or when ttl has been exceeded, whichever occurs first.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -3424,6 +3619,50 @@
       },
       "type": "object"
     },
+    "FlinkJob": {
+      "description": "A Dataproc job for running Apache Flink (https://flink.apache.org/) applications on YARN.",
+      "id": "FlinkJob",
+      "properties": {
+        "args": {
+          "description": "Optional. The arguments to pass to the driver. Do not include arguments, such as --conf, that can be set as job properties, since a collision may occur that causes an incorrect job submission.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "jarFileUris": {
+          "description": "Optional. HCFS URIs of jar files to add to the CLASSPATHs of the Flink driver and tasks.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "loggingConfig": {
+          "$ref": "LoggingConfig",
+          "description": "Optional. The runtime log config for job execution."
+        },
+        "mainClass": {
+          "description": "The name of the driver's main class. The jar file that contains the class must be in the default CLASSPATH or specified in jar_file_uris.",
+          "type": "string"
+        },
+        "mainJarFileUri": {
+          "description": "The HCFS URI of the jar file that contains the main class.",
+          "type": "string"
+        },
+        "properties": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. A mapping of property names to values, used to configure Flink. Properties that conflict with values set by the Dataproc API may beoverwritten. Can include properties set in/etc/flink/conf/flink-defaults.conf and classes in user code.",
+          "type": "object"
+        },
+        "savepointUri": {
+          "description": "Optional. HCFS URI of the savepoint which contains the last saved progress for this job",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GceClusterConfig": {
       "description": "Common config settings for resources of Compute Engine cluster instances, applicable to all instances in the cluster.",
       "id": "GceClusterConfig",
@@ -3440,11 +3679,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The Compute Engine metadata entries to add to all instances (see Project and instance metadata (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).",
+          "description": "Optional. The Compute Engine metadata entries to add to all instances (see Project and instance metadata (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).",
           "type": "object"
         },
         "networkUri": {
-          "description": "Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the \"default\" network of the project is used, if it exists. Cannot be a \"Custom Subnet Network\" (see Using Subnetworks (https://cloud.google.com/compute/docs/subnetworks) for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default projects/[project_id]/regions/global/default default",
+          "description": "Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork_uri. If neither network_uri nor subnetwork_uri is specified, the \"default\" network of the project is used, if it exists. Cannot be a \"Custom Subnet Network\" (see Using Subnetworks (https://cloud.google.com/compute/docs/subnetworks) for more information).A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/global/networks/default projects/[project_id]/global/networks/default default",
           "type": "string"
         },
         "nodeGroupAffinity": {
@@ -3487,7 +3726,7 @@
           "description": "Optional. Shielded Instance Config for clusters using Compute Engine Shielded VMs (https://cloud.google.com/security/shielded-cloud/shielded-vm)."
         },
         "subnetworkUri": {
-          "description": "Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0 projects/[project_id]/regions/us-east1/subnetworks/sub0 sub0",
+          "description": "Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/[region]/subnetworks/sub0 projects/[project_id]/regions/[region]/subnetworks/sub0 sub0",
           "type": "string"
         },
         "tags": {
@@ -3498,7 +3737,7 @@
           "type": "array"
         },
         "zoneUri": {
-          "description": "Optional. The zone where the Compute Engine cluster will be located. On a create request, it is required in the \"global\" region. If omitted in a non-global Dataproc region, the service will pick a zone in the corresponding Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] us-central1-f",
+          "description": "Optional. The Compute Engine zone where the Dataproc cluster will be located. If omitted, the service will pick a zone in the cluster's Compute Engine region. On a get request, zone will always be present.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone] projects/[project_id]/zones/[zone] [zone]",
           "type": "string"
         }
       },
@@ -3537,6 +3776,7 @@
         },
         "namespacedGkeDeploymentTarget": {
           "$ref": "NamespacedGkeDeploymentTarget",
+          "deprecated": true,
           "description": "Optional. Deprecated. Use gkeClusterTarget. Used only for the deprecated beta. A target for the deployment."
         },
         "nodePoolTarget": {
@@ -3561,7 +3801,7 @@
           "type": "array"
         },
         "bootDiskKmsKey": {
-          "description": "Optional. The Customer Managed Encryption Key (CMEK) (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek) used to encrypt the boot disk attached to each node in the node pool. Specify the key using the following format: projects/KEY_PROJECT_ID/locations/LOCATION /keyRings/RING_NAME/cryptoKeys/KEY_NAME.",
+          "description": "Optional. The Customer Managed Encryption Key (CMEK) (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek) used to encrypt the boot disk attached to each node in the node pool. Specify the key using the following format: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}",
           "type": "string"
         },
         "localSsdCount": {
@@ -3844,7 +4084,7 @@
           "description": "Optional. Disk option config settings."
         },
         "imageUri": {
-          "description": "Optional. The Compute Engine image resource used for cluster instances.The URI can represent an image or image family.Image examples: https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/[image-id] projects/[project_id]/global/images/[image-id] image-idImage family examples. Dataproc will use the most recent image from the family: https://www.googleapis.com/compute/beta/projects/[project_id]/global/images/family/[custom-image-family-name] projects/[project_id]/global/images/family/[custom-image-family-name]If the URI is unspecified, it will be inferred from SoftwareConfig.image_version or the system default.",
+          "description": "Optional. The Compute Engine image resource used for cluster instances.The URI can represent an image or image family.Image examples: https://www.googleapis.com/compute/v1/projects/[project_id]/global/images/[image-id] projects/[project_id]/global/images/[image-id] image-idImage family examples. Dataproc will use the most recent image from the family: https://www.googleapis.com/compute/v1/projects/[project_id]/global/images/family/[custom-image-family-name] projects/[project_id]/global/images/family/[custom-image-family-name]If the URI is unspecified, it will be inferred from SoftwareConfig.image_version or the system default.",
           "type": "string"
         },
         "instanceNames": {
@@ -3869,7 +4109,7 @@
           "type": "boolean"
         },
         "machineTypeUri": {
-          "description": "Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 projects/[project_id]/zones/us-east1-a/machineTypes/n1-standard-2 n1-standard-2Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the machine type resource, for example, n1-standard-2.",
+          "description": "Optional. The Compute Engine machine type used for cluster instances.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/machineTypes/n1-standard-2 projects/[project_id]/zones/[zone]/machineTypes/n1-standard-2 n1-standard-2Auto Zone Exception: If you are using the Dataproc Auto Zone Placement (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/auto-zone#using_auto_zone_placement) feature, you must use the short name of the machine type resource, for example, n1-standard-2.",
           "type": "string"
         },
         "managedGroupConfig": {
@@ -3880,6 +4120,11 @@
         "minCpuPlatform": {
           "description": "Optional. Specifies the minimum cpu platform for the Instance Group. See Dataproc -> Minimum CPU Platform (https://cloud.google.com/dataproc/docs/concepts/compute/dataproc-min-cpu).",
           "type": "string"
+        },
+        "minNumInstances": {
+          "description": "Optional. The minimum number of instances to create. If min_num_instances is set, min_num_instances is used for a criteria to decide the cluster. Cluster creation will be failed by being an error state if the total number of instances created is less than the min_num_instances. For example, given that num_instances = 5 and min_num_instances = 3, * if 4 instances are created and then registered successfully but one instance is failed, the failed VM will be deleted and the cluster will be resized to 4 instances in running state. * if 2 instances are created successfully and 3 instances are failed, the cluster will be in an error state and does not delete failed VMs for debugging. * if 2 instance are created and then registered successfully but 3 instances are failed to initialize, the cluster will be in an error state and does not delete failed VMs for debugging. NB: This can only be set for primary workers now.",
+          "format": "int32",
+          "type": "integer"
         },
         "numInstances": {
           "description": "Optional. The number of VM instances in the instance group. For HA cluster master_config groups, must be set to 3. For standard cluster master_config groups, must be set to 1.",
@@ -3951,6 +4196,23 @@
       },
       "type": "object"
     },
+    "Interval": {
+      "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive).The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
+      "id": "Interval",
+      "properties": {
+        "endTime": {
+          "description": "Optional. Exclusive end of the interval.If specified, a Timestamp matching this interval will have to be before the end.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. Inclusive start of the interval.If specified, a Timestamp matching this interval will have to be the same or after the start.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Job": {
       "description": "A Dataproc job resource.",
       "id": "Job",
@@ -3969,6 +4231,14 @@
           "description": "Output only. A URI pointing to the location of the stdout of the job's driver program.",
           "readOnly": true,
           "type": "string"
+        },
+        "driverSchedulingConfig": {
+          "$ref": "DriverSchedulingConfig",
+          "description": "Optional. Driver scheduling configuration."
+        },
+        "flinkJob": {
+          "$ref": "FlinkJob",
+          "description": "Optional. Job is a Flink job."
         },
         "hadoopJob": {
           "$ref": "HadoopJob",
@@ -4125,12 +4395,12 @@
       "id": "JobScheduling",
       "properties": {
         "maxFailuresPerHour": {
-          "description": "Optional. Maximum number of times per hour a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed.A job may be reported as thrashing if driver exits with non-zero code 4 times within 10 minute window.Maximum value is 10.Note: Currently, this restartable job option is not supported in Dataproc workflow template (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template) jobs.",
+          "description": "Optional. Maximum number of times per hour a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed.A job may be reported as thrashing if the driver exits with a non-zero code four times within a 10-minute window.Maximum value is 10.Note: This restartable job option is not supported in Dataproc workflow templates (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).",
           "format": "int32",
           "type": "integer"
         },
         "maxFailuresTotal": {
-          "description": "Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240.Note: Currently, this restartable job option is not supported in Dataproc workflow template (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template) jobs.",
+          "description": "Optional. Maximum total number of times a driver may be restarted as a result of the driver exiting with a non-zero code. After the maximum number is reached, the job will be reported as failed.Maximum value is 240.Note: Currently, this restartable job option is not supported in Dataproc workflow templates (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).",
           "format": "int32",
           "type": "integer"
         }
@@ -4362,10 +4632,11 @@
       "id": "ListBatchesResponse",
       "properties": {
         "batches": {
-          "description": "The batches from the specified collection.",
+          "description": "Output only. The batches from the specified collection.",
           "items": {
             "$ref": "Batch"
           },
+          "readOnly": true,
           "type": "array"
         },
         "nextPageToken": {
@@ -4482,7 +4753,7 @@
             ],
             "type": "string"
           },
-          "description": "The per-package log levels for the driver. This may include \"root\" package name to configure rootLogger. Examples: 'com.google = FATAL', 'root = INFO', 'org.apache = DEBUG'",
+          "description": "The per-package log levels for the driver. This may include \"root\" package name to configure rootLogger. Examples: - 'com.google = FATAL' - 'root = INFO' - 'org.apache = DEBUG'",
           "type": "object"
         }
       },
@@ -4539,18 +4810,18 @@
       "type": "object"
     },
     "Metric": {
-      "description": "A Dataproc OSS metric.",
+      "description": "A Dataproc custom metric.",
       "id": "Metric",
       "properties": {
         "metricOverrides": {
-          "description": "Optional. Specify one or more available OSS metrics (https://cloud.google.com/dataproc/docs/guides/monitoring#available_oss_metrics) to collect for the metric course (for the SPARK metric source, any Spark metric (https://spark.apache.org/docs/latest/monitoring.html#metrics) can be specified).Provide metrics in the following format: METRIC_SOURCE: INSTANCE:GROUP:METRIC Use camelcase as appropriate.Examples: yarn:ResourceManager:QueueMetrics:AppsCompleted spark:driver:DAGScheduler:job.allJobs sparkHistoryServer:JVM:Memory:NonHeapMemoryUsage.committed hiveserver2:JVM:Memory:NonHeapMemoryUsage.used Notes: Only the specified overridden metrics will be collected for the metric source. For example, if one or more spark:executive metrics are listed as metric overrides, other SPARK metrics will not be collected. The collection of the default metrics for other OSS metric sources is unaffected. For example, if both SPARK andd YARN metric sources are enabled, and overrides are provided for Spark metrics only, all default YARN metrics will be collected.",
+          "description": "Optional. Specify one or more Custom metrics (https://cloud.google.com/dataproc/docs/guides/dataproc-metrics#custom_metrics) to collect for the metric course (for the SPARK metric source (any Spark metric (https://spark.apache.org/docs/latest/monitoring.html#metrics) can be specified).Provide metrics in the following format: METRIC_SOURCE: INSTANCE:GROUP:METRIC Use camelcase as appropriate.Examples: yarn:ResourceManager:QueueMetrics:AppsCompleted spark:driver:DAGScheduler:job.allJobs sparkHistoryServer:JVM:Memory:NonHeapMemoryUsage.committed hiveserver2:JVM:Memory:NonHeapMemoryUsage.used Notes: Only the specified overridden metrics are collected for the metric source. For example, if one or more spark:executive metrics are listed as metric overrides, other SPARK metrics are not collected. The collection of the metrics for other enabled custom metric sources is unaffected. For example, if both SPARK andd YARN metric sources are enabled, and overrides are provided for Spark metrics only, all YARN metrics are collected.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "metricSource": {
-          "description": "Required. Default metrics are collected unless metricOverrides are specified for the metric source (see Available OSS metrics (https://cloud.google.com/dataproc/docs/guides/monitoring#available_oss_metrics) for more information).",
+          "description": "Required. A standard set of metrics is collected unless metricOverrides are specified for the metric source (see Custom metrics (https://cloud.google.com/dataproc/docs/guides/dataproc-metrics#custom_metrics) for more information).",
           "enum": [
             "METRIC_SOURCE_UNSPECIFIED",
             "MONITORING_AGENT_DEFAULTS",
@@ -4558,16 +4829,20 @@
             "SPARK",
             "YARN",
             "SPARK_HISTORY_SERVER",
-            "HIVESERVER2"
+            "HIVESERVER2",
+            "HIVEMETASTORE",
+            "FLINK"
           ],
           "enumDescriptions": [
             "Required unspecified metric source.",
-            "Default monitoring agent metrics. If this source is enabled, Dataproc enables the monitoring agent in Compute Engine, and collects default monitoring agent metrics, which are published with an agent.googleapis.com prefix.",
+            "Monitoring agent metrics. If this source is enabled, Dataproc enables the monitoring agent in Compute Engine, and collects monitoring agent metrics, which are published with an agent.googleapis.com prefix.",
             "HDFS metric source.",
             "Spark metric source.",
             "YARN metric source.",
             "Spark History Server metric source.",
-            "Hiveserver2 metric source."
+            "Hiveserver2 metric source.",
+            "hivemetastore metric source",
+            "flink metric source"
           ],
           "type": "string"
         }
@@ -4575,6 +4850,7 @@
       "type": "object"
     },
     "NamespacedGkeDeploymentTarget": {
+      "deprecated": true,
       "description": "Deprecated. Used only for the deprecated beta. A full, namespace-isolated deployment target for an existing GKE cluster.",
       "id": "NamespacedGkeDeploymentTarget",
       "properties": {
@@ -4589,12 +4865,49 @@
       },
       "type": "object"
     },
+    "NodeGroup": {
+      "description": "Dataproc Node Group. The Dataproc NodeGroup resource is not related to the Dataproc NodeGroupAffinity resource.",
+      "id": "NodeGroup",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Node group labels. Label keys must consist of from 1 to 63 characters and conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values can be empty. If specified, they must consist of from 1 to 63 characters and conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). The node group must have no more than 32 labelsn.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The Node group resource name (https://aip.dev/122).",
+          "type": "string"
+        },
+        "nodeGroupConfig": {
+          "$ref": "InstanceGroupConfig",
+          "description": "Optional. The node group instance group configuration."
+        },
+        "roles": {
+          "description": "Required. Node group roles.",
+          "items": {
+            "enum": [
+              "ROLE_UNSPECIFIED",
+              "DRIVER"
+            ],
+            "enumDescriptions": [
+              "Required unspecified role.",
+              "Job drivers run on the node pool."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "NodeGroupAffinity": {
-      "description": "Node Group Affinity for clusters using sole-tenant node groups.",
+      "description": "Node Group Affinity for clusters using sole-tenant node groups. The Dataproc NodeGroupAffinity resource is not related to the Dataproc NodeGroup resource.",
       "id": "NodeGroupAffinity",
       "properties": {
         "nodeGroupUri": {
-          "description": "Required. The URI of a sole-tenant node group resource (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) that the cluster will be created on.A full URL, partial URI, or node group name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1 projects/[project_id]/zones/us-central1-a/nodeGroups/node-group-1 node-group-1",
+          "description": "Required. The URI of a sole-tenant node group resource (https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups) that the cluster will be created on.A full URL, partial URI, or node group name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]/nodeGroups/node-group-1 projects/[project_id]/zones/[zone]/nodeGroups/node-group-1 node-group-1",
           "type": "string"
         }
       },
@@ -4744,7 +5057,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.",
           "type": "object"
         }
       },
@@ -5094,7 +5407,7 @@
           "type": "string"
         },
         "gracefulDecommissionTimeout": {
-          "description": "Optional. Timeout for graceful YARN decomissioning. Graceful decommissioning facilitates the removal of cluster nodes without interrupting jobs in progress. The timeout specifies the amount of time to wait for jobs finish before forcefully removing nodes. The default timeout is 0 for forceful decommissioning, and the maximum timeout period is 1 day. (see JSON Mapping—Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).graceful_decommission_timeout is supported in Dataproc image versions 1.2+.",
+          "description": "Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning facilitates the removal of cluster nodes without interrupting jobs in progress. The timeout specifies the amount of time to wait for jobs finish before forcefully removing nodes. The default timeout is 0 for forceful decommissioning, and the maximum timeout period is 1 day. (see JSON Mapping—Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).graceful_decommission_timeout is supported in Dataproc image versions 1.2+.",
           "format": "google-duration",
           "type": "string"
         },
@@ -5150,6 +5463,27 @@
       },
       "type": "object"
     },
+    "ResizeNodeGroupRequest": {
+      "description": "A request to resize a node group.",
+      "id": "ResizeNodeGroupRequest",
+      "properties": {
+        "gracefulDecommissionTimeout": {
+          "description": "Optional. Timeout for graceful YARN decommissioning. Graceful decommissioning (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/scaling-clusters#graceful_decommissioning) allows the removal of nodes from the Compute Engine node group without interrupting jobs in progress. This timeout specifies how long to wait for jobs in progress to finish before forcefully removing nodes (and potentially interrupting jobs). Default timeout is 0 (for forceful decommission), and the maximum allowed timeout is 1 day. (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).Only supported on Dataproc image versions 1.2 and higher.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. A unique ID used to identify the request. If the server receives two ResizeNodeGroupRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.ResizeNodeGroupRequests) with the same ID, the second request is ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+          "type": "string"
+        },
+        "size": {
+          "description": "Required. The number of running instances for the node group to maintain. The group adds or removes instances to maintain the number of instances specified by this parameter.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "RuntimeConfig": {
       "description": "Runtime configuration for a workload.",
       "id": "RuntimeConfig",
@@ -5178,7 +5512,12 @@
       "properties": {
         "approximateUsage": {
           "$ref": "UsageMetrics",
-          "description": "Output only. Approximate workload resource usage calculated after workload finishes.",
+          "description": "Output only. Approximate workload resource usage, calculated when the workload completes (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).Note: This metric calculation may change in the future, for example, to capture cumulative workload resource consumption during workload execution (see the Dataproc Serverless release notes (https://cloud.google.com/dataproc-serverless/docs/release-notes) for announcements, changes, fixes and other Dataproc developments).",
+          "readOnly": true
+        },
+        "currentUsage": {
+          "$ref": "UsageSnapshot",
+          "description": "Output only. Snapshot of current workload resource usage.",
           "readOnly": true
         },
         "diagnosticOutputUri": {
@@ -5325,8 +5664,10 @@
               "FLINK",
               "HBASE",
               "HIVE_WEBHCAT",
+              "HUDI",
               "JUPYTER",
               "PRESTO",
+              "TRINO",
               "RANGER",
               "SOLR",
               "ZEPPELIN",
@@ -5340,8 +5681,10 @@
               "Flink",
               "HBase. (beta)",
               "The Hive Web HCatalog (the REST service for accessing HCatalog).",
+              "Hudi.",
               "The Jupyter Notebook.",
               "The Presto query engine.",
+              "The Trino query engine.",
               "The Ranger service.",
               "The Solr service.",
               "The Zeppelin notebook.",
@@ -5614,7 +5957,7 @@
       "id": "SparkStandaloneAutoscalingConfig",
       "properties": {
         "gracefulDecommissionTimeout": {
-          "description": "Required. Timeout for Spark graceful decommissioning of spark workers. Specifies the duration to wait for spark worker to complete spark decomissioning tasks before forcefully removing workers. Only applicable to downscaling operations.Bounds: 0s, 1d.",
+          "description": "Required. Timeout for Spark graceful decommissioning of spark workers. Specifies the duration to wait for spark worker to complete spark decommissioning tasks before forcefully removing workers. Only applicable to downscaling operations.Bounds: 0s, 1d.",
           "format": "google-duration",
           "type": "string"
         },
@@ -5850,17 +6193,49 @@
       "type": "object"
     },
     "UsageMetrics": {
-      "description": "Usage metrics represent total resources consumed by a workload.",
+      "description": "Usage metrics represent approximate total resources consumed by a workload.",
       "id": "UsageMetrics",
       "properties": {
         "milliDcuSeconds": {
-          "description": "Optional. DCU usage in milliDCU*seconds.",
+          "description": "Optional. DCU (Dataproc Compute Units) usage in (milliDCU x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
           "format": "int64",
           "type": "string"
         },
         "shuffleStorageGbSeconds": {
-          "description": "Optional. Shuffle storage usage in GB*Seconds",
+          "description": "Optional. Shuffle storage usage in (GB x seconds) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UsageSnapshot": {
+      "description": "The usage snapshot represents the resources consumed by a workload at a specified time.",
+      "id": "UsageSnapshot",
+      "properties": {
+        "milliDcu": {
+          "description": "Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
+          "format": "int64",
+          "type": "string"
+        },
+        "milliDcuPremium": {
+          "description": "Optional. Milli (one-thousandth) Dataproc Compute Units (DCUs) charged at premium tier (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing)).",
+          "format": "int64",
+          "type": "string"
+        },
+        "shuffleStorageGb": {
+          "description": "Optional. Shuffle Storage in gigabytes (GB). (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))",
+          "format": "int64",
+          "type": "string"
+        },
+        "shuffleStorageGbPremium": {
+          "description": "Optional. Shuffle Storage in gigabytes (GB) charged at premium tier. (see Dataproc Serverless pricing (https://cloud.google.com/dataproc-serverless/pricing))",
+          "format": "int64",
+          "type": "string"
+        },
+        "snapshotTime": {
+          "description": "Optional. The timestamp of the usage snapshot.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -5881,7 +6256,7 @@
       "type": "object"
     },
     "VirtualClusterConfig": {
-      "description": "The Dataproc cluster config for a cluster that does not directly control the underlying compute resources, such as a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke).",
+      "description": "The Dataproc cluster config for a cluster that does not directly control the underlying compute resources, such as a Dataproc-on-GKE cluster (https://cloud.google.com/dataproc/docs/guides/dpgke/dataproc-gke-overview).",
       "id": "VirtualClusterConfig",
       "properties": {
         "auxiliaryServicesConfig": {

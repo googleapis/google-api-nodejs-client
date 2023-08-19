@@ -1,5 +1,98 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v10.0.0...sqladmin-v10.1.0) (2023-08-09)
+
+
+### Features
+
+* **sqladmin:** update the API ([0c9f7b6](https://github.com/googleapis/google-api-nodejs-client/commit/0c9f7b666da6d51fd7174c76e5cf79335d48e1d0))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v9.1.0...sqladmin-v10.0.0) (2023-07-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **sqladmin:** This release has breaking changes.
+
+### Features
+
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+* regenerate index files ([4216892](https://github.com/googleapis/google-api-nodejs-client/commit/42168925208e087c952d1fc8267847731d05ae9f))
+* **sqladmin:** update the API ([f7abe37](https://github.com/googleapis/google-api-nodejs-client/commit/f7abe379b0b8b5dfb9a354e6a1164b3de84b6d13))
+* **sqladmin:** update the API ([2f12d8b](https://github.com/googleapis/google-api-nodejs-client/commit/2f12d8b83580f40d55a4e9419c7289fa2b52f494))
+
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v9.0.0...sqladmin-v9.1.0) (2023-07-10)
+
+
+### Features
+
+* **sqladmin:** update the API ([2c3384a](https://github.com/googleapis/google-api-nodejs-client/commit/2c3384a8044707608fc2de7f4ea76ff9853d5b34))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v8.0.0...sqladmin-v9.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v7.2.0...sqladmin-v8.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+
+## [7.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v7.1.0...sqladmin-v7.2.0) (2023-03-22)
+
+
+### Features
+
+* **sqladmin:** update the API ([34c6ad3](https://github.com/googleapis/google-api-nodejs-client/commit/34c6ad32fbc53c4765e17e8fc4b219b68eac6b86))
+
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v7.0.0...sqladmin-v7.1.0) (2023-03-13)
+
+
+### Features
+
+* **sqladmin:** update the API ([8663278](https://github.com/googleapis/google-api-nodejs-client/commit/866327845846577bf83b778cfd4ba7fb65caf171))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v6.1.0...sqladmin-v7.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v6.0.0...sqladmin-v6.1.0) (2022-12-22)
+
+
+### Features
+
+* **sqladmin:** update the API ([8f82e66](https://github.com/googleapis/google-api-nodejs-client/commit/8f82e665a9bb256d99f320676d5e72396b7a9781))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v5.0.0...sqladmin-v6.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v4.2.0...sqladmin-v5.0.0) (2022-09-21)
 
 

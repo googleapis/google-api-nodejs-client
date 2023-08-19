@@ -1,5 +1,52 @@
 # Changelog
 
+## [3.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v3.0.4...mybusinessaccountmanagement-v3.0.5) (2023-08-17)
+
+
+### Bug Fixes
+
+* **mybusinessaccountmanagement:** update the API ([6bc90e9](https://github.com/googleapis/google-api-nodejs-client/commit/6bc90e95759cad41e70e9f3c75f706cd66d7bd4a))
+
+## [3.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v3.0.3...mybusinessaccountmanagement-v3.0.4) (2023-08-09)
+
+
+### Bug Fixes
+
+* **mybusinessaccountmanagement:** update the API ([6bc90e9](https://github.com/googleapis/google-api-nodejs-client/commit/6bc90e95759cad41e70e9f3c75f706cd66d7bd4a))
+
+## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v3.0.2...mybusinessaccountmanagement-v3.0.3) (2023-02-24)
+
+
+### Bug Fixes
+
+* **mybusinessaccountmanagement:** update the API ([413722a](https://github.com/googleapis/google-api-nodejs-client/commit/413722ab846c0c06bf30481bfb224186cbeb2161))
+* **mybusinessaccountmanagement:** update the API ([e944b6b](https://github.com/googleapis/google-api-nodejs-client/commit/e944b6b191d6029c2dae38ed5c777142d3d80039))
+
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v3.0.1...mybusinessaccountmanagement-v3.0.2) (2023-02-10)
+
+
+### Bug Fixes
+
+* **mybusinessaccountmanagement:** update the API ([413722a](https://github.com/googleapis/google-api-nodejs-client/commit/413722ab846c0c06bf30481bfb224186cbeb2161))
+
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v3.0.0...mybusinessaccountmanagement-v3.0.1) (2022-12-22)
+
+
+### Bug Fixes
+
+* **mybusinessaccountmanagement:** update the API ([e944b6b](https://github.com/googleapis/google-api-nodejs-client/commit/e944b6b191d6029c2dae38ed5c777142d3d80039))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v2.1.1...mybusinessaccountmanagement-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [2.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v2.1.0...mybusinessaccountmanagement-v2.1.1) (2022-09-21)
 
 

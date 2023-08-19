@@ -138,7 +138,129 @@
         }
       }
     },
+    "oauthClients": {
+      "methods": {
+        "exchangeAppAttestAssertion": {
+          "description": "Accepts an App Attest assertion and an artifact previously obtained from ExchangeAppAttestAttestation and verifies those with Apple. If valid, returns an AppCheckToken.",
+          "flatPath": "v1beta/oauthClients/{oauthClientsId}:exchangeAppAttestAssertion",
+          "httpMethod": "POST",
+          "id": "firebaseappcheck.oauthClients.exchangeAppAttestAssertion",
+          "parameterOrder": [
+            "app"
+          ],
+          "parameters": {
+            "app": {
+              "description": "Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+              "location": "path",
+              "pattern": "^oauthClients/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+app}:exchangeAppAttestAssertion",
+          "request": {
+            "$ref": "GoogleFirebaseAppcheckV1betaExchangeAppAttestAssertionRequest"
+          },
+          "response": {
+            "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        },
+        "exchangeAppAttestAttestation": {
+          "description": "Accepts an App Attest CBOR attestation and verifies it with Apple using your preconfigured team and bundle IDs. If valid, returns an attestation artifact that can later be exchanged for an AppCheckToken using ExchangeAppAttestAssertion. For convenience and performance, this method's response object will also contain an AppCheckToken (if the verification is successful).",
+          "flatPath": "v1beta/oauthClients/{oauthClientsId}:exchangeAppAttestAttestation",
+          "httpMethod": "POST",
+          "id": "firebaseappcheck.oauthClients.exchangeAppAttestAttestation",
+          "parameterOrder": [
+            "app"
+          ],
+          "parameters": {
+            "app": {
+              "description": "Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+              "location": "path",
+              "pattern": "^oauthClients/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+app}:exchangeAppAttestAttestation",
+          "request": {
+            "$ref": "GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationRequest"
+          },
+          "response": {
+            "$ref": "GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        },
+        "generateAppAttestChallenge": {
+          "description": "Generates a challenge that protects the integrity of an immediately following call to ExchangeAppAttestAttestation or ExchangeAppAttestAssertion. A challenge should not be reused for multiple calls.",
+          "flatPath": "v1beta/oauthClients/{oauthClientsId}:generateAppAttestChallenge",
+          "httpMethod": "POST",
+          "id": "firebaseappcheck.oauthClients.generateAppAttestChallenge",
+          "parameterOrder": [
+            "app"
+          ],
+          "parameters": {
+            "app": {
+              "description": "Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+              "location": "path",
+              "pattern": "^oauthClients/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+app}:generateAppAttestChallenge",
+          "request": {
+            "$ref": "GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest"
+          },
+          "response": {
+            "$ref": "GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        }
+      }
+    },
     "projects": {
+      "methods": {
+        "verifyAppCheckToken": {
+          "description": "Verifies the given App Check token and returns token usage signals that callers may act upon. This method currently only supports App Check tokens exchanged from the following attestation providers: * Play Integrity API * App Attest * DeviceCheck (`DCDevice` tokens) * reCAPTCHA Enterprise * reCAPTCHA v3 * Custom providers App Check tokens exchanged from debug secrets are also supported. Calling this method on an otherwise valid App Check token with an unsupported provider will cause an HTTP 400 error to be returned. Returns whether this token was already consumed before this call. If this is the first time this method has seen the given App Check token, the field `already_consumed` in the response will be absent. The given token will then be marked as `already_consumed` (set to `true`) for all future invocations of this method for that token. Note that if the given App Check token is invalid, an HTTP 403 error is returned instead of a response object, regardless whether the token was already consumed. Currently, when evaluating whether an App Check token was already consumed, only calls to this exact method are counted. Use of the App Check token elsewhere will not mark the token as being already consumed. The caller must have the [`firebaseappcheck.appCheckTokens.verify`](https://firebase.google.com/docs/projects/iam/permissions#app-check) permission to call this method. This permission is part of the [Firebase App Check Token Verifier role](https://firebase.google.com/docs/projects/iam/roles-predefined-product#app-check).",
+          "flatPath": "v1beta/projects/{projectsId}:verifyAppCheckToken",
+          "httpMethod": "POST",
+          "id": "firebaseappcheck.projects.verifyAppCheckToken",
+          "parameterOrder": [
+            "project"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Required. The relative resource name of the project for which the token was minted, in the format: ``` projects/{project_number} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+project}:verifyAppCheckToken",
+          "request": {
+            "$ref": "GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenRequest"
+          },
+          "response": {
+            "$ref": "GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        }
+      },
       "resources": {
         "apps": {
           "methods": {
@@ -346,6 +468,7 @@
               ]
             },
             "exchangeRecaptchaToken": {
+              "deprecated": true,
               "description": "Validates a [reCAPTCHA v3 response token](https://developers.google.com/recaptcha/docs/v3). If valid, returns an AppCheckToken.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeRecaptchaToken",
               "httpMethod": "POST",
@@ -404,6 +527,7 @@
               ]
             },
             "exchangeSafetyNetToken": {
+              "deprecated": true,
               "description": "Validates a [SafetyNet token](https://developer.android.com/training/safetynet/attestation#request-attestation-step). If valid, returns an AppCheckToken.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeSafetyNetToken",
               "httpMethod": "POST",
@@ -941,8 +1065,10 @@
               }
             },
             "recaptchaConfig": {
+              "deprecated": true,
               "methods": {
                 "batchGet": {
+                  "deprecated": true,
                   "description": "Atomically gets the RecaptchaConfigs for the specified list of apps. For security reasons, the `site_secret` field is never populated in the response.",
                   "flatPath": "v1beta/projects/{projectsId}/apps/-/recaptchaConfig:batchGet",
                   "httpMethod": "GET",
@@ -975,6 +1101,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Gets the RecaptchaConfig for the specified app. For security reasons, the `site_secret` field is never populated in the response.",
                   "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}/recaptchaConfig",
                   "httpMethod": "GET",
@@ -1001,6 +1128,7 @@
                   ]
                 },
                 "patch": {
+                  "deprecated": true,
                   "description": "Updates the RecaptchaConfig for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange reCAPTCHA tokens for App Check tokens. For security reasons, the `site_secret` field is never populated in the response.",
                   "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}/recaptchaConfig",
                   "httpMethod": "PATCH",
@@ -1232,8 +1360,10 @@
               }
             },
             "safetyNetConfig": {
+              "deprecated": true,
               "methods": {
                 "batchGet": {
+                  "deprecated": true,
                   "description": "Atomically gets the SafetyNetConfigs for the specified list of apps.",
                   "flatPath": "v1beta/projects/{projectsId}/apps/-/safetyNetConfig:batchGet",
                   "httpMethod": "GET",
@@ -1266,6 +1396,7 @@
                   ]
                 },
                 "get": {
+                  "deprecated": true,
                   "description": "Gets the SafetyNetConfig for the specified app.",
                   "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}/safetyNetConfig",
                   "httpMethod": "GET",
@@ -1292,6 +1423,7 @@
                   ]
                 },
                 "patch": {
+                  "deprecated": true,
                   "description": "Updates the SafetyNetConfig for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange SafetyNet tokens for App Check tokens.",
                   "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}/safetyNetConfig",
                   "httpMethod": "PATCH",
@@ -1371,7 +1503,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The relative resource name of the Service to retrieve, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore)",
+                  "description": "Required. The relative resource name of the Service to retrieve, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `identitytoolkit.googleapis.com` (Firebase Authentication with Identity Platform)",
                   "location": "path",
                   "pattern": "^projects/[^/]+/services/[^/]+$",
                   "required": true,
@@ -1397,7 +1529,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "The maximum number of Services to return in the response. Only explicitly configured services are returned. The server may return fewer than this at its own discretion. If no value is specified (or too large a value is specified), the server will impose its own limit.",
+                  "description": "The maximum number of Services to return in the response. Only explicitly configured services are returned. The server may return fewer than this at its own discretion. If no value is specified or set to zero (or too large a value is specified), the server will impose its own limit.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1434,7 +1566,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore)",
+                  "description": "Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `identitytoolkit.googleapis.com` (Firebase Authentication with Identity Platform)",
                   "location": "path",
                   "pattern": "^projects/[^/]+/services/[^/]+$",
                   "required": true,
@@ -1464,7 +1596,7 @@
       }
     }
   },
-  "revision": "20220604",
+  "revision": "20230807",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1betaAppAttestConfig": {
@@ -1488,6 +1620,7 @@
       "id": "GoogleFirebaseAppcheckV1betaAppCheckToken",
       "properties": {
         "attestationToken": {
+          "deprecated": true,
           "description": "An App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and Firebase project. This token is used to access Firebase services protected by App Check.",
           "type": "string"
         },
@@ -1504,6 +1637,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaAttestationTokenResponse": {
+      "deprecated": true,
       "description": "Encapsulates an *App Check token*, which are used to access Firebase services protected by App Check.",
       "id": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse",
       "properties": {
@@ -1562,6 +1696,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponse": {
+      "deprecated": true,
       "description": "Response message for the BatchGetRecaptchaConfigs method.",
       "id": "GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponse",
       "properties": {
@@ -1604,6 +1739,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponse": {
+      "deprecated": true,
       "description": "Response message for the BatchGetSafetyNetConfigs method.",
       "id": "GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponse",
       "properties": {
@@ -1716,6 +1852,10 @@
           "description": "Required. A one-time challenge returned by an immediately prior call to GenerateAppAttestChallenge.",
           "format": "byte",
           "type": "string"
+        },
+        "limitedUse": {
+          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1738,6 +1878,10 @@
           "description": "Required. The key ID generated by App Attest for the client app.",
           "format": "byte",
           "type": "string"
+        },
+        "limitedUse": {
+          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1757,6 +1901,7 @@
         },
         "attestationToken": {
           "$ref": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse",
+          "deprecated": true,
           "description": "Encapsulates an App Check token."
         }
       },
@@ -1769,6 +1914,10 @@
         "customToken": {
           "description": "Required. A custom token signed using your project's Admin SDK service account credentials.",
           "type": "string"
+        },
+        "limitedUse": {
+          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1780,6 +1929,10 @@
         "debugToken": {
           "description": "Required. A debug token secret. This string must match a debug token secret previously created using CreateDebugToken.",
           "type": "string"
+        },
+        "limitedUse": {
+          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1791,6 +1944,10 @@
         "deviceToken": {
           "description": "Required. The `device_token` as returned by Apple's client-side [DeviceCheck API](https://developer.apple.com/documentation/devicecheck/dcdevice). This is the base64 encoded `Data` (Swift) or `NSData` (ObjC) object.",
           "type": "string"
+        },
+        "limitedUse": {
+          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1799,6 +1956,10 @@
       "description": "Request message for the ExchangePlayIntegrityToken method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest",
       "properties": {
+        "limitedUse": {
+          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "type": "boolean"
+        },
         "playIntegrityToken": {
           "description": "Required. The [integrity verdict response token from Play Integrity](https://developer.android.com/google/play/integrity/verdict#decrypt-verify) issued to your app.",
           "type": "string"
@@ -1810,6 +1971,10 @@
       "description": "Request message for the ExchangeRecaptchaEnterpriseToken method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest",
       "properties": {
+        "limitedUse": {
+          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "type": "boolean"
+        },
         "recaptchaEnterpriseToken": {
           "description": "Required. The reCAPTCHA token as returned by the [reCAPTCHA Enterprise JavaScript API](https://cloud.google.com/recaptcha-enterprise/docs/instrument-web-pages).",
           "type": "string"
@@ -1818,6 +1983,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest": {
+      "deprecated": true,
       "description": "Request message for the ExchangeRecaptchaToken method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest",
       "properties": {
@@ -1832,6 +1998,10 @@
       "description": "Request message for the ExchangeRecaptchaV3Token method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest",
       "properties": {
+        "limitedUse": {
+          "description": "Forces a short-lived token with a 5 minute TTL. Useful when the client wishes to impose stricter TTL requirements for this exchange. Default: false.",
+          "type": "boolean"
+        },
         "recaptchaV3Token": {
           "description": "Required. The reCAPTCHA token as returned by the [reCAPTCHA v3 JavaScript API](https://developers.google.com/recaptcha/docs/v3).",
           "type": "string"
@@ -1840,6 +2010,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaExchangeSafetyNetTokenRequest": {
+      "deprecated": true,
       "description": "Request message for the ExchangeSafetyNetToken method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeSafetyNetTokenRequest",
       "properties": {
@@ -1993,6 +2164,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaRecaptchaConfig": {
+      "deprecated": true,
       "description": "An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned `AppCheckToken`, such as its ttl.",
       "id": "GoogleFirebaseAppcheckV1betaRecaptchaConfig",
       "properties": {
@@ -2063,6 +2235,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaSafetyNetConfig": {
+      "deprecated": true,
       "description": "An app's SafetyNet configuration object. This configuration controls certain properties of the `AppCheckToken` returned by ExchangeSafetyNetToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by SafetyNet; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.androidApps.sha/create).",
       "id": "GoogleFirebaseAppcheckV1betaSafetyNetConfig",
       "properties": {
@@ -2090,14 +2263,24 @@
             "ENFORCED"
           ],
           "enumDescriptions": [
-            "Firebase App Check is not enforced for the service, nor are App Check metrics collected. Though the service is not protected by App Check in this mode, other applicable protections, such as user authorization, are still enforced. An unconfigured service is in this mode by default.",
-            "Firebase App Check is not enforced for the service. App Check metrics are collected to help you decide when to turn on enforcement for the service. Though the service is not protected by App Check in this mode, other applicable protections, such as user authorization, are still enforced.",
-            "Firebase App Check is enforced for the service. The service will reject any request that attempts to access your project's resources if it does not have valid App Check token attached, with some exceptions depending on the service; for example, some services will still allow requests bearing the developer's privileged service account credentials without an App Check token. App Check metrics continue to be collected to help you detect issues with your App Check integration and monitor the composition of your callers. While the service is protected by App Check, other applicable protections, such as user authorization, continue to be enforced at the same time. Use caution when choosing to enforce App Check on a Firebase service. If your users have not updated to an App Check capable version of your app, their apps will no longer be able to use your Firebase services that are enforcing App Check. App Check metrics can help you decide whether to enforce App Check on your Firebase services. If your app has not launched yet, you should enable enforcement immediately, since there are no outdated clients in use."
+            "Firebase App Check is not enforced for the service, nor are App Check metrics collected. Though the service is not protected by App Check in this mode, other applicable protections, such as user authorization, are still enforced. An unconfigured service is in this mode by default. Note that resource policies behave slightly differently as an unconfigured resource policy means that the resource will inherit the EnforcementMode configured for the service it belongs to and will not be considered as being in OFF mode by default.",
+            "Firebase App Check is not enforced for the service. App Check metrics are collected to help you decide when to turn on enforcement for the service. Though the service is not protected by App Check in this mode, other applicable protections, such as user authorization, are still enforced. Some services require certain conditions to be met before they will work with App Check, such as requiring you to upgrade to a specific service tier. Until those requirements are met for a service, this `UNENFORCED` setting will have no effect and App Check will not work with that service.",
+            "Firebase App Check is enforced for the service. The service will reject any request that attempts to access your project's resources if it does not have valid App Check token attached, with some exceptions depending on the service; for example, some services will still allow requests bearing the developer's privileged service account credentials without an App Check token. App Check metrics continue to be collected to help you detect issues with your App Check integration and monitor the composition of your callers. While the service is protected by App Check, other applicable protections, such as user authorization, continue to be enforced at the same time. Use caution when choosing to enforce App Check on a Firebase service. If your users have not updated to an App Check capable version of your app, their apps will no longer be able to use your Firebase services that are enforcing App Check. App Check metrics can help you decide whether to enforce App Check on your Firebase services. If your app has not launched yet, you should enable enforcement immediately, since there are no outdated clients in use. Some services require certain conditions to be met before they will work with App Check, such as requiring you to upgrade to a specific service tier. Until those requirements are met for a service, this `ENFORCED` setting will have no effect and App Check will not work with that service."
           ],
           "type": "string"
         },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. This etag is strongly validated as defined by RFC 7232.",
+          "type": "string"
+        },
         "name": {
-          "description": "Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore)",
+          "description": "Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `identitytoolkit.googleapis.com` (Firebase Authentication with Identity Platform)",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this service configuration object was most recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2109,12 +2292,34 @@
       "properties": {
         "service": {
           "$ref": "GoogleFirebaseAppcheckV1betaService",
-          "description": "Required. The Service to update. The Service's `name` field is used to identify the Service to be updated, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore)"
+          "description": "Required. The Service to update. The Service's `name` field is used to identify the Service to be updated, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `identitytoolkit.googleapis.com` (Firebase Authentication with Identity Platform) For Firebase Authentication to work with App Check, you must first upgrade to [Firebase Authentication with Identity Platform](https://firebase.google.com/docs/auth#identity-platform)."
         },
         "updateMask": {
           "description": "Required. A comma-separated list of names of fields in the Service to update. Example: `enforcement_mode`.",
           "format": "google-fieldmask",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenRequest": {
+      "description": "Request message for the VerifyAppCheckToken method.",
+      "id": "GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenRequest",
+      "properties": {
+        "appCheckToken": {
+          "description": "Required. The App Check token to verify. App Check tokens exchanged from the SafetyNet provider are not supported; an HTTP 400 error will be returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenResponse": {
+      "description": "Response message for the VerifyAppCheckToken method.",
+      "id": "GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenResponse",
+      "properties": {
+        "alreadyConsumed": {
+          "description": "Whether this token was already consumed. If this is the first time this method has seen the given App Check token, this field will be omitted from the response. The given token will then be marked as `already_consumed` (set to `true`) for all future invocations of this method for that token. Note that if the given App Check token is invalid, an HTTP 403 error is returned instead of a response containing this field, regardless whether the token was already consumed.",
+          "type": "boolean"
         }
       },
       "type": "object"

@@ -1,5 +1,86 @@
 # Changelog
 
+## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v5.0.1...manufacturers-v5.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **manufacturers:** update the API ([c6c1398](https://github.com/googleapis/google-api-nodejs-client/commit/c6c13988060b1eb932984ded4d3569949ee70cc8))
+
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v5.0.0...manufacturers-v5.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **manufacturers:** update the API ([c6c1398](https://github.com/googleapis/google-api-nodejs-client/commit/c6c13988060b1eb932984ded4d3569949ee70cc8))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v4.0.0...manufacturers-v5.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v3.0.0...manufacturers-v4.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v2.0.0...manufacturers-v3.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v1.1.0...manufacturers-v2.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **manufacturers:** update the API ([a927411](https://github.com/googleapis/google-api-nodejs-client/commit/a92741128793659316ccb089abe68f26b21d8618))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v1.0.0...manufacturers-v1.1.0) (2023-02-10)
+
+
+### Features
+
+* **manufacturers:** update the API ([a927411](https://github.com/googleapis/google-api-nodejs-client/commit/a92741128793659316ccb089abe68f26b21d8618))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v0.6.0...manufacturers-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v0.5.0...manufacturers-v0.6.0) (2022-09-21)
 
 

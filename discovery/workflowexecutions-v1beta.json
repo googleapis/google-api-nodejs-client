@@ -269,7 +269,7 @@
       }
     }
   },
-  "revision": "20220908",
+  "revision": "20230725",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -313,7 +313,7 @@
             "LOG_ERRORS_ONLY"
           ],
           "enumDescriptions": [
-            "No call logging specified.",
+            "No call logging level specified.",
             "Log all call steps within workflows, all call returns, and all exceptions raised.",
             "Log only exceptions that are raised from call steps within workflows."
           ],
@@ -353,21 +353,25 @@
             "ACTIVE",
             "SUCCEEDED",
             "FAILED",
-            "CANCELLED"
+            "CANCELLED",
+            "UNAVAILABLE",
+            "QUEUED"
           ],
           "enumDescriptions": [
             "Invalid state.",
             "The execution is in progress.",
             "The execution finished successfully.",
             "The execution failed with an error.",
-            "The execution was stopped intentionally."
+            "The execution was stopped intentionally.",
+            "Reserved for future use.",
+            "Request has been placed in the backlog for processing at a later time."
           ],
           "readOnly": true,
           "type": "string"
         },
         "status": {
           "$ref": "Status",
-          "description": "Output only. Status tracks the current steps and progress data of this execution. > **Preview:** This field is covered by the > [Pre-GA Offerings Terms](https://cloud.google.com/terms/service-terms) of > the Google Cloud Terms of Service. Pre-GA features might have limited > support, and changes to pre-GA features might not be compatible with > other pre-GA versions. For more information, see the > [launch stage descriptions](https://cloud.google.com/products#product-launch-stages). > This field is usable only if your project has access. See the > [access request page](https://docs.google.com/forms/d/e/1FAIpQLSdgwrSV8Y4xZv_tvI6X2JEGX1-ty9yizv3_EAOVHWVKXvDLEA/viewform).",
+          "description": "Output only. Status tracks the current steps and progress data of this execution.",
           "readOnly": true
         },
         "workflowRevisionId": {
@@ -452,7 +456,7 @@
       "type": "object"
     },
     "Status": {
-      "description": "> **Preview:** This field is covered by the > [Pre-GA Offerings Terms](https://cloud.google.com/terms/service-terms) of > the Google Cloud Terms of Service. Pre-GA features might have limited > support, and changes to pre-GA features might not be compatible with > other pre-GA versions. For more information, see the > [launch stage descriptions](https://cloud.google.com/products#product-launch-stages). > This field is usable only if your project has access. See the > [access request page](https://docs.google.com/forms/d/e/1FAIpQLSdgwrSV8Y4xZv_tvI6X2JEGX1-ty9yizv3_EAOVHWVKXvDLEA/viewform). Represents the current status of this execution.",
+      "description": "Represents the current status of this execution.",
       "id": "Status",
       "properties": {
         "currentSteps": {

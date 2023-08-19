@@ -991,55 +991,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Gets a GTM Account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.manage.accounts',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.get({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "shareData": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1126,49 +1077,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Lists all GTM Accounts that a user has access to.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.manage.accounts',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.list({});
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accounts": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1260,64 +1168,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Updates a GTM Account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.accounts'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.update({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the account in storage.
-     *     fingerprint: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "name": "my_name",
-     *       //   "shareData": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "shareData": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1455,76 +1305,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Creates a Container.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.create({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "containerId": "my_containerId",
-     *       //   "domainName": [],
-     *       //   "enabledBuiltInVariable": [],
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "publicId": "my_publicId",
-     *       //   "timeZoneCountryId": "my_timeZoneCountryId",
-     *       //   "timeZoneId": "my_timeZoneId",
-     *       //   "usageContext": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "containerId": "my_containerId",
-     *   //   "domainName": [],
-     *   //   "enabledBuiltInVariable": [],
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "publicId": "my_publicId",
-     *   //   "timeZoneCountryId": "my_timeZoneCountryId",
-     *   //   "timeZoneId": "my_timeZoneId",
-     *   //   "usageContext": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1611,45 +1391,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Deletes a Container.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.delete.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.delete({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1735,63 +1476,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Gets a Container.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.get({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "containerId": "my_containerId",
-     *   //   "domainName": [],
-     *   //   "enabledBuiltInVariable": [],
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "publicId": "my_publicId",
-     *   //   "timeZoneCountryId": "my_timeZoneCountryId",
-     *   //   "timeZoneId": "my_timeZoneId",
-     *   //   "usageContext": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1879,51 +1563,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Lists all Containers that belongs to a GTM Account.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.list({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "containers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2015,80 +1654,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Updates a Container.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.update({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the container in storage.
-     *     fingerprint: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "containerId": "my_containerId",
-     *       //   "domainName": [],
-     *       //   "enabledBuiltInVariable": [],
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "publicId": "my_publicId",
-     *       //   "timeZoneCountryId": "my_timeZoneCountryId",
-     *       //   "timeZoneId": "my_timeZoneId",
-     *       //   "usageContext": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "containerId": "my_containerId",
-     *   //   "domainName": [],
-     *   //   "enabledBuiltInVariable": [],
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "publicId": "my_publicId",
-     *   //   "timeZoneCountryId": "my_timeZoneCountryId",
-     *   //   "timeZoneId": "my_timeZoneId",
-     *   //   "usageContext": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2245,80 +1810,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Creates a GTM Environment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.environments.create({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "authorizationCode": "my_authorizationCode",
-     *       //   "authorizationTimestampMs": "my_authorizationTimestampMs",
-     *       //   "containerId": "my_containerId",
-     *       //   "containerVersionId": "my_containerVersionId",
-     *       //   "description": "my_description",
-     *       //   "enableDebug": false,
-     *       //   "environmentId": "my_environmentId",
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "name": "my_name",
-     *       //   "type": "my_type",
-     *       //   "url": "my_url"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "authorizationCode": "my_authorizationCode",
-     *   //   "authorizationTimestampMs": "my_authorizationTimestampMs",
-     *   //   "containerId": "my_containerId",
-     *   //   "containerVersionId": "my_containerVersionId",
-     *   //   "description": "my_description",
-     *   //   "enableDebug": false,
-     *   //   "environmentId": "my_environmentId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "type": "my_type",
-     *   //   "url": "my_url"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2406,47 +1897,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Deletes a GTM Environment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.environments.delete({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Environment ID.
-     *     environmentId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2532,66 +1982,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Gets a GTM Environment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.environments.get({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Environment ID.
-     *     environmentId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "authorizationCode": "my_authorizationCode",
-     *   //   "authorizationTimestampMs": "my_authorizationTimestampMs",
-     *   //   "containerId": "my_containerId",
-     *   //   "containerVersionId": "my_containerVersionId",
-     *   //   "description": "my_description",
-     *   //   "enableDebug": false,
-     *   //   "environmentId": "my_environmentId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "type": "my_type",
-     *   //   "url": "my_url"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2679,53 +2069,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Lists all GTM Environments of a GTM Container.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.environments.list({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "environments": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2818,84 +2161,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Updates a GTM Environment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.environments.update({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Environment ID.
-     *     environmentId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the environment in storage.
-     *     fingerprint: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "authorizationCode": "my_authorizationCode",
-     *       //   "authorizationTimestampMs": "my_authorizationTimestampMs",
-     *       //   "containerId": "my_containerId",
-     *       //   "containerVersionId": "my_containerVersionId",
-     *       //   "description": "my_description",
-     *       //   "enableDebug": false,
-     *       //   "environmentId": "my_environmentId",
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "name": "my_name",
-     *       //   "type": "my_type",
-     *       //   "url": "my_url"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "authorizationCode": "my_authorizationCode",
-     *   //   "authorizationTimestampMs": "my_authorizationTimestampMs",
-     *   //   "containerId": "my_containerId",
-     *   //   "containerVersionId": "my_containerVersionId",
-     *   //   "description": "my_description",
-     *   //   "enableDebug": false,
-     *   //   "environmentId": "my_environmentId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "type": "my_type",
-     *   //   "url": "my_url"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3076,66 +2341,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Creates a GTM Folder.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.folders.create({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "containerId": "my_containerId",
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "folderId": "my_folderId",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "containerId": "my_containerId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "folderId": "my_folderId",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3223,47 +2428,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Deletes a GTM Folder.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.folders.delete({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Folder ID.
-     *     folderId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3349,59 +2513,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Gets a GTM Folder.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.folders.get({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Folder ID.
-     *     folderId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "containerId": "my_containerId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "folderId": "my_folderId",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3489,53 +2600,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Lists all GTM Folders of a Container.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.folders.list({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "folders": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3626,70 +2690,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Updates a GTM Folder.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.folders.update({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the folder in storage.
-     *     fingerprint: 'placeholder-value',
-     *     // The GTM Folder ID.
-     *     folderId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "containerId": "my_containerId",
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "folderId": "my_folderId",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "containerId": "my_containerId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "folderId": "my_folderId",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3866,57 +2866,6 @@ export namespace tagmanager_v1 {
 
     /**
      * List all entities in a GTM Folder.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.folders.entities.list({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Folder ID.
-     *     folderId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "tag": [],
-     *   //   "trigger": [],
-     *   //   "variable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4028,65 +2977,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Moves entities to a GTM Folder.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.move_folders.update({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Folder ID.
-     *     folderId: 'placeholder-value',
-     *     // The tags to be moved to the folder.
-     *     tagId: 'placeholder-value',
-     *     // The triggers to be moved to the folder.
-     *     triggerId: 'placeholder-value',
-     *     // The variables to be moved to the folder.
-     *     variableId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "containerId": "my_containerId",
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "folderId": "my_folderId",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4212,83 +3102,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Re-generates the authorization code for a GTM Environment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.publish'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await tagmanager.accounts.containers.reauthorize_environments.update({
-     *       // The GTM Account ID.
-     *       accountId: 'placeholder-value',
-     *       // The GTM Container ID.
-     *       containerId: 'placeholder-value',
-     *       // The GTM Environment ID.
-     *       environmentId: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "accountId": "my_accountId",
-     *         //   "authorizationCode": "my_authorizationCode",
-     *         //   "authorizationTimestampMs": "my_authorizationTimestampMs",
-     *         //   "containerId": "my_containerId",
-     *         //   "containerVersionId": "my_containerVersionId",
-     *         //   "description": "my_description",
-     *         //   "enableDebug": false,
-     *         //   "environmentId": "my_environmentId",
-     *         //   "fingerprint": "my_fingerprint",
-     *         //   "name": "my_name",
-     *         //   "type": "my_type",
-     *         //   "url": "my_url"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "authorizationCode": "my_authorizationCode",
-     *   //   "authorizationTimestampMs": "my_authorizationTimestampMs",
-     *   //   "containerId": "my_containerId",
-     *   //   "containerVersionId": "my_containerVersionId",
-     *   //   "description": "my_description",
-     *   //   "enableDebug": false,
-     *   //   "environmentId": "my_environmentId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "type": "my_type",
-     *   //   "url": "my_url"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4405,98 +3218,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Creates a GTM Tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.tags.create({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "blockingRuleId": [],
-     *       //   "blockingTriggerId": [],
-     *       //   "containerId": "my_containerId",
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "firingRuleId": [],
-     *       //   "firingTriggerId": [],
-     *       //   "liveOnly": false,
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "parameter": [],
-     *       //   "parentFolderId": "my_parentFolderId",
-     *       //   "paused": false,
-     *       //   "priority": {},
-     *       //   "scheduleEndMs": "my_scheduleEndMs",
-     *       //   "scheduleStartMs": "my_scheduleStartMs",
-     *       //   "setupTag": [],
-     *       //   "tagFiringOption": "my_tagFiringOption",
-     *       //   "tagId": "my_tagId",
-     *       //   "teardownTag": [],
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "blockingRuleId": [],
-     *   //   "blockingTriggerId": [],
-     *   //   "containerId": "my_containerId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "firingRuleId": [],
-     *   //   "firingTriggerId": [],
-     *   //   "liveOnly": false,
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "parameter": [],
-     *   //   "parentFolderId": "my_parentFolderId",
-     *   //   "paused": false,
-     *   //   "priority": {},
-     *   //   "scheduleEndMs": "my_scheduleEndMs",
-     *   //   "scheduleStartMs": "my_scheduleStartMs",
-     *   //   "setupTag": [],
-     *   //   "tagFiringOption": "my_tagFiringOption",
-     *   //   "tagId": "my_tagId",
-     *   //   "teardownTag": [],
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4584,47 +3305,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Deletes a GTM Tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.tags.delete({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Tag ID.
-     *     tagId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4710,75 +3390,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Gets a GTM Tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.tags.get({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Tag ID.
-     *     tagId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "blockingRuleId": [],
-     *   //   "blockingTriggerId": [],
-     *   //   "containerId": "my_containerId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "firingRuleId": [],
-     *   //   "firingTriggerId": [],
-     *   //   "liveOnly": false,
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "parameter": [],
-     *   //   "parentFolderId": "my_parentFolderId",
-     *   //   "paused": false,
-     *   //   "priority": {},
-     *   //   "scheduleEndMs": "my_scheduleEndMs",
-     *   //   "scheduleStartMs": "my_scheduleStartMs",
-     *   //   "setupTag": [],
-     *   //   "tagFiringOption": "my_tagFiringOption",
-     *   //   "tagId": "my_tagId",
-     *   //   "teardownTag": [],
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4866,53 +3477,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Lists all GTM Tags of a Container.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.tags.list({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "tags": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5000,102 +3564,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Updates a GTM Tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.tags.update({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the tag in storage.
-     *     fingerprint: 'placeholder-value',
-     *     // The GTM Tag ID.
-     *     tagId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "blockingRuleId": [],
-     *       //   "blockingTriggerId": [],
-     *       //   "containerId": "my_containerId",
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "firingRuleId": [],
-     *       //   "firingTriggerId": [],
-     *       //   "liveOnly": false,
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "parameter": [],
-     *       //   "parentFolderId": "my_parentFolderId",
-     *       //   "paused": false,
-     *       //   "priority": {},
-     *       //   "scheduleEndMs": "my_scheduleEndMs",
-     *       //   "scheduleStartMs": "my_scheduleStartMs",
-     *       //   "setupTag": [],
-     *       //   "tagFiringOption": "my_tagFiringOption",
-     *       //   "tagId": "my_tagId",
-     *       //   "teardownTag": [],
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "blockingRuleId": [],
-     *   //   "blockingTriggerId": [],
-     *   //   "containerId": "my_containerId",
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "firingRuleId": [],
-     *   //   "firingTriggerId": [],
-     *   //   "liveOnly": false,
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "parameter": [],
-     *   //   "parentFolderId": "my_parentFolderId",
-     *   //   "paused": false,
-     *   //   "priority": {},
-     *   //   "scheduleEndMs": "my_scheduleEndMs",
-     *   //   "scheduleStartMs": "my_scheduleStartMs",
-     *   //   "setupTag": [],
-     *   //   "tagFiringOption": "my_tagFiringOption",
-     *   //   "tagId": "my_tagId",
-     *   //   "teardownTag": [],
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5272,112 +3740,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Creates a GTM Trigger.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.triggers.create({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "autoEventFilter": [],
-     *       //   "checkValidation": {},
-     *       //   "containerId": "my_containerId",
-     *       //   "continuousTimeMinMilliseconds": {},
-     *       //   "customEventFilter": [],
-     *       //   "eventName": {},
-     *       //   "filter": [],
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "horizontalScrollPercentageList": {},
-     *       //   "interval": {},
-     *       //   "intervalSeconds": {},
-     *       //   "limit": {},
-     *       //   "maxTimerLengthSeconds": {},
-     *       //   "name": "my_name",
-     *       //   "parameter": [],
-     *       //   "parentFolderId": "my_parentFolderId",
-     *       //   "selector": {},
-     *       //   "totalTimeMinMilliseconds": {},
-     *       //   "triggerId": "my_triggerId",
-     *       //   "type": "my_type",
-     *       //   "uniqueTriggerId": {},
-     *       //   "verticalScrollPercentageList": {},
-     *       //   "visibilitySelector": {},
-     *       //   "visiblePercentageMax": {},
-     *       //   "visiblePercentageMin": {},
-     *       //   "waitForTags": {},
-     *       //   "waitForTagsTimeout": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "autoEventFilter": [],
-     *   //   "checkValidation": {},
-     *   //   "containerId": "my_containerId",
-     *   //   "continuousTimeMinMilliseconds": {},
-     *   //   "customEventFilter": [],
-     *   //   "eventName": {},
-     *   //   "filter": [],
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "horizontalScrollPercentageList": {},
-     *   //   "interval": {},
-     *   //   "intervalSeconds": {},
-     *   //   "limit": {},
-     *   //   "maxTimerLengthSeconds": {},
-     *   //   "name": "my_name",
-     *   //   "parameter": [],
-     *   //   "parentFolderId": "my_parentFolderId",
-     *   //   "selector": {},
-     *   //   "totalTimeMinMilliseconds": {},
-     *   //   "triggerId": "my_triggerId",
-     *   //   "type": "my_type",
-     *   //   "uniqueTriggerId": {},
-     *   //   "verticalScrollPercentageList": {},
-     *   //   "visibilitySelector": {},
-     *   //   "visiblePercentageMax": {},
-     *   //   "visiblePercentageMin": {},
-     *   //   "waitForTags": {},
-     *   //   "waitForTagsTimeout": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5465,47 +3827,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Deletes a GTM Trigger.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.triggers.delete({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Trigger ID.
-     *     triggerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5591,82 +3912,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Gets a GTM Trigger.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.triggers.get({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Trigger ID.
-     *     triggerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "autoEventFilter": [],
-     *   //   "checkValidation": {},
-     *   //   "containerId": "my_containerId",
-     *   //   "continuousTimeMinMilliseconds": {},
-     *   //   "customEventFilter": [],
-     *   //   "eventName": {},
-     *   //   "filter": [],
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "horizontalScrollPercentageList": {},
-     *   //   "interval": {},
-     *   //   "intervalSeconds": {},
-     *   //   "limit": {},
-     *   //   "maxTimerLengthSeconds": {},
-     *   //   "name": "my_name",
-     *   //   "parameter": [],
-     *   //   "parentFolderId": "my_parentFolderId",
-     *   //   "selector": {},
-     *   //   "totalTimeMinMilliseconds": {},
-     *   //   "triggerId": "my_triggerId",
-     *   //   "type": "my_type",
-     *   //   "uniqueTriggerId": {},
-     *   //   "verticalScrollPercentageList": {},
-     *   //   "visibilitySelector": {},
-     *   //   "visiblePercentageMax": {},
-     *   //   "visiblePercentageMin": {},
-     *   //   "waitForTags": {},
-     *   //   "waitForTagsTimeout": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5754,53 +3999,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Lists all GTM Triggers of a Container.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.triggers.list({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "triggers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5893,116 +4091,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Updates a GTM Trigger.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.triggers.update({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the trigger in storage.
-     *     fingerprint: 'placeholder-value',
-     *     // The GTM Trigger ID.
-     *     triggerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "autoEventFilter": [],
-     *       //   "checkValidation": {},
-     *       //   "containerId": "my_containerId",
-     *       //   "continuousTimeMinMilliseconds": {},
-     *       //   "customEventFilter": [],
-     *       //   "eventName": {},
-     *       //   "filter": [],
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "horizontalScrollPercentageList": {},
-     *       //   "interval": {},
-     *       //   "intervalSeconds": {},
-     *       //   "limit": {},
-     *       //   "maxTimerLengthSeconds": {},
-     *       //   "name": "my_name",
-     *       //   "parameter": [],
-     *       //   "parentFolderId": "my_parentFolderId",
-     *       //   "selector": {},
-     *       //   "totalTimeMinMilliseconds": {},
-     *       //   "triggerId": "my_triggerId",
-     *       //   "type": "my_type",
-     *       //   "uniqueTriggerId": {},
-     *       //   "verticalScrollPercentageList": {},
-     *       //   "visibilitySelector": {},
-     *       //   "visiblePercentageMax": {},
-     *       //   "visiblePercentageMin": {},
-     *       //   "waitForTags": {},
-     *       //   "waitForTagsTimeout": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "autoEventFilter": [],
-     *   //   "checkValidation": {},
-     *   //   "containerId": "my_containerId",
-     *   //   "continuousTimeMinMilliseconds": {},
-     *   //   "customEventFilter": [],
-     *   //   "eventName": {},
-     *   //   "filter": [],
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "horizontalScrollPercentageList": {},
-     *   //   "interval": {},
-     *   //   "intervalSeconds": {},
-     *   //   "limit": {},
-     *   //   "maxTimerLengthSeconds": {},
-     *   //   "name": "my_name",
-     *   //   "parameter": [],
-     *   //   "parentFolderId": "my_parentFolderId",
-     *   //   "selector": {},
-     *   //   "totalTimeMinMilliseconds": {},
-     *   //   "triggerId": "my_triggerId",
-     *   //   "type": "my_type",
-     *   //   "uniqueTriggerId": {},
-     *   //   "verticalScrollPercentageList": {},
-     *   //   "visibilitySelector": {},
-     *   //   "visiblePercentageMax": {},
-     *   //   "visiblePercentageMin": {},
-     *   //   "waitForTags": {},
-     *   //   "waitForTagsTimeout": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6179,82 +4267,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Creates a GTM Variable.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.variables.create({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "containerId": "my_containerId",
-     *       //   "disablingTriggerId": [],
-     *       //   "enablingTriggerId": [],
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "parameter": [],
-     *       //   "parentFolderId": "my_parentFolderId",
-     *       //   "scheduleEndMs": "my_scheduleEndMs",
-     *       //   "scheduleStartMs": "my_scheduleStartMs",
-     *       //   "type": "my_type",
-     *       //   "variableId": "my_variableId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "containerId": "my_containerId",
-     *   //   "disablingTriggerId": [],
-     *   //   "enablingTriggerId": [],
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "parameter": [],
-     *   //   "parentFolderId": "my_parentFolderId",
-     *   //   "scheduleEndMs": "my_scheduleEndMs",
-     *   //   "scheduleStartMs": "my_scheduleStartMs",
-     *   //   "type": "my_type",
-     *   //   "variableId": "my_variableId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6342,47 +4354,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Deletes a GTM Variable.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.variables.delete({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Variable ID.
-     *     variableId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6468,67 +4439,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Gets a GTM Variable.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.variables.get({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Variable ID.
-     *     variableId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "containerId": "my_containerId",
-     *   //   "disablingTriggerId": [],
-     *   //   "enablingTriggerId": [],
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "parameter": [],
-     *   //   "parentFolderId": "my_parentFolderId",
-     *   //   "scheduleEndMs": "my_scheduleEndMs",
-     *   //   "scheduleStartMs": "my_scheduleStartMs",
-     *   //   "type": "my_type",
-     *   //   "variableId": "my_variableId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6616,53 +4526,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Lists all GTM Variables of a Container.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.variables.list({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "variables": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6755,86 +4618,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Updates a GTM Variable.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.variables.update({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the variable in storage.
-     *     fingerprint: 'placeholder-value',
-     *     // The GTM Variable ID.
-     *     variableId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "containerId": "my_containerId",
-     *       //   "disablingTriggerId": [],
-     *       //   "enablingTriggerId": [],
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "parameter": [],
-     *       //   "parentFolderId": "my_parentFolderId",
-     *       //   "scheduleEndMs": "my_scheduleEndMs",
-     *       //   "scheduleStartMs": "my_scheduleStartMs",
-     *       //   "type": "my_type",
-     *       //   "variableId": "my_variableId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "containerId": "my_containerId",
-     *   //   "disablingTriggerId": [],
-     *   //   "enablingTriggerId": [],
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "parameter": [],
-     *   //   "parentFolderId": "my_parentFolderId",
-     *   //   "scheduleEndMs": "my_scheduleEndMs",
-     *   //   "scheduleStartMs": "my_scheduleStartMs",
-     *   //   "type": "my_type",
-     *   //   "variableId": "my_variableId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7011,63 +4794,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Creates a Container Version.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.versions.create({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "quickPreview": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "compilerError": false,
-     *   //   "containerVersion": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7164,49 +4890,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Deletes a Container Version.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.versions.delete({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Container Version ID.
-     *     containerVersionId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7292,69 +4975,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Gets a Container Version.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.versions.get({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Container Version ID. Specify published to retrieve the currently published version.
-     *     containerVersionId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "container": {},
-     *   //   "containerId": "my_containerId",
-     *   //   "containerVersionId": "my_containerVersionId",
-     *   //   "deleted": false,
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "folder": [],
-     *   //   "macro": [],
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "rule": [],
-     *   //   "tag": [],
-     *   //   "trigger": [],
-     *   //   "variable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7442,59 +5062,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Lists all Container Versions of a GTM Container.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containers',
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
-     *       'https://www.googleapis.com/auth/tagmanager.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.versions.list({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // Retrieve headers only when true.
-     *     headers: 'placeholder-value',
-     *     // Also retrieve deleted (archived) versions when true.
-     *     includeDeleted: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "containerVersion": [],
-     *   //   "containerVersionHeader": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7591,55 +5158,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Publishes a Container Version.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.publish'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.versions.publish({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Container Version ID.
-     *     containerVersionId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the container version in storage.
-     *     fingerprint: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "compilerError": false,
-     *   //   "containerVersion": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7736,65 +5254,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Restores a Container Version. This will overwrite the container's current configuration (including its variables, triggers and tags). The operation will not have any effect on the version that is being served (i.e. the published version).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.edit.containers'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.versions.restore({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Container Version ID.
-     *     containerVersionId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "container": {},
-     *   //   "containerId": "my_containerId",
-     *   //   "containerVersionId": "my_containerVersionId",
-     *   //   "deleted": false,
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "folder": [],
-     *   //   "macro": [],
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "rule": [],
-     *   //   "tag": [],
-     *   //   "trigger": [],
-     *   //   "variable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7882,67 +5341,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Undeletes a Container Version.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.versions.undelete({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Container Version ID.
-     *     containerVersionId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "container": {},
-     *   //   "containerId": "my_containerId",
-     *   //   "containerVersionId": "my_containerVersionId",
-     *   //   "deleted": false,
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "folder": [],
-     *   //   "macro": [],
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "rule": [],
-     *   //   "tag": [],
-     *   //   "trigger": [],
-     *   //   "variable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8030,90 +5428,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Updates a Container Version.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/tagmanager.edit.containerversions',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.versions.update({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM Container ID.
-     *     containerId: 'placeholder-value',
-     *     // The GTM Container Version ID.
-     *     containerVersionId: 'placeholder-value',
-     *     // When provided, this fingerprint must match the fingerprint of the container version in storage.
-     *     fingerprint: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "container": {},
-     *       //   "containerId": "my_containerId",
-     *       //   "containerVersionId": "my_containerVersionId",
-     *       //   "deleted": false,
-     *       //   "fingerprint": "my_fingerprint",
-     *       //   "folder": [],
-     *       //   "macro": [],
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "rule": [],
-     *       //   "tag": [],
-     *       //   "trigger": [],
-     *       //   "variable": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "container": {},
-     *   //   "containerId": "my_containerId",
-     *   //   "containerVersionId": "my_containerVersionId",
-     *   //   "deleted": false,
-     *   //   "fingerprint": "my_fingerprint",
-     *   //   "folder": [],
-     *   //   "macro": [],
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "rule": [],
-     *   //   "tag": [],
-     *   //   "trigger": [],
-     *   //   "variable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8347,64 +5661,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Creates a user's Account & Container Permissions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.permissions.create({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountAccess": {},
-     *       //   "accountId": "my_accountId",
-     *       //   "containerAccess": [],
-     *       //   "emailAddress": "my_emailAddress",
-     *       //   "permissionId": "my_permissionId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountAccess": {},
-     *   //   "accountId": "my_accountId",
-     *   //   "containerAccess": [],
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "permissionId": "my_permissionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8491,45 +5747,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Removes a user from the account, revoking access to it and all of its containers.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.permissions.delete({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM User ID.
-     *     permissionId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8615,54 +5832,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Gets a user's Account & Container Permissions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.permissions.get({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM User ID.
-     *     permissionId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountAccess": {},
-     *   //   "accountId": "my_accountId",
-     *   //   "containerAccess": [],
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "permissionId": "my_permissionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8750,48 +5919,6 @@ export namespace tagmanager_v1 {
 
     /**
      * List all users that have access to the account along with Account and Container Permissions granted to each of them.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.permissions.list({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "userAccess": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8883,66 +6010,6 @@ export namespace tagmanager_v1 {
 
     /**
      * Updates a user's Account & Container Permissions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/tagmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const tagmanager = google.tagmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/tagmanager.manage.users'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await tagmanager.accounts.permissions.update({
-     *     // The GTM Account ID.
-     *     accountId: 'placeholder-value',
-     *     // The GTM User ID.
-     *     permissionId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountAccess": {},
-     *       //   "accountId": "my_accountId",
-     *       //   "containerAccess": [],
-     *       //   "emailAddress": "my_emailAddress",
-     *       //   "permissionId": "my_permissionId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountAccess": {},
-     *   //   "accountId": "my_accountId",
-     *   //   "containerAccess": [],
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "permissionId": "my_permissionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

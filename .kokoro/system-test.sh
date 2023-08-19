@@ -19,7 +19,7 @@ set -eo pipefail
 export NPM_CONFIG_PREFIX=${HOME}/.npm-global
 
 # Setup service account credentials.
-export GOOGLE_APPLICATION_CREDENTIALS=${KOKORO_GFILE_DIR}/service-account.json
+export GOOGLE_APPLICATION_CREDENTIALS=${KOKORO_GFILE_DIR}/secret_manager/long-door-651-kokoro-system-test-service-account
 export GCLOUD_PROJECT=long-door-651
 
 cd $(dirname $0)/..
@@ -49,7 +49,7 @@ npm run system-test
 
 # codecov combines coverage across integration and unit tests. Include
 # the logic below for any environment you wish to collect coverage for:
-COVERAGE_NODE=12
+COVERAGE_NODE=14
 if npx check-node-version@3.3.0 --silent --node $COVERAGE_NODE; then
   NYC_BIN=./node_modules/nyc/bin/nyc.js
   if [ -f "$NYC_BIN" ]; then

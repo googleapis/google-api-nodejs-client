@@ -35,7 +35,7 @@ export function run(options: run_v1beta1.Options): run_v1beta1.Run;
 export function run(version: 'v2'): run_v2.Run;
 export function run(options: run_v2.Options): run_v2.Run;
 export function run<
-  T = run_v1.Run | run_v1alpha1.Run | run_v1beta1.Run | run_v2.Run
+  T = run_v1.Run | run_v1alpha1.Run | run_v1beta1.Run | run_v2.Run,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

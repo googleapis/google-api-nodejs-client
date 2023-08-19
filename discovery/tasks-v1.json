@@ -566,7 +566,7 @@
       }
     }
   },
-  "revision": "20210719",
+  "revision": "20230401",
   "rootUrl": "https://tasks.googleapis.com/",
   "schemas": {
     "Task": {
@@ -734,6 +734,6 @@
     }
   },
   "servicePath": "",
-  "title": "Tasks API",
+  "title": "Google Tasks API",
   "version": "v1"
 }

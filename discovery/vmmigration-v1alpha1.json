@@ -229,7 +229,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -262,7 +262,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -363,7 +363,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -496,7 +496,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "vmmigration.projects.locations.operations.list",
@@ -557,7 +557,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -595,7 +595,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -737,7 +737,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -785,7 +785,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -818,7 +818,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -956,7 +956,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -1143,7 +1143,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
@@ -1303,7 +1303,7 @@
                               "type": "string"
                             },
                             "requestId": {
-                              "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                              "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                               "location": "query",
                               "type": "string"
                             }
@@ -1444,7 +1444,7 @@
                               "type": "string"
                             },
                             "requestId": {
-                              "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                              "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                               "location": "query",
                               "type": "string"
                             }
@@ -1629,7 +1629,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
@@ -1667,7 +1667,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -1804,7 +1804,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1842,7 +1842,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -1943,7 +1943,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1972,9 +1972,28 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20230810",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
+    "AccessKeyCredentials": {
+      "description": "Message describing AWS Credentials using access key id and secret.",
+      "id": "AccessKeyCredentials",
+      "properties": {
+        "accessKeyId": {
+          "description": "AWS access key ID.",
+          "type": "string"
+        },
+        "secretAccessKey": {
+          "description": "Input only. AWS secret access key.",
+          "type": "string"
+        },
+        "sessionToken": {
+          "description": "Input only. AWS session token. Used only when AWS security token service (STS) is responsible for creating the temporary credentials.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AdaptingOSStep": {
       "description": "AdaptingOSStep contains specific step details.",
       "id": "AdaptingOSStep",
@@ -2057,6 +2076,290 @@
       },
       "type": "object"
     },
+    "AwsDiskDetails": {
+      "description": "The details of an AWS instance disk.",
+      "id": "AwsDiskDetails",
+      "properties": {
+        "diskNumber": {
+          "description": "The ordinal number of the disk.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sizeGb": {
+          "description": "Size in GB.",
+          "format": "int64",
+          "type": "string"
+        },
+        "volumeId": {
+          "description": "AWS volume ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsSecurityGroup": {
+      "description": "AwsSecurityGroup describes a security group of an AWS VM.",
+      "id": "AwsSecurityGroup",
+      "properties": {
+        "id": {
+          "description": "The AWS security group id.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The AWS security group name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsSourceDetails": {
+      "description": "AwsSourceDetails message describes a specific source details for the AWS source type.",
+      "id": "AwsSourceDetails",
+      "properties": {
+        "accessKeyCreds": {
+          "$ref": "AccessKeyCredentials",
+          "description": "AWS Credentials using access key id and secret."
+        },
+        "awsRegion": {
+          "description": "Immutable. The AWS region that the source VMs will be migrated from.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "Output only. Provides details on the state of the Source in case of an error.",
+          "readOnly": true
+        },
+        "inventorySecurityGroupNames": {
+          "description": "AWS security group names to limit the scope of the source inventory.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "inventoryTagList": {
+          "description": "AWS resource tags to limit the scope of the source inventory.",
+          "items": {
+            "$ref": "Tag"
+          },
+          "type": "array"
+        },
+        "migrationResourcesUserTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User specified tags to add to every M2VM generated resource in AWS. These tags will be set in addition to the default tags that are set as part of the migration process. The tags must not begin with the reserved prefix `m2vm`.",
+          "type": "object"
+        },
+        "publicIp": {
+          "description": "Output only. The source's public IP. All communication initiated by this source will originate from this IP.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the source as determined by the health check.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "FAILED",
+            "ACTIVE"
+          ],
+          "enumDescriptions": [
+            "The state is unknown. This is used for API compatibility only and is not used by the system.",
+            "The state was not sampled by the health checks yet.",
+            "The source is available but might not be usable yet due to invalid credentials or another reason. The error message will contain further details.",
+            "The source exists and its credentials were verified."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsSourceVmDetails": {
+      "description": "Represent the source AWS VM details.",
+      "id": "AwsSourceVmDetails",
+      "properties": {
+        "committedStorageBytes": {
+          "description": "The total size of the disks being migrated in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "disks": {
+          "description": "The disks attached to the source VM.",
+          "items": {
+            "$ref": "AwsDiskDetails"
+          },
+          "type": "array"
+        },
+        "firmware": {
+          "description": "The firmware type of the source VM.",
+          "enum": [
+            "FIRMWARE_UNSPECIFIED",
+            "EFI",
+            "BIOS"
+          ],
+          "enumDescriptions": [
+            "The firmware is unknown.",
+            "The firmware is EFI.",
+            "The firmware is BIOS."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsVmDetails": {
+      "description": "AwsVmDetails describes a VM in AWS.",
+      "id": "AwsVmDetails",
+      "properties": {
+        "architecture": {
+          "description": "The CPU architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "I386",
+            "X86_64",
+            "ARM64",
+            "X86_64_MAC"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is I386.",
+            "The architecture is X86_64.",
+            "The architecture is ARM64.",
+            "The architecture is X86_64_MAC."
+          ],
+          "type": "string"
+        },
+        "bootOption": {
+          "description": "The VM Boot Option.",
+          "enum": [
+            "BOOT_OPTION_UNSPECIFIED",
+            "EFI",
+            "BIOS"
+          ],
+          "enumDescriptions": [
+            "The boot option is unknown.",
+            "The boot option is UEFI.",
+            "The boot option is LEGACY-BIOS."
+          ],
+          "type": "string"
+        },
+        "committedStorageMb": {
+          "description": "The total size of the storage allocated to the VM in MB.",
+          "format": "int64",
+          "type": "string"
+        },
+        "cpuCount": {
+          "description": "The number of cpus the VM has.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "diskCount": {
+          "description": "The number of disks the VM has.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "displayName": {
+          "description": "The display name of the VM. Note that this value is not necessarily unique.",
+          "type": "string"
+        },
+        "instanceType": {
+          "description": "The instance type of the VM.",
+          "type": "string"
+        },
+        "memoryMb": {
+          "description": "The memory size of the VM in MB.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "osDescription": {
+          "description": "The VM's OS.",
+          "type": "string"
+        },
+        "powerState": {
+          "description": "Output only. The power state of the VM at the moment list was taken.",
+          "enum": [
+            "POWER_STATE_UNSPECIFIED",
+            "ON",
+            "OFF",
+            "SUSPENDED",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Power state is not specified.",
+            "The VM is turned on.",
+            "The VM is turned off.",
+            "The VM is suspended. This is similar to hibernation or sleep mode.",
+            "The VM is starting."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "securityGroups": {
+          "description": "The security groups the VM belongs to.",
+          "items": {
+            "$ref": "AwsSecurityGroup"
+          },
+          "type": "array"
+        },
+        "sourceDescription": {
+          "description": "The descriptive name of the AWS's source this VM is connected to.",
+          "type": "string"
+        },
+        "sourceId": {
+          "description": "The id of the AWS's source this VM is connected to.",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The tags of the VM.",
+          "type": "object"
+        },
+        "virtualizationType": {
+          "description": "The virtualization type.",
+          "enum": [
+            "VM_VIRTUALIZATION_TYPE_UNSPECIFIED",
+            "HVM",
+            "PARAVIRTUAL"
+          ],
+          "enumDescriptions": [
+            "The virtualization type is unknown.",
+            "The virtualziation type is HVM.",
+            "The virtualziation type is PARAVIRTUAL."
+          ],
+          "type": "string"
+        },
+        "vmId": {
+          "description": "The VM ID in AWS.",
+          "type": "string"
+        },
+        "vpcId": {
+          "description": "The VPC ID the VM belongs to.",
+          "type": "string"
+        },
+        "zone": {
+          "description": "The AWS zone of the VM.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsVmsDetails": {
+      "description": "AWSVmsDetails describes VMs in AWS.",
+      "id": "AwsVmsDetails",
+      "properties": {
+        "details": {
+          "description": "The details of the AWS VMs.",
+          "items": {
+            "$ref": "AwsVmDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CancelCloneJobRequest": {
       "description": "Request message for 'CancelCloneJob' request.",
       "id": "CancelCloneJobRequest",
@@ -2079,6 +2382,11 @@
       "description": "CloneJob describes the process of creating a clone of a MigratingVM to the requested target based on the latest successful uploaded snapshots. While the migration cycles of a MigratingVm take place, it is possible to verify the uploaded VM can be started in the cloud, by creating a clone. The clone can be created without any downtime, and it is created using the latest snapshots which are already in the cloud. The cloneJob is only responsible for its work, not its products, which means once it is finished, it will never touch the instance it created. It will only delete it in case of the CloneJob being cancelled or upon failure to clone.",
       "id": "CloneJob",
       "properties": {
+        "computeEngineDisksTargetDetails": {
+          "$ref": "ComputeEngineDisksTargetDetails",
+          "description": "Output only. Details of the target Persistent Disks in Compute Engine.",
+          "readOnly": true
+        },
         "computeEngineTargetDetails": {
           "$ref": "ComputeEngineTargetDetails",
           "description": "Output only. Details of the target VM in Compute Engine.",
@@ -2086,6 +2394,7 @@
         },
         "computeEngineVmDetails": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "Output only. Details of the VM in Compute Engine. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
         },
@@ -2152,6 +2461,7 @@
         },
         "targetDetails": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "Output only. Details of the VM to create as the target of this clone job. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
         }
@@ -2187,6 +2497,42 @@
       },
       "type": "object"
     },
+    "ComputeEngineDisksTargetDefaults": {
+      "description": "ComputeEngineDisksTargetDefaults is a collection of details for creating Persistent Disks in a target Compute Engine project.",
+      "id": "ComputeEngineDisksTargetDefaults",
+      "properties": {
+        "disks": {
+          "description": "The details of each Persistent Disk to create.",
+          "items": {
+            "$ref": "PersistentDiskDefaults"
+          },
+          "type": "array"
+        },
+        "targetProject": {
+          "description": "The full path of the resource of type TargetProject which represents the Compute Engine project in which to create the Persistent Disks.",
+          "type": "string"
+        },
+        "zone": {
+          "description": "The zone in which to create the Persistent Disks.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComputeEngineDisksTargetDetails": {
+      "description": "ComputeEngineDisksTargetDetails is a collection of created Persistent Disks details.",
+      "id": "ComputeEngineDisksTargetDetails",
+      "properties": {
+        "disks": {
+          "description": "The details of each created Persistent Disk.",
+          "items": {
+            "$ref": "PersistentDisk"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ComputeEngineTargetDefaults": {
       "description": "ComputeEngineTargetDefaults is a collection of details for creating a VM in a target Compute Engine project.",
       "id": "ComputeEngineTargetDefaults",
@@ -2204,7 +2550,7 @@
           "readOnly": true
         },
         "bootOption": {
-          "description": "Output only. The VM Boot Option, as set in the source vm.",
+          "description": "Output only. The VM Boot Option, as set in the source VM.",
           "enum": [
             "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
             "COMPUTE_ENGINE_BOOT_OPTION_EFI",
@@ -2286,14 +2632,14 @@
           "type": "array"
         },
         "networkTags": {
-          "description": "A map of network tags to associate with the VM.",
+          "description": "A list of network tags to associate with the VM.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "secureBoot": {
-          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.",
+          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the VM boot option is EFI.",
           "type": "boolean"
         },
         "serviceAccount": {
@@ -2331,7 +2677,7 @@
           "description": "The OS license returned from the adaptation module report."
         },
         "bootOption": {
-          "description": "The VM Boot Option, as set in the source vm.",
+          "description": "The VM Boot Option, as set in the source VM.",
           "enum": [
             "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
             "COMPUTE_ENGINE_BOOT_OPTION_EFI",
@@ -2412,18 +2758,18 @@
           "type": "array"
         },
         "networkTags": {
-          "description": "A map of network tags to associate with the VM.",
+          "description": "A list of network tags to associate with the VM.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "project": {
-          "description": "The GCP target project ID or project name.",
+          "description": "The Google Cloud target project ID or project name.",
           "type": "string"
         },
         "secureBoot": {
-          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.",
+          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the VM boot option is EFI.",
           "type": "boolean"
         },
         "serviceAccount": {
@@ -2446,6 +2792,7 @@
       "id": "ComputeScheduling",
       "properties": {
         "automaticRestart": {
+          "deprecated": true,
           "type": "boolean"
         },
         "minNodeCpus": {
@@ -2491,10 +2838,28 @@
       },
       "type": "object"
     },
+    "CutoverForecast": {
+      "description": "CutoverForecast holds information about future CutoverJobs of a MigratingVm.",
+      "id": "CutoverForecast",
+      "properties": {
+        "estimatedCutoverJobDuration": {
+          "description": "Output only. Estimation of the CutoverJob duration.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CutoverJob": {
       "description": "CutoverJob message describes a cutover of a migrating VM. The CutoverJob is the operation of shutting down the VM, creating a snapshot and clonning the VM using the replicated snapshot.",
       "id": "CutoverJob",
       "properties": {
+        "computeEngineDisksTargetDetails": {
+          "$ref": "ComputeEngineDisksTargetDetails",
+          "description": "Output only. Details of the target Persistent Disks in Compute Engine.",
+          "readOnly": true
+        },
         "computeEngineTargetDetails": {
           "$ref": "ComputeEngineTargetDetails",
           "description": "Output only. Details of the target VM in Compute Engine.",
@@ -2502,6 +2867,7 @@
         },
         "computeEngineVmDetails": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "Output only. Details of the VM in Compute Engine. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
         },
@@ -2528,6 +2894,7 @@
           "type": "string"
         },
         "progress": {
+          "deprecated": true,
           "description": "Output only. The current progress in percentage of the cutover job.",
           "format": "int32",
           "readOnly": true,
@@ -2585,6 +2952,7 @@
         },
         "targetDetails": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "Output only. Details of the VM to create as the target of this cutover job. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
         }
@@ -2658,7 +3026,7 @@
       "type": "object"
     },
     "DatacenterConnector": {
-      "description": "DatacenterConnector message describes a connector between the Source and GCP, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to GCP and support vm migration data transfer.",
+      "description": "DatacenterConnector message describes a connector between the Source and Google Cloud, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to Google Cloud and support vm migration data transfer.",
       "id": "DatacenterConnector",
       "properties": {
         "applianceInfrastructureVersion": {
@@ -2677,7 +3045,7 @@
           "readOnly": true
         },
         "bucket": {
-          "description": "Output only. The communication channel between the datacenter connector and GCP.",
+          "description": "Output only. The communication channel between the datacenter connector and Google Cloud.",
           "readOnly": true,
           "type": "string"
         },
@@ -2758,6 +3126,10 @@
       "description": "Response message for fetchInventory.",
       "id": "FetchInventoryResponse",
       "properties": {
+        "awsVms": {
+          "$ref": "AwsVmsDetails",
+          "description": "The description of the VMs in a Source of type AWS."
+        },
         "nextPageToken": {
           "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "readOnly": true,
@@ -2798,6 +3170,20 @@
         },
         "displayName": {
           "description": "Display name is a user defined name for this group which can be updated.",
+          "type": "string"
+        },
+        "migrationTargetType": {
+          "description": "Immutable. The target type of this group.",
+          "enum": [
+            "MIGRATION_TARGET_TYPE_UNSPECIFIED",
+            "MIGRATION_TARGET_TYPE_GCE",
+            "MIGRATION_TARGET_TYPE_DISKS"
+          ],
+          "enumDescriptions": [
+            "Group type is not specified. This defaults to Compute Engine targets.",
+            "All MigratingVMs in the group must have Compute Engine targets.",
+            "All MigratingVMs in the group must have Compute Engine Disks targets."
+          ],
           "type": "string"
         },
         "name": {
@@ -3145,7 +3531,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -3182,12 +3568,22 @@
       "description": "MigratingVm describes the VM that will be migrated from a Source environment and its replication state.",
       "id": "MigratingVm",
       "properties": {
+        "awsSourceVmDetails": {
+          "$ref": "AwsSourceVmDetails",
+          "description": "Output only. Details of the VM from an AWS source.",
+          "readOnly": true
+        },
+        "computeEngineDisksTargetDefaults": {
+          "$ref": "ComputeEngineDisksTargetDefaults",
+          "description": "Details of the target Persistent Disks in Compute Engine."
+        },
         "computeEngineTargetDefaults": {
           "$ref": "ComputeEngineTargetDefaults",
           "description": "Details of the target VM in Compute Engine."
         },
         "computeEngineVmDefaults": {
           "$ref": "TargetVMDetails",
+          "deprecated": true,
           "description": "Details of the VM in Compute Engine. Deprecated: Use compute_engine_target_defaults instead."
         },
         "createTime": {
@@ -3198,7 +3594,12 @@
         },
         "currentSyncInfo": {
           "$ref": "ReplicationCycle",
-          "description": "Output only. The percentage progress of the current running replication cycle.",
+          "description": "Output only. Details of the current running replication cycle.",
+          "readOnly": true
+        },
+        "cutoverForecast": {
+          "$ref": "CutoverForecast",
+          "description": "Output only. Provides details of future CutoverJobs of a MigratingVm. Set to empty when cutover forecast is unavailable.",
           "readOnly": true
         },
         "description": {
@@ -3225,6 +3626,11 @@
           },
           "description": "The labels of the migrating VM.",
           "type": "object"
+        },
+        "lastReplicationCycle": {
+          "$ref": "ReplicationCycle",
+          "description": "Output only. Details of the last replication cycle. This will be updated whenever a replication cycle is finished and is not to be confused with last_sync which is only updated on successful replication cycles.",
+          "readOnly": true
         },
         "lastSync": {
           "$ref": "ReplicationSync",
@@ -3301,7 +3707,8 @@
         },
         "targetDefaults": {
           "$ref": "TargetVMDetails",
-          "description": "The default configuration of the target VM that will be created in GCP as a result of the migration. Deprecated: Use compute_engine_target_defaults instead."
+          "deprecated": true,
+          "description": "The default configuration of the target VM that will be created in Google Cloud as a result of the migration. Deprecated: Use compute_engine_target_defaults instead."
         },
         "updateTime": {
           "description": "Output only. The last time the migrating VM resource was updated.",
@@ -3372,6 +3779,45 @@
       },
       "type": "object"
     },
+    "MigrationWarning": {
+      "description": "Represents migration resource warning information that can be used with google.rpc.Status message. MigrationWarning is used to present the user with warning information in migration operations.",
+      "id": "MigrationWarning",
+      "properties": {
+        "actionItem": {
+          "$ref": "LocalizedMessage",
+          "description": "Suggested action for solving the warning."
+        },
+        "code": {
+          "description": "The warning code.",
+          "enum": [
+            "WARNING_CODE_UNSPECIFIED",
+            "ADAPTATION_WARNING"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is not used.",
+            "A warning originated from OS Adaptation."
+          ],
+          "type": "string"
+        },
+        "helpLinks": {
+          "description": "URL(s) pointing to additional information on handling the current warning.",
+          "items": {
+            "$ref": "Link"
+          },
+          "type": "array"
+        },
+        "warningMessage": {
+          "$ref": "LocalizedMessage",
+          "description": "The localized warning message."
+        },
+        "warningTime": {
+          "description": "The time the warning occurred.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NetworkInterface": {
       "description": "NetworkInterface represents a NIC of a VM.",
       "id": "NetworkInterface",
@@ -3424,7 +3870,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -3478,6 +3924,61 @@
       "description": "Request message for 'PauseMigration' request.",
       "id": "PauseMigrationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "PersistentDisk": {
+      "description": "Details of a created Persistent Disk.",
+      "id": "PersistentDisk",
+      "properties": {
+        "diskUri": {
+          "description": "The URI of the Persistent Disk.",
+          "type": "string"
+        },
+        "sourceDiskNumber": {
+          "description": "The ordinal number of the source VM disk.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PersistentDiskDefaults": {
+      "description": "Details for creation of a Persistent Disk.",
+      "id": "PersistentDiskDefaults",
+      "properties": {
+        "additionalLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of labels to associate with the Persistent Disk.",
+          "type": "object"
+        },
+        "diskName": {
+          "description": "Optional. The name of the Persistent Disk to create.",
+          "type": "string"
+        },
+        "diskType": {
+          "description": "The disk type to use.",
+          "enum": [
+            "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
+            "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
+            "COMPUTE_ENGINE_DISK_TYPE_SSD",
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+          ],
+          "enumDescriptions": [
+            "An unspecified disk type. Will be used as STANDARD.",
+            "A Standard disk type.",
+            "SSD hard disk type.",
+            "An alternative to SSD persistent disks that balance performance and cost."
+          ],
+          "type": "string"
+        },
+        "sourceDiskNumber": {
+          "description": "Required. The ordinal number of the source VM disk.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "PostProcessingStep": {
@@ -3553,12 +4054,14 @@
           "type": "string"
         },
         "progress": {
+          "deprecated": true,
           "description": "The current progress in percentage of this cycle.",
           "format": "int32",
           "type": "integer"
         },
         "progressPercent": {
-          "description": "The current progress in percentage of this cycle.",
+          "deprecated": true,
+          "description": "The current progress in percentage of this cycle. Was replaced by 'steps' field, which breaks down the cycle progression more accurately.",
           "format": "int32",
           "type": "integer"
         },
@@ -3568,7 +4071,7 @@
           "type": "string"
         },
         "state": {
-          "description": "State of the MigratingVm.",
+          "description": "State of the ReplicationCycle.",
           "enum": [
             "STATE_UNSPECIFIED",
             "RUNNING",
@@ -3596,6 +4099,14 @@
           "description": "The accumulated duration the replication cycle was paused.",
           "format": "google-duration",
           "type": "string"
+        },
+        "warnings": {
+          "description": "Output only. Warnings that occurred during the cycle.",
+          "items": {
+            "$ref": "MigrationWarning"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -3676,6 +4187,10 @@
       "description": "Source message describes a specific vm migration Source resource. It contains the source environment information.",
       "id": "Source",
       "properties": {
+        "aws": {
+          "$ref": "AwsSourceDetails",
+          "description": "AWS type source details."
+        },
         "createTime": {
           "description": "Output only. The create time timestamp.",
           "format": "google-datetime",
@@ -3688,6 +4203,7 @@
         },
         "error": {
           "$ref": "Status",
+          "deprecated": true,
           "description": "Output only. Provides details on the state of the Source in case of an error.",
           "readOnly": true
         },
@@ -3749,6 +4265,21 @@
       },
       "type": "object"
     },
+    "Tag": {
+      "description": "Tag is an AWS tag representation.",
+      "id": "Tag",
+      "properties": {
+        "key": {
+          "description": "Key of tag.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of tag.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TargetProject": {
       "description": "TargetProject message represents a target Compute Engine project for a migration or a clone.",
       "id": "TargetProject",
@@ -3782,6 +4313,7 @@
       "type": "object"
     },
     "TargetVMDetails": {
+      "deprecated": true,
       "description": "TargetVMDetails is a collection of details for creating a VM in a target Compute Engine project.",
       "id": "TargetVMDetails",
       "properties": {
@@ -3791,7 +4323,7 @@
           "readOnly": true
         },
         "bootOption": {
-          "description": "Output only. The VM Boot Option, as set in the source vm.",
+          "description": "Output only. The VM Boot Option, as set in the source VM.",
           "enum": [
             "BOOT_OPTION_UNSPECIFIED",
             "EFI",
@@ -3885,13 +4417,14 @@
           "type": "array"
         },
         "networkTags": {
-          "description": "A map of network tags to associate with the VM.",
+          "description": "A list of network tags to associate with the VM.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "project": {
+          "deprecated": true,
           "description": "Output only. The project in which to create the VM.",
           "readOnly": true,
           "type": "string"
@@ -3924,7 +4457,7 @@
       "id": "UpgradeApplianceRequest",
       "properties": {
         "requestId": {
-          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         }
       },
@@ -4053,6 +4586,7 @@
           "type": "array"
         },
         "vmsCount": {
+          "deprecated": true,
           "description": "Output only. Total number of VMs included in the report.",
           "format": "int32",
           "readOnly": true,
@@ -4085,6 +4619,7 @@
       "id": "VmUtilizationMetrics",
       "properties": {
         "cpuAverage": {
+          "deprecated": true,
           "description": "Average CPU usage, percent.",
           "format": "int32",
           "type": "integer"
@@ -4095,6 +4630,7 @@
           "type": "integer"
         },
         "cpuMax": {
+          "deprecated": true,
           "description": "Max CPU usage, percent.",
           "format": "int32",
           "type": "integer"
@@ -4105,6 +4641,7 @@
           "type": "integer"
         },
         "diskIoRateAverage": {
+          "deprecated": true,
           "description": "Average disk IO rate, in kilobytes per second.",
           "format": "int64",
           "type": "string"
@@ -4115,6 +4652,7 @@
           "type": "string"
         },
         "diskIoRateMax": {
+          "deprecated": true,
           "description": "Max disk IO rate, in kilobytes per second.",
           "format": "int64",
           "type": "string"
@@ -4125,6 +4663,7 @@
           "type": "string"
         },
         "memoryAverage": {
+          "deprecated": true,
           "description": "Average memory usage, percent.",
           "format": "int32",
           "type": "integer"
@@ -4135,6 +4674,7 @@
           "type": "integer"
         },
         "memoryMax": {
+          "deprecated": true,
           "description": "Max memory usage, percent.",
           "format": "int32",
           "type": "integer"
@@ -4145,6 +4685,7 @@
           "type": "integer"
         },
         "networkThroughputAverage": {
+          "deprecated": true,
           "description": "Average network throughput (combined transmit-rates and receive-rates), in kilobytes per second.",
           "format": "int64",
           "type": "string"
@@ -4155,6 +4696,7 @@
           "type": "string"
         },
         "networkThroughputMax": {
+          "deprecated": true,
           "description": "Max network throughput (combined transmit-rates and receive-rates), in kilobytes per second.",
           "format": "int64",
           "type": "string"
@@ -4173,6 +4715,10 @@
       "properties": {
         "password": {
           "description": "Input only. The credentials password. This is write only and can not be read in a GET operation.",
+          "type": "string"
+        },
+        "resolvedVcenterHost": {
+          "description": "The hostname of the vcenter.",
           "type": "string"
         },
         "thumbprint": {
@@ -4210,6 +4756,7 @@
           "type": "string"
         },
         "committedStorage": {
+          "deprecated": true,
           "description": "The total size of the storage allocated to the VM in MB.",
           "format": "int64",
           "type": "string"
@@ -4293,7 +4840,7 @@
     }
   },
   "servicePath": "",
-  "title": "Migrate to Virtual Machines API",
+  "title": "VM Migration API",
   "version": "v1alpha1",
   "version_module": true
 }

@@ -46,7 +46,7 @@ export function containeranalysis<
   T =
     | containeranalysis_v1.Containeranalysis
     | containeranalysis_v1alpha1.Containeranalysis
-    | containeranalysis_v1beta1.Containeranalysis
+    | containeranalysis_v1beta1.Containeranalysis,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

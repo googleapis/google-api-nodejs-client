@@ -238,8 +238,29 @@ export namespace ondemandscanning_v1 {
      */
     signatures?: Schema$Signature[];
   }
+  export interface Schema$BinarySourceInfo {
+    /**
+     * The binary package. This is significant when the source is different than the binary itself. Historically if they've differed, we've stored the name of the source and its version in the package/version fields, but we should also store the binary package info, as that's what's actually installed. See b/175908657#comment15.
+     */
+    binaryVersion?: Schema$PackageVersion;
+    /**
+     * The source package. Similar to the above, this is significant when the source is different than the binary itself. Since the top-level package/version fields are based on an if/else, we need a separate field for both binary and source if we want to know definitively where the data is coming from.
+     */
+    sourceVersion?: Schema$PackageVersion;
+  }
+  export interface Schema$BuildDefinition {
+    buildType?: string | null;
+    externalParameters?: {[key: string]: any} | null;
+    internalParameters?: {[key: string]: any} | null;
+    resolvedDependencies?: Schema$ResourceDescriptor[];
+  }
   export interface Schema$BuilderConfig {
     id?: string | null;
+  }
+  export interface Schema$BuildMetadata {
+    finishedOn?: string | null;
+    invocationId?: string | null;
+    startedOn?: string | null;
   }
   /**
    * Details of a build occurrence.
@@ -249,6 +270,10 @@ export namespace ondemandscanning_v1 {
      * Deprecated. See InTotoStatement for the replacement. In-toto Provenance representation as defined in spec.
      */
     intotoProvenance?: Schema$InTotoProvenance;
+    /**
+     * In-Toto Slsa Provenance V1 represents a slsa provenance meeting the slsa spec, wrapped in an in-toto statement. This allows for direct jsonification of a to-spec in-toto slsa statement with a to-spec slsa provenance.
+     */
+    inTotoSlsaProvenanceV1?: Schema$InTotoSlsaProvenanceV1;
     /**
      * In-toto Statement representation as defined in spec. The intoto_statement can contain any type of provenance. The serialized payload of the statement can be stored and signed in the Occurrence's envelope.
      */
@@ -491,6 +516,10 @@ export namespace ondemandscanning_v1 {
      * The last time this resource was scanned.
      */
     lastScanTime?: string | null;
+    /**
+     * The status of an SBOM generation.
+     */
+    sbomStatus?: Schema$SBOMStatus;
   }
   /**
    * Deprecated. Prefer to use a regular Occurrence, and populate the Envelope at the top level of the Occurrence.
@@ -705,6 +734,15 @@ export namespace ondemandscanning_v1 {
      */
     recipe?: Schema$Recipe;
   }
+  export interface Schema$InTotoSlsaProvenanceV1 {
+    predicate?: Schema$SlsaProvenanceV1;
+    predicateType?: string | null;
+    subject?: Schema$Subject[];
+    /**
+     * InToto spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement
+     */
+    _type?: string | null;
+  }
   /**
    * Spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement The serialized InTotoStatement will be stored as Envelope.payload. Envelope.payloadType is always "application/vnd.in-toto+json".
    */
@@ -721,6 +759,19 @@ export namespace ondemandscanning_v1 {
      * Always `https://in-toto.io/Statement/v0.1`.
      */
     _type?: string | null;
+  }
+  /**
+   * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
+   */
+  export interface Schema$Justification {
+    /**
+     * Additional details on why this justification was chosen.
+     */
+    details?: string | null;
+    /**
+     * The justification type for this vulnerability.
+     */
+    justificationType?: string | null;
   }
   export interface Schema$Jwt {
     /**
@@ -803,6 +854,10 @@ export namespace ondemandscanning_v1 {
      * Deprecated. The version installed at this location.
      */
     version?: Schema$Version;
+  }
+  export interface Schema$Maintainer {
+    kind?: string | null;
+    name?: string | null;
   }
   export interface Schema$Material {
     digest?: {[key: string]: string} | null;
@@ -915,6 +970,10 @@ export namespace ondemandscanning_v1 {
      */
     resourceUri?: string | null;
     /**
+     * Describes a specific SBOM reference occurrences.
+     */
+    sbomReference?: Schema$SBOMReferenceOccurrence;
+    /**
      * Output only. The time this occurrence was last updated.
      */
     updateTime?: string | null;
@@ -948,11 +1007,23 @@ export namespace ondemandscanning_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
   export interface Schema$PackageData {
+    /**
+     * The architecture of the package.
+     */
+    architecture?: string | null;
+    /**
+     * A bundle containing the binary and source information.
+     */
+    binarySourceInfo?: Schema$BinarySourceInfo[];
+    /**
+     * DEPRECATED
+     */
+    binaryVersion?: Schema$PackageVersion;
     /**
      * The cpe_uri in [cpe format] (https://cpe.mitre.org/specification/) in which the vulnerability may manifest. Examples include distro or storage location for vulnerable jar.
      */
@@ -969,6 +1040,10 @@ export namespace ondemandscanning_v1 {
      * HashDigest stores the SHA512 hash digest of the jar file if the package is of type Maven. This field will be unset for non Maven packages.
      */
     hashDigest?: string | null;
+    /**
+     * The maintainer of the package.
+     */
+    maintainer?: Schema$Maintainer;
     /**
      * The OS affected by a vulnerability Used to generate the cpe_uri for OS packages
      */
@@ -989,6 +1064,10 @@ export namespace ondemandscanning_v1 {
      * CVEs that this package is no longer vulnerable to go/drydock-dd-custom-binary-scanning
      */
     patchedCve?: string[] | null;
+    /**
+     * DEPRECATED
+     */
+    sourceVersion?: Schema$PackageVersion;
     unused?: string | null;
     /**
      * The version of the package being analysed
@@ -1073,6 +1152,10 @@ export namespace ondemandscanning_v1 {
      */
     version?: Schema$Version;
   }
+  export interface Schema$PackageVersion {
+    name?: string | null;
+    version?: string | null;
+  }
   /**
    * Selects a repo using a Google Cloud Platform project ID (e.g., winged-cargo-31) and a repo name within that project.
    */
@@ -1085,6 +1168,11 @@ export namespace ondemandscanning_v1 {
      * The name of the repo. Leave empty for the default repo.
      */
     repoName?: string | null;
+  }
+  export interface Schema$ProvenanceBuilder {
+    builderDependencies?: Schema$ResourceDescriptor[];
+    id?: string | null;
+    version?: {[key: string]: string} | null;
   }
   /**
    * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.
@@ -1125,6 +1213,23 @@ export namespace ondemandscanning_v1 {
     url?: string | null;
   }
   /**
+   * Specifies details on how to handle (and presumably, fix) a vulnerability.
+   */
+  export interface Schema$Remediation {
+    /**
+     * Contains a comprehensive human-readable discussion of the remediation.
+     */
+    details?: string | null;
+    /**
+     * The type of remediation that can be applied.
+     */
+    remediationType?: string | null;
+    /**
+     * Contains the URL where to obtain the remediation.
+     */
+    remediationUri?: Schema$RelatedUrl;
+  }
+  /**
    * A unique identifier for a Cloud Repo.
    */
   export interface Schema$RepoId {
@@ -1136,6 +1241,92 @@ export namespace ondemandscanning_v1 {
      * A server-assigned, globally unique identifier.
      */
     uid?: string | null;
+  }
+  export interface Schema$ResourceDescriptor {
+    annotations?: {[key: string]: any} | null;
+    content?: string | null;
+    digest?: {[key: string]: string} | null;
+    downloadLocation?: string | null;
+    mediaType?: string | null;
+    name?: string | null;
+    uri?: string | null;
+  }
+  export interface Schema$RunDetails {
+    builder?: Schema$ProvenanceBuilder;
+    byproducts?: Schema$ResourceDescriptor[];
+    metadata?: Schema$BuildMetadata;
+  }
+  /**
+   * The actual payload that contains the SBOM Reference data. The payload follows the intoto statement specification. See https://github.com/in-toto/attestation/blob/main/spec/v1.0/statement.md for more details.
+   */
+  export interface Schema$SbomReferenceIntotoPayload {
+    /**
+     * Additional parameters of the Predicate. Includes the actual data about the SBOM.
+     */
+    predicate?: Schema$SbomReferenceIntotoPredicate;
+    /**
+     * URI identifying the type of the Predicate.
+     */
+    predicateType?: string | null;
+    /**
+     * Set of software artifacts that the attestation applies to. Each element represents a single software artifact.
+     */
+    subject?: Schema$Subject[];
+    /**
+     * Identifier for the schema of the Statement.
+     */
+    _type?: string | null;
+  }
+  /**
+   * A predicate which describes the SBOM being referenced.
+   */
+  export interface Schema$SbomReferenceIntotoPredicate {
+    /**
+     * A map of algorithm to digest of the contents of the SBOM.
+     */
+    digest?: {[key: string]: string} | null;
+    /**
+     * The location of the SBOM.
+     */
+    location?: string | null;
+    /**
+     * The mime type of the SBOM.
+     */
+    mimeType?: string | null;
+    /**
+     * The person or system referring this predicate to the consumer.
+     */
+    referrerId?: string | null;
+  }
+  /**
+   * The occurrence representing an SBOM reference as applied to a specific resource. The occurrence follows the DSSE specification. See https://github.com/secure-systems-lab/dsse/blob/master/envelope.md for more details.
+   */
+  export interface Schema$SBOMReferenceOccurrence {
+    /**
+     * The actual payload that contains the SBOM reference data.
+     */
+    payload?: Schema$SbomReferenceIntotoPayload;
+    /**
+     * The kind of payload that SbomReferenceIntotoPayload takes. Since it's in the intoto format, this value is expected to be 'application/vnd.in-toto+json'.
+     */
+    payloadType?: string | null;
+    /**
+     * The signatures over the payload.
+     */
+    signatures?: Schema$EnvelopeSignature[];
+  }
+  /**
+   * The status of an SBOM generation.
+   */
+  export interface Schema$SBOMStatus {
+    /**
+     * If there was an error generating an SBOM, this will indicate what that error was.
+     */
+    error?: string | null;
+    /**
+     * The progress of the SBOM generation.
+     */
+    sbomState?: string | null;
   }
   /**
    * Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be "attached" (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any "attached" payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature).
@@ -1209,6 +1400,13 @@ export namespace ondemandscanning_v1 {
      * Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required
      */
     recipe?: Schema$SlsaRecipe;
+  }
+  /**
+   * Keep in sync with schema at https://github.com/slsa-framework/slsa/blob/main/docs/provenance/schema/v1/provenance.proto Builder renamed to ProvenanceBuilder because of Java conflicts.
+   */
+  export interface Schema$SlsaProvenanceV1 {
+    buildDefinition?: Schema$BuildDefinition;
+    runDetails?: Schema$RunDetails;
   }
   /**
    * See full explanation of fields at slsa.dev/provenance/v0.2.
@@ -1384,6 +1582,43 @@ export namespace ondemandscanning_v1 {
     revision?: string | null;
   }
   /**
+   * VexAssessment provides all publisher provided Vex information that is related to this vulnerability.
+   */
+  export interface Schema$VexAssessment {
+    /**
+     * Holds the MITRE standard Common Vulnerabilities and Exposures (CVE) tracking number for the vulnerability. Deprecated: Use vulnerability_id instead to denote CVEs.
+     */
+    cve?: string | null;
+    /**
+     * Contains information about the impact of this vulnerability, this will change with time.
+     */
+    impacts?: string[] | null;
+    /**
+     * Justification provides the justification when the state of the assessment if NOT_AFFECTED.
+     */
+    justification?: Schema$Justification;
+    /**
+     * The VulnerabilityAssessment note from which this VexAssessment was generated. This will be of the form: `projects/[PROJECT_ID]/notes/[NOTE_ID]`.
+     */
+    noteName?: string | null;
+    /**
+     * Holds a list of references associated with this vulnerability item and assessment.
+     */
+    relatedUris?: Schema$RelatedUrl[];
+    /**
+     * Specifies details on how to handle (and presumably, fix) a vulnerability.
+     */
+    remediations?: Schema$Remediation[];
+    /**
+     * Provides the state of this Vulnerability assessment.
+     */
+    state?: string | null;
+    /**
+     * The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.
+     */
+    vulnerabilityId?: string | null;
+  }
+  /**
    * An occurrence of a severity vulnerability on a resource.
    */
   export interface Schema$VulnerabilityOccurrence {
@@ -1391,6 +1626,10 @@ export namespace ondemandscanning_v1 {
      * Output only. The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.
      */
     cvssScore?: number | null;
+    /**
+     * The cvss v2 score for the vulnerability.
+     */
+    cvssV2?: Schema$CVSS;
     /**
      * The cvss v3 score for the vulnerability.
      */
@@ -1431,6 +1670,7 @@ export namespace ondemandscanning_v1 {
      * The type of package; whether native or non native (e.g., ruby gems, node.js packages, etc.).
      */
     type?: string | null;
+    vexAssessment?: Schema$VexAssessment;
   }
   /**
    * Windows Update represents the metadata about the update for the Windows operating system. The fields in this message come from the Windows Update API documented at https://docs.microsoft.com/en-us/windows/win32/api/wuapi/nn-wuapi-iupdate.
@@ -1496,46 +1736,6 @@ export namespace ondemandscanning_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ondemandscanning.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await ondemandscanning.projects.locations.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1621,46 +1821,6 @@ export namespace ondemandscanning_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ondemandscanning.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await ondemandscanning.projects.locations.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1746,52 +1906,6 @@ export namespace ondemandscanning_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ondemandscanning.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await ondemandscanning.projects.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1876,56 +1990,7 @@ export namespace ondemandscanning_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ondemandscanning.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await ondemandscanning.projects.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2019,54 +2084,6 @@ export namespace ondemandscanning_v1 {
 
     /**
      * Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ondemandscanning.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await ondemandscanning.projects.locations.operations.wait({
-     *     // The name of the operation resource to wait on.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *     // The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.
-     *     timeout: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2214,62 +2231,6 @@ export namespace ondemandscanning_v1 {
 
     /**
      * Initiates an analysis of the provided packages.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ondemandscanning.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await ondemandscanning.projects.locations.scans.analyzePackages({
-     *     // Required. The parent of the resource for which analysis is requested. Format: projects/[project_name]/locations/[location]
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "includeOsvData": false,
-     *       //   "packages": [],
-     *       //   "resourceUri": "my_resourceUri"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2378,54 +2339,6 @@ export namespace ondemandscanning_v1 {
 
     /**
      * Lists vulnerabilities resulting from a successfully completed scan.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/ondemandscanning.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await ondemandscanning.projects.locations.scans.vulnerabilities.list({
-     *       // The number of vulnerabilities to retrieve.
-     *       pageSize: 'placeholder-value',
-     *       // The page token, resulting from a previous call to ListVulnerabilities.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent of the collection of Vulnerabilities being requested. Format: projects/[project_name]/locations/[location]/scans/[scan_id]
-     *       parent: 'projects/my-project/locations/my-location/scans/my-scan',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "occurrences": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

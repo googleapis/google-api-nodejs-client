@@ -37,7 +37,7 @@ export function realtimebidding(
 export function realtimebidding<
   T =
     | realtimebidding_v1.Realtimebidding
-    | realtimebidding_v1alpha.Realtimebidding
+    | realtimebidding_v1alpha.Realtimebidding,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

@@ -1,5 +1,86 @@
 # Changelog
 
+## [9.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v9.1.1...alertcenter-v9.1.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **alertcenter:** update the API ([a073124](https://github.com/googleapis/google-api-nodejs-client/commit/a07312469e2bd646474d64ee3eda2db3cb784651))
+
+## [9.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v9.1.0...alertcenter-v9.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **alertcenter:** update the API ([a073124](https://github.com/googleapis/google-api-nodejs-client/commit/a07312469e2bd646474d64ee3eda2db3cb784651))
+
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v9.0.0...alertcenter-v9.1.0) (2023-05-02)
+
+
+### Features
+
+* **alertcenter:** update the API ([00c6191](https://github.com/googleapis/google-api-nodejs-client/commit/00c619183e9b62b89bf9d46591a9645846827d96))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v8.1.0...alertcenter-v9.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v8.0.0...alertcenter-v8.1.0) (2023-03-22)
+
+
+### Features
+
+* **alertcenter:** update the API ([973ac4b](https://github.com/googleapis/google-api-nodejs-client/commit/973ac4beaf4d4bc66d864223d801b245e93dfc54))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v7.1.1...alertcenter-v8.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **alertcenter:** update the API ([13e1418](https://github.com/googleapis/google-api-nodejs-client/commit/13e1418439650b9363bdaf3bb532f9355fc7ef18))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+
+### Bug Fixes
+
+* **alertcenter:** update the API ([e18c3b9](https://github.com/googleapis/google-api-nodejs-client/commit/e18c3b974e13652c3ad9845312dd384c7a369ec6))
+
+## [7.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v7.1.0...alertcenter-v7.1.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **alertcenter:** update the API ([e18c3b9](https://github.com/googleapis/google-api-nodejs-client/commit/e18c3b974e13652c3ad9845312dd384c7a369ec6))
+
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v7.0.0...alertcenter-v7.1.0) (2022-12-22)
+
+
+### Features
+
+* **alertcenter:** update the API ([13e1418](https://github.com/googleapis/google-api-nodejs-client/commit/13e1418439650b9363bdaf3bb532f9355fc7ef18))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v6.1.1...alertcenter-v7.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [6.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v6.1.0...alertcenter-v6.1.1) (2022-09-21)
 
 

@@ -46,7 +46,7 @@ export function deploymentmanager<
   T =
     | deploymentmanager_alpha.Deploymentmanager
     | deploymentmanager_v2.Deploymentmanager
-    | deploymentmanager_v2beta.Deploymentmanager
+    | deploymentmanager_v2beta.Deploymentmanager,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

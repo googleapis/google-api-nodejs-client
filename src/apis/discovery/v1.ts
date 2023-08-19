@@ -153,6 +153,10 @@ export namespace discovery_v1 {
      */
     default?: string | null;
     /**
+     * Whether the parameter is deprecated.
+     */
+    deprecated?: boolean | null;
+    /**
      * A description of this object.
      */
     description?: string | null;
@@ -160,6 +164,10 @@ export namespace discovery_v1 {
      * Values this parameter may take (if it is an enum).
      */
     enum?: string[] | null;
+    /**
+     * The deprecation status for the enums. Each position maps to the corresponding value in the "enum" array.
+     */
+    enumDeprecated?: boolean[] | null;
     /**
      * The descriptions for the enums. Each position maps to the corresponding value in the "enum" array.
      */
@@ -254,6 +262,15 @@ export namespace discovery_v1 {
      */
     documentationLink?: string | null;
     /**
+     * A list of location-based endpoint objects for this API. Each object contains the endpoint URL, location, description and deprecation status.
+     */
+    endpoints?: Array<{
+      deprecated?: boolean;
+      description?: string;
+      endpointUrl?: string;
+      location?: string;
+    }> | null;
+    /**
      * The ETag for this response.
      */
     etag?: string | null;
@@ -341,6 +358,10 @@ export namespace discovery_v1 {
   }
   export interface Schema$RestMethod {
     /**
+     * Whether this method is deprecated.
+     */
+    deprecated?: boolean | null;
+    /**
      * Description of this method.
      */
     description?: string | null;
@@ -414,6 +435,10 @@ export namespace discovery_v1 {
   }
   export interface Schema$RestResource {
     /**
+     * Whether this resource is deprecated.
+     */
+    deprecated?: boolean | null;
+    /**
      * Methods on this resource.
      */
     methods?: {[key: string]: Schema$RestMethod} | null;
@@ -431,79 +456,6 @@ export namespace discovery_v1 {
 
     /**
      * Retrieve the description of a particular version of an api.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/discovery.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const discovery = google.discovery('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await discovery.apis.getRest({
-     *     // The name of the API.
-     *     api: 'placeholder-value',
-     *     // The version of the API.
-     *     version: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "auth": {},
-     *   //   "basePath": "my_basePath",
-     *   //   "baseUrl": "my_baseUrl",
-     *   //   "batchPath": "my_batchPath",
-     *   //   "canonicalName": "my_canonicalName",
-     *   //   "description": "my_description",
-     *   //   "discoveryVersion": "my_discoveryVersion",
-     *   //   "documentationLink": "my_documentationLink",
-     *   //   "etag": "my_etag",
-     *   //   "exponentialBackoffDefault": false,
-     *   //   "features": [],
-     *   //   "icons": {},
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "labels": [],
-     *   //   "methods": {},
-     *   //   "name": "my_name",
-     *   //   "ownerDomain": "my_ownerDomain",
-     *   //   "ownerName": "my_ownerName",
-     *   //   "packagePath": "my_packagePath",
-     *   //   "parameters": {},
-     *   //   "protocol": "my_protocol",
-     *   //   "resources": {},
-     *   //   "revision": "my_revision",
-     *   //   "rootUrl": "my_rootUrl",
-     *   //   "schemas": {},
-     *   //   "servicePath": "my_servicePath",
-     *   //   "title": "my_title",
-     *   //   "version": "my_version",
-     *   //   "version_module": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -590,52 +542,6 @@ export namespace discovery_v1 {
 
     /**
      * Retrieve the list of APIs supported at this endpoint.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/discovery.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const discovery = google.discovery('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await discovery.apis.list({
-     *     // Only include APIs with the given name.
-     *     name: 'placeholder-value',
-     *     // Return only the preferred version of an API.
-     *     preferred: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "discoveryVersion": "my_discoveryVersion",
-     *   //   "items": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

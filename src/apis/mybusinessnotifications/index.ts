@@ -27,7 +27,7 @@ export function mybusinessnotifications(
   options: mybusinessnotifications_v1.Options
 ): mybusinessnotifications_v1.Mybusinessnotifications;
 export function mybusinessnotifications<
-  T = mybusinessnotifications_v1.Mybusinessnotifications
+  T = mybusinessnotifications_v1.Mybusinessnotifications,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | mybusinessnotifications_v1.Options

@@ -265,9 +265,17 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     jwtAudience?: string | null;
     /**
+     * Deprecated, do not use.
+     */
+    minDeadline?: number | null;
+    /**
      * The number of seconds to wait for the completion of a long running operation. The default is no deadline.
      */
     operationDeadline?: number | null;
+    /**
+     * The map between request protocol and the backend address.
+     */
+    overridesByRequestProtocol?: {[key: string]: Schema$BackendRule} | null;
     pathTranslation?: string | null;
     /**
      * The protocol used for sending a request to the backend. The supported values are "http/1.1" and "h2". The default value is inferred from the scheme in the address field: SCHEME PROTOCOL http:// http/1.1 https:// http/1.1 grpc:// h2 grpcs:// h2 For secure HTTP backends (https://) that support HTTP/2, set this field to "h2" for improved performance. Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends. See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values.
@@ -299,6 +307,68 @@ export namespace serviceconsumermanagement_v1beta1 {
      * The monitored resource type. The type must be defined in Service.monitored_resources section.
      */
     monitoredResource?: string | null;
+  }
+  /**
+   * Details about how and where to publish client libraries.
+   */
+  export interface Schema$ClientLibrarySettings {
+    /**
+     * Settings for C++ client libraries.
+     */
+    cppSettings?: Schema$CppSettings;
+    /**
+     * Settings for .NET client libraries.
+     */
+    dotnetSettings?: Schema$DotnetSettings;
+    /**
+     * Settings for Go client libraries.
+     */
+    goSettings?: Schema$GoSettings;
+    /**
+     * Settings for legacy Java features, supported in the Service YAML.
+     */
+    javaSettings?: Schema$JavaSettings;
+    /**
+     * Launch stage of this version of the API.
+     */
+    launchStage?: string | null;
+    /**
+     * Settings for Node client libraries.
+     */
+    nodeSettings?: Schema$NodeSettings;
+    /**
+     * Settings for PHP client libraries.
+     */
+    phpSettings?: Schema$PhpSettings;
+    /**
+     * Settings for Python client libraries.
+     */
+    pythonSettings?: Schema$PythonSettings;
+    /**
+     * When using transport=rest, the client request will encode enums as numbers rather than strings.
+     */
+    restNumericEnums?: boolean | null;
+    /**
+     * Settings for Ruby client libraries.
+     */
+    rubySettings?: Schema$RubySettings;
+    /**
+     * Version of the API to apply these settings to. This is the full protobuf package for the API, ending in the version element. Examples: "google.cloud.speech.v1" and "google.spanner.admin.database.v1".
+     */
+    version?: string | null;
+  }
+  /**
+   * Required information for every language.
+   */
+  export interface Schema$CommonLanguageSettings {
+    /**
+     * The destination where API teams want this client library to be published.
+     */
+    destinations?: string[] | null;
+    /**
+     * Link to automatically generated reference documentation. Example: https://cloud.google.com/nodejs/docs/reference/asset/latest
+     */
+    referenceDocsUri?: string | null;
   }
   /**
    * `Context` defines which contexts an API requests. Example: context: rules: - selector: "*" requested: - google.rpc.context.ProjectContext - google.rpc.context.OriginContext The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`. Available context types are defined in package `google.rpc.context`. This also provides mechanism to allowlist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext--bin” and “x-goog-ext--jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file: Example: context: rules: - selector: "google.example.library.v1.LibraryService.CreateBook" allowed_request_extensions: - google.foo.v1.NewExtension allowed_response_extensions: - google.foo.v1.NewExtension You can also specify extension ID instead of fully qualified extension name here.
@@ -335,13 +405,26 @@ export namespace serviceconsumermanagement_v1beta1 {
     selector?: string | null;
   }
   /**
-   * Selects and configures the service controller used by the service. The service controller handles two things: - **What is allowed:** for each API request, Chemist checks the project status, activation status, abuse status, billing status, service status, location restrictions, VPC Service Controls, SuperQuota, and other policies. - **What has happened:** for each API response, Chemist reports the telemetry data to analytics, auditing, billing, eventing, logging, monitoring, sawmill, and tracing. Chemist also accepts telemetry data not associated with API traffic, such as billing metrics. Example: control: environment: servicecontrol.googleapis.com
+   * Selects and configures the service controller used by the service. Example: control: environment: servicecontrol.googleapis.com
    */
   export interface Schema$Control {
     /**
      * The service controller environment to use. If empty, no control plane feature (like quota and billing) will be enabled. The recommended value for most services is servicecontrol.googleapis.com
      */
     environment?: string | null;
+    /**
+     * Defines policies applying to the API methods of the service.
+     */
+    methodPolicies?: Schema$MethodPolicy[];
+  }
+  /**
+   * Settings for C++ client libraries.
+   */
+  export interface Schema$CppSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
   }
   /**
    * Customize service error responses. For example, list any service specific protobuf types that can appear in error detail lists of error responses. Example: custom_error: types: - google.foo.v1.CustomError - google.foo.v1.AnotherError
@@ -383,7 +466,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     path?: string | null;
   }
   /**
-   * `Documentation` provides the information for describing a service. Example: documentation: summary: \> The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages; - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: \> ... - selector: google.calendar.Calendar.Put description: \> ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
+   * `Documentation` provides the information for describing a service. Example: documentation: summary: \> The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages: - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: \> ... - selector: google.calendar.Calendar.Put description: \> ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
    */
   export interface Schema$Documentation {
     /**
@@ -402,6 +485,10 @@ export namespace serviceconsumermanagement_v1beta1 {
      * A list of documentation rules that apply to individual API elements. **NOTE:** All service configuration rules follow "last one wins" order.
      */
     rules?: Schema$DocumentationRule[];
+    /**
+     * Specifies section and content to override boilerplate content provided by go/api-docgen. Currently overrides following sections: 1. rest.service.client_libraries
+     */
+    sectionOverrides?: Schema$Page[];
     /**
      * Specifies the service root url if the default one (the service name from the yaml file) is not suitable. This can be seen in any fully specified service urls as well as sections that show a base that other urls are relative to.
      */
@@ -424,9 +511,42 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     description?: string | null;
     /**
+     * String of comma or space separated case-sensitive words for which method/field name replacement will be disabled by go/api-docgen.
+     */
+    disableReplacementWords?: string | null;
+    /**
      * The selector is a comma-separated list of patterns for any element such as a method, a field, an enum value. Each pattern is a qualified name of the element which may end in "*", indicating a wildcard. Wildcards are only allowed at the end and for a whole component of the qualified name, i.e. "foo.*" is ok, but not "foo.b*" or "foo.*.bar". A wildcard will match one or more components. To specify a default for all applicable elements, the whole pattern "*" is used.
      */
     selector?: string | null;
+  }
+  /**
+   * Settings for Dotnet client libraries.
+   */
+  export interface Schema$DotnetSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+    /**
+     * Namespaces which must be aliased in snippets due to a known (but non-generator-predictable) naming collision
+     */
+    forcedNamespaceAliases?: string[] | null;
+    /**
+     * Method signatures (in the form "service.method(signature)") which are provided separately, so shouldn't be generated. Snippets *calling* these methods are still generated, however.
+     */
+    handwrittenSignatures?: string[] | null;
+    /**
+     * List of full resource types to ignore during generation. This is typically used for API-specific Location resources, which should be handled by the generator as if they were actually the common Location resources. Example entry: "documentai.googleapis.com/Location"
+     */
+    ignoredResources?: string[] | null;
+    /**
+     * Map from full resource types to the effective short name for the resource. This is used when otherwise resource named from different services would cause naming collisions. Example entry: "datalabeling.googleapis.com/Dataset": "DataLabelingDataset"
+     */
+    renamedResources?: {[key: string]: string} | null;
+    /**
+     * Map from original service names to renamed versions. This is used when the default generated types would cause a naming conflict. (Neither name is fully-qualified.) Example: Subscriber to SubscriberServiceApi.
+     */
+    renamedServices?: {[key: string]: string} | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -436,6 +556,10 @@ export namespace serviceconsumermanagement_v1beta1 {
    * `Endpoint` describes a network address of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example: type: google.api.Service name: library-example.googleapis.com endpoints: # Declares network address `https://library-example.googleapis.com` # for service `library-example.googleapis.com`. The `https` scheme # is implicit for all service endpoints. Other schemes may be # supported in the future. - name: library-example.googleapis.com allow_cors: false - name: content-staging-library-example.googleapis.com # Allows HTTP OPTIONS calls to be passed to the API frontend, for it # to decide whether the subsequent cross-origin request is allowed # to proceed. allow_cors: true
    */
   export interface Schema$Endpoint {
+    /**
+     * Unimplemented. Dot not use. DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.
+     */
+    aliases?: string[] | null;
     /**
      * Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed.
      */
@@ -453,6 +577,10 @@ export namespace serviceconsumermanagement_v1beta1 {
    * Enum type definition.
    */
   export interface Schema$Enum {
+    /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
     /**
      * Enum value definitions.
      */
@@ -537,6 +665,32 @@ export namespace serviceconsumermanagement_v1beta1 {
     typeUrl?: string | null;
   }
   /**
+   * Google API Policy Annotation This message defines a simple API policy annotation that can be used to annotate API request and response message fields with applicable policies. One field may have multiple applicable policies that must all be satisfied before a request can be processed. This policy annotation is used to generate the overall policy that will be used for automatic runtime policy enforcement and documentation generation.
+   */
+  export interface Schema$FieldPolicy {
+    /**
+     * Specifies the required permission(s) for the resource referred to by the field. It requires the field contains a valid resource reference, and the request must pass the permission checks to proceed. For example, "resourcemanager.projects.get".
+     */
+    resourcePermission?: string | null;
+    /**
+     * Specifies the resource type for the resource referred to by the field.
+     */
+    resourceType?: string | null;
+    /**
+     * Selects one or more request or response message fields to apply this `FieldPolicy`. When a `FieldPolicy` is used in proto annotation, the selector must be left as empty. The service config generator will automatically fill the correct value. When a `FieldPolicy` is used in service config, the selector must be a comma-separated string with valid request or response field paths, such as "foo.bar" or "foo.bar,foo.baz".
+     */
+    selector?: string | null;
+  }
+  /**
+   * Settings for Go client libraries.
+   */
+  export interface Schema$GoSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+  }
+  /**
    * Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods.
    */
   export interface Schema$Http {
@@ -593,6 +747,23 @@ export namespace serviceconsumermanagement_v1beta1 {
      * Selects a method to which this rule applies. Refer to selector for syntax details.
      */
     selector?: string | null;
+  }
+  /**
+   * Settings for Java client libraries.
+   */
+  export interface Schema$JavaSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+    /**
+     * The package name to use in Java. Clobbers the java_package option set in the protobuf. This should be used **only** by APIs who have already set the language_settings.java.package_name" field in gapic.yaml. API teams should use the protobuf java_package option where possible. Example of a YAML configuration:: publishing: java_settings: library_package: com.google.cloud.pubsub.v1
+     */
+    libraryPackage?: string | null;
+    /**
+     * Configure the Java class name to use instead of the service's for its corresponding generated GAPIC client. Keys are fully-qualified service names as they appear in the protobuf (including the full the language_settings.java.interface_names" field in gapic.yaml. API teams should otherwise use the service name as it appears in the protobuf. Example of a YAML configuration:: publishing: java_settings: service_class_names: - google.pubsub.v1.Publisher: TopicAdmin - google.pubsub.v1.Subscriber: SubscriptionAdmin
+     */
+    serviceClassNames?: {[key: string]: string} | null;
   }
   /**
    * Specifies a location to extract JWT from an API request.
@@ -680,6 +851,27 @@ export namespace serviceconsumermanagement_v1beta1 {
     monitoredResource?: string | null;
   }
   /**
+   * Describes settings to use when generating API methods that use the long-running operation pattern. All default values below are from those used in the client library generators (e.g. [Java](https://github.com/googleapis/gapic-generator-java/blob/04c2faa191a9b5a10b92392fe8482279c4404803/src/main/java/com/google/api/generator/gapic/composer/common/RetrySettingsComposer.java)).
+   */
+  export interface Schema$LongRunning {
+    /**
+     * Initial delay after which the first poll request will be made. Default value: 5 seconds.
+     */
+    initialPollDelay?: string | null;
+    /**
+     * Maximum time between two subsequent poll requests. Default value: 45 seconds.
+     */
+    maxPollDelay?: string | null;
+    /**
+     * Multiplier to gradually increase delay between subsequent polls until it reaches max_poll_delay. Default value: 1.5.
+     */
+    pollDelayMultiplier?: number | null;
+    /**
+     * Total polling timeout. Default value: 5 minutes.
+     */
+    totalPollTimeout?: string | null;
+  }
+  /**
    * Method represents a method of an API interface.
    */
   export interface Schema$Method {
@@ -711,6 +903,32 @@ export namespace serviceconsumermanagement_v1beta1 {
      * The source syntax of this method.
      */
     syntax?: string | null;
+  }
+  /**
+   * Defines policies applying to an RPC method.
+   */
+  export interface Schema$MethodPolicy {
+    /**
+     * Policies that are applicable to the request message.
+     */
+    requestPolicies?: Schema$FieldPolicy[];
+    /**
+     * Selects a method to which these policies should be enforced, for example, "google.pubsub.v1.Subscriber.CreateSubscription". Refer to selector for syntax details. NOTE: This field must not be set in the proto annotation. It will be automatically filled by the service config compiler .
+     */
+    selector?: string | null;
+  }
+  /**
+   * Describes the generator configuration for a method.
+   */
+  export interface Schema$MethodSettings {
+    /**
+     * Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: seconds: 60 # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: seconds: 360 # 6 minutes total_poll_timeout: seconds: 54000 # 90 minutes
+     */
+    longRunning?: Schema$LongRunning;
+    /**
+     * The fully qualified name of the method, for which the options below apply. This is used to find the method to apply the options.
+     */
+    selector?: string | null;
   }
   /**
    * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.
@@ -792,7 +1010,7 @@ export namespace serviceconsumermanagement_v1beta1 {
     selector?: string | null;
   }
   /**
-   * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v1/{resource=**\}:getAcl"; \} \} package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = "/v2/{resource=**\}"; \} \} Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inheriting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/{resource=**\}:getAcl"; \} ... \} Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/acls/{resource=**\}:getAcl"; \} ... \}
+   * Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v1/{resource=**\}:getAcl"; \} \} package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = "/v2/{resource=**\}"; \} \} Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inherting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/{resource=**\}:getAcl"; \} ... \} Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/acls/{resource=**\}:getAcl"; \} ... \}
    */
   export interface Schema$Mixin {
     /**
@@ -860,6 +1078,15 @@ export namespace serviceconsumermanagement_v1beta1 {
     monitoredResource?: string | null;
   }
   /**
+   * Settings for Node client libraries.
+   */
+  export interface Schema$NodeSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+  }
+  /**
    * OAuth scopes are a way to define data and permissions on data. For example, there are scopes defined for "Read-only access to Google Calendar" and "Access to Cloud Platform". Users can consent to a scope for an application, giving it permission to access that data on their behalf. OAuth scope specifications should be fairly coarse grained; a user will need to see and understand the text description of what your scope means. In most cases: use one or at most two OAuth scopes for an entire family of products. If your product has multiple APIs, you should probably be sharing the OAuth scope across all of those APIs. When you need finer grained OAuth consent screens: talk with your product management about how developers will use them in practice. Please note that even though each of the canonical scopes is enough for a request to be accepted and passed to the backend, a request can still fail due to the backend requiring additional scopes or permissions.
    */
   export interface Schema$OAuthRequirements {
@@ -889,7 +1116,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -922,6 +1149,69 @@ export namespace serviceconsumermanagement_v1beta1 {
      * Subpages of this page. The order of subpages specified here will be honored in the generated docset.
      */
     subpages?: Schema$Page[];
+  }
+  /**
+   * Settings for Php client libraries.
+   */
+  export interface Schema$PhpSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
+  }
+  /**
+   * This message configures the settings for publishing [Google Cloud Client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries) generated from the service config.
+   */
+  export interface Schema$Publishing {
+    /**
+     * Used as a tracking tag when collecting data about the APIs developer relations artifacts like docs, packages delivered to package managers, etc. Example: "speech".
+     */
+    apiShortName?: string | null;
+    /**
+     * GitHub teams to be added to CODEOWNERS in the directory in GitHub containing source code for the client libraries for this API.
+     */
+    codeownerGithubTeams?: string[] | null;
+    /**
+     * A prefix used in sample code when demarking regions to be included in documentation.
+     */
+    docTagPrefix?: string | null;
+    /**
+     * Link to product home page. Example: https://cloud.google.com/asset-inventory/docs/overview
+     */
+    documentationUri?: string | null;
+    /**
+     * GitHub label to apply to issues and pull requests opened for this API.
+     */
+    githubLabel?: string | null;
+    /**
+     * Client library settings. If the same version string appears multiple times in this list, then the last one wins. Settings from earlier settings with the same version string are discarded.
+     */
+    librarySettings?: Schema$ClientLibrarySettings[];
+    /**
+     * A list of API method settings, e.g. the behavior for methods that use the long-running operation pattern.
+     */
+    methodSettings?: Schema$MethodSettings[];
+    /**
+     * Link to a *public* URI where users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103
+     */
+    newIssueUri?: string | null;
+    /**
+     * For whom the client library is being published.
+     */
+    organization?: string | null;
+    /**
+     * Optional link to proto reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rpc
+     */
+    protoReferenceDocumentationUri?: string | null;
+  }
+  /**
+   * Settings for Python client libraries.
+   */
+  export interface Schema$PythonSettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
   }
   /**
    * Quota configuration helps to achieve fairness and budgeting in service usage. The metric based quota configuration works this way: - The service configuration defines a set of metrics. - For API calls, the quota.metric_rules maps methods to metrics with corresponding costs. - The quota.limits defines limits on the metrics, which will be used for quota checks at runtime. An example quota configuration in yaml format: quota: limits: - name: apiWriteQpsPerProject metric: library.googleapis.com/write_calls unit: "1/min/{project\}" # rate limit for consumer projects values: STANDARD: 10000 (The metric rules bind all methods to the read_calls metric, except for the UpdateBook and DeleteBook methods. These two methods are mapped to the write_calls metric, with the UpdateBook method consuming at twice rate as the DeleteBook method.) metric_rules: - selector: "*" metric_costs: library.googleapis.com/read_calls: 1 - selector: google.example.library.v1.LibraryService.UpdateBook metric_costs: library.googleapis.com/write_calls: 2 - selector: google.example.library.v1.LibraryService.DeleteBook metric_costs: library.googleapis.com/write_calls: 1 Corresponding Metric definition: metrics: - name: library.googleapis.com/read_calls display_name: Read requests metric_kind: DELTA value_type: INT64 - name: library.googleapis.com/write_calls display_name: Write requests metric_kind: DELTA value_type: INT64
@@ -980,6 +1270,15 @@ export namespace serviceconsumermanagement_v1beta1 {
      * Tiered limit values. You must specify this as a key:value pair, with an integer value that is the maximum number of requests allowed for the specified unit. Currently only STANDARD is supported.
      */
     values?: {[key: string]: string} | null;
+  }
+  /**
+   * Settings for Ruby client libraries.
+   */
+  export interface Schema$RubySettings {
+    /**
+     * Some settings.
+     */
+    common?: Schema$CommonLanguageSettings;
   }
   /**
    * `Service` is the root object of Google API service configuration (service config). It describes the basic information about a logical service, such as the service name and the user-facing title, and delegates other aspects to sub-sections. Each sub-section is either a proto message or a repeated proto message that configures a specific aspect, such as auth. For more information, see each proto message definition. Example: type: google.api.Service name: calendar.googleapis.com title: Google Calendar API apis: - name: google.calendar.v3.Calendar visibility: rules: - selector: "google.calendar.v3.*" restriction: PREVIEW backend: rules: - selector: "google.calendar.v3.*" address: calendar.example.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth
@@ -1065,6 +1364,10 @@ export namespace serviceconsumermanagement_v1beta1 {
      * The Google project that owns this service.
      */
     producerProjectId?: string | null;
+    /**
+     * Settings for [Google Cloud Client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries) generated from APIs defined as protocol buffers.
+     */
+    publishing?: Schema$Publishing;
     /**
      * Quota configuration.
      */
@@ -1173,6 +1476,10 @@ export namespace serviceconsumermanagement_v1beta1 {
    */
   export interface Schema$Type {
     /**
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     */
+    edition?: string | null;
+    /**
      * The list of fields.
      */
     fields?: Schema$Field[];
@@ -1262,7 +1569,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     metric?: string | null;
     /**
-     * The resource name of the quota limit. An example name would be: `services/compute.googleapis.com/projects/123/quotas/metrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion` The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
+     * The resource name of the quota limit. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion` The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
      */
     name?: string | null;
     /**
@@ -1299,7 +1606,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     metric?: string | null;
     /**
-     * The resource name of the quota settings on this metric for this consumer. An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/quota/metrics/compute.googleapis.com%2Fcpus The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
+     * The resource name of the quota settings on this metric for this consumer. An example name would be: `services/serviceconsumermanagement.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus` The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
      */
     name?: string | null;
     /**
@@ -1458,7 +1765,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     container?: string | null;
     /**
-     *  If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit. For example, an policy on a limit with the unit 1/{project\}/{region\} could contain an entry with the key "region" and the value "us-east-1"; the policy is only applied to quota consumed in that region. This map has the following restrictions: * Keys that are not defined in the limit's unit are not valid keys. Any string appearing in {brackets\} in the unit (besides {project\} or {user\}) is a defined key. * "project" is not a valid key; the project is already specified in the parent resource name. * "user" is not a valid key; the API does not support quota polcies that apply only to a specific user. * If "region" appears as a key, its value must be a valid Cloud region. * If "zone" appears as a key, its value must be a valid Cloud zone. * If any valid key other than "region" or "zone" appears in the map, then all valid keys other than "region" or "zone" must also appear in the map.
+     *  If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit. For example, a policy on a limit with the unit 1/{project\}/{region\} could contain an entry with the key "region" and the value "us-east-1"; the policy is only applied to quota consumed in that region. This map has the following restrictions: * Keys that are not defined in the limit's unit are not valid keys. Any string appearing in {brackets\} in the unit (besides {project\} or {user\}) is a defined key. * "project" is not a valid key; the project is already specified in the parent resource name. * "user" is not a valid key; the API does not support quota polcies that apply only to a specific user. * If "region" appears as a key, its value must be a valid Cloud region. * If "zone" appears as a key, its value must be a valid Cloud zone. * If any valid key other than "region" or "zone" appears in the map, then all valid keys other than "region" or "zone" must also appear in the map.
      */
     dimensions?: {[key: string]: string} | null;
     /**
@@ -1506,6 +1813,10 @@ export namespace serviceconsumermanagement_v1beta1 {
      * Producer override on this quota bucket.
      */
     producerOverride?: Schema$V1Beta1QuotaOverride;
+    /**
+     * Producer policy inherited from the closet ancestor of the current consumer.
+     */
+    producerQuotaPolicy?: Schema$V1Beta1ProducerQuotaPolicy;
   }
   /**
    * A quota override
@@ -1608,52 +1919,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await serviceconsumermanagement.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1767,57 +2032,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
     /**
      * Retrieves a summary of quota information for a specific quota metric.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.get(
-     *     {
-     *       // The resource name of the quota metric, returned by a ListConsumerQuotaMetrics call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus`
-     *       name: 'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric',
-     *       // Specifies the level of detail for quota information in the response.
-     *       view: 'placeholder-value',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "consumerQuotaLimits": [],
-     *   //   "descendantConsumerQuotaLimits": [],
-     *   //   "displayName": "my_displayName",
-     *   //   "metric": "my_metric",
-     *   //   "name": "my_name",
-     *   //   "unit": "my_unit"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1910,65 +2124,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
     /**
      * Create or update multiple producer overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await serviceconsumermanagement.services.consumerQuotaMetrics.importProducerOverrides(
-     *       {
-     *         // The resource name of the consumer. An example name would be: `services/compute.googleapis.com/projects/123`
-     *         parent: 'services/my-service/[^/]+/[^/]+',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "force": false,
-     *           //   "forceOnly": [],
-     *           //   "inlineSource": {}
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2060,56 +2215,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
     /**
      * Retrieves a summary of all quota information about this consumer that is visible to the service producer, for each quota metric defined by the service. Each metric includes information about all of its defined limits. Each limit includes the limit configuration (quota unit, preciseness, default value), the current effective limit value, and all of the overrides applied to the limit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await serviceconsumermanagement.services.consumerQuotaMetrics.list({
-     *       // Requested size of the next page of data.
-     *       pageSize: 'placeholder-value',
-     *       // Token identifying which result to start with; returned by a previous list call.
-     *       pageToken: 'placeholder-value',
-     *       // Parent of the quotas resource. An example parent would be: `services/serviceconsumermanagement.googleapis.com/projects/123`
-     *       parent: 'services/my-service/[^/]+/[^/]+',
-     *       // Specifies the level of detail for quota information in the response.
-     *       view: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "metrics": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2262,56 +2367,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
     /**
      * Retrieves a summary of quota information for a specific quota limit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await serviceconsumermanagement.services.consumerQuotaMetrics.limits.get({
-     *       // The resource name of the quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
-     *       name: 'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
-     *       // Specifies the level of detail for quota information in the response.
-     *       view: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "isPrecise": false,
-     *   //   "metric": "my_metric",
-     *   //   "name": "my_name",
-     *   //   "quotaBuckets": [],
-     *   //   "supportedLocations": [],
-     *   //   "unit": "my_unit"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2421,73 +2476,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
     /**
      * Creates a producer override. A producer override is applied by the owner or administrator of a service to increase or decrease the amount of quota a consumer of the service is allowed to use. To create multiple overrides at once, use ImportProducerOverrides instead. If an override with the specified dimensions already exists, this call will fail. To overwrite an existing override if one is already present ("upsert" semantics), use ImportProducerOverrides instead.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.create(
-     *       {
-     *         // Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
-     *         force: 'placeholder-value',
-     *         // The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
-     *         forceOnly: 'placeholder-value',
-     *         // The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
-     *         parent:
-     *           'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "adminOverrideAncestor": "my_adminOverrideAncestor",
-     *           //   "dimensions": {},
-     *           //   "metric": "my_metric",
-     *           //   "name": "my_name",
-     *           //   "overrideValue": "my_overrideValue",
-     *           //   "unit": "my_unit"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2577,59 +2565,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
     /**
      * Deletes a producer override.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.delete(
-     *       {
-     *         // Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
-     *         force: 'placeholder-value',
-     *         // The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
-     *         forceOnly: 'placeholder-value',
-     *         // The resource name of the override to delete. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerOverrides/4a3f2c1d`
-     *         name: 'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/producerOverrides/my-producerOverride',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2716,57 +2651,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
     /**
      * Lists all producer overrides on this limit.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.list(
-     *       {
-     *         // Requested size of the next page of data.
-     *         pageSize: 'placeholder-value',
-     *         // Token identifying which result to start with; returned by a previous list call.
-     *         pageToken: 'placeholder-value',
-     *         // The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
-     *         parent:
-     *           'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "overrides": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2865,74 +2749,6 @@ export namespace serviceconsumermanagement_v1beta1 {
 
     /**
      * Updates a producer override.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/serviceconsumermanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const serviceconsumermanagement = google.serviceconsumermanagement('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.patch(
-     *       {
-     *         // Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
-     *         force: 'placeholder-value',
-     *         // The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
-     *         forceOnly: 'placeholder-value',
-     *         // The resource name of the override to update. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerOverrides/4a3f2c1d`
-     *         name: 'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/producerOverrides/my-producerOverride',
-     *         // Update only the specified fields. If unset, all modifiable fields will be updated.
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "adminOverrideAncestor": "my_adminOverrideAncestor",
-     *           //   "dimensions": {},
-     *           //   "metric": "my_metric",
-     *           //   "name": "my_name",
-     *           //   "overrideValue": "my_overrideValue",
-     *           //   "unit": "my_unit"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

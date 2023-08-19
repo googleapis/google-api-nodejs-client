@@ -27,7 +27,7 @@ export function bigquerydatatransfer(
   options: bigquerydatatransfer_v1.Options
 ): bigquerydatatransfer_v1.Bigquerydatatransfer;
 export function bigquerydatatransfer<
-  T = bigquerydatatransfer_v1.Bigquerydatatransfer
+  T = bigquerydatatransfer_v1.Bigquerydatatransfer,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | bigquerydatatransfer_v1.Options

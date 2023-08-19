@@ -1,5 +1,103 @@
 # Changelog
 
+## [9.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v9.0.1...deploymentmanager-v9.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **deploymentmanager:** update the API ([7a36c72](https://github.com/googleapis/google-api-nodejs-client/commit/7a36c726f70c3c60c448dec8d6d07b32f6514eca))
+
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v9.0.0...deploymentmanager-v9.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **deploymentmanager:** update the API ([7a36c72](https://github.com/googleapis/google-api-nodejs-client/commit/7a36c726f70c3c60c448dec8d6d07b32f6514eca))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v8.0.0...deploymentmanager-v9.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **deploymentmanager:** update the API ([6d7f38f](https://github.com/googleapis/google-api-nodejs-client/commit/6d7f38f277f6c5cfea5bd59d39b9b1e3d63d2385))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v7.0.0...deploymentmanager-v8.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **deploymentmanager:** update the API ([6d7f38f](https://github.com/googleapis/google-api-nodejs-client/commit/6d7f38f277f6c5cfea5bd59d39b9b1e3d63d2385))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v6.0.0...deploymentmanager-v7.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v5.0.0...deploymentmanager-v6.0.0) (2023-04-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v4.0.0...deploymentmanager-v5.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v3.0.3...deploymentmanager-v4.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v3.0.2...deploymentmanager-v3.0.3) (2022-09-21)
 
 

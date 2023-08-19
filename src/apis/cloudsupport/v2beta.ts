@@ -112,7 +112,6 @@ export namespace cloudsupport_v2beta {
    */
   export class Cloudsupport {
     context: APIRequestContext;
-    attachments: Resource$Attachments;
     caseClassifications: Resource$Caseclassifications;
     cases: Resource$Cases;
     media: Resource$Media;
@@ -123,7 +122,6 @@ export namespace cloudsupport_v2beta {
         google,
       };
 
-      this.attachments = new Resource$Attachments(this.context);
       this.caseClassifications = new Resource$Caseclassifications(this.context);
       this.cases = new Resource$Cases(this.context);
       this.media = new Resource$Media(this.context);
@@ -210,6 +208,10 @@ export namespace cloudsupport_v2beta {
      */
     classification?: Schema$CaseClassification;
     /**
+     * A user-supplied email address to send case update notifications for. This should only be used in BYOID flows, where we cannot infer the user's email address directly from their EUCs.
+     */
+    contactEmail?: string | null;
+    /**
      * Output only. The time this case was created.
      */
     createTime?: string | null;
@@ -230,15 +232,19 @@ export namespace cloudsupport_v2beta {
      */
     escalated?: boolean | null;
     /**
+     * The language the user has requested to receive support in. This should be a BCP 47 language code (e.g., `"en"`, `"zh-CN"`, `"zh-TW"`, `"ja"`, `"ko"`). If no language or an unsupported language is specified, this field defaults to English (en). Language selection during case creation may affect your available support options. For a list of supported languages and their support working hours, see: https://cloud.google.com/support/docs/language-working-hours
+     */
+    languageCode?: string | null;
+    /**
      * The resource name for the case.
      */
     name?: string | null;
     /**
-     * The priority of this case. If this is set, do not set severity.
+     * The priority of this case.
      */
     priority?: string | null;
     /**
-     * The severity of this case. Deprecated. Use priority instead.
+     * REMOVED. The severity of this case. Use priority instead.
      */
     severity?: string | null;
     /**
@@ -267,11 +273,11 @@ export namespace cloudsupport_v2beta {
    */
   export interface Schema$CaseClassification {
     /**
-     * The display name of the classification.
+     * A display name for the classification. The display name is not static and can change. To uniquely and consistently identify classifications, use the `CaseClassification.id` field.
      */
     displayName?: string | null;
     /**
-     * The unique ID for a classification. Must be specified for case creation. To retrieve valid classification IDs for case creation, use `caseClassifications.search`.
+     * The unique ID for a classification. Must be specified for case creation. To retrieve valid classification IDs for case creation, use `caseClassifications.search`. Classification IDs returned by `caseClassifications.search` are guaranteed to be valid for at least 6 months. If a given classification is deactiveated, it will immediately stop being returned. After 6 months, `case.create` requests using the classification ID will fail.
      */
     id?: string | null;
   }
@@ -284,7 +290,7 @@ export namespace cloudsupport_v2beta {
    */
   export interface Schema$Comment {
     /**
-     * The full comment body. Maximum of 120000 characters. This can contain rich text syntax.
+     * The full comment body. Maximum of 12800 characters. This can contain rich text syntax.
      */
     body?: string | null;
     /**
@@ -300,7 +306,7 @@ export namespace cloudsupport_v2beta {
      */
     name?: string | null;
     /**
-     * Output only. An automatically generated plain text version of body with all rich text syntax stripped.
+     * Output only. DEPRECATED. An automatically generated plain text version of body with all rich text syntax stripped.
      */
     plainTextBody?: string | null;
   }
@@ -517,11 +523,11 @@ export namespace cloudsupport_v2beta {
    */
   export interface Schema$ListCasesResponse {
     /**
-     * The list of cases associated with the cloud resource, after any filters have been applied.
+     * The list of cases associated with the Google Cloud Resource, after any filters have been applied.
      */
     cases?: Schema$Case[];
     /**
-     * A token to retrieve the next page of results. This should be set in the `page_token` field of subsequent `ListCasesRequest` message that is issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. This should be set in the `page_token` field of the subsequent `ListCasesRequest` message that is issued. If unspecified, there are no more results to retrieve.
      */
     nextPageToken?: string | null;
   }
@@ -698,7 +704,7 @@ export namespace cloudsupport_v2beta {
    */
   export interface Schema$SearchCasesResponse {
     /**
-     * The list of Case associated with the cloud resource, after any filters have been applied.
+     * The list of cases associated with the Google Cloud Resource, after any filters have been applied.
      */
     cases?: Schema$Case[];
     /**
@@ -724,168 +730,6 @@ export namespace cloudsupport_v2beta {
     workflowOperationType?: string | null;
   }
 
-  export class Resource$Attachments {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Create a file attachment on a case or Cloud resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.attachments.create({
-     *     // Required. The resource name of the case to which attachment should be attached.
-     *     parent: '[^/]+/[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "attachment": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "creator": {},
-     *   //   "filename": "my_filename",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "name": "my_name",
-     *   //   "sizeBytes": "my_sizeBytes"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Attachments$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Attachments$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Attachment>;
-    create(
-      params: Params$Resource$Attachments$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Attachments$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Attachment>,
-      callback: BodyResponseCallback<Schema$Attachment>
-    ): void;
-    create(
-      params: Params$Resource$Attachments$Create,
-      callback: BodyResponseCallback<Schema$Attachment>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$Attachment>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Attachments$Create
-        | BodyResponseCallback<Schema$Attachment>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Attachment>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Attachment>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Attachment> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Attachments$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Attachments$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudsupport.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2beta/{+parent}/attachments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Attachment>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Attachment>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Attachments$Create
-    extends StandardParameters {
-    /**
-     * Required. The resource name of the case to which attachment should be attached.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CreateAttachmentRequest;
-  }
-
   export class Resource$Caseclassifications {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -893,54 +737,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Retrieve valid classifications to be used when creating a support case. The classications are hierarchical, with each classification containing all levels of the hierarchy, separated by " \> ". For example "Technical Issue \> Compute \> Compute Engine".
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.caseClassifications.search({
-     *     // The maximum number of cases fetched with each request.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying the page of results to return. If unspecified, the first page is retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // An expression written in the Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out.
-     *     query: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "caseClassifications": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Retrieve valid classifications to be used when creating a support case. The classications are hierarchical, with each classification containing all levels of the hierarchy, separated by `" \> "`. For example `"Technical Issue \> Compute \> Compute Engine"`. Classification IDs returned by `caseClassifications.search` are guaranteed to be valid for at least six months. If a given classification is deactivated, it immediately stops being returned. After six months, `case.create` requests using the classification ID will fail. Here is an example of calling this endpoint using cURL: ```shell curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ 'https://cloudsupport.googleapis.com/v2/caseClassifications:search?query=display_name:"*Compute%20Engine*"' ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1047,7 +844,7 @@ export namespace cloudsupport_v2beta {
      */
     pageToken?: string;
     /**
-     * An expression written in the Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out.
+     * An expression written in the Google Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out.
      */
     query?: string;
   }
@@ -1063,68 +860,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Close the specified case.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.cases.close({
-     *     // Required. The fully qualified name of the case resource to be closed.
-     *     name: '[^/]+/[^/]+/cases/my-case',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "classification": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "creator": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "escalated": false,
-     *   //   "name": "my_name",
-     *   //   "priority": "my_priority",
-     *   //   "severity": "my_severity",
-     *   //   "state": "my_state",
-     *   //   "subscriberEmailAddresses": [],
-     *   //   "testCase": false,
-     *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Close the specified case. Here is an example of calling this endpoint using cURL: ```shell case="projects/some-project/cases/43595344" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$case:close" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1210,83 +946,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Create a new case and associate it with the given Cloud resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.cases.create({
-     *     // Required. The name of the Cloud resource under which the case should be created.
-     *     parent: '[^/]+/[^/]+',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "classification": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "creator": {},
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "escalated": false,
-     *       //   "name": "my_name",
-     *       //   "priority": "my_priority",
-     *       //   "severity": "my_severity",
-     *       //   "state": "my_state",
-     *       //   "subscriberEmailAddresses": [],
-     *       //   "testCase": false,
-     *       //   "timeZone": "my_timeZone",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "classification": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "creator": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "escalated": false,
-     *   //   "name": "my_name",
-     *   //   "priority": "my_priority",
-     *   //   "severity": "my_severity",
-     *   //   "state": "my_state",
-     *   //   "subscriberEmailAddresses": [],
-     *   //   "testCase": false,
-     *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Create a new case and associate it with the given Google Cloud Resource. The case object must have the following fields set: `display_name`, `description`, `classification`, and `priority`. Here is an example of calling this endpoint using cURL: ```shell parent="projects/some-project" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --header 'Content-Type: application/json' \ --data '{ "display_name": "Test case created by me.", "description": "a random test case, feel free to close", "classification": { "id": "100IK2AKCLHMGRJ9CDGMOCGP8DM6UTB4BT262T31BT1M2T31DHNMENPO6KS36CPJ786L2TBFEHGN6NPI64R3CDHN8880G08I1H3MURR7DHII0GRCDTQM8" \}, "time_zone": "-07:00", "subscriber_email_addresses": [ "foo@domain.com", "bar@domain.com" ], "testCase": true, "priority": "P3" \}' \ "https://cloudsupport.googleapis.com/v2/$parent/cases" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1372,70 +1032,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Escalate a case. Escalating a case will initiate the Cloud Support escalation management process. This operation is only available to certain Customer Care tiers. Go to https://cloud.google.com/support and look for 'Technical support escalations' in the feature list to find out which tiers are able to perform escalations.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.cases.escalate({
-     *     // Required. The fully qualified name of the Case resource to be escalated.
-     *     name: '[^/]+/[^/]+/cases/my-case',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "escalation": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "classification": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "creator": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "escalated": false,
-     *   //   "name": "my_name",
-     *   //   "priority": "my_priority",
-     *   //   "severity": "my_severity",
-     *   //   "state": "my_state",
-     *   //   "subscriberEmailAddresses": [],
-     *   //   "testCase": false,
-     *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Escalate a case. Escalating a case initiates the Google Cloud Support escalation management process. This operation is only available to certain Customer Care support services. Go to https://cloud.google.com/support and look for 'Technical support escalations' in the feature list to find out which support services let you perform escalations. Here is an example of calling this endpoint using cURL: ```shell case="projects/some-project/cases/43595344" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --header "Content-Type: application/json" \ --data '{ "escalation": { "reason": "BUSINESS_IMPACT", "justification": "This is a test escalation." \} \}' \ "https://cloudsupport.googleapis.com/v2/$case:escalate" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1521,62 +1118,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Retrieve the specified case.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.cases.get({
-     *     // Required. The fully qualified name of a case to be retrieved.
-     *     name: '[^/]+/[^/]+/cases/my-case',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "classification": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "creator": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "escalated": false,
-     *   //   "name": "my_name",
-     *   //   "priority": "my_priority",
-     *   //   "severity": "my_severity",
-     *   //   "state": "my_state",
-     *   //   "subscriberEmailAddresses": [],
-     *   //   "testCase": false,
-     *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Retrieve the specified case. Here is an example of calling this endpoint using cURL: ```shell case="projects/some-project/cases/16033687" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$case" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1659,56 +1201,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Retrieve all cases under the specified parent. Note: Listing cases under an Organization returns only the cases directly parented by that organization. To retrieve all cases under an organization, including cases parented by projects under that organization, use `cases.search`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.cases.list({
-     *     // An expression written in filter language. If non-empty, the query returns the cases that match the filter. Else, the query doesn't filter the cases. Filter expressions use the following fields with the operators equals (`=`) and `AND`: - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. Examples: - `state=CLOSED` - `state=OPEN AND creator.email="tester@example.com"` - `state=OPEN AND (priority=P0 OR priority=P1)`
-     *     filter: 'placeholder-value',
-     *     // The maximum number of cases fetched with each request. Defaults to 10.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying the page of results to return. If unspecified, the first page is retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The fully qualified name of parent resource to list cases under.
-     *     parent: '[^/]+/[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cases": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Retrieve all cases under the specified parent. Note: Listing cases under an organization returns only the cases directly parented by that organization. To retrieve all cases under an organization, including cases parented by projects under that organization, use `cases.search`. Here is an example of calling this endpoint using cURL: ```shell parent="projects/some-project" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$parent/cases" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1797,85 +1290,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Update the specified case. Only a subset of fields (display_name, description, time_zone, subscriber_email_addresses, related_resources, severity, priority, primary_contact, and labels) can be updated.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.cases.patch({
-     *     // The resource name for the case.
-     *     name: '[^/]+/[^/]+/cases/my-case',
-     *     // A field that represents attributes of a case object that should be updated as part of this request. Supported values are severity, display_name, and subscriber_email_addresses. If no fields are specified, all supported fields will be updated. WARNING: If you do not provide a field mask then you may accidentally clear some fields. For example, if you leave field mask empty and do not provide a value for subscriber_email_addresses then subscriber_email_addresses will be updated to empty.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "classification": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "creator": {},
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "escalated": false,
-     *       //   "name": "my_name",
-     *       //   "priority": "my_priority",
-     *       //   "severity": "my_severity",
-     *       //   "state": "my_state",
-     *       //   "subscriberEmailAddresses": [],
-     *       //   "testCase": false,
-     *       //   "timeZone": "my_timeZone",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "classification": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "creator": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "escalated": false,
-     *   //   "name": "my_name",
-     *   //   "priority": "my_priority",
-     *   //   "severity": "my_severity",
-     *   //   "state": "my_state",
-     *   //   "subscriberEmailAddresses": [],
-     *   //   "testCase": false,
-     *   //   "timeZone": "my_timeZone",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Update the specified case. Only a subset of fields can be updated. Here is an example of calling this endpoint using cURL: ```shell case="projects/some-project/cases/43595344" curl \ --request PATCH \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --header "Content-Type: application/json" \ --data '{ "priority": "P1" \}' \ "https://cloudsupport.googleapis.com/v2/$case?updateMask=priority" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1958,54 +1373,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Search cases using the specified query.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.cases.search({
-     *     // The maximum number of cases fetched with each request. The default page size is 10.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying the page of results to return. If unspecified, the first page is retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. - `billingAccount`: A billing account in the form `billingAccounts/` You must specify eitehr `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` retricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `billing_account="billingAccounts/123456-A0B0C0-CUZ789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
-     *     query: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cases": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Search cases using the specified query. Here is an example of calling this endpoint using cURL: ```shell parent="projects/some-project" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$parent/cases:search" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2107,7 +1475,7 @@ export namespace cloudsupport_v2beta {
   }
   export interface Params$Resource$Cases$Create extends StandardParameters {
     /**
-     * Required. The name of the Cloud resource under which the case should be created.
+     * Required. The name of the Google Cloud Resource under which the case should be created.
      */
     parent?: string;
 
@@ -2135,7 +1503,7 @@ export namespace cloudsupport_v2beta {
   }
   export interface Params$Resource$Cases$List extends StandardParameters {
     /**
-     * An expression written in filter language. If non-empty, the query returns the cases that match the filter. Else, the query doesn't filter the cases. Filter expressions use the following fields with the operators equals (`=`) and `AND`: - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. Examples: - `state=CLOSED` - `state=OPEN AND creator.email="tester@example.com"` - `state=OPEN AND (priority=P0 OR priority=P1)`
+     * An expression written in filter language. If non-empty, the query returns the cases that match the filter. Else, the query doesn't filter the cases. Filter expressions use the following fields with the operators equals (`=`) and `AND`: - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - `creator.email`: The email address of the case creator. Examples: - `state=CLOSED` - `state=OPEN AND creator.email="tester@example.com"` - `state=OPEN AND (priority=P0 OR priority=P1)`
      */
     filter?: string;
     /**
@@ -2157,7 +1525,7 @@ export namespace cloudsupport_v2beta {
      */
     name?: string;
     /**
-     * A field that represents attributes of a case object that should be updated as part of this request. Supported values are severity, display_name, and subscriber_email_addresses. If no fields are specified, all supported fields will be updated. WARNING: If you do not provide a field mask then you may accidentally clear some fields. For example, if you leave field mask empty and do not provide a value for subscriber_email_addresses then subscriber_email_addresses will be updated to empty.
+     * A list of attributes of the case object that should be updated as part of this request. Supported values are `priority`, `display_name`, and `subscriber_email_addresses`. If no fields are specified, all supported fields are updated. WARNING: If you do not provide a field mask, then you might accidentally clear some fields. For example, if you leave the field mask empty and do not provide a value for `subscriber_email_addresses`, then `subscriber_email_addresses` is updated to empty.
      */
     updateMask?: string;
 
@@ -2176,7 +1544,11 @@ export namespace cloudsupport_v2beta {
      */
     pageToken?: string;
     /**
-     * An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - [DEPRECATED] `severity`: The accepted values are `S0`, `S1`, `S2`, `S3`, or `S4`. - `creator.email`: The email address of the case creator. - `billingAccount`: A billing account in the form `billingAccounts/` You must specify eitehr `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` retricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `billing_account="billingAccounts/123456-A0B0C0-CUZ789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
+     * The fully qualified name of parent resource to search cases under.
+     */
+    parent?: string;
+    /**
+     * An expression written in filter language. A query uses the following fields with the operators equals (`=`) and `AND`: - `organization`: An organization name in the form `organizations/`. - `project`: A project name in the form `projects/`. - `state`: The accepted values are `OPEN` or `CLOSED`. - `priority`: The accepted values are `P0`, `P1`, `P2`, `P3`, or `P4`. You can specify multiple values for priority using the `OR` operator. For example, `priority=P1 OR priority=P2`. - `creator.email`: The email address of the case creator. - `billingAccount`: A billing account in the form `billingAccounts/` You must specify either `organization` or `project`. To search across `displayName`, `description`, and comments, use a global restriction with no keyword or operator. For example, `"my search"`. To search only cases updated after a certain date, use `update_time` restricted with that particular date, time, and timezone in ISO datetime format. For example, `update_time\>"2020-01-01T00:00:00-05:00"`. `update_time` only supports the greater than operator (`\>`). Examples: - `organization="organizations/123456789"` - `project="projects/my-project-id"` - `project="projects/123456789"` - `billing_account="billingAccounts/123456-A0B0C0-CUZ789"` - `organization="organizations/123456789" AND state=CLOSED` - `project="projects/my-project-id" AND creator.email="tester@example.com"` - `project="projects/my-project-id" AND (priority=P0 OR priority=P1)`
      */
     query?: string;
   }
@@ -2188,54 +1560,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Retrieve all attachments associated with a support case.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.cases.attachments.list({
-     *     // The maximum number of attachments fetched with each request. If not provided, the default is 10. The maximum page size that will be returned is 100.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying the page of results to return. If unspecified, the first page is retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of Case object for which attachments should be listed.
-     *     parent: '[^/]+/[^/]+/cases/my-case',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "attachments": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Retrieve all attachments associated with a support case. Here is an example of calling this endpoint using cURL: ```shell case="projects/some-project/cases/23598314" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$case/attachments" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2350,65 +1675,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Add a new comment to the specified Case.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.cases.comments.create({
-     *     // Required. The resource name of Case to which this comment should be added.
-     *     parent: '[^/]+/[^/]+/cases/my-case',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "body": "my_body",
-     *       //   "createTime": "my_createTime",
-     *       //   "creator": {},
-     *       //   "name": "my_name",
-     *       //   "plainTextBody": "my_plainTextBody"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "body": "my_body",
-     *   //   "createTime": "my_createTime",
-     *   //   "creator": {},
-     *   //   "name": "my_name",
-     *   //   "plainTextBody": "my_plainTextBody"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Add a new comment to the specified Case. The comment object must have the following fields set: body. Here is an example of calling this endpoint using cURL: ```shell case="projects/some-project/cases/43591344" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --header 'Content-Type: application/json' \ --data '{ "body": "This is a test comment." \}' \ "https://cloudsupport.googleapis.com/v2/$case/comments" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2495,54 +1762,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Retrieve all Comments associated with the Case object.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.cases.comments.list({
-     *     // The maximum number of comments fetched with each request. Defaults to 10.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying the page of results to return. If unspecified, the first page is retrieved.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of Case object for which comments should be listed.
-     *     parent: '[^/]+/[^/]+/cases/my-case',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "comments": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Retrieve all comments associated with the Case object. Here is an example of calling this endpoint using cURL: ```shell case="projects/cloud-support-qa-premium/cases/43595344" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$case/comments" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2669,78 +1889,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Download a file attachment on a case. Note: HTTP requests must append "?alt=media" to the URL.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.media.download({
-     *     // The resource name of the attachment to be downloaded.
-     *     name: '[^/]+/[^/]+/cases/my-case/attachments/my-attachment',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "algorithm": "my_algorithm",
-     *   //   "bigstoreObjectRef": "my_bigstoreObjectRef",
-     *   //   "blobRef": "my_blobRef",
-     *   //   "blobstore2Info": {},
-     *   //   "compositeMedia": [],
-     *   //   "contentType": "my_contentType",
-     *   //   "contentTypeInfo": {},
-     *   //   "cosmoBinaryReference": "my_cosmoBinaryReference",
-     *   //   "crc32cHash": 0,
-     *   //   "diffChecksumsResponse": {},
-     *   //   "diffDownloadResponse": {},
-     *   //   "diffUploadRequest": {},
-     *   //   "diffUploadResponse": {},
-     *   //   "diffVersionResponse": {},
-     *   //   "downloadParameters": {},
-     *   //   "filename": "my_filename",
-     *   //   "hash": "my_hash",
-     *   //   "hashVerified": false,
-     *   //   "inline": "my_inline",
-     *   //   "isPotentialRetry": false,
-     *   //   "length": "my_length",
-     *   //   "md5Hash": "my_md5Hash",
-     *   //   "mediaId": "my_mediaId",
-     *   //   "objectId": {},
-     *   //   "path": "my_path",
-     *   //   "referenceType": "my_referenceType",
-     *   //   "sha1Hash": "my_sha1Hash",
-     *   //   "sha256Hash": "my_sha256Hash",
-     *   //   "timestamp": "my_timestamp",
-     *   //   "token": "my_token"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Download a file attachment on a case. Note: HTTP requests must append "?alt=media" to the URL. Here is an example of calling this endpoint using cURL: ```shell name="projects/some-project/cases/43594844/attachments/0674M00000WijAnZAJ" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$name:download?alt=media" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2826,66 +1975,7 @@ export namespace cloudsupport_v2beta {
     }
 
     /**
-     * Create a file attachment on a case or Cloud resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudsupport.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudsupport = google.cloudsupport('v2beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await cloudsupport.media.upload({
-     *     // Required. The resource name of the case to which attachment should be attached.
-     *     parent: '[^/]+/[^/]+/cases/my-case',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "attachment": {}
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "creator": {},
-     *   //   "filename": "my_filename",
-     *   //   "mimeType": "my_mimeType",
-     *   //   "name": "my_name",
-     *   //   "sizeBytes": "my_sizeBytes"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename. Here is an example of calling this endpoint using cURL: ```shell echo "This text is in a file I'm uploading using CSAPI." \ \> "./example_file.txt" case="projects/some-project/cases/43594844" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --data-binary @"./example_file.txt" \ "https://cloudsupport.googleapis.com/upload/v2beta/$case/attachments?attachment.filename=uploaded_via_curl.txt" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2983,7 +2073,7 @@ export namespace cloudsupport_v2beta {
   }
   export interface Params$Resource$Media$Upload extends StandardParameters {
     /**
-     * Required. The resource name of the case to which attachment should be attached.
+     * Required. The resource name of the case (or case parent) to which the attachment should be attached.
      */
     parent?: string;
 

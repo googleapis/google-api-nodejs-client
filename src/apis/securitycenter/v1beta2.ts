@@ -145,19 +145,19 @@ export namespace securitycenter_v1beta2 {
      */
     methodName?: string | null;
     /**
-     * Associated email, such as "foo@google.com". The email address of the authenticated user (or service account on behalf of third party principal) making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).
+     * Associated email, such as "foo@google.com". The email address of the authenticated user or a service account acting on behalf of a third party principal making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).
      */
     principalEmail?: string | null;
     /**
-     * A string representing the principal_subject associated with the identity. As compared to `principal_email`, supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name\}/subjects/{subject\}` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name\}[{subject\}]`
+     * A string that represents the principal_subject that is associated with the identity. Unlike `principal_email`, `principal_subject` supports principals that aren't associated with email addresses, such as third party principals. For most identities, the format is `principal://iam.googleapis.com/{identity pool name\}/subject/{subject\}`. Some GKE identities, such as GKE_WORKLOAD, FREEFORM, and GKE_HUB_WORKLOAD, still use the legacy format `serviceAccount:{identity pool name\}[{subject\}]`.
      */
     principalSubject?: string | null;
     /**
-     * Identity delegation history of an authenticated service account that makes the request. It contains information on the real authorities that try to access GCP resources by delegating on a service account. When multiple authorities are present, they are guaranteed to be sorted based on the original ordering of the identity delegation events.
+     * The identity delegation history of an authenticated service account that made the request. The `serviceAccountDelegationInfo[]` object contains information about the real authorities that try to access Google Cloud resources by delegating on a service account. When multiple authorities are present, they are guaranteed to be sorted based on the original ordering of the identity delegation events.
      */
     serviceAccountDelegationInfo?: Schema$ServiceAccountDelegationInfo[];
     /**
-     * The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example: "//iam.googleapis.com/projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}"
+     * The name of the service account key that was used to create or exchange credentials when authenticating the service account that made the request. This is a scheme-less URI full resource name. For example: "//iam.googleapis.com/projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}".
      */
     serviceAccountKeyName?: string | null;
     /**
@@ -165,24 +165,28 @@ export namespace securitycenter_v1beta2 {
      */
     serviceName?: string | null;
     /**
-     * What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.
+     * The caller's user agent string associated with the finding.
+     */
+    userAgent?: string | null;
+    /**
+     * Type of user agent associated with the finding. For example, an operating system shell or an embedded or standalone application.
      */
     userAgentFamily?: string | null;
     /**
-     * A string representing a username. This is likely not an IAM principal. For instance, this may be the system user name if the finding is VM-related, or this may be some type of application login user name, depending on the type of finding.
+     * A string that represents a username. The username provided depends on the type of the finding and is likely not an IAM principal. For example, this can be a system username if the finding is related to a virtual machine, or it can be an application login username.
      */
     userName?: string | null;
   }
   /**
-   * Conveys information about a Kubernetes access review (e.g. kubectl auth can-i ...) that was involved in a finding.
+   * Conveys information about a Kubernetes access review (such as one returned by a [`kubectl auth can-i`](https://kubernetes.io/docs/reference/access-authn-authz/authorization/#checking-api-access) command) that was involved in a finding.
    */
   export interface Schema$AccessReview {
     /**
-     * Group is the API Group of the Resource. "*" means all.
+     * The API group of the resource. "*" means all.
      */
     group?: string | null;
     /**
-     * Name is the name of the resource being requested. Empty means all.
+     * The name of the resource being requested. Empty means all.
      */
     name?: string | null;
     /**
@@ -190,49 +194,103 @@ export namespace securitycenter_v1beta2 {
      */
     ns?: string | null;
     /**
-     * Resource is the optional resource type requested. "*" means all.
+     * The optional resource type requested. "*" means all.
      */
     resource?: string | null;
     /**
-     * Subresource is the optional subresource type.
+     * The optional subresource type.
      */
     subresource?: string | null;
     /**
-     * Verb is a Kubernetes resource API verb, like: get, list, watch, create, update, delete, proxy. "*" means all.
+     * A Kubernetes resource API verb, like get, list, watch, create, update, delete, proxy. "*" means all.
      */
     verb?: string | null;
     /**
-     * Version is the API Version of the Resource. "*" means all.
+     * The API version of the resource. "*" means all.
      */
     version?: string | null;
   }
   /**
-   * A finding that is associated with this node in the exposure path.
+   * An attack exposure contains the results of an attack path simulation run.
    */
-  export interface Schema$AssociatedFinding {
+  export interface Schema$AttackExposure {
     /**
-     * Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/attackExposureResults/456
      */
-    canonicalFindingName?: string | null;
+    attackExposureResult?: string | null;
     /**
-     * The additional taxonomy group within findings from a given source.
+     * The number of high value resources that are exposed as a result of this finding.
      */
-    findingCategory?: string | null;
+    exposedHighValueResourcesCount?: number | null;
+    /**
+     * The number of high value resources that are exposed as a result of this finding.
+     */
+    exposedLowValueResourcesCount?: number | null;
+    /**
+     * The number of medium value resources that are exposed as a result of this finding.
+     */
+    exposedMediumValueResourcesCount?: number | null;
+    /**
+     * The most recent time the attack exposure was updated on this finding.
+     */
+    latestCalculationTime?: string | null;
+    /**
+     * A number between 0 (inclusive) and infinity that represents how important this finding is to remediate. The higher the score, the more important it is to remediate.
+     */
+    score?: number | null;
+    /**
+     * What state this AttackExposure is in. This captures whether or not an attack exposure has been calculated or not.
+     */
+    state?: string | null;
+  }
+  /**
+   * The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.
+   */
+  export interface Schema$CloudDlpDataProfile {
+    /**
+     * Name of the data profile, for example, `projects/123/locations/europe/tableProfiles/8383929`.
+     */
+    dataProfile?: string | null;
+    /**
+     * The resource hierarchy level at which the data profile was generated.
+     */
+    parentType?: string | null;
+  }
+  /**
+   * Details about the Cloud Data Loss Prevention (Cloud DLP) [inspection job](https://cloud.google.com/dlp/docs/concepts-job-triggers) that produced the finding.
+   */
+  export interface Schema$CloudDlpInspection {
+    /**
+     * Whether Cloud DLP scanned the complete resource or a sampled subset.
+     */
+    fullScan?: boolean | null;
+    /**
+     * The type of information (or *[infoType](https://cloud.google.com/dlp/docs/infotypes-reference)*) found, for example, `EMAIL_ADDRESS` or `STREET_ADDRESS`.
+     */
+    infoType?: string | null;
+    /**
+     * The number of times Cloud DLP found this infoType within this job and resource.
+     */
+    infoTypeCount?: string | null;
+    /**
+     * Name of the inspection job, for example, `projects/123/locations/europe/dlpJobs/i-8383929`.
+     */
+    inspectJob?: string | null;
   }
   /**
    * Contains compliance information about a security standard indicating unmet recommendations.
    */
   export interface Schema$Compliance {
     /**
-     * Policies within the standard/benchmark e.g. A.12.4.1
+     * Policies within the standard or benchmark, for example, A.12.4.1
      */
     ids?: string[] | null;
     /**
-     * Refers to industry wide standards or benchmarks e.g. "cis", "pci", "owasp", etc.
+     * Industry-wide compliance standards or benchmarks, such as CIS, PCI, and OWASP.
      */
     standard?: string | null;
     /**
-     * Version of the standard/benchmark e.g. 1.1
+     * Version of the standard or benchmark, for example, 1.1
      */
     version?: string | null;
   }
@@ -275,16 +333,16 @@ export namespace securitycenter_v1beta2 {
     sourcePort?: number | null;
   }
   /**
-   * Representa a single contact's email address
+   * The email address of a contact.
    */
   export interface Schema$Contact {
     /**
-     * An email address e.g. "person123@company.com"
+     * An email address. For example, "`person123@company.com`".
      */
     email?: string | null;
   }
   /**
-   * The details pertaining to specific contacts
+   * Details about specific contacts
    */
   export interface Schema$ContactDetails {
     /**
@@ -297,7 +355,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$Container {
     /**
-     * Optional container image id, when provided by the container runtime. Uniquely identifies the container image launched using a container image digest.
+     * The time that the container was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional container image ID, if provided by the container runtime. Uniquely identifies the container image launched using a container image digest.
      */
     imageId?: string | null;
     /**
@@ -305,11 +367,11 @@ export namespace securitycenter_v1beta2 {
      */
     labels?: Schema$Label[];
     /**
-     * Container name.
+     * Name of the container.
      */
     name?: string | null;
     /**
-     * Container image URI provided when configuring a pod/container. May identify a container image version using mutable tags.
+     * Container image URI provided when configuring a pod or container. This string can identify a container image version using mutable tags.
      */
     uri?: string | null;
   }
@@ -401,29 +463,33 @@ export namespace securitycenter_v1beta2 {
     userInteraction?: string | null;
   }
   /**
-   * Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of CloudSQL instances or Cloud Spanner instances), or the database instance itself. Some database resources may not have the full resource name populated because these resource types are not yet supported by Cloud Asset Inventory (e.g. CloudSQL databases). In these cases only the display name will be provided.
+   * Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of Cloud SQL instances or Cloud Spanner instances), or the database instance itself. Some database resources might not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types, such as Cloud SQL databases, are not yet supported by Cloud Asset Inventory. In these cases only the display name is provided.
    */
   export interface Schema$Database {
     /**
-     * The human readable name of the database the user connected to.
+     * The human-readable name of the database that the user connected to.
      */
     displayName?: string | null;
     /**
-     * The target usernames/roles/groups of a SQL privilege grant (not an IAM policy change).
+     * The target usernames, roles, or groups of an SQL privilege grant, which is not an IAM policy change.
      */
     grantees?: string[] | null;
     /**
-     * The full resource name of the database the user connected to, if it is supported by CAI. (https://google.aip.dev/122#full-resource-names)
+     * Some database resources may not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types are not yet supported by Cloud Asset Inventory (e.g. Cloud SQL databases). In these cases only the display name will be provided. The [full resource name](https://google.aip.dev/122#full-resource-names) of the database that the user connected to, if it is supported by Cloud Asset Inventory.
      */
     name?: string | null;
     /**
-     * The SQL statement associated with the relevant access.
+     * The SQL statement that is associated with the database access.
      */
     query?: string | null;
     /**
-     * The username used to connect to the DB. This may not necessarily be an IAM principal, and has no required format.
+     * The username used to connect to the database. The username might not be an IAM principal and does not have a set format.
      */
     userName?: string | null;
+    /**
+     * The version of the database, for example, POSTGRES_14. See [the complete list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
+     */
+    version?: string | null;
   }
   /**
    * Details of a subscription.
@@ -456,20 +522,7 @@ export namespace securitycenter_v1beta2 {
     percentPagesMatched?: number | null;
   }
   /**
-   * Represents a connection between a source node and a destination node in this exposure path.
-   */
-  export interface Schema$Edge {
-    /**
-     * This is the resource name of the destination node.
-     */
-    destination?: string | null;
-    /**
-     * This is the resource name of the source node.
-     */
-    source?: string | null;
-  }
-  /**
-   * EnvironmentVariable is a name-value pair to store environment variables for Process.
+   * A name-value pair representing an environment variable used in an operating system process.
    */
   export interface Schema$EnvironmentVariable {
     /**
@@ -503,20 +556,20 @@ export namespace securitycenter_v1beta2 {
     updateTime?: string | null;
   }
   /**
-   * Resource that has been exfiltrated or exfiltrated_to.
+   * Resource where data was exfiltrated from or exfiltrated to.
    */
   export interface Schema$ExfilResource {
     /**
-     * Subcomponents of the asset that is exfiltrated - these could be URIs used during exfiltration, table names, databases, filenames, etc. For example, multiple tables may be exfiltrated from the same CloudSQL instance, or multiple files from the same Cloud Storage bucket.
+     * Subcomponents of the asset that was exfiltrated, like URIs used during exfiltration, table names, databases, and filenames. For example, multiple tables might have been exfiltrated from the same Cloud SQL instance, or multiple files might have been exfiltrated from the same Cloud Storage bucket.
      */
     components?: string[] | null;
     /**
-     * Resource's URI (https://google.aip.dev/122#full-resource-names)
+     * The resource's [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name).
      */
     name?: string | null;
   }
   /**
-   * Exfiltration represents a data exfiltration attempt of one or more sources to one or more targets. Sources represent the source of data that is exfiltrated, and Targets represents the destination the data was copied to.
+   * Exfiltration represents a data exfiltration attempt from one or more sources to one or more targets. The `sources` attribute lists the sources of the exfiltrated data. The `targets` attribute lists the destinations the data was copied to.
    */
   export interface Schema$Exfiltration {
     /**
@@ -529,11 +582,32 @@ export namespace securitycenter_v1beta2 {
     targets?: Schema$ExfilResource[];
   }
   /**
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   */
+  export interface Schema$Expr {
+    /**
+     * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+     */
+    description?: string | null;
+    /**
+     * Textual representation of an expression in Common Expression Language syntax.
+     */
+    expression?: string | null;
+    /**
+     * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+     */
+    location?: string | null;
+    /**
+     * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+     */
+    title?: string | null;
+  }
+  /**
    * File information about the related binary/library used by an executable, or the script used by a script interpreter
    */
   export interface Schema$File {
     /**
-     * Prefix of the file contents as a JSON encoded string. (Currently only populated for Malicious Script Executed findings.)
+     * Prefix of the file contents as a JSON-encoded string.
      */
     contents?: string | null;
     /**
@@ -562,9 +636,13 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$Finding {
     /**
-     * Access details associated to the Finding, such as more information on the caller, which method was accessed, from where, etc.
+     * Access details associated with the finding, such as more information on the caller, which method was accessed, and from where.
      */
     access?: Schema$Access;
+    /**
+     * The results of an attack path simulation relevant to this finding.
+     */
+    attackExposure?: Schema$AttackExposure;
     /**
      * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}" or "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
      */
@@ -573,6 +651,14 @@ export namespace securitycenter_v1beta2 {
      * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: "XSS_FLASH_INJECTION"
      */
     category?: string | null;
+    /**
+     * Cloud DLP data profile that is associated with the finding.
+     */
+    cloudDlpDataProfile?: Schema$CloudDlpDataProfile;
+    /**
+     * Cloud Data Loss Prevention (Cloud DLP) inspection results that are associated with the finding.
+     */
+    cloudDlpInspection?: Schema$CloudDlpInspection;
     /**
      * Contains compliance information for security standards associated to the finding.
      */
@@ -586,7 +672,7 @@ export namespace securitycenter_v1beta2 {
      */
     contacts?: {[key: string]: Schema$ContactDetails} | null;
     /**
-     * Containers associated with the finding. containers provides information for both Kubernetes and non-Kubernetes containers.
+     * Containers associated with the finding. This field provides information for both Kubernetes and non-Kubernetes containers.
      */
     containers?: Schema$Container[];
     /**
@@ -598,7 +684,7 @@ export namespace securitycenter_v1beta2 {
      */
     database?: Schema$Database;
     /**
-     * Contains more detail about the finding.
+     * Contains more details about the finding.
      */
     description?: string | null;
     /**
@@ -606,7 +692,7 @@ export namespace securitycenter_v1beta2 {
      */
     eventTime?: string | null;
     /**
-     * Represents exfiltration associated with the Finding.
+     * Represents exfiltrations associated with the finding.
      */
     exfiltration?: Schema$Exfiltration;
     /**
@@ -620,17 +706,25 @@ export namespace securitycenter_v1beta2 {
      */
     externalUri?: string | null;
     /**
+     * File associated with the finding.
+     */
+    files?: Schema$File[];
+    /**
      * The class of the finding.
      */
     findingClass?: string | null;
     /**
-     * Represents IAM bindings associated with the Finding.
+     * Represents IAM bindings associated with the finding.
      */
     iamBindings?: Schema$IamBinding[];
     /**
-     * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     * Represents what's commonly known as an *indicator of compromise* (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
      */
     indicator?: Schema$Indicator;
+    /**
+     * Signature of the kernel rootkit.
+     */
+    kernelRootkit?: Schema$KernelRootkit;
     /**
      * Kubernetes resources associated with the finding.
      */
@@ -640,11 +734,15 @@ export namespace securitycenter_v1beta2 {
      */
     mitreAttack?: Schema$MitreAttack;
     /**
+     * Unique identifier of the module which generated the finding. Example: folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885
+     */
+    moduleName?: string | null;
+    /**
      * Indicates the mute state of a finding (either muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
      */
     mute?: string | null;
     /**
-     * First known as mute_annotation. Records additional information about the mute operation e.g. mute config that muted the finding, user who muted the finding, etc. Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
+     * Records additional information about the mute operation, for example, the [mute configuration](/security-command-center/docs/how-to-mute-findings) that muted the finding and the user who muted the finding.
      */
     muteInitiator?: string | null;
     /**
@@ -652,11 +750,11 @@ export namespace securitycenter_v1beta2 {
      */
     muteUpdateTime?: string | null;
     /**
-     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}"
+     * The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
      */
     name?: string | null;
     /**
-     * Next steps associate to the finding.
+     * Steps to address the finding.
      */
     nextSteps?: string | null;
     /**
@@ -692,7 +790,7 @@ export namespace securitycenter_v1beta2 {
      */
     state?: string | null;
     /**
-     * Represents vulnerability specific fields like cve, cvss scores etc. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
+     * Represents vulnerability-specific fields like CVE and CVSS scores. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
      */
     vulnerability?: Schema$Vulnerability;
   }
@@ -736,7 +834,7 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1BigQueryExport {
     /**
-     * Output only. The time at which the big query export was created. This field is set by the server and will be ignored if provided on export on creation.
+     * Output only. The time at which the BigQuery export was created. This field is set by the server and will be ignored if provided on export on creation.
      */
     createTime?: string | null;
     /**
@@ -752,7 +850,7 @@ export namespace securitycenter_v1beta2 {
      */
     filter?: string | null;
     /**
-     * Output only. Email address of the user who last edited the big query export. This field is set by the server and will be ignored if provided on export creation or update.
+     * Output only. Email address of the user who last edited the BigQuery export. This field is set by the server and will be ignored if provided on export creation or update.
      */
     mostRecentEditor?: string | null;
     /**
@@ -760,11 +858,11 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string | null;
     /**
-     * Output only. The service account that needs permission to create table, upload data to the big query dataset.
+     * Output only. The service account that needs permission to create table and upload data to the BigQuery dataset.
      */
     principal?: string | null;
     /**
-     * Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.
+     * Output only. The most recent time at which the BigQuery export was updated. This field is set by the server and will be ignored if provided on export creation or update.
      */
     updateTime?: string | null;
   }
@@ -773,11 +871,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1Binding {
     /**
-     * Name for binding.
+     * Name for the binding.
      */
     name?: string | null;
     /**
-     * Namespace for binding.
+     * Namespace for the binding.
      */
     ns?: string | null;
     /**
@@ -785,7 +883,7 @@ export namespace securitycenter_v1beta2 {
      */
     role?: Schema$Role;
     /**
-     * Represents the subjects(s) bound to the role. Not always available for PATCH requests.
+     * Represents one or more subjects that are bound to the role. Not always available for PATCH requests.
      */
     subjects?: Schema$Subject[];
   }
@@ -794,54 +892,63 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1BulkMuteFindingsResponse {}
   /**
-   * A resource that is exposed as a result of a finding.
+   * Defines the properties in a custom module configuration for Security Health Analytics. Use the custom module configuration to create custom detectors that generate custom findings for resources that you specify.
    */
-  export interface Schema$GoogleCloudSecuritycenterV1ExposedResource {
+  export interface Schema$GoogleCloudSecuritycenterV1CustomConfig {
     /**
-     * Human readable name of the resource that is exposed.
+     * Custom output properties.
+     */
+    customOutput?: Schema$GoogleCloudSecuritycenterV1CustomOutputSpec;
+    /**
+     * Text that describes the vulnerability or misconfiguration that the custom module detects. This explanation is returned with each finding instance to help investigators understand the detected issue. The text must be enclosed in quotation marks.
+     */
+    description?: string | null;
+    /**
+     * The CEL expression to evaluate to produce findings. When the expression evaluates to true against a resource, a finding is generated.
+     */
+    predicate?: Schema$Expr;
+    /**
+     * An explanation of the recommended steps that security teams can take to resolve the detected issue. This explanation is returned with each finding generated by this module in the `nextSteps` property of the finding JSON.
+     */
+    recommendation?: string | null;
+    /**
+     * The resource types that the custom module operates on. Each custom module can specify up to 5 resource types.
+     */
+    resourceSelector?: Schema$GoogleCloudSecuritycenterV1ResourceSelector;
+    /**
+     * The severity to assign to findings generated by the module.
+     */
+    severity?: string | null;
+  }
+  /**
+   * A set of optional name-value pairs that define custom source properties to return with each finding that is generated by the custom module. The custom source properties that are defined here are included in the finding JSON under `sourceProperties`.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1CustomOutputSpec {
+    /**
+     * A list of custom output properties to add to the finding.
+     */
+    properties?: Schema$GoogleCloudSecuritycenterV1Property[];
+  }
+  /**
+   * An EffectiveSecurityHealthAnalyticsCustomModule is the representation of a Security Health Analytics custom module at a specified level of the resource hierarchy: organization, folder, or project. If a custom module is inherited from a parent organization or folder, the value of the `enablementState` property in EffectiveSecurityHealthAnalyticsCustomModule is set to the value that is effective in the parent, instead of `INHERITED`. For example, if the module is enabled in a parent organization or folder, the effective enablement_state for the module in all child folders or projects is also `enabled`. EffectiveSecurityHealthAnalyticsCustomModule is read-only.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule {
+    /**
+     * Output only. The user-specified configuration for the module.
+     */
+    customConfig?: Schema$GoogleCloudSecuritycenterV1CustomConfig;
+    /**
+     * Output only. The display name for the custom module. The name must be between 1 and 128 characters, start with a lowercase letter, and contain alphanumeric characters or underscores only.
      */
     displayName?: string | null;
     /**
-     * The ways in which this resource is exposed. Examples: Read, Write
+     * Output only. The effective state of enablement for the module at the given level of the hierarchy.
      */
-    methods?: string[] | null;
+    enablementState?: string | null;
     /**
-     * Exposed Resource Name e.g.: `organizations/123/attackExposureResults/456/exposedResources/789`
+     * Output only. The resource name of the custom module. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}", or "folders/{folder\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}"
      */
     name?: string | null;
-    /**
-     * The name of the resource that is exposed. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
-     */
-    resource?: string | null;
-    /**
-     * The resource type of the exposed resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
-     */
-    resourceType?: string | null;
-    /**
-     * How valuable this resource is.
-     */
-    resourceValue?: string | null;
-  }
-  /**
-   * A path that an attacker could take to reach an exposed resource.
-   */
-  export interface Schema$GoogleCloudSecuritycenterV1ExposurePath {
-    /**
-     * A list of the edges between nodes in this exposure path.
-     */
-    edges?: Schema$Edge[];
-    /**
-     * The leaf node of this exposure path.
-     */
-    exposedResource?: Schema$GoogleCloudSecuritycenterV1ExposedResource;
-    /**
-     * Exposure Path Name e.g.: `organizations/123/attackExposureResults/456/exposurePaths/789`
-     */
-    name?: string | null;
-    /**
-     * A list of nodes that exist in this exposure path.
-     */
-    pathNodes?: Schema$PathNode[];
   }
   /**
    * Representation of third party SIEM/SOAR fields within SCC.
@@ -860,7 +967,7 @@ export namespace securitycenter_v1beta2 {
      */
     externalUid?: string | null;
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
+     * Full resource name of the external system, for example: "organizations/1234/sources/5678/findings/123456/externalSystems/jira", "folders/1234/sources/5678/findings/123456/externalSystems/jira", "projects/1234/sources/5678/findings/123456/externalSystems/jira"
      */
     name?: string | null;
     /**
@@ -1061,6 +1168,19 @@ export namespace securitycenter_v1beta2 {
     name?: string | null;
   }
   /**
+   * An individual name-value pair that defines a custom source property.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1Property {
+    /**
+     * Name of the property for the custom output.
+     */
+    name?: string | null;
+    /**
+     * The CEL expression for the custom output. A resource property can be specified to return the value of the property or a text string enclosed in quotation marks.
+     */
+    valueExpression?: Schema$Expr;
+  }
+  /**
    * Information related to the Google Cloud resource.
    */
   export interface Schema$GoogleCloudSecuritycenterV1Resource {
@@ -1098,21 +1218,54 @@ export namespace securitycenter_v1beta2 {
     type?: string | null;
   }
   /**
+   * Resource for selecting resource type.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ResourceSelector {
+    /**
+     * The resource types to run the detector on.
+     */
+    resourceTypes?: string[] | null;
+  }
+  /**
    * A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.
    */
   export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
+    /**
+     * Output only. Timestamp this resource value config was created.
+     */
+    createTime?: string | null;
+    /**
+     * Description of the resource value config.
+     */
+    description?: string | null;
     /**
      * Name for the resource value config
      */
     name?: string | null;
     /**
+     * List of resource labels to search for, evaluated with AND. E.g. "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     */
+    resourceLabelsSelector?: {[key: string]: string} | null;
+    /**
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with "AND" of other resources. E.g. "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     */
+    resourceType?: string | null;
+    /**
      * Required. Resource value level this expression represents
      */
     resourceValue?: string | null;
     /**
+     * Project or folder to scope this config to. For example, "project/456" would apply this config only to resources in "project/456" scope will be checked with "AND" of other resources.
+     */
+    scope?: string | null;
+    /**
      * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" E.g. [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
+    /**
+     * Output only. Timestamp this resource value config was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Response of asset discovery run
@@ -1128,6 +1281,39 @@ export namespace securitycenter_v1beta2 {
     state?: string | null;
   }
   /**
+   * Represents an instance of a Security Health Analytics custom module, including its full module name, display name, enablement state, and last updated time. You can create a custom module at the organization, folder, or project level. Custom modules that you create at the organization or folder level are inherited by the child folders and projects.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule {
+    /**
+     * Output only. If empty, indicates that the custom module was created in the organization, folder, or project in which you are viewing the custom module. Otherwise, `ancestor_module` specifies the organization or folder from which the custom module is inherited.
+     */
+    ancestorModule?: string | null;
+    /**
+     * The user specified custom configuration for the module.
+     */
+    customConfig?: Schema$GoogleCloudSecuritycenterV1CustomConfig;
+    /**
+     * The display name of the Security Health Analytics custom module. This display name becomes the finding category for all findings that are returned by this custom module. The display name must be between 1 and 128 characters, start with a lowercase letter, and contain alphanumeric characters or underscores only.
+     */
+    displayName?: string | null;
+    /**
+     * The enablement state of the custom module.
+     */
+    enablementState?: string | null;
+    /**
+     * Output only. The editor that last updated the custom module.
+     */
+    lastEditor?: string | null;
+    /**
+     * Immutable. The resource name of the custom module. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}" The id {customModule\} is server-generated and is not user settable. It will be a numeric id containing 1-20 digits.
+     */
+    name?: string | null;
+    /**
+     * Output only. The time at which the custom module was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Represents a particular IAM binding, which captures a member's role addition, removal, or state.
    */
   export interface Schema$IamBinding {
@@ -1136,7 +1322,7 @@ export namespace securitycenter_v1beta2 {
      */
     action?: string | null;
     /**
-     * A single identity requesting access for a Cloud Platform resource, e.g. "foo@google.com".
+     * A single identity requesting access for a Cloud Platform resource, for example, "foo@google.com".
      */
     member?: string | null;
     /**
@@ -1145,7 +1331,7 @@ export namespace securitycenter_v1beta2 {
     role?: string | null;
   }
   /**
-   * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+   * Represents what's commonly known as an _indicator of compromise_ (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. For more information, see [Indicator of compromise](https://en.wikipedia.org/wiki/Indicator_of_compromise).
    */
   export interface Schema$Indicator {
     /**
@@ -1153,7 +1339,7 @@ export namespace securitycenter_v1beta2 {
      */
     domains?: string[] | null;
     /**
-     * List of ip addresses associated to the Finding.
+     * The list of IP addresses that are associated with the finding.
      */
     ipAddresses?: string[] | null;
     /**
@@ -1166,44 +1352,85 @@ export namespace securitycenter_v1beta2 {
     uris?: string[] | null;
   }
   /**
-   * Kubernetes related attributes.
+   * Kernel mode rootkit signatures.
+   */
+  export interface Schema$KernelRootkit {
+    /**
+     * Rootkit name, when available.
+     */
+    name?: string | null;
+    /**
+     * True if unexpected modifications of kernel code memory are present.
+     */
+    unexpectedCodeModification?: boolean | null;
+    /**
+     * True if `ftrace` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.
+     */
+    unexpectedFtraceHandler?: boolean | null;
+    /**
+     * True if interrupt handlers that are are not in the expected kernel or module code regions are present.
+     */
+    unexpectedInterruptHandler?: boolean | null;
+    /**
+     * True if kernel code pages that are not in the expected kernel or module code regions are present.
+     */
+    unexpectedKernelCodePages?: boolean | null;
+    /**
+     * True if `kprobe` points are present with callbacks pointing to regions that are not in the expected kernel or module code range.
+     */
+    unexpectedKprobeHandler?: boolean | null;
+    /**
+     * True if unexpected processes in the scheduler run queue are present. Such processes are in the run queue, but not in the process task list.
+     */
+    unexpectedProcessesInRunqueue?: boolean | null;
+    /**
+     * True if unexpected modifications of kernel read-only data memory are present.
+     */
+    unexpectedReadOnlyDataModification?: boolean | null;
+    /**
+     * True if system call handlers that are are not in the expected kernel or module code regions are present.
+     */
+    unexpectedSystemCallHandler?: boolean | null;
+  }
+  /**
+   * Kubernetes-related attributes.
    */
   export interface Schema$Kubernetes {
     /**
-     * Provides information on any Kubernetes access reviews (i.e. privilege checks) relevant to the finding.
+     * Provides information on any Kubernetes access reviews (privilege checks) relevant to the finding.
      */
     accessReviews?: Schema$AccessReview[];
     /**
-     * Provides Kubernetes role binding information for findings that involve RoleBindings or ClusterRoleBindings.
+     * Provides Kubernetes role binding information for findings that involve [RoleBindings or ClusterRoleBindings](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      */
     bindings?: Schema$GoogleCloudSecuritycenterV1Binding[];
     /**
-     * GKE Node Pools associated with the finding. This field will contain NodePool information for each Node, when it is available.
+     * GKE [node pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools) associated with the finding. This field contains node pool information for each node, when it is available.
      */
     nodePools?: Schema$NodePool[];
     /**
-     * Provides Kubernetes Node information.
+     * Provides Kubernetes [node](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture#nodes) information.
      */
     nodes?: Schema$Node[];
     /**
-     * Kubernetes Pods associated with the finding. This field will contain Pod records for each container that is owned by a Pod.
+     * Kubernetes [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod) associated with the finding. This field contains Pod records for each container that is owned by a Pod.
      */
     pods?: Schema$Pod[];
     /**
-     * Provides Kubernetes role information for findings that involve Roles or ClusterRoles.
+     * Provides Kubernetes role information for findings that involve [Roles or ClusterRoles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      */
     roles?: Schema$Role[];
   }
   /**
-   * Label represents a generic name=value label. Label has separate name and value fields to support filtering with contains().
+   * Represents a generic name-value label. A label has separate name and value fields to support filtering with the `contains()` function. For more information, see [Filtering on array-type fields](https://cloud.google.com/security-command-center/docs/how-to-api-list-findings#array-contains-filtering).
    */
   export interface Schema$Label {
     /**
-     * Label name.
+     * Name of the label.
      */
     name?: string | null;
     /**
-     * Label value.
+     * Value that corresponds to the label's name.
      */
     value?: string | null;
   }
@@ -1246,20 +1473,20 @@ export namespace securitycenter_v1beta2 {
     version?: string | null;
   }
   /**
-   * Kubernetes Nodes associated with the finding.
+   * Kubernetes nodes associated with the finding.
    */
   export interface Schema$Node {
     /**
-     * Full Resource name of the Compute Engine VM running the cluster node.
+     * [Full resource name](https://google.aip.dev/122#full-resource-names) of the Compute Engine VM running the cluster node.
      */
     name?: string | null;
   }
   /**
-   * Provides GKE Node Pool information.
+   * Provides GKE node pool information.
    */
   export interface Schema$NodePool {
     /**
-     * Kubernetes Node pool name.
+     * Kubernetes node pool name.
      */
     name?: string | null;
     /**
@@ -1281,28 +1508,7 @@ export namespace securitycenter_v1beta2 {
     onboardingLevel?: string | null;
   }
   /**
-   * Represents one point that an attacker passes through in this exposure path.
-   */
-  export interface Schema$PathNode {
-    /**
-     * The findings associated with this node in the exposure path.
-     */
-    associatedFindings?: Schema$AssociatedFinding[];
-    /**
-     * Human readable name of this resource.
-     */
-    displayName?: string | null;
-    /**
-     * The name of the resource at this point in the exposure path. The format of the name is: https://cloud.google.com/apis/design/resource_names#full_resource_name
-     */
-    resource?: string | null;
-    /**
-     * The resource type of this resource. See: https://cloud.google.com/asset-inventory/docs/supported-asset-types
-     */
-    resourceType?: string | null;
-  }
-  /**
-   * Kubernetes Pod.
+   * A Kubernetes Pod.
    */
   export interface Schema$Pod {
     /**
@@ -1351,19 +1557,19 @@ export namespace securitycenter_v1beta2 {
      */
     libraries?: Schema$File[];
     /**
-     * The process name visible in utilities like `top` and `ps`; it can be accessed via `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
+     * The process name, as displayed in utilities like `top` and `ps`. This name can be accessed through `/proc/[pid]/comm` and changed with `prctl(PR_SET_NAME)`.
      */
     name?: string | null;
     /**
-     * The parent process id.
+     * The parent process ID.
      */
     parentPid?: string | null;
     /**
-     * The process id.
+     * The process ID.
      */
     pid?: string | null;
     /**
-     * When the process represents the invocation of a script, `binary` provides information about the interpreter while `script` provides information about the script file provided to the interpreter.
+     * When the process represents the invocation of a script, `binary` provides information about the interpreter, while `script` provides information about the script file provided to the interpreter.
      */
     script?: Schema$File;
   }
@@ -1508,19 +1714,19 @@ export namespace securitycenter_v1beta2 {
     principalSubject?: string | null;
   }
   /**
-   * Represents a Kubernetes Subject.
+   * Represents a Kubernetes subject.
    */
   export interface Schema$Subject {
     /**
-     * Authentication type for subject.
+     * Authentication type for the subject.
      */
     kind?: string | null;
     /**
-     * Name for subject.
+     * Name for the subject.
      */
     name?: string | null;
     /**
-     * Namespace for subject.
+     * Namespace for the subject.
      */
     ns?: string | null;
   }
@@ -1633,53 +1839,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the ContainerThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.folders.getContainerThreatDetectionSettings({
-     *     // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *     name: 'folders/my-folder/containerThreatDetectionSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1774,52 +1934,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the EventThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.folders.getEventThreatDetectionSettings({
-     *     // Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
-     *     name: 'folders/my-folder/eventThreatDetectionSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the EventThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetEventThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateEventThreatDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1914,49 +2029,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Retrieve the OnboardingState of a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.folders.getOnboardingState({
-     *     // Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
-     *     name: 'folders/my-folder/onboardingState',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "onboardingLevel": "my_onboardingLevel"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2043,53 +2115,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the RapidVulnerabilityDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.getRapidVulnerabilityDetectionSettings({
-     *       // Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
-     *       name: 'folders/my-folder/rapidVulnerabilityDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the RapidVulnerabilityDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetRapidVulnerabilityDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateRapidVulnerabilityDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2185,51 +2211,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Get the SecurityCenterSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.folders.getSecurityCenterSettings({
-     *     // Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
-     *     name: 'folders/my-folder/securityCenterSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "logSinkProject": "my_logSinkProject",
-     *   //   "name": "my_name",
-     *   //   "onboardingTime": "my_onboardingTime",
-     *   //   "orgServiceAccount": "my_orgServiceAccount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2321,53 +2302,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the SecurityHealthAnalyticsSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.folders.getSecurityHealthAnalyticsSettings({
-     *     // Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
-     *     name: 'folders/my-folder/securityHealthAnalyticsSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the SecurityHealthAnalyticsSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetSecurityHealthAnalyticsSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateSecurityHealthAnalyticsSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2462,54 +2397,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the VirtualMachineThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.getVirtualMachineThreatDetectionSettings({
-     *       // Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
-     *       name: 'folders/my-folder/virtualMachineThreatDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the VirtualMachineThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetVirtualMachineThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateVirtualMachineThreatDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2604,52 +2492,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the WebSecurityScannerSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.folders.getWebSecurityScannerSettings({
-     *     // Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
-     *     name: 'folders/my-folder/webSecurityScannerSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the WebSecurityScannerSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetWebSecurityScannerSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateWebSecurityScannerSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2742,67 +2585,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the ContainerThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.updateContainerThreatDetectionSettings({
-     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name: 'folders/my-folder/containerThreatDetectionSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceAccount": "my_serviceAccount",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2898,64 +2680,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the EventThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.folders.updateEventThreatDetectionSettings({
-     *     // The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
-     *     name: 'folders/my-folder/eventThreatDetectionSettings',
-     *     // The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "modules": {},
-     *       //   "name": "my_name",
-     *       //   "serviceEnablementState": "my_serviceEnablementState",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3051,65 +2775,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the RapidVulnerabilityDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.updateRapidVulnerabilityDetectionSettings({
-     *       // The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
-     *       name: 'folders/my-folder/rapidVulnerabilityDetectionSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3205,67 +2870,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the SecurityHealthAnalyticsSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.updateSecurityHealthAnalyticsSettings({
-     *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
-     *       name: 'folders/my-folder/securityHealthAnalyticsSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceAccount": "my_serviceAccount",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3361,67 +2965,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the VirtualMachineThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.updateVirtualMachineThreatDetectionSettings({
-     *       // The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
-     *       name: 'folders/my-folder/virtualMachineThreatDetectionSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceAccount": "my_serviceAccount",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3517,64 +3060,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the WebSecurityScannerSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.folders.updateWebSecurityScannerSettings({
-     *     // The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
-     *     name: 'folders/my-folder/webSecurityScannerSettings',
-     *     // The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "modules": {},
-     *       //   "name": "my_name",
-     *       //   "serviceEnablementState": "my_serviceEnablementState",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3826,54 +3311,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.containerThreatDetectionSettings.calculate({
-     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name: 'folders/my-folder/containerThreatDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3986,53 +3424,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.eventThreatDetectionSettings.calculate({
-     *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
-     *       name: 'folders/my-folder/eventThreatDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4145,53 +3537,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.rapidVulnerabilityDetectionSettings.calculate({
-     *       // Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
-     *       name: 'folders/my-folder/rapidVulnerabilityDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4304,54 +3650,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.securityHealthAnalyticsSettings.calculate({
-     *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
-     *       name: 'folders/my-folder/securityHealthAnalyticsSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4464,56 +3763,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.folders.virtualMachineThreatDetectionSettings.calculate(
-     *       {
-     *         // Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
-     *         name: 'folders/my-folder/virtualMachineThreatDetectionSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4626,54 +3876,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.folders.webSecurityScannerSettings.calculate(
-     *     {
-     *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
-     *       name: 'folders/my-folder/webSecurityScannerSettings',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4810,54 +4013,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the ContainerThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.getContainerThreatDetectionSettings({
-     *       // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name: 'organizations/my-organization/containerThreatDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4952,53 +4108,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the EventThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.getEventThreatDetectionSettings({
-     *       // Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
-     *       name: 'organizations/my-organization/eventThreatDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the EventThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetEventThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateEventThreatDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5094,49 +4204,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Retrieve the OnboardingState of a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.organizations.getOnboardingState({
-     *     // Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
-     *     name: 'organizations/my-organization/onboardingState',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "onboardingLevel": "my_onboardingLevel"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5223,53 +4290,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the RapidVulnerabilityDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.getRapidVulnerabilityDetectionSettings({
-     *       // Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
-     *       name: 'organizations/my-organization/rapidVulnerabilityDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the RapidVulnerabilityDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetRapidVulnerabilityDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateRapidVulnerabilityDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5365,51 +4386,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Get the SecurityCenterSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.organizations.getSecurityCenterSettings({
-     *     // Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
-     *     name: 'organizations/my-organization/securityCenterSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "logSinkProject": "my_logSinkProject",
-     *   //   "name": "my_name",
-     *   //   "onboardingTime": "my_onboardingTime",
-     *   //   "orgServiceAccount": "my_orgServiceAccount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5501,54 +4477,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the SecurityHealthAnalyticsSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.getSecurityHealthAnalyticsSettings({
-     *       // Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
-     *       name: 'organizations/my-organization/securityHealthAnalyticsSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the SecurityHealthAnalyticsSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetSecurityHealthAnalyticsSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateSecurityHealthAnalyticsSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5644,50 +4573,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Get the Subscription resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.organizations.getSubscription({
-     *     // Required. The name of the subscription to retrieve. Format: organizations/{organization\}/subscription
-     *     name: 'organizations/my-organization/subscription',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "details": {},
-     *   //   "name": "my_name",
-     *   //   "tier": "my_tier"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5772,56 +4657,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the VirtualMachineThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.getVirtualMachineThreatDetectionSettings(
-     *       {
-     *         // Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
-     *         name: 'organizations/my-organization/virtualMachineThreatDetectionSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the VirtualMachineThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetVirtualMachineThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateVirtualMachineThreatDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5916,52 +4752,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the WebSecurityScannerSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.organizations.getWebSecurityScannerSettings({
-     *     // Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
-     *     name: 'organizations/my-organization/webSecurityScannerSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the WebSecurityScannerSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetWebSecurityScannerSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateWebSecurityScannerSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6055,67 +4846,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the ContainerThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.updateContainerThreatDetectionSettings({
-     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name: 'organizations/my-organization/containerThreatDetectionSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceAccount": "my_serviceAccount",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6211,65 +4941,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the EventThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.updateEventThreatDetectionSettings({
-     *       // The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
-     *       name: 'organizations/my-organization/eventThreatDetectionSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6365,67 +5036,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the RapidVulnerabilityDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.updateRapidVulnerabilityDetectionSettings(
-     *       {
-     *         // The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
-     *         name: 'organizations/my-organization/rapidVulnerabilityDetectionSettings',
-     *         // The list of fields to be updated.
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "modules": {},
-     *           //   "name": "my_name",
-     *           //   "serviceEnablementState": "my_serviceEnablementState",
-     *           //   "updateTime": "my_updateTime"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6521,67 +5131,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the SecurityHealthAnalyticsSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.updateSecurityHealthAnalyticsSettings({
-     *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
-     *       name: 'organizations/my-organization/securityHealthAnalyticsSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceAccount": "my_serviceAccount",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6677,69 +5226,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the VirtualMachineThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.updateVirtualMachineThreatDetectionSettings(
-     *       {
-     *         // The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
-     *         name: 'organizations/my-organization/virtualMachineThreatDetectionSettings',
-     *         // The list of fields to be updated.
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "modules": {},
-     *           //   "name": "my_name",
-     *           //   "serviceAccount": "my_serviceAccount",
-     *           //   "serviceEnablementState": "my_serviceEnablementState",
-     *           //   "updateTime": "my_updateTime"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6835,65 +5321,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the WebSecurityScannerSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.updateWebSecurityScannerSettings({
-     *       // The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
-     *       name: 'organizations/my-organization/webSecurityScannerSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7153,56 +5580,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.containerThreatDetectionSettings.calculate(
-     *       {
-     *         // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *         name: 'organizations/my-organization/containerThreatDetectionSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7315,53 +5693,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.eventThreatDetectionSettings.calculate({
-     *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
-     *       name: 'organizations/my-organization/eventThreatDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7474,55 +5806,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.rapidVulnerabilityDetectionSettings.calculate(
-     *       {
-     *         // Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
-     *         name: 'organizations/my-organization/rapidVulnerabilityDetectionSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7635,56 +5919,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.securityHealthAnalyticsSettings.calculate(
-     *       {
-     *         // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
-     *         name: 'organizations/my-organization/securityHealthAnalyticsSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7797,56 +6032,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.virtualMachineThreatDetectionSettings.calculate(
-     *       {
-     *         // Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
-     *         name: 'organizations/my-organization/virtualMachineThreatDetectionSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7959,53 +6145,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.organizations.webSecurityScannerSettings.calculate({
-     *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
-     *       name: 'organizations/my-organization/webSecurityScannerSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8138,55 +6278,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the ContainerThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.projects.getContainerThreatDetectionSettings(
-     *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name: 'projects/my-project/containerThreatDetectionSettings',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8281,52 +6373,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the EventThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.projects.getEventThreatDetectionSettings({
-     *     // Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
-     *     name: 'projects/my-project/eventThreatDetectionSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the EventThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetEventThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateEventThreatDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8421,49 +6468,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Retrieve the OnboardingState of a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.projects.getOnboardingState({
-     *     // Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
-     *     name: 'projects/my-project/onboardingState',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "onboardingLevel": "my_onboardingLevel"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8550,53 +6554,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the RapidVulnerabilityDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.getRapidVulnerabilityDetectionSettings({
-     *       // Required. The name of the RapidVulnerabilityDetectionSettings to retrieve. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
-     *       name: 'projects/my-project/rapidVulnerabilityDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the RapidVulnerabilityDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetRapidVulnerabilityDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateRapidVulnerabilityDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8692,51 +6650,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Get the SecurityCenterSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.projects.getSecurityCenterSettings({
-     *     // Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings Format: folders/{folder\}/securityCenterSettings Format: projects/{project\}/securityCenterSettings
-     *     name: 'projects/my-project/securityCenterSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "logSinkProject": "my_logSinkProject",
-     *   //   "name": "my_name",
-     *   //   "onboardingTime": "my_onboardingTime",
-     *   //   "orgServiceAccount": "my_orgServiceAccount"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8828,53 +6741,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the SecurityHealthAnalyticsSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.projects.getSecurityHealthAnalyticsSettings({
-     *     // Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
-     *     name: 'projects/my-project/securityHealthAnalyticsSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the SecurityHealthAnalyticsSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetSecurityHealthAnalyticsSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateSecurityHealthAnalyticsSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8969,54 +6836,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the VirtualMachineThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.getVirtualMachineThreatDetectionSettings({
-     *       // Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
-     *       name: 'projects/my-project/virtualMachineThreatDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the VirtualMachineThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetVirtualMachineThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateVirtualMachineThreatDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9111,52 +6931,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the WebSecurityScannerSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.projects.getWebSecurityScannerSettings({
-     *     // Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
-     *     name: 'projects/my-project/webSecurityScannerSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the WebSecurityScannerSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetWebSecurityScannerSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateWebSecurityScannerSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9249,67 +7024,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the ContainerThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.updateContainerThreatDetectionSettings({
-     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name: 'projects/my-project/containerThreatDetectionSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceAccount": "my_serviceAccount",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9405,64 +7119,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the EventThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.projects.updateEventThreatDetectionSettings({
-     *     // The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
-     *     name: 'projects/my-project/eventThreatDetectionSettings',
-     *     // The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "modules": {},
-     *       //   "name": "my_name",
-     *       //   "serviceEnablementState": "my_serviceEnablementState",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9558,65 +7214,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the RapidVulnerabilityDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.updateRapidVulnerabilityDetectionSettings({
-     *       // The resource name of the RapidVulnerabilityDetectionSettings. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
-     *       name: 'projects/my-project/rapidVulnerabilityDetectionSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9712,67 +7309,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the SecurityHealthAnalyticsSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.updateSecurityHealthAnalyticsSettings({
-     *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
-     *       name: 'projects/my-project/securityHealthAnalyticsSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceAccount": "my_serviceAccount",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9868,67 +7404,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the VirtualMachineThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.updateVirtualMachineThreatDetectionSettings({
-     *       // The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
-     *       name: 'projects/my-project/virtualMachineThreatDetectionSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceAccount": "my_serviceAccount",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10024,64 +7499,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the WebSecurityScannerSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await securitycenter.projects.updateWebSecurityScannerSettings({
-     *     // The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
-     *     name: 'projects/my-project/webSecurityScannerSettings',
-     *     // The list of fields to be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "modules": {},
-     *       //   "name": "my_name",
-     *       //   "serviceEnablementState": "my_serviceEnablementState",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10334,54 +7751,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.containerThreatDetectionSettings.calculate({
-     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name: 'projects/my-project/containerThreatDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10494,53 +7864,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.eventThreatDetectionSettings.calculate({
-     *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
-     *       name: 'projects/my-project/eventThreatDetectionSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10667,56 +7991,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Get the ContainerThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.locations.clusters.getContainerThreatDetectionSettings(
-     *       {
-     *         // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *         name: 'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Get the ContainerThreatDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetContainerThreatDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateContainerThreatDetectionSettings for this purpose.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10812,69 +8087,6 @@ export namespace securitycenter_v1beta2 {
 
     /**
      * Update the ContainerThreatDetectionSettings resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.locations.clusters.updateContainerThreatDetectionSettings(
-     *       {
-     *         // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *         name: 'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
-     *         // The list of fields to be updated.
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "modules": {},
-     *           //   "name": "my_name",
-     *           //   "serviceAccount": "my_serviceAccount",
-     *           //   "serviceEnablementState": "my_serviceEnablementState",
-     *           //   "updateTime": "my_updateTime"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11000,56 +8212,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.locations.clusters.containerThreatDetectionSettings.calculate(
-     *       {
-     *         // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *         name: 'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11162,55 +8325,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.rapidVulnerabilityDetectionSettings.calculate(
-     *       {
-     *         // Required. The name of the RapidVulnerabilityDetectionSettings to calculate. Formats: * organizations/{organization\}/rapidVulnerabilityDetectionSettings * folders/{folder\}/rapidVulnerabilityDetectionSettings * projects/{project\}/rapidVulnerabilityDetectionSettings
-     *         name: 'projects/my-project/rapidVulnerabilityDetectionSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective RapidVulnerabilityDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11323,54 +8438,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.securityHealthAnalyticsSettings.calculate({
-     *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
-     *       name: 'projects/my-project/securityHealthAnalyticsSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11483,56 +8551,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.virtualMachineThreatDetectionSettings.calculate(
-     *       {
-     *         // Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
-     *         name: 'projects/my-project/virtualMachineThreatDetectionSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceAccount": "my_serviceAccount",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11645,53 +8664,7 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const securitycenter = google.securitycenter('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await securitycenter.projects.webSecurityScannerSettings.calculate({
-     *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
-     *       name: 'projects/my-project/webSecurityScannerSettings',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "modules": {},
-     *   //   "name": "my_name",
-     *   //   "serviceEnablementState": "my_serviceEnablementState",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings. Settings provided closer to the target resource take precedence over those further away (e.g. folder will override organization level settings). The default SCC setting for the detector service defaults can be overridden at organization, folder and project levels. No assumptions should be made about the SCC defaults as it is considered an internal implementation detail.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

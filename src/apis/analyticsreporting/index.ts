@@ -27,7 +27,7 @@ export function analyticsreporting(
   options: analyticsreporting_v4.Options
 ): analyticsreporting_v4.Analyticsreporting;
 export function analyticsreporting<
-  T = analyticsreporting_v4.Analyticsreporting
+  T = analyticsreporting_v4.Analyticsreporting,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v4' | analyticsreporting_v4.Options

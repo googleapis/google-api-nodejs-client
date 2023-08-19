@@ -62,7 +62,7 @@ export function securitycenter<
     | securitycenter_v1beta1.Securitycenter
     | securitycenter_v1beta2.Securitycenter
     | securitycenter_v1p1alpha1.Securitycenter
-    | securitycenter_v1p1beta1.Securitycenter
+    | securitycenter_v1p1beta1.Securitycenter,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

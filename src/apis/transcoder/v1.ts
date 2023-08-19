@@ -102,7 +102,7 @@ export namespace transcoder_v1 {
   /**
    * Transcoder API
    *
-   * This API converts video files into formats suitable for consumer distribution.
+   * This API converts video files into formats suitable for consumer distribution. For more information, see the Transcoder API overview.
    *
    * @example
    * ```js
@@ -134,6 +134,10 @@ export namespace transcoder_v1 {
     startTimeOffset?: string | null;
   }
   /**
+   * Configuration for AES-128 encryption.
+   */
+  export interface Schema$Aes128Encryption {}
+  /**
    * Animation types.
    */
   export interface Schema$Animation {
@@ -151,7 +155,7 @@ export namespace transcoder_v1 {
     animationStatic?: Schema$AnimationStatic;
   }
   /**
-   * End previous overlay animation from the video. Without AnimationEnd, the overlay object will keep the state of previous animation until the end of the video.
+   * End previous overlay animation from the video. Without `AnimationEnd`, the overlay object will keep the state of previous animation until the end of the video.
    */
   export interface Schema$AnimationEnd {
     /**
@@ -211,11 +215,11 @@ export namespace transcoder_v1 {
     lufs?: number | null;
   }
   /**
-   * The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.
+   * The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs.
    */
   export interface Schema$AudioMapping {
     /**
-     * Required. The `EditAtom.key` that references the atom with audio inputs in the `Job.edit_list`.
+     * Required. The EditAtom.key that references the atom with audio inputs in the JobConfig.edit_list.
      */
     atomKey?: string | null;
     /**
@@ -227,7 +231,7 @@ export namespace transcoder_v1 {
      */
     inputChannel?: number | null;
     /**
-     * Required. The `Input.key` that identifies the input file.
+     * Required. The Input.key that identifies the input file.
      */
     inputKey?: string | null;
     /**
@@ -260,7 +264,15 @@ export namespace transcoder_v1 {
      */
     codec?: string | null;
     /**
-     * The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.
+     * The name for this particular audio stream that will be added to the HLS/DASH manifest. Not supported in MP4 files.
+     */
+    displayName?: string | null;
+    /**
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files.
+     */
+    languageCode?: string | null;
+    /**
+     * The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs.
      */
     mapping?: Schema$AudioMapping[];
     /**
@@ -285,6 +297,10 @@ export namespace transcoder_v1 {
      */
     parity?: string | null;
   }
+  /**
+   * Clearkey configuration.
+   */
+  export interface Schema$Clearkey {}
   /**
    * Color preprocessing configuration. **Note:** This configuration is not supported.
    */
@@ -322,6 +338,15 @@ export namespace transcoder_v1 {
      * The number of pixels to crop from the top. The default is 0.
      */
     topPixels?: number | null;
+  }
+  /**
+   * `DASH` manifest configuration.
+   */
+  export interface Schema$DashConfig {
+    /**
+     * The segment reference scheme for a `DASH` manifest. The default is `SEGMENT_LIST`.
+     */
+    segmentReferenceScheme?: string | null;
   }
   /**
    * Deblock preprocessing configuration. **Note:** This configuration is not supported.
@@ -363,6 +388,27 @@ export namespace transcoder_v1 {
     tune?: string | null;
   }
   /**
+   * Defines configuration for DRM systems in use.
+   */
+  export interface Schema$DrmSystems {
+    /**
+     * Clearkey configuration.
+     */
+    clearkey?: Schema$Clearkey;
+    /**
+     * Fairplay configuration.
+     */
+    fairplay?: Schema$Fairplay;
+    /**
+     * Playready configuration.
+     */
+    playready?: Schema$Playready;
+    /**
+     * Widevine configuration.
+     */
+    widevine?: Schema$Widevine;
+  }
+  /**
    * Edit atom.
    */
   export interface Schema$EditAtom {
@@ -371,7 +417,7 @@ export namespace transcoder_v1 {
      */
     endTimeOffset?: string | null;
     /**
-     * List of `Input.key`s identifying files that should be used in this atom. The listed `inputs` must have the same timeline.
+     * List of Input.key values identifying files that should be used in this atom. The listed `inputs` must have the same timeline.
      */
     inputs?: string[] | null;
     /**
@@ -409,6 +455,39 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Encryption settings.
+   */
+  export interface Schema$Encryption {
+    /**
+     * Configuration for AES-128 encryption.
+     */
+    aes128?: Schema$Aes128Encryption;
+    /**
+     * Required. DRM system(s) to use; at least one must be specified. If a DRM system is omitted, it is considered disabled.
+     */
+    drmSystems?: Schema$DrmSystems;
+    /**
+     * Required. Identifier for this set of encryption options.
+     */
+    id?: string | null;
+    /**
+     * Configuration for MPEG Common Encryption (MPEG-CENC).
+     */
+    mpegCenc?: Schema$MpegCommonEncryption;
+    /**
+     * Configuration for SAMPLE-AES encryption.
+     */
+    sampleAes?: Schema$SampleAesEncryption;
+    /**
+     * Keys are stored in Google Secret Manager.
+     */
+    secretManagerKeySource?: Schema$SecretManagerSource;
+  }
+  /**
+   * Fairplay configuration.
+   */
+  export interface Schema$Fairplay {}
+  /**
    * H264 codec settings.
    */
   export interface Schema$H264CodecSettings {
@@ -421,7 +500,7 @@ export namespace transcoder_v1 {
      */
     aqStrength?: number | null;
     /**
-     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than `VideoStream.gop_frame_count` if set. The default is 0.
+     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H264CodecSettings.gop_frame_count if set. The default is 0.
      */
     bFrameCount?: number | null;
     /**
@@ -437,7 +516,7 @@ export namespace transcoder_v1 {
      */
     crfLevel?: number | null;
     /**
-     * Use two-pass encoding strategy to achieve better video quality. `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
+     * Use two-pass encoding strategy to achieve better video quality. H264CodecSettings.rate_control_mode must be `vbr`. The default is `false`.
      */
     enableTwoPass?: boolean | null;
     /**
@@ -457,7 +536,7 @@ export namespace transcoder_v1 {
      */
     gopFrameCount?: number | null;
     /**
-     * The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used.
+     * The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.
      */
     heightPixels?: number | null;
     /**
@@ -473,7 +552,7 @@ export namespace transcoder_v1 {
      */
     profile?: string | null;
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
+     * Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
      */
     rateControlMode?: string | null;
     /**
@@ -481,15 +560,15 @@ export namespace transcoder_v1 {
      */
     tune?: string | null;
     /**
-     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of `VideoStream.vbv_size_bits`.
+     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H264CodecSettings.vbv_size_bits.
      */
     vbvFullnessBits?: number | null;
     /**
-     * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to `VideoStream.bitrate_bps`.
+     * Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to H264CodecSettings.bitrate_bps.
      */
     vbvSizeBits?: number | null;
     /**
-     * The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used.
+     * The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.
      */
     widthPixels?: number | null;
   }
@@ -506,7 +585,7 @@ export namespace transcoder_v1 {
      */
     aqStrength?: number | null;
     /**
-     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than `VideoStream.gop_frame_count` if set. The default is 0.
+     * The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H265CodecSettings.gop_frame_count if set. The default is 0.
      */
     bFrameCount?: number | null;
     /**
@@ -522,7 +601,7 @@ export namespace transcoder_v1 {
      */
     crfLevel?: number | null;
     /**
-     * Use two-pass encoding strategy to achieve better video quality. `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.
+     * Use two-pass encoding strategy to achieve better video quality. H265CodecSettings.rate_control_mode must be `vbr`. The default is `false`.
      */
     enableTwoPass?: boolean | null;
     /**
@@ -538,7 +617,7 @@ export namespace transcoder_v1 {
      */
     gopFrameCount?: number | null;
     /**
-     * The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used.
+     * The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.
      */
     heightPixels?: number | null;
     /**
@@ -554,7 +633,7 @@ export namespace transcoder_v1 {
      */
     profile?: string | null;
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
+     * Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
      */
     rateControlMode?: string | null;
     /**
@@ -562,7 +641,7 @@ export namespace transcoder_v1 {
      */
     tune?: string | null;
     /**
-     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of `VideoStream.vbv_size_bits`.
+     * Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H265CodecSettings.vbv_size_bits.
      */
     vbvFullnessBits?: number | null;
     /**
@@ -570,12 +649,12 @@ export namespace transcoder_v1 {
      */
     vbvSizeBits?: number | null;
     /**
-     * The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used.
+     * The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.
      */
     widthPixels?: number | null;
   }
   /**
-   * Overlaid jpeg image.
+   * Overlaid image.
    */
   export interface Schema$Image {
     /**
@@ -587,7 +666,7 @@ export namespace transcoder_v1 {
      */
     resolution?: Schema$NormalizedCoordinate;
     /**
-     * Required. URI of the JPEG image in Cloud Storage. For example, `gs://bucket/inputs/image.jpeg`. JPEG is the only supported image type.
+     * Required. URI of the image in Cloud Storage. For example, `gs://bucket/inputs/image.png`. Only PNG and JPEG images are supported.
      */
     uri?: string | null;
   }
@@ -604,7 +683,7 @@ export namespace transcoder_v1 {
      */
     preprocessingConfig?: Schema$PreprocessingConfig;
     /**
-     * URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from `Job.input_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
+     * URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from Job.input_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     uri?: string | null;
   }
@@ -612,6 +691,10 @@ export namespace transcoder_v1 {
    * Transcoding job resource.
    */
   export interface Schema$Job {
+    /**
+     * The processing priority of a batch job. This field can only be set for batch mode jobs. The default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job.
+     */
+    batchModePriority?: number | null;
     /**
      * The configuration for this job.
      */
@@ -625,7 +708,7 @@ export namespace transcoder_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. An error object that describes the reason for the failure. This property is always present when `state` is `FAILED`.
+     * Output only. An error object that describes the reason for the failure. This property is always present when ProcessingState is `FAILED`.
      */
     error?: Schema$Status;
     /**
@@ -637,9 +720,17 @@ export namespace transcoder_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * The processing mode of the job. The default is `PROCESSING_MODE_INTERACTIVE`.
+     */
+    mode?: string | null;
+    /**
      * The resource name of the job. Format: `projects/{project_number\}/locations/{location\}/jobs/{job\}`
      */
     name?: string | null;
+    /**
+     * Optional. The optimization strategy of the job. The default is `AUTODETECT`.
+     */
+    optimization?: string | null;
     /**
      * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or `JobTemplate.config.output.uri` when using template. URI for the output file(s). For example, `gs://my-bucket/outputs/`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
@@ -653,7 +744,7 @@ export namespace transcoder_v1 {
      */
     state?: string | null;
     /**
-     * Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`. Preset Transcoder templates: - `preset/{preset_id\}` - User defined JobTemplate: `{job_template_id\}`
+     * Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`, which is the only supported preset. User defined JobTemplate: `{job_template_id\}`
      */
     templateId?: string | null;
     /**
@@ -670,13 +761,17 @@ export namespace transcoder_v1 {
      */
     adBreaks?: Schema$AdBreak[];
     /**
-     * List of `Edit atom`s. Defines the ultimate timeline of the resulting file or manifest.
+     * List of edit atoms. Defines the ultimate timeline of the resulting file or manifest.
      */
     editList?: Schema$EditAtom[];
     /**
      * List of elementary streams.
      */
     elementaryStreams?: Schema$ElementaryStream[];
+    /**
+     * List of encryption configurations for the content. Each configuration has an ID. Specify this ID in the MuxStream.encryption_id field to indicate the configuration to use for that `MuxStream` output.
+     */
+    encryptions?: Schema$Encryption[];
     /**
      * List of input assets stored in Cloud Storage.
      */
@@ -762,17 +857,30 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Manifest {
     /**
-     * The name of the generated file. The default is `manifest` with the extension suffix corresponding to the `Manifest.type`.
+     * `DASH` manifest configuration.
+     */
+    dash?: Schema$DashConfig;
+    /**
+     * The name of the generated file. The default is `manifest` with the extension suffix corresponding to the Manifest.type.
      */
     fileName?: string | null;
     /**
-     * Required. List of user given `MuxStream.key`s that should appear in this manifest. When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key` and `.m3u8` extension is generated for each element of the `Manifest.mux_streams`.
+     * Required. List of user supplied MuxStream.key values that should appear in this manifest. When Manifest.type is `HLS`, a media manifest with name MuxStream.key and `.m3u8` extension is generated for each element in this list.
      */
     muxStreams?: string[] | null;
     /**
-     * Required. Type of the manifest, can be `HLS` or `DASH`.
+     * Required. Type of the manifest.
      */
     type?: string | null;
+  }
+  /**
+   * Configuration for MPEG Common Encryption (MPEG-CENC).
+   */
+  export interface Schema$MpegCommonEncryption {
+    /**
+     * Required. Specify the encryption scheme. Supported encryption schemes: - `cenc` - `cbcs`
+     */
+    scheme?: string | null;
   }
   /**
    * Multiplexing settings for output stream.
@@ -783,15 +891,19 @@ export namespace transcoder_v1 {
      */
     container?: string | null;
     /**
-     * List of `ElementaryStream.key`s multiplexed in this stream.
+     * List of ElementaryStream.key values multiplexed in this stream.
      */
     elementaryStreams?: string[] | null;
     /**
-     * The name of the generated file. The default is `MuxStream.key` with the extension suffix corresponding to the `MuxStream.container`. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.
+     * Identifier of the encryption configuration to use. If omitted, output will be unencrypted.
+     */
+    encryptionId?: string | null;
+    /**
+     * The name of the generated file. The default is MuxStream.key with the extension suffix corresponding to the MuxStream.container. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.
      */
     fileName?: string | null;
     /**
-     * A unique key for this multiplexed stream. HLS media manifests will be named `MuxStream.key` with the `.m3u8` extension suffix.
+     * A unique key for this multiplexed stream.
      */
     key?: string | null;
     /**
@@ -817,7 +929,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Output {
     /**
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from `Job.output_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
+     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from Job.output_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     uri?: string | null;
   }
@@ -826,7 +938,7 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Overlay {
     /**
-     * List of Animations. The list should be chronological, without any time overlap.
+     * List of animations. The list should be chronological, without any time overlap.
      */
     animations?: Schema$Animation[];
     /**
@@ -855,6 +967,10 @@ export namespace transcoder_v1 {
      */
     topPixels?: number | null;
   }
+  /**
+   * Playready configuration.
+   */
+  export interface Schema$Playready {}
   /**
    * Preprocessing configurations.
    */
@@ -896,6 +1012,19 @@ export namespace transcoder_v1 {
      * The name of the Pub/Sub topic to publish job completion notification to. For example: `projects/{project\}/topics/{topic\}`.
      */
     topic?: string | null;
+  }
+  /**
+   * Configuration for SAMPLE-AES encryption.
+   */
+  export interface Schema$SampleAesEncryption {}
+  /**
+   * Configuration for secrets stored in Google Secret Manager.
+   */
+  export interface Schema$SecretManagerSource {
+    /**
+     * Required. The name of the Secret Version containing the encryption key in the following format: `projects/{project\}/secrets/{secret_id\}/versions/{version_number\}` Note that only numbered versions are supported. Aliases like "latest" are not supported.
+     */
+    secretVersion?: string | null;
   }
   /**
    * Segment settings for `ts`, `fmp4` and `vtt`.
@@ -943,11 +1072,11 @@ export namespace transcoder_v1 {
      */
     rowCount?: number | null;
     /**
-     * Required. The height of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_height_pixels field or the SpriteSheet.sprite_width_pixels field, but not both (the API will automatically calculate the missing field).
+     * Required. The height of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_height_pixels field or the SpriteSheet.sprite_width_pixels field, but not both (the API will automatically calculate the missing field). For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.
      */
     spriteHeightPixels?: number | null;
     /**
-     * Required. The width of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_width_pixels field or the SpriteSheet.sprite_height_pixels field, but not both (the API will automatically calculate the missing field).
+     * Required. The width of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_width_pixels field or the SpriteSheet.sprite_height_pixels field, but not both (the API will automatically calculate the missing field). For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.
      */
     spriteWidthPixels?: number | null;
     /**
@@ -977,15 +1106,15 @@ export namespace transcoder_v1 {
     message?: string | null;
   }
   /**
-   * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+   * The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.
    */
   export interface Schema$TextMapping {
     /**
-     * Required. The `EditAtom.key` that references atom with text inputs in the `Job.edit_list`.
+     * Required. The EditAtom.key that references atom with text inputs in the JobConfig.edit_list.
      */
     atomKey?: string | null;
     /**
-     * Required. The `Input.key` that identifies the input file.
+     * Required. The Input.key that identifies the input file.
      */
     inputKey?: string | null;
     /**
@@ -1002,7 +1131,15 @@ export namespace transcoder_v1 {
      */
     codec?: string | null;
     /**
-     * The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.
+     * The name for this particular text stream that will be added to the HLS/DASH manifest. Not supported in MP4 files.
+     */
+    displayName?: string | null;
+    /**
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files.
+     */
+    languageCode?: string | null;
+    /**
+     * The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.
      */
     mapping?: Schema$TextMapping[];
   }
@@ -1048,7 +1185,7 @@ export namespace transcoder_v1 {
      */
     gopFrameCount?: number | null;
     /**
-     * The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used.
+     * The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.
      */
     heightPixels?: number | null;
     /**
@@ -1060,14 +1197,18 @@ export namespace transcoder_v1 {
      */
     profile?: string | null;
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate
+     * Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate
      */
     rateControlMode?: string | null;
     /**
-     * The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used.
+     * The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.
      */
     widthPixels?: number | null;
   }
+  /**
+   * Widevine configuration.
+   */
+  export interface Schema$Widevine {}
   /**
    * Yet Another Deinterlacing Filter Configuration.
    */
@@ -1120,78 +1261,6 @@ export namespace transcoder_v1 {
 
     /**
      * Creates a job in the specified region.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobs.create({
-     *     // Required. The parent location to create and process this job. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "config": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "endTime": "my_endTime",
-     *       //   "error": {},
-     *       //   "inputUri": "my_inputUri",
-     *       //   "labels": {},
-     *       //   "name": "my_name",
-     *       //   "outputUri": "my_outputUri",
-     *       //   "startTime": "my_startTime",
-     *       //   "state": "my_state",
-     *       //   "templateId": "my_templateId",
-     *       //   "ttlAfterCompletionDays": 0
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "endTime": "my_endTime",
-     *   //   "error": {},
-     *   //   "inputUri": "my_inputUri",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "outputUri": "my_outputUri",
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "templateId": "my_templateId",
-     *   //   "ttlAfterCompletionDays": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1276,48 +1345,6 @@ export namespace transcoder_v1 {
 
     /**
      * Deletes a job.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobs.delete({
-     *     // If set to true, and the job is not found, the request will succeed but no action will be taken on the server.
-     *     allowMissing: 'placeholder-value',
-     *     // Required. The name of the job to delete. Format: `projects/{project\}/locations/{location\}/jobs/{job\}`
-     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1402,59 +1429,6 @@ export namespace transcoder_v1 {
 
     /**
      * Returns the job data.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobs.get({
-     *     // Required. The name of the job to retrieve. Format: `projects/{project\}/locations/{location\}/jobs/{job\}`
-     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "endTime": "my_endTime",
-     *   //   "error": {},
-     *   //   "inputUri": "my_inputUri",
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "outputUri": "my_outputUri",
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "templateId": "my_templateId",
-     *   //   "ttlAfterCompletionDays": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1539,58 +1513,6 @@ export namespace transcoder_v1 {
 
     /**
      * Lists jobs in the specified region.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobs.list({
-     *     // The filter expression, following the syntax outlined in https://google.aip.dev/160.
-     *     filter: 'placeholder-value',
-     *     // One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
-     *     orderBy: 'placeholder-value',
-     *     // The maximum number of items to return.
-     *     pageSize: 'placeholder-value',
-     *     // The `next_page_token` value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "jobs": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1736,62 +1658,6 @@ export namespace transcoder_v1 {
 
     /**
      * Creates a job template in the specified region.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobTemplates.create({
-     *     // Required. The ID to use for the job template, which will become the final component of the job template's resource name. This value should be 4-63 characters, and valid characters must match the regular expression `a-zA-Z*`.
-     *     jobTemplateId: 'placeholder-value',
-     *     // Required. The parent location to create this job template. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "config": {},
-     *       //   "labels": {},
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1879,48 +1745,6 @@ export namespace transcoder_v1 {
 
     /**
      * Deletes a job template.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobTemplates.delete({
-     *     // If set to true, and the job template is not found, the request will succeed but no action will be taken on the server.
-     *     allowMissing: 'placeholder-value',
-     *     // Required. The name of the job template to delete. `projects/{project\}/locations/{location\}/jobTemplates/{job_template\}`
-     *     name: 'projects/my-project/locations/my-location/jobTemplates/my-jobTemplate',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2005,50 +1829,6 @@ export namespace transcoder_v1 {
 
     /**
      * Returns the job template data.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobTemplates.get({
-     *     // Required. The name of the job template to retrieve. Format: `projects/{project\}/locations/{location\}/jobTemplates/{job_template\}`
-     *     name: 'projects/my-project/locations/my-location/jobTemplates/my-jobTemplate',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": {},
-     *   //   "labels": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2133,58 +1913,6 @@ export namespace transcoder_v1 {
 
     /**
      * Lists job templates in the specified region.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const transcoder = google.transcoder('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await transcoder.projects.locations.jobTemplates.list({
-     *     // The filter expression, following the syntax outlined in https://google.aip.dev/160.
-     *     filter: 'placeholder-value',
-     *     // One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
-     *     orderBy: 'placeholder-value',
-     *     // The maximum number of items to return.
-     *     pageSize: 'placeholder-value',
-     *     // The `next_page_token` value returned from a previous List request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent location from which to retrieve the collection of job templates. Format: `projects/{project\}/locations/{location\}`
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "jobTemplates": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

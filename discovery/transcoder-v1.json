@@ -12,7 +12,7 @@
   "baseUrl": "https://transcoder.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Transcoder",
-  "description": "This API converts video files into formats suitable for consumer distribution. ",
+  "description": "This API converts video files into formats suitable for consumer distribution. For more information, see the Transcoder API overview. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/transcoder/docs/",
   "fullyEncodeReservedExpansion": true,
@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20220811",
+  "revision": "20230731",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -398,6 +398,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "Aes128Encryption": {
+      "description": "Configuration for AES-128 encryption.",
+      "id": "Aes128Encryption",
+      "properties": {},
       "type": "object"
     },
     "Animation": {
@@ -420,7 +426,7 @@
       "type": "object"
     },
     "AnimationEnd": {
-      "description": "End previous overlay animation from the video. Without AnimationEnd, the overlay object will keep the state of previous animation until the end of the video.",
+      "description": "End previous overlay animation from the video. Without `AnimationEnd`, the overlay object will keep the state of previous animation until the end of the video.",
       "id": "AnimationEnd",
       "properties": {
         "startTimeOffset": {
@@ -503,11 +509,11 @@
       "type": "object"
     },
     "AudioMapping": {
-      "description": "The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.",
+      "description": "The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs.",
       "id": "AudioMapping",
       "properties": {
         "atomKey": {
-          "description": "Required. The `EditAtom.key` that references the atom with audio inputs in the `Job.edit_list`.",
+          "description": "Required. The EditAtom.key that references the atom with audio inputs in the JobConfig.edit_list.",
           "type": "string"
         },
         "gainDb": {
@@ -521,7 +527,7 @@
           "type": "integer"
         },
         "inputKey": {
-          "description": "Required. The `Input.key` that identifies the input file.",
+          "description": "Required. The Input.key that identifies the input file.",
           "type": "string"
         },
         "inputTrack": {
@@ -562,8 +568,16 @@
           "description": "The codec for this audio stream. The default is `aac`. Supported audio codecs: - `aac` - `aac-he` - `aac-he-v2` - `mp3` - `ac3` - `eac3`",
           "type": "string"
         },
+        "displayName": {
+          "description": "The name for this particular audio stream that will be added to the HLS/DASH manifest. Not supported in MP4 files.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files.",
+          "type": "string"
+        },
         "mapping": {
-          "description": "The mapping for the `Job.edit_list` atoms with audio `EditAtom.inputs`.",
+          "description": "The mapping for the JobConfig.edit_list atoms with audio EditAtom.inputs.",
           "items": {
             "$ref": "AudioMapping"
           },
@@ -594,6 +608,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "Clearkey": {
+      "description": "Clearkey configuration.",
+      "id": "Clearkey",
+      "properties": {},
       "type": "object"
     },
     "Color": {
@@ -645,6 +665,27 @@
       },
       "type": "object"
     },
+    "DashConfig": {
+      "description": "`DASH` manifest configuration.",
+      "id": "DashConfig",
+      "properties": {
+        "segmentReferenceScheme": {
+          "description": "The segment reference scheme for a `DASH` manifest. The default is `SEGMENT_LIST`.",
+          "enum": [
+            "SEGMENT_REFERENCE_SCHEME_UNSPECIFIED",
+            "SEGMENT_LIST",
+            "SEGMENT_TEMPLATE_NUMBER"
+          ],
+          "enumDescriptions": [
+            "The segment reference scheme is not specified.",
+            "Explicitly lists the URLs of media files for each segment. For example, if SegmentSettings.individual_segments is `true`, then the manifest contains fields similar to the following: ```xml ... ```",
+            "SegmentSettings.individual_segments must be set to `true` to use this segment reference scheme. Uses the DASH specification `` tag to determine the URLs of media files for each segment. For example: ```xml ... ```"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Deblock": {
       "description": "Deblock preprocessing configuration. **Note:** This configuration is not supported.",
       "id": "Deblock",
@@ -692,6 +733,29 @@
       },
       "type": "object"
     },
+    "DrmSystems": {
+      "description": "Defines configuration for DRM systems in use.",
+      "id": "DrmSystems",
+      "properties": {
+        "clearkey": {
+          "$ref": "Clearkey",
+          "description": "Clearkey configuration."
+        },
+        "fairplay": {
+          "$ref": "Fairplay",
+          "description": "Fairplay configuration."
+        },
+        "playready": {
+          "$ref": "Playready",
+          "description": "Playready configuration."
+        },
+        "widevine": {
+          "$ref": "Widevine",
+          "description": "Widevine configuration."
+        }
+      },
+      "type": "object"
+    },
     "EditAtom": {
       "description": "Edit atom.",
       "id": "EditAtom",
@@ -702,7 +766,7 @@
           "type": "string"
         },
         "inputs": {
-          "description": "List of `Input.key`s identifying files that should be used in this atom. The listed `inputs` must have the same timeline.",
+          "description": "List of Input.key values identifying files that should be used in this atom. The listed `inputs` must have the same timeline.",
           "items": {
             "type": "string"
           },
@@ -749,6 +813,43 @@
       "properties": {},
       "type": "object"
     },
+    "Encryption": {
+      "description": "Encryption settings.",
+      "id": "Encryption",
+      "properties": {
+        "aes128": {
+          "$ref": "Aes128Encryption",
+          "description": "Configuration for AES-128 encryption."
+        },
+        "drmSystems": {
+          "$ref": "DrmSystems",
+          "description": "Required. DRM system(s) to use; at least one must be specified. If a DRM system is omitted, it is considered disabled."
+        },
+        "id": {
+          "description": "Required. Identifier for this set of encryption options.",
+          "type": "string"
+        },
+        "mpegCenc": {
+          "$ref": "MpegCommonEncryption",
+          "description": "Configuration for MPEG Common Encryption (MPEG-CENC)."
+        },
+        "sampleAes": {
+          "$ref": "SampleAesEncryption",
+          "description": "Configuration for SAMPLE-AES encryption."
+        },
+        "secretManagerKeySource": {
+          "$ref": "SecretManagerSource",
+          "description": "Keys are stored in Google Secret Manager."
+        }
+      },
+      "type": "object"
+    },
+    "Fairplay": {
+      "description": "Fairplay configuration.",
+      "id": "Fairplay",
+      "properties": {},
+      "type": "object"
+    },
     "H264CodecSettings": {
       "description": "H264 codec settings.",
       "id": "H264CodecSettings",
@@ -763,7 +864,7 @@
           "type": "number"
         },
         "bFrameCount": {
-          "description": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than `VideoStream.gop_frame_count` if set. The default is 0.",
+          "description": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H264CodecSettings.gop_frame_count if set. The default is 0.",
           "format": "int32",
           "type": "integer"
         },
@@ -782,7 +883,7 @@
           "type": "integer"
         },
         "enableTwoPass": {
-          "description": "Use two-pass encoding strategy to achieve better video quality. `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.",
+          "description": "Use two-pass encoding strategy to achieve better video quality. H264CodecSettings.rate_control_mode must be `vbr`. The default is `false`.",
           "type": "boolean"
         },
         "entropyCoder": {
@@ -805,7 +906,7 @@
           "type": "integer"
         },
         "heightPixels": {
-          "description": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used.",
+          "description": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.",
           "format": "int32",
           "type": "integer"
         },
@@ -822,7 +923,7 @@
           "type": "string"
         },
         "rateControlMode": {
-          "description": "Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
+          "description": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
           "type": "string"
         },
         "tune": {
@@ -830,17 +931,17 @@
           "type": "string"
         },
         "vbvFullnessBits": {
-          "description": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of `VideoStream.vbv_size_bits`.",
+          "description": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H264CodecSettings.vbv_size_bits.",
           "format": "int32",
           "type": "integer"
         },
         "vbvSizeBits": {
-          "description": "Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to `VideoStream.bitrate_bps`.",
+          "description": "Size of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to H264CodecSettings.bitrate_bps.",
           "format": "int32",
           "type": "integer"
         },
         "widthPixels": {
-          "description": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used.",
+          "description": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.",
           "format": "int32",
           "type": "integer"
         }
@@ -861,7 +962,7 @@
           "type": "number"
         },
         "bFrameCount": {
-          "description": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than `VideoStream.gop_frame_count` if set. The default is 0.",
+          "description": "The number of consecutive B-frames. Must be greater than or equal to zero. Must be less than H265CodecSettings.gop_frame_count if set. The default is 0.",
           "format": "int32",
           "type": "integer"
         },
@@ -880,7 +981,7 @@
           "type": "integer"
         },
         "enableTwoPass": {
-          "description": "Use two-pass encoding strategy to achieve better video quality. `VideoStream.rate_control_mode` must be `vbr`. The default is `false`.",
+          "description": "Use two-pass encoding strategy to achieve better video quality. H265CodecSettings.rate_control_mode must be `vbr`. The default is `false`.",
           "type": "boolean"
         },
         "frameRate": {
@@ -899,7 +1000,7 @@
           "type": "integer"
         },
         "heightPixels": {
-          "description": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used.",
+          "description": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.",
           "format": "int32",
           "type": "integer"
         },
@@ -916,7 +1017,7 @@
           "type": "string"
         },
         "rateControlMode": {
-          "description": "Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
+          "description": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
           "type": "string"
         },
         "tune": {
@@ -924,7 +1025,7 @@
           "type": "string"
         },
         "vbvFullnessBits": {
-          "description": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of `VideoStream.vbv_size_bits`.",
+          "description": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits. Must be greater than zero. The default is equal to 90% of H265CodecSettings.vbv_size_bits.",
           "format": "int32",
           "type": "integer"
         },
@@ -934,7 +1035,7 @@
           "type": "integer"
         },
         "widthPixels": {
-          "description": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used.",
+          "description": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.",
           "format": "int32",
           "type": "integer"
         }
@@ -942,7 +1043,7 @@
       "type": "object"
     },
     "Image": {
-      "description": "Overlaid jpeg image.",
+      "description": "Overlaid image.",
       "id": "Image",
       "properties": {
         "alpha": {
@@ -955,7 +1056,7 @@
           "description": "Normalized image resolution, based on output video resolution. Valid values: `0.0`–`1.0`. To respect the original image aspect ratio, set either `x` or `y` to `0.0`. To use the original image resolution, set both `x` and `y` to `0.0`."
         },
         "uri": {
-          "description": "Required. URI of the JPEG image in Cloud Storage. For example, `gs://bucket/inputs/image.jpeg`. JPEG is the only supported image type.",
+          "description": "Required. URI of the image in Cloud Storage. For example, `gs://bucket/inputs/image.png`. Only PNG and JPEG images are supported.",
           "type": "string"
         }
       },
@@ -974,7 +1075,7 @@
           "description": "Preprocessing configurations."
         },
         "uri": {
-          "description": "URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from `Job.input_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).",
+          "description": "URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from Job.input_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).",
           "type": "string"
         }
       },
@@ -984,6 +1085,11 @@
       "description": "Transcoding job resource.",
       "id": "Job",
       "properties": {
+        "batchModePriority": {
+          "description": "The processing priority of a batch job. This field can only be set for batch mode jobs. The default value is 0. This value cannot be negative. Higher values correspond to higher priorities for the job.",
+          "format": "int32",
+          "type": "integer"
+        },
         "config": {
           "$ref": "JobConfig",
           "description": "The configuration for this job."
@@ -1002,7 +1108,7 @@
         },
         "error": {
           "$ref": "Status",
-          "description": "Output only. An error object that describes the reason for the failure. This property is always present when `state` is `FAILED`.",
+          "description": "Output only. An error object that describes the reason for the failure. This property is always present when ProcessingState is `FAILED`.",
           "readOnly": true
         },
         "inputUri": {
@@ -1016,8 +1122,36 @@
           "description": "The labels associated with this job. You can use these to organize and group your jobs.",
           "type": "object"
         },
+        "mode": {
+          "description": "The processing mode of the job. The default is `PROCESSING_MODE_INTERACTIVE`.",
+          "enum": [
+            "PROCESSING_MODE_UNSPECIFIED",
+            "PROCESSING_MODE_INTERACTIVE",
+            "PROCESSING_MODE_BATCH"
+          ],
+          "enumDescriptions": [
+            "The job processing mode is not specified.",
+            "The job processing mode is interactive mode. Interactive job will either be ran or rejected if quota does not allow for it.",
+            "The job processing mode is batch mode. Batch mode allows queuing of jobs."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "The resource name of the job. Format: `projects/{project_number}/locations/{location}/jobs/{job}`",
+          "type": "string"
+        },
+        "optimization": {
+          "description": "Optional. The optimization strategy of the job. The default is `AUTODETECT`.",
+          "enum": [
+            "OPTIMIZATION_STRATEGY_UNSPECIFIED",
+            "AUTODETECT",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "The optimization strategy is not specified.",
+            "Prioritize job processing speed.",
+            "Disable all optimizations."
+          ],
           "type": "string"
         },
         "outputUri": {
@@ -1044,13 +1178,13 @@
             "The job is enqueued and will be picked up for processing soon.",
             "The job is being processed.",
             "The job has been completed successfully.",
-            "The job has failed. For additional information, see `failure_reason` and `failure_details`"
+            "The job has failed. For additional information, see [Troubleshooting](https://cloud.google.com/transcoder/docs/troubleshooting)."
           ],
           "readOnly": true,
           "type": "string"
         },
         "templateId": {
-          "description": "Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`. Preset Transcoder templates: - `preset/{preset_id}` - User defined JobTemplate: `{job_template_id}`",
+          "description": "Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`, which is the only supported preset. User defined JobTemplate: `{job_template_id}`",
           "type": "string"
         },
         "ttlAfterCompletionDays": {
@@ -1073,7 +1207,7 @@
           "type": "array"
         },
         "editList": {
-          "description": "List of `Edit atom`s. Defines the ultimate timeline of the resulting file or manifest.",
+          "description": "List of edit atoms. Defines the ultimate timeline of the resulting file or manifest.",
           "items": {
             "$ref": "EditAtom"
           },
@@ -1083,6 +1217,13 @@
           "description": "List of elementary streams.",
           "items": {
             "$ref": "ElementaryStream"
+          },
+          "type": "array"
+        },
+        "encryptions": {
+          "description": "List of encryption configurations for the content. Each configuration has an ID. Specify this ID in the MuxStream.encryption_id field to indicate the configuration to use for that `MuxStream` output.",
+          "items": {
+            "$ref": "Encryption"
           },
           "type": "array"
         },
@@ -1208,19 +1349,23 @@
       "description": "Manifest configuration.",
       "id": "Manifest",
       "properties": {
+        "dash": {
+          "$ref": "DashConfig",
+          "description": "`DASH` manifest configuration."
+        },
         "fileName": {
-          "description": "The name of the generated file. The default is `manifest` with the extension suffix corresponding to the `Manifest.type`.",
+          "description": "The name of the generated file. The default is `manifest` with the extension suffix corresponding to the Manifest.type.",
           "type": "string"
         },
         "muxStreams": {
-          "description": "Required. List of user given `MuxStream.key`s that should appear in this manifest. When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key` and `.m3u8` extension is generated for each element of the `Manifest.mux_streams`.",
+          "description": "Required. List of user supplied MuxStream.key values that should appear in this manifest. When Manifest.type is `HLS`, a media manifest with name MuxStream.key and `.m3u8` extension is generated for each element in this list.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "type": {
-          "description": "Required. Type of the manifest, can be `HLS` or `DASH`.",
+          "description": "Required. Type of the manifest.",
           "enum": [
             "MANIFEST_TYPE_UNSPECIFIED",
             "HLS",
@@ -1228,9 +1373,20 @@
           ],
           "enumDescriptions": [
             "The manifest type is not specified.",
-            "Create `HLS` manifest. The corresponding file extension is `.m3u8`.",
-            "Create `DASH` manifest. The corresponding file extension is `.mpd`."
+            "Create an HLS manifest. The corresponding file extension is `.m3u8`.",
+            "Create an MPEG-DASH manifest. The corresponding file extension is `.mpd`."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MpegCommonEncryption": {
+      "description": "Configuration for MPEG Common Encryption (MPEG-CENC).",
+      "id": "MpegCommonEncryption",
+      "properties": {
+        "scheme": {
+          "description": "Required. Specify the encryption scheme. Supported encryption schemes: - `cenc` - `cbcs`",
           "type": "string"
         }
       },
@@ -1245,18 +1401,22 @@
           "type": "string"
         },
         "elementaryStreams": {
-          "description": "List of `ElementaryStream.key`s multiplexed in this stream.",
+          "description": "List of ElementaryStream.key values multiplexed in this stream.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
+        "encryptionId": {
+          "description": "Identifier of the encryption configuration to use. If omitted, output will be unencrypted.",
+          "type": "string"
+        },
         "fileName": {
-          "description": "The name of the generated file. The default is `MuxStream.key` with the extension suffix corresponding to the `MuxStream.container`. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.",
+          "description": "The name of the generated file. The default is MuxStream.key with the extension suffix corresponding to the MuxStream.container. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.",
           "type": "string"
         },
         "key": {
-          "description": "A unique key for this multiplexed stream. HLS media manifests will be named `MuxStream.key` with the `.m3u8` extension suffix.",
+          "description": "A unique key for this multiplexed stream.",
           "type": "string"
         },
         "segmentSettings": {
@@ -1288,7 +1448,7 @@
       "id": "Output",
       "properties": {
         "uri": {
-          "description": "URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from `Job.output_uri`. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).",
+          "description": "URI for the output file(s). For example, `gs://my-bucket/outputs/`. If empty, the value is populated from Job.output_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).",
           "type": "string"
         }
       },
@@ -1299,7 +1459,7 @@
       "id": "Overlay",
       "properties": {
         "animations": {
-          "description": "List of Animations. The list should be chronological, without any time overlap.",
+          "description": "List of animations. The list should be chronological, without any time overlap.",
           "items": {
             "$ref": "Animation"
           },
@@ -1337,6 +1497,12 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "Playready": {
+      "description": "Playready configuration.",
+      "id": "Playready",
+      "properties": {},
       "type": "object"
     },
     "PreprocessingConfig": {
@@ -1380,6 +1546,23 @@
       "properties": {
         "topic": {
           "description": "The name of the Pub/Sub topic to publish job completion notification to. For example: `projects/{project}/topics/{topic}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SampleAesEncryption": {
+      "description": "Configuration for SAMPLE-AES encryption.",
+      "id": "SampleAesEncryption",
+      "properties": {},
+      "type": "object"
+    },
+    "SecretManagerSource": {
+      "description": "Configuration for secrets stored in Google Secret Manager.",
+      "id": "SecretManagerSource",
+      "properties": {
+        "secretVersion": {
+          "description": "Required. The name of the Secret Version containing the encryption key in the following format: `projects/{project}/secrets/{secret_id}/versions/{version_number}` Note that only numbered versions are supported. Aliases like \"latest\" are not supported.",
           "type": "string"
         }
       },
@@ -1439,12 +1622,12 @@
           "type": "integer"
         },
         "spriteHeightPixels": {
-          "description": "Required. The height of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_height_pixels field or the SpriteSheet.sprite_width_pixels field, but not both (the API will automatically calculate the missing field).",
+          "description": "Required. The height of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_height_pixels field or the SpriteSheet.sprite_width_pixels field, but not both (the API will automatically calculate the missing field). For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.",
           "format": "int32",
           "type": "integer"
         },
         "spriteWidthPixels": {
-          "description": "Required. The width of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_width_pixels field or the SpriteSheet.sprite_height_pixels field, but not both (the API will automatically calculate the missing field).",
+          "description": "Required. The width of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_width_pixels field or the SpriteSheet.sprite_height_pixels field, but not both (the API will automatically calculate the missing field). For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.",
           "format": "int32",
           "type": "integer"
         },
@@ -1489,15 +1672,15 @@
       "type": "object"
     },
     "TextMapping": {
-      "description": "The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.",
+      "description": "The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.",
       "id": "TextMapping",
       "properties": {
         "atomKey": {
-          "description": "Required. The `EditAtom.key` that references atom with text inputs in the `Job.edit_list`.",
+          "description": "Required. The EditAtom.key that references atom with text inputs in the JobConfig.edit_list.",
           "type": "string"
         },
         "inputKey": {
-          "description": "Required. The `Input.key` that identifies the input file.",
+          "description": "Required. The Input.key that identifies the input file.",
           "type": "string"
         },
         "inputTrack": {
@@ -1516,8 +1699,16 @@
           "description": "The codec for this text stream. The default is `webvtt`. Supported text codecs: - `srt` - `ttml` - `cea608` - `cea708` - `webvtt`",
           "type": "string"
         },
+        "displayName": {
+          "description": "The name for this particular text stream that will be added to the HLS/DASH manifest. Not supported in MP4 files.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "The BCP-47 language code, such as `en-US` or `sr-Latn`. For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not supported in MP4 files.",
+          "type": "string"
+        },
         "mapping": {
-          "description": "The mapping for the `Job.edit_list` atoms with text `EditAtom.inputs`.",
+          "description": "The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.",
           "items": {
             "$ref": "TextMapping"
           },
@@ -1575,7 +1766,7 @@
           "type": "integer"
         },
         "heightPixels": {
-          "description": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used.",
+          "description": "The height of the video in pixels. Must be an even integer. When not specified, the height is adjusted to match the specified width and input aspect ratio. If both are omitted, the input height is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the height, in pixels, per the horizontal ASR. The API calculates the width per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.",
           "format": "int32",
           "type": "integer"
         },
@@ -1588,15 +1779,21 @@
           "type": "string"
         },
         "rateControlMode": {
-          "description": "Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate",
+          "description": "Specify the mode. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate",
           "type": "string"
         },
         "widthPixels": {
-          "description": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used.",
+          "description": "The width of the video in pixels. Must be an even integer. When not specified, the width is adjusted to match the specified height and input aspect ratio. If both are omitted, the input width is used. For portrait videos that contain horizontal ASR and rotation metadata, provide the width, in pixels, per the horizontal ASR. The API calculates the height per the horizontal ASR. The API detects any rotation metadata and swaps the requested height and width for the output.",
           "format": "int32",
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "Widevine": {
+      "description": "Widevine configuration.",
+      "id": "Widevine",
+      "properties": {},
       "type": "object"
     },
     "YadifConfig": {

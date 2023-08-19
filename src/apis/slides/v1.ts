@@ -273,7 +273,7 @@ export namespace slides_v1 {
    */
   export interface Schema$CreateImageRequest {
     /**
-     * The element properties for the image. When the aspect ratio of the provided size does not match the image aspect ratio, the image is scaled and centered with respect to the size in order to maintain aspect ratio. The provided transform is applied after this operation. The PageElementProperties.size property is optional. If you don't specify the size, the default size of the image is used. The PageElementProperties.transform property is optional. If you don't specify a transform, the image will be placed at the top left corner of the page.
+     * The element properties for the image. When the aspect ratio of the provided size does not match the image aspect ratio, the image is scaled and centered with respect to the size in order to maintain the aspect ratio. The provided transform is applied after this operation. The PageElementProperties.size property is optional. If you don't specify the size, the default size of the image is used. The PageElementProperties.transform property is optional. If you don't specify a transform, the image will be placed at the top-left corner of the page.
      */
     elementProperties?: Schema$PageElementProperties;
     /**
@@ -281,7 +281,7 @@ export namespace slides_v1 {
      */
     objectId?: string | null;
     /**
-     * The image URL. The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF format. The provided URL can be at most 2 kB in length. The URL itself is saved with the image, and exposed via the Image.source_url field.
+     * The image URL. The image is fetched once at insertion time and a copy is stored for display inside the presentation. Images must be less than 50 MB in size, can't exceed 25 megapixels, and must be in one of PNG, JPEG, or GIF formats. The provided URL must be publicly accessible and up to 2 KB in length. The URL is saved with the image, and exposed through the Image.source_url field.
      */
     url?: string | null;
   }
@@ -2645,66 +2645,6 @@ export namespace slides_v1 {
 
     /**
      * Applies one or more updates to the presentation. Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied. Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests. For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies: the reply to the third request, and another empty reply, in that order. Because other users may be editing the presentation, the presentation might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the presentation should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/slides.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const slides = google.slides('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *       'https://www.googleapis.com/auth/presentations',
-     *       'https://www.googleapis.com/auth/spreadsheets',
-     *       'https://www.googleapis.com/auth/spreadsheets.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await slides.presentations.batchUpdate({
-     *     // The presentation to apply the updates to.
-     *     presentationId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requests": [],
-     *       //   "writeControl": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "presentationId": "my_presentationId",
-     *   //   "replies": [],
-     *   //   "writeControl": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2800,73 +2740,6 @@ export namespace slides_v1 {
 
     /**
      * Creates a blank presentation using the title given in the request. If a `presentationId` is provided, it is used as the ID of the new presentation. Otherwise, a new ID is generated. Other fields in the request, including any provided content, are ignored. Returns the created presentation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/slides.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const slides = google.slides('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/presentations',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await slides.presentations.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "layouts": [],
-     *       //   "locale": "my_locale",
-     *       //   "masters": [],
-     *       //   "notesMaster": {},
-     *       //   "pageSize": {},
-     *       //   "presentationId": "my_presentationId",
-     *       //   "revisionId": "my_revisionId",
-     *       //   "slides": [],
-     *       //   "title": "my_title"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "layouts": [],
-     *   //   "locale": "my_locale",
-     *   //   "masters": [],
-     *   //   "notesMaster": {},
-     *   //   "pageSize": {},
-     *   //   "presentationId": "my_presentationId",
-     *   //   "revisionId": "my_revisionId",
-     *   //   "slides": [],
-     *   //   "title": "my_title"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2951,62 +2824,6 @@ export namespace slides_v1 {
 
     /**
      * Gets the latest version of the specified presentation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/slides.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const slides = google.slides('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *       'https://www.googleapis.com/auth/presentations',
-     *       'https://www.googleapis.com/auth/presentations.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await slides.presentations.get({
-     *     // The ID of the presentation to retrieve.
-     *     presentationId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "layouts": [],
-     *   //   "locale": "my_locale",
-     *   //   "masters": [],
-     *   //   "notesMaster": {},
-     *   //   "pageSize": {},
-     *   //   "presentationId": "my_presentationId",
-     *   //   "revisionId": "my_revisionId",
-     *   //   "slides": [],
-     *   //   "title": "my_title"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3128,64 +2945,6 @@ export namespace slides_v1 {
 
     /**
      * Gets the latest version of the specified page in the presentation.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/slides.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const slides = google.slides('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *       'https://www.googleapis.com/auth/presentations',
-     *       'https://www.googleapis.com/auth/presentations.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await slides.presentations.pages.get({
-     *     // The object ID of the page to retrieve.
-     *     pageObjectId: 'placeholder-value',
-     *     // The ID of the presentation to retrieve.
-     *     presentationId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "layoutProperties": {},
-     *   //   "masterProperties": {},
-     *   //   "notesProperties": {},
-     *   //   "objectId": "my_objectId",
-     *   //   "pageElements": [],
-     *   //   "pageProperties": {},
-     *   //   "pageType": "my_pageType",
-     *   //   "revisionId": "my_revisionId",
-     *   //   "slideProperties": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3273,62 +3032,6 @@ export namespace slides_v1 {
 
     /**
      * Generates a thumbnail of the latest version of the specified page in the presentation and returns a URL to the thumbnail image. This request counts as an [expensive read request](/slides/limits) for quota purposes.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/slides.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const slides = google.slides('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *       'https://www.googleapis.com/auth/presentations',
-     *       'https://www.googleapis.com/auth/presentations.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await slides.presentations.pages.getThumbnail({
-     *     // The object ID of the page whose thumbnail to retrieve.
-     *     pageObjectId: 'placeholder-value',
-     *     // The ID of the presentation to retrieve.
-     *     presentationId: 'placeholder-value',
-     *     // The optional mime type of the thumbnail image. If you don't specify the mime type, the mime type defaults to PNG.
-     *     'thumbnailProperties.mimeType': 'placeholder-value',
-     *     // The optional thumbnail image size. If you don't specify the size, the server chooses a default size of the image.
-     *     'thumbnailProperties.thumbnailSize': 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contentUrl": "my_contentUrl",
-     *   //   "height": 0,
-     *   //   "width": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -28,6 +28,7 @@ import {
   VERSIONS as accesscontextmanagerVersions,
   accesscontextmanager,
 } from './accesscontextmanager';
+import {VERSIONS as acmednsVersions, acmedns} from './acmedns';
 import {
   VERSIONS as adexchangebuyerVersions,
   adexchangebuyer,
@@ -44,6 +45,11 @@ import {VERSIONS as adminVersions, admin} from './admin';
 import {VERSIONS as admobVersions, admob} from './admob';
 import {VERSIONS as adsenseVersions, adsense} from './adsense';
 import {VERSIONS as adsensehostVersions, adsensehost} from './adsensehost';
+import {
+  VERSIONS as advisorynotificationsVersions,
+  advisorynotifications,
+} from './advisorynotifications';
+import {VERSIONS as aiplatformVersions, aiplatform} from './aiplatform';
 import {VERSIONS as alertcenterVersions, alertcenter} from './alertcenter';
 import {VERSIONS as analyticsVersions, analytics} from './analytics';
 import {
@@ -130,6 +136,10 @@ import {
   VERSIONS as binaryauthorizationVersions,
   binaryauthorization,
 } from './binaryauthorization';
+import {
+  VERSIONS as blockchainnodeengineVersions,
+  blockchainnodeengine,
+} from './blockchainnodeengine';
 import {VERSIONS as bloggerVersions, blogger} from './blogger';
 import {VERSIONS as booksVersions, books} from './books';
 import {
@@ -142,6 +152,7 @@ import {
   certificatemanager,
 } from './certificatemanager';
 import {VERSIONS as chatVersions, chat} from './chat';
+import {VERSIONS as checksVersions, checks} from './checks';
 import {
   VERSIONS as chromemanagementVersions,
   chromemanagement,
@@ -197,6 +208,10 @@ import {VERSIONS as composerVersions, composer} from './composer';
 import {VERSIONS as computeVersions, compute} from './compute';
 import {VERSIONS as connectorsVersions, connectors} from './connectors';
 import {
+  VERSIONS as contactcenteraiplatformVersions,
+  contactcenteraiplatform,
+} from './contactcenteraiplatform';
+import {
   VERSIONS as contactcenterinsightsVersions,
   contactcenterinsights,
 } from './contactcenterinsights';
@@ -213,8 +228,10 @@ import {
 import {VERSIONS as customsearchVersions, customsearch} from './customsearch';
 import {VERSIONS as datacatalogVersions, datacatalog} from './datacatalog';
 import {VERSIONS as dataflowVersions, dataflow} from './dataflow';
+import {VERSIONS as dataformVersions, dataform} from './dataform';
 import {VERSIONS as datafusionVersions, datafusion} from './datafusion';
 import {VERSIONS as datalabelingVersions, datalabeling} from './datalabeling';
+import {VERSIONS as datalineageVersions, datalineage} from './datalineage';
 import {
   VERSIONS as datamigrationVersions,
   datamigration,
@@ -238,6 +255,10 @@ import {
   digitalassetlinks,
 } from './digitalassetlinks';
 import {VERSIONS as discoveryVersions, discovery} from './discovery';
+import {
+  VERSIONS as discoveryengineVersions,
+  discoveryengine,
+} from './discoveryengine';
 import {VERSIONS as displayvideoVersions, displayvideo} from './displayvideo';
 import {VERSIONS as dlpVersions, dlp} from './dlp';
 import {VERSIONS as dnsVersions, dns} from './dns';
@@ -277,6 +298,10 @@ import {
   firebaseappcheck,
 } from './firebaseappcheck';
 import {
+  VERSIONS as firebaseappdistributionVersions,
+  firebaseappdistribution,
+} from './firebaseappdistribution';
+import {
   VERSIONS as firebasedatabaseVersions,
   firebasedatabase,
 } from './firebasedatabase';
@@ -313,6 +338,7 @@ import {VERSIONS as gameservicesVersions, gameservices} from './gameservices';
 import {VERSIONS as genomicsVersions, genomics} from './genomics';
 import {VERSIONS as gkebackupVersions, gkebackup} from './gkebackup';
 import {VERSIONS as gkehubVersions, gkehub} from './gkehub';
+import {VERSIONS as gkeonpremVersions, gkeonprem} from './gkeonprem';
 import {VERSIONS as gmailVersions, gmail} from './gmail';
 import {
   VERSIONS as gmailpostmastertoolsVersions,
@@ -344,6 +370,7 @@ import {VERSIONS as indexingVersions, indexing} from './indexing';
 import {VERSIONS as integrationsVersions, integrations} from './integrations';
 import {VERSIONS as jobsVersions, jobs} from './jobs';
 import {VERSIONS as kgsearchVersions, kgsearch} from './kgsearch';
+import {VERSIONS as kmsinventoryVersions, kmsinventory} from './kmsinventory';
 import {VERSIONS as languageVersions, language} from './language';
 import {VERSIONS as libraryagentVersions, libraryagent} from './libraryagent';
 import {VERSIONS as licensingVersions, licensing} from './licensing';
@@ -363,6 +390,10 @@ import {
 } from './manufacturers';
 import {VERSIONS as memcacheVersions, memcache} from './memcache';
 import {VERSIONS as metastoreVersions, metastore} from './metastore';
+import {
+  VERSIONS as migrationcenterVersions,
+  migrationcenter,
+} from './migrationcenter';
 import {VERSIONS as mlVersions, ml} from './ml';
 import {VERSIONS as monitoringVersions, monitoring} from './monitoring';
 import {
@@ -431,6 +462,7 @@ import {
   paymentsresellersubscription,
 } from './paymentsresellersubscription';
 import {VERSIONS as peopleVersions, people} from './people';
+import {VERSIONS as placesVersions, places} from './places';
 import {
   VERSIONS as playablelocationsVersions,
   playablelocations,
@@ -466,8 +498,13 @@ import {
   VERSIONS as prod_tt_sasportalVersions,
   prod_tt_sasportal,
 } from './prod_tt_sasportal';
+import {VERSIONS as publiccaVersions, publicca} from './publicca';
 import {VERSIONS as pubsubVersions, pubsub} from './pubsub';
 import {VERSIONS as pubsubliteVersions, pubsublite} from './pubsublite';
+import {
+  VERSIONS as readerrevenuesubscriptionlinkingVersions,
+  readerrevenuesubscriptionlinking,
+} from './readerrevenuesubscriptionlinking';
 import {
   VERSIONS as realtimebiddingVersions,
   realtimebidding,
@@ -500,6 +537,7 @@ import {
 import {VERSIONS as safebrowsingVersions, safebrowsing} from './safebrowsing';
 import {VERSIONS as sasportalVersions, sasportal} from './sasportal';
 import {VERSIONS as scriptVersions, script} from './script';
+import {VERSIONS as searchads360Versions, searchads360} from './searchads360';
 import {
   VERSIONS as searchconsoleVersions,
   searchconsole,
@@ -570,6 +608,10 @@ import {
 } from './trafficdirector';
 import {VERSIONS as transcoderVersions, transcoder} from './transcoder';
 import {VERSIONS as translateVersions, translate} from './translate';
+import {
+  VERSIONS as travelimpactmodelVersions,
+  travelimpactmodel,
+} from './travelimpactmodel';
 import {VERSIONS as vaultVersions, vault} from './vault';
 import {VERSIONS as vectortileVersions, vectortile} from './vectortile';
 import {
@@ -586,6 +628,7 @@ import {
 } from './videointelligence';
 import {VERSIONS as visionVersions, vision} from './vision';
 import {VERSIONS as vmmigrationVersions, vmmigration} from './vmmigration';
+import {VERSIONS as vpcaccessVersions, vpcaccess} from './vpcaccess';
 import {VERSIONS as webfontsVersions, webfonts} from './webfonts';
 import {VERSIONS as webmastersVersions, webmasters} from './webmasters';
 import {VERSIONS as webriskVersions, webrisk} from './webrisk';
@@ -598,6 +641,11 @@ import {
   workflowexecutions,
 } from './workflowexecutions';
 import {VERSIONS as workflowsVersions, workflows} from './workflows';
+import {
+  VERSIONS as workloadmanagerVersions,
+  workloadmanager,
+} from './workloadmanager';
+import {VERSIONS as workstationsVersions, workstations} from './workstations';
 import {VERSIONS as youtubeVersions, youtube} from './youtube';
 import {
   VERSIONS as youtubeAnalyticsVersions,
@@ -618,6 +666,7 @@ export const APIS: APIList = {
   acceleratedmobilepageurl: acceleratedmobilepageurlVersions,
   accessapproval: accessapprovalVersions,
   accesscontextmanager: accesscontextmanagerVersions,
+  acmedns: acmednsVersions,
   adexchangebuyer: adexchangebuyerVersions,
   adexchangebuyer2: adexchangebuyer2Versions,
   adexperiencereport: adexperiencereportVersions,
@@ -625,6 +674,8 @@ export const APIS: APIList = {
   admob: admobVersions,
   adsense: adsenseVersions,
   adsensehost: adsensehostVersions,
+  advisorynotifications: advisorynotificationsVersions,
+  aiplatform: aiplatformVersions,
   alertcenter: alertcenterVersions,
   analytics: analyticsVersions,
   analyticsadmin: analyticsadminVersions,
@@ -654,12 +705,14 @@ export const APIS: APIList = {
   bigtableadmin: bigtableadminVersions,
   billingbudgets: billingbudgetsVersions,
   binaryauthorization: binaryauthorizationVersions,
+  blockchainnodeengine: blockchainnodeengineVersions,
   blogger: bloggerVersions,
   books: booksVersions,
   businessprofileperformance: businessprofileperformanceVersions,
   calendar: calendarVersions,
   certificatemanager: certificatemanagerVersions,
   chat: chatVersions,
+  checks: checksVersions,
   chromemanagement: chromemanagementVersions,
   chromepolicy: chromepolicyVersions,
   chromeuxreport: chromeuxreportVersions,
@@ -687,6 +740,7 @@ export const APIS: APIList = {
   composer: composerVersions,
   compute: computeVersions,
   connectors: connectorsVersions,
+  contactcenteraiplatform: contactcenteraiplatformVersions,
   contactcenterinsights: contactcenterinsightsVersions,
   container: containerVersions,
   containeranalysis: containeranalysisVersions,
@@ -695,8 +749,10 @@ export const APIS: APIList = {
   customsearch: customsearchVersions,
   datacatalog: datacatalogVersions,
   dataflow: dataflowVersions,
+  dataform: dataformVersions,
   datafusion: datafusionVersions,
   datalabeling: datalabelingVersions,
+  datalineage: datalineageVersions,
   datamigration: datamigrationVersions,
   datapipelines: datapipelinesVersions,
   dataplex: dataplexVersions,
@@ -708,6 +764,7 @@ export const APIS: APIList = {
   dialogflow: dialogflowVersions,
   digitalassetlinks: digitalassetlinksVersions,
   discovery: discoveryVersions,
+  discoveryengine: discoveryengineVersions,
   displayvideo: displayvideoVersions,
   dlp: dlpVersions,
   dns: dnsVersions,
@@ -728,6 +785,7 @@ export const APIS: APIList = {
   file: fileVersions,
   firebase: firebaseVersions,
   firebaseappcheck: firebaseappcheckVersions,
+  firebaseappdistribution: firebaseappdistributionVersions,
   firebasedatabase: firebasedatabaseVersions,
   firebasedynamiclinks: firebasedynamiclinksVersions,
   firebasehosting: firebasehostingVersions,
@@ -744,6 +802,7 @@ export const APIS: APIList = {
   genomics: genomicsVersions,
   gkebackup: gkebackupVersions,
   gkehub: gkehubVersions,
+  gkeonprem: gkeonpremVersions,
   gmail: gmailVersions,
   gmailpostmastertools: gmailpostmastertoolsVersions,
   groupsmigration: groupsmigrationVersions,
@@ -760,6 +819,7 @@ export const APIS: APIList = {
   integrations: integrationsVersions,
   jobs: jobsVersions,
   kgsearch: kgsearchVersions,
+  kmsinventory: kmsinventoryVersions,
   language: languageVersions,
   libraryagent: libraryagentVersions,
   licensing: licensingVersions,
@@ -770,6 +830,7 @@ export const APIS: APIList = {
   manufacturers: manufacturersVersions,
   memcache: memcacheVersions,
   metastore: metastoreVersions,
+  migrationcenter: migrationcenterVersions,
   ml: mlVersions,
   monitoring: monitoringVersions,
   mybusinessaccountmanagement: mybusinessaccountmanagementVersions,
@@ -793,6 +854,7 @@ export const APIS: APIList = {
   pagespeedonline: pagespeedonlineVersions,
   paymentsresellersubscription: paymentsresellersubscriptionVersions,
   people: peopleVersions,
+  places: placesVersions,
   playablelocations: playablelocationsVersions,
   playcustomapp: playcustomappVersions,
   playdeveloperreporting: playdeveloperreportingVersions,
@@ -804,8 +866,10 @@ export const APIS: APIList = {
   poly: polyVersions,
   privateca: privatecaVersions,
   prod_tt_sasportal: prod_tt_sasportalVersions,
+  publicca: publiccaVersions,
   pubsub: pubsubVersions,
   pubsublite: pubsubliteVersions,
+  readerrevenuesubscriptionlinking: readerrevenuesubscriptionlinkingVersions,
   realtimebidding: realtimebiddingVersions,
   recaptchaenterprise: recaptchaenterpriseVersions,
   recommendationengine: recommendationengineVersions,
@@ -820,6 +884,7 @@ export const APIS: APIList = {
   safebrowsing: safebrowsingVersions,
   sasportal: sasportalVersions,
   script: scriptVersions,
+  searchads360: searchads360Versions,
   searchconsole: searchconsoleVersions,
   secretmanager: secretmanagerVersions,
   securitycenter: securitycenterVersions,
@@ -851,6 +916,7 @@ export const APIS: APIList = {
   trafficdirector: trafficdirectorVersions,
   transcoder: transcoderVersions,
   translate: translateVersions,
+  travelimpactmodel: travelimpactmodelVersions,
   vault: vaultVersions,
   vectortile: vectortileVersions,
   verifiedaccess: verifiedaccessVersions,
@@ -858,12 +924,15 @@ export const APIS: APIList = {
   videointelligence: videointelligenceVersions,
   vision: visionVersions,
   vmmigration: vmmigrationVersions,
+  vpcaccess: vpcaccessVersions,
   webfonts: webfontsVersions,
   webmasters: webmastersVersions,
   webrisk: webriskVersions,
   websecurityscanner: websecurityscannerVersions,
   workflowexecutions: workflowexecutionsVersions,
   workflows: workflowsVersions,
+  workloadmanager: workloadmanagerVersions,
+  workstations: workstationsVersions,
   youtube: youtubeVersions,
   youtubeAnalytics: youtubeAnalyticsVersions,
   youtubereporting: youtubereportingVersions,
@@ -874,6 +943,7 @@ export class GeneratedAPIs {
   acceleratedmobilepageurl = acceleratedmobilepageurl;
   accessapproval = accessapproval;
   accesscontextmanager = accesscontextmanager;
+  acmedns = acmedns;
   adexchangebuyer = adexchangebuyer;
   adexchangebuyer2 = adexchangebuyer2;
   adexperiencereport = adexperiencereport;
@@ -881,6 +951,8 @@ export class GeneratedAPIs {
   admob = admob;
   adsense = adsense;
   adsensehost = adsensehost;
+  advisorynotifications = advisorynotifications;
+  aiplatform = aiplatform;
   alertcenter = alertcenter;
   analytics = analytics;
   analyticsadmin = analyticsadmin;
@@ -910,12 +982,14 @@ export class GeneratedAPIs {
   bigtableadmin = bigtableadmin;
   billingbudgets = billingbudgets;
   binaryauthorization = binaryauthorization;
+  blockchainnodeengine = blockchainnodeengine;
   blogger = blogger;
   books = books;
   businessprofileperformance = businessprofileperformance;
   calendar = calendar;
   certificatemanager = certificatemanager;
   chat = chat;
+  checks = checks;
   chromemanagement = chromemanagement;
   chromepolicy = chromepolicy;
   chromeuxreport = chromeuxreport;
@@ -943,6 +1017,7 @@ export class GeneratedAPIs {
   composer = composer;
   compute = compute;
   connectors = connectors;
+  contactcenteraiplatform = contactcenteraiplatform;
   contactcenterinsights = contactcenterinsights;
   container = container;
   containeranalysis = containeranalysis;
@@ -951,8 +1026,10 @@ export class GeneratedAPIs {
   customsearch = customsearch;
   datacatalog = datacatalog;
   dataflow = dataflow;
+  dataform = dataform;
   datafusion = datafusion;
   datalabeling = datalabeling;
+  datalineage = datalineage;
   datamigration = datamigration;
   datapipelines = datapipelines;
   dataplex = dataplex;
@@ -964,6 +1041,7 @@ export class GeneratedAPIs {
   dialogflow = dialogflow;
   digitalassetlinks = digitalassetlinks;
   discovery = discovery;
+  discoveryengine = discoveryengine;
   displayvideo = displayvideo;
   dlp = dlp;
   dns = dns;
@@ -984,6 +1062,7 @@ export class GeneratedAPIs {
   file = file;
   firebase = firebase;
   firebaseappcheck = firebaseappcheck;
+  firebaseappdistribution = firebaseappdistribution;
   firebasedatabase = firebasedatabase;
   firebasedynamiclinks = firebasedynamiclinks;
   firebasehosting = firebasehosting;
@@ -1000,6 +1079,7 @@ export class GeneratedAPIs {
   genomics = genomics;
   gkebackup = gkebackup;
   gkehub = gkehub;
+  gkeonprem = gkeonprem;
   gmail = gmail;
   gmailpostmastertools = gmailpostmastertools;
   groupsmigration = groupsmigration;
@@ -1016,6 +1096,7 @@ export class GeneratedAPIs {
   integrations = integrations;
   jobs = jobs;
   kgsearch = kgsearch;
+  kmsinventory = kmsinventory;
   language = language;
   libraryagent = libraryagent;
   licensing = licensing;
@@ -1026,6 +1107,7 @@ export class GeneratedAPIs {
   manufacturers = manufacturers;
   memcache = memcache;
   metastore = metastore;
+  migrationcenter = migrationcenter;
   ml = ml;
   monitoring = monitoring;
   mybusinessaccountmanagement = mybusinessaccountmanagement;
@@ -1049,6 +1131,7 @@ export class GeneratedAPIs {
   pagespeedonline = pagespeedonline;
   paymentsresellersubscription = paymentsresellersubscription;
   people = people;
+  places = places;
   playablelocations = playablelocations;
   playcustomapp = playcustomapp;
   playdeveloperreporting = playdeveloperreporting;
@@ -1060,8 +1143,10 @@ export class GeneratedAPIs {
   poly = poly;
   privateca = privateca;
   prod_tt_sasportal = prod_tt_sasportal;
+  publicca = publicca;
   pubsub = pubsub;
   pubsublite = pubsublite;
+  readerrevenuesubscriptionlinking = readerrevenuesubscriptionlinking;
   realtimebidding = realtimebidding;
   recaptchaenterprise = recaptchaenterprise;
   recommendationengine = recommendationengine;
@@ -1076,6 +1161,7 @@ export class GeneratedAPIs {
   safebrowsing = safebrowsing;
   sasportal = sasportal;
   script = script;
+  searchads360 = searchads360;
   searchconsole = searchconsole;
   secretmanager = secretmanager;
   securitycenter = securitycenter;
@@ -1107,6 +1193,7 @@ export class GeneratedAPIs {
   trafficdirector = trafficdirector;
   transcoder = transcoder;
   translate = translate;
+  travelimpactmodel = travelimpactmodel;
   vault = vault;
   vectortile = vectortile;
   verifiedaccess = verifiedaccess;
@@ -1114,12 +1201,15 @@ export class GeneratedAPIs {
   videointelligence = videointelligence;
   vision = vision;
   vmmigration = vmmigration;
+  vpcaccess = vpcaccess;
   webfonts = webfonts;
   webmasters = webmasters;
   webrisk = webrisk;
   websecurityscanner = websecurityscanner;
   workflowexecutions = workflowexecutions;
   workflows = workflows;
+  workloadmanager = workloadmanager;
+  workstations = workstations;
   youtube = youtube;
   youtubeAnalytics = youtubeAnalytics;
   youtubereporting = youtubereporting;

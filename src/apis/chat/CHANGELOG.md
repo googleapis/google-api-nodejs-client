@@ -1,5 +1,191 @@
 # Changelog
 
+## [17.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v17.2.0...chat-v17.2.1) (2023-08-15)
+
+
+### Bug Fixes
+
+* **chat:** update the API ([9bebe9d](https://github.com/googleapis/google-api-nodejs-client/commit/9bebe9d01af0166a60f3b01b9d3795df79a8a8bf))
+
+## [17.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v17.1.0...chat-v17.2.0) (2023-08-09)
+
+
+### Features
+
+* **chat:** update the API ([c594a3b](https://github.com/googleapis/google-api-nodejs-client/commit/c594a3b0125fd78c0c45f7e0f04d40dfab613b4a))
+
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v17.0.0...chat-v17.1.0) (2023-07-18)
+
+
+### Features
+
+* **chat:** update the API ([8ca9926](https://github.com/googleapis/google-api-nodejs-client/commit/8ca9926b016b7e8372c98175791fcc401c7f745e))
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v16.0.0...chat-v17.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([dcd6b80](https://github.com/googleapis/google-api-nodejs-client/commit/dcd6b80b1af399c002b09b055178804dc71ab684))
+* **chat:** update the API ([736eac5](https://github.com/googleapis/google-api-nodejs-client/commit/736eac5d48549ddb5da6dfd17e78d58fcbed76d0))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([59f5617](https://github.com/googleapis/google-api-nodejs-client/commit/59f5617608c425eea6de8f636a7fd545153cf7e2))
+* **chat:** update the API ([c22dd30](https://github.com/googleapis/google-api-nodejs-client/commit/c22dd30af7955937a4bb5bcc625184028b6b4a49))
+* **chat:** update the API ([7e53df7](https://github.com/googleapis/google-api-nodejs-client/commit/7e53df78fd2839237dfa28ffbc1a7e0326efb293))
+
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v15.0.0...chat-v16.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([dcd6b80](https://github.com/googleapis/google-api-nodejs-client/commit/dcd6b80b1af399c002b09b055178804dc71ab684))
+* **chat:** update the API ([736eac5](https://github.com/googleapis/google-api-nodejs-client/commit/736eac5d48549ddb5da6dfd17e78d58fcbed76d0))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([59f5617](https://github.com/googleapis/google-api-nodejs-client/commit/59f5617608c425eea6de8f636a7fd545153cf7e2))
+* **chat:** update the API ([c22dd30](https://github.com/googleapis/google-api-nodejs-client/commit/c22dd30af7955937a4bb5bcc625184028b6b4a49))
+* **chat:** update the API ([7e53df7](https://github.com/googleapis/google-api-nodejs-client/commit/7e53df78fd2839237dfa28ffbc1a7e0326efb293))
+
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v14.0.1...chat-v15.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v14.0.0...chat-v14.0.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* **chat:** update the API ([59f5617](https://github.com/googleapis/google-api-nodejs-client/commit/59f5617608c425eea6de8f636a7fd545153cf7e2))
+
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v13.0.0...chat-v14.0.0) (2023-04-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v12.1.1...chat-v13.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+
+## [12.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v12.1.0...chat-v12.1.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* **chat:** update the API ([c22dd30](https://github.com/googleapis/google-api-nodejs-client/commit/c22dd30af7955937a4bb5bcc625184028b6b4a49))
+
+## [12.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v12.0.0...chat-v12.1.0) (2023-03-13)
+
+
+### Features
+
+* **chat:** update the API ([736eac5](https://github.com/googleapis/google-api-nodejs-client/commit/736eac5d48549ddb5da6dfd17e78d58fcbed76d0))
+
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v11.0.0...chat-v12.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **chat:** This release has breaking changes.
+* **chat:** This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([c1f8549](https://github.com/googleapis/google-api-nodejs-client/commit/c1f8549520e98e947d09270ce7b2ef298e21aeda))
+* **chat:** update the API ([f860117](https://github.com/googleapis/google-api-nodejs-client/commit/f860117ff2799a11941025407fa2becdc0b4b748))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([7e53df7](https://github.com/googleapis/google-api-nodejs-client/commit/7e53df78fd2839237dfa28ffbc1a7e0326efb293))
+
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v10.0.0...chat-v11.0.0) (2023-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chat:** This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([c1f8549](https://github.com/googleapis/google-api-nodejs-client/commit/c1f8549520e98e947d09270ce7b2ef298e21aeda))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([7e53df7](https://github.com/googleapis/google-api-nodejs-client/commit/7e53df78fd2839237dfa28ffbc1a7e0326efb293))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v9.0.0...chat-v10.0.0) (2022-12-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chat:** This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([f860117](https://github.com/googleapis/google-api-nodejs-client/commit/f860117ff2799a11941025407fa2becdc0b4b748))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v8.0.0...chat-v9.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v7.0.0...chat-v8.0.0) (2022-09-21)
 
 

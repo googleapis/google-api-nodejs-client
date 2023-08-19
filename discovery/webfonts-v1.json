@@ -104,6 +104,28 @@
           "id": "webfonts.webfonts.list",
           "parameterOrder": [],
           "parameters": {
+            "capability": {
+              "description": "Controls the font urls in `Webfont.files`, by default, static ttf fonts are sent.",
+              "enum": [
+                "CAPABILITY_UNSPECIFIED",
+                "WOFF2",
+                "VF"
+              ],
+              "enumDescriptions": [
+                "Default means static ttf fonts.",
+                "Use WOFF2(Compressed)instead of ttf.",
+                "Prefer variable font files instead of static fonts instantiated at standard weights."
+              ],
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "family": {
+              "description": "Filters by Webfont.family, using literal match. If not set, returns all families",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
             "sort": {
               "description": "Enables sorting of the list.",
               "enum": [
@@ -124,6 +146,11 @@
               ],
               "location": "query",
               "type": "string"
+            },
+            "subset": {
+              "description": "Filters by Webfont.subset, if subset is found in Webfont.subsets. If not set, returns all families.",
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "v1/webfonts",
@@ -134,13 +161,41 @@
       }
     }
   },
-  "revision": "20200819",
+  "revision": "20230419",
   "rootUrl": "https://webfonts.googleapis.com/",
   "schemas": {
+    "Axis": {
+      "description": "Metadata for a variable font axis.",
+      "id": "Axis",
+      "properties": {
+        "end": {
+          "description": "maximum value",
+          "format": "float",
+          "type": "number"
+        },
+        "start": {
+          "description": "minimum value",
+          "format": "float",
+          "type": "number"
+        },
+        "tag": {
+          "description": "tag name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Webfont": {
       "description": "Metadata describing a family of fonts.",
       "id": "Webfont",
       "properties": {
+        "axes": {
+          "description": "Axis for variable fonts.",
+          "items": {
+            "$ref": "Axis"
+          },
+          "type": "array"
+        },
         "category": {
           "description": "The category of the font.",
           "type": "string"
@@ -162,6 +217,10 @@
         },
         "lastModified": {
           "description": "The date (format \"yyyy-MM-dd\") the font was modified for the last time.",
+          "type": "string"
+        },
+        "menu": {
+          "description": "Font URL for menu subset, a subset of the font that is enough to display the font name",
           "type": "string"
         },
         "subsets": {

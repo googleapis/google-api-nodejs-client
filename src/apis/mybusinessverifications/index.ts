@@ -27,7 +27,7 @@ export function mybusinessverifications(
   options: mybusinessverifications_v1.Options
 ): mybusinessverifications_v1.Mybusinessverifications;
 export function mybusinessverifications<
-  T = mybusinessverifications_v1.Mybusinessverifications
+  T = mybusinessverifications_v1.Mybusinessverifications,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | mybusinessverifications_v1.Options

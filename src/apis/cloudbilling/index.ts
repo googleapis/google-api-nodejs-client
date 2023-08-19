@@ -33,7 +33,7 @@ export function cloudbilling(
   options: cloudbilling_v1beta.Options
 ): cloudbilling_v1beta.Cloudbilling;
 export function cloudbilling<
-  T = cloudbilling_v1.Cloudbilling | cloudbilling_v1beta.Cloudbilling
+  T = cloudbilling_v1.Cloudbilling | cloudbilling_v1beta.Cloudbilling,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

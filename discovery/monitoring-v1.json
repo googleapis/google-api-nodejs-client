@@ -472,7 +472,7 @@
                           },
                           "path": "v1/{+name}/location/{location}/prometheus/api/v1/labels",
                           "request": {
-                            "$ref": "ListLabelsRequest"
+                            "$ref": "QueryLabelsRequest"
                           },
                           "response": {
                             "$ref": "HttpBody"
@@ -510,6 +510,43 @@
                           "path": "v1/{+name}/location/{location}/prometheus/api/v1/query",
                           "request": {
                             "$ref": "QueryInstantRequest"
+                          },
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/monitoring",
+                            "https://www.googleapis.com/auth/monitoring.read"
+                          ]
+                        },
+                        "query_exemplars": {
+                          "description": "Lists exemplars relevant to a given PromQL query,",
+                          "flatPath": "v1/projects/{projectsId}/location/{location}/prometheus/api/v1/query_exemplars",
+                          "httpMethod": "POST",
+                          "id": "monitoring.projects.location.prometheus.api.v1.query_exemplars",
+                          "parameterOrder": [
+                            "name",
+                            "location"
+                          ],
+                          "parameters": {
+                            "location": {
+                              "description": "Location of the resource information. Has to be \"global\" now.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}/location/{location}/prometheus/api/v1/query_exemplars",
+                          "request": {
+                            "$ref": "QueryExemplarsRequest"
                           },
                           "response": {
                             "$ref": "HttpBody"
@@ -656,59 +693,6 @@
                             }
                           }
                         },
-                        "labels": {
-                          "methods": {
-                            "list": {
-                              "description": "Lists labels for metrics.",
-                              "flatPath": "v1/projects/{projectsId}/location/{location}/prometheus/api/v1/labels",
-                              "httpMethod": "GET",
-                              "id": "monitoring.projects.location.prometheus.api.v1.labels.list",
-                              "parameterOrder": [
-                                "name",
-                                "location"
-                              ],
-                              "parameters": {
-                                "end": {
-                                  "description": "The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
-                                  "location": "query",
-                                  "type": "string"
-                                },
-                                "location": {
-                                  "description": "Location of the resource information. Has to be \"global\" now.",
-                                  "location": "path",
-                                  "required": true,
-                                  "type": "string"
-                                },
-                                "match": {
-                                  "description": "A list of matchers encoded in the Prometheus label matcher format to constrain the values to series that satisfy them.",
-                                  "location": "query",
-                                  "type": "string"
-                                },
-                                "name": {
-                                  "description": "The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
-                                  "location": "path",
-                                  "pattern": "^projects/[^/]+$",
-                                  "required": true,
-                                  "type": "string"
-                                },
-                                "start": {
-                                  "description": "The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
-                                  "location": "query",
-                                  "type": "string"
-                                }
-                              },
-                              "path": "v1/{+name}/location/{location}/prometheus/api/v1/labels",
-                              "response": {
-                                "$ref": "HttpBody"
-                              },
-                              "scopes": [
-                                "https://www.googleapis.com/auth/cloud-platform",
-                                "https://www.googleapis.com/auth/monitoring",
-                                "https://www.googleapis.com/auth/monitoring.read"
-                              ]
-                            }
-                          }
-                        },
                         "metadata": {
                           "methods": {
                             "list": {
@@ -769,7 +753,7 @@
       }
     }
   },
-  "revision": "20221024",
+  "revision": "20230806",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -976,6 +960,21 @@
       },
       "type": "object"
     },
+    "ColumnSettings": {
+      "description": "The persistent settings for a table's columns.",
+      "id": "ColumnSettings",
+      "properties": {
+        "column": {
+          "description": "Required. The id of the column.",
+          "type": "string"
+        },
+        "visible": {
+          "description": "Required. Whether the column should be visible on page load.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Dashboard": {
       "description": "A Google Stackdriver dashboard. Dashboards define the content and layout of pages in the Stackdriver web application.",
       "id": "Dashboard",
@@ -1089,8 +1088,8 @@
           "enumDescriptions": [
             "Plot type is unspecified. The view will default to LINE.",
             "The data is plotted as a set of lines (one line per series).",
-            "The data is plotted as a set of filled areas (one area per series), with the areas stacked vertically (the base of each area is the top of its predecessor, and the base of the first area is the X axis). Since the areas do not overlap, each is filled with a different opaque color.",
-            "The data is plotted as a set of rectangular boxes (one box per series), with the boxes stacked vertically (the base of each box is the top of its predecessor, and the base of the first box is the X axis). Since the boxes do not overlap, each is filled with a different opaque color.",
+            "The data is plotted as a set of filled areas (one area per series), with the areas stacked vertically (the base of each area is the top of its predecessor, and the base of the first area is the x-axis). Since the areas do not overlap, each is filled with a different opaque color.",
+            "The data is plotted as a set of rectangular boxes (one box per series), with the boxes stacked vertically (the base of each box is the top of its predecessor, and the base of the first box is the x-axis). Since the boxes do not overlap, each is filled with a different opaque color.",
             "The data is plotted as a heatmap. The series being plotted must have a DISTRIBUTION value type. The value of each bucket in the distribution is displayed as a color. This type is not currently available in the Stackdriver Monitoring application."
           ],
           "type": "string"
@@ -1305,6 +1304,27 @@
       },
       "type": "object"
     },
+    "IncidentList": {
+      "description": "A widget that displays a list of incidents",
+      "id": "IncidentList",
+      "properties": {
+        "monitoredResources": {
+          "description": "Optional. The monitored resource for which incidents are listed. The resource doesn't need to be fully specified. That is, you can specify the resource type but not the values of the resource labels. The resource type and labels are used for filtering.",
+          "items": {
+            "$ref": "MonitoredResource"
+          },
+          "type": "array"
+        },
+        "policyNames": {
+          "description": "Optional. A list of alert policy names to filter the incident list by. Don't include the project ID prefix in the policy name. For example, use alertPolicies/utilization.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListDashboardsResponse": {
       "description": "The ListDashboards request.",
       "id": "ListDashboardsResponse",
@@ -1318,25 +1338,6 @@
         },
         "nextPageToken": {
           "description": "If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListLabelsRequest": {
-      "description": "ListLabelsRequest holds all parameters of the Prometheus upstream API for returning a list of label names.",
-      "id": "ListLabelsRequest",
-      "properties": {
-        "end": {
-          "description": "The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
-          "type": "string"
-        },
-        "match": {
-          "description": "A list of matchers encoded in the Prometheus label matcher format to constrain the values to series that satisfy them.",
-          "type": "string"
-        },
-        "start": {
-          "description": "The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
           "type": "string"
         }
       },
@@ -1422,6 +1423,24 @@
       },
       "type": "object"
     },
+    "MonitoredResource": {
+      "description": "An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for \"gce_instance\" has labels \"project_id\", \"instance_id\" and \"zone\": { \"type\": \"gce_instance\", \"labels\": { \"project_id\": \"my-project\", \"instance_id\": \"12345678901234\", \"zone\": \"us-central1-a\" }} ",
+      "id": "MonitoredResource",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels \"project_id\", \"instance_id\", and \"zone\".",
+          "type": "object"
+        },
+        "type": {
+          "description": "Required. The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MosaicLayout": {
       "description": "A mosaic layout divides the available space into a grid of blocks, and overlays the grid with tiles. Unlike GridLayout, tiles may span multiple grid blocks and can be placed at arbitrary locations in the grid.",
       "id": "MosaicLayout",
@@ -1470,7 +1489,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.",
           "type": "object"
         }
       },
@@ -1576,6 +1595,25 @@
       },
       "type": "object"
     },
+    "QueryExemplarsRequest": {
+      "description": "QueryExemplarsRequest holds all parameters of the Prometheus upstream API for querying exemplars.",
+      "id": "QueryExemplarsRequest",
+      "properties": {
+        "end": {
+          "description": "The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
+          "type": "string"
+        },
+        "query": {
+          "description": "A PromQL query string. Query lanauge documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/.",
+          "type": "string"
+        },
+        "start": {
+          "description": "The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "QueryInstantRequest": {
       "description": "QueryInstantRequest holds all parameters of the Prometheus upstream instant query API plus GCM specific parameters.",
       "id": "QueryInstantRequest",
@@ -1590,6 +1628,25 @@
         },
         "timeout": {
           "description": "An upper bound timeout for the query. Either a Prometheus duration string (https://prometheus.io/docs/prometheus/latest/querying/basics/#time-durations) or floating point seconds. This non-standard encoding must be used for compatibility with the open source API. Clients may still implement timeouts at the connection level while ignoring this field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueryLabelsRequest": {
+      "description": "QueryLabelsRequest holds all parameters of the Prometheus upstream API for returning a list of label names.",
+      "id": "QueryLabelsRequest",
+      "properties": {
+        "end": {
+          "description": "The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
+          "type": "string"
+        },
+        "match": {
+          "description": "A list of matchers encoded in the Prometheus label matcher format to constrain the values to series that satisfy them.",
+          "type": "string"
+        },
+        "start": {
+          "description": "The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.",
           "type": "string"
         }
       },
@@ -1689,6 +1746,10 @@
       "description": "A widget showing the latest value of a metric, and how this value relates to one or more thresholds.",
       "id": "Scorecard",
       "properties": {
+        "blankView": {
+          "$ref": "Empty",
+          "description": "Will cause the Scorecard to show only the value, with no indicator to its value relative to its thresholds."
+        },
         "gaugeView": {
           "$ref": "GaugeView",
           "description": "Will cause the scorecard to show a gauge chart."
@@ -1698,7 +1759,7 @@
           "description": "Will cause the scorecard to show a spark chart."
         },
         "thresholds": {
-          "description": "The thresholds used to determine the state of the scorecard given the time series' current value. For an actual value x, the scorecard is in a danger state if x is less than or equal to a danger threshold that triggers below, or greater than or equal to a danger threshold that triggers above. Similarly, if x is above/below a warning threshold that triggers above/below, then the scorecard is in a warning state - unless x also puts it in a danger state. (Danger trumps warning.)As an example, consider a scorecard with the following four thresholds: { value: 90, category: 'DANGER', trigger: 'ABOVE', }, { value: 70, category: 'WARNING', trigger: 'ABOVE', }, { value: 10, category: 'DANGER', trigger: 'BELOW', }, { value: 20, category: 'WARNING', trigger: 'BELOW', }Then: values less than or equal to 10 would put the scorecard in a DANGER state, values greater than 10 but less than or equal to 20 a WARNING state, values strictly between 20 and 70 an OK state, values greater than or equal to 70 but less than 90 a WARNING state, and values greater than or equal to 90 a DANGER state.",
+          "description": "The thresholds used to determine the state of the scorecard given the time series' current value. For an actual value x, the scorecard is in a danger state if x is less than or equal to a danger threshold that triggers below, or greater than or equal to a danger threshold that triggers above. Similarly, if x is above/below a warning threshold that triggers above/below, then the scorecard is in a warning state - unless x also puts it in a danger state. (Danger trumps warning.)As an example, consider a scorecard with the following four thresholds: { value: 90, category: 'DANGER', trigger: 'ABOVE', }, { value: 70, category: 'WARNING', trigger: 'ABOVE', }, { value: 10, category: 'DANGER', trigger: 'BELOW', }, { value: 20, category: 'WARNING', trigger: 'BELOW', } Then: values less than or equal to 10 would put the scorecard in a DANGER state, values greater than 10 but less than or equal to 20 a WARNING state, values strictly between 20 and 70 an OK state, values greater than or equal to 70 but less than 90 a WARNING state, and values greater than or equal to 90 a DANGER state.",
           "items": {
             "$ref": "Threshold"
           },
@@ -1839,6 +1900,7 @@
       "id": "TableDisplayOptions",
       "properties": {
         "shownColumns": {
+          "deprecated": true,
           "description": "Optional. This field is unused and has been replaced by TimeSeriesTable.column_settings",
           "items": {
             "type": "string"
@@ -1867,6 +1929,97 @@
             "Format is unspecified. Defaults to MARKDOWN.",
             "The text contains Markdown formatting.",
             "The text contains no special formatting."
+          ],
+          "type": "string"
+        },
+        "style": {
+          "$ref": "TextStyle",
+          "description": "How the text is styled"
+        }
+      },
+      "type": "object"
+    },
+    "TextStyle": {
+      "description": "Properties that determine how the title and content are styled",
+      "id": "TextStyle",
+      "properties": {
+        "backgroundColor": {
+          "description": "The background color as a hex string. \"#RRGGBB\" or \"#RGB\"",
+          "type": "string"
+        },
+        "fontSize": {
+          "description": "Font sizes for both the title and content. The title will still be larger relative to the content.",
+          "enum": [
+            "FONT_SIZE_UNSPECIFIED",
+            "FS_EXTRA_SMALL",
+            "FS_SMALL",
+            "FS_MEDIUM",
+            "FS_LARGE",
+            "FS_EXTRA_LARGE"
+          ],
+          "enumDescriptions": [
+            "No font size specified, will default to FS_LARGE",
+            "Extra small font size",
+            "Small font size",
+            "Medium font size",
+            "Large font size",
+            "Extra large font size"
+          ],
+          "type": "string"
+        },
+        "horizontalAlignment": {
+          "description": "The horizontal alignment of both the title and content",
+          "enum": [
+            "HORIZONTAL_ALIGNMENT_UNSPECIFIED",
+            "H_LEFT",
+            "H_CENTER",
+            "H_RIGHT"
+          ],
+          "enumDescriptions": [
+            "No horizontal alignment specified, will default to H_LEFT",
+            "Left-align",
+            "Center-align",
+            "Right-align"
+          ],
+          "type": "string"
+        },
+        "padding": {
+          "description": "The amount of padding around the widget",
+          "enum": [
+            "PADDING_SIZE_UNSPECIFIED",
+            "P_EXTRA_SMALL",
+            "P_SMALL",
+            "P_MEDIUM",
+            "P_LARGE",
+            "P_EXTRA_LARGE"
+          ],
+          "enumDescriptions": [
+            "No padding size specified, will default to P_EXTRA_SMALL",
+            "Extra small padding",
+            "Small padding",
+            "Medium padding",
+            "Large padding",
+            "Extra large padding"
+          ],
+          "type": "string"
+        },
+        "textColor": {
+          "description": "The text color as a hex string. \"#RRGGBB\" or \"#RGB\"",
+          "type": "string"
+        },
+        "verticalAlignment": {
+          "description": "The vertical alignment of both the title and content",
+          "enum": [
+            "VERTICAL_ALIGNMENT_UNSPECIFIED",
+            "V_TOP",
+            "V_CENTER",
+            "V_BOTTOM"
+          ],
+          "enumDescriptions": [
+            "No vertical alignment specified, will default to V_TOP",
+            "Top-align",
+            "Center-align",
+            "Bottom-align"
           ],
           "type": "string"
         }
@@ -1984,6 +2137,7 @@
         },
         "statisticalTimeSeriesFilter": {
           "$ref": "StatisticalTimeSeriesFilter",
+          "deprecated": true,
           "description": "Statistics based time series filter. Note: This field is deprecated and completely ignored by the API."
         }
       },
@@ -2011,6 +2165,7 @@
         },
         "statisticalTimeSeriesFilter": {
           "$ref": "StatisticalTimeSeriesFilter",
+          "deprecated": true,
           "description": "Statistics based time series filter. Note: This field is deprecated and completely ignored by the API."
         }
       },
@@ -2020,6 +2175,10 @@
       "description": "TimeSeriesQuery collects the set of supported methods for querying time series data from the Stackdriver metrics API.",
       "id": "TimeSeriesQuery",
       "properties": {
+        "outputFullDuration": {
+          "description": "Optional. If set, Cloud Monitoring will treat the full query duration as the alignment period so that there will be only 1 output value.*Note: This could override the configured alignment period except for the cases where a series of data points are expected, like - XyChart - Scorecard's spark chart",
+          "type": "boolean"
+        },
         "prometheusQuery": {
           "description": "A query used to fetch time series with PromQL.",
           "type": "string"
@@ -2047,6 +2206,13 @@
       "description": "A table that displays time series data.",
       "id": "TimeSeriesTable",
       "properties": {
+        "columnSettings": {
+          "description": "Optional. The list of the persistent column settings for the table.",
+          "items": {
+            "$ref": "ColumnSettings"
+          },
+          "type": "array"
+        },
         "dataSets": {
           "description": "Required. The data displayed in this table.",
           "items": {
@@ -2075,6 +2241,10 @@
       "description": "A protocol buffer message type.",
       "id": "Type",
       "properties": {
+        "edition": {
+          "description": "The source edition string, only valid when syntax is SYNTAX_EDITIONS.",
+          "type": "string"
+        },
         "fields": {
           "description": "The list of fields.",
           "items": {
@@ -2108,11 +2278,13 @@
           "description": "The source syntax.",
           "enum": [
             "SYNTAX_PROTO2",
-            "SYNTAX_PROTO3"
+            "SYNTAX_PROTO3",
+            "SYNTAX_EDITIONS"
           ],
           "enumDescriptions": [
             "Syntax proto2.",
-            "Syntax proto3."
+            "Syntax proto3.",
+            "Syntax editions."
           ],
           "type": "string"
         }
@@ -2134,6 +2306,10 @@
         "collapsibleGroup": {
           "$ref": "CollapsibleGroup",
           "description": "A widget that groups the other widgets. All widgets that are within the area spanned by the grouping widget are considered member widgets."
+        },
+        "incidentList": {
+          "$ref": "IncidentList",
+          "description": "A widget that shows list of incidents."
         },
         "logsPanel": {
           "$ref": "LogsPanel",
@@ -2191,15 +2367,15 @@
         },
         "xAxis": {
           "$ref": "Axis",
-          "description": "The properties applied to the X axis."
+          "description": "The properties applied to the x-axis."
         },
         "y2Axis": {
           "$ref": "Axis",
-          "description": "The properties applied to the Y2 axis."
+          "description": "The properties applied to the y2-axis."
         },
         "yAxis": {
           "$ref": "Axis",
-          "description": "The properties applied to the Y axis."
+          "description": "The properties applied to the y-axis."
         }
       },
       "type": "object"

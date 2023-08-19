@@ -154,6 +154,15 @@ export namespace artifactregistry_v1 {
     packageType?: string | null;
   }
   /**
+   * Configuration for an Apt remote repository.
+   */
+  export interface Schema$AptRepository {
+    /**
+     * One of the publicly available Apt repositories supported by Artifact Registry.
+     */
+    publicRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository;
+  }
+  /**
    * The metadata of an LRO from deleting multiple versions.
    */
   export interface Schema$BatchDeleteVersionsMetadata {
@@ -161,6 +170,19 @@ export namespace artifactregistry_v1 {
      * The versions the operation failed to delete.
      */
     failedVersions?: string[] | null;
+  }
+  /**
+   * The request to delete multiple versions across a repository.
+   */
+  export interface Schema$BatchDeleteVersionsRequest {
+    /**
+     * Required. The names of the versions to delete. A maximum of 10000 versions can be deleted in a batch.
+     */
+    names?: string[] | null;
+    /**
+     * If true, the request is performed without deleting data, following AIP-163.
+     */
+    validateOnly?: boolean | null;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -171,13 +193,80 @@ export namespace artifactregistry_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
      * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string | null;
+  }
+  /**
+   * Artifact policy configuration for repository cleanup policies.
+   */
+  export interface Schema$CleanupPolicy {
+    /**
+     * Policy action.
+     */
+    action?: string | null;
+    /**
+     * Policy condition for matching versions.
+     */
+    condition?: Schema$CleanupPolicyCondition;
+    /**
+     * The user-provided ID of the cleanup policy.
+     */
+    id?: string | null;
+    /**
+     * Policy condition for retaining a minimum number of versions. May only be specified with a Keep action.
+     */
+    mostRecentVersions?: Schema$CleanupPolicyMostRecentVersions;
+  }
+  /**
+   * CleanupPolicyCondition is a set of conditions attached to a CleanupPolicy. If multiple entries are set, all must be satisfied for the condition to be satisfied.
+   */
+  export interface Schema$CleanupPolicyCondition {
+    /**
+     * Match versions newer than a duration.
+     */
+    newerThan?: string | null;
+    /**
+     * Match versions older than a duration.
+     */
+    olderThan?: string | null;
+    /**
+     * Match versions by package prefix. Applied on any prefix match.
+     */
+    packageNamePrefixes?: string[] | null;
+    /**
+     * Match versions by tag prefix. Applied on any prefix match.
+     */
+    tagPrefixes?: string[] | null;
+    /**
+     * Match versions by tag status.
+     */
+    tagState?: string | null;
+    /**
+     * DEPRECATED: Use older_than.
+     */
+    versionAge?: string | null;
+    /**
+     * Match versions by version name prefix. Applied on any prefix match.
+     */
+    versionNamePrefixes?: string[] | null;
+  }
+  /**
+   * CleanupPolicyMostRecentVersions is an alternate condition of a CleanupPolicy for retaining a minimum number of versions.
+   */
+  export interface Schema$CleanupPolicyMostRecentVersions {
+    /**
+     * Minimum number of versions to keep.
+     */
+    keepCount?: number | null;
+    /**
+     * List of package name prefixes that will apply this rule.
+     */
+    packageNamePrefixes?: string[] | null;
   }
   /**
    * DockerImage represents a docker artifact. The following fields are returned as untyped metadata in the Version resource, using camelcase keys (i.e. metadata.imageSizeBytes): * imageSizeBytes * mediaType * buildTime
@@ -217,6 +306,24 @@ export namespace artifactregistry_v1 {
     uri?: string | null;
   }
   /**
+   * Configuration for a Docker remote repository.
+   */
+  export interface Schema$DockerRepository {
+    /**
+     * One of the publicly available Docker repositories supported by Artifact Registry.
+     */
+    publicRepository?: string | null;
+  }
+  /**
+   * DockerRepositoryConfig is docker related repository details. Provides additional configuration details for repositories of the docker format type.
+   */
+  export interface Schema$DockerRepositoryConfig {
+    /**
+     * The repository which enabled this flag prevents all tags from being modified, moved or deleted. This does not prevent tags from being created.
+     */
+    immutableTags?: boolean | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -242,13 +349,55 @@ export namespace artifactregistry_v1 {
     title?: string | null;
   }
   /**
+   * GoModule represents a Go module.
+   */
+  export interface Schema$GoModule {
+    /**
+     * Output only. The time when the Go module is created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of a Go module.
+     */
+    name?: string | null;
+    /**
+     * Output only. The time when the Go module is updated.
+     */
+    updateTime?: string | null;
+    /**
+     * The version of the Go module. Must be a valid canonical version as defined in https://go.dev/ref/mod#glos-canonical-version.
+     */
+    version?: string | null;
+  }
+  /**
+   * A detailed representation of a GooGet artifact.
+   */
+  export interface Schema$GoogetArtifact {
+    /**
+     * Output only. Operating system architecture of the artifact.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The Artifact Registry resource name of the artifact.
+     */
+    name?: string | null;
+    /**
+     * Output only. The GooGet package name of the artifact.
+     */
+    packageName?: string | null;
+  }
+  /**
    * Files store content that is potentially associated with Packages or Versions.
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1File {
     /**
-     * The time when the File was created.
+     * Output only. The time when the File was created.
      */
     createTime?: string | null;
+    /**
+     * Output only. The time when the last attempt to refresh the file's data was made. Only set when the repository is remote.
+     */
+    fetchTime?: string | null;
     /**
      * The hashes of the file content.
      */
@@ -266,9 +415,35 @@ export namespace artifactregistry_v1 {
      */
     sizeBytes?: string | null;
     /**
-     * The time when the File was last updated.
+     * Output only. The time when the File was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Publicly available Apt repositories constructed from a common repository base and a custom repository path.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository {
+    /**
+     * A common public repository base for Apt.
+     */
+    repositoryBase?: string | null;
+    /**
+     * A custom field to define a path to a specific repository from the base.
+     */
+    repositoryPath?: string | null;
+  }
+  /**
+   * Publicly available Yum repositories constructed from a common repository base and a custom repository path.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository {
+    /**
+     * A common public repository base for Yum.
+     */
+    repositoryBase?: string | null;
+    /**
+     * A custom field to define a path to a specific repository from the base.
+     */
+    repositoryPath?: string | null;
   }
   /**
    * A hash of file content.
@@ -338,6 +513,58 @@ export namespace artifactregistry_v1 {
   /**
    * Error information explaining why a package was not imported.
    */
+  export interface Schema$ImportGoogetArtifactsErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$ImportGoogetArtifactsGcsSource;
+  }
+  /**
+   * Google Cloud Storage location where the artifacts currently reside.
+   */
+  export interface Schema$ImportGoogetArtifactsGcsSource {
+    /**
+     * Cloud Storage paths URI (e.g., `gs://my_bucket/my_object`).
+     */
+    uris?: string[] | null;
+    /**
+     * Supports URI wildcards for matching multiple objects from a single URI.
+     */
+    useWildcards?: boolean | null;
+  }
+  /**
+   * The operation metadata for importing artifacts.
+   */
+  export interface Schema$ImportGoogetArtifactsMetadata {}
+  /**
+   * The request to import new googet artifacts.
+   */
+  export interface Schema$ImportGoogetArtifactsRequest {
+    /**
+     * Google Cloud Storage location where input content is located.
+     */
+    gcsSource?: Schema$ImportGoogetArtifactsGcsSource;
+  }
+  /**
+   * The response message from importing artifacts.
+   */
+  export interface Schema$ImportGoogetArtifactsResponse {
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$ImportGoogetArtifactsErrorInfo[];
+    /**
+     * The GooGet artifacts updated.
+     */
+    googetArtifacts?: Schema$GoogetArtifact[];
+  }
+  /**
+   * Error information explaining why a package was not imported.
+   */
   export interface Schema$ImportYumArtifactsErrorInfo {
     /**
      * The detailed error status.
@@ -388,7 +615,7 @@ export namespace artifactregistry_v1 {
     yumArtifacts?: Schema$YumArtifact[];
   }
   /**
-   * A detailed representation of a GooGet artifact.
+   * A detailed representation of a KFP artifact.
    */
   export interface Schema$KfpArtifact {
     /**
@@ -531,7 +758,7 @@ export namespace artifactregistry_v1 {
     versions?: Schema$Version[];
   }
   /**
-   * A resource that represents Google Cloud Platform location.
+   * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
     /**
@@ -589,6 +816,15 @@ export namespace artifactregistry_v1 {
     version?: string | null;
   }
   /**
+   * Configuration for a Maven remote repository.
+   */
+  export interface Schema$MavenRepository {
+    /**
+     * One of the publicly available Maven repositories supported by Artifact Registry.
+     */
+    publicRepository?: string | null;
+  }
+  /**
    * MavenRepositoryConfig is maven related repository details. Provides additional configuration details for repositories of the maven format type.
    */
   export interface Schema$MavenRepositoryConfig {
@@ -631,6 +867,15 @@ export namespace artifactregistry_v1 {
     version?: string | null;
   }
   /**
+   * Configuration for a Npm remote repository.
+   */
+  export interface Schema$NpmRepository {
+    /**
+     * One of the publicly available Npm repositories supported by Artifact Registry.
+     */
+    publicRepository?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -651,7 +896,7 @@ export namespace artifactregistry_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -672,7 +917,7 @@ export namespace artifactregistry_v1 {
      */
     displayName?: string | null;
     /**
-     * The name of the package, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1". If the package ID part contains slashes, the slashes are escaped.
+     * The name of the package, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`. If the package ID part contains slashes, the slashes are escaped.
      */
     name?: string | null;
     /**
@@ -681,7 +926,7 @@ export namespace artifactregistry_v1 {
     updateTime?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -740,17 +985,71 @@ export namespace artifactregistry_v1 {
     version?: string | null;
   }
   /**
+   * Configuration for a Python remote repository.
+   */
+  export interface Schema$PythonRepository {
+    /**
+     * One of the publicly available Python repositories supported by Artifact Registry.
+     */
+    publicRepository?: string | null;
+  }
+  /**
+   * Remote repository configuration.
+   */
+  export interface Schema$RemoteRepositoryConfig {
+    /**
+     * Specific settings for an Apt remote repository.
+     */
+    aptRepository?: Schema$AptRepository;
+    /**
+     * The description of the remote source.
+     */
+    description?: string | null;
+    /**
+     * Specific settings for a Docker remote repository.
+     */
+    dockerRepository?: Schema$DockerRepository;
+    /**
+     * Specific settings for a Maven remote repository.
+     */
+    mavenRepository?: Schema$MavenRepository;
+    /**
+     * Specific settings for an Npm remote repository.
+     */
+    npmRepository?: Schema$NpmRepository;
+    /**
+     * Specific settings for a Python remote repository.
+     */
+    pythonRepository?: Schema$PythonRepository;
+    /**
+     * Specific settings for a Yum remote repository.
+     */
+    yumRepository?: Schema$YumRepository;
+  }
+  /**
    * A Repository for storing artifacts with a specific format.
    */
   export interface Schema$Repository {
     /**
-     * The time when the repository was created.
+     * Optional. Cleanup policies for this repository. Cleanup policies indicate when certain package versions can be automatically deleted. Map keys are policy IDs supplied by users during policy creation. They must unique within a repository and be under 128 characters in length.
+     */
+    cleanupPolicies?: {[key: string]: Schema$CleanupPolicy} | null;
+    /**
+     * Optional. If true, the cleanup pipeline is prevented from deleting versions in this repository.
+     */
+    cleanupPolicyDryRun?: boolean | null;
+    /**
+     * Output only. The time when the repository was created.
      */
     createTime?: string | null;
     /**
      * The user-provided description of the repository.
      */
     description?: string | null;
+    /**
+     * Docker repository config contains repository level configuration for the repositories of docker type.
+     */
+    dockerConfig?: Schema$DockerRepositoryConfig;
     /**
      * The format of packages that are stored in the repository.
      */
@@ -768,21 +1067,50 @@ export namespace artifactregistry_v1 {
      */
     mavenConfig?: Schema$MavenRepositoryConfig;
     /**
+     * The mode of the repository.
+     */
+    mode?: string | null;
+    /**
      * The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
      */
     name?: string | null;
+    /**
+     * Configuration specific for a Remote Repository.
+     */
+    remoteRepositoryConfig?: Schema$RemoteRepositoryConfig;
     /**
      * Output only. If set, the repository satisfies physical zone separation.
      */
     satisfiesPzs?: boolean | null;
     /**
+     * Optional. Config and state for sbom generation for resources within this Repository.
+     */
+    sbomConfig?: Schema$SbomConfig;
+    /**
      * Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.
      */
     sizeBytes?: string | null;
     /**
-     * The time when the repository was last updated.
+     * Output only. The time when the repository was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Configuration specific for a Virtual Repository.
+     */
+    virtualRepositoryConfig?: Schema$VirtualRepositoryConfig;
+  }
+  /**
+   * Config for whether to generate SBOMs for resources in this repository, as well as output fields describing current state.
+   */
+  export interface Schema$SbomConfig {
+    /**
+     * Optional. Config for whether this repository has sbom generation disabled.
+     */
+    enablementConfig?: string | null;
+    /**
+     * Output only. The last time this repository config was set to INHERITED.
+     */
+    lastEnableTime?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -868,6 +1196,49 @@ export namespace artifactregistry_v1 {
     aptArtifacts?: Schema$AptArtifact[];
   }
   /**
+   * The response to upload a Go module.
+   */
+  export interface Schema$UploadGoModuleMediaResponse {
+    /**
+     * Operation to be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The operation metadata for uploading go modules.
+   */
+  export interface Schema$UploadGoModuleMetadata {}
+  /**
+   * The request to upload a Go module.
+   */
+  export interface Schema$UploadGoModuleRequest {}
+  /**
+   * The response to upload an artifact.
+   */
+  export interface Schema$UploadGoogetArtifactMediaResponse {
+    /**
+     * Operation to be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The operation metadata for uploading artifacts.
+   */
+  export interface Schema$UploadGoogetArtifactMetadata {}
+  /**
+   * The request to upload an artifact.
+   */
+  export interface Schema$UploadGoogetArtifactRequest {}
+  /**
+   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
+   */
+  export interface Schema$UploadGoogetArtifactResponse {
+    /**
+     * The GooGet artifacts updated.
+     */
+    googetArtifacts?: Schema$GoogetArtifact[];
+  }
+  /**
    * The response to upload an artifact.
    */
   export interface Schema$UploadKfpArtifactMediaResponse {
@@ -920,6 +1291,23 @@ export namespace artifactregistry_v1 {
     yumArtifacts?: Schema$YumArtifact[];
   }
   /**
+   * Artifact policy configuration for the repository contents.
+   */
+  export interface Schema$UpstreamPolicy {
+    /**
+     * The user-provided ID of the upstream policy.
+     */
+    id?: string | null;
+    /**
+     * Entries with a greater priority value take precedence in the pull order.
+     */
+    priority?: number | null;
+    /**
+     * A reference to the repository resource, for example: "projects/p1/locations/us-central1/repositories/repo1".
+     */
+    repository?: string | null;
+  }
+  /**
    * The body of a version resource. A version resource represents a collection of components, such as files and other data. This may correspond to a version in many package management schemes.
    */
   export interface Schema$Version {
@@ -949,6 +1337,28 @@ export namespace artifactregistry_v1 {
     updateTime?: string | null;
   }
   /**
+   * Virtual repository configuration.
+   */
+  export interface Schema$VirtualRepositoryConfig {
+    /**
+     * Policies that configure the upstream artifacts distributed by the Virtual Repository. Upstream policies cannot be set on a standard repository.
+     */
+    upstreamPolicies?: Schema$UpstreamPolicy[];
+  }
+  /**
+   * The Artifact Registry VPC SC config that apply to a Project.
+   */
+  export interface Schema$VPCSCConfig {
+    /**
+     * The name of the project's VPC SC Config. Always of the form: projects/{projectID\}/locations/{location\}/vpcscConfig In update request: never set In response: always set
+     */
+    name?: string | null;
+    /**
+     * The project per location VPC SC policy that defines the VPC SC behavior for the Remote Repository (Allow/Deny).
+     */
+    vpcscPolicy?: string | null;
+  }
+  /**
    * A detailed representation of a Yum artifact.
    */
   export interface Schema$YumArtifact {
@@ -969,6 +1379,15 @@ export namespace artifactregistry_v1 {
      */
     packageType?: string | null;
   }
+  /**
+   * Configuration for a Yum remote repository.
+   */
+  export interface Schema$YumRepository {
+    /**
+     * One of the publicly available Yum repositories supported by Artifact Registry.
+     */
+    publicRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -980,52 +1399,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Retrieves the Settings for the Project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.getProjectSettings({
-     *     // Required. The name of the projectSettings resource.
-     *     name: 'projects/my-project/projectSettings',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "legacyRedirectionState": "my_legacyRedirectionState",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1113,60 +1486,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates the Settings for the Project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.updateProjectSettings({
-     *     // The name of the project's settings. Always of the form: projects/{project-id\}/projectSettings In update request: never set In response: always set
-     *     name: 'projects/my-project/projectSettings',
-     *     // Field mask to support partial updates.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "legacyRedirectionState": "my_legacyRedirectionState",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "legacyRedirectionState": "my_legacyRedirectionState",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1293,55 +1612,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets information about a location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.get({
-     *     // Resource name for the location.
-     *     name: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "locationId": "my_locationId",
-     *   //   "metadata": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1426,59 +1696,92 @@ export namespace artifactregistry_v1 {
     }
 
     /**
+     * Retrieves the VPCSC Config for the Project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVpcscConfig(
+      params: Params$Resource$Projects$Locations$Getvpcscconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getVpcscConfig(
+      params?: Params$Resource$Projects$Locations$Getvpcscconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VPCSCConfig>;
+    getVpcscConfig(
+      params: Params$Resource$Projects$Locations$Getvpcscconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVpcscConfig(
+      params: Params$Resource$Projects$Locations$Getvpcscconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$VPCSCConfig>,
+      callback: BodyResponseCallback<Schema$VPCSCConfig>
+    ): void;
+    getVpcscConfig(
+      params: Params$Resource$Projects$Locations$Getvpcscconfig,
+      callback: BodyResponseCallback<Schema$VPCSCConfig>
+    ): void;
+    getVpcscConfig(callback: BodyResponseCallback<Schema$VPCSCConfig>): void;
+    getVpcscConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getvpcscconfig
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$VPCSCConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getvpcscconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getvpcscconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VPCSCConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VPCSCConfig>(parameters);
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
-     *     filter: 'placeholder-value',
-     *     // The resource that owns the locations collection, if applicable.
-     *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service selects a default.
-     *     pageSize: 'placeholder-value',
-     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "locations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1569,12 +1872,104 @@ export namespace artifactregistry_v1 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates the VPCSC Config for the Project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateVpcscConfig(
+      params: Params$Resource$Projects$Locations$Updatevpcscconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateVpcscConfig(
+      params?: Params$Resource$Projects$Locations$Updatevpcscconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VPCSCConfig>;
+    updateVpcscConfig(
+      params: Params$Resource$Projects$Locations$Updatevpcscconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateVpcscConfig(
+      params: Params$Resource$Projects$Locations$Updatevpcscconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$VPCSCConfig>,
+      callback: BodyResponseCallback<Schema$VPCSCConfig>
+    ): void;
+    updateVpcscConfig(
+      params: Params$Resource$Projects$Locations$Updatevpcscconfig,
+      callback: BodyResponseCallback<Schema$VPCSCConfig>
+    ): void;
+    updateVpcscConfig(callback: BodyResponseCallback<Schema$VPCSCConfig>): void;
+    updateVpcscConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updatevpcscconfig
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VPCSCConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$VPCSCConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updatevpcscconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updatevpcscconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VPCSCConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VPCSCConfig>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
      * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Getvpcscconfig
+    extends StandardParameters {
+    /**
+     * Required. The name of the VPCSCConfig resource.
      */
     name?: string;
   }
@@ -1597,6 +1992,22 @@ export namespace artifactregistry_v1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Projects$Locations$Updatevpcscconfig
+    extends StandardParameters {
+    /**
+     * The name of the project's VPC SC Config. Always of the form: projects/{projectID\}/locations/{location\}/vpcscConfig In update request: never set In response: always set
+     */
+    name?: string;
+    /**
+     * Field mask to support partial updates.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VPCSCConfig;
+  }
 
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
@@ -1606,55 +2017,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1752,6 +2114,8 @@ export namespace artifactregistry_v1 {
     aptArtifacts: Resource$Projects$Locations$Repositories$Aptartifacts;
     dockerImages: Resource$Projects$Locations$Repositories$Dockerimages;
     files: Resource$Projects$Locations$Repositories$Files;
+    goModules: Resource$Projects$Locations$Repositories$Gomodules;
+    googetArtifacts: Resource$Projects$Locations$Repositories$Googetartifacts;
     kfpArtifacts: Resource$Projects$Locations$Repositories$Kfpartifacts;
     mavenArtifacts: Resource$Projects$Locations$Repositories$Mavenartifacts;
     npmPackages: Resource$Projects$Locations$Repositories$Npmpackages;
@@ -1767,6 +2131,13 @@ export namespace artifactregistry_v1 {
       this.files = new Resource$Projects$Locations$Repositories$Files(
         this.context
       );
+      this.goModules = new Resource$Projects$Locations$Repositories$Gomodules(
+        this.context
+      );
+      this.googetArtifacts =
+        new Resource$Projects$Locations$Repositories$Googetartifacts(
+          this.context
+        );
       this.kfpArtifacts =
         new Resource$Projects$Locations$Repositories$Kfpartifacts(this.context);
       this.mavenArtifacts =
@@ -1788,71 +2159,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Creates a repository. The returned Operation will finish once the repository has been created. Its response will be the created Repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.create({
-     *     // Required. The name of the parent resource where the repository will be created.
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // The repository id to use for this repository.
-     *     repositoryId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "format": "my_format",
-     *       //   "kmsKeyName": "my_kmsKeyName",
-     *       //   "labels": {},
-     *       //   "mavenConfig": {},
-     *       //   "name": "my_name",
-     *       //   "satisfiesPzs": false,
-     *       //   "sizeBytes": "my_sizeBytes",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1941,52 +2247,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes a repository and all of its contents. The returned Operation will finish once the repository has been deleted. It will not have any Operation metadata and will return a google.protobuf.Empty response.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.delete({
-     *     // Required. The name of the repository to delete.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2072,60 +2332,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.get({
-     *     // Required. The name of the repository to retrieve.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "format": "my_format",
-     *   //   "kmsKeyName": "my_kmsKeyName",
-     *   //   "labels": {},
-     *   //   "mavenConfig": {},
-     *   //   "name": "my_name",
-     *   //   "satisfiesPzs": false,
-     *   //   "sizeBytes": "my_sizeBytes",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2211,57 +2417,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets the IAM policy for a given resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.getIamPolicy({
-     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2351,56 +2506,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists repositories.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.list({
-     *     // The maximum number of repositories to return. Maximum page size is 1,000.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous list request, if any.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The name of the parent resource whose repositories will be listed.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "repositories": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2494,76 +2599,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates a repository.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.patch({
-     *     // The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "description": "my_description",
-     *       //   "format": "my_format",
-     *       //   "kmsKeyName": "my_kmsKeyName",
-     *       //   "labels": {},
-     *       //   "mavenConfig": {},
-     *       //   "name": "my_name",
-     *       //   "satisfiesPzs": false,
-     *       //   "sizeBytes": "my_sizeBytes",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "format": "my_format",
-     *   //   "kmsKeyName": "my_kmsKeyName",
-     *   //   "labels": {},
-     *   //   "mavenConfig": {},
-     *   //   "name": "my_name",
-     *   //   "satisfiesPzs": false,
-     *   //   "sizeBytes": "my_sizeBytes",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2649,60 +2684,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates the IAM policy for a given resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2792,61 +2773,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Tests if the caller has a list of permissions on a resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3047,62 +2973,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Imports Apt artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.aptArtifacts.import({
-     *       // The name of the parent resource where the artifacts will be imported.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "gcsSource": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3192,60 +3062,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Directly uploads an Apt artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.aptArtifacts.upload({
-     *       // The name of the parent resource where the artifacts will be uploaded.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *       media: {
-     *         mimeType: 'placeholder-value',
-     *         body: 'placeholder-value',
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "operation": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3394,59 +3210,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a docker image.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.dockerImages.get({
-     *       // Required. The name of the docker images.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/dockerImages/my-dockerImage',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "buildTime": "my_buildTime",
-     *   //   "imageSizeBytes": "my_imageSizeBytes",
-     *   //   "mediaType": "my_mediaType",
-     *   //   "name": "my_name",
-     *   //   "tags": [],
-     *   //   "updateTime": "my_updateTime",
-     *   //   "uploadTime": "my_uploadTime",
-     *   //   "uri": "my_uri"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3533,60 +3296,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists docker images.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.dockerImages.list({
-     *       // The field to order the results by.
-     *       orderBy: 'placeholder-value',
-     *       // The maximum number of artifacts to return.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous list request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The name of the parent resource whose docker images will be listed.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dockerImages": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3715,56 +3424,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a file.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.files.get({
-     *     // The name of the file to retrieve.
-     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/files/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "hashes": [],
-     *   //   "name": "my_name",
-     *   //   "owner": "my_owner",
-     *   //   "sizeBytes": "my_sizeBytes",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3860,63 +3519,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists files.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.files.list(
-     *     {
-     *       // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `owner` An example of using a filter: * `name="projects/p1/locations/us-central1/repositories/repo1/files/a/b/x"` --\> Files with an ID starting with "a/b/". * `owner="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Files owned by the version `1.0` in package `pkg1`.
-     *       filter: 'placeholder-value',
-     *       // The field to order the results by.
-     *       orderBy: 'placeholder-value',
-     *       // The maximum number of files to return.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous list request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "files": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4011,7 +3613,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Files$Get
     extends StandardParameters {
     /**
-     * The name of the file to retrieve.
+     * Required. The name of the file to retrieve.
      */
     name?: string;
   }
@@ -4034,9 +3636,381 @@ export namespace artifactregistry_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
+     * Required. The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Gomodules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Directly uploads a Go module. The returned Operation will complete once the Go module is uploaded. Package, Version, and File resources are created based on the uploaded Go module.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadGoModuleMediaResponse>;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadGoModuleMediaResponse>,
+      callback: BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Gomodules$Upload,
+      callback: BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Gomodules$Upload
+        | BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadGoModuleMediaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadGoModuleMediaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Gomodules$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Gomodules$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/goModules:create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (rootUrl + '/upload/v1/{+parent}/goModules:create').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadGoModuleMediaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadGoModuleMediaResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Gomodules$Upload
+    extends StandardParameters {
+    /**
+     * The resource name of the repository where the Go module will be uploaded.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadGoModuleRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
+  }
+
+  export class Resource$Projects$Locations$Repositories$Googetartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Imports GooGet artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/googetArtifacts:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Directly uploads a GooGet artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadGoogetArtifactMediaResponse>;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>,
+      callback: BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload,
+      callback: BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload
+        | BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadGoogetArtifactMediaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadGoogetArtifactMediaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/googetArtifacts:create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl + '/upload/v1/{+parent}/googetArtifacts:create'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadGoogetArtifactMediaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadGoogetArtifactMediaResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Googetartifacts$Import
+    extends StandardParameters {
+    /**
+     * The name of the parent resource where the artifacts will be imported.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportGoogetArtifactsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Googetartifacts$Upload
+    extends StandardParameters {
+    /**
+     * The name of the parent resource where the artifacts will be uploaded.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadGoogetArtifactRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Projects$Locations$Repositories$Kfpartifacts {
@@ -4047,63 +4021,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Directly uploads a KFP artifact. The returned Operation will complete once the resource is uploaded. Package, Version, and File resources will be created based on the uploaded artifact. Uploaded artifacts that conflict with existing resources will be overwritten.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.kfpArtifacts.upload({
-     *       // The resource name of the repository where the KFP artifact will be uploaded.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "description": "my_description",
-     *         //   "tags": []
-     *         // }
-     *       },
-     *       media: {
-     *         mimeType: 'placeholder-value',
-     *         body: 'placeholder-value',
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "operation": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4240,58 +4157,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a maven artifact.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.mavenArtifacts.get({
-     *       // Required. The name of the maven artifact.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/mavenArtifacts/my-mavenArtifact',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "artifactId": "my_artifactId",
-     *   //   "createTime": "my_createTime",
-     *   //   "groupId": "my_groupId",
-     *   //   "name": "my_name",
-     *   //   "pomUri": "my_pomUri",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "version": "my_version"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4378,58 +4243,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists maven artifacts.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.mavenArtifacts.list({
-     *       // The maximum number of artifacts to return.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous list request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The name of the parent resource whose maven artifacts will be listed.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "mavenArtifacts": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4556,57 +4369,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a npm package.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.npmPackages.get({
-     *       // Required. The name of the npm package.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/npmPackages/my-npmPackage',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "name": "my_name",
-     *   //   "packageName": "my_packageName",
-     *   //   "tags": [],
-     *   //   "updateTime": "my_updateTime",
-     *   //   "version": "my_version"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4693,58 +4455,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists npm packages.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.npmPackages.list({
-     *       // The maximum number of artifacts to return.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous list request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The name of the parent resource whose npm packages will be listed.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "npmPackages": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4878,53 +4588,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes a package and all of its versions and tags. The returned operation will complete once the package has been deleted.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.delete({
-     *       // Required. The name of the package to delete.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5011,55 +4674,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a package.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.get({
-     *       // Required. The name of the package to retrieve.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5146,58 +4760,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists packages.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.list({
-     *       // The maximum number of packages to return. Maximum page size is 1,000.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous list request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The name of the parent resource whose packages will be listed.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "packages": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5329,64 +4891,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Creates a tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.tags.create(
-     *       {
-     *         // The name of the parent resource where the tag will be created.
-     *         parent:
-     *           'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
-     *         // The tag id to use for this repository.
-     *         tagId: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "name": "my_name",
-     *           //   "version": "my_version"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "version": "my_version"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5473,49 +4977,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Deletes a tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.tags.delete(
-     *       {
-     *         // The name of the tag to delete.
-     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5602,53 +5063,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.tags.get({
-     *       // The name of the tag to retrieve.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "version": "my_version"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5735,60 +5149,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists tags.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.tags.list({
-     *       // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Tags that are applied to the version `1.0` in package `pkg1`.
-     *       filter: 'placeholder-value',
-     *       // The maximum number of tags to return. Maximum page size is 10,000.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous list request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // The name of the parent resource whose tags will be listed.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "tags": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5875,61 +5235,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Updates a tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.tags.patch({
-     *       // The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\-._~:@], anything else must be URL encoded.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
-     *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "name": "my_name",
-     *         //   "version": "my_version"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "version": "my_version"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6060,7 +5365,7 @@ export namespace artifactregistry_v1 {
      */
     pageToken?: string;
     /**
-     * The name of the parent resource whose tags will be listed.
+     * The name of the parent package whose tags will be listed. For example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1`.
      */
     parent?: string;
   }
@@ -6088,58 +5393,96 @@ export namespace artifactregistry_v1 {
     }
 
     /**
+     * Deletes multiple versions across a repository. The returned operation will complete once the versions have been deleted.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDelete(
+      params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchDelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/versions:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Deletes a version and all of its content. The returned operation will complete once the version has been deleted.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.versions.delete(
-     *       {
-     *         // By default, a version that is tagged may not be deleted. If force=true, the version and any tags pointing to the version are deleted.
-     *         force: 'placeholder-value',
-     *         // The name of the version to delete.
-     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/versions/my-version',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6226,61 +5569,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a version
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.versions.get(
-     *       {
-     *         // The name of the version to retrieve.
-     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/versions/my-version',
-     *         // The view that should be returned in the response.
-     *         view: 'placeholder-value',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "relatedTags": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6367,64 +5655,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists versions.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.packages.versions.list(
-     *       {
-     *         // Optional. The field to order the results by.
-     *         orderBy: 'placeholder-value',
-     *         // The maximum number of versions to return. Maximum page size is 1,000.
-     *         pageSize: 'placeholder-value',
-     *         // The next_page_token value returned from a previous list request, if any.
-     *         pageToken: 'placeholder-value',
-     *         // The name of the parent resource whose versions will be listed.
-     *         parent:
-     *           'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
-     *         // The view that should be returned in the response.
-     *         view: 'placeholder-value',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "versions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6518,6 +5748,18 @@ export namespace artifactregistry_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete
+    extends StandardParameters {
+    /**
+     * The name of the repository holding all requested versions.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchDeleteVersionsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete
     extends StandardParameters {
     /**
@@ -6572,57 +5814,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Gets a python package.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.pythonPackages.get({
-     *       // Required. The name of the python package.
-     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/pythonPackages/my-pythonPackage',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "name": "my_name",
-     *   //   "packageName": "my_packageName",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "uri": "my_uri",
-     *   //   "version": "my_version"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6709,58 +5900,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Lists python packages.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.pythonPackages.list({
-     *       // The maximum number of artifacts to return.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous list request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The name of the parent resource whose python packages will be listed.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "pythonPackages": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6887,62 +6026,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Imports Yum (RPM) artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.yumArtifacts.import({
-     *       // The name of the parent resource where the artifacts will be imported.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "gcsSource": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7032,60 +6115,6 @@ export namespace artifactregistry_v1 {
 
     /**
      * Directly uploads a Yum artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await artifactregistry.projects.locations.repositories.yumArtifacts.upload({
-     *       // The name of the parent resource where the artifacts will be uploaded.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *       media: {
-     *         mimeType: 'placeholder-value',
-     *         body: 'placeholder-value',
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "operation": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

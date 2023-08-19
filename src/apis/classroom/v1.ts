@@ -240,7 +240,7 @@ export namespace classroom_v1 {
      */
     alternateLink?: string | null;
     /**
-     * The Calendar ID for a calendar that all course members can see, to which Classroom adds events for course work and announcements in the course. Read-only.
+     * The Calendar ID for a calendar that all course members can see, to which Classroom adds events for course work and announcements in the course. The Calendar for a course is created asynchronously when the course is set to `CourseState.ACTIVE` for the first time (at creation time or when it is updated to `ACTIVE` through the UI or the API). The Calendar ID will not be populated until the creation process is completed. Read-only.
      */
     calendarId?: string | null;
     /**
@@ -616,7 +616,7 @@ export namespace classroom_v1 {
      */
     formUrl?: string | null;
     /**
-     * URL of the form responses document. Only set if respsonses have been recorded and only when the requesting user is an editor of the form. Read-only.
+     * URL of the form responses document. Only set if responses have been recorded and only when the requesting user is an editor of the form. Read-only.
      */
     responseUrl?: string | null;
     /**
@@ -1296,7 +1296,7 @@ export namespace classroom_v1 {
    */
   export interface Schema$UserProfile {
     /**
-     * Email address of the user. Read-only.
+     * Email address of the user. Must request `https://www.googleapis.com/auth/classroom.profile.emails` scope for this field to be populated in a response body. Read-only.
      */
     emailAddress?: string | null;
     /**
@@ -1312,11 +1312,11 @@ export namespace classroom_v1 {
      */
     permissions?: Schema$GlobalPermission[];
     /**
-     * URL of user's profile photo. Read-only.
+     * URL of user's profile photo. Must request `https://www.googleapis.com/auth/classroom.profile.photos` scope for this field to be populated in a response body. Read-only.
      */
     photoUrl?: string | null;
     /**
-     * Represents whether a G Suite for Education user's domain administrator has explicitly verified them as being a teacher. If the user is not a member of a G Suite for Education domain, than this field is always false. Read-only
+     * Represents whether a Google Workspace for Education user's domain administrator has explicitly verified them as being a teacher. This field is always false if the user is not a member of a Google Workspace for Education domain. Read-only
      */
     verifiedTeacher?: boolean | null;
   }
@@ -1365,90 +1365,7 @@ export namespace classroom_v1 {
     }
 
     /**
-     * Creates a course. The user specified in `ownerId` is the owner of the created course and added as a teacher. A non-admin requesting user can only create a course with themselves as the owner. Domain admins can create courses owned by any user within their domain. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create courses or for access errors. * `NOT_FOUND` if the primary teacher is not a valid user. * `FAILED_PRECONDITION` if the course owner's account is disabled or for the following request errors: * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if an alias was specified in the `id` and already exists.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.courses'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "calendarId": "my_calendarId",
-     *       //   "courseGroupEmail": "my_courseGroupEmail",
-     *       //   "courseMaterialSets": [],
-     *       //   "courseState": "my_courseState",
-     *       //   "creationTime": "my_creationTime",
-     *       //   "description": "my_description",
-     *       //   "descriptionHeading": "my_descriptionHeading",
-     *       //   "enrollmentCode": "my_enrollmentCode",
-     *       //   "gradebookSettings": {},
-     *       //   "guardiansEnabled": false,
-     *       //   "id": "my_id",
-     *       //   "name": "my_name",
-     *       //   "ownerId": "my_ownerId",
-     *       //   "room": "my_room",
-     *       //   "section": "my_section",
-     *       //   "teacherFolder": {},
-     *       //   "teacherGroupEmail": "my_teacherGroupEmail",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "calendarId": "my_calendarId",
-     *   //   "courseGroupEmail": "my_courseGroupEmail",
-     *   //   "courseMaterialSets": [],
-     *   //   "courseState": "my_courseState",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "description": "my_description",
-     *   //   "descriptionHeading": "my_descriptionHeading",
-     *   //   "enrollmentCode": "my_enrollmentCode",
-     *   //   "gradebookSettings": {},
-     *   //   "guardiansEnabled": false,
-     *   //   "id": "my_id",
-     *   //   "name": "my_name",
-     *   //   "ownerId": "my_ownerId",
-     *   //   "room": "my_room",
-     *   //   "section": "my_section",
-     *   //   "teacherFolder": {},
-     *   //   "teacherGroupEmail": "my_teacherGroupEmail",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates a course. The user specified in `ownerId` is the owner of the created course and added as a teacher. A non-admin requesting user can only create a course with themselves as the owner. Domain admins can create courses owned by any user within their domain. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create courses or for access errors. * `NOT_FOUND` if the primary teacher is not a valid user. * `FAILED_PRECONDITION` if the course owner's account is disabled or for the following request errors: * UserCannotOwnCourse * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if an alias was specified in the `id` and already exists.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1532,46 +1449,6 @@ export namespace classroom_v1 {
 
     /**
      * Deletes a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to delete the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.courses'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.delete({
-     *     // Identifier of the course to delete. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1655,69 +1532,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.courses',
-     *       'https://www.googleapis.com/auth/classroom.courses.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.get({
-     *     // Identifier of the course to return. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "calendarId": "my_calendarId",
-     *   //   "courseGroupEmail": "my_courseGroupEmail",
-     *   //   "courseMaterialSets": [],
-     *   //   "courseState": "my_courseState",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "description": "my_description",
-     *   //   "descriptionHeading": "my_descriptionHeading",
-     *   //   "enrollmentCode": "my_enrollmentCode",
-     *   //   "gradebookSettings": {},
-     *   //   "guardiansEnabled": false,
-     *   //   "id": "my_id",
-     *   //   "name": "my_name",
-     *   //   "ownerId": "my_ownerId",
-     *   //   "room": "my_room",
-     *   //   "section": "my_section",
-     *   //   "teacherFolder": {},
-     *   //   "teacherGroupEmail": "my_teacherGroupEmail",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1801,60 +1615,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of courses that the requesting user is permitted to view, restricted to those that match the request. Returned courses are ordered by creation time, with the most recently created coming first. This method returns the following error codes: * `PERMISSION_DENIED` for access errors. * `INVALID_ARGUMENT` if the query argument is malformed. * `NOT_FOUND` if any users specified in the query arguments do not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.courses',
-     *       'https://www.googleapis.com/auth/classroom.courses.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.list({
-     *     // Restricts returned courses to those in one of the specified states The default value is ACTIVE, ARCHIVED, PROVISIONED, DECLINED.
-     *     courseStates: 'placeholder-value',
-     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *     // Restricts returned courses to those having a student with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     studentId: 'placeholder-value',
-     *     // Restricts returned courses to those having a teacher with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     teacherId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courses": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1940,95 +1700,7 @@ export namespace classroom_v1 {
     }
 
     /**
-     * Updates one or more fields in a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID. * `INVALID_ARGUMENT` if invalid fields are specified in the update mask or if no update mask is supplied. * `FAILED_PRECONDITION` for the following request errors: * CourseNotModifiable * InactiveCourseOwner
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.courses'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.patch({
-     *     // Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     id: 'placeholder-value',
-     *     // Mask that identifies which fields on the course to update. This field is required to do an update. The update will fail if invalid fields are specified. The following fields are valid: * `name` * `section` * `descriptionHeading` * `description` * `room` * `courseState` * `ownerId` Note: patches to ownerId are treated as being effective immediately, but in practice it may take some time for the ownership transfer of all affected resources to complete. When set in a query parameter, this field should be specified as `updateMask=,,...`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "calendarId": "my_calendarId",
-     *       //   "courseGroupEmail": "my_courseGroupEmail",
-     *       //   "courseMaterialSets": [],
-     *       //   "courseState": "my_courseState",
-     *       //   "creationTime": "my_creationTime",
-     *       //   "description": "my_description",
-     *       //   "descriptionHeading": "my_descriptionHeading",
-     *       //   "enrollmentCode": "my_enrollmentCode",
-     *       //   "gradebookSettings": {},
-     *       //   "guardiansEnabled": false,
-     *       //   "id": "my_id",
-     *       //   "name": "my_name",
-     *       //   "ownerId": "my_ownerId",
-     *       //   "room": "my_room",
-     *       //   "section": "my_section",
-     *       //   "teacherFolder": {},
-     *       //   "teacherGroupEmail": "my_teacherGroupEmail",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "calendarId": "my_calendarId",
-     *   //   "courseGroupEmail": "my_courseGroupEmail",
-     *   //   "courseMaterialSets": [],
-     *   //   "courseState": "my_courseState",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "description": "my_description",
-     *   //   "descriptionHeading": "my_descriptionHeading",
-     *   //   "enrollmentCode": "my_enrollmentCode",
-     *   //   "gradebookSettings": {},
-     *   //   "guardiansEnabled": false,
-     *   //   "id": "my_id",
-     *   //   "name": "my_name",
-     *   //   "ownerId": "my_ownerId",
-     *   //   "room": "my_room",
-     *   //   "section": "my_section",
-     *   //   "teacherFolder": {},
-     *   //   "teacherGroupEmail": "my_teacherGroupEmail",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Updates one or more fields in a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID. * `INVALID_ARGUMENT` if invalid fields are specified in the update mask or if no update mask is supplied. * `FAILED_PRECONDITION` for the following request errors: * CourseNotModifiable * InactiveCourseOwner * IneligibleOwner
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2112,92 +1784,6 @@ export namespace classroom_v1 {
 
     /**
      * Updates a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to modify the requested course or for access errors. * `NOT_FOUND` if no course exists with the requested ID. * `FAILED_PRECONDITION` for the following request errors: * CourseNotModifiable
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.courses'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.update({
-     *     // Identifier of the course to update. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     id: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "calendarId": "my_calendarId",
-     *       //   "courseGroupEmail": "my_courseGroupEmail",
-     *       //   "courseMaterialSets": [],
-     *       //   "courseState": "my_courseState",
-     *       //   "creationTime": "my_creationTime",
-     *       //   "description": "my_description",
-     *       //   "descriptionHeading": "my_descriptionHeading",
-     *       //   "enrollmentCode": "my_enrollmentCode",
-     *       //   "gradebookSettings": {},
-     *       //   "guardiansEnabled": false,
-     *       //   "id": "my_id",
-     *       //   "name": "my_name",
-     *       //   "ownerId": "my_ownerId",
-     *       //   "room": "my_room",
-     *       //   "section": "my_section",
-     *       //   "teacherFolder": {},
-     *       //   "teacherGroupEmail": "my_teacherGroupEmail",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "calendarId": "my_calendarId",
-     *   //   "courseGroupEmail": "my_courseGroupEmail",
-     *   //   "courseMaterialSets": [],
-     *   //   "courseState": "my_courseState",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "description": "my_description",
-     *   //   "descriptionHeading": "my_descriptionHeading",
-     *   //   "enrollmentCode": "my_enrollmentCode",
-     *   //   "gradebookSettings": {},
-     *   //   "guardiansEnabled": false,
-     *   //   "id": "my_id",
-     *   //   "name": "my_name",
-     *   //   "ownerId": "my_ownerId",
-     *   //   "room": "my_room",
-     *   //   "section": "my_section",
-     *   //   "teacherFolder": {},
-     *   //   "teacherGroupEmail": "my_teacherGroupEmail",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2355,56 +1941,6 @@ export namespace classroom_v1 {
 
     /**
      * Creates an alias for a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create the alias or for access errors. * `NOT_FOUND` if the course does not exist. * `ALREADY_EXISTS` if the alias already exists. * `FAILED_PRECONDITION` if the alias requested does not make sense for the requesting user or course (for example, if a user not in a domain attempts to access a domain-scoped alias).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.courses'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.aliases.create({
-     *     // Identifier of the course to alias. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alias": "my_alias"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alias": "my_alias"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2492,48 +2028,6 @@ export namespace classroom_v1 {
 
     /**
      * Deletes an alias of a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to remove the alias or for access errors. * `NOT_FOUND` if the alias does not exist. * `FAILED_PRECONDITION` if the alias requested does not make sense for the requesting user or course (for example, if a user not in a domain attempts to delete a domain-scoped alias).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.courses'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.aliases.delete({
-     *     // Alias to delete. This may not be the Classroom-assigned identifier.
-     *     alias: 'placeholder-value',
-     *     // Identifier of the course whose alias should be deleted. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2621,56 +2115,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of aliases for a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the course or for access errors. * `NOT_FOUND` if the course does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.courses',
-     *       'https://www.googleapis.com/auth/classroom.courses.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.aliases.list({
-     *     // The identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "aliases": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2811,78 +2255,6 @@ export namespace classroom_v1 {
 
     /**
      * Creates an announcement. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create announcements in the requested course, share a Drive attachment, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist. * `FAILED_PRECONDITION` for the following request error: * AttachmentNotVisible
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.announcements'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.announcements.create({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "assigneeMode": "my_assigneeMode",
-     *       //   "courseId": "my_courseId",
-     *       //   "creationTime": "my_creationTime",
-     *       //   "creatorUserId": "my_creatorUserId",
-     *       //   "id": "my_id",
-     *       //   "individualStudentsOptions": {},
-     *       //   "materials": [],
-     *       //   "scheduledTime": "my_scheduledTime",
-     *       //   "state": "my_state",
-     *       //   "text": "my_text",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "text": "my_text",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2970,48 +2342,6 @@ export namespace classroom_v1 {
 
     /**
      * Deletes an announcement. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding announcement item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding announcement, if the requesting user is not permitted to delete the requested course or for access errors. * `FAILED_PRECONDITION` if the requested announcement has already been deleted. * `NOT_FOUND` if no course exists with the requested ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.announcements'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.announcements.delete({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the announcement to delete. This identifier is a Classroom-assigned identifier.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3098,64 +2428,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns an announcement. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or announcement, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or announcement does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.announcements',
-     *       'https://www.googleapis.com/auth/classroom.announcements.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.announcements.get({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the announcement.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "text": "my_text",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3242,60 +2514,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of announcements that the requester is permitted to view. Course students may only view `PUBLISHED` announcements. Course teachers and domain administrators may view all announcements. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.announcements',
-     *       'https://www.googleapis.com/auth/classroom.announcements.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.announcements.list({
-     *     // Restriction on the `state` of announcements returned. If this argument is left unspecified, the default value is `PUBLISHED`.
-     *     announcementStates: 'placeholder-value',
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime`
-     *     orderBy: 'placeholder-value',
-     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "announcements": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3390,70 +2608,6 @@ export namespace classroom_v1 {
 
     /**
      * Modifies assignee mode and options of an announcement. Only a teacher of the course that contains the announcement may call this method. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.announcements'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.announcements.modifyAssignees({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the announcement.
-     *     id: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "assigneeMode": "my_assigneeMode",
-     *       //   "modifyIndividualStudentsOptions": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "text": "my_text",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3541,82 +2695,6 @@ export namespace classroom_v1 {
 
     /**
      * Updates one or more fields of an announcement. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding announcement or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `FAILED_PRECONDITION` if the requested announcement has already been deleted. * `NOT_FOUND` if the requested course or announcement does not exist
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.announcements'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.announcements.patch({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the announcement.
-     *     id: 'placeholder-value',
-     *     // Mask that identifies which fields on the announcement to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Announcement object. If a field that does not support empty values is included in the update mask and not set in the Announcement object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `text` * `state` * `scheduled_time`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "assigneeMode": "my_assigneeMode",
-     *       //   "courseId": "my_courseId",
-     *       //   "creationTime": "my_creationTime",
-     *       //   "creatorUserId": "my_creatorUserId",
-     *       //   "id": "my_id",
-     *       //   "individualStudentsOptions": {},
-     *       //   "materials": [],
-     *       //   "scheduledTime": "my_scheduledTime",
-     *       //   "state": "my_state",
-     *       //   "text": "my_text",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "text": "my_text",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3807,100 +2885,6 @@ export namespace classroom_v1 {
 
     /**
      * Creates course work. The resulting course work (and corresponding student submissions) are associated with the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to make the request. Classroom API requests to modify course work and student submissions must be made with an OAuth client ID from the associated Developer Console project. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create course work in the requested course, share a Drive attachment, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist. * `FAILED_PRECONDITION` for the following request error: * AttachmentNotVisible
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.coursework.students'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.create({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "assigneeMode": "my_assigneeMode",
-     *       //   "assignment": {},
-     *       //   "associatedWithDeveloper": false,
-     *       //   "courseId": "my_courseId",
-     *       //   "creationTime": "my_creationTime",
-     *       //   "creatorUserId": "my_creatorUserId",
-     *       //   "description": "my_description",
-     *       //   "dueDate": {},
-     *       //   "dueTime": {},
-     *       //   "gradeCategory": {},
-     *       //   "id": "my_id",
-     *       //   "individualStudentsOptions": {},
-     *       //   "materials": [],
-     *       //   "maxPoints": {},
-     *       //   "multipleChoiceQuestion": {},
-     *       //   "scheduledTime": "my_scheduledTime",
-     *       //   "state": "my_state",
-     *       //   "submissionModificationMode": "my_submissionModificationMode",
-     *       //   "title": "my_title",
-     *       //   "topicId": "my_topicId",
-     *       //   "updateTime": "my_updateTime",
-     *       //   "workType": "my_workType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "assignment": {},
-     *   //   "associatedWithDeveloper": false,
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "description": "my_description",
-     *   //   "dueDate": {},
-     *   //   "dueTime": {},
-     *   //   "gradeCategory": {},
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "maxPoints": {},
-     *   //   "multipleChoiceQuestion": {},
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "submissionModificationMode": "my_submissionModificationMode",
-     *   //   "title": "my_title",
-     *   //   "topicId": "my_topicId",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "workType": "my_workType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3988,48 +2972,6 @@ export namespace classroom_v1 {
 
     /**
      * Deletes a course work. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work, if the requesting user is not permitted to delete the requested course or for access errors. * `FAILED_PRECONDITION` if the requested course work has already been deleted. * `NOT_FOUND` if no course exists with the requested ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.coursework.students'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.delete({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work to delete. This identifier is a Classroom-assigned identifier.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4117,77 +3059,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns course work. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.coursework.me',
-     *       'https://www.googleapis.com/auth/classroom.coursework.me.readonly',
-     *       'https://www.googleapis.com/auth/classroom.coursework.students',
-     *       'https://www.googleapis.com/auth/classroom.coursework.students.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.get({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "assignment": {},
-     *   //   "associatedWithDeveloper": false,
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "description": "my_description",
-     *   //   "dueDate": {},
-     *   //   "dueTime": {},
-     *   //   "gradeCategory": {},
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "maxPoints": {},
-     *   //   "multipleChoiceQuestion": {},
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "submissionModificationMode": "my_submissionModificationMode",
-     *   //   "title": "my_title",
-     *   //   "topicId": "my_topicId",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "workType": "my_workType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4275,62 +3146,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of course work that the requester is permitted to view. Course students may only view `PUBLISHED` course work. Course teachers and domain administrators may view all course work. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.coursework.me',
-     *       'https://www.googleapis.com/auth/classroom.coursework.me.readonly',
-     *       'https://www.googleapis.com/auth/classroom.coursework.students',
-     *       'https://www.googleapis.com/auth/classroom.coursework.students.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.list({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Restriction on the work status to return. Only courseWork that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned.
-     *     courseWorkStates: 'placeholder-value',
-     *     // Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported fields are `updateTime` and `dueDate`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `dueDate asc,updateTime desc`, `updateTime,dueDate desc`
-     *     orderBy: 'placeholder-value',
-     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseWork": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4423,81 +3238,6 @@ export namespace classroom_v1 {
 
     /**
      * Modifies assignee mode and options of a coursework. Only a teacher of the course that contains the coursework may call this method. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.coursework.students'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.modifyAssignees({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the coursework.
-     *     id: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "assigneeMode": "my_assigneeMode",
-     *       //   "modifyIndividualStudentsOptions": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "assignment": {},
-     *   //   "associatedWithDeveloper": false,
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "description": "my_description",
-     *   //   "dueDate": {},
-     *   //   "dueTime": {},
-     *   //   "gradeCategory": {},
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "maxPoints": {},
-     *   //   "multipleChoiceQuestion": {},
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "submissionModificationMode": "my_submissionModificationMode",
-     *   //   "title": "my_title",
-     *   //   "topicId": "my_topicId",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "workType": "my_workType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4584,104 +3324,6 @@ export namespace classroom_v1 {
 
     /**
      * Updates one or more fields of a course work. See google.classroom.v1.CourseWork for details of which fields may be updated and who may change them. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work, if the user is not permitted to make the requested modification to the student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `FAILED_PRECONDITION` if the requested course work has already been deleted. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.coursework.students'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.patch({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work.
-     *     id: 'placeholder-value',
-     *     // Mask that identifies which fields on the course work to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the CourseWork object. If a field that does not support empty values is included in the update mask and not set in the CourseWork object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `description` * `state` * `due_date` * `due_time` * `max_points` * `scheduled_time` * `submission_modification_mode` * `topic_id`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "assigneeMode": "my_assigneeMode",
-     *       //   "assignment": {},
-     *       //   "associatedWithDeveloper": false,
-     *       //   "courseId": "my_courseId",
-     *       //   "creationTime": "my_creationTime",
-     *       //   "creatorUserId": "my_creatorUserId",
-     *       //   "description": "my_description",
-     *       //   "dueDate": {},
-     *       //   "dueTime": {},
-     *       //   "gradeCategory": {},
-     *       //   "id": "my_id",
-     *       //   "individualStudentsOptions": {},
-     *       //   "materials": [],
-     *       //   "maxPoints": {},
-     *       //   "multipleChoiceQuestion": {},
-     *       //   "scheduledTime": "my_scheduledTime",
-     *       //   "state": "my_state",
-     *       //   "submissionModificationMode": "my_submissionModificationMode",
-     *       //   "title": "my_title",
-     *       //   "topicId": "my_topicId",
-     *       //   "updateTime": "my_updateTime",
-     *       //   "workType": "my_workType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "assignment": {},
-     *   //   "associatedWithDeveloper": false,
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "description": "my_description",
-     *   //   "dueDate": {},
-     *   //   "dueTime": {},
-     *   //   "gradeCategory": {},
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "maxPoints": {},
-     *   //   "multipleChoiceQuestion": {},
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "submissionModificationMode": "my_submissionModificationMode",
-     *   //   "title": "my_title",
-     *   //   "topicId": "my_topicId",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "workType": "my_workType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4870,75 +3512,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a student submission. * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, course work, or student submission or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.coursework.me',
-     *       'https://www.googleapis.com/auth/classroom.coursework.me.readonly',
-     *       'https://www.googleapis.com/auth/classroom.coursework.students',
-     *       'https://www.googleapis.com/auth/classroom.coursework.students.readonly',
-     *       'https://www.googleapis.com/auth/classroom.student-submissions.me.readonly',
-     *       'https://www.googleapis.com/auth/classroom.student-submissions.students.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.studentSubmissions.get({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work.
-     *     courseWorkId: 'placeholder-value',
-     *     // Identifier of the student submission.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assignedGrade": {},
-     *   //   "assignmentSubmission": {},
-     *   //   "associatedWithDeveloper": false,
-     *   //   "courseId": "my_courseId",
-     *   //   "courseWorkId": "my_courseWorkId",
-     *   //   "courseWorkType": "my_courseWorkType",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "draftGrade": {},
-     *   //   "id": "my_id",
-     *   //   "late": false,
-     *   //   "multipleChoiceSubmission": {},
-     *   //   "shortAnswerSubmission": {},
-     *   //   "state": "my_state",
-     *   //   "submissionHistory": [],
-     *   //   "updateTime": "my_updateTime",
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5030,68 +3603,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of student submissions that the requester is permitted to view, factoring in the OAuth scopes of the request. `-` may be specified as the `course_work_id` to include student submissions for multiple course work items. Course students may only view their own work. Course teachers and domain administrators may view all student submissions. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.coursework.me',
-     *       'https://www.googleapis.com/auth/classroom.coursework.me.readonly',
-     *       'https://www.googleapis.com/auth/classroom.coursework.students',
-     *       'https://www.googleapis.com/auth/classroom.coursework.students.readonly',
-     *       'https://www.googleapis.com/auth/classroom.student-submissions.me.readonly',
-     *       'https://www.googleapis.com/auth/classroom.student-submissions.students.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.studentSubmissions.list({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the student work to request. This may be set to the string literal `"-"` to request student work for all course work in the specified course.
-     *     courseWorkId: 'placeholder-value',
-     *     // Requested lateness value. If specified, returned student submissions are restricted by the requested value. If unspecified, submissions are returned regardless of `late` value.
-     *     late: 'placeholder-value',
-     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *     // Requested submission states. If specified, returned student submissions match one of the specified submission states.
-     *     states: 'placeholder-value',
-     *     // Optional argument to restrict returned student work to those owned by the student with the specified identifier. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "studentSubmissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5189,80 +3700,6 @@ export namespace classroom_v1 {
 
     /**
      * Modifies attachments of student submission. Attachments may only be added to student submissions belonging to course work objects with a `workType` of `ASSIGNMENT`. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, if the user is not permitted to modify attachments on the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.coursework.me',
-     *       'https://www.googleapis.com/auth/classroom.coursework.students',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await classroom.courses.courseWork.studentSubmissions.modifyAttachments({
-     *       // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *       courseId: 'placeholder-value',
-     *       // Identifier of the course work.
-     *       courseWorkId: 'placeholder-value',
-     *       // Identifier of the student submission.
-     *       id: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "addAttachments": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assignedGrade": {},
-     *   //   "assignmentSubmission": {},
-     *   //   "associatedWithDeveloper": false,
-     *   //   "courseId": "my_courseId",
-     *   //   "courseWorkId": "my_courseWorkId",
-     *   //   "courseWorkType": "my_courseWorkType",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "draftGrade": {},
-     *   //   "id": "my_id",
-     *   //   "late": false,
-     *   //   "multipleChoiceSubmission": {},
-     *   //   "shortAnswerSubmission": {},
-     *   //   "state": "my_state",
-     *   //   "submissionHistory": [],
-     *   //   "updateTime": "my_updateTime",
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5356,97 +3793,6 @@ export namespace classroom_v1 {
 
     /**
      * Updates one or more fields of a student submission. See google.classroom.v1.StudentSubmission for details of which fields may be updated and who may change them. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work, if the user is not permitted to make the requested modification to the student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.coursework.me',
-     *       'https://www.googleapis.com/auth/classroom.coursework.students',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.studentSubmissions.patch({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work.
-     *     courseWorkId: 'placeholder-value',
-     *     // Identifier of the student submission.
-     *     id: 'placeholder-value',
-     *     // Mask that identifies which fields on the student submission to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields may be specified by teachers: * `draft_grade` * `assigned_grade`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "assignedGrade": {},
-     *       //   "assignmentSubmission": {},
-     *       //   "associatedWithDeveloper": false,
-     *       //   "courseId": "my_courseId",
-     *       //   "courseWorkId": "my_courseWorkId",
-     *       //   "courseWorkType": "my_courseWorkType",
-     *       //   "creationTime": "my_creationTime",
-     *       //   "draftGrade": {},
-     *       //   "id": "my_id",
-     *       //   "late": false,
-     *       //   "multipleChoiceSubmission": {},
-     *       //   "shortAnswerSubmission": {},
-     *       //   "state": "my_state",
-     *       //   "submissionHistory": [],
-     *       //   "updateTime": "my_updateTime",
-     *       //   "userId": "my_userId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assignedGrade": {},
-     *   //   "assignmentSubmission": {},
-     *   //   "associatedWithDeveloper": false,
-     *   //   "courseId": "my_courseId",
-     *   //   "courseWorkId": "my_courseWorkId",
-     *   //   "courseWorkType": "my_courseWorkType",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "draftGrade": {},
-     *   //   "id": "my_id",
-     *   //   "late": false,
-     *   //   "multipleChoiceSubmission": {},
-     *   //   "shortAnswerSubmission": {},
-     *   //   "state": "my_state",
-     *   //   "submissionHistory": [],
-     *   //   "updateTime": "my_updateTime",
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5538,56 +3884,6 @@ export namespace classroom_v1 {
 
     /**
      * Reclaims a student submission on behalf of the student that owns it. Reclaiming a student submission transfers ownership of attached Drive files to the student and updates the submission state. Only the student that owns the requested student submission may call this method, and only for a student submission that has been turned in. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, unsubmit the requested student submission, or for access errors. * `FAILED_PRECONDITION` if the student submission has not been turned in. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.coursework.me'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.studentSubmissions.reclaim({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work.
-     *     courseWorkId: 'placeholder-value',
-     *     // Identifier of the student submission.
-     *     id: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5676,56 +3972,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a student submission. Returning a student submission transfers ownership of attached Drive files to the student and may also update the submission state. Unlike the Classroom application, returning a student submission does not set assignedGrade to the draftGrade value. Only a teacher of the course that contains the requested student submission may call this method. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, return the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.coursework.students'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.studentSubmissions.return({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work.
-     *     courseWorkId: 'placeholder-value',
-     *     // Identifier of the student submission.
-     *     id: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5814,56 +4060,6 @@ export namespace classroom_v1 {
 
     /**
      * Turns in a student submission. Turning in a student submission transfers ownership of attached Drive files to the teacher and may also update the submission state. This may only be called by the student that owns the specified student submission. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work, turn in the requested student submission, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course, course work, or student submission does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.coursework.me'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWork.studentSubmissions.turnIn({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work.
-     *     courseWorkId: 'placeholder-value',
-     *     // Identifier of the student submission.
-     *     id: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6110,82 +4306,6 @@ export namespace classroom_v1 {
 
     /**
      * Creates a course work material. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create course work material in the requested course, share a Drive attachment, or for access errors. * `INVALID_ARGUMENT` if the request is malformed or if more than 20 * materials are provided. * `NOT_FOUND` if the requested course does not exist. * `FAILED_PRECONDITION` for the following request error: * AttachmentNotVisible
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.courseworkmaterials'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWorkMaterials.create({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "assigneeMode": "my_assigneeMode",
-     *       //   "courseId": "my_courseId",
-     *       //   "creationTime": "my_creationTime",
-     *       //   "creatorUserId": "my_creatorUserId",
-     *       //   "description": "my_description",
-     *       //   "id": "my_id",
-     *       //   "individualStudentsOptions": {},
-     *       //   "materials": [],
-     *       //   "scheduledTime": "my_scheduledTime",
-     *       //   "state": "my_state",
-     *       //   "title": "my_title",
-     *       //   "topicId": "my_topicId",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "description": "my_description",
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "title": "my_title",
-     *   //   "topicId": "my_topicId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6275,48 +4395,6 @@ export namespace classroom_v1 {
 
     /**
      * Deletes a course work material. This request must be made by the Developer Console project of the [OAuth client ID](https://support.google.com/cloud/answer/6158849) used to create the corresponding course work material item. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding course work material, if the requesting user is not permitted to delete the requested course or for access errors. * `FAILED_PRECONDITION` if the requested course work material has already been deleted. * `NOT_FOUND` if no course exists with the requested ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.courseworkmaterials'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWorkMaterials.delete({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work material to delete. This identifier is a Classroom-assigned identifier.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6403,66 +4481,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a course work material. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or course work material, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or course work material does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.courseworkmaterials',
-     *       'https://www.googleapis.com/auth/classroom.courseworkmaterials.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWorkMaterials.get({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work material.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "description": "my_description",
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "title": "my_title",
-     *   //   "topicId": "my_topicId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6552,64 +4570,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of course work material that the requester is permitted to view. Course students may only view `PUBLISHED` course work material. Course teachers and domain administrators may view all course work material. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.courseworkmaterials',
-     *       'https://www.googleapis.com/auth/classroom.courseworkmaterials.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWorkMaterials.list({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Restriction on the work status to return. Only course work material that matches is returned. If unspecified, items with a work status of `PUBLISHED` is returned.
-     *     courseWorkMaterialStates: 'placeholder-value',
-     *     // Optional filtering for course work material with at least one Drive material whose ID matches the provided string. If `material_link` is also specified, course work material must have materials matching both filters.
-     *     materialDriveId: 'placeholder-value',
-     *     // Optional filtering for course work material with at least one link material whose URL partially matches the provided string.
-     *     materialLink: 'placeholder-value',
-     *     // Optional sort ordering for results. A comma-separated list of fields with an optional sort direction keyword. Supported field is `updateTime`. Supported direction keywords are `asc` and `desc`. If not specified, `updateTime desc` is the default behavior. Examples: `updateTime asc`, `updateTime`
-     *     orderBy: 'placeholder-value',
-     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseWorkMaterial": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6705,86 +4665,6 @@ export namespace classroom_v1 {
 
     /**
      * Updates one or more fields of a course work material. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `FAILED_PRECONDITION` if the requested course work material has already been deleted. * `NOT_FOUND` if the requested course or course work material does not exist
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.courseworkmaterials'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.courseWorkMaterials.patch({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the course work material.
-     *     id: 'placeholder-value',
-     *     // Mask that identifies which fields on the course work material to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the course work material object. If a field that does not support empty values is included in the update mask and not set in the course work material object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified by teachers: * `title` * `description` * `state` * `scheduled_time` * `topic_id`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "alternateLink": "my_alternateLink",
-     *       //   "assigneeMode": "my_assigneeMode",
-     *       //   "courseId": "my_courseId",
-     *       //   "creationTime": "my_creationTime",
-     *       //   "creatorUserId": "my_creatorUserId",
-     *       //   "description": "my_description",
-     *       //   "id": "my_id",
-     *       //   "individualStudentsOptions": {},
-     *       //   "materials": [],
-     *       //   "scheduledTime": "my_scheduledTime",
-     *       //   "state": "my_state",
-     *       //   "title": "my_title",
-     *       //   "topicId": "my_topicId",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "alternateLink": "my_alternateLink",
-     *   //   "assigneeMode": "my_assigneeMode",
-     *   //   "courseId": "my_courseId",
-     *   //   "creationTime": "my_creationTime",
-     *   //   "creatorUserId": "my_creatorUserId",
-     *   //   "description": "my_description",
-     *   //   "id": "my_id",
-     *   //   "individualStudentsOptions": {},
-     *   //   "materials": [],
-     *   //   "scheduledTime": "my_scheduledTime",
-     *   //   "state": "my_state",
-     *   //   "title": "my_title",
-     *   //   "topicId": "my_topicId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6967,68 +4847,6 @@ export namespace classroom_v1 {
 
     /**
      * Adds a user as a student of a course. Domain administrators are permitted to [directly add](https://developers.google.com/classroom/guides/manage-users) users within their domain as students to courses within their domain. Students are permitted to add themselves to a course using an enrollment code. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create students in this course or for access errors. * `NOT_FOUND` if the requested course ID does not exist. * `FAILED_PRECONDITION` if the requested user's account is disabled, for the following request errors: * CourseMemberLimitReached * CourseNotModifiable * UserGroupsMembershipLimitReached * InactiveCourseOwner * `ALREADY_EXISTS` if the user is already a student or teacher in the course.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.profile.emails',
-     *       'https://www.googleapis.com/auth/classroom.profile.photos',
-     *       'https://www.googleapis.com/auth/classroom.rosters',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.students.create({
-     *     // Identifier of the course to create the student in. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Enrollment code of the course to create the student in. This code is required if userId corresponds to the requesting user; it may be omitted if the requesting user has administrative permissions to create students for any user.
-     *     enrollmentCode: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "courseId": "my_courseId",
-     *       //   "profile": {},
-     *       //   "studentWorkFolder": {},
-     *       //   "userId": "my_userId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseId": "my_courseId",
-     *   //   "profile": {},
-     *   //   "studentWorkFolder": {},
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7116,48 +4934,6 @@ export namespace classroom_v1 {
 
     /**
      * Deletes a student of a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to delete students of this course or for access errors. * `NOT_FOUND` if no student of this course has the requested ID or if the course does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.rosters'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.students.delete({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the student to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7245,58 +5021,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a student of a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to view students of this course or for access errors. * `NOT_FOUND` if no student of this course has the requested ID or if the course does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.profile.emails',
-     *       'https://www.googleapis.com/auth/classroom.profile.photos',
-     *       'https://www.googleapis.com/auth/classroom.rosters',
-     *       'https://www.googleapis.com/auth/classroom.rosters.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.students.get({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the student to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseId": "my_courseId",
-     *   //   "profile": {},
-     *   //   "studentWorkFolder": {},
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7384,58 +5108,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of students of this course that the requester is permitted to view. This method returns the following error codes: * `NOT_FOUND` if the course does not exist. * `PERMISSION_DENIED` for access errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.profile.emails',
-     *       'https://www.googleapis.com/auth/classroom.profile.photos',
-     *       'https://www.googleapis.com/auth/classroom.rosters',
-     *       'https://www.googleapis.com/auth/classroom.rosters.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.students.list({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Maximum number of items to return. The default is 30 if unspecified or `0`. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "students": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7589,64 +5261,6 @@ export namespace classroom_v1 {
 
     /**
      * Creates a teacher of a course. Domain administrators are permitted to [directly add](https://developers.google.com/classroom/guides/manage-users) users within their domain as teachers to courses within their domain. Non-admin users should send an Invitation instead. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create teachers in this course or for access errors. * `NOT_FOUND` if the requested course ID does not exist. * `FAILED_PRECONDITION` if the requested user's account is disabled, for the following request errors: * CourseMemberLimitReached * CourseNotModifiable * CourseTeacherLimitReached * UserGroupsMembershipLimitReached * InactiveCourseOwner * `ALREADY_EXISTS` if the user is already a teacher or student in the course.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.profile.emails',
-     *       'https://www.googleapis.com/auth/classroom.profile.photos',
-     *       'https://www.googleapis.com/auth/classroom.rosters',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.teachers.create({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "courseId": "my_courseId",
-     *       //   "profile": {},
-     *       //   "userId": "my_userId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseId": "my_courseId",
-     *   //   "profile": {},
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7734,48 +5348,6 @@ export namespace classroom_v1 {
 
     /**
      * Removes the specified teacher from the specified course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to delete teachers of this course or for access errors. * `NOT_FOUND` if no teacher of this course has the requested ID or if the course does not exist. * `FAILED_PRECONDITION` if the requested ID belongs to the primary teacher of this course. * `FAILED_PRECONDITION` if the requested ID belongs to the owner of the course Drive folder. * `FAILED_PRECONDITION` if the course no longer has an active owner.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.rosters'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.teachers.delete({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the teacher to delete. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7863,57 +5435,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a teacher of a course. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to view teachers of this course or for access errors. * `NOT_FOUND` if no teacher of this course has the requested ID or if the course does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.profile.emails',
-     *       'https://www.googleapis.com/auth/classroom.profile.photos',
-     *       'https://www.googleapis.com/auth/classroom.rosters',
-     *       'https://www.googleapis.com/auth/classroom.rosters.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.teachers.get({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the teacher to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseId": "my_courseId",
-     *   //   "profile": {},
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8001,58 +5522,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of teachers of this course that the requester is permitted to view. This method returns the following error codes: * `NOT_FOUND` if the course does not exist. * `PERMISSION_DENIED` for access errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.profile.emails',
-     *       'https://www.googleapis.com/auth/classroom.profile.photos',
-     *       'https://www.googleapis.com/auth/classroom.rosters',
-     *       'https://www.googleapis.com/auth/classroom.rosters.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.teachers.list({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Maximum number of items to return. The default is 30 if unspecified or `0`. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "teachers": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8202,62 +5671,6 @@ export namespace classroom_v1 {
 
     /**
      * Creates a topic. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course, create a topic in the requested course, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.topics'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.topics.create({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "courseId": "my_courseId",
-     *       //   "name": "my_name",
-     *       //   "topicId": "my_topicId",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseId": "my_courseId",
-     *   //   "name": "my_name",
-     *   //   "topicId": "my_topicId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8345,48 +5758,6 @@ export namespace classroom_v1 {
 
     /**
      * Deletes a topic. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not allowed to delete the requested topic or for access errors. * `FAILED_PRECONDITION` if the requested topic has already been deleted. * `NOT_FOUND` if no course or topic exists with the requested ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.topics'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.topics.delete({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the topic to delete.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8474,56 +5845,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a topic. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or topic, or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or topic does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.topics',
-     *       'https://www.googleapis.com/auth/classroom.topics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.topics.get({
-     *     // Identifier of the course.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the topic.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseId": "my_courseId",
-     *   //   "name": "my_name",
-     *   //   "topicId": "my_topicId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8611,56 +5932,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns the list of topics that the requester is permitted to view. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access the requested course or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.topics',
-     *       'https://www.googleapis.com/auth/classroom.topics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.topics.list({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "topic": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8751,66 +6022,6 @@ export namespace classroom_v1 {
 
     /**
      * Updates one or more fields of a topic. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting developer project did not create the corresponding topic or for access errors. * `INVALID_ARGUMENT` if the request is malformed. * `NOT_FOUND` if the requested course or topic does not exist
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.topics'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.courses.topics.patch({
-     *     // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
-     *     courseId: 'placeholder-value',
-     *     // Identifier of the topic.
-     *     id: 'placeholder-value',
-     *     // Mask that identifies which fields on the topic to update. This field is required to do an update. The update fails if invalid fields are specified. If a field supports empty values, it can be cleared by specifying it in the update mask and not in the Topic object. If a field that does not support empty values is included in the update mask and not set in the Topic object, an `INVALID_ARGUMENT` error is returned. The following fields may be specified: * `name`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "courseId": "my_courseId",
-     *       //   "name": "my_name",
-     *       //   "topicId": "my_topicId",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseId": "my_courseId",
-     *   //   "name": "my_name",
-     *   //   "topicId": "my_topicId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8975,46 +6186,6 @@ export namespace classroom_v1 {
 
     /**
      * Accepts an invitation, removing it and adding the invited user to the teachers or students (as appropriate) of the specified course. Only the invited user may accept an invitation. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to accept the requested invitation or for access errors. * `FAILED_PRECONDITION` for the following request errors: * CourseMemberLimitReached * CourseNotModifiable * CourseTeacherLimitReached * UserGroupsMembershipLimitReached * `NOT_FOUND` if no invitation exists with the requested ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.rosters'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.invitations.accept({
-     *     // Identifier of the invitation to accept.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9101,60 +6272,7 @@ export namespace classroom_v1 {
     }
 
     /**
-     * Creates an invitation. Only one invitation for a user and course may exist at a time. Delete and re-create an invitation to make changes. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create invitations for this course or for access errors. * `NOT_FOUND` if the course or the user does not exist. * `FAILED_PRECONDITION` if the requested user's account is disabled or if the user already has this role or a role with greater permissions. * `ALREADY_EXISTS` if an invitation for the specified user and course already exists.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.rosters'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.invitations.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "courseId": "my_courseId",
-     *       //   "id": "my_id",
-     *       //   "role": "my_role",
-     *       //   "userId": "my_userId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseId": "my_courseId",
-     *   //   "id": "my_id",
-     *   //   "role": "my_role",
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates an invitation. Only one invitation for a user and course may exist at a time. Delete and re-create an invitation to make changes. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to create invitations for this course or for access errors. * `NOT_FOUND` if the course or the user does not exist. * `FAILED_PRECONDITION`: * if the requested user's account is disabled. * if the user already has this role or a role with greater permissions. * for the following request errors: * IneligibleOwner * `ALREADY_EXISTS` if an invitation for the specified user and course already exists.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9239,46 +6357,6 @@ export namespace classroom_v1 {
 
     /**
      * Deletes an invitation. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to delete the requested invitation or for access errors. * `NOT_FOUND` if no invitation exists with the requested ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.rosters'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.invitations.delete({
-     *     // Identifier of the invitation to delete.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9366,54 +6444,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns an invitation. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to view the requested invitation or for access errors. * `NOT_FOUND` if no invitation exists with the requested ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.rosters',
-     *       'https://www.googleapis.com/auth/classroom.rosters.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.invitations.get({
-     *     // Identifier of the invitation to return.
-     *     id: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "courseId": "my_courseId",
-     *   //   "id": "my_id",
-     *   //   "role": "my_role",
-     *   //   "userId": "my_userId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9500,58 +6530,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of invitations that the requesting user is permitted to view, restricted to those that match the list request. *Note:* At least one of `user_id` or `course_id` must be supplied. Both fields can be supplied. This method returns the following error codes: * `PERMISSION_DENIED` for access errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.rosters',
-     *       'https://www.googleapis.com/auth/classroom.rosters.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.invitations.list({
-     *     // Restricts returned invitations to those for a course with the specified identifier.
-     *     courseId: 'placeholder-value',
-     *     // Maximum number of items to return. The default is 500 if unspecified or `0`. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *     // Restricts returned invitations to those for a specific user. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "invitations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9693,59 +6671,6 @@ export namespace classroom_v1 {
 
     /**
      * Creates a `Registration`, causing Classroom to start sending notifications from the provided `feed` to the destination provided in `cloudPubSubTopic`. Returns the created `Registration`. Currently, this will be the same as the argument, but with server-assigned fields such as `expiry_time` and `id` filled in. Note that any value specified for the `expiry_time` or `id` fields will be ignored. While Classroom may validate the `cloudPubSubTopic` and return errors on a best effort basis, it is the caller's responsibility to ensure that it exists and that Classroom has permission to publish to it. This method may return the following error codes: * `PERMISSION_DENIED` if: * the authenticated user does not have permission to receive notifications from the requested field; or * the current user has not granted access to the current Cloud project with the appropriate scope for the requested feed. Note that domain-wide delegation of authority is not currently supported for this purpose. If the request has the appropriate scope, but no grant exists, a Request Errors is returned. * another access error is encountered. * `INVALID_ARGUMENT` if: * no `cloudPubsubTopic` is specified, or the specified `cloudPubsubTopic` is not valid; or * no `feed` is specified, or the specified `feed` is not valid. * `NOT_FOUND` if: * the specified `feed` cannot be located, or the requesting user does not have permission to determine whether or not it exists; or * the specified `cloudPubsubTopic` cannot be located, or Classroom has not been granted permission to publish to it.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.push-notifications'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.registrations.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "cloudPubsubTopic": {},
-     *       //   "expiryTime": "my_expiryTime",
-     *       //   "feed": {},
-     *       //   "registrationId": "my_registrationId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "cloudPubsubTopic": {},
-     *   //   "expiryTime": "my_expiryTime",
-     *   //   "feed": {},
-     *   //   "registrationId": "my_registrationId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9830,46 +6755,6 @@ export namespace classroom_v1 {
 
     /**
      * Deletes a `Registration`, causing Classroom to stop sending notifications for that `Registration`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/classroom.push-notifications'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.registrations.delete({
-     *     // The `registration_id` of the `Registration` to be deleted.
-     *     registrationId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9985,58 +6870,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a user profile. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to access this user profile, if no profile exists with the requested ID, or for access errors.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.profile.emails',
-     *       'https://www.googleapis.com/auth/classroom.profile.photos',
-     *       'https://www.googleapis.com/auth/classroom.rosters',
-     *       'https://www.googleapis.com/auth/classroom.rosters.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.userProfiles.get({
-     *     // Identifier of the profile to return. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     userId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "emailAddress": "my_emailAddress",
-     *   //   "id": "my_id",
-     *   //   "name": {},
-     *   //   "permissions": [],
-     *   //   "photoUrl": "my_photoUrl",
-     *   //   "verifiedTeacher": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10137,66 +6970,6 @@ export namespace classroom_v1 {
 
     /**
      * Creates a guardian invitation, and sends an email to the guardian asking them to confirm that they are the student's guardian. Once the guardian accepts the invitation, their `state` will change to `COMPLETED` and they will start receiving guardian notifications. A `Guardian` resource will also be created to represent the active guardian. The request object must have the `student_id` and `invited_email_address` fields set. Failing to set these fields, or setting any other fields in the request, will result in an error. This method returns the following error codes: * `PERMISSION_DENIED` if the current user does not have permission to manage guardians, if the guardian in question has already rejected too many requests for that student, if guardians are not enabled for the domain in question, or for other access errors. * `RESOURCE_EXHAUSTED` if the student or guardian has exceeded the guardian link limit. * `INVALID_ARGUMENT` if the guardian email address is not valid (for example, if it is too long), or if the format of the student ID provided cannot be recognized (it is not an email address, nor a `user_id` from this API). This error will also be returned if read-only fields are set, or if the `state` field is set to to a value other than `PENDING`. * `NOT_FOUND` if the student ID provided is a valid student ID, but Classroom has no record of that student. * `ALREADY_EXISTS` if there is already a pending guardian invitation for the student and `invited_email_address` provided, or if the provided `invited_email_address` matches the Google account of an existing `Guardian` for this user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.userProfiles.guardianInvitations.create({
-     *     // ID of the student (in standard format)
-     *     studentId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "creationTime": "my_creationTime",
-     *       //   "invitationId": "my_invitationId",
-     *       //   "invitedEmailAddress": "my_invitedEmailAddress",
-     *       //   "state": "my_state",
-     *       //   "studentId": "my_studentId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationTime": "my_creationTime",
-     *   //   "invitationId": "my_invitationId",
-     *   //   "invitedEmailAddress": "my_invitedEmailAddress",
-     *   //   "state": "my_state",
-     *   //   "studentId": "my_studentId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10286,57 +7059,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a specific guardian invitation. This method returns the following error codes: * `PERMISSION_DENIED` if the requesting user is not permitted to view guardian invitations for the student identified by the `student_id`, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). * `NOT_FOUND` if Classroom cannot find any record of the given student or `invitation_id`. May also be returned if the student exists, but the requesting user does not have access to see that student.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students',
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.userProfiles.guardianInvitations.get({
-     *     // The `id` field of the `GuardianInvitation` being requested.
-     *     invitationId: 'placeholder-value',
-     *     // The ID of the student whose guardian invitation is being requested.
-     *     studentId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationTime": "my_creationTime",
-     *   //   "invitationId": "my_invitationId",
-     *   //   "invitedEmailAddress": "my_invitedEmailAddress",
-     *   //   "state": "my_state",
-     *   //   "studentId": "my_studentId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10427,60 +7149,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of guardian invitations that the requesting user is permitted to view, filtered by the parameters provided. This method returns the following error codes: * `PERMISSION_DENIED` if a `student_id` is specified, and the requesting user is not permitted to view guardian invitations for that student, if `"-"` is specified as the `student_id` and the user is not a domain administrator, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). May also be returned if an invalid `page_token` or `state` is provided. * `NOT_FOUND` if a `student_id` is specified, and its format can be recognized, but Classroom has no record of that student.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students',
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.userProfiles.guardianInvitations.list({
-     *     // If specified, only results with the specified `invited_email_address` are returned.
-     *     invitedEmailAddress: 'placeholder-value',
-     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *     // If specified, only results with the specified `state` values are returned. Otherwise, results with a `state` of `PENDING` are returned.
-     *     states: 'placeholder-value',
-     *     // The ID of the student whose guardian invitations are to be returned. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for all students that the requesting user is permitted to view guardian invitations.
-     *     studentId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "guardianInvitations": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10576,70 +7244,6 @@ export namespace classroom_v1 {
 
     /**
      * Modifies a guardian invitation. Currently, the only valid modification is to change the `state` from `PENDING` to `COMPLETE`. This has the effect of withdrawing the invitation. This method returns the following error codes: * `PERMISSION_DENIED` if the current user does not have permission to manage guardians, if guardians are not enabled for the domain in question or for other access errors. * `FAILED_PRECONDITION` if the guardian link is not in the `PENDING` state. * `INVALID_ARGUMENT` if the format of the student ID provided cannot be recognized (it is not an email address, nor a `user_id` from this API), or if the passed `GuardianInvitation` has a `state` other than `COMPLETE`, or if it modifies fields other than `state`. * `NOT_FOUND` if the student ID provided is a valid student ID, but Classroom has no record of that student, or if the `id` field does not refer to a guardian invitation known to Classroom.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.userProfiles.guardianInvitations.patch({
-     *     // The `id` field of the `GuardianInvitation` to be modified.
-     *     invitationId: 'placeholder-value',
-     *     // The ID of the student whose guardian invitation is to be modified.
-     *     studentId: 'placeholder-value',
-     *     // Mask that identifies which fields on the course to update. This field is required to do an update. The update fails if invalid fields are specified. The following fields are valid: * `state` When set in a query parameter, this field should be specified as `updateMask=,,...`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "creationTime": "my_creationTime",
-     *       //   "invitationId": "my_invitationId",
-     *       //   "invitedEmailAddress": "my_invitedEmailAddress",
-     *       //   "state": "my_state",
-     *       //   "studentId": "my_studentId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationTime": "my_creationTime",
-     *   //   "invitationId": "my_invitationId",
-     *   //   "invitedEmailAddress": "my_invitedEmailAddress",
-     *   //   "state": "my_state",
-     *   //   "studentId": "my_studentId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10804,50 +7408,6 @@ export namespace classroom_v1 {
 
     /**
      * Deletes a guardian. The guardian will no longer receive guardian notifications and the guardian will no longer be accessible via the API. This method returns the following error codes: * `PERMISSION_DENIED` if no user that matches the provided `student_id` is visible to the requesting user, if the requesting user is not permitted to manage guardians for the student identified by the `student_id`, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API). * `NOT_FOUND` if the requesting user is permitted to modify guardians for the requested `student_id`, but no `Guardian` record exists for that student with the provided `guardian_id`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.userProfiles.guardians.delete({
-     *     // The `id` field from a `Guardian`.
-     *     guardianId: 'placeholder-value',
-     *     // The student whose guardian is to be deleted. One of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     studentId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10934,57 +7494,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a specific guardian. This method returns the following error codes: * `PERMISSION_DENIED` if no user that matches the provided `student_id` is visible to the requesting user, if the requesting user is not permitted to view guardian information for the student identified by the `student_id`, if guardians are not enabled for the domain in question, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). * `NOT_FOUND` if the requesting user is permitted to view guardians for the requested `student_id`, but no `Guardian` record exists for that student that matches the provided `guardian_id`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.me.readonly',
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students',
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.userProfiles.guardians.get({
-     *     // The `id` field from a `Guardian`.
-     *     guardianId: 'placeholder-value',
-     *     // The student whose guardian is being requested. One of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user
-     *     studentId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "guardianId": "my_guardianId",
-     *   //   "guardianProfile": {},
-     *   //   "invitedEmailAddress": "my_invitedEmailAddress",
-     *   //   "studentId": "my_studentId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11071,59 +7580,6 @@ export namespace classroom_v1 {
 
     /**
      * Returns a list of guardians that the requesting user is permitted to view, restricted to those that match the request. To list guardians for any student that the requesting user may view guardians for, use the literal character `-` for the student ID. This method returns the following error codes: * `PERMISSION_DENIED` if a `student_id` is specified, and the requesting user is not permitted to view guardian information for that student, if `"-"` is specified as the `student_id` and the user is not a domain administrator, if guardians are not enabled for the domain in question, if the `invited_email_address` filter is set by a user who is not a domain administrator, or for other access errors. * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be recognized (it is not an email address, nor a `student_id` from the API, nor the literal string `me`). May also be returned if an invalid `page_token` is provided. * `NOT_FOUND` if a `student_id` is specified, and its format can be recognized, but Classroom has no record of that student.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/classroom.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const classroom = google.classroom('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.me.readonly',
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students',
-     *       'https://www.googleapis.com/auth/classroom.guardianlinks.students.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await classroom.userProfiles.guardians.list({
-     *     // Filter results by the email address that the original invitation was sent to, resulting in this guardian link. This filter can only be used by domain administrators.
-     *     invitedEmailAddress: 'placeholder-value',
-     *     // Maximum number of items to return. Zero or unspecified indicates that the server may assign a maximum. The server may return fewer than the specified number of results.
-     *     pageSize: 'placeholder-value',
-     *     // nextPageToken value returned from a previous list call, indicating that the subsequent page of results should be returned. The list request must be otherwise identical to the one that resulted in this token.
-     *     pageToken: 'placeholder-value',
-     *     // Filter results by the student who the guardian is linked to. The identifier can be one of the following: * the numeric identifier for the user * the email address of the user * the string literal `"me"`, indicating the requesting user * the string literal `"-"`, indicating that results should be returned for all students that the requesting user has access to view.
-     *     studentId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "guardians": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -309,10 +309,6 @@ export namespace civicinfo_v2 {
      */
     primaryParties?: string[] | null;
     /**
-     * [DEPRECATED] If this is a partisan election, the name of the party it is for. This field as deprecated in favor of the array "primaryParties", as contests may contain more than one party.
-     */
-    primaryParty?: string | null;
-    /**
      * The set of ballot responses for the referendum. A ballot response represents a line on the ballot. Common examples might include "yes" or "no" for referenda. This field is only populated for contests of type 'Referendum'.
      */
     referendumBallotResponses?: string[] | null;
@@ -474,48 +470,6 @@ export namespace civicinfo_v2 {
     scope?: string | null;
   }
   /**
-   * A globally unique identifier associated with each feature. We use 128-bit identifiers so that we have lots of bits available to distinguish between features. The feature id currently consists of a 64-bit "cell id" that **sometimes** corresponds to the approximate centroid of the feature, plus a 64-bit fingerprint of other identifying information. See more on each respective field in its comments. Feature ids are first assigned when the data is created in MapFacts. After initial creation of the feature, they are immutable. This means that the only properties that you should rely on are that they are unique, and that cell_ids often - but not always - preserve spatial locality. The degree of locality varies as the feature undergoes geometry changes, and should not in general be considered a firm guarantee of the location of any particular feature. In fact, some locationless features have randomized cell IDs! Consumers of FeatureProtos from Mapfacts are guaranteed that fprints in the id field of features will be globally unique. Using the fprint allows consumers who don't need the spatial benefit of cell ids to uniquely identify features in a 64-bit address space. This property is not guaranteed for other sources of FeatureProtos.
-   */
-  export interface Schema$FeatureIdProto {
-    /**
-     * The S2CellId corresponding to the approximate location of this feature as of when it was first created. This can be of variable accuracy, ranging from the exact centroid of the feature at creation, a very large S2 Cell, or even being completely randomized for locationless features. Cell ids have the nice property that they follow a space-filling curve over the surface of the earth. (See s2cellid.h for details.) WARNING: Clients should only use cell IDs to perform spatial locality optimizations. There is no strict guarantee that the cell ID of a feature is related to the current geometry of the feature in any way.
-     */
-    cellId?: string | null;
-    /**
-     * A 64-bit fingerprint used to identify features. Most clients should rely on MapFacts or OneRing to choose fingerprints. If creating new fprints, the strategy should be chosen so that the chance of collision is remote or non-existent, and the distribution should be reasonably uniform. For example, if the source data assigns unique ids to features, then a fingerprint of the provider name, version, and source id is sufficient.
-     */
-    fprint?: string | null;
-    /**
-     * A place for clients to attach arbitrary data to a feature ID. Never set in MapFacts.
-     */
-    temporaryData?: Schema$MessageSet;
-  }
-  /**
-   * Detailed summary of the result from geocoding an address
-   */
-  export interface Schema$GeocodingSummary {
-    /**
-     * Represents the best estimate of whether or not the input address was fully understood and the address is correctly componentized. Mirrors the same-name field in geostore.staging.AddressLinkupScoringProto.
-     */
-    addressUnderstood?: boolean | null;
-    /**
-     * The ID of the FeatureProto returned by the geocoder
-     */
-    featureId?: Schema$FeatureIdProto;
-    /**
-     * The feature type for the FeatureProto returned by the geocoder
-     */
-    featureType?: string | null;
-    /**
-     * Precision of the center point (lat/long) of the geocoded FeatureProto
-     */
-    positionPrecisionMeters?: number | null;
-    /**
-     * The query sent to the geocoder
-     */
-    queryString?: string | null;
-  }
-  /**
    * Describes a political geography.
    */
   export interface Schema$GeographicDivision {
@@ -532,10 +486,6 @@ export namespace civicinfo_v2 {
      */
     officeIndices?: number[] | null;
   }
-  /**
-   * This is proto2's version of MessageSet.
-   */
-  export interface Schema$MessageSet {}
   /**
    * Information about an Office held by one or more Officials.
    */
@@ -581,10 +531,6 @@ export namespace civicinfo_v2 {
      * The direct email addresses for the official.
      */
     emails?: string[] | null;
-    /**
-     * Detailed summary about the official's address's geocoding
-     */
-    geocodingSummaries?: Schema$GeocodingSummary[];
     /**
      * The official's name.
      */
@@ -836,7 +782,7 @@ export namespace civicinfo_v2 {
     pollingLocations?: Schema$PollingLocation[];
     precinctId?: string | null;
     /**
-     * The precincts that match this voter's address. Will only be returned for project IDs which have been whitelisted as "partner projects".
+     * The precincts that match this voter's address. Will only be returned for project IDs which have been allowlisted as "partner projects".
      */
     precincts?: Schema$Precinct[];
     /**
@@ -853,49 +799,6 @@ export namespace civicinfo_v2 {
 
     /**
      * Searches for political divisions by their natural name or OCD ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const civicinfo = google.civicinfo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await civicinfo.divisions.search({
-     *     // The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
-     *     query: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "results": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1001,46 +904,6 @@ export namespace civicinfo_v2 {
 
     /**
      * List of available elections to query.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const civicinfo = google.civicinfo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await civicinfo.elections.electionQuery({});
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "elections": [],
-     *   //   "kind": "my_kind"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1135,65 +998,6 @@ export namespace civicinfo_v2 {
 
     /**
      * Looks up information relevant to a voter based on the voter's registered address.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const civicinfo = google.civicinfo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await civicinfo.elections.voterInfoQuery({
-     *     // The registered address of the voter to look up.
-     *     address: 'placeholder-value',
-     *     // The unique ID of the election to look up. A list of election IDs can be obtained at https://www.googleapis.com/civicinfo/{version\}/elections. If no election ID is specified in the query and there is more than one election with data for the given voter, the additional elections are provided in the otherElections response field.
-     *     electionId: 'placeholder-value',
-     *     // If set to true, only data from official state sources will be returned.
-     *     officialOnly: 'placeholder-value',
-     *     // If set to true, the query will return the success code and include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
-     *     returnAllAvailableData: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "contests": [],
-     *   //   "dropOffLocations": [],
-     *   //   "earlyVoteSites": [],
-     *   //   "election": {},
-     *   //   "kind": "my_kind",
-     *   //   "mailOnly": false,
-     *   //   "normalizedInput": {},
-     *   //   "otherElections": [],
-     *   //   "pollingLocations": [],
-     *   //   "precinctId": "my_precinctId",
-     *   //   "precincts": [],
-     *   //   "state": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1286,7 +1090,12 @@ export namespace civicinfo_v2 {
   }
 
   export interface Params$Resource$Elections$Electionquery
-    extends StandardParameters {}
+    extends StandardParameters {
+    /**
+     * Whether to include data that has not been allowlisted yet
+     */
+    productionDataOnly?: boolean;
+  }
   export interface Params$Resource$Elections$Voterinfoquery
     extends StandardParameters {
     /**
@@ -1302,6 +1111,10 @@ export namespace civicinfo_v2 {
      */
     officialOnly?: boolean;
     /**
+     * Whether to include data that has not been vetted yet. Should only be made available to internal IPs or trusted partners. This is a non-discoverable parameter in the One Platform API config.
+     */
+    productionDataOnly?: boolean;
+    /**
      * If set to true, the query will return the success code and include any partial information when it is unable to determine a matching address or unable to determine the election for electionId=0 queries.
      */
     returnAllAvailableData?: boolean;
@@ -1315,58 +1128,6 @@ export namespace civicinfo_v2 {
 
     /**
      * Looks up political geography and representative information for a single address.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const civicinfo = google.civicinfo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await civicinfo.representatives.representativeInfoByAddress({
-     *     // The address to look up. May only be specified if the field ocdId is not given in the URL
-     *     address: 'placeholder-value',
-     *     // Whether to return information about offices and officials. If false, only the top-level district information will be returned.
-     *     includeOffices: 'placeholder-value',
-     *     // A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
-     *     levels: 'placeholder-value',
-     *     // A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     *     roles: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "divisions": {},
-     *   //   "kind": "my_kind",
-     *   //   "normalizedInput": {},
-     *   //   "offices": [],
-     *   //   "officials": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1462,56 +1223,6 @@ export namespace civicinfo_v2 {
 
     /**
      * Looks up representative information for a single geographic division.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/civicinfo.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const civicinfo = google.civicinfo('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await civicinfo.representatives.representativeInfoByDivision({
-     *     // A list of office levels to filter by. Only offices that serve at least one of these levels will be returned. Divisions that don't contain a matching office will not be returned.
-     *     levels: 'placeholder-value',
-     *     // The Open Civic Data division identifier of the division to look up.
-     *     ocdId: 'placeholder-value',
-     *     // If true, information about all divisions contained in the division requested will be included as well. For example, if querying ocd-division/country:us/district:dc, this would also return all DC's wards and ANCs.
-     *     recursive: 'placeholder-value',
-     *     // A list of office roles to filter by. Only offices fulfilling one of these roles will be returned. Divisions that don't contain a matching office will not be returned.
-     *     roles: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "divisions": {},
-     *   //   "offices": [],
-     *   //   "officials": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

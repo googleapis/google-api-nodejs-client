@@ -230,7 +230,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "workflows.projects.locations.operations.list",
@@ -275,7 +275,7 @@
             "workflows": {
               "methods": {
                 "create": {
-                  "description": "Creates a new workflow. If a workflow with the specified name already exists in the specified project and location, the long running operation will return ALREADY_EXISTS error.",
+                  "description": "Creates a new workflow. If a workflow with the specified name already exists in the specified project and location, the long running operation returns a ALREADY_EXISTS error.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows",
                   "httpMethod": "POST",
                   "id": "workflows.projects.locations.workflows.create",
@@ -333,7 +333,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single Workflow.",
+                  "description": "Gets details of a single workflow.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}",
                   "httpMethod": "GET",
                   "id": "workflows.projects.locations.workflows.get",
@@ -342,10 +342,15 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the workflow which information should be retrieved. Format: projects/{project}/locations/{location}/workflows/{workflow}",
+                      "description": "Required. Name of the workflow for which information should be retrieved. Format: projects/{project}/locations/{location}/workflows/{workflow}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflows/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "revisionId": {
+                      "description": "Optional. The revision of the workflow to retrieve. If the revision_id is empty, the latest revision is retrieved. The format is \"000001-a4d\", where the first six characters define the zero-padded decimal revision number. They are followed by a hyphen and three hexadecimal characters.",
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -358,7 +363,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists Workflows in a given project and location. The default order is not specified.",
+                  "description": "Lists workflows in a given project and location. The default order is not specified.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows",
                   "httpMethod": "GET",
                   "id": "workflows.projects.locations.workflows.list",
@@ -372,12 +377,12 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Comma-separated list of fields that that specify the order of the results. Default sorting order for a field is ascending. To specify descending order for a field, append a \" desc\" suffix. If not specified, the results will be returned in an unspecified order.",
+                      "description": "Comma-separated list of fields that specify the order of the results. Default sorting order for a field is ascending. To specify descending order for a field, append a \"desc\" suffix. If not specified, the results are returned in an unspecified order.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Maximum number of workflows to return per call. The service may return fewer than this value. If the value is not specified, a default value of 500 will be used. The maximum permitted value is 1000 and values greater than 1000 will be coerced down to 1000.",
+                      "description": "Maximum number of workflows to return per call. The service might return fewer than this value even if not at the end of the collection. If a value is not specified, a default value of 500 is used. The maximum permitted value is 1000 and values greater than 1000 are coerced down to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -404,7 +409,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow may be created as a result of a successful update operation. In that case, such revision will be used in new workflow executions.",
+                  "description": "Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow might be created as a result of a successful update operation. In that case, the new revision is used in new workflow executions.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}",
                   "httpMethod": "PATCH",
                   "id": "workflows.projects.locations.workflows.patch",
@@ -444,7 +449,7 @@
       }
     }
   },
-  "revision": "20220406",
+  "revision": "20230802",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -505,7 +510,7 @@
           "type": "array"
         },
         "workflows": {
-          "description": "The workflows which match the request.",
+          "description": "The workflows that match the request.",
           "items": {
             "$ref": "Workflow"
           },
@@ -515,7 +520,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -577,7 +582,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -607,6 +612,29 @@
         },
         "verb": {
           "description": "Name of the verb executed by the operation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StateError": {
+      "description": "Describes an error related to the current state of the workflow.",
+      "id": "StateError",
+      "properties": {
+        "details": {
+          "description": "Provides specifics about the error.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of this state error.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "KMS_ERROR"
+          ],
+          "enumDescriptions": [
+            "No type specified.",
+            "Caused by an issue with KMS."
+          ],
           "type": "string"
         }
       },
@@ -643,10 +671,30 @@
       "description": "Workflow program to be executed by Workflows.",
       "id": "Workflow",
       "properties": {
+        "callLogLevel": {
+          "description": "Optional. Describes the level of platform logging to apply to calls and call responses during executions of this workflow. If both the workflow and the execution specify a logging level, the execution level takes precedence.",
+          "enum": [
+            "CALL_LOG_LEVEL_UNSPECIFIED",
+            "LOG_ALL_CALLS",
+            "LOG_ERRORS_ONLY",
+            "LOG_NONE"
+          ],
+          "enumDescriptions": [
+            "No call logging level specified.",
+            "Log all call steps within workflows, all call returns, and all exceptions raised.",
+            "Log only exceptions that are raised from call steps within workflows.",
+            "Explicitly log nothing."
+          ],
+          "type": "string"
+        },
         "createTime": {
-          "description": "Output only. The timestamp of when the workflow was created.",
+          "description": "Output only. The timestamp for when the workflow was created.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "cryptoKeyName": {
+          "description": "Optional. The resource name of a KMS crypto key used to encrypt or decrypt the data associated with the workflow. Format: projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey} Using `-` as a wildcard for the `{project}` or not providing one at all will infer the project from the account. If not provided, data associated with the workflow will not be CMEK-encrypted.",
           "type": "string"
         },
         "description": {
@@ -657,7 +705,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores and dashes. Label keys must start with a letter. International characters are allowed.",
+          "description": "Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores, and dashes. Label keys must start with a letter. International characters are allowed.",
           "type": "object"
         },
         "name": {
@@ -665,13 +713,13 @@
           "type": "string"
         },
         "revisionCreateTime": {
-          "description": "Output only. The timestamp that the latest revision of the workflow was created.",
+          "description": "Output only. The timestamp for the latest revision of the workflow's creation.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "revisionId": {
-          "description": "Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is \"000001-a4d\", where the first 6 characters define the zero-padded revision ordinal number. They are followed by a hyphen and 3 hexadecimal random characters.",
+          "description": "Output only. The revision of the workflow. A new revision of a workflow is created as a result of updating the following properties of a workflow: - Service account - Workflow code to be executed The format is \"000001-a4d\", where the first six characters define the zero-padded revision ordinal number. They are followed by a hyphen and three hexadecimal random characters.",
           "readOnly": true,
           "type": "string"
         },
@@ -687,20 +735,34 @@
           "description": "Output only. State of the workflow deployment.",
           "enum": [
             "STATE_UNSPECIFIED",
-            "ACTIVE"
+            "ACTIVE",
+            "UNAVAILABLE"
           ],
           "enumDescriptions": [
             "Invalid state.",
-            "The workflow has been deployed successfully and is serving."
+            "The workflow has been deployed successfully and is serving.",
+            "Workflow data is unavailable. See the `state_error` field."
           ],
           "readOnly": true,
           "type": "string"
         },
+        "stateError": {
+          "$ref": "StateError",
+          "description": "Output only. Error regarding the state of the workflow. For example, this field will have error details if the execution data is unavailable due to revoked KMS key permissions.",
+          "readOnly": true
+        },
         "updateTime": {
-          "description": "Output only. The last update timestamp of the workflow.",
+          "description": "Output only. The timestamp for when the workflow was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "userEnvVars": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-defined environment variables associated with this workflow revision. This map has a maximum length of 20. Each string can take up to 40KiB. Keys cannot be empty strings and cannot start with “GOOGLE” or “WORKFLOWS\".",
+          "type": "object"
         }
       },
       "type": "object"

@@ -137,7 +137,7 @@ export namespace datacatalog_v1beta1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid\}.svc.id.goog[{namespace\}/{kubernetes-sa\}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
      */
     members?: string[] | null;
     /**
@@ -561,7 +561,7 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1SearchCatalogRequestScope {
     /**
-     * If `true`, include Google Cloud Platform (GCP) public datasets in the search results. Info on GCP public datasets is available at https://cloud.google.com/public-datasets/. By default, GCP public datasets are excluded.
+     * If `true`, include Google Cloud public datasets in the search results. Info on Google Cloud public datasets is available at https://cloud.google.com/public-datasets/. By default, Google Cloud public datasets are excluded.
      */
     includeGcpPublicDatasets?: boolean | null;
     /**
@@ -589,6 +589,10 @@ export namespace datacatalog_v1beta1 {
      * Search results.
      */
     results?: Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResult[];
+    /**
+     * The approximate total number of entries matched by the query.
+     */
+    totalSize?: number | null;
     /**
      * Unreachable locations. Search result does not include data from those locations. Users can get additional information on the error by repeating the search request with a more restrictive parameter -- setting the value for `SearchDataCatalogRequest.scope.restricted_locations`.
      */
@@ -757,7 +761,7 @@ export namespace datacatalog_v1beta1 {
     displayName?: string | null;
   }
   /**
-   * A tag template defines a tag, which can have one or more typed fields. The template is used to create and attach the tag to GCP resources. [Tag template roles](https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. See, for example, the [TagTemplate User](https://cloud.google.com/data-catalog/docs/how-to/template-user) role, which includes permission to use the tag template to tag resources.
+   * A tag template defines a tag, which can have one or more typed fields. The template is used to create and attach the tag to Google Cloud resources. [Tag template roles](https://cloud.google.com/iam/docs/understanding-roles#data-catalog-roles) provide permissions to create, edit, and use the template. See, for example, the [TagTemplate User](https://cloud.google.com/data-catalog/docs/how-to/template-user) role, which includes permission to use the tag template to tag resources.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1TagTemplate {
     /**
@@ -829,9 +833,26 @@ export namespace datacatalog_v1beta1 {
      */
     policyTagCount?: number | null;
     /**
+     * Output only. Identity of the service which owns the Taxonomy. This field is only populated when the taxonomy is created by a Google Cloud service. Currently only 'DATAPLEX' is supported.
+     */
+    service?: Schema$GoogleCloudDatacatalogV1beta1TaxonomyService;
+    /**
      * Output only. Timestamps about this taxonomy. Only create_time and update_time are used.
      */
     taxonomyTimestamps?: Schema$GoogleCloudDatacatalogV1beta1SystemTimestamps;
+  }
+  /**
+   * The source system of the Taxonomy.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1beta1TaxonomyService {
+    /**
+     * The service agent for the service.
+     */
+    identity?: string | null;
+    /**
+     * The Google Cloud service name.
+     */
+    name?: string | null;
   }
   /**
    * The set of all usage signals that we store in Data Catalog.
@@ -879,7 +900,956 @@ export namespace datacatalog_v1beta1 {
     viewQuery?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * Specification for the BigQuery connection.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1BigQueryConnectionSpec {
+    /**
+     * Specification for the BigQuery connection to a Cloud SQL instance.
+     */
+    cloudSql?: Schema$GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec;
+    /**
+     * The type of the BigQuery connection.
+     */
+    connectionType?: string | null;
+    /**
+     * True if there are credentials attached to the BigQuery connection; false otherwise.
+     */
+    hasCredential?: boolean | null;
+  }
+  /**
+   * Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD` name pattern. For more information, see [Introduction to partitioned tables] (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
+   */
+  export interface Schema$GoogleCloudDatacatalogV1BigQueryDateShardedSpec {
+    /**
+     * Output only. The Data Catalog resource name of the dataset entry the current table belongs to. For example: `projects/{PROJECT_ID\}/locations/{LOCATION\}/entrygroups/{ENTRY_GROUP_ID\}/entries/{ENTRY_ID\}`.
+     */
+    dataset?: string | null;
+    /**
+     * Output only. BigQuery resource name of the latest shard.
+     */
+    latestShardResource?: string | null;
+    /**
+     * Output only. Total number of shards.
+     */
+    shardCount?: string | null;
+    /**
+     * Output only. The table name prefix of the shards. The name of any given shard is `[table_prefix]YYYYMMDD`. For example, for the `MyTable20180101` shard, the `table_prefix` is `MyTable`.
+     */
+    tablePrefix?: string | null;
+  }
+  /**
+   * Fields specific for BigQuery routines.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1BigQueryRoutineSpec {
+    /**
+     * Paths of the imported libraries.
+     */
+    importedLibraries?: string[] | null;
+  }
+  /**
+   * Describes a BigQuery table.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1BigQueryTableSpec {
+    /**
+     * Output only. The table source type.
+     */
+    tableSourceType?: string | null;
+    /**
+     * Specification of a BigQuery table. Populated only if the `table_source_type` is `BIGQUERY_TABLE`.
+     */
+    tableSpec?: Schema$GoogleCloudDatacatalogV1TableSpec;
+    /**
+     * Table view specification. Populated only if the `table_source_type` is `BIGQUERY_VIEW`.
+     */
+    viewSpec?: Schema$GoogleCloudDatacatalogV1ViewSpec;
+  }
+  /**
+   * Business Context of the entry.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1BusinessContext {
+    /**
+     * Contact people for the entry.
+     */
+    contacts?: Schema$GoogleCloudDatacatalogV1Contacts;
+    /**
+     * Entry overview fields for rich text descriptions of entries.
+     */
+    entryOverview?: Schema$GoogleCloudDatacatalogV1EntryOverview;
+  }
+  /**
+   * Specification that applies to Instance entries that are part of `CLOUD_BIGTABLE` system. (user_specified_type)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpec {
+    /**
+     * The list of clusters for the Instance.
+     */
+    cloudBigtableClusterSpecs?: Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec[];
+  }
+  /**
+   * Spec that applies to clusters of an Instance of Cloud Bigtable.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec {
+    /**
+     * Name of the cluster.
+     */
+    displayName?: string | null;
+    /**
+     * A link back to the parent resource, in this case Instance.
+     */
+    linkedResource?: string | null;
+    /**
+     * Location of the cluster, typically a Cloud zone.
+     */
+    location?: string | null;
+    /**
+     * Type of the resource. For a cluster this would be "CLUSTER".
+     */
+    type?: string | null;
+  }
+  /**
+   * Specification that applies to all entries that are part of `CLOUD_BIGTABLE` system (user_specified_type)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudBigtableSystemSpec {
+    /**
+     * Display name of the Instance. This is user specified and different from the resource name.
+     */
+    instanceDisplayName?: string | null;
+  }
+  /**
+   * Specification for the BigQuery connection to a Cloud SQL instance.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec {
+    /**
+     * Database name.
+     */
+    database?: string | null;
+    /**
+     * Cloud SQL instance ID in the format of `project:location:instance`.
+     */
+    instanceId?: string | null;
+    /**
+     * Type of the Cloud SQL database.
+     */
+    type?: string | null;
+  }
+  /**
+   * A column within a schema. Columns can be nested inside other columns.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ColumnSchema {
+    /**
+     * Required. Name of the column. Must be a UTF-8 string without dots (.). The maximum size is 64 bytes.
+     */
+    column?: string | null;
+    /**
+     * Optional. Default value for the column.
+     */
+    defaultValue?: string | null;
+    /**
+     * Optional. Description of the column. Default value is an empty string. The description must be a UTF-8 string with the maximum size of 2000 bytes.
+     */
+    description?: string | null;
+    /**
+     * Optional. Garbage collection policy for the column or column family. Applies to systems like Cloud Bigtable.
+     */
+    gcRule?: string | null;
+    /**
+     * Optional. Most important inclusion of this column.
+     */
+    highestIndexingType?: string | null;
+    /**
+     * Looker specific column info of this column.
+     */
+    lookerColumnSpec?: Schema$GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec;
+    /**
+     * Optional. A column's mode indicates whether values in this column are required, nullable, or repeated. Only `NULLABLE`, `REQUIRED`, and `REPEATED` values are supported. Default mode is `NULLABLE`.
+     */
+    mode?: string | null;
+    /**
+     * Optional. Ordinal position
+     */
+    ordinalPosition?: number | null;
+    /**
+     * Optional. Schema of sub-columns. A column can have zero or more sub-columns.
+     */
+    subcolumns?: Schema$GoogleCloudDatacatalogV1ColumnSchema[];
+    /**
+     * Required. Type of the column. Must be a UTF-8 string with the maximum size of 128 bytes.
+     */
+    type?: string | null;
+  }
+  /**
+   * Column info specific to Looker System.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec {
+    /**
+     * Looker specific column type of this column.
+     */
+    type?: string | null;
+  }
+  /**
+   * Common statistics on the entry's usage. They can be set on any system.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CommonUsageStats {
+    /**
+     * View count in source system.
+     */
+    viewCount?: string | null;
+  }
+  /**
+   * Contact people for the entry.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1Contacts {
+    /**
+     * The list of contact people for the entry.
+     */
+    people?: Schema$GoogleCloudDatacatalogV1ContactsPerson[];
+  }
+  /**
+   * A contact person for the entry.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ContactsPerson {
+    /**
+     * Designation of the person, for example, Data Steward.
+     */
+    designation?: string | null;
+    /**
+     * Email of the person in the format of `john.doe@xyz`, ``, or `John Doe`.
+     */
+    email?: string | null;
+  }
+  /**
+   * Specification that applies to a table resource. Valid only for entries with the `TABLE` type.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DatabaseTableSpec {
+    /**
+     * Spec what aplies to tables that are actually views. Not set for "real" tables.
+     */
+    databaseViewSpec?: Schema$GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec;
+    /**
+     * Output only. Fields specific to a Dataplex table and present only in the Dataplex table entries.
+     */
+    dataplexTable?: Schema$GoogleCloudDatacatalogV1DataplexTableSpec;
+    /**
+     * Type of this table.
+     */
+    type?: string | null;
+  }
+  /**
+   * Specification that applies to database view.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec {
+    /**
+     * Name of a singular table this view reflects one to one.
+     */
+    baseTable?: string | null;
+    /**
+     * SQL query used to generate this view.
+     */
+    sqlQuery?: string | null;
+    /**
+     * Type of this view.
+     */
+    viewType?: string | null;
+  }
+  /**
+   * External table registered by Dataplex. Dataplex publishes data discovered from an asset into multiple other systems (BigQuery, DPMS) in form of tables. We call them "external tables". External tables are also synced into the Data Catalog. This message contains pointers to those external tables (fully qualified name, resource name et cetera) within the Data Catalog.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataplexExternalTable {
+    /**
+     * Name of the Data Catalog entry representing the external table.
+     */
+    dataCatalogEntry?: string | null;
+    /**
+     * Fully qualified name (FQN) of the external table.
+     */
+    fullyQualifiedName?: string | null;
+    /**
+     * Google Cloud resource name of the external table.
+     */
+    googleCloudResource?: string | null;
+    /**
+     * Service in which the external table is registered.
+     */
+    system?: string | null;
+  }
+  /**
+   * Entry specyfication for a Dataplex fileset.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataplexFilesetSpec {
+    /**
+     * Common Dataplex fields.
+     */
+    dataplexSpec?: Schema$GoogleCloudDatacatalogV1DataplexSpec;
+  }
+  /**
+   * Common Dataplex fields.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataplexSpec {
+    /**
+     * Fully qualified resource name of an asset in Dataplex, to which the underlying data source (Cloud Storage bucket or BigQuery dataset) of the entity is attached.
+     */
+    asset?: string | null;
+    /**
+     * Compression format of the data, e.g., zip, gzip etc.
+     */
+    compressionFormat?: string | null;
+    /**
+     * Format of the data.
+     */
+    dataFormat?: Schema$GoogleCloudDatacatalogV1PhysicalSchema;
+    /**
+     * Project ID of the underlying Cloud Storage or BigQuery data. Note that this may not be the same project as the correspondingly Dataplex lake / zone / asset.
+     */
+    projectId?: string | null;
+  }
+  /**
+   * Entry specification for a Dataplex table.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataplexTableSpec {
+    /**
+     * Common Dataplex fields.
+     */
+    dataplexSpec?: Schema$GoogleCloudDatacatalogV1DataplexSpec;
+    /**
+     * List of external tables registered by Dataplex in other systems based on the same underlying data. External tables allow to query this data in those systems.
+     */
+    externalTables?: Schema$GoogleCloudDatacatalogV1DataplexExternalTable[];
+    /**
+     * Indicates if the table schema is managed by the user or not.
+     */
+    userManaged?: boolean | null;
+  }
+  /**
+   * Physical location of an entry.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataSource {
+    /**
+     * Full name of a resource as defined by the service. For example: `//bigquery.googleapis.com/projects/{PROJECT_ID\}/locations/{LOCATION\}/datasets/{DATASET_ID\}/tables/{TABLE_ID\}`
+     */
+    resource?: string | null;
+    /**
+     * Service that physically stores the data.
+     */
+    service?: string | null;
+    /**
+     * Output only. Data Catalog entry name, if applicable.
+     */
+    sourceEntry?: string | null;
+    /**
+     * Detailed properties of the underlying storage.
+     */
+    storageProperties?: Schema$GoogleCloudDatacatalogV1StorageProperties;
+  }
+  /**
+   * Specification that applies to a data source connection. Valid only for entries with the `DATA_SOURCE_CONNECTION` type. Only one of internal specs can be set at the time, and cannot be changed later.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataSourceConnectionSpec {
+    /**
+     * Output only. Fields specific to BigQuery connections.
+     */
+    bigqueryConnectionSpec?: Schema$GoogleCloudDatacatalogV1BigQueryConnectionSpec;
+  }
+  /**
+   * Wrapper for any item that can be contained in the dump.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DumpItem {
+    /**
+     * Entry and its tags.
+     */
+    taggedEntry?: Schema$GoogleCloudDatacatalogV1TaggedEntry;
+  }
+  /**
+   * Entry metadata. A Data Catalog entry represents another resource in Google Cloud Platform (such as a BigQuery dataset or a Pub/Sub topic) or outside of it. You can use the `linked_resource` field in the entry resource to refer to the original resource ID of the source system. An entry resource contains resource details, for example, its schema. Additionally, you can attach flexible metadata to an entry in the form of a Tag.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1Entry {
+    /**
+     * Output only. Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD` name pattern. For more information, see [Introduction to partitioned tables] (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
+     */
+    bigqueryDateShardedSpec?: Schema$GoogleCloudDatacatalogV1BigQueryDateShardedSpec;
+    /**
+     * Output only. Specification that applies to a BigQuery table. Valid only for entries with the `TABLE` type.
+     */
+    bigqueryTableSpec?: Schema$GoogleCloudDatacatalogV1BigQueryTableSpec;
+    /**
+     * Business Context of the entry. Not supported for BigQuery datasets
+     */
+    businessContext?: Schema$GoogleCloudDatacatalogV1BusinessContext;
+    /**
+     * Specification that applies to Cloud Bigtable system. Only settable when `integrated_system` is equal to `CLOUD_BIGTABLE`
+     */
+    cloudBigtableSystemSpec?: Schema$GoogleCloudDatacatalogV1CloudBigtableSystemSpec;
+    /**
+     * Specification that applies to a table resource. Valid only for entries with the `TABLE` or `EXPLORE` type.
+     */
+    databaseTableSpec?: Schema$GoogleCloudDatacatalogV1DatabaseTableSpec;
+    /**
+     * Output only. Physical location of the entry.
+     */
+    dataSource?: Schema$GoogleCloudDatacatalogV1DataSource;
+    /**
+     * Specification that applies to a data source connection. Valid only for entries with the `DATA_SOURCE_CONNECTION` type.
+     */
+    dataSourceConnectionSpec?: Schema$GoogleCloudDatacatalogV1DataSourceConnectionSpec;
+    /**
+     * Entry description that can consist of several sentences or paragraphs that describe entry contents. The description must not contain Unicode non-characters as well as C0 and C1 control codes except tabs (HT), new lines (LF), carriage returns (CR), and page breaks (FF). The maximum size is 2000 bytes when encoded in UTF-8. Default value is an empty string.
+     */
+    description?: string | null;
+    /**
+     * Display name of an entry. The maximum size is 500 bytes when encoded in UTF-8. Default value is an empty string.
+     */
+    displayName?: string | null;
+    /**
+     * Specification that applies to a fileset resource. Valid only for entries with the `FILESET` type.
+     */
+    filesetSpec?: Schema$GoogleCloudDatacatalogV1FilesetSpec;
+    /**
+     * [Fully Qualified Name (FQN)](https://cloud.google.com//data-catalog/docs/fully-qualified-names) of the resource. Set automatically for entries representing resources from synced systems. Settable only during creation, and read-only later. Can be used for search and lookup of the entries.
+     */
+    fullyQualifiedName?: string | null;
+    /**
+     * Specification that applies to a Cloud Storage fileset. Valid only for entries with the `FILESET` type.
+     */
+    gcsFilesetSpec?: Schema$GoogleCloudDatacatalogV1GcsFilesetSpec;
+    /**
+     * Output only. Indicates the entry's source system that Data Catalog integrates with, such as BigQuery, Pub/Sub, or Dataproc Metastore.
+     */
+    integratedSystem?: string | null;
+    /**
+     * Cloud labels attached to the entry. In Data Catalog, you can create and modify labels attached only to custom entries. Synced entries have unmodifiable labels that come from the source system.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The resource this metadata entry refers to. For Google Cloud Platform resources, `linked_resource` is the [Full Resource Name] (https://cloud.google.com/apis/design/resource_names#full_resource_name). For example, the `linked_resource` for a table resource from BigQuery is: `//bigquery.googleapis.com/projects/{PROJECT_ID\}/datasets/{DATASET_ID\}/tables/{TABLE_ID\}` Output only when the entry is one of the types in the `EntryType` enum. For entries with a `user_specified_type`, this field is optional and defaults to an empty string. The resource string must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), periods (.), colons (:), slashes (/), dashes (-), and hashes (#). The maximum size is 200 bytes when encoded in UTF-8.
+     */
+    linkedResource?: string | null;
+    /**
+     * Specification that applies to Looker sysstem. Only settable when `user_specified_system` is equal to `LOOKER`
+     */
+    lookerSystemSpec?: Schema$GoogleCloudDatacatalogV1LookerSystemSpec;
+    /**
+     * Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
+     */
+    name?: string | null;
+    /**
+     * Output only. Additional information related to the entry. Private to the current user.
+     */
+    personalDetails?: Schema$GoogleCloudDatacatalogV1PersonalDetails;
+    /**
+     * Specification that applies to a user-defined function or procedure. Valid only for entries with the `ROUTINE` type.
+     */
+    routineSpec?: Schema$GoogleCloudDatacatalogV1RoutineSpec;
+    /**
+     * Schema of the entry. An entry might not have any schema attached to it.
+     */
+    schema?: Schema$GoogleCloudDatacatalogV1Schema;
+    /**
+     * Specification that applies to a Service resource.
+     */
+    serviceSpec?: Schema$GoogleCloudDatacatalogV1ServiceSpec;
+    /**
+     * Timestamps from the underlying resource, not from the Data Catalog entry. Output only when the entry has a system listed in the `IntegratedSystem` enum. For entries with `user_specified_system`, this field is optional and defaults to an empty timestamp.
+     */
+    sourceSystemTimestamps?: Schema$GoogleCloudDatacatalogV1SystemTimestamps;
+    /**
+     * Specification that applies to a relational database system. Only settable when `user_specified_system` is equal to `SQL_DATABASE`
+     */
+    sqlDatabaseSystemSpec?: Schema$GoogleCloudDatacatalogV1SqlDatabaseSystemSpec;
+    /**
+     * The type of the entry. For details, see [`EntryType`](#entrytype).
+     */
+    type?: string | null;
+    /**
+     * Resource usage statistics.
+     */
+    usageSignal?: Schema$GoogleCloudDatacatalogV1UsageSignal;
+    /**
+     * Indicates the entry's source system that Data Catalog doesn't automatically integrate with. The `user_specified_system` string has the following limitations: * Is case insensitive. * Must begin with a letter or underscore. * Can only contain letters, numbers, and underscores. * Must be at least 1 character and at most 64 characters long.
+     */
+    userSpecifiedSystem?: string | null;
+    /**
+     * Custom entry type that doesn't match any of the values allowed for input and listed in the `EntryType` enum. When creating an entry, first check the type values in the enum. If there are no appropriate types for the new entry, provide a custom value, for example, `my_special_type`. The `user_specified_type` string has the following limitations: * Is case insensitive. * Must begin with a letter or underscore. * Can only contain letters, numbers, and underscores. * Must be at least 1 character and at most 64 characters long.
+     */
+    userSpecifiedType?: string | null;
+  }
+  /**
+   * Entry overview fields for rich text descriptions of entries.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1EntryOverview {
+    /**
+     * Entry overview with support for rich text. The overview must only contain Unicode characters, and should be formatted using HTML. The maximum length is 10 MiB as this value holds HTML descriptions including encoded images. The maximum length of the text without images is 100 KiB.
+     */
+    overview?: string | null;
+  }
+  /**
+   * Specification that applies to a fileset. Valid only for entries with the 'FILESET' type.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1FilesetSpec {
+    /**
+     * Fields specific to a Dataplex fileset and present only in the Dataplex fileset entries.
+     */
+    dataplexFileset?: Schema$GoogleCloudDatacatalogV1DataplexFilesetSpec;
+  }
+  /**
+   * Describes a Cloud Storage fileset entry.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1GcsFilesetSpec {
+    /**
+     * Required. Patterns to identify a set of files in Google Cloud Storage. For more information, see [Wildcard Names] (https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames). Note: Currently, bucket wildcards are not supported. Examples of valid `file_patterns`: * `gs://bucket_name/dir/x`: matches all files in `bucket_name/dir` directory * `gs://bucket_name/dir/x*`: matches all files in `bucket_name/dir` and all subdirectories * `gs://bucket_name/file*`: matches files prefixed by `file` in `bucket_name` * `gs://bucket_name/??.txt`: matches files with two characters followed by `.txt` in `bucket_name` * `gs://bucket_name/[aeiou].txt`: matches files that contain a single vowel character followed by `.txt` in `bucket_name` * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ... or `m` followed by `.txt` in `bucket_name` * `gs://bucket_name/a/x/b`: matches all files in `bucket_name` that match the `a/x/b` pattern, such as `a/c/b`, `a/d/b` * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt` You can combine wildcards to match complex sets of files, for example: `gs://bucket_name/[a-m]??.j*g`
+     */
+    filePatterns?: string[] | null;
+    /**
+     * Output only. Sample files contained in this fileset, not all files contained in this fileset are represented here.
+     */
+    sampleGcsFileSpecs?: Schema$GoogleCloudDatacatalogV1GcsFileSpec[];
+  }
+  /**
+   * Specification of a single file in Cloud Storage.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1GcsFileSpec {
+    /**
+     * Required. Full file path. Example: `gs://bucket_name/a/b.txt`.
+     */
+    filePath?: string | null;
+    /**
+     * Output only. Creation, modification, and expiration timestamps of a Cloud Storage file.
+     */
+    gcsTimestamps?: Schema$GoogleCloudDatacatalogV1SystemTimestamps;
+    /**
+     * Output only. File size in bytes.
+     */
+    sizeBytes?: string | null;
+  }
+  /**
+   * Metadata message for long-running operation returned by the ImportEntries.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ImportEntriesMetadata {
+    /**
+     * Partial errors that are encountered during the ImportEntries operation. There is no guarantee that all the encountered errors are reported. However, if no errors are reported, it means that no errors were encountered.
+     */
+    errors?: Schema$Status[];
+    /**
+     * State of the import operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Response message for long-running operation returned by the ImportEntries.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ImportEntriesResponse {
+    /**
+     * Number of entries deleted as a result of import operation.
+     */
+    deletedEntriesCount?: string | null;
+    /**
+     * Cumulative number of entries created and entries updated as a result of import operation.
+     */
+    upsertedEntriesCount?: string | null;
+  }
+  /**
+   * Specification that applies to entries that are part `LOOKER` system (user_specified_type)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1LookerSystemSpec {
+    /**
+     * Name of the parent Looker Instance. Empty if it does not exist.
+     */
+    parentInstanceDisplayName?: string | null;
+    /**
+     * ID of the parent Looker Instance. Empty if it does not exist. Example value: `someinstance.looker.com`
+     */
+    parentInstanceId?: string | null;
+    /**
+     * Name of the parent Model. Empty if it does not exist.
+     */
+    parentModelDisplayName?: string | null;
+    /**
+     * ID of the parent Model. Empty if it does not exist.
+     */
+    parentModelId?: string | null;
+    /**
+     * Name of the parent View. Empty if it does not exist.
+     */
+    parentViewDisplayName?: string | null;
+    /**
+     * ID of the parent View. Empty if it does not exist.
+     */
+    parentViewId?: string | null;
+  }
+  /**
+   * Entry metadata relevant only to the user and private to them.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PersonalDetails {
+    /**
+     * True if the entry is starred by the user; false otherwise.
+     */
+    starred?: boolean | null;
+    /**
+     * Set if the entry is starred; unset otherwise.
+     */
+    starTime?: string | null;
+  }
+  /**
+   * Native schema used by a resource represented as an entry. Used by query engines for deserializing and parsing source data.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchema {
+    /**
+     * Schema in Avro JSON format.
+     */
+    avro?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaAvroSchema;
+    /**
+     * Marks a CSV-encoded data source.
+     */
+    csv?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaCsvSchema;
+    /**
+     * Marks an ORC-encoded data source.
+     */
+    orc?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaOrcSchema;
+    /**
+     * Marks a Parquet-encoded data source.
+     */
+    parquet?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaParquetSchema;
+    /**
+     * Schema in protocol buffer format.
+     */
+    protobuf?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaProtobufSchema;
+    /**
+     * Schema in Thrift format.
+     */
+    thrift?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaThriftSchema;
+  }
+  /**
+   * Schema in Avro JSON format.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaAvroSchema {
+    /**
+     * JSON source of the Avro schema.
+     */
+    text?: string | null;
+  }
+  /**
+   * Marks a CSV-encoded data source.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaCsvSchema {}
+  /**
+   * Marks an ORC-encoded data source.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaOrcSchema {}
+  /**
+   * Marks a Parquet-encoded data source.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaParquetSchema {}
+  /**
+   * Schema in protocol buffer format.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaProtobufSchema {
+    /**
+     * Protocol buffer source of the schema.
+     */
+    text?: string | null;
+  }
+  /**
+   * Schema in Thrift format.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaThriftSchema {
+    /**
+     * Thrift IDL source of the schema.
+     */
+    text?: string | null;
+  }
+  /**
+   * Long-running operation metadata message returned by the ReconcileTags.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsMetadata {
+    /**
+     * Maps the name of each tagged column (or empty string for a sole entry) to tagging operation status.
+     */
+    errors?: {[key: string]: Schema$Status} | null;
+    /**
+     * State of the reconciliation operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Long-running operation response message returned by ReconcileTags.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsResponse {
+    /**
+     * Number of tags created in the request.
+     */
+    createdTagsCount?: string | null;
+    /**
+     * Number of tags deleted in the request.
+     */
+    deletedTagsCount?: string | null;
+    /**
+     * Number of tags updated in the request.
+     */
+    updatedTagsCount?: string | null;
+  }
+  /**
+   * Specification that applies to a routine. Valid only for entries with the `ROUTINE` type.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1RoutineSpec {
+    /**
+     * Fields specific for BigQuery routines.
+     */
+    bigqueryRoutineSpec?: Schema$GoogleCloudDatacatalogV1BigQueryRoutineSpec;
+    /**
+     * The body of the routine.
+     */
+    definitionBody?: string | null;
+    /**
+     * The language the routine is written in. The exact value depends on the source system. For BigQuery routines, possible values are: * `SQL` * `JAVASCRIPT`
+     */
+    language?: string | null;
+    /**
+     * Return type of the argument. The exact value depends on the source system and the language.
+     */
+    returnType?: string | null;
+    /**
+     * Arguments of the routine.
+     */
+    routineArguments?: Schema$GoogleCloudDatacatalogV1RoutineSpecArgument[];
+    /**
+     * The type of the routine.
+     */
+    routineType?: string | null;
+  }
+  /**
+   * Input or output argument of a function or stored procedure.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1RoutineSpecArgument {
+    /**
+     * Specifies whether the argument is input or output.
+     */
+    mode?: string | null;
+    /**
+     * The name of the argument. A return argument of a function might not have a name.
+     */
+    name?: string | null;
+    /**
+     * Type of the argument. The exact value depends on the source system and the language.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents a schema, for example, a BigQuery, GoogleSQL, or Avro schema.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1Schema {
+    /**
+     * The unified GoogleSQL-like schema of columns. The overall maximum number of columns and nested columns is 10,000. The maximum nested depth is 15 levels.
+     */
+    columns?: Schema$GoogleCloudDatacatalogV1ColumnSchema[];
+  }
+  /**
+   * Specification that applies to a Service resource. Valid only for entries with the `SERVICE` type.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ServiceSpec {
+    /**
+     * Specification that applies to Instance entries of `CLOUD_BIGTABLE` system.
+     */
+    cloudBigtableInstanceSpec?: Schema$GoogleCloudDatacatalogV1CloudBigtableInstanceSpec;
+  }
+  /**
+   * Specification that applies to entries that are part `SQL_DATABASE` system (user_specified_type)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1SqlDatabaseSystemSpec {
+    /**
+     * Version of the database engine.
+     */
+    databaseVersion?: string | null;
+    /**
+     * Host of the SQL database enum InstanceHost { UNDEFINED = 0; SELF_HOSTED = 1; CLOUD_SQL = 2; AMAZON_RDS = 3; AZURE_SQL = 4; \} Host of the enclousing database instance.
+     */
+    instanceHost?: string | null;
+    /**
+     * SQL Database Engine. enum SqlEngine { UNDEFINED = 0; MY_SQL = 1; POSTGRE_SQL = 2; SQL_SERVER = 3; \} Engine of the enclosing database instance.
+     */
+    sqlEngine?: string | null;
+  }
+  /**
+   * Details the properties of the underlying storage.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1StorageProperties {
+    /**
+     * Patterns to identify a set of files for this fileset. Examples of a valid `file_pattern`: * `gs://bucket_name/dir/x`: matches all files in the `bucket_name/dir` directory * `gs://bucket_name/dir/x*`: matches all files in the `bucket_name/dir` and all subdirectories recursively * `gs://bucket_name/file*`: matches files prefixed by `file` in `bucket_name` * `gs://bucket_name/??.txt`: matches files with two characters followed by `.txt` in `bucket_name` * `gs://bucket_name/[aeiou].txt`: matches files that contain a single vowel character followed by `.txt` in `bucket_name` * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ... or `m` followed by `.txt` in `bucket_name` * `gs://bucket_name/a/x/b`: matches all files in `bucket_name` that match the `a/x/b` pattern, such as `a/c/b`, `a/d/b` * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
+     */
+    filePattern?: string[] | null;
+    /**
+     * File type in MIME format, for example, `text/plain`.
+     */
+    fileType?: string | null;
+  }
+  /**
+   * Timestamps associated with this resource in a particular system.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1SystemTimestamps {
+    /**
+     * Creation timestamp of the resource within the given system.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Expiration timestamp of the resource within the given system. Currently only applicable to BigQuery resources.
+     */
+    expireTime?: string | null;
+    /**
+     * Timestamp of the last modification of the resource or its metadata within a given system. Note: Depending on the source system, not every modification updates this timestamp. For example, BigQuery timestamps every metadata modification but not data or permission changes.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Normal BigQuery table specification.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1TableSpec {
+    /**
+     * Output only. If the table is date-sharded, that is, it matches the `[prefix]YYYYMMDD` name pattern, this field is the Data Catalog resource name of the date-sharded grouped entry. For example: `projects/{PROJECT_ID\}/locations/{LOCATION\}/entrygroups/{ENTRY_GROUP_ID\}/entries/{ENTRY_ID\}`. Otherwise, `grouped_entry` is empty.
+     */
+    groupedEntry?: string | null;
+  }
+  /**
+   * Tags contain custom metadata and are attached to Data Catalog resources. Tags conform with the specification of their tag template. See [Data Catalog IAM](https://cloud.google.com/data-catalog/docs/concepts/iam) for information on the permissions needed to create or view tags.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1Tag {
+    /**
+     * Resources like entry can have schemas associated with them. This scope allows you to attach tags to an individual column based on that schema. To attach a tag to a nested column, separate column names with a dot (`.`). Example: `column.nested_column`.
+     */
+    column?: string | null;
+    /**
+     * Required. Maps the ID of a tag field to its value and additional information about that field. Tag template defines valid field IDs. A tag must have at least 1 field and at most 500 fields.
+     */
+    fields?: {[key: string]: Schema$GoogleCloudDatacatalogV1TagField} | null;
+    /**
+     * The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.
+     */
+    name?: string | null;
+    /**
+     * Required. The resource name of the tag template this tag uses. Example: `projects/{PROJECT_ID\}/locations/{LOCATION\}/tagTemplates/{TAG_TEMPLATE_ID\}` This field cannot be modified after creation.
+     */
+    template?: string | null;
+    /**
+     * Output only. The display name of the tag template.
+     */
+    templateDisplayName?: string | null;
+  }
+  /**
+   * Contains the value and additional information on a field within a Tag.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1TagField {
+    /**
+     * The value of a tag field with a boolean type.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Output only. The display name of this field.
+     */
+    displayName?: string | null;
+    /**
+     * The value of a tag field with a double type.
+     */
+    doubleValue?: number | null;
+    /**
+     * The value of a tag field with an enum type. This value must be one of the allowed values listed in this enum.
+     */
+    enumValue?: Schema$GoogleCloudDatacatalogV1TagFieldEnumValue;
+    /**
+     * Output only. The order of this field with respect to other fields in this tag. Can be set by Tag. For example, a higher value can indicate a more important field. The value can be negative. Multiple fields can have the same order, and field orders within a tag don't have to be sequential.
+     */
+    order?: number | null;
+    /**
+     * The value of a tag field with a rich text type. The maximum length is 10 MiB as this value holds HTML descriptions including encoded images. The maximum length of the text without images is 100 KiB.
+     */
+    richtextValue?: string | null;
+    /**
+     * The value of a tag field with a string type. The maximum length is 2000 UTF-8 characters.
+     */
+    stringValue?: string | null;
+    /**
+     * The value of a tag field with a timestamp type.
+     */
+    timestampValue?: string | null;
+  }
+  /**
+   * An enum value.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1TagFieldEnumValue {
+    /**
+     * The display name of the enum value.
+     */
+    displayName?: string | null;
+  }
+  /**
+   * Wrapper containing Entry and information about Tags that should and should not be attached to it.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1TaggedEntry {
+    /**
+     * Optional. Tags that should be deleted from the Data Catalog. Caller should populate template name and column only.
+     */
+    absentTags?: Schema$GoogleCloudDatacatalogV1Tag[];
+    /**
+     * Optional. Tags that should be ingested into the Data Catalog. Caller should populate template name, column and fields.
+     */
+    presentTags?: Schema$GoogleCloudDatacatalogV1Tag[];
+    /**
+     * Non-encrypted Data Catalog v1 Entry.
+     */
+    v1Entry?: Schema$GoogleCloudDatacatalogV1Entry;
+  }
+  /**
+   * The set of all usage signals that Data Catalog stores. Note: Usually, these signals are updated daily. In rare cases, an update may fail but will be performed again on the next day.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1UsageSignal {
+    /**
+     * Common usage statistics over each of the predefined time ranges. Supported time ranges are `{"24H", "7D", "30D", "Lifetime"\}`.
+     */
+    commonUsageWithinTimeRange?: {
+      [key: string]: Schema$GoogleCloudDatacatalogV1CommonUsageStats;
+    } | null;
+    /**
+     * Favorite count in the source system.
+     */
+    favoriteCount?: string | null;
+    /**
+     * The end timestamp of the duration of usage statistics.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. BigQuery usage statistics over each of the predefined time ranges. Supported time ranges are `{"24H", "7D", "30D"\}`.
+     */
+    usageWithinTimeRange?: {
+      [key: string]: Schema$GoogleCloudDatacatalogV1UsageStats;
+    } | null;
+  }
+  /**
+   * Detailed statistics on the entry's usage. Usage statistics have the following limitations: - Only BigQuery tables have them. - They only include BigQuery query jobs. - They might be underestimated because wildcard table references are not yet counted. For more information, see [Querying multiple tables using a wildcard table] (https://cloud.google.com/bigquery/docs/querying-wildcard-tables)
+   */
+  export interface Schema$GoogleCloudDatacatalogV1UsageStats {
+    /**
+     * The number of cancelled attempts to use the underlying entry.
+     */
+    totalCancellations?: number | null;
+    /**
+     * The number of successful uses of the underlying entry.
+     */
+    totalCompletions?: number | null;
+    /**
+     * Total time spent only on successful uses, in milliseconds.
+     */
+    totalExecutionTimeForCompletionsMillis?: number | null;
+    /**
+     * The number of failed attempts to use the underlying entry.
+     */
+    totalFailures?: number | null;
+  }
+  /**
+   * Table view specification.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ViewSpec {
+    /**
+     * Output only. The query that defines the table view.
+     */
+    viewQuery?: string | null;
+  }
+  /**
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -903,6 +1873,23 @@ export namespace datacatalog_v1beta1 {
      * REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -931,59 +1918,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Searches Data Catalog for multiple resources like entries, tags that match a query. This is a custom method (https://cloud.google.com/apis/design/custom_methods) and does not return the complete resource, only the resource identifier and high level fields. Clients can subsequently call `Get` methods. Note that Data Catalog search queries do not guarantee full recall. Query results that match your query may not be returned, even in subsequent result pages. Also note that results returned (and not returned) can vary across repeated search queries. See [Data Catalog Search Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference) for more information.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.catalog.search({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "orderBy": "my_orderBy",
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken",
-     *       //   "query": "my_query",
-     *       //   "scope": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "results": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1093,63 +2027,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Get an entry by target resource name. This method allows clients to use the resource name from the source Google Cloud Platform service to get the Data Catalog Entry.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.entries.lookup({
-     *     // The full name of the Google Cloud Platform resource the Data Catalog entry represents. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Full names are case-sensitive. Examples: * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId * //pubsub.googleapis.com/projects/projectId/topics/topicId
-     *     linkedResource: 'placeholder-value',
-     *     // The SQL name of the entry. SQL names are case-sensitive. Examples: * `pubsub.project_id.topic_id` * ``pubsub.project_id.`topic.id.with.dots` `` * `bigquery.table.project_id.dataset_id.table_id` * `bigquery.dataset.project_id.dataset_id` * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id` `*_id`s should satisfy the standard SQL rules for identifiers. https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
-     *     sqlResource: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bigqueryDateShardedSpec": {},
-     *   //   "bigqueryTableSpec": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "gcsFilesetSpec": {},
-     *   //   "integratedSystem": "my_integratedSystem",
-     *   //   "linkedResource": "my_linkedResource",
-     *   //   "name": "my_name",
-     *   //   "schema": {},
-     *   //   "sourceSystemTimestamps": {},
-     *   //   "type": "my_type",
-     *   //   "usageSignal": {},
-     *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
-     *   //   "userSpecifiedType": "my_userSpecifiedType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1299,64 +2176,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * A maximum of 10,000 entry groups may be created per organization across all locations. Users should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.create({
-     *     // Required. The id of the entry group to create. The id must begin with a letter or underscore, contain only English letters, numbers and underscores, and be at most 64 characters.
-     *     entryGroupId: 'placeholder-value',
-     *     // Required. The name of the project this entry group is in. Example: * projects/{project_id\}/locations/{location\} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "dataCatalogTimestamps": {},
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dataCatalogTimestamps": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1453,48 +2272,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Deletes an EntryGroup. Only entry groups that do not contain entries can be deleted. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.delete({
-     *     // Optional. If true, deletes all entries in the entry group.
-     *     force: 'placeholder-value',
-     *     // Required. The name of the entry group. For example, `projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}`.
-     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1579,53 +2356,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Gets an EntryGroup.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.get({
-     *     // Required. The name of the entry group. For example, `projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}`.
-     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *     // The fields to return. If not set or empty, all fields are returned.
-     *     readMask: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dataCatalogTimestamps": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1719,59 +2449,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it. Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. Callers must have following Google IAM permission - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag templates. - `datacatalog.entries.getIamPolicy` to get policies on entries. - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "options": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1860,53 +2537,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Lists entry groups.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.list({
-     *     // Optional. The maximum number of items to return. Default is 10. Max limit is 1000. Throws an invalid argument for `page_size \> 1000`.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. Token that specifies which page is requested. If empty, the first page is returned.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The name of the location that contains the entry groups, which can be provided in URL format. Example: * projects/{project_id\}/locations/{location\}
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entryGroups": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2003,64 +2633,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Updates an EntryGroup. The user should enable the Data Catalog API in the project identified by the `entry_group.name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.patch({
-     *     // The resource name of the entry group in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\} Note that this EntryGroup and its child resources may not actually be stored in the location in this name.
-     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *     // Names of fields whose values to overwrite on an entry group. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "dataCatalogTimestamps": {},
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dataCatalogTimestamps": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2154,59 +2726,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Sets the access control policy for a resource. Replaces any existing policy. Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. Callers must have following Google IAM permission - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag templates. - `datacatalog.entries.setIamPolicy` to set policies on entries. - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2295,58 +2814,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error). Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. A caller is not required to have Google IAM permission to make this request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.entryGroups.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2559,85 +3026,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Creates an entry. Only entries of 'FILESET' type or user-specified type can be created. Users should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information). A maximum of 100,000 entries may be created per entry group.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.create({
-     *     // Required. The id of the entry to create.
-     *     entryId: 'placeholder-value',
-     *     // Required. The name of the entry group this entry is in. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
-     *     parent:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bigqueryDateShardedSpec": {},
-     *       //   "bigqueryTableSpec": {},
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "gcsFilesetSpec": {},
-     *       //   "integratedSystem": "my_integratedSystem",
-     *       //   "linkedResource": "my_linkedResource",
-     *       //   "name": "my_name",
-     *       //   "schema": {},
-     *       //   "sourceSystemTimestamps": {},
-     *       //   "type": "my_type",
-     *       //   "usageSignal": {},
-     *       //   "userSpecifiedSystem": "my_userSpecifiedSystem",
-     *       //   "userSpecifiedType": "my_userSpecifiedType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bigqueryDateShardedSpec": {},
-     *   //   "bigqueryTableSpec": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "gcsFilesetSpec": {},
-     *   //   "integratedSystem": "my_integratedSystem",
-     *   //   "linkedResource": "my_linkedResource",
-     *   //   "name": "my_name",
-     *   //   "schema": {},
-     *   //   "sourceSystemTimestamps": {},
-     *   //   "type": "my_type",
-     *   //   "usageSignal": {},
-     *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
-     *   //   "userSpecifiedType": "my_userSpecifiedType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2735,46 +3123,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Deletes an existing entry. Only entries created through CreateEntry method can be deleted. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.delete({
-     *     // Required. The name of the entry. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}
-     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2860,61 +3208,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Gets an entry.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.get({
-     *     // Required. The name of the entry. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}
-     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bigqueryDateShardedSpec": {},
-     *   //   "bigqueryTableSpec": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "gcsFilesetSpec": {},
-     *   //   "integratedSystem": "my_integratedSystem",
-     *   //   "linkedResource": "my_linkedResource",
-     *   //   "name": "my_name",
-     *   //   "schema": {},
-     *   //   "sourceSystemTimestamps": {},
-     *   //   "type": "my_type",
-     *   //   "usageSignal": {},
-     *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
-     *   //   "userSpecifiedType": "my_userSpecifiedType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3009,60 +3302,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it. Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. Callers must have following Google IAM permission - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag templates. - `datacatalog.entries.getIamPolicy` to get policies on entries. - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.entryGroups.entries.getIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "options": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3151,56 +3390,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Lists entries.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.list({
-     *     // The maximum number of items to return. Default is 10. Max limit is 1000. Throws an invalid argument for `page_size \> 1000`.
-     *     pageSize: 'placeholder-value',
-     *     // Token that specifies which page is requested. If empty, the first page is returned.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The name of the entry group that contains the entries, which can be provided in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}
-     *     parent:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *     // The fields to return for each Entry. If not set or empty, all fields are returned. For example, setting read_mask to contain only one path "name" will cause ListEntries to return a list of Entries with only "name" field.
-     *     readMask: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "entries": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3298,84 +3487,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Updates an existing entry. Users should enable the Data Catalog API in the project identified by the `entry.name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.patch({
-     *     // Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
-     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
-     *     // Names of fields whose values to overwrite on an entry. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. The following fields are modifiable: * For entries with type `DATA_STREAM`: * `schema` * For entries with type `FILESET`: * `schema` * `display_name` * `description` * `gcs_fileset_spec` * `gcs_fileset_spec.file_patterns` * For entries with `user_specified_type`: * `schema` * `display_name` * `description` * `user_specified_type` * `user_specified_system` * `linked_resource` * `source_system_timestamps`
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "bigqueryDateShardedSpec": {},
-     *       //   "bigqueryTableSpec": {},
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "gcsFilesetSpec": {},
-     *       //   "integratedSystem": "my_integratedSystem",
-     *       //   "linkedResource": "my_linkedResource",
-     *       //   "name": "my_name",
-     *       //   "schema": {},
-     *       //   "sourceSystemTimestamps": {},
-     *       //   "type": "my_type",
-     *       //   "usageSignal": {},
-     *       //   "userSpecifiedSystem": "my_userSpecifiedSystem",
-     *       //   "userSpecifiedType": "my_userSpecifiedType"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bigqueryDateShardedSpec": {},
-     *   //   "bigqueryTableSpec": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "gcsFilesetSpec": {},
-     *   //   "integratedSystem": "my_integratedSystem",
-     *   //   "linkedResource": "my_linkedResource",
-     *   //   "name": "my_name",
-     *   //   "schema": {},
-     *   //   "sourceSystemTimestamps": {},
-     *   //   "type": "my_type",
-     *   //   "usageSignal": {},
-     *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
-     *   //   "userSpecifiedType": "my_userSpecifiedType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3470,60 +3581,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error). Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. A caller is not required to have Google IAM permission to make this request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.entryGroups.entries.testIamPermissions(
-     *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource:
-     *           'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "permissions": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3716,66 +3773,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Creates a tag on an Entry. Note: The project identified by the `parent` parameter for the [tag](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be from the same organization.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.entryGroups.entries.tags.create({
-     *       // Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Tag and its child resources may not actually be stored in the location in this name.
-     *       parent:
-     *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "column": "my_column",
-     *         //   "fields": {},
-     *         //   "name": "my_name",
-     *         //   "template": "my_template",
-     *         //   "templateDisplayName": "my_templateDisplayName"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "column": "my_column",
-     *   //   "fields": {},
-     *   //   "name": "my_name",
-     *   //   "template": "my_template",
-     *   //   "templateDisplayName": "my_templateDisplayName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3873,47 +3870,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Deletes a tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.entryGroups.entries.tags.delete({
-     *       // Required. The name of the tag to delete. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\}
-     *       name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie/tags/my-tag',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3999,55 +3955,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Lists tags assigned to an Entry. The columns in the response are lowercased.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.entryGroups.entries.tags.list({
-     *       // The maximum number of tags to return. Default is 10. Max limit is 1000.
-     *       pageSize: 'placeholder-value',
-     *       // Token that specifies which page is requested. If empty, the first page is returned.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup. Examples: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\} * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}
-     *       parent:
-     *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "tags": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4145,67 +4052,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Updates an existing tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.entryGroups.entries.tags.patch({
-     *       // The resource name of the tag in URL format. Example: * projects/{project_id\}/locations/{location\}/entrygroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
-     *       name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie/tags/my-tag',
-     *       // Note: Currently, this parameter can only take `"fields"` as value. Names of fields whose values to overwrite on a tag. Currently, a tag has the only modifiable field with the name `fields`. In general, if this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "column": "my_column",
-     *         //   "fields": {},
-     *         //   "name": "my_name",
-     *         //   "template": "my_template",
-     *         //   "templateDisplayName": "my_templateDisplayName"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "column": "my_column",
-     *   //   "fields": {},
-     *   //   "name": "my_name",
-     *   //   "template": "my_template",
-     *   //   "templateDisplayName": "my_templateDisplayName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4358,65 +4204,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Creates a tag on an Entry. Note: The project identified by the `parent` parameter for the [tag](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template](https://cloud.google.com/data-catalog/docs/reference/rest/v1beta1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be from the same organization.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.tags.create({
-     *     // Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Tag and its child resources may not actually be stored in the location in this name.
-     *     parent:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "column": "my_column",
-     *       //   "fields": {},
-     *       //   "name": "my_name",
-     *       //   "template": "my_template",
-     *       //   "templateDisplayName": "my_templateDisplayName"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "column": "my_column",
-     *   //   "fields": {},
-     *   //   "name": "my_name",
-     *   //   "template": "my_template",
-     *   //   "templateDisplayName": "my_templateDisplayName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4514,46 +4301,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Deletes a tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.tags.delete({
-     *     // Required. The name of the tag to delete. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\}
-     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/tags/my-tag',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4639,54 +4386,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Lists tags assigned to an Entry. The columns in the response are lowercased.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.tags.list({
-     *     // The maximum number of tags to return. Default is 10. Max limit is 1000.
-     *     pageSize: 'placeholder-value',
-     *     // Token that specifies which page is requested. If empty, the first page is returned.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup. Examples: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\} * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}
-     *     parent:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "tags": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4783,66 +4482,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Updates an existing tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.tags.patch({
-     *     // The resource name of the tag in URL format. Example: * projects/{project_id\}/locations/{location\}/entrygroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
-     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/tags/my-tag',
-     *     // Note: Currently, this parameter can only take `"fields"` as value. Names of fields whose values to overwrite on a tag. Currently, a tag has the only modifiable field with the name `fields`. In general, if this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "column": "my_column",
-     *       //   "fields": {},
-     *       //   "name": "my_name",
-     *       //   "template": "my_template",
-     *       //   "templateDisplayName": "my_templateDisplayName"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "column": "my_column",
-     *   //   "fields": {},
-     *   //   "name": "my_name",
-     *   //   "template": "my_template",
-     *   //   "templateDisplayName": "my_templateDisplayName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4999,62 +4638,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Creates a tag template. The user should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.create({
-     *     // Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions. Example: * projects/{project_id\}/locations/us-central1
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. The id of the tag template to create.
-     *     tagTemplateId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "fields": {},
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "fields": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5151,48 +4734,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Deletes a tag template and all tags using the template. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.delete({
-     *     // Required. Currently, this field must always be set to `true`. This confirms the deletion of any possible tags using this template. `force = false` will be supported in the future.
-     *     force: 'placeholder-value',
-     *     // Required. The name of the tag template to delete. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}
-     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5277,50 +4818,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Gets a tag template.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.get({
-     *     // Required. The name of the tag template. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}
-     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "fields": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5414,59 +4911,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Gets the access control policy for a resource. A `NOT_FOUND` error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it. Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. Callers must have following Google IAM permission - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag templates. - `datacatalog.entries.getIamPolicy` to get policies on entries. - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "options": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5555,62 +4999,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Updates a tag template. This method cannot be used to update the fields of a template. The tag template fields are represented as separate resources and should be updated using their own create/update/delete methods. Users should enable the Data Catalog API in the project identified by the `tag_template.name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.patch({
-     *     // The resource name of the tag template in URL format. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\} Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
-     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *     // Names of fields whose values to overwrite on a tag template. Currently, only `display_name` can be overwritten. In general, if this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "fields": {},
-     *       //   "name": "my_name"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "fields": {},
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5704,59 +5092,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Sets the access control policy for a resource. Replaces any existing policy. Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. Callers must have following Google IAM permission - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag templates. - `datacatalog.entries.setIamPolicy` to set policies on entries. - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5845,58 +5180,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (We don't return a `NOT_FOUND` error). Supported resources are: - Tag templates. - Entries. - Entry groups. Note, this method cannot be used to manage policies for BigQuery, Pub/Sub and any external Google Cloud Platform resources synced to Data Catalog. A caller is not required to have Google IAM permission to make this request.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.tagTemplates.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6091,69 +5374,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Creates a field in a tag template. The user should enable the Data Catalog API in the project identified by the `parent` parameter (see [Data Catalog Resource Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.fields.create({
-     *     // Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions). Example: * projects/{project_id\}/locations/us-central1/tagTemplates/{tag_template_id\}
-     *     parent:
-     *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *     // Required. The ID of the tag template field to create. Field ids can contain letters (both uppercase and lowercase), numbers (0-9), underscores (_) and dashes (-). Field IDs must be at least 1 character long and at most 128 characters long. Field IDs must also be unique within their template.
-     *     tagTemplateFieldId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "isRequired": false,
-     *       //   "name": "my_name",
-     *       //   "order": 0,
-     *       //   "type": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "isRequired": false,
-     *   //   "name": "my_name",
-     *   //   "order": 0,
-     *   //   "type": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6251,48 +5471,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Deletes a field in a tag template and all uses of that field. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.fields.delete({
-     *     // Required. Currently, this field must always be set to `true`. This confirms the deletion of this field from any tags using this field. `force = false` will be supported in the future.
-     *     force: 'placeholder-value',
-     *     // Required. The name of the tag template field to delete. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}/fields/{tag_template_field_id\}
-     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6378,68 +5556,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Updates a field in a tag template. This method cannot be used to update the field type. Users should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project] (https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.fields.patch({
-     *     // Required. The name of the tag template field. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}/fields/{tag_template_field_id\}
-     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
-     *     // Optional. Names of fields whose values to overwrite on an individual field of a tag template. The following fields are modifiable: * `display_name` * `type.enum_type` * `is_required` If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied with one exception: when updating an enum type, the provided values are merged with the existing values. Therefore, enum values can only be added, existing enum values cannot be deleted or renamed. Additionally, updating a template field from optional to required is *not* allowed.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "isRequired": false,
-     *       //   "name": "my_name",
-     *       //   "order": 0,
-     *       //   "type": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "isRequired": false,
-     *   //   "name": "my_name",
-     *   //   "order": 0,
-     *   //   "type": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6534,61 +5650,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Renames a field in a tag template. The user should enable the Data Catalog API in the project identified by the `name` parameter (see [Data Catalog Resource Project](https://cloud.google.com/data-catalog/docs/concepts/resource-project) for more information).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.fields.rename({
-     *     // Required. The name of the tag template. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}/fields/{tag_template_field_id\}
-     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "newTagTemplateFieldId": "my_newTagTemplateFieldId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "isRequired": false,
-     *   //   "name": "my_name",
-     *   //   "order": 0,
-     *   //   "type": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6749,62 +5810,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Renames an enum value in a tag template. The enum values have to be unique within one enum field. Thus, an enum value cannot be renamed with a name used in any other enum value within the same enum field.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.tagTemplates.fields.enumValues.rename({
-     *       // Required. The name of the enum field value. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}/fields/{tag_template_field_id\}/enumValues/{enum_value_display_name\}
-     *       name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field/enumValues/my-enumValue',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "newEnumValueDisplayName": "my_newEnumValueDisplayName"
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "isRequired": false,
-     *   //   "name": "my_name",
-     *   //   "order": 0,
-     *   //   "type": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6926,66 +5931,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Creates a taxonomy in the specified project.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.create({
-     *     // Required. Resource name of the project that the taxonomy will belong to.
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "activatedPolicyTypes": [],
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "policyTagCount": 0,
-     *       //   "taxonomyTimestamps": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activatedPolicyTypes": [],
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "policyTagCount": 0,
-     *   //   "taxonomyTimestamps": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7082,46 +6027,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Deletes a taxonomy. This operation will also delete all policy tags in this taxonomy along with their associated policies.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.delete({
-     *     // Required. Resource name of the taxonomy to be deleted. All policy tags in this taxonomy will also be deleted.
-     *     name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7206,52 +6111,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Exports all taxonomies and their policy tags in a project. This method generates SerializedTaxonomy protos with nested policy tags that can be used as an input for future ImportTaxonomies calls.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.export({
-     *     // Required. Resource name of the project that taxonomies to be exported will share.
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Export taxonomies as serialized taxonomies.
-     *     serializedTaxonomies: 'placeholder-value',
-     *     // Required. Resource names of the taxonomies to be exported.
-     *     taxonomies: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "taxonomies": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7348,53 +6207,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Gets a taxonomy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.get({
-     *     // Required. Resource name of the requested taxonomy.
-     *     name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activatedPolicyTypes": [],
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "policyTagCount": 0,
-     *   //   "taxonomyTimestamps": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7488,59 +6300,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Gets the IAM policy for a taxonomy or a policy tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.getIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "options": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7629,56 +6388,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Imports all taxonomies and their policy tags to a project as new taxonomies. This method provides a bulk taxonomy / policy tag creation using nested proto structure.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.import({
-     *     // Required. Resource name of project that the imported taxonomies will belong to.
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "inlineSource": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "taxonomies": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7775,53 +6484,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Lists all taxonomies in a project in a particular location that the caller has permission to view.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.list({
-     *     // The maximum number of items to return. Must be a value between 1 and 1000. If not set, defaults to 50.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous list request, if any. If not set, defaults to an empty string.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the project to list the taxonomies of.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "taxonomies": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7918,68 +6580,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Updates a taxonomy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.patch({
-     *     // Output only. Resource name of this taxonomy, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{id\}".
-     *     name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
-     *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If not set, defaults to all of the fields that are allowed to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "activatedPolicyTypes": [],
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "policyTagCount": 0,
-     *       //   "taxonomyTimestamps": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "activatedPolicyTypes": [],
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "policyTagCount": 0,
-     *   //   "taxonomyTimestamps": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8073,59 +6673,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Sets the IAM policy for a taxonomy or a policy tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8214,58 +6761,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Returns the permissions that a caller has on the specified taxonomy or policy tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.taxonomies.testIamPermissions({
-     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8428,6 +6923,10 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Taxonomies$List
     extends StandardParameters {
     /**
+     * Supported field for filter is 'service' and value is 'dataplex'. Eg: service=dataplex.
+     */
+    filter?: string;
+    /**
      * The maximum number of items to return. Must be a value between 1 and 1000. If not set, defaults to 50.
      */
     pageSize?: number;
@@ -8489,67 +6988,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Creates a policy tag in the specified taxonomy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.policyTags.create(
-     *     {
-     *       // Required. Resource name of the taxonomy that the policy tag will belong to.
-     *       parent:
-     *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "childPolicyTags": [],
-     *         //   "description": "my_description",
-     *         //   "displayName": "my_displayName",
-     *         //   "name": "my_name",
-     *         //   "parentPolicyTag": "my_parentPolicyTag"
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "childPolicyTags": [],
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "parentPolicyTag": "my_parentPolicyTag"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8647,48 +7085,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Deletes a policy tag. Also deletes all of its descendant policy tags.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.policyTags.delete(
-     *     {
-     *       // Required. Resource name of the policy tag to be deleted. All of its descendant policy tags will also be deleted.
-     *       name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8774,52 +7170,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Gets a policy tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.policyTags.get({
-     *     // Required. Resource name of the requested policy tag.
-     *     name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "childPolicyTags": [],
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "parentPolicyTag": "my_parentPolicyTag"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8914,60 +7264,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Gets the IAM policy for a taxonomy or a policy tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.taxonomies.policyTags.getIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "options": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9056,53 +7352,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Lists all policy tags in a taxonomy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.policyTags.list({
-     *     // The maximum number of items to return. Must be a value between 1 and 1000. If not set, defaults to 50.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any. If not set, defaults to an empty string.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the taxonomy to list the policy tags of.
-     *     parent: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "policyTags": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9200,66 +7449,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Updates a policy tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.policyTags.patch({
-     *     // Output only. Resource name of this policy tag, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{taxonomy_id\}/policyTags/{id\}".
-     *     name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
-     *     // The update mask applies to the resource. Only display_name, description and parent_policy_tag can be updated and thus can be listed in the mask. If update_mask is not provided, all allowed fields (i.e. display_name, description and parent) will be updated. For more information including the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If not set, defaults to all of the fields that are allowed to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "childPolicyTags": [],
-     *       //   "description": "my_description",
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "parentPolicyTag": "my_parentPolicyTag"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "childPolicyTags": [],
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "parentPolicyTag": "my_parentPolicyTag"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9354,60 +7543,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Sets the IAM policy for a taxonomy or a policy tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.taxonomies.policyTags.setIamPolicy({
-     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "bindings": [],
-     *   //   "etag": "my_etag",
-     *   //   "version": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9496,60 +7631,6 @@ export namespace datacatalog_v1beta1 {
 
     /**
      * Returns the permissions that a caller has on the specified taxonomy or policy tag.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datacatalog = google.datacatalog('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await datacatalog.projects.locations.taxonomies.policyTags.testIamPermissions(
-     *       {
-     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     *         resource:
-     *           'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "permissions": []
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "permissions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

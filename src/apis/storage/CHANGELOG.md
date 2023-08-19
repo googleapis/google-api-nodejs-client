@@ -1,5 +1,53 @@
 # Changelog
 
+## [5.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v5.1.0...storage-v5.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **storage:** update the API ([20860bc](https://github.com/googleapis/google-api-nodejs-client/commit/20860bc1ab5ef72e0067f5414d6737dbb4ee27a5))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v5.0.0...storage-v5.1.0) (2023-07-18)
+
+
+### Features
+
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+
+
+### Bug Fixes
+
+* **storage:** update the API ([fff6e17](https://github.com/googleapis/google-api-nodejs-client/commit/fff6e17e17caae9296c35d74582f2af60a07a5b9))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v4.1.0...storage-v5.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v4.0.0...storage-v4.1.0) (2023-03-13)
+
+
+### Features
+
+* **storage:** update the API ([e8e4184](https://github.com/googleapis/google-api-nodejs-client/commit/e8e4184b40c85918d5d79b858b59aaa79070e992))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v3.0.3...storage-v4.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v3.0.2...storage-v3.0.3) (2022-09-21)
 
 

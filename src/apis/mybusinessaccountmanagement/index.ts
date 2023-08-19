@@ -27,7 +27,7 @@ export function mybusinessaccountmanagement(
   options: mybusinessaccountmanagement_v1.Options
 ): mybusinessaccountmanagement_v1.Mybusinessaccountmanagement;
 export function mybusinessaccountmanagement<
-  T = mybusinessaccountmanagement_v1.Mybusinessaccountmanagement
+  T = mybusinessaccountmanagement_v1.Mybusinessaccountmanagement,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | mybusinessaccountmanagement_v1.Options

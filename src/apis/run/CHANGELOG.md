@@ -1,5 +1,30 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v11.0.0...run-v11.1.0) (2023-08-17)
+
+
+### Features
+
+* regenerate index files ([4216892](https://github.com/googleapis/google-api-nodejs-client/commit/42168925208e087c952d1fc8267847731d05ae9f))
+* **run:** update the API ([2dc654e](https://github.com/googleapis/google-api-nodejs-client/commit/2dc654e314747dba4c41304c464faff7edbf9c33))
+
+
+### Bug Fixes
+
+* **run:** update the API ([2ed76fe](https://github.com/googleapis/google-api-nodejs-client/commit/2ed76fe355169f075d278c6793b0dc43e61152fd))
+* **run:** update the API ([97423b5](https://github.com/googleapis/google-api-nodejs-client/commit/97423b5a4d4b1e5269909f25d9f33b4072eb7047))
+
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v10.2.0...run-v11.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [10.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v10.1.0...run-v10.2.0) (2022-09-21)
 
 

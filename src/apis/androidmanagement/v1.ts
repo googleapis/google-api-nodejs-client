@@ -113,6 +113,7 @@ export namespace androidmanagement_v1 {
   export class Androidmanagement {
     context: APIRequestContext;
     enterprises: Resource$Enterprises;
+    provisioningInfo: Resource$Provisioninginfo;
     signupUrls: Resource$Signupurls;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -122,6 +123,7 @@ export namespace androidmanagement_v1 {
       };
 
       this.enterprises = new Resource$Enterprises(this.context);
+      this.provisioningInfo = new Resource$Provisioninginfo(this.context);
       this.signupUrls = new Resource$Signupurls(this.context);
     }
   }
@@ -310,7 +312,7 @@ export namespace androidmanagement_v1 {
     permissionId?: string | null;
   }
   /**
-   * Policy for an individual app.
+   * Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled.
    */
   export interface Schema$ApplicationPolicy {
     /**
@@ -350,7 +352,7 @@ export namespace androidmanagement_v1 {
      */
     installType?: string | null;
     /**
-     * Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to to configure a dedicated device.
+     * Whether the app is allowed to lock itself in full-screen mode. DEPRECATED. Use InstallType KIOSK or kioskCustomLauncherEnabled to configure a dedicated device.
      */
     lockTaskAllowed?: boolean | null;
     /**
@@ -373,6 +375,10 @@ export namespace androidmanagement_v1 {
      * Explicit permission grants or denials for the app. These values override the default_permission_policy and permission_grants which apply to all apps.
      */
     permissionGrants?: Schema$PermissionGrant[];
+    /**
+     * Specifies whether the app installed in the work profile is allowed to add widgets to the home screen.
+     */
+    workProfileWidgets?: string | null;
   }
   /**
    * Information reported about an installed app.
@@ -387,7 +393,7 @@ export namespace androidmanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * List of app events. The most recent 20 events are stored in the list.
+     * The list of app events which have occurred in the last 30 hours.
      */
     events?: Schema$ApplicationEvent[];
     /**
@@ -414,6 +420,10 @@ export namespace androidmanagement_v1 {
      * Application state.
      */
     state?: string | null;
+    /**
+     * Whether the app is user facing.
+     */
+    userFacingType?: string | null;
     /**
      * The app version code, which can be used to determine whether one version is more recent than another.
      */
@@ -653,6 +663,22 @@ export namespace androidmanagement_v1 {
      */
     resetPasswordFlags?: string[] | null;
     /**
+     * Parameters for the START_LOST_MODE command to put the device into lost mode. See StartLostModeParams. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to START_LOST_MODE. It is also acceptable to explicitly set type to START_LOST_MODE.
+     */
+    startLostModeParams?: Schema$StartLostModeParams;
+    /**
+     * Output only. Status of the START_LOST_MODE command to put the device into lost mode. See StartLostModeStatus.
+     */
+    startLostModeStatus?: Schema$StartLostModeStatus;
+    /**
+     * Parameters for the STOP_LOST_MODE command to take the device out of lost mode. See StopLostModeParams. If this is set, then it is suggested that type should not be set. In this case, the server automatically sets it to STOP_LOST_MODE. It is also acceptable to explicitly set type to STOP_LOST_MODE.
+     */
+    stopLostModeParams?: Schema$StopLostModeParams;
+    /**
+     * Output only. Status of the STOP_LOST_MODE command to take the device out of lost mode. See StopLostModeStatus.
+     */
+    stopLostModeStatus?: Schema$StopLostModeStatus;
+    /**
      * The type of the command.
      */
     type?: string | null;
@@ -759,7 +785,7 @@ export namespace androidmanagement_v1 {
     uri?: string | null;
   }
   /**
-   * Cross-profile policies applied on the device.
+   * Controls the data from the work profile that can be accessed from the personal profile and vice versa. A nonComplianceDetail with MANAGEMENT_MODE is reported if the device does not have a work profile.
    */
   export interface Schema$CrossProfilePolicies {
     /**
@@ -774,6 +800,10 @@ export namespace androidmanagement_v1 {
      * Whether contacts stored in the work profile can be shown in personal profile contact searches and incoming calls.
      */
     showWorkContactsInPersonalProfile?: string | null;
+    /**
+     * Specifies the default behaviour for work profile widgets. If the policy does not specify work_profile_widgets for a specific application, it will behave according to the value specified here.
+     */
+    workProfileWidgetsDefault?: string | null;
   }
   /**
    * Validates whether Android’s built-in cryptographic library (BoringSSL) is valid. Should always succeed on device boot, if it fails, the device should be considered untrusted.
@@ -947,6 +977,40 @@ export namespace androidmanagement_v1 {
     userName?: string | null;
   }
   /**
+   * Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.
+   */
+  export interface Schema$DeviceConnectivityManagement {
+    /**
+     * Controls Wi-Fi configuring privileges. Based on the option set, user will have either full or limited or no control in configuring Wi-Fi networks.
+     */
+    configureWifi?: string | null;
+    /**
+     * Controls tethering settings. Based on the value set, the user is partially or fully disallowed from using different forms of tethering.
+     */
+    tetheringSettings?: string | null;
+    /**
+     * Controls what files and/or data can be transferred via USB. Supported only on company-owned devices.
+     */
+    usbDataAccess?: string | null;
+    /**
+     * Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.
+     */
+    wifiDirectSettings?: string | null;
+  }
+  /**
+   * Controls for device radio settings.
+   */
+  export interface Schema$DeviceRadioState {
+    /**
+     * Controls whether airplane mode can be toggled by the user or not
+     */
+    airplaneModeState?: string | null;
+    /**
+     * Controls current state of Wi-Fi and if user can change its state.
+     */
+    wifiState?: string | null;
+  }
+  /**
    * Information about security related device settings on device.
    */
   export interface Schema$DeviceSettings {
@@ -1038,6 +1102,10 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Represents that the device has completed enrollment. User should be in the launcher at this point, device at this point will be compliant and all setup steps have been completed. Intentionally empty.
+   */
+  export interface Schema$EnrollmentCompleteEvent {}
+  /**
    * An enrollment token.
    */
   export interface Schema$EnrollmentToken {
@@ -1099,7 +1167,7 @@ export namespace androidmanagement_v1 {
      */
     enabledNotificationTypes?: string[] | null;
     /**
-     * The name of the enterprise displayed to users.
+     * The name of the enterprise displayed to users. This field has a maximum length of 100 characters.
      */
     enterpriseDisplayName?: string | null;
     /**
@@ -1128,7 +1196,7 @@ export namespace androidmanagement_v1 {
     termsAndConditions?: Schema$TermsAndConditions[];
   }
   /**
-   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline.
+   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 13 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command (https://developer.android.com/management/reference/rest/v1/enterprises.devices/issueCommand#CommandType) on extension apps if needed for Android 13 and above.
    */
   export interface Schema$ExtensionConfig {
     /**
@@ -1513,6 +1581,19 @@ export namespace androidmanagement_v1 {
     webApps?: Schema$WebApp[];
   }
   /**
+   * The device location containing the latitude and longitude.
+   */
+  export interface Schema$Location {
+    /**
+     * The latitude position of the location
+     */
+    latitude?: number | null;
+    /**
+     * The longitude position of the location
+     */
+    longitude?: number | null;
+  }
+  /**
    * The usageLog buffer on the device has reached 90% of its capacity, therefore older events may be dropped. Intentionally empty.
    */
   export interface Schema$LogBufferSizeCriticalEvent {}
@@ -1524,6 +1605,23 @@ export namespace androidmanagement_v1 {
    * usageLog policy has been disabled. Intentionally empty.
    */
   export interface Schema$LoggingStoppedEvent {}
+  /**
+   * A lost mode event containing the device location and battery level as a percentage.
+   */
+  export interface Schema$LostModeLocationEvent {
+    /**
+     * The battery level as a number between 0 and 100 inclusive
+     */
+    batteryLevel?: number | null;
+    /**
+     * The device location
+     */
+    location?: Schema$Location;
+  }
+  /**
+   * An event indicating an outgoing phone call has been made when a device is in lost mode. Intentionally empty.
+   */
+  export interface Schema$LostModeOutgoingPhoneCallEvent {}
   /**
    * The managed configurations template for the app, saved from the managed configurations iframe.
    */
@@ -1761,7 +1859,7 @@ export namespace androidmanagement_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as Delete, the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type XxxResponse, where Xxx is the original method name. For example, if the original method name is TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1971,7 +2069,7 @@ export namespace androidmanagement_v1 {
      */
     androidDevicePolicyTracks?: string[] | null;
     /**
-     * Deprecated. Use autoUpdateMode instead.When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, this field has no effect.The app auto update policy, which controls when automatic app updates can be applied.
+     * Recommended alternative: autoUpdateMode which is set per app, provides greater flexibility around update frequency.When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, this field has no effect.The app auto update policy, which controls when automatic app updates can be applied.
      */
     appAutoUpdatePolicy?: string | null;
     /**
@@ -2047,9 +2145,17 @@ export namespace androidmanagement_v1 {
      */
     defaultPermissionPolicy?: string | null;
     /**
+     * Covers controls for device connectivity such as Wi-Fi, USB data access, keyboard/mouse connections, and more.
+     */
+    deviceConnectivityManagement?: Schema$DeviceConnectivityManagement;
+    /**
      * The device owner information to be shown on the lock screen.
      */
     deviceOwnerLockScreenInfo?: Schema$UserFacingMessage;
+    /**
+     * Covers controls for radio state such as Wi-Fi, bluetooth, and more.
+     */
+    deviceRadioState?: Schema$DeviceRadioState;
     /**
      * Whether encryption is enabled
      */
@@ -2131,7 +2237,7 @@ export namespace androidmanagement_v1 {
      */
     name?: string | null;
     /**
-     * Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.Note: Setting wifiConfigDisabled to true will override this setting under specific circumstances. Please see wifiConfigDisabled for further details.
+     * Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.Note: Setting wifiConfigDisabled to true will override this setting under specific circumstances. Please see wifiConfigDisabled for further details. Setting configureWifi to DISALLOW_CONFIGURING_WIFI will override this setting under specific circumstances. Please see DISALLOW_CONFIGURING_WIFI for further details.
      */
     networkEscapeHatchEnabled?: boolean | null;
     /**
@@ -2259,7 +2365,7 @@ export namespace androidmanagement_v1 {
      */
     systemUpdate?: Schema$SystemUpdate;
     /**
-     * Whether configuring tethering and portable hotspots is disabled.
+     * Whether configuring tethering and portable hotspots is disabled. If tetheringSettings is set to anything other than TETHERING_SETTINGS_UNSPECIFIED, this setting is ignored.
      */
     tetheringConfigDisabled?: boolean | null;
     /**
@@ -2291,7 +2397,7 @@ export namespace androidmanagement_v1 {
      */
     vpnConfigDisabled?: boolean | null;
     /**
-     * Whether configuring Wi-Fi access points is disabled. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
+     * Whether configuring Wi-Fi networks is disabled. Supported on fully managed devices and work profiles on company-owned devices. For fully managed devices, setting this to true removes all configured networks and retains only the networks configured using openNetworkConfiguration. For work profiles on company-owned devices, existing configured networks are not affected and the user is not allowed to add, remove, or modify Wi-Fi networks. If configureWifi is set to anything other than CONFIGURE_WIFI_UNSPECIFIED, this setting is ignored. Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
      */
     wifiConfigDisabled?: boolean | null;
     /**
@@ -2300,7 +2406,7 @@ export namespace androidmanagement_v1 {
     wifiConfigsLockdownEnabled?: boolean | null;
   }
   /**
-   * A rule that defines the actions to take if a device or work profile is not compliant with the policy specified in settingName.
+   * A rule that defines the actions to take if a device or work profile is not compliant with the policy specified in settingName. In the case of multiple matching or multiple triggered enforcement rules, a merge will occur with the most severe action being taken. However, all triggered rules are still kept track of: this includes initial trigger time and all associated non-compliance details. In the situation where the most severe enforcement rule is satisfied, the next most appropriate action is applied.
    */
   export interface Schema$PolicyEnforcementRule {
     /**
@@ -2345,6 +2451,39 @@ export namespace androidmanagement_v1 {
      * Event type.
      */
     eventType?: string | null;
+  }
+  /**
+   * Information about a device that is available during setup.
+   */
+  export interface Schema$ProvisioningInfo {
+    /**
+     * The API level of the Android platform version running on the device.
+     */
+    apiLevel?: number | null;
+    /**
+     * The brand of the device. For example, Google.
+     */
+    brand?: string | null;
+    /**
+     * The name of the enterprise in the form enterprises/{enterprise\}.
+     */
+    enterprise?: string | null;
+    /**
+     * The management mode of the device or profile.
+     */
+    managementMode?: string | null;
+    /**
+     * The model of the device. For example, Asus Nexus 7.
+     */
+    model?: string | null;
+    /**
+     * The name of this resource in the form provisioningInfo/{provisioning_info\}.
+     */
+    name?: string | null;
+    /**
+     * Ownership of the managed device.
+     */
+    ownership?: string | null;
   }
   /**
    * Configuration info for an HTTP proxy. For a direct proxy, set the host, port, and excluded_hosts fields. For a PAC script proxy, set the pac_uri field.
@@ -2406,7 +2545,7 @@ export namespace androidmanagement_v1 {
      */
     description?: Schema$UserFacingMessage;
     /**
-     * An action to launch an app. The app will be launched with an intent containing an extra with key com.google.android.apps.work.clouddpc.EXTRA_LAUNCHED_AS_SETUP_ACTION set to the boolean value true to indicate that this is a setup action flow.
+     * An action to launch an app. The app will be launched with an intent containing an extra with key com.google.android.apps.work.clouddpc.EXTRA_LAUNCHED_AS_SETUP_ACTION set to the boolean value true to indicate that this is a setup action flow. If SetupAction references an app, the corresponding installType in the application policy must be set as REQUIRED_FOR_SETUP or said setup will fail.
      */
     launchApp?: Schema$LaunchAppAction;
     /**
@@ -2511,6 +2650,40 @@ export namespace androidmanagement_v1 {
     passwordPoliciesContext?: Schema$PasswordPoliciesContext;
   }
   /**
+   * Parameters associated with the START_LOST_MODE command to put the device into lost mode. At least one of the parameters, not including the organization name, must be provided in order for the device to be put into lost mode.
+   */
+  export interface Schema$StartLostModeParams {
+    /**
+     * The email address displayed to the user when the device is in lost mode.
+     */
+    lostEmailAddress?: string | null;
+    /**
+     * The message displayed to the user when the device is in lost mode.
+     */
+    lostMessage?: Schema$UserFacingMessage;
+    /**
+     * The organization name displayed to the user when the device is in lost mode.
+     */
+    lostOrganization?: Schema$UserFacingMessage;
+    /**
+     * The phone number displayed to the user when the device is in lost mode.
+     */
+    lostPhoneNumber?: Schema$UserFacingMessage;
+    /**
+     * The street address displayed to the user when the device is in lost mode.
+     */
+    lostStreetAddress?: Schema$UserFacingMessage;
+  }
+  /**
+   * Status of the START_LOST_MODE command to put the device into lost mode.
+   */
+  export interface Schema$StartLostModeStatus {
+    /**
+     * The status. See StartLostModeStatus.
+     */
+    status?: string | null;
+  }
+  /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -2575,6 +2748,28 @@ export namespace androidmanagement_v1 {
      * Whether system properties reporting is enabled.
      */
     systemPropertiesEnabled?: boolean | null;
+  }
+  /**
+   * Parameters associated with the STOP_LOST_MODE command to take the device out of lost mode.
+   */
+  export interface Schema$StopLostModeParams {}
+  /**
+   * Status of the STOP_LOST_MODE command to take the device out of lost mode.
+   */
+  export interface Schema$StopLostModeStatus {
+    /**
+     * The status. See StopLostModeStatus.
+     */
+    status?: string | null;
+  }
+  /**
+   * A lost mode event indicating the user has attempted to stop lost mode.
+   */
+  export interface Schema$StopLostModeUserAttemptEvent {
+    /**
+     * The status of the attempt to stop lost mode.
+     */
+    status?: string | null;
   }
   /**
    * Configuration for managing system updates
@@ -2690,6 +2885,10 @@ export namespace androidmanagement_v1 {
      */
     dnsEvent?: Schema$DnsEvent;
     /**
+     * Device has completed enrollment. Part of AMAPI_LOGS.
+     */
+    enrollmentCompleteEvent?: Schema$EnrollmentCompleteEvent;
+    /**
      * Unique id of the event.
      */
     eventId?: string | null;
@@ -2750,6 +2949,14 @@ export namespace androidmanagement_v1 {
      */
     loggingStoppedEvent?: Schema$LoggingStoppedEvent;
     /**
+     * A lost mode location update when a device in lost mode.
+     */
+    lostModeLocationEvent?: Schema$LostModeLocationEvent;
+    /**
+     * An outgoing phone call has been made when a device in lost mode.
+     */
+    lostModeOutgoingPhoneCallEvent?: Schema$LostModeOutgoingPhoneCallEvent;
+    /**
      * Removable media was mounted. Part of SECURITY_LOGS.
      */
     mediaMountEvent?: Schema$MediaMountEvent;
@@ -2769,6 +2976,10 @@ export namespace androidmanagement_v1 {
      * The device or profile has been remotely locked via the LOCK command. Part of SECURITY_LOGS.
      */
     remoteLockEvent?: Schema$RemoteLockEvent;
+    /**
+     * An attempt to take a device out of lost mode.
+     */
+    stopLostModeUserAttemptEvent?: Schema$StopLostModeUserAttemptEvent;
     /**
      * The work profile or company-owned device failed to wipe when requested. This could be user initiated or admin initiated e.g. delete was received. Part of SECURITY_LOGS.
      */
@@ -2898,81 +3109,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Creates an enterprise. This is the last step in the enterprise signup flow.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.create({
-     *     // Whether the enterprise admin has seen and agreed to the managed Google Play Agreement (https://www.android.com/enterprise/terms/). Do not set this field for any customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises). Set this to field to true for all EMM-managed enterprises (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).
-     *     agreementAccepted: 'placeholder-value',
-     *     // The enterprise token appended to the callback URL. Set this when creating a customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises) and not when creating a deprecated EMM-managed enterprise (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).
-     *     enterpriseToken: 'placeholder-value',
-     *     // The ID of the Google Cloud Platform project which will own the enterprise.
-     *     projectId: 'placeholder-value',
-     *     // The name of the SignupUrl used to sign up for the enterprise. Set this when creating a customer-managed enterprise (https://developers.google.com/android/management/create-enterprise#customer-managed_enterprises) and not when creating a deprecated EMM-managed enterprise (https://developers.google.com/android/management/create-enterprise#emm-managed_enterprises).
-     *     signupUrlName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "appAutoApprovalEnabled": false,
-     *       //   "contactInfo": {},
-     *       //   "enabledNotificationTypes": [],
-     *       //   "enterpriseDisplayName": "my_enterpriseDisplayName",
-     *       //   "logo": {},
-     *       //   "name": "my_name",
-     *       //   "primaryColor": 0,
-     *       //   "pubsubTopic": "my_pubsubTopic",
-     *       //   "signinDetails": [],
-     *       //   "termsAndConditions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appAutoApprovalEnabled": false,
-     *   //   "contactInfo": {},
-     *   //   "enabledNotificationTypes": [],
-     *   //   "enterpriseDisplayName": "my_enterpriseDisplayName",
-     *   //   "logo": {},
-     *   //   "name": "my_name",
-     *   //   "primaryColor": 0,
-     *   //   "pubsubTopic": "my_pubsubTopic",
-     *   //   "signinDetails": [],
-     *   //   "termsAndConditions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Creates an enterprise. This is the last step in the enterprise signup flow. See also: SigninDetail
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3058,46 +3195,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Deletes an enterprise. Only available for EMM-managed enterprises.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.delete({
-     *     // The name of the enterprise in the form enterprises/{enterpriseId\}.
-     *     name: 'enterprises/my-enterprise',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3183,57 +3280,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Gets an enterprise.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.get({
-     *     // The name of the enterprise in the form enterprises/{enterpriseId\}.
-     *     name: 'enterprises/my-enterprise',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appAutoApprovalEnabled": false,
-     *   //   "contactInfo": {},
-     *   //   "enabledNotificationTypes": [],
-     *   //   "enterpriseDisplayName": "my_enterpriseDisplayName",
-     *   //   "logo": {},
-     *   //   "name": "my_name",
-     *   //   "primaryColor": 0,
-     *   //   "pubsubTopic": "my_pubsubTopic",
-     *   //   "signinDetails": [],
-     *   //   "termsAndConditions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3318,55 +3364,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Lists EMM-managed enterprises. Only BASIC fields are returned.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.list({
-     *     // The requested page size. The actual page size may be fixed to a min or max value.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results returned by the server.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The Cloud project ID of the EMM managing the enterprises.
-     *     projectId: 'placeholder-value',
-     *     // Specifies which Enterprise fields to return. This method only supports BASIC.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "enterprises": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3455,77 +3452,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Updates an enterprise.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.patch({
-     *     // The name of the enterprise in the form enterprises/{enterpriseId\}.
-     *     name: 'enterprises/my-enterprise',
-     *     // The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "appAutoApprovalEnabled": false,
-     *       //   "contactInfo": {},
-     *       //   "enabledNotificationTypes": [],
-     *       //   "enterpriseDisplayName": "my_enterpriseDisplayName",
-     *       //   "logo": {},
-     *       //   "name": "my_name",
-     *       //   "primaryColor": 0,
-     *       //   "pubsubTopic": "my_pubsubTopic",
-     *       //   "signinDetails": [],
-     *       //   "termsAndConditions": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appAutoApprovalEnabled": false,
-     *   //   "contactInfo": {},
-     *   //   "enabledNotificationTypes": [],
-     *   //   "enterpriseDisplayName": "my_enterpriseDisplayName",
-     *   //   "logo": {},
-     *   //   "name": "my_name",
-     *   //   "primaryColor": 0,
-     *   //   "pubsubTopic": "my_pubsubTopic",
-     *   //   "signinDetails": [],
-     *   //   "termsAndConditions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Updates an enterprise. See also: SigninDetail
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3690,71 +3617,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Gets info about an application.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.applications.get({
-     *     // The preferred language for localized application info, as a BCP47 tag (e.g. "en-US", "de"). If not specified the default language of the application will be used.
-     *     languageCode: 'placeholder-value',
-     *     // The name of the application in the form enterprises/{enterpriseId\}/applications/{package_name\}.
-     *     name: 'enterprises/my-enterprise/applications/my-application',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "appPricing": "my_appPricing",
-     *   //   "appTracks": [],
-     *   //   "appVersions": [],
-     *   //   "author": "my_author",
-     *   //   "availableCountries": [],
-     *   //   "category": "my_category",
-     *   //   "contentRating": "my_contentRating",
-     *   //   "description": "my_description",
-     *   //   "distributionChannel": "my_distributionChannel",
-     *   //   "features": [],
-     *   //   "fullDescription": "my_fullDescription",
-     *   //   "iconUrl": "my_iconUrl",
-     *   //   "managedProperties": [],
-     *   //   "minAndroidSdkVersion": 0,
-     *   //   "name": "my_name",
-     *   //   "permissions": [],
-     *   //   "playStoreUrl": "my_playStoreUrl",
-     *   //   "recentChanges": "my_recentChanges",
-     *   //   "screenshotUrls": [],
-     *   //   "smallIconUrl": "my_smallIconUrl",
-     *   //   "title": "my_title",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3863,50 +3725,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Deletes a device. This operation wipes the device. Deleted devices do not show up in enterprises.devices.list calls and a 404 is returned from enterprises.devices.get.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.devices.delete({
-     *     // The name of the device in the form enterprises/{enterpriseId\}/devices/{deviceId\}.
-     *     name: 'enterprises/my-enterprise/devices/my-device',
-     *     // Optional flags that control the device wiping behavior.
-     *     wipeDataFlags: 'placeholder-value',
-     *     // Optional. A short message displayed to the user before wiping the work profile on personal devices. This has no effect on company owned devices. The maximum message length is 200 characters.
-     *     wipeReasonMessage: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3992,82 +3810,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Gets a device. Deleted devices will respond with a 404 error.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.devices.get({
-     *     // The name of the device in the form enterprises/{enterpriseId\}/devices/{deviceId\}.
-     *     name: 'enterprises/my-enterprise/devices/my-device',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiLevel": 0,
-     *   //   "applicationReports": [],
-     *   //   "appliedPasswordPolicies": [],
-     *   //   "appliedPolicyName": "my_appliedPolicyName",
-     *   //   "appliedPolicyVersion": "my_appliedPolicyVersion",
-     *   //   "appliedState": "my_appliedState",
-     *   //   "commonCriteriaModeInfo": {},
-     *   //   "deviceSettings": {},
-     *   //   "disabledReason": {},
-     *   //   "displays": [],
-     *   //   "enrollmentTime": "my_enrollmentTime",
-     *   //   "enrollmentTokenData": "my_enrollmentTokenData",
-     *   //   "enrollmentTokenName": "my_enrollmentTokenName",
-     *   //   "hardwareInfo": {},
-     *   //   "hardwareStatusSamples": [],
-     *   //   "lastPolicyComplianceReportTime": "my_lastPolicyComplianceReportTime",
-     *   //   "lastPolicySyncTime": "my_lastPolicySyncTime",
-     *   //   "lastStatusReportTime": "my_lastStatusReportTime",
-     *   //   "managementMode": "my_managementMode",
-     *   //   "memoryEvents": [],
-     *   //   "memoryInfo": {},
-     *   //   "name": "my_name",
-     *   //   "networkInfo": {},
-     *   //   "nonComplianceDetails": [],
-     *   //   "ownership": "my_ownership",
-     *   //   "policyCompliant": false,
-     *   //   "policyName": "my_policyName",
-     *   //   "powerManagementEvents": [],
-     *   //   "previousDeviceNames": [],
-     *   //   "securityPosture": {},
-     *   //   "softwareInfo": {},
-     *   //   "state": "my_state",
-     *   //   "systemProperties": {},
-     *   //   "user": {},
-     *   //   "userName": "my_userName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4153,68 +3895,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Issues a command to a device. The Operation resource returned contains a Command in its metadata field. Use the get operation method to get the status of the command.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.devices.issueCommand({
-     *     // The name of the device in the form enterprises/{enterpriseId\}/devices/{deviceId\}.
-     *     name: 'enterprises/my-enterprise/devices/my-device',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "clearAppsDataParams": {},
-     *       //   "clearAppsDataStatus": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "duration": "my_duration",
-     *       //   "errorCode": "my_errorCode",
-     *       //   "newPassword": "my_newPassword",
-     *       //   "resetPasswordFlags": [],
-     *       //   "type": "my_type",
-     *       //   "userName": "my_userName"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4303,53 +3983,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Lists devices for a given enterprise. Deleted devices are not returned in the response.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.devices.list({
-     *     // The requested page size. The actual page size may be fixed to a min or max value.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results returned by the server.
-     *     pageToken: 'placeholder-value',
-     *     // The name of the enterprise in the form enterprises/{enterpriseId\}.
-     *     parent: 'enterprises/my-enterprise',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "devices": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4441,126 +4074,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Updates a device.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.devices.patch({
-     *     // The name of the device in the form enterprises/{enterpriseId\}/devices/{deviceId\}.
-     *     name: 'enterprises/my-enterprise/devices/my-device',
-     *     // The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "apiLevel": 0,
-     *       //   "applicationReports": [],
-     *       //   "appliedPasswordPolicies": [],
-     *       //   "appliedPolicyName": "my_appliedPolicyName",
-     *       //   "appliedPolicyVersion": "my_appliedPolicyVersion",
-     *       //   "appliedState": "my_appliedState",
-     *       //   "commonCriteriaModeInfo": {},
-     *       //   "deviceSettings": {},
-     *       //   "disabledReason": {},
-     *       //   "displays": [],
-     *       //   "enrollmentTime": "my_enrollmentTime",
-     *       //   "enrollmentTokenData": "my_enrollmentTokenData",
-     *       //   "enrollmentTokenName": "my_enrollmentTokenName",
-     *       //   "hardwareInfo": {},
-     *       //   "hardwareStatusSamples": [],
-     *       //   "lastPolicyComplianceReportTime": "my_lastPolicyComplianceReportTime",
-     *       //   "lastPolicySyncTime": "my_lastPolicySyncTime",
-     *       //   "lastStatusReportTime": "my_lastStatusReportTime",
-     *       //   "managementMode": "my_managementMode",
-     *       //   "memoryEvents": [],
-     *       //   "memoryInfo": {},
-     *       //   "name": "my_name",
-     *       //   "networkInfo": {},
-     *       //   "nonComplianceDetails": [],
-     *       //   "ownership": "my_ownership",
-     *       //   "policyCompliant": false,
-     *       //   "policyName": "my_policyName",
-     *       //   "powerManagementEvents": [],
-     *       //   "previousDeviceNames": [],
-     *       //   "securityPosture": {},
-     *       //   "softwareInfo": {},
-     *       //   "state": "my_state",
-     *       //   "systemProperties": {},
-     *       //   "user": {},
-     *       //   "userName": "my_userName"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "apiLevel": 0,
-     *   //   "applicationReports": [],
-     *   //   "appliedPasswordPolicies": [],
-     *   //   "appliedPolicyName": "my_appliedPolicyName",
-     *   //   "appliedPolicyVersion": "my_appliedPolicyVersion",
-     *   //   "appliedState": "my_appliedState",
-     *   //   "commonCriteriaModeInfo": {},
-     *   //   "deviceSettings": {},
-     *   //   "disabledReason": {},
-     *   //   "displays": [],
-     *   //   "enrollmentTime": "my_enrollmentTime",
-     *   //   "enrollmentTokenData": "my_enrollmentTokenData",
-     *   //   "enrollmentTokenName": "my_enrollmentTokenName",
-     *   //   "hardwareInfo": {},
-     *   //   "hardwareStatusSamples": [],
-     *   //   "lastPolicyComplianceReportTime": "my_lastPolicyComplianceReportTime",
-     *   //   "lastPolicySyncTime": "my_lastPolicySyncTime",
-     *   //   "lastStatusReportTime": "my_lastStatusReportTime",
-     *   //   "managementMode": "my_managementMode",
-     *   //   "memoryEvents": [],
-     *   //   "memoryInfo": {},
-     *   //   "name": "my_name",
-     *   //   "networkInfo": {},
-     *   //   "nonComplianceDetails": [],
-     *   //   "ownership": "my_ownership",
-     *   //   "policyCompliant": false,
-     *   //   "policyName": "my_policyName",
-     *   //   "powerManagementEvents": [],
-     *   //   "previousDeviceNames": [],
-     *   //   "securityPosture": {},
-     *   //   "softwareInfo": {},
-     *   //   "state": "my_state",
-     *   //   "systemProperties": {},
-     *   //   "user": {},
-     *   //   "userName": "my_userName"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4719,46 +4232,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.devices.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'enterprises/my-enterprise/devices/my-device/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4844,46 +4317,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.devices.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'enterprises/my-enterprise/devices/my-device/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4969,52 +4402,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.devices.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'enterprises/my-enterprise/devices/my-device/operations/my-operation',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5099,56 +4486,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x\}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.devices.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'enterprises/my-enterprise/devices/my-device/operations',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5287,74 +4625,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Creates an enrollment token for a given enterprise. It's up to the caller's responsibility to manage the lifecycle of newly created tokens and deleting them when they're not intended to be used anymore. Once an enrollment token has been created, it's not possible to retrieve the token's content anymore using AM API. It is recommended for EMMs to securely store the token if it's intended to be reused.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.enrollmentTokens.create({
-     *     // The name of the enterprise in the form enterprises/{enterpriseId\}.
-     *     parent: 'enterprises/my-enterprise',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "additionalData": "my_additionalData",
-     *       //   "allowPersonalUsage": "my_allowPersonalUsage",
-     *       //   "duration": "my_duration",
-     *       //   "expirationTimestamp": "my_expirationTimestamp",
-     *       //   "name": "my_name",
-     *       //   "oneTimeOnly": false,
-     *       //   "policyName": "my_policyName",
-     *       //   "qrCode": "my_qrCode",
-     *       //   "user": {},
-     *       //   "value": "my_value"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalData": "my_additionalData",
-     *   //   "allowPersonalUsage": "my_allowPersonalUsage",
-     *   //   "duration": "my_duration",
-     *   //   "expirationTimestamp": "my_expirationTimestamp",
-     *   //   "name": "my_name",
-     *   //   "oneTimeOnly": false,
-     *   //   "policyName": "my_policyName",
-     *   //   "qrCode": "my_qrCode",
-     *   //   "user": {},
-     *   //   "value": "my_value"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5443,46 +4713,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Deletes an enrollment token. This operation invalidates the token, preventing its future use.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.enrollmentTokens.delete({
-     *     // The name of the enrollment token in the form enterprises/{enterpriseId\}/enrollmentTokens/{enrollmentTokenId\}.
-     *     name: 'enterprises/my-enterprise/enrollmentTokens/my-enrollmentToken',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5568,57 +4798,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Gets an active, unexpired enrollment token. Only a partial view of EnrollmentToken is returned: all the fields but name and expiration_timestamp are empty. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.enrollmentTokens.get({
-     *     // Required. The name of the enrollment token in the form enterprises/{enterpriseId\}/enrollmentTokens/{enrollmentTokenId\}.
-     *     name: 'enterprises/my-enterprise/enrollmentTokens/my-enrollmentToken',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "additionalData": "my_additionalData",
-     *   //   "allowPersonalUsage": "my_allowPersonalUsage",
-     *   //   "duration": "my_duration",
-     *   //   "expirationTimestamp": "my_expirationTimestamp",
-     *   //   "name": "my_name",
-     *   //   "oneTimeOnly": false,
-     *   //   "policyName": "my_policyName",
-     *   //   "qrCode": "my_qrCode",
-     *   //   "user": {},
-     *   //   "value": "my_value"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5704,53 +4883,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Lists active, unexpired enrollment tokens for a given enterprise. The list items contain only a partial view of EnrollmentToken: all the fields but name and expiration_timestamp are empty. This method is meant to help manage active enrollment tokens lifecycle. For security reasons, it's recommended to delete active enrollment tokens as soon as they're not intended to be used anymore.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.enrollmentTokens.list({
-     *     // The requested page size. The service may return fewer than this value. If unspecified, at most 10 items will be returned. The maximum value is 100; values above 100 will be coerced to 100.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results returned by the server.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The name of the enterprise in the form enterprises/{enterpriseId\}.
-     *     parent: 'enterprises/my-enterprise',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "enrollmentTokens": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5897,46 +5029,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Deletes a policy. This operation is only permitted if no devices are currently referencing the policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.policies.delete({
-     *     // The name of the policy in the form enterprises/{enterpriseId\}/policies/{policyId\}.
-     *     name: 'enterprises/my-enterprise/policies/my-policie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6022,135 +5114,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Gets a policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.policies.get({
-     *     // The name of the policy in the form enterprises/{enterpriseId\}/policies/{policyId\}.
-     *     name: 'enterprises/my-enterprise/policies/my-policie',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountTypesWithManagementDisabled": [],
-     *   //   "addUserDisabled": false,
-     *   //   "adjustVolumeDisabled": false,
-     *   //   "advancedSecurityOverrides": {},
-     *   //   "alwaysOnVpnPackage": {},
-     *   //   "androidDevicePolicyTracks": [],
-     *   //   "appAutoUpdatePolicy": "my_appAutoUpdatePolicy",
-     *   //   "applications": [],
-     *   //   "autoDateAndTimeZone": "my_autoDateAndTimeZone",
-     *   //   "autoTimeRequired": false,
-     *   //   "blockApplicationsEnabled": false,
-     *   //   "bluetoothConfigDisabled": false,
-     *   //   "bluetoothContactSharingDisabled": false,
-     *   //   "bluetoothDisabled": false,
-     *   //   "cameraAccess": "my_cameraAccess",
-     *   //   "cameraDisabled": false,
-     *   //   "cellBroadcastsConfigDisabled": false,
-     *   //   "choosePrivateKeyRules": [],
-     *   //   "complianceRules": [],
-     *   //   "createWindowsDisabled": false,
-     *   //   "credentialsConfigDisabled": false,
-     *   //   "crossProfilePolicies": {},
-     *   //   "dataRoamingDisabled": false,
-     *   //   "debuggingFeaturesAllowed": false,
-     *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
-     *   //   "deviceOwnerLockScreenInfo": {},
-     *   //   "encryptionPolicy": "my_encryptionPolicy",
-     *   //   "ensureVerifyAppsEnabled": false,
-     *   //   "factoryResetDisabled": false,
-     *   //   "frpAdminEmails": [],
-     *   //   "funDisabled": false,
-     *   //   "installAppsDisabled": false,
-     *   //   "installUnknownSourcesAllowed": false,
-     *   //   "keyguardDisabled": false,
-     *   //   "keyguardDisabledFeatures": [],
-     *   //   "kioskCustomLauncherEnabled": false,
-     *   //   "kioskCustomization": {},
-     *   //   "locationMode": "my_locationMode",
-     *   //   "longSupportMessage": {},
-     *   //   "maximumTimeToLock": "my_maximumTimeToLock",
-     *   //   "microphoneAccess": "my_microphoneAccess",
-     *   //   "minimumApiLevel": 0,
-     *   //   "mobileNetworksConfigDisabled": false,
-     *   //   "modifyAccountsDisabled": false,
-     *   //   "mountPhysicalMediaDisabled": false,
-     *   //   "name": "my_name",
-     *   //   "networkEscapeHatchEnabled": false,
-     *   //   "networkResetDisabled": false,
-     *   //   "oncCertificateProviders": [],
-     *   //   "openNetworkConfiguration": {},
-     *   //   "outgoingBeamDisabled": false,
-     *   //   "outgoingCallsDisabled": false,
-     *   //   "passwordPolicies": [],
-     *   //   "passwordRequirements": {},
-     *   //   "permissionGrants": [],
-     *   //   "permittedAccessibilityServices": {},
-     *   //   "permittedInputMethods": {},
-     *   //   "persistentPreferredActivities": [],
-     *   //   "personalUsagePolicies": {},
-     *   //   "playStoreMode": "my_playStoreMode",
-     *   //   "policyEnforcementRules": [],
-     *   //   "preferentialNetworkService": "my_preferentialNetworkService",
-     *   //   "privateKeySelectionEnabled": false,
-     *   //   "recommendedGlobalProxy": {},
-     *   //   "removeUserDisabled": false,
-     *   //   "safeBootDisabled": false,
-     *   //   "screenCaptureDisabled": false,
-     *   //   "setUserIconDisabled": false,
-     *   //   "setWallpaperDisabled": false,
-     *   //   "setupActions": [],
-     *   //   "shareLocationDisabled": false,
-     *   //   "shortSupportMessage": {},
-     *   //   "skipFirstUseHintsEnabled": false,
-     *   //   "smsDisabled": false,
-     *   //   "statusBarDisabled": false,
-     *   //   "statusReportingSettings": {},
-     *   //   "stayOnPluggedModes": [],
-     *   //   "systemUpdate": {},
-     *   //   "tetheringConfigDisabled": false,
-     *   //   "uninstallAppsDisabled": false,
-     *   //   "unmuteMicrophoneDisabled": false,
-     *   //   "usageLog": {},
-     *   //   "usbFileTransferDisabled": false,
-     *   //   "usbMassStorageEnabled": false,
-     *   //   "version": "my_version",
-     *   //   "vpnConfigDisabled": false,
-     *   //   "wifiConfigDisabled": false,
-     *   //   "wifiConfigsLockdownEnabled": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6236,53 +5199,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Lists policies for a given enterprise.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.policies.list({
-     *     // The requested page size. The actual page size may be fixed to a min or max value.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results returned by the server.
-     *     pageToken: 'placeholder-value',
-     *     // The name of the enterprise in the form enterprises/{enterpriseId\}.
-     *     parent: 'enterprises/my-enterprise',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "policies": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6376,232 +5292,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Updates or creates a policy.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.policies.patch({
-     *     // The name of the policy in the form enterprises/{enterpriseId\}/policies/{policyId\}.
-     *     name: 'enterprises/my-enterprise/policies/my-policie',
-     *     // The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountTypesWithManagementDisabled": [],
-     *       //   "addUserDisabled": false,
-     *       //   "adjustVolumeDisabled": false,
-     *       //   "advancedSecurityOverrides": {},
-     *       //   "alwaysOnVpnPackage": {},
-     *       //   "androidDevicePolicyTracks": [],
-     *       //   "appAutoUpdatePolicy": "my_appAutoUpdatePolicy",
-     *       //   "applications": [],
-     *       //   "autoDateAndTimeZone": "my_autoDateAndTimeZone",
-     *       //   "autoTimeRequired": false,
-     *       //   "blockApplicationsEnabled": false,
-     *       //   "bluetoothConfigDisabled": false,
-     *       //   "bluetoothContactSharingDisabled": false,
-     *       //   "bluetoothDisabled": false,
-     *       //   "cameraAccess": "my_cameraAccess",
-     *       //   "cameraDisabled": false,
-     *       //   "cellBroadcastsConfigDisabled": false,
-     *       //   "choosePrivateKeyRules": [],
-     *       //   "complianceRules": [],
-     *       //   "createWindowsDisabled": false,
-     *       //   "credentialsConfigDisabled": false,
-     *       //   "crossProfilePolicies": {},
-     *       //   "dataRoamingDisabled": false,
-     *       //   "debuggingFeaturesAllowed": false,
-     *       //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
-     *       //   "deviceOwnerLockScreenInfo": {},
-     *       //   "encryptionPolicy": "my_encryptionPolicy",
-     *       //   "ensureVerifyAppsEnabled": false,
-     *       //   "factoryResetDisabled": false,
-     *       //   "frpAdminEmails": [],
-     *       //   "funDisabled": false,
-     *       //   "installAppsDisabled": false,
-     *       //   "installUnknownSourcesAllowed": false,
-     *       //   "keyguardDisabled": false,
-     *       //   "keyguardDisabledFeatures": [],
-     *       //   "kioskCustomLauncherEnabled": false,
-     *       //   "kioskCustomization": {},
-     *       //   "locationMode": "my_locationMode",
-     *       //   "longSupportMessage": {},
-     *       //   "maximumTimeToLock": "my_maximumTimeToLock",
-     *       //   "microphoneAccess": "my_microphoneAccess",
-     *       //   "minimumApiLevel": 0,
-     *       //   "mobileNetworksConfigDisabled": false,
-     *       //   "modifyAccountsDisabled": false,
-     *       //   "mountPhysicalMediaDisabled": false,
-     *       //   "name": "my_name",
-     *       //   "networkEscapeHatchEnabled": false,
-     *       //   "networkResetDisabled": false,
-     *       //   "oncCertificateProviders": [],
-     *       //   "openNetworkConfiguration": {},
-     *       //   "outgoingBeamDisabled": false,
-     *       //   "outgoingCallsDisabled": false,
-     *       //   "passwordPolicies": [],
-     *       //   "passwordRequirements": {},
-     *       //   "permissionGrants": [],
-     *       //   "permittedAccessibilityServices": {},
-     *       //   "permittedInputMethods": {},
-     *       //   "persistentPreferredActivities": [],
-     *       //   "personalUsagePolicies": {},
-     *       //   "playStoreMode": "my_playStoreMode",
-     *       //   "policyEnforcementRules": [],
-     *       //   "preferentialNetworkService": "my_preferentialNetworkService",
-     *       //   "privateKeySelectionEnabled": false,
-     *       //   "recommendedGlobalProxy": {},
-     *       //   "removeUserDisabled": false,
-     *       //   "safeBootDisabled": false,
-     *       //   "screenCaptureDisabled": false,
-     *       //   "setUserIconDisabled": false,
-     *       //   "setWallpaperDisabled": false,
-     *       //   "setupActions": [],
-     *       //   "shareLocationDisabled": false,
-     *       //   "shortSupportMessage": {},
-     *       //   "skipFirstUseHintsEnabled": false,
-     *       //   "smsDisabled": false,
-     *       //   "statusBarDisabled": false,
-     *       //   "statusReportingSettings": {},
-     *       //   "stayOnPluggedModes": [],
-     *       //   "systemUpdate": {},
-     *       //   "tetheringConfigDisabled": false,
-     *       //   "uninstallAppsDisabled": false,
-     *       //   "unmuteMicrophoneDisabled": false,
-     *       //   "usageLog": {},
-     *       //   "usbFileTransferDisabled": false,
-     *       //   "usbMassStorageEnabled": false,
-     *       //   "version": "my_version",
-     *       //   "vpnConfigDisabled": false,
-     *       //   "wifiConfigDisabled": false,
-     *       //   "wifiConfigsLockdownEnabled": false
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountTypesWithManagementDisabled": [],
-     *   //   "addUserDisabled": false,
-     *   //   "adjustVolumeDisabled": false,
-     *   //   "advancedSecurityOverrides": {},
-     *   //   "alwaysOnVpnPackage": {},
-     *   //   "androidDevicePolicyTracks": [],
-     *   //   "appAutoUpdatePolicy": "my_appAutoUpdatePolicy",
-     *   //   "applications": [],
-     *   //   "autoDateAndTimeZone": "my_autoDateAndTimeZone",
-     *   //   "autoTimeRequired": false,
-     *   //   "blockApplicationsEnabled": false,
-     *   //   "bluetoothConfigDisabled": false,
-     *   //   "bluetoothContactSharingDisabled": false,
-     *   //   "bluetoothDisabled": false,
-     *   //   "cameraAccess": "my_cameraAccess",
-     *   //   "cameraDisabled": false,
-     *   //   "cellBroadcastsConfigDisabled": false,
-     *   //   "choosePrivateKeyRules": [],
-     *   //   "complianceRules": [],
-     *   //   "createWindowsDisabled": false,
-     *   //   "credentialsConfigDisabled": false,
-     *   //   "crossProfilePolicies": {},
-     *   //   "dataRoamingDisabled": false,
-     *   //   "debuggingFeaturesAllowed": false,
-     *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
-     *   //   "deviceOwnerLockScreenInfo": {},
-     *   //   "encryptionPolicy": "my_encryptionPolicy",
-     *   //   "ensureVerifyAppsEnabled": false,
-     *   //   "factoryResetDisabled": false,
-     *   //   "frpAdminEmails": [],
-     *   //   "funDisabled": false,
-     *   //   "installAppsDisabled": false,
-     *   //   "installUnknownSourcesAllowed": false,
-     *   //   "keyguardDisabled": false,
-     *   //   "keyguardDisabledFeatures": [],
-     *   //   "kioskCustomLauncherEnabled": false,
-     *   //   "kioskCustomization": {},
-     *   //   "locationMode": "my_locationMode",
-     *   //   "longSupportMessage": {},
-     *   //   "maximumTimeToLock": "my_maximumTimeToLock",
-     *   //   "microphoneAccess": "my_microphoneAccess",
-     *   //   "minimumApiLevel": 0,
-     *   //   "mobileNetworksConfigDisabled": false,
-     *   //   "modifyAccountsDisabled": false,
-     *   //   "mountPhysicalMediaDisabled": false,
-     *   //   "name": "my_name",
-     *   //   "networkEscapeHatchEnabled": false,
-     *   //   "networkResetDisabled": false,
-     *   //   "oncCertificateProviders": [],
-     *   //   "openNetworkConfiguration": {},
-     *   //   "outgoingBeamDisabled": false,
-     *   //   "outgoingCallsDisabled": false,
-     *   //   "passwordPolicies": [],
-     *   //   "passwordRequirements": {},
-     *   //   "permissionGrants": [],
-     *   //   "permittedAccessibilityServices": {},
-     *   //   "permittedInputMethods": {},
-     *   //   "persistentPreferredActivities": [],
-     *   //   "personalUsagePolicies": {},
-     *   //   "playStoreMode": "my_playStoreMode",
-     *   //   "policyEnforcementRules": [],
-     *   //   "preferentialNetworkService": "my_preferentialNetworkService",
-     *   //   "privateKeySelectionEnabled": false,
-     *   //   "recommendedGlobalProxy": {},
-     *   //   "removeUserDisabled": false,
-     *   //   "safeBootDisabled": false,
-     *   //   "screenCaptureDisabled": false,
-     *   //   "setUserIconDisabled": false,
-     *   //   "setWallpaperDisabled": false,
-     *   //   "setupActions": [],
-     *   //   "shareLocationDisabled": false,
-     *   //   "shortSupportMessage": {},
-     *   //   "skipFirstUseHintsEnabled": false,
-     *   //   "smsDisabled": false,
-     *   //   "statusBarDisabled": false,
-     *   //   "statusReportingSettings": {},
-     *   //   "stayOnPluggedModes": [],
-     *   //   "systemUpdate": {},
-     *   //   "tetheringConfigDisabled": false,
-     *   //   "uninstallAppsDisabled": false,
-     *   //   "unmuteMicrophoneDisabled": false,
-     *   //   "usageLog": {},
-     *   //   "usbFileTransferDisabled": false,
-     *   //   "usbMassStorageEnabled": false,
-     *   //   "version": "my_version",
-     *   //   "vpnConfigDisabled": false,
-     *   //   "wifiConfigDisabled": false,
-     *   //   "wifiConfigsLockdownEnabled": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6740,66 +5430,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Creates a web app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.webApps.create({
-     *     // The name of the enterprise in the form enterprises/{enterpriseId\}.
-     *     parent: 'enterprises/my-enterprise',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayMode": "my_displayMode",
-     *       //   "icons": [],
-     *       //   "name": "my_name",
-     *       //   "startUrl": "my_startUrl",
-     *       //   "title": "my_title",
-     *       //   "versionCode": "my_versionCode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayMode": "my_displayMode",
-     *   //   "icons": [],
-     *   //   "name": "my_name",
-     *   //   "startUrl": "my_startUrl",
-     *   //   "title": "my_title",
-     *   //   "versionCode": "my_versionCode"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6888,46 +5518,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Deletes a web app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.webApps.delete({
-     *     // The name of the web app in the form enterprises/{enterpriseId\}/webApps/{packageName\}.
-     *     name: 'enterprises/my-enterprise/webApps/my-webApp',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7013,53 +5603,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Gets a web app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.webApps.get({
-     *     // The name of the web app in the form enterprises/{enterpriseId\}/webApp/{packageName\}.
-     *     name: 'enterprises/my-enterprise/webApps/my-webApp',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayMode": "my_displayMode",
-     *   //   "icons": [],
-     *   //   "name": "my_name",
-     *   //   "startUrl": "my_startUrl",
-     *   //   "title": "my_title",
-     *   //   "versionCode": "my_versionCode"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7145,53 +5688,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Lists web apps for a given enterprise.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.webApps.list({
-     *     // The requested page size. This is a hint and the actual page size in the response may be different.
-     *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results returned by the server.
-     *     pageToken: 'placeholder-value',
-     *     // The name of the enterprise in the form enterprises/{enterpriseId\}.
-     *     parent: 'enterprises/my-enterprise',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "webApps": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7283,68 +5779,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Updates a web app.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.webApps.patch({
-     *     // The name of the web app in the form enterprises/{enterpriseId\}/webApps/{packageName\}.
-     *     name: 'enterprises/my-enterprise/webApps/my-webApp',
-     *     // The field mask indicating the fields to update. If not set, all modifiable fields will be modified.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayMode": "my_displayMode",
-     *       //   "icons": [],
-     *       //   "name": "my_name",
-     *       //   "startUrl": "my_startUrl",
-     *       //   "title": "my_title",
-     *       //   "versionCode": "my_versionCode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayMode": "my_displayMode",
-     *   //   "icons": [],
-     *   //   "name": "my_name",
-     *   //   "startUrl": "my_startUrl",
-     *   //   "title": "my_title",
-     *   //   "versionCode": "my_versionCode"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7495,64 +5929,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Creates a web token to access an embeddable managed Google Play web UI for a given enterprise.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.enterprises.webTokens.create({
-     *     // The name of the enterprise in the form enterprises/{enterpriseId\}.
-     *     parent: 'enterprises/my-enterprise',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "enabledFeatures": [],
-     *       //   "name": "my_name",
-     *       //   "parentFrameUrl": "my_parentFrameUrl",
-     *       //   "permissions": [],
-     *       //   "value": "my_value"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "enabledFeatures": [],
-     *   //   "name": "my_name",
-     *   //   "parentFrameUrl": "my_parentFrameUrl",
-     *   //   "permissions": [],
-     *   //   "value": "my_value"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7653,6 +6029,106 @@ export namespace androidmanagement_v1 {
     requestBody?: Schema$WebToken;
   }
 
+  export class Resource$Provisioninginfo {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get the device provisioning information by the identifier provided in the sign-in url.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Provisioninginfo$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Provisioninginfo$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ProvisioningInfo>;
+    get(
+      params: Params$Resource$Provisioninginfo$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Provisioninginfo$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ProvisioningInfo>,
+      callback: BodyResponseCallback<Schema$ProvisioningInfo>
+    ): void;
+    get(
+      params: Params$Resource$Provisioninginfo$Get,
+      callback: BodyResponseCallback<Schema$ProvisioningInfo>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ProvisioningInfo>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Provisioninginfo$Get
+        | BodyResponseCallback<Schema$ProvisioningInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProvisioningInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProvisioningInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ProvisioningInfo> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Provisioninginfo$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Provisioninginfo$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProvisioningInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProvisioningInfo>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Provisioninginfo$Get
+    extends StandardParameters {
+    /**
+     * Required. The identifier that Android Device Policy passes to the 3P sign-in page in the form of provisioningInfo/{provisioning_info\}.
+     */
+    name?: string;
+  }
+
   export class Resource$Signupurls {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7661,51 +6137,6 @@ export namespace androidmanagement_v1 {
 
     /**
      * Creates an enterprise signup URL.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const androidmanagement = google.androidmanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await androidmanagement.signupUrls.create({
-     *     // The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
-     *     callbackUrl: 'placeholder-value',
-     *     // The ID of the Google Cloud Platform project which will own the enterprise.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "url": "my_url"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

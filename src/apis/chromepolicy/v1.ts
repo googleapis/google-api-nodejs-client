@@ -128,6 +128,10 @@ export namespace chromepolicy_v1 {
 
   export interface Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle {
     /**
+     * In the event that this policy was deprecated in favor of another policy, the fully qualified namespace(s) of the new policies as they will show in PolicyAPI.
+     */
+    deprecatedInFavorOf?: string[] | null;
+    /**
      * Description about current life cycle.
      */
     description?: string | null;
@@ -288,6 +292,15 @@ export namespace chromepolicy_v1 {
     policyTargetKey?: Schema$GoogleChromePolicyVersionsV1PolicyTargetKey;
   }
   /**
+   * Information about any range constraints.
+   */
+  export interface Schema$GoogleChromePolicyVersionsV1FieldConstraints {
+    /**
+     * The allowed range for numeric fields.
+     */
+    numericRangeConstraint?: Schema$GoogleChromePolicyVersionsV1NumericRangeConstraint;
+  }
+  /**
    * Request parameters for inheriting policy value of a specific org unit target from the policy value of its parent org unit.
    */
   export interface Schema$GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest {
@@ -305,9 +318,13 @@ export namespace chromepolicy_v1 {
    */
   export interface Schema$GoogleChromePolicyVersionsV1ListGroupPriorityOrderingRequest {
     /**
-     * Required. The namespace of the policy type for the request.
+     * The namespace of the policy type for the request.
      */
     policyNamespace?: string | null;
+    /**
+     * The schema name of the policy for the request.
+     */
+    policySchema?: string | null;
     /**
      * Required. The key of the target for which we want to retrieve the group priority ordering. The target resource must point to an app.
      */
@@ -325,6 +342,10 @@ export namespace chromepolicy_v1 {
      * Output only. The namespace of the policy type of the group IDs.
      */
     policyNamespace?: string | null;
+    /**
+     * Output only. The schema name of the policy for the group IDs.
+     */
+    policySchema?: string | null;
     /**
      * Output only. The target resource for which the group priority ordering has been retrieved.
      */
@@ -391,6 +412,49 @@ export namespace chromepolicy_v1 {
     value?: {[key: string]: any} | null;
   }
   /**
+   * A constraint on upper and/or lower bounds, with at least one being set.
+   */
+  export interface Schema$GoogleChromePolicyVersionsV1NumericRangeConstraint {
+    /**
+     * Maximum value.
+     */
+    maximum?: string | null;
+    /**
+     * Minimum value.
+     */
+    minimum?: string | null;
+  }
+  /**
+   * Error information for a modification request of a specific policy on a specific target.
+   */
+  export interface Schema$GoogleChromePolicyVersionsV1PolicyModificationError {
+    /**
+     * Output only. The non-field errors related to the modification.
+     */
+    errors?: string[] | null;
+    /**
+     * Output only. The error messages related to the modification.
+     */
+    fieldErrors?: Schema$GoogleChromePolicyVersionsV1PolicyModificationFieldError[];
+    /**
+     * Output only. The specific policy schema modification that had an error.
+     */
+    policySchema?: string | null;
+    /**
+     * Output only. The specific policy target modification that had error.
+     */
+    policyTargetKey?: Schema$GoogleChromePolicyVersionsV1PolicyTargetKey;
+  }
+  /**
+   * Details of the errors encountered during a policy modification request. This message will be returned as part of the details of a google.rpc.Status returned to the user when there is an error in their request.
+   */
+  export interface Schema$GoogleChromePolicyVersionsV1PolicyModificationErrorDetails {
+    /**
+     * Output only. List of specific policy modifications errors that may have occurred during a modifying request.
+     */
+    modificationErrors?: Schema$GoogleChromePolicyVersionsV1PolicyModificationError[];
+  }
+  /**
    * Error information for a modification request of a specific field on a specific policy.
    */
   export interface Schema$GoogleChromePolicyVersionsV1PolicyModificationFieldError {
@@ -424,7 +488,7 @@ export namespace chromepolicy_v1 {
      */
     definition?: Schema$Proto2FileDescriptorProto;
     /**
-     * Output only. Detailed description of each field that is part of the schema.
+     * Output only. Detailed description of each field that is part of the schema. Fields are suggested to be displayed by the ordering in this list, not by field number.
      */
     fieldDescriptions?: Schema$GoogleChromePolicyVersionsV1PolicySchemaFieldDescription[];
     /**
@@ -439,10 +503,6 @@ export namespace chromepolicy_v1 {
      * Output only. Current lifecycle information.
      */
     policyApiLifecycle?: Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle;
-    /**
-     * Deprecated field because of typo.
-     */
-    policyApiLifeycle?: Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle;
     /**
      * Output only. Description about the policy schema for user consumption.
      */
@@ -490,6 +550,10 @@ export namespace chromepolicy_v1 {
      */
     field?: string | null;
     /**
+     * Output only. Information on any input constraints associated on the values for the field.
+     */
+    fieldConstraints?: Schema$GoogleChromePolicyVersionsV1FieldConstraints;
+    /**
      * Output only. Provides a list of fields and values. At least one of the fields must have the corresponding value in order for this field to be allowed to be set.
      */
     fieldDependencies?: Schema$GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies[];
@@ -510,7 +574,7 @@ export namespace chromepolicy_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields.
+     * Output only. Provides the description of the fields nested in this field, if the field is a message type that defines multiple fields. Fields are suggested to be displayed by the ordering in this list, not by field number.
      */
     nestedFieldDescriptions?: Schema$GoogleChromePolicyVersionsV1PolicySchemaFieldDescription[];
     /**
@@ -526,6 +590,10 @@ export namespace chromepolicy_v1 {
      * Output only. Additional description for this value.
      */
     description?: string | null;
+    /**
+     * Output only. Field conditions required for this value to be valid.
+     */
+    fieldDependencies?: Schema$GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies[];
     /**
      * Output only. The string represenstation of the value that can be set for the field.
      */
@@ -668,11 +736,11 @@ export namespace chromepolicy_v1 {
      */
     pageToken?: string | null;
     /**
-     * The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/policy/guides/policy-schemas for details on schema namespaces. For example: Valid: "chrome.users.*", "chrome.users.apps.*", "chrome.printers.*" Invalid: "*", "*.users", "chrome.*", "chrome.*.apps.*"
+     * Required. The schema filter to apply to the resolve request. Specify a schema name to view a particular schema, for example: chrome.users.ShowLogoutButton Wildcards are supported, but only in the leaf portion of the schema name. Wildcards cannot be used in namespace directly. Please read https://developers.google.com/chrome/policy/guides/policy-schemas for details on schema namespaces. For example: Valid: "chrome.users.*", "chrome.users.apps.*", "chrome.printers.*" Invalid: "*", "*.users", "chrome.*", "chrome.*.apps.*"
      */
     policySchemaFilter?: string | null;
     /**
-     * Required. The key of the target resource on which the policies should be resolved. The target resource must point to an Org Unit.
+     * Required. The key of the target resource on which the policies should be resolved.
      */
     policyTargetKey?: Schema$GoogleChromePolicyVersionsV1PolicyTargetKey;
   }
@@ -698,9 +766,13 @@ export namespace chromepolicy_v1 {
      */
     groupIds?: string[] | null;
     /**
-     * Required. The namespace of the policy type for the request.
+     * The namespace of the policy type for the request.
      */
     policyNamespace?: string | null;
+    /**
+     * The schema name of the policy for the request.
+     */
+    policySchema?: string | null;
     /**
      * Required. The key of the target for which we want to update the group priority ordering. The target resource must point to an app.
      */
@@ -855,63 +927,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Gets the resolved policy values for a list of policies that match a search query.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/chrome.management.policy',
-     *       'https://www.googleapis.com/auth/chrome.management.policy.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policies.resolve({
-     *     // ID of the G Suite account or literal "my_customer" for the customer associated to the request.
-     *     customer: 'customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken",
-     *       //   "policySchemaFilter": "my_policySchemaFilter",
-     *       //   "policyTargetKey": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resolvedPolicies": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1028,54 +1043,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Delete multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policies.groups.batchDelete({
-     *     // ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
-     *     customer: 'customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1167,54 +1134,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Modify multiple policy values that are applied to a specific group. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policies.groups.batchModify({
-     *     // ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
-     *     customer: 'customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1306,63 +1225,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Retrieve a group priority ordering for an app. The target app must be supplied in `additionalTargetKeyNames` in the PolicyTargetKey. On failure the request will return the error details as part of the google.rpc.Status.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/chrome.management.policy',
-     *       'https://www.googleapis.com/auth/chrome.management.policy.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await chromepolicy.customers.policies.groups.listGroupPriorityOrdering({
-     *       // Required. ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
-     *       customer: 'customers/my-customer',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policyNamespace": "my_policyNamespace",
-     *         //   "policyTargetKey": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "groupIds": [],
-     *   //   "policyNamespace": "my_policyNamespace",
-     *   //   "policyTargetKey": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1460,57 +1322,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Update a group priority ordering for an app. The target app must be supplied in `additionalTargetKeyNames` in the PolicyTargetKey. On failure the request will return the error details as part of the google.rpc.Status.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await chromepolicy.customers.policies.groups.updateGroupPriorityOrdering({
-     *       // Required. ID of the Google Workspace account or literal "my_customer" for the customer associated to the request.
-     *       customer: 'customers/my-customer',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "groupIds": [],
-     *         //   "policyNamespace": "my_policyNamespace",
-     *         //   "policyTargetKey": {}
-     *         // }
-     *       },
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1660,61 +1471,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Creates a certificate at a specified OU for a customer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policies.networks.defineCertificate({
-     *     // Required. The customer for which the certificate will apply.
-     *     customer: 'customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "ceritificateName": "my_ceritificateName",
-     *       //   "certificate": "my_certificate",
-     *       //   "settings": [],
-     *       //   "targetResource": "my_targetResource"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "networkId": "my_networkId",
-     *   //   "settings": [],
-     *   //   "targetResource": "my_targetResource"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1811,60 +1567,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Define a new network.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policies.networks.defineNetwork({
-     *     // Required. The customer who will own this new network.
-     *     customer: 'customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "name": "my_name",
-     *       //   "settings": [],
-     *       //   "targetResource": "my_targetResource"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "networkId": "my_networkId",
-     *   //   "settings": [],
-     *   //   "targetResource": "my_targetResource"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1961,55 +1663,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Remove an existing certificate by guid.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policies.networks.removeCertificate({
-     *     // Required. The customer whose certificate will be removed.
-     *     customer: 'customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "networkId": "my_networkId",
-     *       //   "targetResource": "my_targetResource"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2106,55 +1759,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Remove an existing network by guid.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policies.networks.removeNetwork({
-     *     // Required. The customer whose network will be removed.
-     *     customer: 'customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "networkId": "my_networkId",
-     *       //   "targetResource": "my_targetResource"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2307,54 +1911,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Modify multiple policy values that are applied to a specific org unit so that they now inherit the value from a parent (if applicable). All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policies.orgunits.batchInherit({
-     *     // ID of the G Suite account or literal "my_customer" for the customer associated to the request.
-     *     customer: 'customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2446,54 +2002,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Modify multiple policy values that are applied to a specific org unit. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policies.orgunits.batchModify({
-     *     // ID of the G Suite account or literal "my_customer" for the customer associated to the request.
-     *     customer: 'customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "requests": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2617,63 +2125,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Get a specific policy schema for a customer by its resource name.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/chrome.management.policy',
-     *       'https://www.googleapis.com/auth/chrome.management.policy.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policySchemas.get({
-     *     // Required. The policy schema resource name to query.
-     *     name: 'customers/my-customer/policySchemas/.*',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accessRestrictions": [],
-     *   //   "additionalTargetKeyNames": [],
-     *   //   "categoryTitle": "my_categoryTitle",
-     *   //   "definition": {},
-     *   //   "fieldDescriptions": [],
-     *   //   "name": "my_name",
-     *   //   "notices": [],
-     *   //   "policyApiLifecycle": {},
-     *   //   "policyApiLifeycle": {},
-     *   //   "policyDescription": "my_policyDescription",
-     *   //   "schemaName": "my_schemaName",
-     *   //   "supportUri": "my_supportUri",
-     *   //   "validTargetResources": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2767,58 +2218,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Gets a list of policy schemas that match a specified filter value for a given customer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/chrome.management.policy',
-     *       'https://www.googleapis.com/auth/chrome.management.policy.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.customers.policySchemas.list({
-     *     // The schema filter used to find a particular schema based on fields like its resource name, description and `additionalTargetKeyNames`.
-     *     filter: 'placeholder-value',
-     *     // The maximum number of policy schemas to return, defaults to 100 and has a maximum of 1000.
-     *     pageSize: 'placeholder-value',
-     *     // The page token used to retrieve a specific page of the listing request.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The customer for which the listing request will apply.
-     *     parent: 'customers/my-customer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "policySchemas": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2949,60 +2348,6 @@ export namespace chromepolicy_v1 {
 
     /**
      * Creates an enterprise file from the content provided by user. Returns a public download url for end user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const chromepolicy = google.chromepolicy('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await chromepolicy.media.upload({
-     *     // Required. The customer for which the file upload will apply.
-     *     customer: 'customers/my-customer',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policyField": "my_policyField"
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "downloadUri": "my_downloadUri"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

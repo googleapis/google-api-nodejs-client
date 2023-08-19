@@ -27,7 +27,7 @@ export function recaptchaenterprise(
   options: recaptchaenterprise_v1.Options
 ): recaptchaenterprise_v1.Recaptchaenterprise;
 export function recaptchaenterprise<
-  T = recaptchaenterprise_v1.Recaptchaenterprise
+  T = recaptchaenterprise_v1.Recaptchaenterprise,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | recaptchaenterprise_v1.Options

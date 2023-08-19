@@ -1,5 +1,100 @@
 # Changelog
 
+## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v7.0.1...cloudkms-v7.0.2) (2023-08-15)
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([3499c39](https://github.com/googleapis/google-api-nodejs-client/commit/3499c393ef41f5071efaa03270be37f860a4b5ab))
+
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v7.0.0...cloudkms-v7.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([208f1da](https://github.com/googleapis/google-api-nodejs-client/commit/208f1daac68bfd48f3de96f952699bee1d76f9bc))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v6.1.0...cloudkms-v7.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **cloudkms:** update the API ([fc5cd5e](https://github.com/googleapis/google-api-nodejs-client/commit/fc5cd5edf38d87785026957ca89067cb3da5331e))
+* **cloudkms:** update the API ([c5c28d5](https://github.com/googleapis/google-api-nodejs-client/commit/c5c28d57249dcd1edac8eb779eab1345cb788dc1))
+* run the generator ([#3226](https://github.com/googleapis/google-api-nodejs-client/issues/3226)) ([64731b3](https://github.com/googleapis/google-api-nodejs-client/commit/64731b38b8b60b082da5456914546850d152d677))
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([f178eeb](https://github.com/googleapis/google-api-nodejs-client/commit/f178eeb7f95c2370f3e3bd48802a552bbf9c9921))
+
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v6.0.0...cloudkms-v6.1.0) (2023-07-10)
+
+
+### Features
+
+* **cloudkms:** update the API ([fc5cd5e](https://github.com/googleapis/google-api-nodejs-client/commit/fc5cd5edf38d87785026957ca89067cb3da5331e))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v5.1.0...cloudkms-v6.0.0) (2023-05-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3226](https://github.com/googleapis/google-api-nodejs-client/issues/3226)) ([64731b3](https://github.com/googleapis/google-api-nodejs-client/commit/64731b38b8b60b082da5456914546850d152d677))
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([f178eeb](https://github.com/googleapis/google-api-nodejs-client/commit/f178eeb7f95c2370f3e3bd48802a552bbf9c9921))
+
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v5.0.3...cloudkms-v5.1.0) (2023-03-22)
+
+
+### Features
+
+* **cloudkms:** update the API ([c5c28d5](https://github.com/googleapis/google-api-nodejs-client/commit/c5c28d57249dcd1edac8eb779eab1345cb788dc1))
+
+## [5.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v5.0.2...cloudkms-v5.0.3) (2023-02-24)
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([2df4942](https://github.com/googleapis/google-api-nodejs-client/commit/2df494233472bd332086875662e5bf3e3b70c501))
+* **cloudkms:** update the API ([a68ee93](https://github.com/googleapis/google-api-nodejs-client/commit/a68ee9385f543309f4f357b4ff8308e3287a2f4a))
+
+## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v5.0.1...cloudkms-v5.0.2) (2023-02-10)
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([2df4942](https://github.com/googleapis/google-api-nodejs-client/commit/2df494233472bd332086875662e5bf3e3b70c501))
+
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v5.0.0...cloudkms-v5.0.1) (2022-12-22)
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([a68ee93](https://github.com/googleapis/google-api-nodejs-client/commit/a68ee9385f543309f4f357b4ff8308e3287a2f4a))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v4.1.2...cloudkms-v5.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [4.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v4.1.1...cloudkms-v4.1.2) (2022-09-21)
 
 

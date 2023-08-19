@@ -167,6 +167,32 @@
                 "https://www.googleapis.com/auth/cloudkms"
               ]
             },
+            "getEkmConfig": {
+              "description": "Returns the EkmConfig singleton resource for a given project and location.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConfig",
+              "httpMethod": "GET",
+              "id": "cloudkms.projects.locations.getEkmConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the EkmConfig to get.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/ekmConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "EkmConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v1/projects/{projectsId}/locations",
@@ -203,6 +229,41 @@
               "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms"
+              ]
+            },
+            "updateEkmConfig": {
+              "description": "Updates the EkmConfig singleton resource for a given project and location.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConfig",
+              "httpMethod": "PATCH",
+              "id": "cloudkms.projects.locations.updateEkmConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The resource name for the EkmConfig in the format `projects/*/locations/*/ekmConfig`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/ekmConfig$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields to be updated in this request.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "EkmConfig"
+              },
+              "response": {
+                "$ref": "EkmConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -533,6 +594,32 @@
                   },
                   "response": {
                     "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                },
+                "verifyConnectivity": {
+                  "description": "Verifies that Cloud KMS can successfully connect to the external key manager specified by an EkmConnection. If there is an error connecting to the EKM, this method returns a FAILED_PRECONDITION status containing structured information as described at https://cloud.google.com/kms/docs/reference/ekm_errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConnections/{ekmConnectionsId}:verifyConnectivity",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.ekmConnections.verifyConnectivity",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EkmConnection to verify.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ekmConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:verifyConnectivity",
+                  "response": {
+                    "$ref": "VerifyConnectivityResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -1435,6 +1522,64 @@
                             "https://www.googleapis.com/auth/cloudkms"
                           ]
                         },
+                        "rawDecrypt": {
+                          "description": "Decrypts data that was originally encrypted using a raw cryptographic mechanism. The CryptoKey.purpose must be RAW_ENCRYPT_DECRYPT.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:rawDecrypt",
+                          "httpMethod": "POST",
+                          "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.rawDecrypt",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the CryptoKeyVersion to use for decryption.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:rawDecrypt",
+                          "request": {
+                            "$ref": "RawDecryptRequest"
+                          },
+                          "response": {
+                            "$ref": "RawDecryptResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloudkms"
+                          ]
+                        },
+                        "rawEncrypt": {
+                          "description": "Encrypts data using portable cryptographic primitives. Most users should choose Encrypt and Decrypt rather than their raw counterparts. The CryptoKey.purpose must be RAW_ENCRYPT_DECRYPT.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:rawEncrypt",
+                          "httpMethod": "POST",
+                          "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.rawEncrypt",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the CryptoKeyVersion to use for encryption.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:rawEncrypt",
+                          "request": {
+                            "$ref": "RawEncryptRequest"
+                          },
+                          "response": {
+                            "$ref": "RawEncryptResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloudkms"
+                          ]
+                        },
                         "restore": {
                           "description": "Restore a CryptoKeyVersion in the DESTROY_SCHEDULED state. Upon restoration of the CryptoKeyVersion, state will be set to DISABLED, and destroy_time will be cleared.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:restore",
@@ -1676,7 +1821,7 @@
       }
     }
   },
-  "revision": "20221021",
+  "revision": "20230808",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -1865,7 +2010,7 @@
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
         },
         "members": {
-          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. ",
+          "description": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.",
           "items": {
             "type": "string"
           },
@@ -2015,6 +2160,7 @@
             "ENCRYPT_DECRYPT",
             "ASYMMETRIC_SIGN",
             "ASYMMETRIC_DECRYPT",
+            "RAW_ENCRYPT_DECRYPT",
             "MAC"
           ],
           "enumDescriptions": [
@@ -2022,6 +2168,7 @@
             "CryptoKeys with this purpose may be used with Encrypt and Decrypt.",
             "CryptoKeys with this purpose may be used with AsymmetricSign and GetPublicKey.",
             "CryptoKeys with this purpose may be used with AsymmetricDecrypt and GetPublicKey.",
+            "CryptoKeys with this purpose may be used with RawEncrypt and RawDecrypt. This purpose is meant to be used for interoperable symmetric encryption and does not support automatic CryptoKey rotation.",
             "CryptoKeys with this purpose may be used with MacSign."
           ],
           "type": "string"
@@ -2047,6 +2194,12 @@
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
+            "AES_128_CBC",
+            "AES_256_CBC",
+            "AES_128_CTR",
+            "AES_256_CTR",
             "RSA_SIGN_PSS_2048_SHA256",
             "RSA_SIGN_PSS_3072_SHA256",
             "RSA_SIGN_PSS_4096_SHA256",
@@ -2069,11 +2222,21 @@
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
             "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Creates symmetric encryption keys.",
+            "AES-GCM (Galois Counter Mode) using 128-bit keys.",
+            "AES-GCM (Galois Counter Mode) using 256-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 128-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 256-bit keys.",
+            "AES-CTR (Counter Mode) using 128-bit keys.",
+            "AES-CTR (Counter Mode) using 256-bit keys.",
             "RSASSA-PSS 2048 bit key with a SHA256 digest.",
             "RSASSA-PSS 3072 bit key with a SHA256 digest.",
             "RSASSA-PSS 4096 bit key with a SHA256 digest.",
@@ -2092,10 +2255,14 @@
             "RSAES-OAEP 2048 bit key with a SHA1 digest.",
             "RSAES-OAEP 3072 bit key with a SHA1 digest.",
             "RSAES-OAEP 4096 bit key with a SHA1 digest.",
-            "ECDSA on the NIST P-256 curve with a SHA256 digest.",
-            "ECDSA on the NIST P-384 curve with a SHA384 digest.",
-            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level.",
+            "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "HMAC-SHA256 signing with a 256 bit key.",
+            "HMAC-SHA1 signing with a 160 bit key.",
+            "HMAC-SHA384 signing with a 384 bit key.",
+            "HMAC-SHA512 signing with a 512 bit key.",
+            "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager."
           ],
           "readOnly": true,
@@ -2124,6 +2291,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "externalDestructionFailureReason": {
+          "description": "Output only. The root cause of the most recent external destruction failure. Only present if state is EXTERNAL_DESTRUCTION_FAILED.",
+          "readOnly": true,
+          "type": "string"
+        },
         "externalProtectionLevelOptions": {
           "$ref": "ExternalProtectionLevelOptions",
           "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels."
@@ -2131,6 +2303,11 @@
         "generateTime": {
           "description": "Output only. The time this CryptoKeyVersion's key material was generated.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "generationFailureReason": {
+          "description": "Output only. The root cause of the most recent generation failure. Only present if state is GENERATION_FAILED.",
           "readOnly": true,
           "type": "string"
         },
@@ -2189,7 +2366,10 @@
             "DESTROYED",
             "DESTROY_SCHEDULED",
             "PENDING_IMPORT",
-            "IMPORT_FAILED"
+            "IMPORT_FAILED",
+            "GENERATION_FAILED",
+            "PENDING_EXTERNAL_DESTRUCTION",
+            "EXTERNAL_DESTRUCTION_FAILED"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -2199,7 +2379,10 @@
             "This version is destroyed, and the key material is no longer stored. This version may only become ENABLED again if this version is reimport_eligible and the original key material is reimported with a call to KeyManagementService.ImportCryptoKeyVersion.",
             "This version is scheduled for destruction, and will be destroyed soon. Call RestoreCryptoKeyVersion to put it back into the DISABLED state.",
             "This version is still being imported. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
-            "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason."
+            "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason.",
+            "This version was not generated successfully. It may not be used, enabled, disabled, or destroyed. Additional details can be found in CryptoKeyVersion.generation_failure_reason.",
+            "This version was destroyed, and it may not be used or enabled again. Cloud KMS is waiting for the corresponding key material residing in an external key manager to be destroyed.",
+            "This version was destroyed, and it may not be used or enabled again. However, Cloud KMS could not confirm that the corresponding key material residing in an external key manager was destroyed. Additional details can be found in CryptoKeyVersion.external_destruction_failure_reason."
           ],
           "type": "string"
         }
@@ -2215,6 +2398,12 @@
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
+            "AES_128_CBC",
+            "AES_256_CBC",
+            "AES_128_CTR",
+            "AES_256_CTR",
             "RSA_SIGN_PSS_2048_SHA256",
             "RSA_SIGN_PSS_3072_SHA256",
             "RSA_SIGN_PSS_4096_SHA256",
@@ -2237,11 +2426,21 @@
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
             "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Creates symmetric encryption keys.",
+            "AES-GCM (Galois Counter Mode) using 128-bit keys.",
+            "AES-GCM (Galois Counter Mode) using 256-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 128-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 256-bit keys.",
+            "AES-CTR (Counter Mode) using 128-bit keys.",
+            "AES-CTR (Counter Mode) using 256-bit keys.",
             "RSASSA-PSS 2048 bit key with a SHA256 digest.",
             "RSASSA-PSS 3072 bit key with a SHA256 digest.",
             "RSASSA-PSS 4096 bit key with a SHA256 digest.",
@@ -2260,10 +2459,14 @@
             "RSAES-OAEP 2048 bit key with a SHA1 digest.",
             "RSAES-OAEP 3072 bit key with a SHA1 digest.",
             "RSAES-OAEP 4096 bit key with a SHA1 digest.",
-            "ECDSA on the NIST P-256 curve with a SHA256 digest.",
-            "ECDSA on the NIST P-384 curve with a SHA384 digest.",
-            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level.",
+            "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "HMAC-SHA256 signing with a 256 bit key.",
+            "HMAC-SHA1 signing with a 160 bit key.",
+            "HMAC-SHA384 signing with a 384 bit key.",
+            "HMAC-SHA512 signing with a 512 bit key.",
+            "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager."
           ],
           "type": "string"
@@ -2383,6 +2586,22 @@
       },
       "type": "object"
     },
+    "EkmConfig": {
+      "description": "An EkmConfig is a singleton resource that represents configuration parameters that apply to all CryptoKeys and CryptoKeyVersions with a ProtectionLevel of EXTERNAL_VPC in a given project and location.",
+      "id": "EkmConfig",
+      "properties": {
+        "defaultEkmConnection": {
+          "description": "Optional. Resource name of the default EkmConnection. Setting this field to the empty string removes the default.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name for the EkmConfig in the format `projects/*/locations/*/ekmConfig`.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EkmConnection": {
       "description": "An EkmConnection represents an individual EKM connection. It can be used for creating CryptoKeys and CryptoKeyVersions with a ProtectionLevel of EXTERNAL_VPC, as well as performing cryptographic operations using keys created within the EkmConnection.",
       "id": "EkmConnection",
@@ -2393,8 +2612,26 @@
           "readOnly": true,
           "type": "string"
         },
+        "cryptoSpacePath": {
+          "description": "Optional. Identifies the EKM Crypto Space that this EkmConnection maps to. Note: This field is required if KeyManagementMode is CLOUD_KMS.",
+          "type": "string"
+        },
         "etag": {
-          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.",
+          "description": "Optional. Etag of the currently stored EkmConnection.",
+          "type": "string"
+        },
+        "keyManagementMode": {
+          "description": "Optional. Describes who can perform control plane operations on the EKM. If unset, this defaults to MANUAL.",
+          "enum": [
+            "KEY_MANAGEMENT_MODE_UNSPECIFIED",
+            "MANUAL",
+            "CLOUD_KMS"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "EKM-side key management operations on CryptoKeys created with this EkmConnection must be initiated from the EKM directly and cannot be performed from Cloud KMS. This means that: * When creating a CryptoKeyVersion associated with this EkmConnection, the caller must supply the key path of pre-existing external key material that will be linked to the CryptoKeyVersion. * Destruction of external key material cannot be requested via the Cloud KMS API and must be performed directly in the EKM. * Automatic rotation of key material is not supported.",
+            "All CryptoKeys created with this EkmConnection use EKM-side key management operations initiated from Cloud KMS. This means that: * When a CryptoKeyVersion associated with this EkmConnection is created, the EKM automatically generates new key material and a new key path. The caller cannot supply the key path of pre-existing external key material. * Destruction of external key material associated with this EkmConnection can be requested by calling DestroyCryptoKeyVersion. * Automatic rotation of key material is supported."
+          ],
           "type": "string"
         },
         "name": {
@@ -2580,6 +2817,12 @@
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
+            "AES_128_CBC",
+            "AES_256_CBC",
+            "AES_128_CTR",
+            "AES_256_CTR",
             "RSA_SIGN_PSS_2048_SHA256",
             "RSA_SIGN_PSS_3072_SHA256",
             "RSA_SIGN_PSS_4096_SHA256",
@@ -2602,11 +2845,21 @@
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
             "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Creates symmetric encryption keys.",
+            "AES-GCM (Galois Counter Mode) using 128-bit keys.",
+            "AES-GCM (Galois Counter Mode) using 256-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 128-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 256-bit keys.",
+            "AES-CTR (Counter Mode) using 128-bit keys.",
+            "AES-CTR (Counter Mode) using 256-bit keys.",
             "RSASSA-PSS 2048 bit key with a SHA256 digest.",
             "RSASSA-PSS 3072 bit key with a SHA256 digest.",
             "RSASSA-PSS 4096 bit key with a SHA256 digest.",
@@ -2625,10 +2878,14 @@
             "RSAES-OAEP 2048 bit key with a SHA1 digest.",
             "RSAES-OAEP 3072 bit key with a SHA1 digest.",
             "RSAES-OAEP 4096 bit key with a SHA1 digest.",
-            "ECDSA on the NIST P-256 curve with a SHA256 digest.",
-            "ECDSA on the NIST P-384 curve with a SHA384 digest.",
-            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level.",
+            "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "HMAC-SHA256 signing with a 256 bit key.",
+            "HMAC-SHA1 signing with a 160 bit key.",
+            "HMAC-SHA384 signing with a 384 bit key.",
+            "HMAC-SHA512 signing with a 512 bit key.",
+            "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager."
           ],
           "type": "string"
@@ -2942,7 +3199,7 @@
       "type": "object"
     },
     "Location": {
-      "description": "A resource that represents Google Cloud Platform location.",
+      "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
       "properties": {
         "displayName": {
@@ -3123,7 +3380,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -3162,6 +3419,12 @@
           "enum": [
             "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
             "GOOGLE_SYMMETRIC_ENCRYPTION",
+            "AES_128_GCM",
+            "AES_256_GCM",
+            "AES_128_CBC",
+            "AES_256_CBC",
+            "AES_128_CTR",
+            "AES_256_CTR",
             "RSA_SIGN_PSS_2048_SHA256",
             "RSA_SIGN_PSS_3072_SHA256",
             "RSA_SIGN_PSS_4096_SHA256",
@@ -3184,11 +3447,21 @@
             "EC_SIGN_P384_SHA384",
             "EC_SIGN_SECP256K1_SHA256",
             "HMAC_SHA256",
+            "HMAC_SHA1",
+            "HMAC_SHA384",
+            "HMAC_SHA512",
+            "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Creates symmetric encryption keys.",
+            "AES-GCM (Galois Counter Mode) using 128-bit keys.",
+            "AES-GCM (Galois Counter Mode) using 256-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 128-bit keys.",
+            "AES-CBC (Cipher Block Chaining Mode) using 256-bit keys.",
+            "AES-CTR (Counter Mode) using 128-bit keys.",
+            "AES-CTR (Counter Mode) using 256-bit keys.",
             "RSASSA-PSS 2048 bit key with a SHA256 digest.",
             "RSASSA-PSS 3072 bit key with a SHA256 digest.",
             "RSASSA-PSS 4096 bit key with a SHA256 digest.",
@@ -3207,10 +3480,14 @@
             "RSAES-OAEP 2048 bit key with a SHA1 digest.",
             "RSAES-OAEP 3072 bit key with a SHA1 digest.",
             "RSAES-OAEP 4096 bit key with a SHA1 digest.",
-            "ECDSA on the NIST P-256 curve with a SHA256 digest.",
-            "ECDSA on the NIST P-384 curve with a SHA384 digest.",
-            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level.",
+            "ECDSA on the NIST P-256 curve with a SHA256 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the NIST P-384 curve with a SHA384 digest. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
+            "ECDSA on the non-NIST secp256k1 curve. This curve is only supported for HSM protection level. Other hash functions can also be used: https://cloud.google.com/kms/docs/create-validate-signatures#ecdsa_support_for_other_hash_algorithms",
             "HMAC-SHA256 signing with a 256 bit key.",
+            "HMAC-SHA1 signing with a 160 bit key.",
+            "HMAC-SHA384 signing with a 384 bit key.",
+            "HMAC-SHA512 signing with a 512 bit key.",
+            "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager."
           ],
           "type": "string"
@@ -3245,6 +3522,198 @@
             "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RawDecryptRequest": {
+      "description": "Request message for KeyManagementService.RawDecrypt.",
+      "id": "RawDecryptRequest",
+      "properties": {
+        "additionalAuthenticatedData": {
+          "description": "Optional. Optional data that must match the data originally supplied in RawEncryptRequest.additional_authenticated_data.",
+          "format": "byte",
+          "type": "string"
+        },
+        "additionalAuthenticatedDataCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawDecryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(additional_authenticated_data) is equal to additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "ciphertext": {
+          "description": "Required. The encrypted data originally returned in RawEncryptResponse.ciphertext.",
+          "format": "byte",
+          "type": "string"
+        },
+        "ciphertextCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawDecryptRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(ciphertext) is equal to ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "initializationVector": {
+          "description": "Required. The initialization vector (IV) used during encryption, which must match the data originally provided in RawEncryptResponse.initialization_vector.",
+          "format": "byte",
+          "type": "string"
+        },
+        "initializationVectorCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawDecryptRequest.initialization_vector. If specified, KeyManagementService will verify the integrity of the received initialization_vector using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "tagLength": {
+          "description": "The length of the authentication tag that is appended to the end of the ciphertext. If unspecified (0), the default value for the key's algorithm will be used (for AES-GCM, the default value is 16).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RawDecryptResponse": {
+      "description": "Response message for KeyManagementService.RawDecrypt.",
+      "id": "RawDecryptResponse",
+      "properties": {
+        "plaintext": {
+          "description": "The decrypted data.",
+          "format": "byte",
+          "type": "string"
+        },
+        "plaintextCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned RawDecryptResponse.plaintext. An integrity check of plaintext can be performed by computing the CRC32C checksum of plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: receiving this response message indicates that KeyManagementService is able to successfully decrypt the ciphertext. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "protectionLevel": {
+          "description": "The ProtectionLevel of the CryptoKeyVersion used in decryption.",
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL",
+            "EXTERNAL_VPC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Crypto operations are performed in software.",
+            "Crypto operations are performed in a Hardware Security Module.",
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
+          ],
+          "type": "string"
+        },
+        "verifiedAdditionalAuthenticatedDataCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawDecryptRequest.additional_authenticated_data_crc32c was received by KeyManagementService and used for the integrity verification of additional_authenticated_data. A false value of this field indicates either that // RawDecryptRequest.additional_authenticated_data_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawDecryptRequest.additional_authenticated_data_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
+        },
+        "verifiedCiphertextCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawDecryptRequest.ciphertext_crc32c was received by KeyManagementService and used for the integrity verification of the ciphertext. A false value of this field indicates either that RawDecryptRequest.ciphertext_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawDecryptRequest.ciphertext_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
+        },
+        "verifiedInitializationVectorCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawDecryptRequest.initialization_vector_crc32c was received by KeyManagementService and used for the integrity verification of initialization_vector. A false value of this field indicates either that RawDecryptRequest.initialization_vector_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawDecryptRequest.initialization_vector_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RawEncryptRequest": {
+      "description": "Request message for KeyManagementService.RawEncrypt.",
+      "id": "RawEncryptRequest",
+      "properties": {
+        "additionalAuthenticatedData": {
+          "description": "Optional. Optional data that, if specified, must also be provided during decryption through RawDecryptRequest.additional_authenticated_data. This field may only be used in conjunction with an algorithm that accepts additional authenticated data (for example, AES-GCM). The maximum size depends on the key version's protection_level. For SOFTWARE keys, the plaintext must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.",
+          "format": "byte",
+          "type": "string"
+        },
+        "additionalAuthenticatedDataCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawEncryptRequest.additional_authenticated_data. If specified, KeyManagementService will verify the integrity of the received additional_authenticated_data using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(additional_authenticated_data) is equal to additional_authenticated_data_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "initializationVector": {
+          "description": "Optional. A customer-supplied initialization vector that will be used for encryption. If it is not provided for AES-CBC and AES-CTR, one will be generated. It will be returned in RawEncryptResponse.initialization_vector.",
+          "format": "byte",
+          "type": "string"
+        },
+        "initializationVectorCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawEncryptRequest.initialization_vector. If specified, KeyManagementService will verify the integrity of the received initialization_vector using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(initialization_vector) is equal to initialization_vector_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "plaintext": {
+          "description": "Required. The data to encrypt. Must be no larger than 64KiB. The maximum size depends on the key version's protection_level. For SOFTWARE keys, the plaintext must be no larger than 64KiB. For HSM keys, the combined length of the plaintext and additional_authenticated_data fields must be no larger than 8KiB.",
+          "format": "byte",
+          "type": "string"
+        },
+        "plaintextCrc32c": {
+          "description": "Optional. An optional CRC32C checksum of the RawEncryptRequest.plaintext. If specified, KeyManagementService will verify the integrity of the received plaintext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(plaintext) is equal to plaintext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RawEncryptResponse": {
+      "description": "Response message for KeyManagementService.RawEncrypt.",
+      "id": "RawEncryptResponse",
+      "properties": {
+        "ciphertext": {
+          "description": "The encrypted data. In the case of AES-GCM, the authentication tag is the tag_length bytes at the end of this field.",
+          "format": "byte",
+          "type": "string"
+        },
+        "ciphertextCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned RawEncryptResponse.ciphertext. An integrity check of ciphertext can be performed by computing the CRC32C checksum of ciphertext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "initializationVector": {
+          "description": "The initialization vector (IV) generated by the service during encryption. This value must be stored and provided in RawDecryptRequest.initialization_vector at decryption time.",
+          "format": "byte",
+          "type": "string"
+        },
+        "initializationVectorCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned RawEncryptResponse.initialization_vector. An integrity check of initialization_vector can be performed by computing the CRC32C checksum of initialization_vector and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name of the CryptoKeyVersion used in encryption. Check this field to verify that the intended resource was used for encryption.",
+          "type": "string"
+        },
+        "protectionLevel": {
+          "description": "The ProtectionLevel of the CryptoKeyVersion used in encryption.",
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL",
+            "EXTERNAL_VPC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Crypto operations are performed in software.",
+            "Crypto operations are performed in a Hardware Security Module.",
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
+          ],
+          "type": "string"
+        },
+        "tagLength": {
+          "description": "The length of the authentication tag that is appended to the end of the ciphertext.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "verifiedAdditionalAuthenticatedDataCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawEncryptRequest.additional_authenticated_data_crc32c was received by KeyManagementService and used for the integrity verification of additional_authenticated_data. A false value of this field indicates either that // RawEncryptRequest.additional_authenticated_data_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawEncryptRequest.additional_authenticated_data_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
+        },
+        "verifiedInitializationVectorCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawEncryptRequest.initialization_vector_crc32c was received by KeyManagementService and used for the integrity verification of initialization_vector. A false value of this field indicates either that RawEncryptRequest.initialization_vector_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawEncryptRequest.initialization_vector_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
+        },
+        "verifiedPlaintextCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether RawEncryptRequest.plaintext_crc32c was received by KeyManagementService and used for the integrity verification of the plaintext. A false value of this field indicates either that RawEncryptRequest.plaintext_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set RawEncryptRequest.plaintext_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3334,6 +3803,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "VerifyConnectivityResponse": {
+      "description": "Response message for EkmService.VerifyConnectivity.",
+      "id": "VerifyConnectivityResponse",
+      "properties": {},
       "type": "object"
     },
     "WrappingPublicKey": {

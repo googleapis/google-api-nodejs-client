@@ -1,5 +1,114 @@
 # Changelog
 
+## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v11.1.0...serviceconsumermanagement-v11.2.0) (2023-08-17)
+
+
+### Features
+
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+* **serviceconsumermanagement:** update the API ([336b645](https://github.com/googleapis/google-api-nodejs-client/commit/336b645dbb2e745c45dd56dce74ba6e0dac2d2c0))
+
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v11.0.0...serviceconsumermanagement-v11.1.0) (2023-08-09)
+
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([da52b7e](https://github.com/googleapis/google-api-nodejs-client/commit/da52b7ef389dbb018786534bcce1adef9b24502d))
+
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v10.0.0...serviceconsumermanagement-v11.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+* **serviceconsumermanagement:** update the API ([7febb9c](https://github.com/googleapis/google-api-nodejs-client/commit/7febb9cb254c476a480435609e8a29f901feb20c))
+* **serviceconsumermanagement:** update the API ([882713a](https://github.com/googleapis/google-api-nodejs-client/commit/882713a60cf28a3507c423bcbf12510e15cfec35))
+* **serviceconsumermanagement:** update the API ([b75873e](https://github.com/googleapis/google-api-nodejs-client/commit/b75873ea3483d92f5506a8ea5a19289d98b720e4))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v9.1.0...serviceconsumermanagement-v10.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v9.0.0...serviceconsumermanagement-v9.1.0) (2023-05-02)
+
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([7febb9c](https://github.com/googleapis/google-api-nodejs-client/commit/7febb9cb254c476a480435609e8a29f901feb20c))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v8.2.0...serviceconsumermanagement-v9.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3208](https://github.com/googleapis/google-api-nodejs-client/issues/3208)) ([f040752](https://github.com/googleapis/google-api-nodejs-client/commit/f0407528c81f2e74ba5e1d35443085d35f5f005d))
+
+## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v8.1.0...serviceconsumermanagement-v8.2.0) (2023-03-22)
+
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([882713a](https://github.com/googleapis/google-api-nodejs-client/commit/882713a60cf28a3507c423bcbf12510e15cfec35))
+
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v8.0.0...serviceconsumermanagement-v8.1.0) (2023-03-13)
+
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([b75873e](https://github.com/googleapis/google-api-nodejs-client/commit/b75873ea3483d92f5506a8ea5a19289d98b720e4))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v7.1.0...serviceconsumermanagement-v8.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v7.0.0...serviceconsumermanagement-v7.1.0) (2022-12-22)
+
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([5e4ae4f](https://github.com/googleapis/google-api-nodejs-client/commit/5e4ae4f1c88385d609c6c5b8fa154bc0da400986))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v6.0.0...serviceconsumermanagement-v7.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v5.1.0...serviceconsumermanagement-v6.0.0) (2022-09-21)
 
 

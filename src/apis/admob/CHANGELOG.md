@@ -1,5 +1,51 @@
 # Changelog
 
+## [2.2.3](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v2.2.2...admob-v2.2.3) (2023-08-17)
+
+
+### Bug Fixes
+
+* **admob:** update the API ([d249550](https://github.com/googleapis/google-api-nodejs-client/commit/d249550bd56e91b9b027aba965cb464d8f5e7ed9))
+
+## [2.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v2.2.1...admob-v2.2.2) (2023-08-09)
+
+
+### Bug Fixes
+
+* **admob:** update the API ([d249550](https://github.com/googleapis/google-api-nodejs-client/commit/d249550bd56e91b9b027aba965cb464d8f5e7ed9))
+
+## [2.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v2.2.0...admob-v2.2.1) (2023-05-02)
+
+
+### Bug Fixes
+
+* **admob:** update the API ([dd535b8](https://github.com/googleapis/google-api-nodejs-client/commit/dd535b8693c19793c55556f7d5e80a223bfa3960))
+
+## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v2.1.0...admob-v2.2.0) (2023-02-24)
+
+
+### Features
+
+* **admob:** update the API ([fcf0cc7](https://github.com/googleapis/google-api-nodejs-client/commit/fcf0cc7ee5c74b9952692020546b7b2a651e1607))
+
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v2.0.0...admob-v2.1.0) (2023-02-10)
+
+
+### Features
+
+* **admob:** update the API ([fcf0cc7](https://github.com/googleapis/google-api-nodejs-client/commit/fcf0cc7ee5c74b9952692020546b7b2a651e1607))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v1.0.2...admob-v2.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v1.0.1...admob-v1.0.2) (2022-09-21)
 
 

@@ -999,7 +999,7 @@
               "type": "string"
             },
             "resourceName": {
-              "description": "The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.",
+              "description": "The resource name for the person, assigned by the server. An ASCII string in the form of `people/{person_id}`.",
               "location": "path",
               "pattern": "^people/[^/]+$",
               "required": true,
@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20220613",
+  "revision": "20230706",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1437,6 +1437,7 @@
           "description": "Metadata about the birthday."
         },
         "text": {
+          "deprecated": true,
           "description": "Prefer to use the `date` field if set. A free-form string representing the user's birthday. This value is not validated.",
           "type": "string"
         }
@@ -1444,6 +1445,7 @@
       "type": "object"
     },
     "BraggingRights": {
+      "deprecated": true,
       "description": "**DEPRECATED**: No data will be returned A person's bragging rights.",
       "id": "BraggingRights",
       "properties": {
@@ -1571,6 +1573,7 @@
       "id": "ContactGroupMembership",
       "properties": {
         "contactGroupId": {
+          "deprecated": true,
           "description": "Output only. The contact group ID for the contact group membership.",
           "readOnly": true,
           "type": "string"
@@ -1993,6 +1996,7 @@
           "type": "integer"
         },
         "totalPeople": {
+          "deprecated": true,
           "description": "**DEPRECATED** (Please use totalItems) The total number of people in the list without pagination.",
           "format": "int32",
           "type": "integer"
@@ -2332,6 +2336,15 @@
             "ALTERNATE_NAME",
             "SHORT_NAME"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Generic nickname.",
             "Maiden name or birth family name. Used when the person's family name has changed as a result of marriage.",
@@ -2450,6 +2463,7 @@
           "type": "array"
         },
         "ageRange": {
+          "deprecated": true,
           "description": "Output only. **DEPRECATED** (Please use `person.ageRanges` instead) The person's age range.",
           "enum": [
             "AGE_RANGE_UNSPECIFIED",
@@ -2489,6 +2503,7 @@
           "type": "array"
         },
         "braggingRights": {
+          "deprecated": true,
           "description": "**DEPRECATED**: No data will be returned The person's bragging rights.",
           "items": {
             "$ref": "BraggingRights"
@@ -2654,6 +2669,7 @@
           "type": "array"
         },
         "relationshipInterests": {
+          "deprecated": true,
           "description": "Output only. **DEPRECATED**: No data will be returned The person's relationship interests.",
           "items": {
             "$ref": "RelationshipInterest"
@@ -2662,6 +2678,7 @@
           "type": "array"
         },
         "relationshipStatuses": {
+          "deprecated": true,
           "description": "Output only. **DEPRECATED**: No data will be returned The person's relationship statuses.",
           "items": {
             "$ref": "RelationshipStatus"
@@ -2670,6 +2687,7 @@
           "type": "array"
         },
         "residences": {
+          "deprecated": true,
           "description": "**DEPRECATED**: (Please use `person.locations` instead) The person's residences.",
           "items": {
             "$ref": "Residence"
@@ -2677,7 +2695,7 @@
           "type": "array"
         },
         "resourceName": {
-          "description": "The resource name for the person, assigned by the server. An ASCII string with a max length of 27 characters, in the form of `people/{person_id}`.",
+          "description": "The resource name for the person, assigned by the server. An ASCII string in the form of `people/{person_id}`.",
           "type": "string"
         },
         "sipAddresses": {
@@ -2695,6 +2713,7 @@
           "type": "array"
         },
         "taglines": {
+          "deprecated": true,
           "description": "Output only. **DEPRECATED**: No data will be returned The person's taglines.",
           "items": {
             "$ref": "Tagline"
@@ -2737,6 +2756,7 @@
           "type": "array"
         },
         "objectType": {
+          "deprecated": true,
           "description": "Output only. **DEPRECATED** (Please use `person.metadata.sources.profileMetadata.objectType` instead) The type of the person object.",
           "enum": [
             "OBJECT_TYPE_UNSPECIFIED",
@@ -2774,6 +2794,7 @@
       "id": "PersonResponse",
       "properties": {
         "httpStatusCode": {
+          "deprecated": true,
           "description": "**DEPRECATED** (Please use status instead) [HTTP 1.1 status code] (http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).",
           "format": "int32",
           "type": "integer"
@@ -2908,6 +2929,7 @@
       "type": "object"
     },
     "RelationshipInterest": {
+      "deprecated": true,
       "description": "**DEPRECATED**: No data will be returned A person's relationship interest .",
       "id": "RelationshipInterest",
       "properties": {
@@ -2928,6 +2950,7 @@
       "type": "object"
     },
     "RelationshipStatus": {
+      "deprecated": true,
       "description": "**DEPRECATED**: No data will be returned A person's relationship status.",
       "id": "RelationshipStatus",
       "properties": {
@@ -2948,6 +2971,7 @@
       "type": "object"
     },
     "Residence": {
+      "deprecated": true,
       "description": "**DEPRECATED**: Please use `person.locations` instead. A person's past or current residence.",
       "id": "Residence",
       "properties": {
@@ -3129,6 +3153,7 @@
       "type": "object"
     },
     "Tagline": {
+      "deprecated": true,
       "description": "**DEPRECATED**: No data will be returned A brief one-line description of the person.",
       "id": "Tagline",
       "properties": {

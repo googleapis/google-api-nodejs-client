@@ -1,5 +1,66 @@
 # Changelog
 
+## [3.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v3.1.0...vault-v3.1.1) (2023-08-15)
+
+
+### Bug Fixes
+
+* **vault:** update the API ([6f14118](https://github.com/googleapis/google-api-nodejs-client/commit/6f1411871ca5bc99087cbc97d6e9c28dbc0f78ad))
+
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v3.0.1...vault-v3.1.0) (2023-08-09)
+
+
+### Features
+
+* **vault:** update the API ([e1d2dc4](https://github.com/googleapis/google-api-nodejs-client/commit/e1d2dc4ca37c8ad55e9d7e19ebcf2f34e5f82234))
+
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v3.0.0...vault-v3.0.1) (2023-07-10)
+
+
+### Bug Fixes
+
+* **vault:** update the API ([69fe021](https://github.com/googleapis/google-api-nodejs-client/commit/69fe02163128da6427f8a2d43c6ac447c5ee555f))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v2.0.0...vault-v3.0.0) (2023-04-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3217](https://github.com/googleapis/google-api-nodejs-client/issues/3217)) ([c050a5c](https://github.com/googleapis/google-api-nodejs-client/commit/c050a5cd95349dfd74850b2ce004d17eb7f29f50))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v1.0.1...vault-v2.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v1.0.0...vault-v1.0.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **vault:** update the API ([444f5cf](https://github.com/googleapis/google-api-nodejs-client/commit/444f5cf5299dd0519c48f4ff756ef8d540db0285))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v0.6.2...vault-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.6.2](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v0.6.1...vault-v0.6.2) (2022-09-21)
 
 

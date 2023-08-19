@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/licensing-v1.0.1...licensing-v1.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **licensing:** update the API ([c5271b5](https://github.com/googleapis/google-api-nodejs-client/commit/c5271b559eb8af944208071595672e1e4468cfc8))
+
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/licensing-v1.0.0...licensing-v1.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **licensing:** update the API ([c5271b5](https://github.com/googleapis/google-api-nodejs-client/commit/c5271b559eb8af944208071595672e1e4468cfc8))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/licensing-v0.3.4...licensing-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.3.4](https://github.com/googleapis/google-api-nodejs-client/compare/licensing-v0.3.3...licensing-v0.3.4) (2022-09-21)
 
 

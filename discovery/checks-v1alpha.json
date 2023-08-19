@@ -1,0 +1,925 @@
+{
+  "basePath": "",
+  "baseUrl": "https://checks.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Checks Service",
+  "description": "The Checks API contains powerful and easy-to-use privacy and compliance APIs that interact with the Checks product and its underlying technology.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://developers.google.com/checks",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "checks:v1alpha",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://checks.mtls.googleapis.com/",
+  "name": "checks",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "accounts": {
+      "resources": {
+        "apps": {
+          "resources": {
+            "operations": {
+              "methods": {
+                "cancel": {
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/apps/{appsId}/operations/{operationsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "checks.accounts.apps.operations.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be cancelled.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/apps/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:cancel",
+                  "request": {
+                    "$ref": "CancelOperationRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  }
+                },
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/apps/{appsId}/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "checks.accounts.apps.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/apps/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  }
+                },
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/apps/{appsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "checks.accounts.apps.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/apps/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  }
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/apps/{appsId}/operations",
+                  "httpMethod": "GET",
+                  "id": "checks.accounts.apps.operations.list",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the operation's parent resource.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/apps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}/operations",
+                  "response": {
+                    "$ref": "ListOperationsResponse"
+                  }
+                },
+                "wait": {
+                  "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/apps/{appsId}/operations/{operationsId}:wait",
+                  "httpMethod": "POST",
+                  "id": "checks.accounts.apps.operations.wait",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to wait on.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/apps/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:wait",
+                  "request": {
+                    "$ref": "WaitOperationRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "privacypolicy": {
+      "methods": {
+        "analyze": {
+          "description": "Analyzes the privacy policy of the given policy URL or content.",
+          "flatPath": "v1alpha/privacypolicy:analyze",
+          "httpMethod": "POST",
+          "id": "checks.privacypolicy.analyze",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/privacypolicy:analyze",
+          "request": {
+            "$ref": "AnalyzePrivacyPolicyRequest"
+          },
+          "response": {
+            "$ref": "AnalyzePrivacyPolicyResponse"
+          }
+        }
+      }
+    },
+    "projects": {
+      "resources": {
+        "privacypolicy": {
+          "resources": {
+            "operations": {
+              "methods": {
+                "cancel": {
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "flatPath": "v1alpha/projects/{projectsId}/privacypolicy/operations/{operationsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "checks.projects.privacypolicy.operations.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be cancelled.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/privacypolicy/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:cancel",
+                  "response": {
+                    "$ref": "Empty"
+                  }
+                },
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                  "flatPath": "v1alpha/projects/{projectsId}/privacypolicy/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "checks.projects.privacypolicy.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/privacypolicy/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  }
+                },
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1alpha/projects/{projectsId}/privacypolicy/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "checks.projects.privacypolicy.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/privacypolicy/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  }
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+                  "flatPath": "v1alpha/projects/{projectsId}/privacypolicy/operations",
+                  "httpMethod": "GET",
+                  "id": "checks.projects.privacypolicy.operations.list",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the operation's parent resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}/privacypolicy/operations",
+                  "response": {
+                    "$ref": "ListOperationsResponse"
+                  }
+                },
+                "wait": {
+                  "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
+                  "flatPath": "v1alpha/projects/{projectsId}/privacypolicy/operations/{operationsId}:wait",
+                  "httpMethod": "POST",
+                  "id": "checks.projects.privacypolicy.operations.wait",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to wait on.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/privacypolicy/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "timeout": {
+                      "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+                      "format": "google-duration",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:wait",
+                  "response": {
+                    "$ref": "Operation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20230807",
+  "rootUrl": "https://checks.googleapis.com/",
+  "schemas": {
+    "AnalyzePrivacyPolicyRequest": {
+      "description": "The request proto for AnalyzePrivacyPolicy method.",
+      "id": "AnalyzePrivacyPolicyRequest",
+      "properties": {
+        "privacyPolicyPageContent": {
+          "description": "Web page raw HTML content for the privacy policy page to be analyzed. Useful when the client wants to analyze a privacy policy already fetched.",
+          "type": "string"
+        },
+        "privacyPolicyUri": {
+          "description": "URL for the privacy policy page to be analyzed. https://linter.aip.dev/140/uri (Use `uri` instead of `url` in field name)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AnalyzePrivacyPolicyResponse": {
+      "description": "The response proto for AnalyzePrivacyPolicy method.",
+      "id": "AnalyzePrivacyPolicyResponse",
+      "properties": {
+        "dataPurposeAnnotations": {
+          "description": "List of all data types in the privacy policy.",
+          "items": {
+            "$ref": "PolicyPurposeOfUseAnnotation"
+          },
+          "type": "array"
+        },
+        "dataTypeAnnotations": {
+          "description": "List of all data types in the privacy policy.",
+          "items": {
+            "$ref": "PolicyDataTypeAnnotation"
+          },
+          "type": "array"
+        },
+        "htmlContent": {
+          "description": "HTML content for the privacy policy page.",
+          "type": "string"
+        },
+        "lastUpdatedDateInfo": {
+          "$ref": "LastUpdatedDate",
+          "description": "Information about the date when the privacy policy was last updated."
+        },
+        "sectionAnnotations": {
+          "description": "List of all sections in the privacy policy.",
+          "items": {
+            "$ref": "PolicySectionAnnotation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CancelOperationRequest": {
+      "description": "The request message for Operations.CancelOperation.",
+      "id": "CancelOperationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "FindPrivacyPolicyResponse": {
+      "description": "Operation response for `FindPrivacyPolicy`.",
+      "id": "FindPrivacyPolicyResponse",
+      "properties": {
+        "privacyPolicy": {
+          "description": "Resource name of the PrivacyPolicy that was found.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LastUpdatedDate": {
+      "description": "Information about the date when the privacy policy was last updated.",
+      "id": "LastUpdatedDate",
+      "properties": {
+        "endOffset": {
+          "description": "Byte offsets for the end of the date text inside the full text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "lastUpdatedDate": {
+          "$ref": "Date",
+          "description": "Date when the privacy policy was last updated."
+        },
+        "startOffset": {
+          "description": "Byte offsets for the start of the date text inside the full text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "textContent": {
+          "description": "The bytes of actual text content in the section. NOTE: - This will correspond to the whole sentence that includes the date. - This field might contain HTML and it is not sanitized.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListOperationsResponse": {
+      "description": "The response message for Operations.ListOperations.",
+      "id": "ListOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of operations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Operation": {
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
+      "id": "Operation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyDataTypeAnnotation": {
+      "id": "PolicyDataTypeAnnotation",
+      "properties": {
+        "dataType": {
+          "description": "Type of the data mentioned in the policy.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "CONTACT_INFO_NAME",
+            "CONTACT_INFO_EMAIL_ADDRESS",
+            "CONTACT_INFO_PHONE_NUMBER",
+            "CONTACT_INFO_MAILING_ADDRESS",
+            "CONTACT_INFO_OTHER",
+            "IDENTITY_INFO_OTHER",
+            "USER_CONTENT_EMAIL_MESSAGES",
+            "USER_CONTENT_TEXT_MESSAGES",
+            "USER_CONTENT_OTHER_IN_APP_MESSAGES",
+            "USER_CONTENT_PHOTOS",
+            "USER_CONTENT_VIDEOS",
+            "USER_CONTENT_MUSIC_FILES",
+            "USER_CONTENT_VOICE_OR_SOUND_RECORDINGS",
+            "USER_CONTENT_OTHER_AUDIO_FILES",
+            "USER_CONTENT_FILES_AND_DOCS",
+            "USER_CONTENT_GAMEPLAY_DATA",
+            "USER_CONTENT_CUSTOMER_SUPPORT",
+            "COOKIES_AND_TRACKING_ELEMENTS",
+            "BROWSING_HISTORY",
+            "SEARCH_HISTORY",
+            "PURCHASE_HISTORY",
+            "PRODUCT_INTERACTION",
+            "USER_GENERATED_CONTENT_OTHER",
+            "IN_APP_ACTIONS_OTHER",
+            "ADVERTISING",
+            "APP_CRASH_LOGS",
+            "APP_DIAGNOSTICS",
+            "APP_PERFORMANCE_OTHER",
+            "USER_IDENTIFIERS",
+            "DEVICE_IDENTIFIERS",
+            "IP_ADDRESS",
+            "CONTACTS",
+            "AUTHENTICATION_DATA",
+            "CALENDAR_EVENTS_OR_NOTES",
+            "HEALTH",
+            "FITNESS",
+            "LOCATION_PRECISE",
+            "LOCATION_COARSE",
+            "LOCATION_GENERAL",
+            "APPS_ON_DEVICE",
+            "FINANCIAL_PAYMENT_INFO",
+            "FINANCIAL_CREDIT_INFO",
+            "FINANCIAL_OTHER",
+            "PERSONAL_INFO_RACE_AND_ETHNICITY",
+            "PERSONAL_INFO_POLITICAL_OR_RELIGIOUS_BELIEFS",
+            "PERSONAL_INFO_SEXUAL_ORIENTATION",
+            "PERSONAL_INFO_OTHER",
+            "GENERIC_PERSONAL_INFORMATION",
+            "UNSPECIFIED_INFORMATION",
+            "OTHER_DATA"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Data type on the privacy policy describing Contact Info name.",
+            "Data type on the privacy policy describing Contact Info email address.",
+            "Data type on the privacy policy describing Contact Info phone number.",
+            "Data type on the privacy policy describing Contact Info mailing address.",
+            "Data type on the privacy policy describing Contact Info other.",
+            "Data type on the privacy policy describing Identity Info other.",
+            "Data type on the privacy policy describing User Content email messages.",
+            "Data type on the privacy policy describing User Content text messages.",
+            "Data type on the privacy policy describing User Content other in-app messages.",
+            "Data type on the privacy policy describing User Content photos.",
+            "Data type on the privacy policy describing User Content videos.",
+            "Data type on the privacy policy describing User Content music files.",
+            "Data type on the privacy policy describing User Content voice or sound recordings.",
+            "Data type on the privacy policy describing User Content other audio files.",
+            "Data type on the privacy policy describing User Content files or documents.",
+            "Data type on the privacy policy describing User Content gameplay data.",
+            "Data type on the privacy policy describing User Content customer support.",
+            "Data type on the privacy policy describing Cookies and other tracking elements, e.g. web beacons.",
+            "Data type on the privacy policy describing Browsing History.",
+            "Data type on the privacy policy describing Search History.",
+            "Data type on the privacy policy describing Purchase History.",
+            "Data type on the privacy policy describing Product Interaction data.",
+            "Data type on the privacy policy describing other User Generated Content.",
+            "Data type on the privacy policy describing other User Generated Content.",
+            "Data type on the privacy policy describing Advertising data.",
+            "Data type on the privacy policy describing Crash Logs data.",
+            "Data type on the privacy policy describing App Diagnostics data.",
+            "Data type on the privacy policy describing other App Performance data.",
+            "Data type on the privacy policy describing User or account-level IDs.",
+            "Data type on the privacy policy describing device-level IDs.",
+            "Data type on the privacy policy describing IP Addresses.",
+            "Data type on the privacy policy describing Contacts data.",
+            "Data type on the privacy policy describing Authentication data, e.g. passwords.",
+            "Data type on the privacy policy describing Calendar events or notes.",
+            "Data type on the privacy policy describing Health data.",
+            "Data type on the privacy policy describing Fitness data.",
+            "Data type on the privacy policy describing Precise Location data.",
+            "Data type on the privacy policy describing Coarse Location data.",
+            "Data type on the privacy policy describing general Location data, without specifying precise or coarse.",
+            "Data type on the privacy policy describing Apps on Device.",
+            "Data type on the privacy policy describing Financial Payment info.",
+            "Data type on the privacy policy describing Financial Credit info.",
+            "Data type on the privacy policy describing Financial other data.",
+            "Data type on the privacy policy describing a user’s race or ethnicity.",
+            "Data type on the privacy policy describing a user’s political or religious beliefs.",
+            "Data type on the privacy policy describing a user’s sexual orientation.",
+            "Data type on the privacy policy describing Personal Info other.",
+            "Data type on the privacy policy describing generic personal information, e.g. \"we collection your personal information.\"",
+            "Data type on the privacy policy describing information in general with no speicific type, e.g. \"we collect information you voluntarily provide.\"",
+            "Data type on the privacy policy describing specific types of data that are not covered by others labels, or ambiguous cases where no clear type exists, e.g. \"we collect your movement data,\" which could be location, fitness, or even product interaction, depending on the context."
+          ],
+          "type": "string"
+        },
+        "endOffset": {
+          "description": "Byte offsets for the end of the data type sentence inside the full text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "score": {
+          "description": "Score given by the model representing how confident it was regarding this `text_content` being of `data_type`.",
+          "format": "float",
+          "type": "number"
+        },
+        "startOffset": {
+          "description": "Byte offsets for the start of the data type sentence inside the full text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "textContent": {
+          "description": "Actual text content in the section. This makes it much easier to consume the information. NOTE: This field might contain HTML and does not guarantee a SafeHtml security contract go/safehtmltypecontracts#safehtml.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyPurposeOfUseAnnotation": {
+      "id": "PolicyPurposeOfUseAnnotation",
+      "properties": {
+        "endOffset": {
+          "description": "Byte offsets for the end of the purpose of use sentence inside the full text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "purposeOfUse": {
+          "description": "Purpose of use mentioned in the policy.",
+          "enum": [
+            "PURPOSE_OF_USE_UNSPECIFIED",
+            "APP_FUNCTIONALITY",
+            "APP_DIAGNOSTICS_AND_PERFORMANCE",
+            "FRAUD_PREVENTION_AND_SECURITY",
+            "PRODUCT_PERSONALIZATION",
+            "ANALYTICS",
+            "DEVELOPERS_COMMUNICATION_AND_MARKETING",
+            "THIRD_PARTY_ADVERTISING",
+            "GENERAL_ADVERTISING",
+            "LEGAL_COMPLIANCE",
+            "MERGERS_AND_ACQUISITIONS",
+            "OTHER_SPECIFIED_PURPOSE",
+            "NO_PURPOSE_MENTIONED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Data is used for general app functions, or interface with the user, e.g. customer support.",
+            "Data is used for minimizing app crashes, enabling scalability and performance, etc.",
+            "Data is used for fraud prevention, protecting user accounts, or other security purposes.",
+            "Data is used for personalizing/customizing what the user sees.",
+            "Data is used for evaluating user behavior, measuring audience size, etc.",
+            "Data is used for sending marketing communications directly to your users, notifications, reminders, or update notices.",
+            "Data is used by a third-party to display ads in the app (or elsewhere).",
+            "Data is used for displaying ads in the app, or sharing data with entities who display ads.",
+            "Data is used for compliance with legal obligations, e.g., regulations, government data requests, law enforcement requests in general, etc.",
+            "If a company/organization merges or is acquired it transfers users' information to another company/organization.",
+            "Any other specific purposes that are not listed above.",
+            "The purpose of use is not explicitly stated or unclear."
+          ],
+          "type": "string"
+        },
+        "score": {
+          "description": "Score given by the model representing how confident it was regarding this `text_content` being of `purpose_of_use`.",
+          "format": "float",
+          "type": "number"
+        },
+        "startOffset": {
+          "description": "Byte offsets for the start of the purpose of use sentence inside the full text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "textContent": {
+          "description": "The bytes of actual text content in the sentence that mentions the purpose of use. This makes it much easier to consume the information. NOTE: This field might contain HTML and does not guarantee a SafeHtml security contract go/safehtmltypecontracts#safehtml.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicySectionAnnotation": {
+      "id": "PolicySectionAnnotation",
+      "properties": {
+        "endOffset": {
+          "description": "Byte offsets for the end of the section inside the full text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "score": {
+          "description": "Score given by the model representing how confident it was regarding this `text_content` being of `section_type`.",
+          "format": "float",
+          "type": "number"
+        },
+        "sectionType": {
+          "description": "Type of the high-level category in the policy.",
+          "enum": [
+            "SECTION_TYPE_UNSPECIFIED",
+            "FIRST_PARTY_COLLECTION",
+            "FIRST_PARTY_USE",
+            "THIRD_PARTY_SHARING",
+            "CHILDREN_RELATED",
+            "DATA_RETENTION",
+            "PRIVACY_CONTACT",
+            "RIGHT_TO_DELETE",
+            "RIGHT_TO_RESTRICT_PROCESSING",
+            "RIGHT_TO_ACCESS",
+            "RIGHT_TO_RECTIFICATION",
+            "RIGHT_TO_KNOW_ABOUT_SELLING",
+            "RIGHT_TO_KNOW_ABOUT_SHARING",
+            "RIGHT_TO_OPT_OUT_FROM_SELLING",
+            "RIGHT_TO_OPT_OUT_FROM_SHARING",
+            "METHOD_TO_OPT_OUT_FROM_SELLING_OR_SHARING",
+            "AUTHORIZED_AGENT",
+            "CCPA_CPRA_REFERENCE",
+            "DATA_PROTECTION_OFFICER",
+            "DATA_CONTROLLER",
+            "DO_NOT_SELL",
+            "GDPR_REFERENCE",
+            "LAWFUL_LEGAL_BASIS",
+            "PRIVACY_SHIELD",
+            "RIGHT_TO_LODGE_A_COMPLAINT",
+            "TRANSFER_MECHANISMS",
+            "NO_CHILDREN_DATA_COLLECTION",
+            "NO_CHILDREN_DATA_SHARING",
+            "CHILDREN_INFORMATION_PUBLICITY",
+            "PARENTS_METHOD_OF_INFORMATION_DELETION",
+            "PARENTS_METHOD_TO_INFORMATION_REVIEW",
+            "PARENTS_METHOD_TO_STOP_FURTHER_INFORMATION_COLLECTION_USE",
+            "PARENTS_RIGHT_TO_INFORMATION_DELETION",
+            "PARENTS_RIGHT_TO_INFORMATION_REVIEW",
+            "PARENTS_RIGHT_TO_STOP_FURTHER_INFORMATION_COLLECTION_USE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Section of the privacy policy describes 1st party collection practices.",
+            "Section of the privacy policy describes 1st party use practices.",
+            "Section of the privacy policy describes 3rd party sharing practices.",
+            "Section of the privacy policy describes Children related content.",
+            "Section of the privacy policy describes data retention practices.",
+            "Section of the privacy policy references privacy contact information.",
+            "Section of the privacy policy describes users' right of data deletion.",
+            "Section of the privacy policy about users' right to restrict processing.",
+            "Section of the privacy policy about users' right to access their data.",
+            "Section of the privacy policy about users' right to correct inaccuracies.",
+            "Section of the privacy policy about users' right to know about information selling.",
+            "Section of the privacy policy about users' right to know about information sharing.",
+            "Section of the privacy policy about users' right to opt out from information selling.",
+            "Section of the privacy policy about users' right to opt out from information sharing.",
+            "Section of the privacy policy about the method to opt out from selling or sharing.",
+            "Section of the privacy policy about the authorized agent designated by user.",
+            "Section of the privacy policy about the mentions of the CCPA or CPRA.",
+            "Section of the privacy policy about the mentions of data protection officer (DPO).",
+            "Section of the privacy policy about the mentions of a data controller.",
+            "Section of the privacy policy stating that the company does not sell data in general (or as defined by the CCPA), without exceptions.",
+            "Section of the privacy policy about the mentions of the GDPR (General Data Protection Regulation).",
+            "Section of the privacy policy about lawful/legal basis for data processing.",
+            "Section of the privacy policy about the Privacy Shielf framework.",
+            "Section of the privacy policy about the right to lodge a complaint with a supervisory authority.",
+            "Section of the privacy policy about transfer mechanisms of data from the EU to third countries",
+            "Section of the privacy policy stating that the company does not collect data from children.",
+            "Section of the privacy policy stating that the company does not share data from children.",
+            "Section of the privacy policy stating whether the app allows children to make their personal information publicly available.",
+            "Section of the privacy policy stating to parents/caregivers/guardians how they can request the deletion of their child's personal information.",
+            "Section of the privacy policy stating to parents/guardians/caregivers how they can review their child's personal information.",
+            "Section of the privacy policy stating to parents/caregivers/guardians how they can stop the further collection or use of their child's personal information.",
+            "Section of the privacy policy stating that a parent/caregiver/guardian has the right to request the deletion of their child's personal. information.",
+            "Section of the privacy policy stating to parents/guardians/caregivers that they have a right to review their child's personal information.",
+            "Section of the privacy policy stating to parents/caregivers/guardians that they have the right to stop the further collection or use of their child's personal information."
+          ],
+          "type": "string"
+        },
+        "startOffset": {
+          "description": "Byte offsets for the start of the section inside the full text.",
+          "format": "int64",
+          "type": "string"
+        },
+        "textContent": {
+          "description": "Actual text content in the section. This makes it much easier to consume the information. NOTE: This field might contain HTML and does not guarantee a SafeHtml security contract go/safehtmltypecontracts#safehtml.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WaitOperationRequest": {
+      "description": "The request message for Operations.WaitOperation.",
+      "id": "WaitOperationRequest",
+      "properties": {
+        "timeout": {
+          "description": "The maximum duration to wait before timing out. If left blank, the wait will be at most the time permitted by the underlying HTTP/RPC protocol. If RPC context deadline is also specified, the shorter one will be used.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Checks API",
+  "version": "v1alpha",
+  "version_module": true
+}

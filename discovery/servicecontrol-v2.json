@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20220915",
+  "revision": "20230805",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -318,6 +318,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
+          "deprecated": true,
           "description": "Deprecated. Use the `metadata` field instead. Other service-specific data about the request, response, and other activities.",
           "type": "object"
         },
@@ -395,6 +396,10 @@
         "serviceAccountKeyName": {
           "description": "The name of the service account key used to create or exchange credentials for authenticating the service account making the request. This is a scheme-less URI full resource name. For example: \"//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}\"",
           "type": "string"
+        },
+        "serviceDelegationHistory": {
+          "$ref": "ServiceDelegationHistory",
+          "description": "Records the history of delegated resource access across Google services."
         },
         "thirdPartyPrincipal": {
           "additionalProperties": {
@@ -587,7 +592,7 @@
       "type": "object"
     },
     "ReportResponse": {
-      "description": "Response message for the Report method. If the request contains any invalid data, the server returns an RPC error.",
+      "description": "Response message for the Report method.",
       "id": "ReportResponse",
       "properties": {},
       "type": "object"
@@ -657,7 +662,7 @@
       "id": "RequestMetadata",
       "properties": {
         "callerIp": {
-          "description": "The IP address of the caller. For caller from internet, this will be public IPv4 or IPv6 address. For caller from a Compute Engine VM with external IP address, this will be the VM's external IP address. For caller from a Compute Engine VM without external IP address, if the VM is in the same organization (or project) as the accessed resource, `caller_ip` will be the VM's internal IPv4 address, otherwise the `caller_ip` will be redacted to \"gce-internal-ip\". See https://cloud.google.com/compute/docs/vpc/ for more information.",
+          "description": "The IP address of the caller. For a caller from the internet, this will be the public IPv4 or IPv6 address. For calls made from inside Google's internal production network from one GCP service to another, `caller_ip` will be redacted to \"private\". For a caller from a Compute Engine VM with a external IP address, `caller_ip` will be the VM's external IP address. For a caller from a Compute Engine VM without a external IP address, if the VM is in the same organization (or project) as the accessed resource, `caller_ip` will be the VM's internal IPv4 address, otherwise `caller_ip` will be redacted to \"gce-internal-ip\". See https://cloud.google.com/compute/docs/vpc/ for more information.",
           "type": "string"
         },
         "callerNetwork": {
@@ -665,7 +670,7 @@
           "type": "string"
         },
         "callerSuppliedUserAgent": {
-          "description": "The user agent of the caller. This information is not authenticated and should be treated accordingly. For example: + `google-api-python-client/1.4.0`: The request was made by the Google API client for Python. + `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`: The request was made by the Google Cloud SDK CLI (gcloud). + `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`: The request was made from the `my-project` App Engine app. NOLINT",
+          "description": "The user agent of the caller. This information is not authenticated and should be treated accordingly. For example: + `google-api-python-client/1.4.0`: The request was made by the Google API client for Python. + `Cloud SDK Command Line Tool apitools-client/1.0 gcloud/0.9.62`: The request was made by the Google Cloud SDK CLI (gcloud). + `AppEngine-Google; (+http://code.google.com/appengine; appid: s~my-project`: The request was made from the `my-project` App Engine app.",
           "type": "string"
         },
         "destinationAttributes": {
@@ -687,7 +692,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations",
+          "description": "Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/",
           "type": "object"
         },
         "createTime": {
@@ -748,11 +753,11 @@
       "id": "ResourceInfo",
       "properties": {
         "container": {
-          "description": "Optional. The identifier of the container of this resource. For Google Cloud APIs, the resource container must be one of the following formats: - `projects/` - `folders/` - `organizations/` For the policy enforcement on the container level (VPCSC and Location Policy check), this field takes precedence on the container extracted from name when presents.",
+          "description": "Optional. The identifier of the container of this resource. For Google Cloud APIs, the resource container must be one of the following formats: - `projects/` - `folders/` - `organizations/` Required for the policy enforcement on the container level (e.g. VPCSC, Location Policy check, Org Policy check).",
           "type": "string"
         },
         "location": {
-          "description": "Optional. The location of the resource. The value must be a valid zone, region or multiregion. For example: \"europe-west4\" or \"northamerica-northeast1-a\"",
+          "description": "Optional. The location of the resource, it must be a valid zone, region or multiregion, for example: \"europe-west4\", \"northamerica-northeast1-a\". Required for location policy check.",
           "type": "string"
         },
         "name": {
@@ -840,6 +845,47 @@
         "thirdPartyPrincipal": {
           "$ref": "ThirdPartyPrincipal",
           "description": "Third party identity as the real authority."
+        }
+      },
+      "type": "object"
+    },
+    "ServiceDelegationHistory": {
+      "description": "The history of delegation across multiple services as the result of the original user's action. Such as \"service A uses its own account to do something for user B\". This differs from ServiceAccountDelegationInfo, which only tracks the history of direct token exchanges (impersonation).",
+      "id": "ServiceDelegationHistory",
+      "properties": {
+        "originalPrincipal": {
+          "description": "The original end user who initiated the request to GCP.",
+          "type": "string"
+        },
+        "serviceMetadata": {
+          "description": "Data identifying the service specific jobs or units of work that were involved in a chain of service calls.",
+          "items": {
+            "$ref": "ServiceMetadata"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceMetadata": {
+      "description": "Metadata describing the service and additional service specific information used to identify the job or unit of work at hand.",
+      "id": "ServiceMetadata",
+      "properties": {
+        "jobMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Additional metadata provided by service teams to describe service specific job information that was triggered by the original principal.",
+          "type": "object"
+        },
+        "principalSubject": {
+          "description": "A string representing the principal_subject associated with the identity. For most identities, the format will be `principal://iam.googleapis.com/{identity pool name}/subject/{subject)` except for some GKE identities (GKE_WORKLOAD, FREEFORM, GKE_HUB_WORKLOAD) that are still in the legacy format `serviceAccount:{identity pool name}[{subject}]` If the identity is a Google account (e.g. workspace user account or service account), this will be the email of the prefixed by `serviceAccount:`. For example: `serviceAccount:my-service-account@project-1.iam.gserviceaccount.com`. If the identity is an individual user, the identity will be formatted as: `user:user_ABC@email.com`.",
+          "type": "string"
+        },
+        "serviceDomain": {
+          "description": "The service's fully qualified domain name, e.g. \"dataproc.googleapis.com\".",
+          "type": "string"
         }
       },
       "type": "object"

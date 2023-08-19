@@ -137,7 +137,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.organizations.locations.operations.list",
@@ -215,7 +215,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error.",
+                  "description": "Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error. In addition to assuredworkloads.workload.delete permission, the user should also have orgpolicy.policy.set permission on the deleted folder to remove Assured Workloads OrgPolicies.",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}",
                   "httpMethod": "DELETE",
                   "id": "assuredworkloads.organizations.locations.workloads.delete",
@@ -254,7 +254,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the Workload to fetch. This is the workload's relative path in the API, formatted as \"organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}\". For example, \"organizations/123/locations/us-east1/workloads/assured-workload-1\".",
+                      "description": "Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as \"organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}\". For example, \"organizations/123/locations/us-east1/workloads/assured-workload-1\".",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
                       "required": true,
@@ -305,6 +305,34 @@
                   "path": "v1/{+parent}/workloads",
                   "response": {
                     "$ref": "GoogleCloudAssuredworkloadsV1ListWorkloadsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "mutatePartnerPermissions": {
+                  "description": "Update the permissions settings for an existing partner workload. For force updates don't set etag field in the Workload. Only one update operation per workload can be in progress.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:mutatePartnerPermissions",
+                  "httpMethod": "PATCH",
+                  "id": "assuredworkloads.organizations.locations.workloads.mutatePartnerPermissions",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/workloads/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:mutatePartnerPermissions",
+                  "request": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAssuredworkloadsV1Workload"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -491,11 +519,11 @@
       }
     }
   },
-  "revision": "20221020",
+  "revision": "20230811",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
-      "description": "Request for acknowledging the violation Next Id: 4",
+      "description": "Request for acknowledging the violation Next Id: 5",
       "id": "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest",
       "properties": {
         "comment": {
@@ -503,6 +531,7 @@
           "type": "string"
         },
         "nonCompliantOrgPolicy": {
+          "deprecated": true,
           "description": "Optional. This field is deprecated and will be removed in future version of the API. Name of the OrgPolicy which was modified with non-compliant change and resulted in this violation. Format: projects/{project_number}/policies/{constraint_name} folders/{folder_id}/policies/{constraint_name} organizations/{organization_id}/policies/{constraint_name}",
           "type": "string"
         }
@@ -534,7 +563,11 @@
             "CA_REGIONS_AND_SUPPORT",
             "ITAR",
             "AU_REGIONS_AND_US_SUPPORT",
-            "ASSURED_WORKLOADS_FOR_PARTNERS"
+            "ASSURED_WORKLOADS_FOR_PARTNERS",
+            "ISR_REGIONS",
+            "ISR_REGIONS_AND_SUPPORT",
+            "CA_PROTECTED_B",
+            "IL5"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -549,7 +582,11 @@
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
             "Assured Workloads for Australia Regions and Support controls Available for public preview consumption. Don't create production workloads.",
-            "Assured Workloads for Partners"
+            "Assured Workloads for Partners;",
+            "Assured Workloads for Israel",
+            "Assured Workloads for Israel Regions",
+            "Assured Workloads for Canada Protected B regime",
+            "Information protection as per DoD IL5 requirements."
           ],
           "type": "string"
         },
@@ -605,6 +642,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest": {
+      "description": "Request for updating permission settings for a partner workload.",
+      "id": "GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest",
+      "properties": {
+        "etag": {
+          "description": "Optional. The etag of the workload. If this is provided, it must match the server's etag.",
+          "type": "string"
+        },
+        "partnerPermissions": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions",
+          "description": "Required. The partner permissions to be updated."
+        },
+        "updateMask": {
+          "description": "Required. The list of fields to be updated. E.g. update_mask { paths: \"partner_permissions.data_logs_viewer\"}",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest": {
       "description": "Request for restricting list of available resources in Workload environment.",
       "id": "GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest",
@@ -614,12 +671,14 @@
           "enum": [
             "RESTRICTION_TYPE_UNSPECIFIED",
             "ALLOW_ALL_GCP_RESOURCES",
-            "ALLOW_COMPLIANT_RESOURCES"
+            "ALLOW_COMPLIANT_RESOURCES",
+            "APPEND_COMPLIANT_RESOURCES"
           ],
           "enumDescriptions": [
             "Unknown restriction type.",
             "Allow the use all of all gcp products, irrespective of the compliance posture. This effectively removes gcp.restrictServiceUsage OrgPolicy on the AssuredWorkloads Folder.",
-            "Based on Workload's compliance regime, allowed list changes. See - https://cloud.google.com/assured-workloads/docs/supported-products for the list of supported resources."
+            "Based on Workload's compliance regime, allowed list changes. See - https://cloud.google.com/assured-workloads/docs/supported-products for the list of supported resources.",
+            "Similar to ALLOW_COMPLIANT_RESOURCES but adds the list of compliant resources to the existing list of compliant resources. Effective org-policy of the Folder is considered to ensure there is no disruption to the existing customer workflows."
           ],
           "type": "string"
         }
@@ -633,7 +692,7 @@
       "type": "object"
     },
     "GoogleCloudAssuredworkloadsV1Violation": {
-      "description": "Workload monitoring Violation.",
+      "description": "Workload monitoring Violation. Next Id: 28",
       "id": "GoogleCloudAssuredworkloadsV1Violation",
       "properties": {
         "acknowledged": {
@@ -641,7 +700,7 @@
           "type": "boolean"
         },
         "acknowledgementTime": {
-          "description": "Optional. Timestamp when this violation was acknowledged last. This will be absent when acknowledged field is marked as false.",
+          "description": "Optional. Timestamp when this violation was acknowledged first. Check exception_contexts to find the last time the violation was acknowledged when there are more than one violations. This field will be absent when acknowledged field is marked as false.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -671,6 +730,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "exceptionContexts": {
+          "description": "Output only. List of all the exception detail added for the violation.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1ViolationExceptionContext"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "name": {
           "description": "Output only. Immutable. Name of the Violation. Format: organizations/{organization}/locations/{location}/workloads/{workload_id}/violations/{violations_id}",
           "readOnly": true,
@@ -682,6 +749,7 @@
           "type": "string"
         },
         "orgPolicyConstraint": {
+          "deprecated": true,
           "description": "Output only. Immutable. The org-policy-constraint that was incorrectly changed, which resulted in this violation.",
           "readOnly": true,
           "type": "string"
@@ -723,6 +791,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1ViolationExceptionContext": {
+      "description": "Violation exception detail. Next Id: 6",
+      "id": "GoogleCloudAssuredworkloadsV1ViolationExceptionContext",
+      "properties": {
+        "acknowledgementTime": {
+          "description": "Timestamp when the violation was acknowledged.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "comment": {
+          "description": "Business justification provided towards the acknowledgement of the violation.",
+          "type": "string"
+        },
+        "userName": {
+          "description": "Name of the user (or service account) who acknowledged the violation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsV1ViolationRemediation": {
       "description": "Represents remediation guidance to resolve compliance violation for AssuredWorkload",
       "id": "GoogleCloudAssuredworkloadsV1ViolationRemediation",
@@ -745,14 +833,16 @@
             "REMEDIATION_BOOLEAN_ORG_POLICY_VIOLATION",
             "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION",
             "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION",
-            "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION"
+            "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION",
+            "REMEDIATION_RESOURCE_VIOLATION"
           ],
           "enumDescriptions": [
             "Unspecified remediation type",
             "Remediation type for boolean org policy",
             "Remediation type for list org policy which have allowed values in the monitoring rule",
             "Remediation type for list org policy which have denied values in the monitoring rule",
-            "Remediation type for gcp.restrictCmekCryptoKeyProjects"
+            "Remediation type for gcp.restrictCmekCryptoKeyProjects",
+            "Remediation type for resource violation."
           ],
           "readOnly": true,
           "type": "string"
@@ -854,7 +944,11 @@
             "CA_REGIONS_AND_SUPPORT",
             "ITAR",
             "AU_REGIONS_AND_US_SUPPORT",
-            "ASSURED_WORKLOADS_FOR_PARTNERS"
+            "ASSURED_WORKLOADS_FOR_PARTNERS",
+            "ISR_REGIONS",
+            "ISR_REGIONS_AND_SUPPORT",
+            "CA_PROTECTED_B",
+            "IL5"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -869,7 +963,11 @@
             "Assured Workloads For Canada Regions and Support controls",
             "International Traffic in Arms Regulations",
             "Assured Workloads for Australia Regions and Support controls Available for public preview consumption. Don't create production workloads.",
-            "Assured Workloads for Partners"
+            "Assured Workloads for Partners;",
+            "Assured Workloads for Israel",
+            "Assured Workloads for Israel Regions",
+            "Assured Workloads for Canada Protected B regime",
+            "Information protection as per DoD IL5 requirements."
           ],
           "type": "string"
         },
@@ -896,6 +994,10 @@
           "description": "Required. The user-assigned display name of the Workload. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, and spaces. Example: My Workload",
           "type": "string"
         },
+        "ekmProvisioningResponse": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse",
+          "description": "Optional. Represents the Ekm Provisioning State of the given workload."
+        },
         "enableSovereignControls": {
           "description": "Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.",
           "type": "boolean"
@@ -921,6 +1023,7 @@
         },
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1WorkloadKMSSettings",
+          "deprecated": true,
           "description": "Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS CMEK key is provisioned. This field is deprecated as of Feb 28, 2022. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field."
         },
         "labels": {
@@ -935,16 +1038,26 @@
           "type": "string"
         },
         "partner": {
-          "description": "Optional. Compliance Regime associated with this workload.",
+          "description": "Optional. Partner regime associated with this workload.",
           "enum": [
             "PARTNER_UNSPECIFIED",
-            "LOCAL_CONTROLS_BY_S3NS"
+            "LOCAL_CONTROLS_BY_S3NS",
+            "SOVEREIGN_CONTROLS_BY_T_SYSTEMS",
+            "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT",
+            "SOVEREIGN_CONTROLS_BY_PSN"
           ],
           "enumDescriptions": [
-            "Unknown partner regime/controls.",
-            "S3NS regime/controls."
+            "",
+            "Enum representing S3NS (Thales) partner.",
+            "Enum representing T_SYSTEM (TSI) partner.",
+            "Enum representing SIA_MINSAIT (Indra) partner.",
+            "Enum representing PSN (TIM) partner."
           ],
           "type": "string"
+        },
+        "partnerPermissions": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions",
+          "description": "Optional. Permissions granted to the AW Partner SA account for the customer workload"
         },
         "provisionedResourcesParent": {
           "description": "Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id}",
@@ -969,6 +1082,10 @@
           "$ref": "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse",
           "description": "Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.",
           "readOnly": true
+        },
+        "violationNotificationsEnabled": {
+          "description": "Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -978,20 +1095,80 @@
       "id": "GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus",
       "properties": {
         "acknowledgedViolationCount": {
-          "description": "Count of active Violations which are acknowledged in the Workload.",
+          "description": "Number of current orgPolicy violations which are acknowledged.",
           "format": "int32",
           "type": "integer"
         },
         "activeViolationCount": {
-          "description": "Count of active Violations which haven't been acknowledged.",
+          "description": "Number of current orgPolicy violations which are not acknowledged.",
           "format": "int32",
           "type": "integer"
         }
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse": {
+      "description": "External key management systems(EKM) Provisioning response",
+      "id": "GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse",
+      "properties": {
+        "ekmProvisioningErrorDomain": {
+          "description": "Indicates Ekm provisioning error if any.",
+          "enum": [
+            "EKM_PROVISIONING_ERROR_DOMAIN_UNSPECIFIED",
+            "UNSPECIFIED_ERROR",
+            "GOOGLE_SERVER_ERROR",
+            "EXTERNAL_USER_ERROR",
+            "EXTERNAL_PARTNER_ERROR",
+            "TIMEOUT_ERROR"
+          ],
+          "enumDescriptions": [
+            "No error domain",
+            "Error but domain is unspecified.",
+            "Internal logic breaks within provisioning code.",
+            "Error occurred with the customer not granting permission/creating resource.",
+            "Error occurred within the partner's provisioning cluster.",
+            "Resource wasn't provisioned in the required 7 day time period"
+          ],
+          "type": "string"
+        },
+        "ekmProvisioningErrorMapping": {
+          "description": "Detailed error message if Ekm provisioning fails",
+          "enum": [
+            "EKM_PROVISIONING_ERROR_MAPPING_UNSPECIFIED",
+            "INVALID_SERVICE_ACCOUNT",
+            "MISSING_METRICS_SCOPE_ADMIN_PERMISSION",
+            "MISSING_EKM_CONNECTION_ADMIN_PERMISSION"
+          ],
+          "enumDescriptions": [
+            "Error is unspecified.",
+            "Service account is used is invalid.",
+            "Iam permission monitoring.MetricsScopeAdmin wasn't applied.",
+            "Iam permission cloudkms.ekmConnectionsAdmin wasn't applied."
+          ],
+          "type": "string"
+        },
+        "ekmProvisioningState": {
+          "description": "Indicates Ekm enrollment Provisioning of a given workload.",
+          "enum": [
+            "EKM_PROVISIONING_STATE_UNSPECIFIED",
+            "EKM_PROVISIONING_STATE_PENDING",
+            "EKM_PROVISIONING_STATE_FAILED",
+            "EKM_PROVISIONING_STATE_COMPLETED"
+          ],
+          "enumDescriptions": [
+            "Default State for Ekm Provisioning",
+            "Pending State for Ekm Provisioning",
+            "Failed State for Ekm Provisioning",
+            "Completed State for Ekm Provisioning"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsV1WorkloadKMSSettings": {
-      "description": "Settings specific to the Key Management Service. This message is deprecated. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.",
+      "deprecated": true,
+      "description": "Settings specific to the Key Management Service.",
       "id": "GoogleCloudAssuredworkloadsV1WorkloadKMSSettings",
       "properties": {
         "nextRotationTime": {
@@ -1003,6 +1180,25 @@
           "description": "Required. Input only. Immutable. [next_rotation_time] will be advanced by this period when the Key Management Service automatically rotates a key. Must be at least 24 hours and at most 876,000 hours.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions": {
+      "description": "Permissions granted to the AW Partner SA account for the customer workload",
+      "id": "GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions",
+      "properties": {
+        "assuredWorkloadsMonitoring": {
+          "description": "Optional. Allow partner to view violation alerts.",
+          "type": "boolean"
+        },
+        "dataLogsViewer": {
+          "description": "Allow the partner to view inspectability logs and monitoring violations.",
+          "type": "boolean"
+        },
+        "serviceAccessApprover": {
+          "description": "Optional. Allow partner to view access approval logs.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1025,9 +1221,16 @@
             "ENCRYPTION_KEYS_PROJECT",
             "KEYRING"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Unknown resource type.",
-            "Consumer project. AssuredWorkloads Projects are no longer supported. This field will be ignored only in CreateWorkload requests. ListWorkloads and GetWorkload will continue to provide projects information. Use CONSUMER_FOLDER instead.",
+            "Deprecated. Existing workloads will continue to support this, but new CreateWorkloadRequests should not specify this as an input value.",
             "Consumer Folder.",
             "Consumer project containing encryption keys.",
             "Keyring resource that hosts encryption keys."
@@ -1050,7 +1253,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Indicates the type of resource. This field should be specified to correspond the id to the right resource type (CONSUMER_FOLDER or ENCRYPTION_KEYS_PROJECT)",
+          "description": "Indicates the type of resource. This field should be specified to correspond the id to the right project type (CONSUMER_PROJECT or ENCRYPTION_KEYS_PROJECT)",
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "CONSUMER_PROJECT",
@@ -1058,9 +1261,16 @@
             "ENCRYPTION_KEYS_PROJECT",
             "KEYRING"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Unknown resource type.",
-            "Consumer project. AssuredWorkloads Projects are no longer supported. This field will be ignored only in CreateWorkload requests. ListWorkloads and GetWorkload will continue to provide projects information. Use CONSUMER_FOLDER instead.",
+            "Deprecated. Existing workloads will continue to support this, but new CreateWorkloadRequests should not specify this as an input value.",
             "Consumer Folder.",
             "Consumer project containing encryption keys.",
             "Keyring resource that hosts encryption keys."
@@ -1159,7 +1369,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },

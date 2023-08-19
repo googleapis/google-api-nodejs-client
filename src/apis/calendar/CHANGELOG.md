@@ -1,5 +1,149 @@
 # Changelog
 
+## [9.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v9.1.1...calendar-v9.2.0) (2023-08-17)
+
+
+### Features
+
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([006efbc](https://github.com/googleapis/google-api-nodejs-client/commit/006efbc7fa685070661127259817da365b36cbea))
+* **calendar:** update the API ([1c28b92](https://github.com/googleapis/google-api-nodejs-client/commit/1c28b925de8ce4eaf56248518880c87cf56dac9a))
+* **calendar:** update the API ([71b067c](https://github.com/googleapis/google-api-nodejs-client/commit/71b067c5fa9b59cb6717ec9f2370b8697e70d887))
+
+## [9.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v9.1.0...calendar-v9.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([006efbc](https://github.com/googleapis/google-api-nodejs-client/commit/006efbc7fa685070661127259817da365b36cbea))
+
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v9.0.0...calendar-v9.1.0) (2023-07-18)
+
+
+### Features
+
+* regenerate index files ([46817cf](https://github.com/googleapis/google-api-nodejs-client/commit/46817cfbbdb7030ef55c89dcd5dd54b85d14da5b))
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([1c28b92](https://github.com/googleapis/google-api-nodejs-client/commit/1c28b925de8ce4eaf56248518880c87cf56dac9a))
+* **calendar:** update the API ([71b067c](https://github.com/googleapis/google-api-nodejs-client/commit/71b067c5fa9b59cb6717ec9f2370b8697e70d887))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v8.0.0...calendar-v9.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **calendar:** update the API ([88df39d](https://github.com/googleapis/google-api-nodejs-client/commit/88df39d7eb53e5185862f81b3b1386ffb8b80069))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([903077e](https://github.com/googleapis/google-api-nodejs-client/commit/903077ee1551d3c9eaa7baba8cda1b2751639de1))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v7.0.0...calendar-v8.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **calendar:** update the API ([88df39d](https://github.com/googleapis/google-api-nodejs-client/commit/88df39d7eb53e5185862f81b3b1386ffb8b80069))
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([903077e](https://github.com/googleapis/google-api-nodejs-client/commit/903077ee1551d3c9eaa7baba8cda1b2751639de1))
+
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v6.0.0...calendar-v7.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v5.0.0...calendar-v6.0.0) (2023-04-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3222](https://github.com/googleapis/google-api-nodejs-client/issues/3222)) ([66ee766](https://github.com/googleapis/google-api-nodejs-client/commit/66ee766a3583a2bd72b4cbdef93d25cadad2f649))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v4.1.0...calendar-v5.0.0) (2023-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3203](https://github.com/googleapis/google-api-nodejs-client/issues/3203)) ([713224f](https://github.com/googleapis/google-api-nodejs-client/commit/713224fe0271843ea61b5d5cbd434ed2aa7b4d69))
+
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v4.0.0...calendar-v4.1.0) (2023-03-22)
+
+
+### Features
+
+* **calendar:** update the API ([88df39d](https://github.com/googleapis/google-api-nodejs-client/commit/88df39d7eb53e5185862f81b3b1386ffb8b80069))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v3.0.0...calendar-v4.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v2.0.3...calendar-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v2.0.2...calendar-v2.0.3) (2022-09-21)
 
 

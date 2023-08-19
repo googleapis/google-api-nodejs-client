@@ -1,5 +1,66 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v4.0.0...streetviewpublish-v4.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **streetviewpublish:** update the API ([1c6bb94](https://github.com/googleapis/google-api-nodejs-client/commit/1c6bb94e2ef745913506df7921ad5dd88d44873b))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v3.0.0...streetviewpublish-v4.0.0) (2023-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **streetviewpublish:** This release has breaking changes.
+
+### Features
+
+* **streetviewpublish:** update the API ([8695d8c](https://github.com/googleapis/google-api-nodejs-client/commit/8695d8c0ecf2f6956a4a9e51168cad606d53f148))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v2.2.1...streetviewpublish-v3.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [2.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v2.2.0...streetviewpublish-v2.2.1) (2023-03-22)
+
+
+### Bug Fixes
+
+* **streetviewpublish:** update the API ([0e4aced](https://github.com/googleapis/google-api-nodejs-client/commit/0e4aceddba44277b0156ef52c8e48da4ad6d315a))
+
+## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v2.1.0...streetviewpublish-v2.2.0) (2023-02-24)
+
+
+### Features
+
+* **streetviewpublish:** update the API ([c9f2655](https://github.com/googleapis/google-api-nodejs-client/commit/c9f26558424ec52a67df4825a649ab2d4975cdcb))
+
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v2.0.0...streetviewpublish-v2.1.0) (2023-02-10)
+
+
+### Features
+
+* **streetviewpublish:** update the API ([c9f2655](https://github.com/googleapis/google-api-nodejs-client/commit/c9f26558424ec52a67df4825a649ab2d4975cdcb))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v1.0.1...streetviewpublish-v2.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v1.0.0...streetviewpublish-v1.0.1) (2022-09-21)
 
 

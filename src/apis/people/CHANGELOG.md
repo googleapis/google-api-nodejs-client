@@ -1,5 +1,44 @@
 # Changelog
 
+## [3.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/people-v3.0.3...people-v3.0.4) (2023-08-17)
+
+
+### Bug Fixes
+
+* **people:** update the API ([abebf9f](https://github.com/googleapis/google-api-nodejs-client/commit/abebf9f738c4d92fada89149ea02d6c67a124c06))
+
+## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/people-v3.0.2...people-v3.0.3) (2023-08-09)
+
+
+### Bug Fixes
+
+* **people:** update the API ([abebf9f](https://github.com/googleapis/google-api-nodejs-client/commit/abebf9f738c4d92fada89149ea02d6c67a124c06))
+
+## [3.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/people-v3.0.1...people-v3.0.2) (2023-02-24)
+
+
+### Bug Fixes
+
+* **people:** update the API ([fa1e010](https://github.com/googleapis/google-api-nodejs-client/commit/fa1e0103a1d4c92c170a485da7619d39cb23374f))
+
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/people-v3.0.0...people-v3.0.1) (2023-02-10)
+
+
+### Bug Fixes
+
+* **people:** update the API ([fa1e010](https://github.com/googleapis/google-api-nodejs-client/commit/fa1e0103a1d4c92c170a485da7619d39cb23374f))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/people-v2.0.2...people-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/people-v2.0.1...people-v2.0.2) (2022-09-21)
 
 

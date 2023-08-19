@@ -1,5 +1,30 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/tpu-v2.0.0...tpu-v2.1.0) (2023-08-17)
+
+
+### Features
+
+* regenerate index files ([c6ce6db](https://github.com/googleapis/google-api-nodejs-client/commit/c6ce6db24417be7ec0d5cb572288042973a390e0))
+* **tpu:** update the API ([6109722](https://github.com/googleapis/google-api-nodejs-client/commit/61097227dc9f0d8c6c8adda6929ed19c53a79d4b))
+* **tpu:** update the API ([7f57c82](https://github.com/googleapis/google-api-nodejs-client/commit/7f57c824a9d8ad4d728fb3b2c058e6084ad8c490))
+
+
+### Bug Fixes
+
+* **tpu:** update the API ([e396d7e](https://github.com/googleapis/google-api-nodejs-client/commit/e396d7e10def66cd3d9eb424c448e61e1a016b2b))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tpu-v1.2.0...tpu-v2.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/tpu-v1.1.0...tpu-v1.2.0) (2022-09-21)
 
 

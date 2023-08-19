@@ -31,7 +31,7 @@ export function cloudshell(
   options: cloudshell_v1alpha1.Options
 ): cloudshell_v1alpha1.Cloudshell;
 export function cloudshell<
-  T = cloudshell_v1.Cloudshell | cloudshell_v1alpha1.Cloudshell
+  T = cloudshell_v1.Cloudshell | cloudshell_v1alpha1.Cloudshell,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

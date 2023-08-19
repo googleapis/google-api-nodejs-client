@@ -397,7 +397,7 @@
                       "type": "string"
                     },
                     "readTime": {
-                      "description": "Reads the version of the document at the given time. This may not be older than 270 seconds.",
+                      "description": "Reads the version of the document at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
@@ -429,7 +429,7 @@
                   ],
                   "parameters": {
                     "collectionId": {
-                      "description": "Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.",
+                      "description": "Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -441,18 +441,18 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "The order to sort results by. For example: `priority desc, name`.",
+                      "description": "Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of documents to return.",
+                      "description": "Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The `next_page_token` value returned from a previous List request, if any.",
+                      "description": "Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -464,18 +464,18 @@
                       "type": "string"
                     },
                     "readTime": {
-                      "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+                      "description": "Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
                     },
                     "showMissing": {
-                      "description": "If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.",
+                      "description": "If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "transaction": {
-                      "description": "Reads documents in a transaction.",
+                      "description": "Perform the read as part of an already active transaction.",
                       "format": "byte",
                       "location": "query",
                       "type": "string"
@@ -530,7 +530,7 @@
                   ],
                   "parameters": {
                     "collectionId": {
-                      "description": "Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.",
+                      "description": "Optional. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`. This is optional, and when not provided, Firestore will list documents from all collections under the provided `parent`.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -542,18 +542,18 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "The order to sort results by. For example: `priority desc, name`.",
+                      "description": "Optional. The optional ordering of the documents to return. For example: `priority desc, __name__ desc`. This mirrors the `ORDER BY` used in Firestore queries but in a string representation. When absent, documents are ordered based on `__name__ ASC`.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of documents to return.",
+                      "description": "Optional. The maximum number of documents to return in a single response. Firestore may return fewer than this value.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The `next_page_token` value returned from a previous List request, if any.",
+                      "description": "Optional. A page token, received from a previous `ListDocuments` response. Provide this to retrieve the subsequent page. When paginating, all other parameters (with the exception of `page_size`) must match the values set in the request that generated the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -565,18 +565,18 @@
                       "type": "string"
                     },
                     "readTime": {
-                      "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+                      "description": "Perform the read at the provided time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
                     },
                     "showMissing": {
-                      "description": "If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.",
+                      "description": "If the list should show missing documents. A document is missing if it does not exist, but there are sub-documents nested underneath it. When true, such missing documents will be returned with a key but will not have fields, `create_time`, or `update_time` set. Requests with `show_missing` may not specify `where` or `order_by`.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "transaction": {
-                      "description": "Reads documents in a transaction.",
+                      "description": "Perform the read as part of an already active transaction.",
                       "format": "byte",
                       "location": "query",
                       "type": "string"
@@ -592,7 +592,7 @@
                   ]
                 },
                 "listen": {
-                  "description": "Listens to changes.",
+                  "description": "Listens to changes. This method is only available via gRPC or WebChannel (not REST).",
                   "flatPath": "v1beta1/projects/{projectsId}/databases/{databasesId}/documents:listen",
                   "httpMethod": "POST",
                   "id": "firestore.projects.databases.documents.listen",
@@ -789,7 +789,7 @@
                   ]
                 },
                 "write": {
-                  "description": "Streams batches of document updates and deletes, in order.",
+                  "description": "Streams batches of document updates and deletes, in order. This method is only available via gRPC or WebChannel (not REST).",
                   "flatPath": "v1beta1/projects/{projectsId}/databases/{databasesId}/documents:write",
                   "httpMethod": "POST",
                   "id": "firestore.projects.databases.documents.write",
@@ -950,20 +950,28 @@
       }
     }
   },
-  "revision": "20221017",
+  "revision": "20230806",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
-      "description": "Defines a aggregation that produces a single result.",
+      "description": "Defines an aggregation that produces a single result.",
       "id": "Aggregation",
       "properties": {
         "alias": {
-          "description": "Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT_UP_TO(4) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.",
+          "description": "Optional. Optional name of the field to store the result of the aggregation into. If not provided, Firestore will pick a default name following the format `field_`. For example: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2), COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) OVER ( ... ); ``` becomes: ``` AGGREGATE COUNT_UP_TO(1) AS count_up_to_1, COUNT_UP_TO(2) AS field_1, COUNT_UP_TO(3) AS count_up_to_3, COUNT(*) AS field_2 OVER ( ... ); ``` Requires: * Must be unique across all aggregation aliases. * Conform to document field name limitations.",
           "type": "string"
+        },
+        "avg": {
+          "$ref": "Avg",
+          "description": "Average aggregator."
         },
         "count": {
           "$ref": "Count",
           "description": "Count aggregator."
+        },
+        "sum": {
+          "$ref": "Sum",
+          "description": "Sum aggregator."
         }
       },
       "type": "object"
@@ -996,6 +1004,17 @@
       },
       "type": "object"
     },
+    "Avg": {
+      "description": "Average of the values of the requested field. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. Infinity math follows IEEE-754 standards. * If the aggregated value set is empty, returns `NULL`. * Always returns the result as a double.",
+      "id": "Avg",
+      "properties": {
+        "field": {
+          "$ref": "FieldReference",
+          "description": "The field to aggregate on."
+        }
+      },
+      "type": "object"
+    },
     "BatchGetDocumentsRequest": {
       "description": "The request for Firestore.BatchGetDocuments.",
       "id": "BatchGetDocumentsRequest",
@@ -1016,7 +1035,7 @@
           "description": "Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream."
         },
         "readTime": {
-          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1118,6 +1137,39 @@
       },
       "type": "object"
     },
+    "BitSequence": {
+      "description": "A sequence of bits, encoded in a byte array. Each byte in the `bitmap` byte array stores 8 bits of the sequence. The only exception is the last byte, which may store 8 _or fewer_ bits. The `padding` defines the number of bits of the last byte to be ignored as \"padding\". The values of these \"padding\" bits are unspecified and must be ignored. To retrieve the first bit, bit 0, calculate: `(bitmap[0] & 0x01) != 0`. To retrieve the second bit, bit 1, calculate: `(bitmap[0] & 0x02) != 0`. To retrieve the third bit, bit 2, calculate: `(bitmap[0] & 0x04) != 0`. To retrieve the fourth bit, bit 3, calculate: `(bitmap[0] & 0x08) != 0`. To retrieve bit n, calculate: `(bitmap[n / 8] & (0x01 << (n % 8))) != 0`. The \"size\" of a `BitSequence` (the number of bits it contains) is calculated by this formula: `(bitmap.length * 8) - padding`.",
+      "id": "BitSequence",
+      "properties": {
+        "bitmap": {
+          "description": "The bytes that encode the bit sequence. May have a length of zero.",
+          "format": "byte",
+          "type": "string"
+        },
+        "padding": {
+          "description": "The number of bits of the last byte in `bitmap` to ignore as \"padding\". If the length of `bitmap` is zero, then this value must be `0`. Otherwise, this value must be between 0 and 7, inclusive.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "BloomFilter": {
+      "description": "A bloom filter (https://en.wikipedia.org/wiki/Bloom_filter). The bloom filter hashes the entries with MD5 and treats the resulting 128-bit hash as 2 distinct 64-bit hash values, interpreted as unsigned integers using 2's complement encoding. These two hash values, named `h1` and `h2`, are then used to compute the `hash_count` hash values using the formula, starting at `i=0`: h(i) = h1 + (i * h2) These resulting values are then taken modulo the number of bits in the bloom filter to get the bits of the bloom filter to test for the given entry.",
+      "id": "BloomFilter",
+      "properties": {
+        "bits": {
+          "$ref": "BitSequence",
+          "description": "The bloom filter data."
+        },
+        "hashCount": {
+          "description": "The number of hashes used by the algorithm.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "CollectionSelector": {
       "description": "A selection of a collection, such as `messages as m1`.",
       "id": "CollectionSelector",
@@ -1186,11 +1238,13 @@
           "description": "The operator for combining multiple filters.",
           "enum": [
             "OPERATOR_UNSPECIFIED",
-            "AND"
+            "AND",
+            "OR"
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
-            "Documents are required to satisfy all of the combined filters."
+            "Documents are required to satisfy all of the combined filters.",
+            "Documents are required to satisfy at least one of the combined filters."
           ],
           "type": "string"
         }
@@ -1202,7 +1256,7 @@
       "id": "Count",
       "properties": {
         "upTo": {
-          "description": "Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.",
+          "description": "Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency, and cost. Unspecified is interpreted as no bound. High-Level Example: ``` AGGREGATE COUNT_UP_TO(1000) OVER ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.",
           "format": "int64",
           "type": "string"
         }
@@ -1387,7 +1441,7 @@
       "id": "ExistenceFilter",
       "properties": {
         "count": {
-          "description": "The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target.",
+          "description": "The total count of documents that match target_id. If different from the count of documents in the client that match, the client must manually determine which documents no longer match the target. The client can use the `unchanged_names` bloom filter to assist with this determination by testing ALL the document names against the filter; if the document name is NOT in the filter, it means the document no longer matches the target.",
           "format": "int32",
           "type": "integer"
         },
@@ -1395,6 +1449,10 @@
           "description": "The target ID to which this filter applies.",
           "format": "int32",
           "type": "integer"
+        },
+        "unchangedNames": {
+          "$ref": "BloomFilter",
+          "description": "A bloom filter that, despite its name, contains the UTF-8 byte encodings of the resource names of ALL the documents that match target_id, in the form `projects/{project_id}/databases/{database_id}/documents/{document_path}`. This bloom filter may be omitted at the server's discretion, such as if it is deemed that the client will not make use of it or if it is too computationally expensive to calculate or transmit. Clients must gracefully handle this field being absent by falling back to the logic used before this field existed; that is, re-add the target without a resume token to figure out which documents in the client's cache are out of sync."
         }
       },
       "type": "object"
@@ -1431,9 +1489,9 @@
             "The given `field` is equal to the given `value`.",
             "The given `field` is not equal to the given `value`. Requires: * No other `NOT_EQUAL`, `NOT_IN`, `IS_NOT_NULL`, or `IS_NOT_NAN`. * That `field` comes first in the `order_by`.",
             "The given `field` is an array that contains the given `value`.",
-            "The given `field` is equal to at least one value in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN` or `ARRAY_CONTAINS_ANY` or `NOT_IN`.",
-            "The given `field` is an array that contains any of the values in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN` or `ARRAY_CONTAINS_ANY` or `NOT_IN`.",
-            "The value of the `field` is not in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN`, `ARRAY_CONTAINS_ANY`, `NOT_IN`, `NOT_EQUAL`, `IS_NOT_NULL`, or `IS_NOT_NAN`. * That `field` comes first in the `order_by`."
+            "The given `field` is equal to at least one value in the given array. Requires: * That `value` is a non-empty `ArrayValue`, subject to disjunction limits. * No `NOT_IN` filters in the same query.",
+            "The given `field` is an array that contains any of the values in the given array. Requires: * That `value` is a non-empty `ArrayValue`, subject to disjunction limits. * No other `ARRAY_CONTAINS_ANY` filters within the same disjunction. * No `NOT_IN` filters in the same query.",
+            "The value of the `field` is not in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `OR`, `IN`, `ARRAY_CONTAINS_ANY`, `NOT_IN`, `NOT_EQUAL`, `IS_NOT_NULL`, or `IS_NOT_NAN`. * That `field` comes first in the `order_by`."
           ],
           "type": "string"
         },
@@ -1513,6 +1571,76 @@
         "unaryFilter": {
           "$ref": "UnaryFilter",
           "description": "A filter that takes exactly one argument."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1Progress": {
+      "description": "Describes the progress of the operation. Unit of work is generic and must be interpreted based on where Progress is used.",
+      "id": "GoogleFirestoreAdminV1Progress",
+      "properties": {
+        "completedWork": {
+          "description": "The amount of work completed.",
+          "format": "int64",
+          "type": "string"
+        },
+        "estimatedWork": {
+          "description": "The amount of work estimated.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1RestoreDatabaseMetadata": {
+      "description": "Metadata for the long-running operation from the RestoreDatabase request.",
+      "id": "GoogleFirestoreAdminV1RestoreDatabaseMetadata",
+      "properties": {
+        "backup": {
+          "description": "The name of the backup restoring from.",
+          "type": "string"
+        },
+        "database": {
+          "description": "The name of the database being restored to.",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the restore finished, unset for ongoing restores.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "operationState": {
+          "description": "The operation state of the restore.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "PROCESSING",
+            "CANCELLING",
+            "FINALIZING",
+            "SUCCESSFUL",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Request is being prepared for processing.",
+            "Request is actively being processed.",
+            "Request is in the process of being cancelled after user called google.longrunning.Operations.CancelOperation on the operation.",
+            "Request has been processed and is in its finalization stage.",
+            "Request has completed successfully.",
+            "Request has finished being processed, but encountered an error.",
+            "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        },
+        "progressPercentage": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "How far along the restore is as an estimated percentage of remaining time."
+        },
+        "startTime": {
+          "description": "The time the restore was started.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1866,7 +1994,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -1903,7 +2031,7 @@
           "type": "string"
         },
         "readTime": {
-          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -1940,7 +2068,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "The next page token.",
+          "description": "A token to retrieve the next page of documents. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -2054,7 +2182,7 @@
           "type": "string"
         },
         "readTime": {
-          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2133,7 +2261,7 @@
       "id": "ReadOnly",
       "properties": {
         "readTime": {
-          "description": "Reads documents at the given time. This may not be older than 60 seconds.",
+          "description": "Reads documents at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -2141,7 +2269,7 @@
       "type": "object"
     },
     "ReadWrite": {
-      "description": "Options for a transaction that can be used to read and write documents.",
+      "description": "Options for a transaction that can be used to read and write documents. Firestore does not allow 3rd party auth requests to create read-write. transactions.",
       "id": "ReadWrite",
       "properties": {
         "retryTransaction": {
@@ -2173,7 +2301,7 @@
           "description": "Starts a new transaction as part of the query, defaulting to read-only. The new transaction ID will be returned as the first response in the stream."
         },
         "readTime": {
-          "description": "Executes the query at the given timestamp. Requires: * Cannot be more than 270 seconds in the past.",
+          "description": "Executes the query at the given timestamp. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2194,7 +2322,7 @@
       "id": "RunAggregationQueryResponse",
       "properties": {
         "readTime": {
-          "description": "The time at which the aggregate value is valid for.",
+          "description": "The time at which the aggregate result was computed. This is always monotonically increasing; in this case, the previous AggregationResult in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `result` will be sent, and this represents the time at which the query was run.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2219,7 +2347,7 @@
           "description": "Starts a new transaction and reads the documents. Defaults to a read-only transaction. The new transaction ID will be returned as the first response in the stream."
         },
         "readTime": {
-          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "description": "Reads documents as they were at the given time. This must be a microsecond precision timestamp within the past one hour, or if Point-in-Time Recovery is enabled, can additionally be a whole minute timestamp within the past 7 days.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2344,7 +2472,7 @@
         },
         "select": {
           "$ref": "Projection",
-          "description": "The projection to return."
+          "description": "Optional sub-set of the fields to return. This acts as a DocumentMask over the documents returned from a query. When not set, assumes that the caller wants all fields returned."
         },
         "startAt": {
           "$ref": "Cursor",
@@ -2357,6 +2485,17 @@
       },
       "type": "object"
     },
+    "Sum": {
+      "description": "Sum of the values of the requested field. * Only numeric values will be aggregated. All non-numeric values including `NULL` are skipped. * If the aggregated values contain `NaN`, returns `NaN`. Infinity math follows IEEE-754 standards. * If the aggregated value set is empty, returns 0. * Returns a 64-bit integer if all aggregated numbers are integers and the sum result does not overflow. Otherwise, the result is returned as a double. Note that even if all the aggregated values are integers, the result is returned as a double if it cannot fit within a 64-bit signed integer. When this occurs, the returned value will lose precision. * When underflow occurs, floating-point aggregation is non-deterministic. This means that running the same query repeatedly without any changes to the underlying values could produce slightly different results each time. In those cases, values should be stored as integers over floating-point numbers.",
+      "id": "Sum",
+      "properties": {
+        "field": {
+          "$ref": "FieldReference",
+          "description": "The field to aggregate on."
+        }
+      },
+      "type": "object"
+    },
     "Target": {
       "description": "A specification of a set of documents to listen to.",
       "id": "Target",
@@ -2364,6 +2503,11 @@
         "documents": {
           "$ref": "DocumentsTarget",
           "description": "A target specified by a set of document names."
+        },
+        "expectedCount": {
+          "description": "The number of documents that last matched the query at the resume token or read time. This value is only relevant when a `resume_type` is provided. This value being present and greater than zero signals that the client wants `ExistenceFilter.unchanged_names` to be included in the response.",
+          "format": "int32",
+          "type": "integer"
         },
         "once": {
           "description": "If the target should be removed once it is current and consistent.",

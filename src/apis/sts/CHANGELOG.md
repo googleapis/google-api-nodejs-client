@@ -1,5 +1,55 @@
 # Changelog
 
+## [3.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v3.3.0...sts-v3.3.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **sts:** update the API ([5765d2a](https://github.com/googleapis/google-api-nodejs-client/commit/5765d2a4a1966c4a67eae4ccaf7ad094aeee0fb6))
+
+## [3.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v3.2.0...sts-v3.3.0) (2023-02-24)
+
+
+### Features
+
+* **sts:** update the API ([b6e069b](https://github.com/googleapis/google-api-nodejs-client/commit/b6e069bd1a5618685f949d97606feeb0204aa8fb))
+* **sts:** update the API ([6329c89](https://github.com/googleapis/google-api-nodejs-client/commit/6329c89747d9e6e8a31804cac232ba231e5ce56b))
+
+
+### Bug Fixes
+
+* **sts:** update the API ([df55772](https://github.com/googleapis/google-api-nodejs-client/commit/df5577227f9833b53c24dc9e03b08553a91f20da))
+
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v3.1.0...sts-v3.2.0) (2023-02-10)
+
+
+### Features
+
+* **sts:** update the API ([b6e069b](https://github.com/googleapis/google-api-nodejs-client/commit/b6e069bd1a5618685f949d97606feeb0204aa8fb))
+
+
+### Bug Fixes
+
+* **sts:** update the API ([df55772](https://github.com/googleapis/google-api-nodejs-client/commit/df5577227f9833b53c24dc9e03b08553a91f20da))
+
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v3.0.0...sts-v3.1.0) (2022-12-22)
+
+
+### Features
+
+* **sts:** update the API ([6329c89](https://github.com/googleapis/google-api-nodejs-client/commit/6329c89747d9e6e8a31804cac232ba231e5ce56b))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v2.1.8...sts-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [2.1.8](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v2.1.7...sts-v2.1.8) (2022-09-21)
 
 

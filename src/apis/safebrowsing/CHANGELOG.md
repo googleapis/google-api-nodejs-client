@@ -1,5 +1,47 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v5.0.0...safebrowsing-v5.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **safebrowsing:** update the API ([fe23d83](https://github.com/googleapis/google-api-nodejs-client/commit/fe23d83559d427ae9b5aea1a78faaecd0be92c10))
+
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v4.0.0...safebrowsing-v5.0.0) (2023-02-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **safebrowsing:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3161](https://github.com/googleapis/google-api-nodejs-client/issues/3161)) ([6fe904a](https://github.com/googleapis/google-api-nodejs-client/commit/6fe904a5f056b3e3789b80111b9b3eecba2dc9e7))
+* **safebrowsing:** update the API ([ecb8989](https://github.com/googleapis/google-api-nodejs-client/commit/ecb8989ba492449389bce301095cdc6f76369061))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v3.0.0...safebrowsing-v4.0.0) (2023-02-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **safebrowsing:** This release has breaking changes.
+
+### Features
+
+* **safebrowsing:** update the API ([ecb8989](https://github.com/googleapis/google-api-nodejs-client/commit/ecb8989ba492449389bce301095cdc6f76369061))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v2.0.3...safebrowsing-v3.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v2.0.2...safebrowsing-v2.0.3) (2022-09-21)
 
 

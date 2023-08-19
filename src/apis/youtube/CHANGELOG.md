@@ -1,5 +1,71 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v10.1.0...youtube-v11.0.0) (2023-08-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **youtube:** This release has breaking changes.
+
+### Features
+
+* **youtube:** update the API ([83aac2f](https://github.com/googleapis/google-api-nodejs-client/commit/83aac2f3934d1da08c1be0fefdc1bd23dc0ebcc4))
+
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v10.0.0...youtube-v10.1.0) (2023-07-18)
+
+
+### Features
+
+* regenerate index files ([4216892](https://github.com/googleapis/google-api-nodejs-client/commit/42168925208e087c952d1fc8267847731d05ae9f))
+* **youtube:** update the API ([e561963](https://github.com/googleapis/google-api-nodejs-client/commit/e561963b463b8a08aceb2d780c2065b0956eeefc))
+
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v9.0.0...youtube-v10.0.0) (2023-06-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3260](https://github.com/googleapis/google-api-nodejs-client/issues/3260)) ([8efb786](https://github.com/googleapis/google-api-nodejs-client/commit/8efb7861b7da4bc1472a4b654e46f90b29fbff20))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v8.0.2...youtube-v9.0.0) (2023-03-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **youtube:** This release has breaking changes.
+
+### Features
+
+* **youtube:** update the API ([d83a4a7](https://github.com/googleapis/google-api-nodejs-client/commit/d83a4a7a9c6b601fe828731b970194b8051a9f66))
+
+## [8.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v8.0.1...youtube-v8.0.2) (2023-02-10)
+
+
+### Bug Fixes
+
+* **youtube:** update the API ([a275134](https://github.com/googleapis/google-api-nodejs-client/commit/a275134286b36e78c9b5336f9b04af4914be82da))
+
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v8.0.0...youtube-v8.0.1) (2022-12-22)
+
+
+### Bug Fixes
+
+* **youtube:** update the API ([b725d15](https://github.com/googleapis/google-api-nodejs-client/commit/b725d15ff930d2e5165f6141d334837bf0770a1c))
+
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v7.0.1...youtube-v8.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v7.0.0...youtube-v7.0.1) (2022-09-21)
 
 

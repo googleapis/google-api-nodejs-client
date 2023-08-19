@@ -46,7 +46,7 @@ export function doubleclickbidmanager<
   T =
     | doubleclickbidmanager_v1_1.Doubleclickbidmanager
     | doubleclickbidmanager_v1.Doubleclickbidmanager
-    | doubleclickbidmanager_v2.Doubleclickbidmanager
+    | doubleclickbidmanager_v2.Doubleclickbidmanager,
 >(
   this: GoogleConfigurable,
   versionOrOptions:

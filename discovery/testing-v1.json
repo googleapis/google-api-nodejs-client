@@ -164,7 +164,7 @@
               ]
             },
             "create": {
-              "description": "Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.",
+              "description": "Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. The returned matrix will not yet contain the executions that will be created for this matrix. Execution creation happens later on and will require a call to GetTestMatrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.",
               "flatPath": "v1/projects/{projectId}/testMatrices",
               "httpMethod": "POST",
               "id": "testing.projects.testMatrices.create",
@@ -196,7 +196,7 @@
               ]
             },
             "get": {
-              "description": "Checks the status of a test matrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist",
+              "description": "Checks the status of a test matrix and the executions once they are created. The test matrix will contain the list of test executions to run if and only if the resultStorage.toolResultsExecution fields have been populated. Note: Flaky test executions may be added to the matrix at a later stage. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist",
               "flatPath": "v1/projects/{projectId}/testMatrices/{testMatrixId}",
               "httpMethod": "GET",
               "id": "testing.projects.testMatrices.get",
@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20221018",
+  "revision": "20230815",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -509,6 +509,13 @@
           "description": "The human-readable marketing name for this device model. Examples: \"Nexus 5\", \"Galaxy S5\".",
           "type": "string"
         },
+        "perVersionInfo": {
+          "description": "Version-specific information of an Android model.",
+          "items": {
+            "$ref": "PerAndroidVersionInfo"
+          },
+          "type": "array"
+        },
         "screenDensity": {
           "description": "Screen density in DPI. This corresponds to ro.sf.lcd_density",
           "format": "int32",
@@ -573,11 +580,13 @@
           "type": "string"
         },
         "maxDepth": {
+          "deprecated": true,
           "description": "The max depth of the traversal stack Robo can explore. Needs to be at least 2 to make Robo explore the app beyond the first activity. Default is 50.",
           "format": "int32",
           "type": "integer"
         },
         "maxSteps": {
+          "deprecated": true,
           "description": "The max number of steps Robo can execute. Default is no limit.",
           "format": "int32",
           "type": "integer"
@@ -755,6 +764,13 @@
           "format": "int32",
           "type": "integer"
         },
+        "metadata": {
+          "description": "Meta-data tags defined in the manifest.",
+          "items": {
+            "$ref": "Metadata"
+          },
+          "type": "array"
+        },
         "minSdkVersion": {
           "description": "Minimum API level required for the application to run.",
           "format": "int32",
@@ -764,10 +780,24 @@
           "description": "Full Java-style package name for this application, e.g. \"com.example.foo\".",
           "type": "string"
         },
+        "services": {
+          "description": "Services contained in the tag.",
+          "items": {
+            "$ref": "Service"
+          },
+          "type": "array"
+        },
         "targetSdkVersion": {
           "description": "Specifies the API Level on which the application is designed to run.",
           "format": "int32",
           "type": "integer"
+        },
+        "usesFeature": {
+          "description": "Feature usage tags defined in the manifest.",
+          "items": {
+            "$ref": "UsesFeature"
+          },
+          "type": "array"
         },
         "usesPermission": {
           "description": "Permissions declared to be used by the application",
@@ -1204,6 +1234,13 @@
           "description": "The human-readable name for this device model. Examples: \"iPhone 4s\", \"iPad Mini 2\".",
           "type": "string"
         },
+        "perVersionInfo": {
+          "description": "Version-specific information of an iOS model.",
+          "items": {
+            "$ref": "PerIosVersionInfo"
+          },
+          "type": "array"
+        },
         "screenDensity": {
           "description": "Screen density in DPI.",
           "format": "int32",
@@ -1232,6 +1269,25 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IosRoboTest": {
+      "description": "A test that explores an iOS application on an iOS device.",
+      "id": "IosRoboTest",
+      "properties": {
+        "appBundleId": {
+          "description": "The bundle ID for the app-under-test. This is determined by examining the application's \"Info.plist\" file.",
+          "type": "string"
+        },
+        "appIpa": {
+          "$ref": "FileReference",
+          "description": "Required. The ipa stored at this file should be used to run the test."
+        },
+        "roboScript": {
+          "$ref": "FileReference",
+          "description": "An optional Roboscript to customize the crawl. See https://firebase.google.com/docs/test-lab/android/robo-scripts-reference for more information about Roboscripts."
         }
       },
       "type": "object"
@@ -1411,11 +1467,26 @@
       "id": "ManualSharding",
       "properties": {
         "testTargetsForShard": {
-          "description": "Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.",
+          "description": "Required. Group of packages, classes, and/or test methods to be run for each manually-created shard. You must specify at least one shard if this field is present. When you select one or more physical devices, the number of repeated test_targets_for_shard must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500.",
           "items": {
             "$ref": "TestTargetsForShard"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Metadata": {
+      "description": "A tag within a manifest. https://developer.android.com/guide/topics/manifest/meta-data-element.html",
+      "id": "Metadata",
+      "properties": {
+        "name": {
+          "description": "The android:name value",
+          "type": "string"
+        },
+        "value": {
+          "description": "The android:value value",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1448,6 +1519,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "NoActivityIntent": {
+      "description": "Skips the starting activity",
+      "id": "NoActivityIntent",
+      "properties": {},
       "type": "object"
     },
     "ObbFile": {
@@ -1487,6 +1564,64 @@
       },
       "type": "object"
     },
+    "PerAndroidVersionInfo": {
+      "description": "A version-specific information of an Android model.",
+      "id": "PerAndroidVersionInfo",
+      "properties": {
+        "deviceCapacity": {
+          "description": "The number of online devices for an Android version.",
+          "enum": [
+            "DEVICE_CAPACITY_UNSPECIFIED",
+            "DEVICE_CAPACITY_HIGH",
+            "DEVICE_CAPACITY_MEDIUM",
+            "DEVICE_CAPACITY_LOW",
+            "DEVICE_CAPACITY_NONE"
+          ],
+          "enumDescriptions": [
+            "The value of device capacity is unknown or unset.",
+            "Devices that are high in capacity (The lab has a large number of these devices). These devices are generally suggested for running a large number of simultaneous tests (e.g. more than 100 tests). Please note that high capacity devices do not guarantee short wait times due to several factors: 1. Traffic (how heavily they are used at any given moment) 2. High capacity devices are prioritized for certain usages, which may cause user tests to be slower than selecting other similar device types.",
+            "Devices that are medium in capacity (The lab has a decent number of these devices, though not as many as high capacity devices). These devices are suitable for fewer test runs (e.g. fewer than 100 tests) and only for low shard counts (e.g. less than 10 shards).",
+            "Devices that are low in capacity (The lab has a small number of these devices). These devices may be used if users need to test on this specific device model and version. Please note that due to low capacity, the tests may take much longer to finish, especially if a large number of tests are invoked at once. These devices are not suitable for test sharding.",
+            "Devices that are completely missing from the lab. These devices are unavailable either temporarily or permanently and should not be requested. If the device is also marked as deprecated, this state is very likely permanent."
+          ],
+          "type": "string"
+        },
+        "versionId": {
+          "description": "An Android version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PerIosVersionInfo": {
+      "description": "A version-specific information of an iOS model.",
+      "id": "PerIosVersionInfo",
+      "properties": {
+        "deviceCapacity": {
+          "description": "The number of online devices for an iOS version.",
+          "enum": [
+            "DEVICE_CAPACITY_UNSPECIFIED",
+            "DEVICE_CAPACITY_HIGH",
+            "DEVICE_CAPACITY_MEDIUM",
+            "DEVICE_CAPACITY_LOW",
+            "DEVICE_CAPACITY_NONE"
+          ],
+          "enumDescriptions": [
+            "The value of device capacity is unknown or unset.",
+            "Devices that are high in capacity (The lab has a large number of these devices). These devices are generally suggested for running a large number of simultaneous tests (e.g. more than 100 tests). Please note that high capacity devices do not guarantee short wait times due to several factors: 1. Traffic (how heavily they are used at any given moment) 2. High capacity devices are prioritized for certain usages, which may cause user tests to be slower than selecting other similar device types.",
+            "Devices that are medium in capacity (The lab has a decent number of these devices, though not as many as high capacity devices). These devices are suitable for fewer test runs (e.g. fewer than 100 tests) and only for low shard counts (e.g. less than 10 shards).",
+            "Devices that are low in capacity (The lab has a small number of these devices). These devices may be used if users need to test on this specific device model and version. Please note that due to low capacity, the tests may take much longer to finish, especially if a large number of tests are invoked at once. These devices are not suitable for test sharding.",
+            "Devices that are completely missing from the lab. These devices are unavailable either temporarily or permanently and should not be requested. If the device is also marked as deprecated, this state is very likely permanent."
+          ],
+          "type": "string"
+        },
+        "versionId": {
+          "description": "An iOS version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProvidedSoftwareCatalog": {
       "description": "The currently provided software environment on the devices under test.",
       "id": "ProvidedSoftwareCatalog",
@@ -1496,6 +1631,7 @@
           "type": "string"
         },
         "orchestratorVersion": {
+          "deprecated": true,
           "description": "Deprecated: Use AndroidX Test Orchestrator going forward. A string representing the current version of Android Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#com.android.support.test:orchestrator.",
           "type": "string"
         }
@@ -1579,6 +1715,10 @@
           "$ref": "LauncherActivityIntent",
           "description": "An intent that starts the main launcher activity."
         },
+        "noActivity": {
+          "$ref": "NoActivityIntent",
+          "description": "Skips the starting activity"
+        },
         "startActivity": {
           "$ref": "StartActivityIntent",
           "description": "An intent that starts an activity with specific details."
@@ -1591,23 +1731,50 @@
       },
       "type": "object"
     },
+    "Service": {
+      "description": "The section of an tag. https://developer.android.com/guide/topics/manifest/service-element",
+      "id": "Service",
+      "properties": {
+        "intentFilter": {
+          "description": "Intent filters in the service",
+          "items": {
+            "$ref": "IntentFilter"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The android:name value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Shard": {
       "description": "Output only. Details about the shard.",
       "id": "Shard",
       "properties": {
+        "estimatedShardDuration": {
+          "description": "Output only. The estimated shard duration based on previous test case timing records, if available.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
         "numShards": {
           "description": "Output only. The total number of shards.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "shardIndex": {
           "description": "Output only. The index of the shard among all the shards.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "testTargetsForShard": {
           "$ref": "TestTargetsForShard",
-          "description": "Output only. Test targets for each shard. Only set for manual sharding."
+          "description": "Output only. Test targets for each shard. Only set for manual sharding.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -1620,9 +1787,25 @@
           "$ref": "ManualSharding",
           "description": "Shards test cases into the specified groups of packages, classes, and/or methods."
         },
+        "smartSharding": {
+          "$ref": "SmartSharding",
+          "description": "Shards test based on previous test case timing records."
+        },
         "uniformSharding": {
           "$ref": "UniformSharding",
           "description": "Uniformly shards test cases given a total number of shards."
+        }
+      },
+      "type": "object"
+    },
+    "SmartSharding": {
+      "description": "Shards test based on previous test case timing records.",
+      "id": "SmartSharding",
+      "properties": {
+        "targetedShardDuration": {
+          "description": "The amount of time tests within a shard should take. Default: 300 seconds (5 minutes). The minimum allowed: 120 seconds (2 minutes). The shard count is dynamically set based on time, up to the maximum shard limit (described below). To guarantee at least one test case for each shard, the number of shards will not exceed the number of test cases. Shard duration will be exceeded if: - The maximum shard limit is reached and there is more calculated test time remaining to allocate into shards. - Any individual test is estimated to be longer than the targeted shard duration. Shard duration is not guaranteed because smart sharding uses test case history and default durations which may not be accurate. The rules for finding the test case timing records are: - If the service has processed a test case in the last 30 days, the record of the latest successful test case will be used. - For new test cases, the average duration of other known test cases will be used. - If there are no previous test case timing records available, the default test case duration is 15 seconds. Because the actual shard duration can exceed the targeted shard duration, we recommend that you set the targeted value at least 5 minutes less than the maximum allowed test timeout (45 minutes for physical devices and 60 minutes for virtual), or that you use the custom test timeout value that you set. This approach avoids cancelling the shard before all tests can finish. Note that there is a limit for maximum number of shards. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500. To guarantee at least one test case for per shard, the number of shards will not exceed the number of test cases. Each shard created counts toward daily test quota.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1653,6 +1836,7 @@
       "id": "SystraceSetup",
       "properties": {
         "durationSeconds": {
+          "deprecated": true,
           "description": "Systrace duration in seconds. Should be between 1 and 30 seconds. 0 disables systrace.",
           "format": "int32",
           "type": "integer"
@@ -1838,7 +2022,51 @@
             "NO_CODE_APK",
             "INVALID_INPUT_APK",
             "INVALID_APK_PREVIEW_SDK",
-            "MATRIX_TOO_LARGE"
+            "MATRIX_TOO_LARGE",
+            "TEST_QUOTA_EXCEEDED",
+            "SERVICE_NOT_ACTIVATED",
+            "UNKNOWN_PERMISSION_ERROR"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
@@ -1852,7 +2080,7 @@
             "The test apk does not declare an instrumentation.",
             "The input app apk does not have a signature.",
             "The test runner class specified by user or in the test APK's manifest file is not compatible with Android Test Orchestrator. Orchestrator is only compatible with AndroidJUnitRunner version 1.1 or higher. Orchestrator can be disabled by using DO_NOT_USE_ORCHESTRATOR OrchestratorOption.",
-            "The test APK does not contain the test runner class specified by user or in the manifest file. This can be caused by either of the following reasons: - the user provided a runner class name that's incorrect, or - the test runner isn't built into the test APK (might be in the app APK instead).",
+            "The test APK does not contain the test runner class specified by the user or in the manifest file. This can be caused by one of the following reasons: - the user provided a runner class name that's incorrect, or - the test runner isn't built into the test APK (might be in the app APK instead).",
             "A main launcher activity could not be found.",
             "The app declares one or more permissions that are not allowed.",
             "There is a conflict in the provided robo_directives.",
@@ -1876,7 +2104,10 @@
             "APK contains no code. See also https://developer.android.com/guide/topics/manifest/application-element.html#code",
             "Either the provided input APK path was malformed, the APK file does not exist, or the user does not have permission to access the APK file.",
             "APK is built for a preview SDK which is unsupported",
-            "The matrix expanded to contain too many executions."
+            "The matrix expanded to contain too many executions.",
+            "Not enough test quota to run the executions in this matrix.",
+            "A required cloud service api is not activated. See: https://firebase.google.com/docs/test-lab/android/continuous#requirements",
+            "There was an unknown permission issue running this test."
           ],
           "type": "string"
         },
@@ -1892,7 +2123,7 @@
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
             "The test matrix run was successful, for instance: - All the test cases passed. - Robo did not detect a crash of the application under test.",
-            "A run failed, for instance: - One or more test case failed. - A test timed out. - The application under test crashed.",
+            "A run failed, for instance: - One or more test cases failed. - A test timed out. - The application under test crashed.",
             "Something unexpected happened. The run should still be considered unsuccessful but this is likely a transient problem and re-running the test might be successful.",
             "All tests were skipped, for instance: - All device configurations were incompatible."
           ],
@@ -2005,7 +2236,8 @@
         },
         "systrace": {
           "$ref": "SystraceSetup",
-          "description": "Deprecated: Systrace uses Python 2 which has been sunset 2020-01-01. Support of Systrace may stop at any time, at which point no Systrace file will be provided in the results. Systrace configuration for the run. If set a systrace will be taken, starting on test start and lasting for the configured duration. The systrace file thus obtained is put in the results bucket together with the other artifacts from the run."
+          "deprecated": true,
+          "description": "Systrace configuration for the run. Deprecated: Systrace used Python 2 which was sunsetted on 2020-01-01. Systrace is no longer supported in the Cloud Testing API, and no Systrace file will be provided in the results."
         }
       },
       "type": "object"
@@ -2033,6 +2265,10 @@
         "disableVideoRecording": {
           "description": "Disables video recording. May reduce test latency.",
           "type": "boolean"
+        },
+        "iosRoboTest": {
+          "$ref": "IosRoboTest",
+          "description": "An iOS Robo test."
         },
         "iosTestLoop": {
           "$ref": "IosTestLoop",
@@ -2166,9 +2402,24 @@
       "id": "UniformSharding",
       "properties": {
         "numShards": {
-          "description": "Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 50. When you select only x86 virtual devices, it must be <= 500.",
+          "description": "Required. The total number of shards to create. This must always be a positive number that is no greater than the total number of test cases. When you select one or more physical devices, the number of shards must be <= 50. When you select one or more ARM virtual devices, it must be <= 100. When you select only x86 virtual devices, it must be <= 500.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "UsesFeature": {
+      "description": "A tag within a manifest. https://developer.android.com/guide/topics/manifest/uses-feature-element.html",
+      "id": "UsesFeature",
+      "properties": {
+        "isRequired": {
+          "description": "The android:required value",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The android:name value",
+          "type": "string"
         }
       },
       "type": "object"

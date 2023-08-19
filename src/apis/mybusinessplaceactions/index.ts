@@ -27,7 +27,7 @@ export function mybusinessplaceactions(
   options: mybusinessplaceactions_v1.Options
 ): mybusinessplaceactions_v1.Mybusinessplaceactions;
 export function mybusinessplaceactions<
-  T = mybusinessplaceactions_v1.Mybusinessplaceactions
+  T = mybusinessplaceactions_v1.Mybusinessplaceactions,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | mybusinessplaceactions_v1.Options

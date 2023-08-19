@@ -27,7 +27,7 @@ export function recommendationengine(
   options: recommendationengine_v1beta1.Options
 ): recommendationengine_v1beta1.Recommendationengine;
 export function recommendationengine<
-  T = recommendationengine_v1beta1.Recommendationengine
+  T = recommendationengine_v1beta1.Recommendationengine,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1beta1' | recommendationengine_v1beta1.Options

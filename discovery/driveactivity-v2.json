@@ -132,7 +132,7 @@
       }
     }
   },
-  "revision": "20221025",
+  "revision": "20230704",
   "rootUrl": "https://driveactivity.googleapis.com/",
   "schemas": {
     "Action": {
@@ -403,7 +403,7 @@
       "type": "object"
     },
     "ConsolidationStrategy": {
-      "description": "How the individual activities are consolidated. A set of activities may be consolidated into one combined activity if they are related in some way, such as one actor performing the same action on multiple targets, or multiple actors performing the same action on a single target. The strategy defines the rules for which activities are related.",
+      "description": "How the individual activities are consolidated. If a set of activities is related they can be consolidated into one combined activity, such as one actor performing the same action on multiple targets, or multiple actors performing the same action on a single target. The strategy defines the rules for which activities are related.",
       "id": "ConsolidationStrategy",
       "properties": {
         "legacy": {
@@ -625,10 +625,12 @@
         },
         "file": {
           "$ref": "File",
+          "deprecated": true,
           "description": "This field is deprecated; please use the `driveFile` field instead."
         },
         "folder": {
           "$ref": "Folder",
+          "deprecated": true,
           "description": "This field is deprecated; please use the `driveFolder` field instead."
         },
         "mimeType": {
@@ -664,10 +666,12 @@
         },
         "file": {
           "$ref": "File",
+          "deprecated": true,
           "description": "This field is deprecated; please use the `driveFile` field instead."
         },
         "folder": {
           "$ref": "Folder",
+          "deprecated": true,
           "description": "This field is deprecated; please use the `driveFolder` field instead."
         },
         "name": {
@@ -765,6 +769,7 @@
       "type": "object"
     },
     "File": {
+      "deprecated": true,
       "description": "This item is deprecated; please see `DriveFile` instead.",
       "id": "File",
       "properties": {},
@@ -794,6 +799,7 @@
       "type": "object"
     },
     "Folder": {
+      "deprecated": true,
       "description": "This item is deprecated; please see `DriveFolder` instead.",
       "id": "Folder",
       "properties": {
@@ -870,7 +876,7 @@
       "type": "object"
     },
     "Legacy": {
-      "description": "A strategy which consolidates activities using the grouping rules from the legacy V1 Activity API. Similar actions occurring within a window of time can be grouped across multiple targets (such as moving a set of files at once) or multiple actors (such as several users editing the same item). Grouping rules for this strategy are specific to each type of action.",
+      "description": "A strategy that consolidates activities using the grouping rules from the legacy V1 Activity API. Similar actions occurring within a window of time can be grouped across multiple targets (such as moving a set of files at once) or multiple actors (such as several users editing the same item). Grouping rules for this strategy are specific to each type of action.",
       "id": "Legacy",
       "properties": {},
       "type": "object"
@@ -903,7 +909,7 @@
       "type": "object"
     },
     "NoConsolidation": {
-      "description": "A strategy which does no consolidation of individual activities.",
+      "description": "A strategy that does no consolidation of individual activities.",
       "id": "NoConsolidation",
       "properties": {},
       "type": "object"
@@ -922,6 +928,7 @@
         },
         "teamDrive": {
           "$ref": "TeamDriveReference",
+          "deprecated": true,
           "description": "This field is deprecated; please use the `drive` field instead."
         },
         "user": {
@@ -1037,15 +1044,15 @@
       "id": "QueryDriveActivityRequest",
       "properties": {
         "ancestorName": {
-          "description": "Return activities for this Drive folder and all children and descendants. The format is `items/ITEM_ID`.",
+          "description": "Return activities for this Drive folder, plus all children and descendants. The format is `items/ITEM_ID`.",
           "type": "string"
         },
         "consolidationStrategy": {
           "$ref": "ConsolidationStrategy",
-          "description": "Details on how to consolidate related actions that make up the activity. If not set, then related actions are not consolidated."
+          "description": "Details on how to consolidate related actions that make up the activity. If not set, then related actions aren't consolidated."
         },
         "filter": {
-          "description": "The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional \"AND\", where each expression is of the form \"field operator value\". Supported fields: - `time`: Uses numerical operators on date values either in terms of milliseconds since Jan 1, 1970 or in RFC 3339 format. Examples: - `time > 1452409200000 AND time <= 1492812924310` - `time >= \"2016-01-10T01:02:03-05:00\"` - `detail.action_detail_case`: Uses the \"has\" operator (:) and either a singular value or a list of allowed action types enclosed in parentheses. Examples: - `detail.action_detail_case: RENAME` - `detail.action_detail_case:(CREATE EDIT)` - `-detail.action_detail_case:MOVE` ",
+          "description": "The filtering for items returned from this query request. The format of the filter string is a sequence of expressions, joined by an optional \"AND\", where each expression is of the form \"field operator value\". Supported fields: - `time`: Uses numerical operators on date values either in terms of milliseconds since Jan 1, 1970 or in RFC 3339 format. Examples: - `time > 1452409200000 AND time <= 1492812924310` - `time >= \"2016-01-10T01:02:03-05:00\"` - `detail.action_detail_case`: Uses the \"has\" operator (:) and either a singular value or a list of allowed action types enclosed in parentheses, separated by a space. To exclude a result from the response, prepend a hyphen (`-`) to the beginning of the filter string. Examples: - `detail.action_detail_case:RENAME` - `detail.action_detail_case:(CREATE RESTORE)` - `-detail.action_detail_case:MOVE` ",
           "type": "string"
         },
         "itemName": {
@@ -1053,12 +1060,12 @@
           "type": "string"
         },
         "pageSize": {
-          "description": "The miminum number of activities desired in the response; the server will attempt to return at least this quanitity. The server may also return fewer activities if it has a partial response ready before the request times out. If not set, a default value is used.",
+          "description": "The minimum number of activities desired in the response; the server attempts to return at least this quantity. The server may also return fewer activities if it has a partial response ready before the request times out. If not set, a default value is used.",
           "format": "int32",
           "type": "integer"
         },
         "pageToken": {
-          "description": "The token identifying which page of results to return. Set this to the next_page_token value returned from a previous query to obtain the following page of results. If not set, the first page of results will be returned.",
+          "description": "The token identifies which page of results to return. Set this to the next_page_token value returned from a previous query to obtain the following page of results. If not set, the first page of results is returned.",
           "type": "string"
         }
       },
@@ -1127,14 +1134,16 @@
             "SHARING_OUTSIDE_DOMAIN",
             "DIRECT_SHARING",
             "ITEM_DUPLICATION",
-            "DRIVE_FILE_STREAM"
+            "DRIVE_FILE_STREAM",
+            "FILE_ORGANIZER_CAN_SHARE_FOLDERS"
           ],
           "enumDescriptions": [
             "The feature which changed restriction settings was not available.",
             "When restricted, this prevents items from being shared outside the domain.",
             "When restricted, this prevents direct sharing of individual items.",
             "When restricted, this prevents actions like copy, download, and print that might result in uncontrolled duplicates of items.",
-            "When restricted, this prevents use of Drive File Stream."
+            "When restricted, this prevents use of Drive File Stream.",
+            "When restricted, this limits sharing of folders to managers only."
           ],
           "type": "string"
         },
@@ -1264,7 +1273,7 @@
       "type": "object"
     },
     "Target": {
-      "description": "Information about the target of activity.",
+      "description": "Information about the target of activity. For more information on how activity history is shared with users, see [Activity history visibility](https://developers.google.com/drive/activity/v2#activityhistory).",
       "id": "Target",
       "properties": {
         "drive": {
@@ -1281,6 +1290,7 @@
         },
         "teamDrive": {
           "$ref": "TeamDrive",
+          "deprecated": true,
           "description": "This field is deprecated; please use the `drive` field instead."
         }
       },
@@ -1300,12 +1310,14 @@
         },
         "teamDrive": {
           "$ref": "TeamDriveReference",
+          "deprecated": true,
           "description": "This field is deprecated; please use the `drive` field instead."
         }
       },
       "type": "object"
     },
     "TeamDrive": {
+      "deprecated": true,
       "description": "This item is deprecated; please see `Drive` instead.",
       "id": "TeamDrive",
       "properties": {
@@ -1325,6 +1337,7 @@
       "type": "object"
     },
     "TeamDriveReference": {
+      "deprecated": true,
       "description": "This item is deprecated; please see `DriveReference` instead.",
       "id": "TeamDriveReference",
       "properties": {

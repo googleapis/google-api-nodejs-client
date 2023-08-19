@@ -27,7 +27,7 @@ export function mybusinessbusinessinformation(
   options: mybusinessbusinessinformation_v1.Options
 ): mybusinessbusinessinformation_v1.Mybusinessbusinessinformation;
 export function mybusinessbusinessinformation<
-  T = mybusinessbusinessinformation_v1.Mybusinessbusinessinformation
+  T = mybusinessbusinessinformation_v1.Mybusinessbusinessinformation,
 >(
   this: GoogleConfigurable,
   versionOrOptions: 'v1' | mybusinessbusinessinformation_v1.Options

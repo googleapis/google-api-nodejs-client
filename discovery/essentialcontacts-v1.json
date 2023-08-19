@@ -297,7 +297,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
+                  "description": "Output only. The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
                   "location": "path",
                   "pattern": "^folders/[^/]+/contacts/[^/]+$",
                   "required": true,
@@ -545,7 +545,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
+                  "description": "Output only. The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/contacts/[^/]+$",
                   "required": true,
@@ -793,7 +793,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
+                  "description": "Output only. The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
                   "location": "path",
                   "pattern": "^projects/[^/]+/contacts/[^/]+$",
                   "required": true,
@@ -850,7 +850,7 @@
       }
     }
   },
-  "revision": "20220321",
+  "revision": "20221220",
   "rootUrl": "https://essentialcontacts.googleapis.com/",
   "schemas": {
     "GoogleCloudEssentialcontactsV1ComputeContactsResponse": {
@@ -876,19 +876,20 @@
       "id": "GoogleCloudEssentialcontactsV1Contact",
       "properties": {
         "email": {
-          "description": "Required. The email address to send notifications to. This does not need to be a Google account.",
+          "description": "Required. The email address to send notifications to. The email address does not need to be a Google Account.",
           "type": "string"
         },
         "languageTag": {
-          "description": "The preferred language for notifications, as a ISO 639-1 language code. See [Supported languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages) for a list of supported languages.",
+          "description": "Required. The preferred language for notifications, as a ISO 639-1 language code. See [Supported languages](https://cloud.google.com/resource-manager/docs/managing-notification-contacts#supported-languages) for a list of supported languages.",
           "type": "string"
         },
         "name": {
-          "description": "The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
+          "description": "Output only. The identifier for the contact. Format: {resource_type}/{resource_id}/contacts/{contact_id}",
+          "readOnly": true,
           "type": "string"
         },
         "notificationCategorySubscriptions": {
-          "description": "The categories of notifications that the contact will receive communications for.",
+          "description": "Required. The categories of notifications that the contact will receive communications for.",
           "items": {
             "enum": [
               "NOTIFICATION_CATEGORY_UNSPECIFIED",

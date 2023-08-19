@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/firebaserules-v1.0.1...firebaserules-v1.0.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **firebaserules:** update the API ([5e24b10](https://github.com/googleapis/google-api-nodejs-client/commit/5e24b105f7b331fcc77d2a6de2524702a613ce45))
+
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebaserules-v1.0.0...firebaserules-v1.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* **firebaserules:** update the API ([5e24b10](https://github.com/googleapis/google-api-nodejs-client/commit/5e24b105f7b331fcc77d2a6de2524702a613ce45))
+
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaserules-v0.3.6...firebaserules-v1.0.0) (2022-10-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **build:** This release has breaking changes.
+
+### Features
+
+* **build:** run the generator (submodules now require Node 12) ([#3073](https://github.com/googleapis/google-api-nodejs-client/issues/3073)) ([eda0707](https://github.com/googleapis/google-api-nodejs-client/commit/eda07079dadab46a80b6f9ede618f4f43030169e))
+
 ## [0.3.6](https://github.com/googleapis/google-api-nodejs-client/compare/firebaserules-v0.3.5...firebaserules-v0.3.6) (2022-09-21)
 
 
