@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v1.1.0...workflows-v1.1.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **workflows:** update the API ([5e9374a](https://github.com/googleapis/google-api-nodejs-client/commit/5e9374afdc240b9423bd034e56a9b08c1ea52083))
+
 ## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v1.0.0...workflows-v1.1.0) (2023-08-17)
 
 

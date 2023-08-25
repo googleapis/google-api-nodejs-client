@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v2.0.0...gkehub-v3.0.0) (2023-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **gkehub:** This release has breaking changes.
+
+### Features
+
+* **gkehub:** update the API ([7c7c561](https://github.com/googleapis/google-api-nodejs-client/commit/7c7c5611a631fbbbc7252fba133de7f3bd254cdf))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v1.0.0...gkehub-v2.0.0) (2023-08-17)
 
 

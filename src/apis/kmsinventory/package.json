@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/kmsinventory",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "kmsinventory",
   "main": "build/index.js",
   "types": "build/index.d.ts",

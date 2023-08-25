@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v4.2.0...datamigration-v4.2.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* **datamigration:** update the API ([0b476bb](https://github.com/googleapis/google-api-nodejs-client/commit/0b476bb46fc71cc4fe0ee18571bb9725048179aa))
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v4.1.0...datamigration-v4.2.0) (2023-08-17)
 
 
