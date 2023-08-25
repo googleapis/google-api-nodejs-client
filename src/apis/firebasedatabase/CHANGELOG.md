@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v2.0.4...firebasedatabase-v2.0.5) (2023-08-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [2.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v2.0.3...firebasedatabase-v2.0.4) (2023-08-17)
 
 

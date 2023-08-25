@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/indexing",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "indexing",
   "main": "build/index.js",
   "types": "build/index.d.ts",

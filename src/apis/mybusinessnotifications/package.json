@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/mybusinessnotifications",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "mybusinessnotifications",
   "main": "build/index.js",
   "types": "build/index.d.ts",

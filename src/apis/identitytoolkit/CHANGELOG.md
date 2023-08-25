@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v6.2.0...identitytoolkit-v6.2.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v6.1.1...identitytoolkit-v6.2.0) (2023-08-15)
 
 

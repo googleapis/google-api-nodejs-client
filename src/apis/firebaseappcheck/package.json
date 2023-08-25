@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/firebaseappcheck",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "firebaseappcheck",
   "main": "build/index.js",
   "types": "build/index.d.ts",

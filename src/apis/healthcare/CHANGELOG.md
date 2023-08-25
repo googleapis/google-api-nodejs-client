@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v10.2.0...healthcare-v10.2.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [10.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v10.1.0...healthcare-v10.2.0) (2023-08-15)
 
 
