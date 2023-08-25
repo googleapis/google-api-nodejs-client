@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v3.2.0...recommendationengine-v3.3.0) (2023-08-25)
+
+
+### Features
+
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **recommendationengine:** update the API ([fd203b4](https://github.com/googleapis/google-api-nodejs-client/commit/fd203b411fbe838ab69ab21c141b4e7162c85eeb))
+
 ## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommendationengine-v3.1.0...recommendationengine-v3.2.0) (2023-08-17)
 
 

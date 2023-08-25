@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/playdeveloperreporting",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "playdeveloperreporting",
   "main": "build/index.js",
   "types": "build/index.d.ts",
