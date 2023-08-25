@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [126.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v126.0.0...googleapis-v126.0.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [126.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v125.0.0...googleapis-v126.0.0) (2023-08-17)
 
 

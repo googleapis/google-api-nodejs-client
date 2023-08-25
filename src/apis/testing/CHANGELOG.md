@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v5.2.0...testing-v5.3.0) (2023-08-25)
+
+
+### Features
+
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+* **testing:** update the API ([9c06a45](https://github.com/googleapis/google-api-nodejs-client/commit/9c06a45890548f296edcf35d6858651a1ad334cd))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v5.1.0...testing-v5.2.0) (2023-08-17)
 
 

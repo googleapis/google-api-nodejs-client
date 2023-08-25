@@ -1,5 +1,18 @@
 # Changelog
 
+## [11.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v11.3.0...serviceconsumermanagement-v11.4.0) (2023-08-25)
+
+
+### Features
+
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+* **serviceconsumermanagement:** update the API ([336b645](https://github.com/googleapis/google-api-nodejs-client/commit/336b645dbb2e745c45dd56dce74ba6e0dac2d2c0))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [11.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v11.2.0...serviceconsumermanagement-v11.3.0) (2023-08-17)
 
 
