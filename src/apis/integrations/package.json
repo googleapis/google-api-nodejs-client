@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/integrations",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "integrations",
   "main": "build/index.js",
   "types": "build/index.d.ts",
