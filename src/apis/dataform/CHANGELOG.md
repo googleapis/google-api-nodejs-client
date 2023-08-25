@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v1.1.0...dataform-v1.2.0) (2023-08-25)
+
+
+### Features
+
+* **dataform:** update the API ([1f0c739](https://github.com/googleapis/google-api-nodejs-client/commit/1f0c739684bb2864de83c51d61582e401fe77e69))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v1.0.0...dataform-v1.1.0) (2023-08-17)
 
 

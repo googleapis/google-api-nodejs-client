@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/oslogin",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "oslogin",
   "main": "build/index.js",
   "types": "build/index.d.ts",
