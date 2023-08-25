@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v4.2.0...networkmanagement-v4.3.0) (2023-08-25)
+
+
+### Features
+
+* **networkmanagement:** update the API ([b00b4c3](https://github.com/googleapis/google-api-nodejs-client/commit/b00b4c39b0415a1b3e0f85dd3f4094d8abd47e65))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v4.1.0...networkmanagement-v4.2.0) (2023-08-17)
 
 
