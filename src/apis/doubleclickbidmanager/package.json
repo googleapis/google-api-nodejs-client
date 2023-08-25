@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/doubleclickbidmanager",
-  "version": "8.0.3",
+  "version": "8.0.4",
   "description": "doubleclickbidmanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",

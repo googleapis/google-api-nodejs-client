@@ -1,5 +1,18 @@
 # Changelog
 
+## [12.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v12.3.0...admin-v12.4.0) (2023-08-25)
+
+
+### Features
+
+* **admin:** update the API ([ebfb777](https://github.com/googleapis/google-api-nodejs-client/commit/ebfb7776843472e0d7ebda50cfdf4532aedfddc1))
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [12.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v12.2.0...admin-v12.3.0) (2023-08-17)
 
 

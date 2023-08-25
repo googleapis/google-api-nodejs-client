@@ -1,5 +1,18 @@
 # Changelog
 
+## [14.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v14.4.0...content-v14.5.0) (2023-08-25)
+
+
+### Features
+
+* regenerate index files ([751227d](https://github.com/googleapis/google-api-nodejs-client/commit/751227d3926c946b5db5edb58f0086e074a61169))
+
+
+### Bug Fixes
+
+* **content:** update the API ([6e9f31f](https://github.com/googleapis/google-api-nodejs-client/commit/6e9f31fdffc1c1993ca77ef3d3dd408d887478d8))
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [14.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v14.3.0...content-v14.4.0) (2023-08-17)
 
 

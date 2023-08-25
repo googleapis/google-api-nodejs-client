@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/connectors",
-  "version": "6.2.1",
+  "version": "6.2.2",
   "description": "connectors",
   "main": "build/index.js",
   "types": "build/index.d.ts",
