@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudsupport",
-  "version": "6.0.3",
+  "version": "6.0.4",
   "description": "cloudsupport",
   "main": "build/index.js",
   "types": "build/index.d.ts",

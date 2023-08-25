@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.2.2](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v17.2.1...chat-v17.2.2) (2023-08-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [17.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v17.2.0...chat-v17.2.1) (2023-08-15)
 
 
