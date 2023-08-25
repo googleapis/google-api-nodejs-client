@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/servicedirectory-v2.0.0...servicedirectory-v2.0.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **servicedirectory:** update the API ([c52f8c3](https://github.com/googleapis/google-api-nodejs-client/commit/c52f8c338618e1a3eb09f4479769396e97a6df24))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicedirectory-v1.0.0...servicedirectory-v2.0.0) (2023-08-17)
 
 

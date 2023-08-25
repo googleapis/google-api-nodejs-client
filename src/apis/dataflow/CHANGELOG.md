@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v7.0.0...dataflow-v7.0.1) (2023-08-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v6.0.0...dataflow-v7.0.0) (2023-08-17)
 
 

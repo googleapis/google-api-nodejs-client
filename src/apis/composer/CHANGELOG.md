@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v4.2.0...composer-v4.3.0) (2023-08-25)
+
+
+### Features
+
+* **composer:** update the API ([d2322c2](https://github.com/googleapis/google-api-nodejs-client/commit/d2322c2a50244aa0a485a7eb0b3fffef2f4cf881))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/composer-v4.1.0...composer-v4.2.0) (2023-08-17)
 
 
