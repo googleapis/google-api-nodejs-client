@@ -120,6 +120,7 @@ export {cloudchannel_v1} from './apis/cloudchannel/v1';
 export {clouddebugger_v2} from './apis/clouddebugger/v2';
 export {clouddeploy_v1} from './apis/clouddeploy/v1';
 export {clouderrorreporting_v1beta1} from './apis/clouderrorreporting/v1beta1';
+export {cloudcommerceprocurement_v1} from './apis/cloudcommerceprocurement/v1';
 export {cloudfunctions_v1} from './apis/cloudfunctions/v1';
 export {cloudfunctions_v1beta2} from './apis/cloudfunctions/v1beta2';
 export {cloudfunctions_v2} from './apis/cloudfunctions/v2';
