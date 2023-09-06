@@ -37,7 +37,7 @@ describe('Auth samples', () => {
       .reply(200, {})
       .post('/oauth2/v4/token')
       .reply(200, {access_token: 'not-a-token'});
-    const fakePath = path.resolve('../test/fixtures/service.json');
+    const fakePath = path.resolve('../../test/fixtures/service.json');
     const realPath = path.resolve('jwt.keys.json');
     const exists = fs.existsSync(realPath);
     if (!exists) {

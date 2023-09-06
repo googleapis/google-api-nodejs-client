@@ -20,7 +20,6 @@ import * as path from 'path';
 import * as util from 'util';
 import Q from 'p-queue';
 import * as prettier from 'prettier';
-import * as minimist from 'yargs-parser';
 import {GaxiosError, request} from 'gaxios';
 import {DISCOVERY_URL} from './download';
 import {downloadDiscoveryDocs, ChangeSet} from './download';
@@ -28,16 +27,18 @@ import * as filters from './filters';
 import {addFragments} from './samplegen';
 import {Disclaimer} from './disclaimer';
 
+const minimist: typeof import('yargs-parser') = require('yargs-parser');
+
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
 const readFile = util.promisify(fs.readFile);
 const stat = util.promisify(fs.stat);
 
-const srcPath = path.join(__dirname, '../../../src');
+const srcPath = path.join(__dirname, '../../../../src');
 const TEMPLATES_DIR = path.join(srcPath, 'generator/templates');
 const API_TEMPLATE = path.join(TEMPLATES_DIR, 'api-endpoint.njk');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const disclaimers = require('../../../disclaimers.json') as Disclaimer[];
+const disclaimers = require('../../../../disclaimers.json') as Disclaimer[];
 
 export interface GeneratorOptions {
   debug?: boolean;
@@ -103,8 +104,8 @@ export class Generator {
     discoveryUrl: string,
     useCache: boolean
   ): Promise<ChangeSet[]> {
-    const ignore = require('../../../ignore.json').ignore as string[];
-    const discoveryPath = path.join(__dirname, '../../../discovery');
+    const ignore = require('../../../../ignore.json').ignore as string[];
+    const discoveryPath = path.join(__dirname, '../../../../discovery');
     let changes = new Array<ChangeSet>();
     if (useCache) {
       console.log('Reading from cache...');
@@ -309,7 +310,7 @@ export class Generator {
     3. find the delta from 2 - 1
     4. fill out bootstrap sha
     */
-    const disclaimers = require('../../../disclaimers.json') as Array<{
+    const disclaimers = require('../../../../disclaimers.json') as Array<{
       package: string;
       api: string;
     }>;
@@ -322,7 +323,7 @@ export class Generator {
       .filter(e => e.isDirectory() && !excludedAPIs.includes(e.name))
       .map(x => x.name);
 
-    const rootPath = path.join(__dirname, '../../../');
+    const rootPath = path.join(__dirname, '../../../../');
 
     // Bootstrap sha is used the first time the releaser runs when it grabs the initial commits
     // Afterwards, it uses the most recent release as a starting point
@@ -337,12 +338,13 @@ export class Generator {
 
     for (const api of releasableAPIs) {
       releasePleaseConfig.packages[`src/apis/${api}`] = {};
-      releasePleaseManifest[`src/apis/${api}`] =
-        require(`../../../src/apis/${api}/package.json`).version;
+      releasePleaseManifest[`src/apis/${api}`] = require(
+        `../../../../src/apis/${api}/package.json`
+      ).version;
     }
 
     // Include the root library in the config:
-    releasePleaseManifest['.'] = require('../../../package.json').version;
+    releasePleaseManifest['.'] = require('../../../../package.json').version;
     releasePleaseConfig.packages['.'] = {};
 
     fs.writeFileSync(

@@ -134,7 +134,7 @@ describe(__filename, () => {
         });
         const indexPath = path.join(
           __dirname,
-          '../../test/fixtures/index.json'
+          '../../../test/fixtures/index.json'
         );
         fs.readFile(indexPath, (err, data) => {
           if (err) {
@@ -150,7 +150,7 @@ describe(__filename, () => {
       .listen(port);
     const downloadPath = 'build/test/temp';
     await execa('node', [
-      './build/src/generator/download',
+      './build/cjs/src/generator/download',
       '--download-path',
       downloadPath,
       '--discovery-url',

@@ -37,7 +37,7 @@ for (const sample of Object.values(samples)) {
   });
 }
 
-const someFile = path.join(__dirname, '../../test/fixtures/public.pem');
+const someFile = path.join(__dirname, '../../../test/fixtures/public.pem');
 
 describe('YouTube samples', () => {
   afterEach(() => {

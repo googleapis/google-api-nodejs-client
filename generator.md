@@ -32,7 +32,7 @@ This repository uses [synthtool](https://github.com/googleapis/synthtool/) to re
 You can generate a single API based on a discovery URL. Replace the url and API name below to match the API you'd like to generate:
 ```
 npm run build-tools
-node build/src/generator/generator.js 'https://apigee.googleapis.com/$discovery/rest?version=v1' \
+node build/cjs/src/generator/generator.js 'https://apigee.googleapis.com/$discovery/rest?version=v1' \
   --include-private false \
   --use-cache false
 ```

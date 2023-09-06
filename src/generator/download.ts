@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as minimist from 'yargs-parser';
 import * as path from 'path';
 import * as fs from 'fs';
 const {mkdir} = require('fs').promises;
 import Q from 'p-queue';
 import {request, Headers} from 'gaxios';
 import * as gapi from 'googleapis-common';
+
+const minimist: typeof import('yargs-parser') = require('yargs-parser');
 
 export type Schema = {[index: string]: {}};
 export const DISCOVERY_URL = 'https://www.googleapis.com/discovery/v1/apis/';
@@ -240,6 +241,6 @@ if (require.main === module) {
   const argv = minimist(process.argv.slice(2));
   const discoveryUrl = argv['discovery-url'] || DISCOVERY_URL;
   const downloadPath =
-    argv['download-path'] || path.join(__dirname, '../../../discovery');
+    argv['download-path'] || path.join(__dirname, '../../../../discovery');
   downloadDiscoveryDocs({discoveryUrl, downloadPath});
 }

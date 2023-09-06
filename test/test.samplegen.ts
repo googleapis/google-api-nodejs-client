@@ -17,7 +17,7 @@ import {describe, it} from 'mocha';
 import {addFragments, getAllMethods} from '../src/generator/samplegen';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const schema = require('../../test/fixtures/discovery/webfonts-v1.json');
+const schema = require('../../../test/fixtures/discovery/webfonts-v1.json');
 
 describe(__filename, () => {
   it('should add fragments', async () => {

@@ -8,7 +8,7 @@ import {
   GoogleConfigurable
 } from 'googleapis-common';
 {% for versionName, version in api %}
-  import { {{ name }}_{{ version|replace('.','_') }} } from './{{ version }}';
+  import { {{ name }}_{{ version|replace('.','_') }} } from './{{ version }}.js';
 {% endfor %}
 
 export const VERSIONS = {
