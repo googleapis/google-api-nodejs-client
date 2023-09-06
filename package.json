@@ -4,27 +4,27 @@
   "repository": "googleapis/google-api-nodejs-client",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
-  "main": "./build/src/index.js",
-  "types": "./build/src/index.d.ts",
+  "main": "./build/cjs/src/index.js",
+  "types": "./build/cjs/src/index.d.ts",
   "engines": {
     "node": ">=14.0.0"
   },
   "files": [
-    "build/src",
-    "!build/src/**/*.map"
+    "build/cjs/src",
+    "!build/cjs/src/**/*.map"
   ],
   "scripts": {
     "pretest": "npm run build-test",
     "prepare": "npm run compile",
-    "test": "c8 mocha build/test",
+    "test": "c8 mocha build/cjs/test",
     "predocs": "npm run build-tools",
-    "docs": "node build/src/generator/docs",
+    "docs": "node build/cjs/src/generator/docs",
     "predocs2": "npm run compile",
     "docs-extract": "node --max-old-space-size=8192 ./node_modules/@microsoft/api-extractor/bin/api-extractor run --local --verbose",
-    "docs-md": "node --max-old-space-size=8192 ./node_modules/@microsoft/api-documenter/bin/api-documenter markdown --input-folder build/docs --output-folder docs",
+    "docs-md": "node --max-old-space-size=8192 ./node_modules/@microsoft/api-documenter/bin/api-documenter markdown --input-folder build/cjs/docs --output-folder docs",
     "docs2": "npm run docs-extract && npm run docs-md",
     "presystem-test": "npm run build-test",
-    "system-test": "mocha build/system-test",
+    "system-test": "mocha build/cjs/system-test",
     "samples-test": "cd samples && npm install && npm link ../ && pwd && npm test",
     "lint": "gts check",
     "precompile": "rimraf build",
@@ -35,15 +35,15 @@
     "clean": "gts clean",
     "fix": "gts fix",
     "pregenerate": "npm run build-tools",
-    "generate": "node build/src/generator/generator.js",
+    "generate": "node build/cjs/src/generator/generator.js",
     "docs-test": "echo 🙈 this was taking too long and timing out CI",
     "presubmit-prs": "npm run compile",
-    "submit-prs": "node --max-old-space-size=8192 build/src/generator/synth.js",
+    "submit-prs": "node --max-old-space-size=8192 build/cjs/src/generator/synth.js",
     "prelint": "cd samples; npm link ../; npm i",
     "predownload": "npm run build-tools",
-    "download": "node build/src/generator/download.js",
+    "download": "node build/cjs/src/generator/download.js",
     "preupdate-disclaimers": "npm run build-tools",
-    "update-disclaimers": "node build/src/generator/disclaimer.js"
+    "update-disclaimers": "node build/cjs/src/generator/disclaimer.js"
   },
   "author": "Google Inc.",
   "keywords": [

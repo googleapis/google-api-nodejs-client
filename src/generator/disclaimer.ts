@@ -48,7 +48,7 @@ export const gfs = {
  * used during generation to call out improved clients in READMEs for a given
  * API.
  *
- * To use this, run `node build/src/generator/disclaimers`.
+ * To use this, run `node build/cjs/src/generator/disclaimers`.
  */
 export async function main() {
   const res = await request<LibraryMetadata[]>({url: libraryListUrl});

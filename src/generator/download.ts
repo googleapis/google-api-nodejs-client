@@ -240,6 +240,6 @@ if (require.main === module) {
   const argv = minimist(process.argv.slice(2));
   const discoveryUrl = argv['discovery-url'] || DISCOVERY_URL;
   const downloadPath =
-    argv['download-path'] || path.join(__dirname, '../../../discovery');
+    argv['download-path'] || path.join(__dirname, '../../../../discovery');
   downloadDiscoveryDocs({discoveryUrl, downloadPath});
 }

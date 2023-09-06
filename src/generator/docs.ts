@@ -19,10 +19,10 @@ import * as path from 'path';
 import {promisify} from 'util';
 import Q from 'p-queue';
 
-const srcPath = path.join(__dirname, '../../../src');
+const srcPath = path.join(__dirname, '../../../../src');
 const apiPath = path.join(srcPath, 'apis');
 const templatePath = path.join(srcPath, 'generator/templates/index.html.njk');
-const docsPath = path.join(__dirname, '../../../docs');
+const docsPath = path.join(__dirname, '../../../../docs');
 const indexPath = path.join(docsPath, 'index.html');
 
 export const gfs = {

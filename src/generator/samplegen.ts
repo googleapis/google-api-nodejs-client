@@ -28,10 +28,10 @@ const {mkdir} = require('fs').promises;
 import * as util from 'util';
 
 const writeFile = util.promisify(fs.writeFile);
-const srcPath = path.join(__dirname, '../../../src');
+const srcPath = path.join(__dirname, '../../../../src');
 const TEMPLATES_DIR = path.join(srcPath, 'generator/templates');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const prettierConfig: prettier.Options = require('../../../node_modules/gts/.prettierrc.json');
+const prettierConfig: prettier.Options = require('../../../../node_modules/gts/.prettierrc.json');
 prettierConfig.parser = 'babel';
 
 const env = new nunjucks.Environment(
