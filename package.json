@@ -5,13 +5,33 @@
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
   "main": "./build/cjs/src/index.js",
-  "types": "./build/cjs/src/index.d.ts",
+  "module": "./build/esm/src/index.mjs",
+  "types": "./build/esm/src/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./build/esm/src/index.d.ts",
+        "default": "./build/esm/src/index.mjs"
+      },
+      "require": {
+        "types": "./build/cjs/src/index.d.ts",
+        "default": "./build/cjs/src/index.js"
+      },
+      "default": {
+        "types": "./build/esm/src/index.d.ts",
+        "default": "./build/esm/src/index.mjs"
+      }
+    }
+  },
   "engines": {
     "node": ">=14.0.0"
   },
   "files": [
     "build/cjs/src",
-    "!build/cjs/src/**/*.map"
+    "!build/cjs/src/**/*.map",
+    "build/esm/src",
+    "!build/esm/src/**/*.map"
   ],
   "scripts": {
     "pretest": "npm run build-test",
@@ -28,7 +48,7 @@
     "samples-test": "cd samples && npm install && npm link ../ && pwd && npm test",
     "lint": "gts check",
     "precompile": "rimraf build",
-    "compile": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsc -p tsconfig.json",
+    "compile": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsc-multi --verbose",
     "prebuild-test": "rimraf build",
     "build-test": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsc -p tsconfig.test.json",
     "build-tools": "tsc -p tsconfig.tools.json",
@@ -93,6 +113,7 @@
     "server-destroy": "^1.0.1",
     "sinon": "^15.0.0",
     "tmp": "^0.2.0",
+    "tsc-multi": "^1.1.0",
     "typescript": "5.1.6",
     "yargs-parser": "^20.2.0"
   }

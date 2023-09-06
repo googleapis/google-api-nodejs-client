@@ -11,13 +11,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as execa from 'execa';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as gaxios from 'gaxios';
-import * as minimist from 'yargs-parser';
 import {Generator} from './generator';
 import {DISCOVERY_URL, ChangeSet} from './download';
+const execa: typeof import('execa') = require('execa');
+const minimist: typeof import('yargs-parser') = require('yargs-parser');
 
 export enum Semverity {
   PATCH = 1,

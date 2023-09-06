@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as execa from 'execa';
 import * as fs from 'fs';
 import * as nunjucks from 'nunjucks';
 import * as path from 'path';
 import {promisify} from 'util';
 import Q from 'p-queue';
+const execa: typeof import('execa') = require('execa');
 
 const srcPath = path.join(__dirname, '../../../../src');
 const apiPath = path.join(srcPath, 'apis');

@@ -20,13 +20,14 @@ import * as path from 'path';
 import * as util from 'util';
 import Q from 'p-queue';
 import * as prettier from 'prettier';
-import * as minimist from 'yargs-parser';
 import {GaxiosError, request} from 'gaxios';
 import {DISCOVERY_URL} from './download';
 import {downloadDiscoveryDocs, ChangeSet} from './download';
 import * as filters from './filters';
 import {addFragments} from './samplegen';
 import {Disclaimer} from './disclaimer';
+
+const minimist: typeof import('yargs-parser') = require('yargs-parser');
 
 const writeFile = util.promisify(fs.writeFile);
 const readDir = util.promisify(fs.readdir);
