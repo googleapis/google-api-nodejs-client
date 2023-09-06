@@ -1,13 +1,13 @@
 {% include "license.njk" %}
  /*! THIS FILE IS AUTO-GENERATED */
 
-import {GoogleApis} from './googleapis';
+import {GoogleApis} from './googleapis.js';
 const google = new GoogleApis();
 export {google, GoogleApis};
 export * as Common from 'googleapis-common';
 export * as Auth from 'google-auth-library';
 
 {% for apiName, api in apis %}
-  {% for versionName, version in api %}export { {{ apiName }}_{{ version|replace('.','_') }} } from './apis/{{ apiName }}/{{ version }}';
+  {% for versionName, version in api %}export { {{ apiName }}_{{ version|replace('.','_') }} } from './apis/{{ apiName }}/{{ version }}.js';
 {% endfor %}
 {% endfor %}

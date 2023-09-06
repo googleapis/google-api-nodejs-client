@@ -2,10 +2,10 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 {% for apiName, api in apis %}
-  import { 
+  import {
     VERSIONS as {{apiName}}Versions,
     {{apiName}}
-  } from './{{ apiName }}';
+  } from './{{ apiName }}/index.js';
 {% endfor %}
 
 export interface APIList {
