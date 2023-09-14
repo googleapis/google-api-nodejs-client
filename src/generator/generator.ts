@@ -337,8 +337,9 @@ export class Generator {
 
     for (const api of releasableAPIs) {
       releasePleaseConfig.packages[`src/apis/${api}`] = {};
-      releasePleaseManifest[`src/apis/${api}`] =
-        require(`../../../src/apis/${api}/package.json`).version;
+      releasePleaseManifest[`src/apis/${api}`] = require(
+        `../../../src/apis/${api}/package.json`
+      ).version;
     }
 
     // Include the root library in the config:
