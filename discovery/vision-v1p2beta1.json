@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230908",
   "rootUrl": "https://vision.googleapis.com/",
   "schemas": {
     "AnnotateFileResponse": {
@@ -2734,6 +2734,13 @@
       "description": "Multiple async file annotation requests are batched into a single service call.",
       "id": "GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest",
       "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.",
+          "type": "object"
+        },
         "parent": {
           "description": "Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.",
           "type": "string"
@@ -2766,6 +2773,13 @@
       "description": "Request for async image annotation for a list of images.",
       "id": "GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest",
       "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.",
+          "type": "object"
+        },
         "outputConfig": {
           "$ref": "GoogleCloudVisionV1p2beta1OutputConfig",
           "description": "Required. The desired output location and metadata (e.g. format)."
@@ -2788,6 +2802,13 @@
       "description": "A list of requests to annotate files using the BatchAnnotateFiles API.",
       "id": "GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest",
       "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.",
+          "type": "object"
+        },
         "parent": {
           "description": "Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.",
           "type": "string"
@@ -2820,6 +2841,13 @@
       "description": "Multiple image annotation requests are batched into a single service call.",
       "id": "GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest",
       "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.",
+          "type": "object"
+        },
         "parent": {
           "description": "Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.",
           "type": "string"
