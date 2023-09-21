@@ -181,6 +181,34 @@
               "resources": {
                 "hubs": {
                   "methods": {
+                    "acceptSpoke": {
+                      "description": "Accepts a proposal to attach a Network Connectivity Center spoke to the hub.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}:acceptSpoke",
+                      "httpMethod": "POST",
+                      "id": "networkconnectivity.projects.locations.global.hubs.acceptSpoke",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the hub.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:acceptSpoke",
+                      "request": {
+                        "$ref": "AcceptHubSpokeRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a new Network Connectivity Center hub in the specified project.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/hubs",
@@ -449,6 +477,34 @@
                       "path": "v1/{+name}",
                       "request": {
                         "$ref": "Hub"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "rejectSpoke": {
+                      "description": "Rejects a Network Connectivity Center spoke from being attached to the hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}:rejectSpoke",
+                      "httpMethod": "POST",
+                      "id": "networkconnectivity.projects.locations.global.hubs.rejectSpoke",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the hub.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:rejectSpoke",
+                      "request": {
+                        "$ref": "RejectHubSpokeRequest"
                       },
                       "response": {
                         "$ref": "GoogleLongrunningOperation"
@@ -833,6 +889,99 @@
                 },
                 "policyBasedRoutes": {
                   "methods": {
+                    "create": {
+                      "description": "Creates a new PolicyBasedRoute in a given project and location.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/policyBasedRoutes",
+                      "httpMethod": "POST",
+                      "id": "networkconnectivity.projects.locations.global.policyBasedRoutes.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource's name of the PolicyBasedRoute.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "policyBasedRouteId": {
+                          "description": "Required. Unique id for the Policy Based Route to create.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/policyBasedRoutes",
+                      "request": {
+                        "$ref": "PolicyBasedRoute"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single PolicyBasedRoute.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/policyBasedRoutes/{policyBasedRoutesId}",
+                      "httpMethod": "DELETE",
+                      "id": "networkconnectivity.projects.locations.global.policyBasedRoutes.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the PolicyBasedRoute resource to delete.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/policyBasedRoutes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single PolicyBasedRoute.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/policyBasedRoutes/{policyBasedRoutesId}",
+                      "httpMethod": "GET",
+                      "id": "networkconnectivity.projects.locations.global.policyBasedRoutes.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the PolicyBasedRoute resource to get.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/policyBasedRoutes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "PolicyBasedRoute"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getIamPolicy": {
                       "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/policyBasedRoutes/{policyBasedRoutesId}:getIamPolicy",
@@ -859,6 +1008,52 @@
                       "path": "v1/{+resource}:getIamPolicy",
                       "response": {
                         "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists PolicyBasedRoutes in a given project and location.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/policyBasedRoutes",
+                      "httpMethod": "GET",
+                      "id": "networkconnectivity.projects.locations.global.policyBasedRoutes.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "A filter expression that filters the results listed in the response.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Sort the results by a certain order.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of results per page that should be returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource's name.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/policyBasedRoutes",
+                      "response": {
+                        "$ref": "ListPolicyBasedRoutesResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -2491,9 +2686,35 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230913",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
+    "AcceptHubSpokeRequest": {
+      "description": "The request for HubService.AcceptHubSpoke.",
+      "id": "AcceptHubSpokeRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "spokeUri": {
+          "description": "Required. The URI of the spoke to accept into the hub.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AcceptHubSpokeResponse": {
+      "description": "The response for HubService.AcceptHubSpoke.",
+      "id": "AcceptHubSpokeResponse",
+      "properties": {
+        "spoke": {
+          "$ref": "Spoke",
+          "description": "The spoke that was operated on."
+        }
+      },
+      "type": "object"
+    },
     "AcceptSpokeRequest": {
       "description": "The request for HubService.AcceptSpoke.",
       "id": "AcceptSpokeRequest",
@@ -2617,6 +2838,7 @@
       "properties": {
         "error": {
           "$ref": "GoogleRpcStatus",
+          "deprecated": true,
           "description": "The most recent error during operating this connection."
         },
         "errorInfo": {
@@ -2713,6 +2935,37 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Filter": {
+      "description": "Filter matches L4 traffic.",
+      "id": "Filter",
+      "properties": {
+        "destRange": {
+          "description": "Optional. The destination IP range of outgoing packets that this policy based route applies to. Default is \"0.0.0.0/0\" if protocol version is IPv4.",
+          "type": "string"
+        },
+        "ipProtocol": {
+          "description": "Optional. The IP protocol that this policy based route applies to. Valid values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.",
+          "type": "string"
+        },
+        "protocolVersion": {
+          "description": "Required. Internet protocol versions this policy based route applies to. For this version, only IPV4 is supported.",
+          "enum": [
+            "PROTOCOL_VERSION_UNSPECIFIED",
+            "IPV4"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The PBR is for IPv4 internet protocol traffic."
+          ],
+          "type": "string"
+        },
+        "srcRange": {
+          "description": "Optional. The source IP range of outgoing packets that this policy based route applies to. Default is \"0.0.0.0/0\" if protocol version is IPv4.",
           "type": "string"
         }
       },
@@ -2827,7 +3080,7 @@
       "type": "object"
     },
     "Group": {
-      "description": "A group is a set of spokes to which you can apply policies. Each group of spokes has its own route table. For each group, you can also set different rules for whether spokes can be automatically attached to the hub.",
+      "description": "A group represents a subset of spokes attached to a hub.",
       "id": "Group",
       "properties": {
         "createTime": {
@@ -2844,7 +3097,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
+          "description": "Optional. Labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
           "type": "object"
         },
         "name": {
@@ -2910,7 +3163,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
+          "description": "Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
           "type": "object"
         },
         "name": {
@@ -2973,6 +3226,17 @@
           "description": "Output only. The time the hub was last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterconnectAttachment": {
+      "description": "InterconnectAttachment to which this route applies to.",
+      "id": "InterconnectAttachment",
+      "properties": {
+        "region": {
+          "description": "Optional. Cloud region to install this policy based route on interconnect attachment. Use `all` to install it on all interconnect attachments.",
           "type": "string"
         }
       },
@@ -3286,6 +3550,31 @@
         "nextPageToken": {
           "description": "The standard List next-page token.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListPolicyBasedRoutesResponse": {
+      "description": "Response for PolicyBasedRouting.ListPolicyBasedRoutes method.",
+      "id": "ListPolicyBasedRoutesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.",
+          "type": "string"
+        },
+        "policyBasedRoutes": {
+          "description": "Policy based routes to be returned.",
+          "items": {
+            "$ref": "PolicyBasedRoute"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3608,6 +3897,95 @@
       },
       "type": "object"
     },
+    "PolicyBasedRoute": {
+      "description": "Policy Based Routes (PBR) are more powerful routes that allows GCP customers to route their L4 network traffic based on not just destination IP, but also source IP, protocol and more. A PBR always take precedence when it conflicts with other types of routes. Next id: 22",
+      "id": "PolicyBasedRoute",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when the PolicyBasedRoute was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. An optional description of this resource. Provide this field when you create the resource.",
+          "type": "string"
+        },
+        "filter": {
+          "$ref": "Filter",
+          "description": "Required. The filter to match L4 traffic."
+        },
+        "interconnectAttachment": {
+          "$ref": "InterconnectAttachment",
+          "description": "Optional. The interconnect attachments to which this route applies to."
+        },
+        "kind": {
+          "description": "Output only. Type of this resource. Always networkconnectivity#policyBasedRoute for Policy Based Route resources.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-defined labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. A unique name of the resource in the form of `projects/{project_number}/locations/global/PolicyBasedRoutes/{policy_based_route_id}`",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. Fully-qualified URL of the network that this route applies to. e.g. projects/my-project/global/networks/my-network.",
+          "type": "string"
+        },
+        "nextHopIlbIp": {
+          "description": "Optional. The IP of a global access enabled L4 ILB that should be the next hop to handle matching packets. For this version, only next_hop_ilb_ip is supported.",
+          "type": "string"
+        },
+        "nextHopOtherRoutes": {
+          "description": "Optional. Other routes that will be referenced to determine the next hop of the packet.",
+          "enum": [
+            "OTHER_ROUTES_UNSPECIFIED",
+            "DEFAULT_ROUTING"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Use the routes from the default routing tables (system-generated routes, custom routes, peering route) to determine the next hop. This will effectively exclude matching packets being applied on other PBRs with a lower priority."
+          ],
+          "type": "string"
+        },
+        "priority": {
+          "description": "Optional. The priority of this policy based route. Priority is used to break ties in cases where there are more than one matching policy based routes found. In cases where multiple policy based routes are matched, the one with the lowest-numbered priority value wins. The default value is 1000. The priority value must be from 1 to 65535, inclusive.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "selfLink": {
+          "description": "Output only. Server-defined fully-qualified URL for this resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when the PolicyBasedRoute was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "virtualMachine": {
+          "$ref": "VirtualMachine",
+          "description": "Optional. VM instances to which this policy based route applies to."
+        },
+        "warnings": {
+          "description": "Output only. If potential misconfigurations are detected for this route, this field will be populated with warning messages.",
+          "items": {
+            "$ref": "Warnings"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ProducerPscConfig": {
       "description": "The PSC configurations on producer side.",
       "id": "ProducerPscConfig",
@@ -3656,6 +4034,7 @@
         },
         "error": {
           "$ref": "GoogleRpcStatus",
+          "deprecated": true,
           "description": "The most recent error during operating this connection."
         },
         "errorInfo": {
@@ -3708,6 +4087,36 @@
       },
       "type": "object"
     },
+    "RejectHubSpokeRequest": {
+      "description": "The request for HubService.RejectHubSpoke.",
+      "id": "RejectHubSpokeRequest",
+      "properties": {
+        "details": {
+          "description": "Optional. Additional information provided by the hub administrator.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "spokeUri": {
+          "description": "Required. The URI of the spoke to reject from the hub.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RejectHubSpokeResponse": {
+      "description": "The response for HubService.RejectHubSpoke.",
+      "id": "RejectHubSpokeResponse",
+      "properties": {
+        "spoke": {
+          "$ref": "Spoke",
+          "description": "The spoke that was operated on."
+        }
+      },
+      "type": "object"
+    },
     "RejectSpokeRequest": {
       "description": "The request for HubService.RejectSpoke.",
       "id": "RejectSpokeRequest",
@@ -3745,7 +4154,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
+          "description": "Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
           "type": "object"
         },
         "location": {
@@ -3838,7 +4247,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
+          "description": "Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
           "type": "object"
         },
         "name": {
@@ -4201,7 +4610,7 @@
           "type": "string"
         },
         "group": {
-          "description": "The name of the group that this spoke is associated with.",
+          "description": "Optional. The name of the group that this spoke is associated with.",
           "type": "string"
         },
         "hub": {
@@ -4212,7 +4621,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
+          "description": "Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).",
           "type": "object"
         },
         "linkedInterconnectAttachments": {
@@ -4495,6 +4904,55 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VirtualMachine": {
+      "description": "VM instances to which this policy based route applies to.",
+      "id": "VirtualMachine",
+      "properties": {
+        "tags": {
+          "description": "Optional. A list of VM instance tags to which this policy based route applies to. VM instances that have ANY of tags specified here will install this PBR.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Warnings": {
+      "description": "Informational warning message.",
+      "id": "Warnings",
+      "properties": {
+        "code": {
+          "description": "Output only. A warning code, if applicable.",
+          "enum": [
+            "WARNING_UNSPECIFIED",
+            "RESOURCE_NOT_ACTIVE",
+            "RESOURCE_BEING_MODIFIED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The policy based route is not active and functioning. Common causes are the dependent network was deleted or the resource project was turned off.",
+            "The policy based route is being modified (e.g. created/deleted) at this time."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "data": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Metadata about this warning in key: value format. The key should provides more detail on the warning being returned. For example, for warnings where there are no results in a list request for a particular zone, this key might be scope and the key value might be the zone name. Other examples might be a key indicating a deprecated resource and a suggested replacement.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "warningMessage": {
+          "description": "Output only. A human-readable description of the warning code.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
