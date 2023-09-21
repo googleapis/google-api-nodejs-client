@@ -170,6 +170,11 @@
                   "description": "Required. Immutable. A globally unique identifier for the Hosting site. This identifier is used to construct the Firebase-provisioned subdomains for the site, so it must also be a valid domain name label.",
                   "location": "query",
                   "type": "string"
+                },
+                "validateOnly": {
+                  "description": "Optional. If set, validates that the site_id is available and that the request would succeed, returning the expected resulting site or error.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta1/{+parent}/sites",
@@ -638,6 +643,314 @@
                       "path": "v1beta1/{+parent}/releases",
                       "response": {
                         "$ref": "ListReleasesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only",
+                        "https://www.googleapis.com/auth/firebase",
+                        "https://www.googleapis.com/auth/firebase.readonly"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "customDomains": {
+              "methods": {
+                "create": {
+                  "description": "Creates a `CustomDomain`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/customDomains",
+                  "httpMethod": "POST",
+                  "id": "firebasehosting.projects.sites.customDomains.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "customDomainId": {
+                      "description": "Required. The ID of the `CustomDomain`, which is the domain name you'd like to use with Firebase Hosting.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The custom domain's parent, specifically a Firebase Hosting `Site`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If true, Hosting validates that it's possible to complete your request but doesn't actually create a new `CustomDomain`.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/customDomains",
+                  "request": {
+                    "$ref": "CustomDomain"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the specified `CustomDomain`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/customDomains/{customDomainsId}",
+                  "httpMethod": "DELETE",
+                  "id": "firebasehosting.projects.sites.customDomains.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "allowMissing": {
+                      "description": "If true, the request succeeds even if the `CustomDomain` doesn't exist.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "etag": {
+                      "description": "A tag that represents the state of the `CustomDomain` as you know it. If present, the supplied tag must match the current value on your `CustomDomain`, or the request fails.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the `CustomDomain` to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+/customDomains/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If true, Hosting validates that it's possible to complete your request but doesn't actually delete the `CustomDomain`.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the specified `CustomDomain`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/customDomains/{customDomainsId}",
+                  "httpMethod": "GET",
+                  "id": "firebasehosting.projects.sites.customDomains.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the `CustomDomain` to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+/customDomains/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "CustomDomain"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/firebase",
+                    "https://www.googleapis.com/auth/firebase.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "Lists each `CustomDomain` associated with the specified parent Hosting site. Returns `CustomDomain`s in a consistent, but undefined, order to facilitate pagination.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/customDomains",
+                  "httpMethod": "GET",
+                  "id": "firebasehosting.projects.sites.customDomains.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The max number of `CustomDomain` entities to return in a request. Defaults to 10.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token from a previous call to `ListCustomDomains` that tells the server where to resume listing.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The Firebase Hosting `Site` with `CustomDomain` entities you'd like to list.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "showDeleted": {
+                      "description": "If true, the request returns soft-deleted `CustomDomain`s that haven't been fully-deleted yet. To restore deleted `CustomDomain`s, make an `UndeleteCustomDomain` request.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/customDomains",
+                  "response": {
+                    "$ref": "ListCustomDomainsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/firebase",
+                    "https://www.googleapis.com/auth/firebase.readonly"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the specified `CustomDomain`.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/customDomains/{customDomainsId}",
+                  "httpMethod": "PATCH",
+                  "id": "firebasehosting.projects.sites.customDomains.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "allowMissing": {
+                      "description": "If true, Hosting creates the `CustomDomain` if it doesn't already exist.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Output only. The fully-qualified name of the `CustomDomain`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+/customDomains/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The set of field names from your `CustomDomain` that you want to update. A field will be overwritten if, and only if, it's in the mask. If you don't provide a mask, Hosting updates the entire `CustomDomain`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If true, Hosting validates that it's possible to complete your request but doesn't actually create or update the `CustomDomain`.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "CustomDomain"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
+                "undelete": {
+                  "description": "Undeletes the specified `CustomDomain` if it has been soft-deleted. Hosting retains soft-deleted custom domains for around 30 days before permanently deleting them.",
+                  "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/customDomains/{customDomainsId}:undelete",
+                  "httpMethod": "POST",
+                  "id": "firebasehosting.projects.sites.customDomains.undelete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the `CustomDomain` to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sites/[^/]+/customDomains/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:undelete",
+                  "request": {
+                    "$ref": "UndeleteCustomDomainRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                }
+              },
+              "resources": {
+                "operations": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the latest state of a long-running operation. Use this method to poll the operation result at intervals as recommended by the API service.",
+                      "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/customDomains/{customDomainsId}/operations/{operationsId}",
+                      "httpMethod": "GET",
+                      "id": "firebasehosting.projects.sites.customDomains.operations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/sites/[^/]+/customDomains/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only",
+                        "https://www.googleapis.com/auth/firebase",
+                        "https://www.googleapis.com/auth/firebase.readonly"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists operations that match the specified filter in the request.",
+                      "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/customDomains/{customDomainsId}/operations",
+                      "httpMethod": "GET",
+                      "id": "firebasehosting.projects.sites.customDomains.operations.list",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "The name of the operation's parent resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/sites/[^/]+/customDomains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}/operations",
+                      "response": {
+                        "$ref": "ListOperationsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -2109,7 +2422,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20230918",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -2153,6 +2466,97 @@
         "token": {
           "description": "The token to serve at the specified URL path to satisfy the certificate challenge.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CertVerification": {
+      "description": "A set of ACME challenges you can use to allow Hosting to create an SSL certificate for your domain name before directing traffic to Hosting servers. Use either the DNS or HTTP challenge; it's not necessary to provide both.",
+      "id": "CertVerification",
+      "properties": {
+        "dns": {
+          "$ref": "DnsUpdates",
+          "description": "Output only. A `TXT` record to add to your DNS records that confirms your intent to let Hosting create an SSL cert for your domain name.",
+          "readOnly": true
+        },
+        "http": {
+          "$ref": "HttpUpdate",
+          "description": "Output only. A file to add to your existing, non-Hosting hosting service that confirms your intent to let Hosting create an SSL cert for your domain name.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "Certificate": {
+      "description": "An SSL certificate used to provide end-to-end encryption for requests against your domain name. A `Certificate` can be an actual SSL certificate or, for newly-created custom domains, Hosting's intent to create one.",
+      "id": "Certificate",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The certificate's creation time. For `TEMPORARY` certs this is the time Hosting first generated challenges for your domain name. For all other cert types, it's the time the actual cert was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. The certificate's expiration time. After this time, the cert can no longer be used to provide secure communication between Hosting and your site's visitors.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "issues": {
+          "description": "Output only. A set of errors Hosting encountered when attempting to create a cert for your domain name. Resolve these issues to ensure Hosting is able to provide secure communication with your site's visitors.",
+          "items": {
+            "$ref": "Status"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The state of the certificate. Only the `CERT_ACTIVE` and `CERT_EXPIRING_SOON` states provide SSL coverage for a domain name. If the state is `PROPAGATING` and Hosting had an active cert for the domain name before, that formerly-active cert provides SSL coverage for the domain name until the current cert propagates.",
+          "enum": [
+            "CERT_STATE_UNSPECIFIED",
+            "CERT_PREPARING",
+            "CERT_VALIDATING",
+            "CERT_PROPAGATING",
+            "CERT_ACTIVE",
+            "CERT_EXPIRING_SOON",
+            "CERT_EXPIRED"
+          ],
+          "enumDescriptions": [
+            "The certificate's state is unspecified. The message is invalid if this is unspecified.",
+            "The initial state of every certificate, represents Hosting's intent to create a certificate, before requests to a Certificate Authority are made.",
+            "Hosting is validating whether a domain name's DNS records are in a state that allow certificate creation on its behalf.",
+            "The certificate was recently created, and needs time to propagate in Hosting's CDN.",
+            "The certificate is active, providing secure connections for the domain names it represents.",
+            "The certificate is expiring, all domain names on it will be given new certificates.",
+            "The certificate has expired. Hosting can no longer serve secure content on your domain name."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The certificate's type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TEMPORARY",
+            "GROUPED",
+            "PROJECT_GROUPED",
+            "DEDICATED"
+          ],
+          "enumDescriptions": [
+            "The certificate's type is unspecified. The message is invalid if this is unspecified.",
+            "A short-lived certificate type that covers a domain name temporarily, while Hosting creates a more permanent certificate.",
+            "The standard certificate for Spark plan custom domains.",
+            "Blaze plan only. A certificate that covers from 1 to 100 domain names with custom domains on the same Firebase project.",
+            "Blaze plan only. A certificate that covers a single domain name."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "verification": {
+          "$ref": "CertVerification",
+          "description": "Output only. A set of ACME challenges you can add to your DNS records or existing, non-Hosting hosting provider to allow Hosting to create an SSL certificate for your domain name before you point traffic toward hosting. You can use thse challenges as part of a zero downtime transition from your old provider to Hosting.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -2249,6 +2653,343 @@
         "tag": {
           "description": "Optional. User-provided TrafficConfig tag to send traffic to. When omitted, traffic is sent to the service-wide URI",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomDomain": {
+      "description": "A `CustomDomain` is an entity that links a domain name to a Firebase Hosting site. Add a `CustomDomain` to your site to allow Hosting to serve the site's content in response to requests against your domain name.",
+      "id": "CustomDomain",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Annotations you can add to leave both human- and machine-readable metadata about your `CustomDomain`.",
+          "type": "object"
+        },
+        "cert": {
+          "$ref": "Certificate",
+          "description": "Output only. The SSL certificate Hosting has for this custom domain's domain name. For new custom domains, this often represents Hosting's intent to create a certificate, rather than an actual cert. Check the `state` field for more.",
+          "readOnly": true
+        },
+        "certPreference": {
+          "description": "A field that lets you specify which SSL certificate type Hosting creates for your domain name. Spark plan custom domains only have access to the `GROUPED` cert type, while Blaze plan domains can select any option.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TEMPORARY",
+            "GROUPED",
+            "PROJECT_GROUPED",
+            "DEDICATED"
+          ],
+          "enumDescriptions": [
+            "The certificate's type is unspecified. The message is invalid if this is unspecified.",
+            "A short-lived certificate type that covers a domain name temporarily, while Hosting creates a more permanent certificate.",
+            "The standard certificate for Spark plan custom domains.",
+            "Blaze plan only. A certificate that covers from 1 to 100 domain names with custom domains on the same Firebase project.",
+            "Blaze plan only. A certificate that covers a single domain name."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The custom domain's create time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The time the `CustomDomain` was deleted; null for custom domains that haven't been deleted. Deleted custom domains persist for approximately 30 days, after which time Hosting removes them completely. To restore a deleted custom domain, make an `UndeleteCustomDomain` request.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. A string that represents the current state of the `CustomDomain` and allows you to confirm its initial state in requests that would modify it. Use the tag to ensure consistency when making `UpdateCustomDomain`, `DeleteCustomDomain`, and `UndeleteCustomDomain` requests.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. The minimum time before a soft-deleted `CustomDomain` is completely removed from Hosting; null for custom domains that haven't been deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "hostState": {
+          "description": "Output only. The `HostState` of the domain name this `CustomDomain` refers to.",
+          "enum": [
+            "HOST_STATE_UNSPECIFIED",
+            "HOST_UNHOSTED",
+            "HOST_UNREACHABLE",
+            "HOST_MISMATCH",
+            "HOST_CONFLICT",
+            "HOST_ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Your custom domain's host state is unspecified. The message is invalid if this is unspecified.",
+            "Your custom domain's domain name isn't associated with any IP addresses.",
+            "Your custom domain's domain name can't be reached. Hosting services' DNS queries to find your domain name's IP addresses resulted in errors. See your `CustomDomain` object's `issues` field for more details.",
+            "Your custom domain's domain name has IP addresses that don't ultimately resolve to Hosting.",
+            "Your custom domain's domain name has IP addresses that resolve to both Hosting and other services. To ensure consistent results, remove `A` and `AAAA` records related to non-Hosting services.",
+            "All requests against your custom domain's domain name are served by Hosting. If the custom domain's `OwnershipState` is also `ACTIVE`, Hosting serves your Hosting site's content on the domain name."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "issues": {
+          "description": "Output only. A set of errors Hosting systems encountered when trying to establish Hosting's ability to serve secure content for your domain name. Resolve these issues to ensure your `CustomDomain` behaves properly.",
+          "items": {
+            "$ref": "Status"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels used for extra metadata and/or filtering.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The fully-qualified name of the `CustomDomain`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ownershipState": {
+          "description": "Output only. The `OwnershipState` of the domain name this `CustomDomain` refers to.",
+          "enum": [
+            "OWNERSHIP_STATE_UNSPECIFIED",
+            "OWNERSHIP_MISSING",
+            "OWNERSHIP_UNREACHABLE",
+            "OWNERSHIP_MISMATCH",
+            "OWNERSHIP_CONFLICT",
+            "OWNERSHIP_PENDING",
+            "OWNERSHIP_ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Your custom domain's ownership state is unspecified. This should never happen.",
+            "Your custom domain's domain name has no Hosting-related ownership records; no Firebase project has permission to act on the domain name's behalf.",
+            "Your custom domain's domain name can't be reached. Hosting services' DNS queries to find your domain name's ownership records resulted in errors. See your `CustomDomain` object's `issues` field for more details.",
+            "Your custom domain's domain name is owned by another Firebase project. Remove the conflicting `TXT` records and replace them with project-specific records for your current Firebase project.",
+            "Your custom domain's domain name has conflicting `TXT` records that indicate ownership by both your current Firebase project and another project. Remove the other project's ownership records to grant the current project ownership.",
+            "Your custom domain's DNS records are configured correctly. Hosting will transfer ownership of your domain to this `CustomDomain` within 24 hours.",
+            "Your custom domain's domain name has `TXT` records that grant its project permission to act on its behalf."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. A field that, if true, indicates that Hosting's systems are attmepting to make the custom domain's state match your preferred state. This is most frequently `true` when initially provisioning a `CustomDomain` after a `CreateCustomDomain` request or when creating a new SSL certificate to match an updated `cert_preference` after an `UpdateCustomDomain` request.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "redirectTarget": {
+          "description": "A domain name that this `CustomDomain` should direct traffic towards. If specified, Hosting will respond to requests against this custom domain with an HTTP 301 code, and route traffic to the specified `redirect_target` instead.",
+          "type": "string"
+        },
+        "requiredDnsUpdates": {
+          "$ref": "DnsUpdates",
+          "description": "Output only. A set of updates you should make to the domain name's DNS records to let Hosting serve secure content on its behalf.",
+          "readOnly": true
+        },
+        "updateTime": {
+          "description": "Output only. The last time the `CustomDomain` was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomDomainMetadata": {
+      "description": "Metadata associated with a`CustomDomain` operation.",
+      "id": "CustomDomainMetadata",
+      "properties": {
+        "certState": {
+          "description": "The `CertState` of the domain name's SSL certificate.",
+          "enum": [
+            "CERT_STATE_UNSPECIFIED",
+            "CERT_PREPARING",
+            "CERT_VALIDATING",
+            "CERT_PROPAGATING",
+            "CERT_ACTIVE",
+            "CERT_EXPIRING_SOON",
+            "CERT_EXPIRED"
+          ],
+          "enumDescriptions": [
+            "The certificate's state is unspecified. The message is invalid if this is unspecified.",
+            "The initial state of every certificate, represents Hosting's intent to create a certificate, before requests to a Certificate Authority are made.",
+            "Hosting is validating whether a domain name's DNS records are in a state that allow certificate creation on its behalf.",
+            "The certificate was recently created, and needs time to propagate in Hosting's CDN.",
+            "The certificate is active, providing secure connections for the domain names it represents.",
+            "The certificate is expiring, all domain names on it will be given new certificates.",
+            "The certificate has expired. Hosting can no longer serve secure content on your domain name."
+          ],
+          "type": "string"
+        },
+        "hostState": {
+          "description": "The `HostState` of the domain name this `CustomDomain` refers to.",
+          "enum": [
+            "HOST_STATE_UNSPECIFIED",
+            "HOST_UNHOSTED",
+            "HOST_UNREACHABLE",
+            "HOST_MISMATCH",
+            "HOST_CONFLICT",
+            "HOST_ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Your custom domain's host state is unspecified. The message is invalid if this is unspecified.",
+            "Your custom domain's domain name isn't associated with any IP addresses.",
+            "Your custom domain's domain name can't be reached. Hosting services' DNS queries to find your domain name's IP addresses resulted in errors. See your `CustomDomain` object's `issues` field for more details.",
+            "Your custom domain's domain name has IP addresses that don't ultimately resolve to Hosting.",
+            "Your custom domain's domain name has IP addresses that resolve to both Hosting and other services. To ensure consistent results, remove `A` and `AAAA` records related to non-Hosting services.",
+            "All requests against your custom domain's domain name are served by Hosting. If the custom domain's `OwnershipState` is also `ACTIVE`, Hosting serves your Hosting site's content on the domain name."
+          ],
+          "type": "string"
+        },
+        "issues": {
+          "description": "A list of issues that are currently preventing Hosting from completing the operation. These are generally DNS-related issues that Hosting encounters when querying a domain name's records or attempting to mint an SSL certificate.",
+          "items": {
+            "$ref": "Status"
+          },
+          "type": "array"
+        },
+        "liveMigrationSteps": {
+          "description": "A set of DNS record updates and ACME challenges that allow you to transition domain names to Firebase Hosting with zero downtime. These updates allow Hosting to create an SSL certificate and establish ownership for your custom domain before Hosting begins serving traffic on it. If your domain name is already in active use with another provider, add one of the challenges and make the recommended DNS updates. After adding challenges and adjusting DNS records as necessary, wait for the `ownershipState` to be `OWNERSHIP_ACTIVE` and the `certState` to be `CERT_ACTIVE` before sending traffic to Hosting.",
+          "items": {
+            "$ref": "LiveMigrationStep"
+          },
+          "type": "array"
+        },
+        "ownershipState": {
+          "description": "The `OwnershipState` of the domain name this `CustomDomain` refers to.",
+          "enum": [
+            "OWNERSHIP_STATE_UNSPECIFIED",
+            "OWNERSHIP_MISSING",
+            "OWNERSHIP_UNREACHABLE",
+            "OWNERSHIP_MISMATCH",
+            "OWNERSHIP_CONFLICT",
+            "OWNERSHIP_PENDING",
+            "OWNERSHIP_ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Your custom domain's ownership state is unspecified. This should never happen.",
+            "Your custom domain's domain name has no Hosting-related ownership records; no Firebase project has permission to act on the domain name's behalf.",
+            "Your custom domain's domain name can't be reached. Hosting services' DNS queries to find your domain name's ownership records resulted in errors. See your `CustomDomain` object's `issues` field for more details.",
+            "Your custom domain's domain name is owned by another Firebase project. Remove the conflicting `TXT` records and replace them with project-specific records for your current Firebase project.",
+            "Your custom domain's domain name has conflicting `TXT` records that indicate ownership by both your current Firebase project and another project. Remove the other project's ownership records to grant the current project ownership.",
+            "Your custom domain's DNS records are configured correctly. Hosting will transfer ownership of your domain to this `CustomDomain` within 24 hours.",
+            "Your custom domain's domain name has `TXT` records that grant its project permission to act on its behalf."
+          ],
+          "type": "string"
+        },
+        "quickSetupUpdates": {
+          "$ref": "DnsUpdates",
+          "description": "A set of DNS record updates that allow Hosting to serve secure content on your domain name. The record type determines the update's purpose: - `A` and `AAAA`: Updates your domain name's IP addresses so that they direct traffic to Hosting servers. - `TXT`: Updates ownership permissions on your domain name, letting Hosting know that your custom domain's project has permission to perfrom actions for that domain name. - `CAA`: Updates your domain name's list of authorized Certificate Authorities (CAs). Only present if you have existing `CAA` records that prohibit Hosting's CA from minting certs for your domain name. These updates include all DNS changes you'll need to get started with Hosting, but, if made all at once, can result in a brief period of downtime for your domain name--while Hosting creates and uploads an SSL cert, for example. If you'd like to add your domain name to Hosting without downtime, complete the `liveMigrationSteps` first, before making the remaining updates in this field."
+        }
+      },
+      "type": "object"
+    },
+    "DnsRecord": {
+      "description": "DNS records are resource records that define how systems and services should behave when handling requests for a domain name. For example, when you add `A` records to your domain name's DNS records, you're informing other systems (such as your users' web browsers) to contact those IPv4 addresses to retrieve resources relevant to your domain name (such as your Hosting site files).",
+      "id": "DnsRecord",
+      "properties": {
+        "domainName": {
+          "description": "Output only. The domain name the record pertains to, e.g. `foo.bar.com.`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rdata": {
+          "description": "Output only. The data of the record. The meaning of the value depends on record type: - A and AAAA: IP addresses for the domain name. - CNAME: Another domain to check for records. - TXT: Arbitrary text strings associated with the domain name. Hosting uses TXT records to determine which Firebase projects have permission to act on the domain name's behalf. - CAA: The record's flags, tag, and value, e.g. `0 issue \"pki.goog\"`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requiredAction": {
+          "description": "Output only. An enum that indicates the a required action for this record.",
+          "enum": [
+            "NONE",
+            "ADD",
+            "REMOVE"
+          ],
+          "enumDescriptions": [
+            "No action necessary.",
+            "Add this record to your DNS records.",
+            "Remove this record from your DNS records."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The record's type, which determines what data the record contains.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "A",
+            "CNAME",
+            "TXT",
+            "AAAA",
+            "CAA"
+          ],
+          "enumDescriptions": [
+            "The record's type is unspecified. The message is invalid if this is unspecified.",
+            "An `A` record, as defined in [RFC 1035](https://tools.ietf.org/html/rfc1035). A records determine which IPv4 addresses a domain name directs traffic towards.",
+            "A `CNAME` record, as defined in [RFC 1035](https://tools.ietf.org/html/rfc1035). `CNAME` or Canonical Name records map a domain name to a different, canonical domain name. If a `CNAME` record is present, it should be the only record on the domain name.",
+            "A `TXT` record, as defined in [RFC 1035](https://tools.ietf.org/html/rfc1035). `TXT` records hold arbitrary text data on a domain name. Hosting uses `TXT` records to establish which Firebase Project has permission to act on a domain name.",
+            "An AAAA record, as defined in [RFC 3596](https://tools.ietf.org/html/rfc3596) AAAA records determine which IPv6 addresses a domain name directs traffic towards.",
+            "A CAA record, as defined in [RFC 6844](https://tools.ietf.org/html/rfc6844). CAA, or Certificate Authority Authorization, records determine which Certificate Authorities (SSL certificate minting organizations) are authorized to mint a certificate for the domain name. Firebase Hosting uses `pki.goog` as its primary CA. CAA records cascade. A CAA record on `foo.com` also applies to `bar.foo.com` unless `bar.foo.com` has its own set of CAA records. CAA records are optional. If a domain name and its parents have no CAA records, all CAs are authorized to mint certificates on its behalf. In general, Hosting only asks you to modify CAA records when doing so is required to unblock SSL cert creation."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DnsRecordSet": {
+      "description": "A set of DNS records relevant to the setup and maintenance of a custom domain in Firebase Hosting.",
+      "id": "DnsRecordSet",
+      "properties": {
+        "checkError": {
+          "$ref": "Status",
+          "description": "Output only. An error Hosting services encountered when querying your domain name's DNS records. Note: Hosting ignores `NXDOMAIN` errors, as those generally just mean that a domain name hasn't been set up yet.",
+          "readOnly": true
+        },
+        "domainName": {
+          "description": "Output only. The domain name the record set pertains to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "records": {
+          "description": "Output only. Records on the domain.",
+          "items": {
+            "$ref": "DnsRecord"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DnsUpdates": {
+      "description": "A set of DNS record updates that you should make to allow Hosting to serve secure content in response to requests against your domain name. These updates present the current state of your domain name's DNS records when Hosting last queried them, and the desired set of records that Hosting needs to see before your custom domain can be fully active.",
+      "id": "DnsUpdates",
+      "properties": {
+        "checkTime": {
+          "description": "The last time Hosting checked your custom domain's DNS records.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "desired": {
+          "description": "The set of DNS records Hosting needs to serve secure content on the domain.",
+          "items": {
+            "$ref": "DnsRecordSet"
+          },
+          "type": "array"
+        },
+        "discovered": {
+          "description": "The set of DNS records Hosting discovered when inspecting a domain.",
+          "items": {
+            "$ref": "DnsRecordSet"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2440,6 +3181,39 @@
       },
       "type": "object"
     },
+    "HttpUpdate": {
+      "description": "A file you can add to your existing, non-Hosting hosting service that confirms your intent to allow Hosting's Certificate Authorities to create an SSL certificate for your domain.",
+      "id": "HttpUpdate",
+      "properties": {
+        "checkError": {
+          "$ref": "Status",
+          "description": "Output only. An error encountered during the last contents check. If null, the check completed successfully.",
+          "readOnly": true
+        },
+        "desired": {
+          "description": "Output only. A text string to serve at the path.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "discovered": {
+          "description": "Output only. Whether Hosting was able to find the required file contents on the specified path during its last check.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastCheckTime": {
+          "description": "Output only. The last time Hosting systems checked for the file contents.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "path": {
+          "description": "Output only. The path to the file.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "I18nConfig": {
       "description": "If provided, i18n rewrites are enabled.",
       "id": "I18nConfig",
@@ -2468,6 +3242,24 @@
       },
       "type": "object"
     },
+    "ListCustomDomainsResponse": {
+      "description": "The response from `ListCustomDomains`.",
+      "id": "ListCustomDomainsResponse",
+      "properties": {
+        "customDomains": {
+          "description": "A list of `CustomDomain` entities associated with the specified Firebase `Site`.",
+          "items": {
+            "$ref": "CustomDomain"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The pagination token, if more results exist beyond the ones in this response. Include this token in your next call to `ListCustomDomains`. Page tokens are short-lived and should not be stored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListDomainsResponse": {
       "description": "The response to listing Domains.",
       "id": "ListDomainsResponse",
@@ -2482,6 +3274,24 @@
         "nextPageToken": {
           "description": "The pagination token, if more results exist.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListOperationsResponse": {
+      "description": "The response message for Operations.ListOperations.",
+      "id": "ListOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of operations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Operation"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2550,6 +3360,52 @@
             "$ref": "Version"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LiveMigrationStep": {
+      "description": "A set of updates including ACME challenges and DNS records that allow Hosting to create an SSL certificate and establish project ownership for your domain name before you direct traffic to Hosting servers. Use these updates to facilitate zero downtime migrations to Hosting from other services. After you've made the recommended updates, check your custom domain's `ownershipState` and `certState`. To avoid downtime, they should be `OWNERSHIP_ACTIVE` and `CERT_ACTIVE`, respectively, before you update your `A` and `AAAA` records.",
+      "id": "LiveMigrationStep",
+      "properties": {
+        "certVerification": {
+          "$ref": "CertVerification",
+          "description": "Output only. A pair of ACME challenges that Hosting's Certificate Authority (CA) can use to create an SSL cert for your domain name. Use either the DNS or HTTP challenge; it's not necessary to provide both.",
+          "readOnly": true
+        },
+        "dnsUpdates": {
+          "$ref": "DnsUpdates",
+          "description": "Output only. DNS updates to facilitate your domain's zero-downtime migration to Hosting.",
+          "readOnly": true
+        },
+        "issues": {
+          "description": "Output only. Issues that prevent the current step from completing.",
+          "items": {
+            "$ref": "Status"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The state of the live migration step, indicates whether you should work to complete the step now, in the future, or have already completed it.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PREPARING",
+            "PENDING",
+            "INCOMPLETE",
+            "PROCESSING",
+            "COMPLETE"
+          ],
+          "enumDescriptions": [
+            "The step's state is unspecified. The message is invalid if this is unspecified.",
+            "Hosting doesn't have enough information to construct the step yet. Complete any prior steps and/or resolve this step's issue to proceed.",
+            "The step's state is pending. Complete prior steps before working on a `PENDING` step.",
+            "The step is incomplete. You should complete any `certVerification` or `dnsUpdates` changes to complete it.",
+            "You've done your part to update records and present challenges as necessary. Hosting is now completing background processes to complete the step, e.g. minting an SSL cert for your domain name.",
+            "The step is complete. You've already made the necessary changes to your domain and/or prior hosting service to advance to the next step. Once all steps are complete, Hosting is ready to serve secure content on your domain."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2880,6 +3736,21 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UndeleteCustomDomainRequest": {
+      "description": "The request sent to `UndeleteCustomDomain`.",
+      "id": "UndeleteCustomDomainRequest",
+      "properties": {
+        "etag": {
+          "description": "A tag that represents the state of the `CustomDomain` as you know it. If present, the supplied tag must match the current value on your `CustomDomain`, or the request fails.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "If true, Hosting validates that it's possible to complete your request but doesn't actually delete the `CustomDomain`.",
+          "type": "boolean"
         }
       },
       "type": "object"
