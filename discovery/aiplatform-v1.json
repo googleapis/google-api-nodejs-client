@@ -18,6 +18,178 @@
   "description": "Train high-quality custom machine learning models with minimal machine learning expertise and effort.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/vertex-ai/",
+  "endpoints": [
+    {
+      "description": "Locational Endpoint",
+      "location": "asia-east1",
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
+      "location": "asia-east2"
+    },
+    {
+      "location": "asia-northeast1",
+      "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "asia-northeast2"
+    },
+    {
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "asia-northeast3"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
+      "location": "asia-southeast1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
+      "location": "asia-southeast2"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
+      "location": "australia-southeast1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "australia-southeast2",
+      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
+      "location": "europe-central2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "europe-north1"
+    },
+    {
+      "location": "europe-southwest1",
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
+      "location": "europe-west1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
+      "location": "europe-west2"
+    },
+    {
+      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "europe-west3"
+    },
+    {
+      "location": "europe-west4",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "europe-west6",
+      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "europe-west8",
+      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/"
+    },
+    {
+      "location": "europe-west9",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/"
+    },
+    {
+      "location": "me-west1",
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "northamerica-northeast2",
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "southamerica-east1"
+    },
+    {
+      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "southamerica-west1"
+    },
+    {
+      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
+      "location": "us-central1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "us-central2",
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "us-east1"
+    },
+    {
+      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "us-east4"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "location": "us-west1",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/"
+    },
+    {
+      "location": "us-west2",
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "us-west3",
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "us-west4",
+      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -3772,12 +3944,12 @@
                           ],
                           "parameters": {
                             "featureId": {
-                              "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.",
+                              "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .",
                               "location": "query",
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                              "description": "Required. The resource name of the EntityType to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -3805,7 +3977,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the Features to be deleted. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`",
+                              "description": "Required. The name of the Features to be deleted. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+/features/[^/]+$",
                               "required": true,
@@ -3830,7 +4002,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the Feature resource. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                              "description": "Required. The name of the Feature resource. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+/features/[^/]+$",
                               "required": true,
@@ -3866,7 +4038,7 @@
                               "type": "integer"
                             },
                             "orderBy": {
-                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `feature_id` * `value_type` * `create_time` * `update_time`",
+                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `feature_id` * `value_type` (Not supported for FeatureRegistry Feature) * `create_time` * `update_time`",
                               "location": "query",
                               "type": "string"
                             },
@@ -3882,7 +4054,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the Location to list Features. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                              "description": "Required. The resource name of the Location to list Features. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -8297,6 +8469,397 @@
                 }
               }
             },
+            "notebookRuntimeTemplates": {
+              "methods": {
+                "create": {
+                  "description": "Creates a NotebookRuntimeTemplate.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.notebookRuntimeTemplates.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "notebookRuntimeTemplateId": {
+                      "description": "Optional. User specified ID for the notebook runtime template.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location to create the NotebookRuntimeTemplate. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/notebookRuntimeTemplates",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1NotebookRuntimeTemplate"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a NotebookRuntimeTemplate.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates/{notebookRuntimeTemplatesId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.notebookRuntimeTemplates.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NotebookRuntimeTemplate resource to be deleted. Format: `projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimeTemplates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a NotebookRuntimeTemplate.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates/{notebookRuntimeTemplatesId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.notebookRuntimeTemplates.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NotebookRuntimeTemplate resource. Format: `projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimeTemplates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1NotebookRuntimeTemplate"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates/{notebookRuntimeTemplatesId}:getIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.notebookRuntimeTemplates.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimeTemplates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists NotebookRuntimeTemplates in a Location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.notebookRuntimeTemplates.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. Some examples: * `notebookRuntimeTemplate=notebookRuntimeTemplate123` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `display_name` * `create_time` * `update_time` Example: `display_name, create_time desc`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The standard list page token. Typically obtained via ListNotebookRuntimeTemplatesResponse.next_page_token of the previous NotebookService.ListNotebookRuntimeTemplates call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location from which to list the NotebookRuntimeTemplates. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Optional. Mask specifying which fields to read.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/notebookRuntimeTemplates",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates/{notebookRuntimeTemplatesId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.notebookRuntimeTemplates.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimeTemplates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimeTemplates/{notebookRuntimeTemplatesId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.notebookRuntimeTemplates.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "permissions": {
+                      "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimeTemplates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "notebookRuntimes": {
+              "methods": {
+                "assign": {
+                  "description": "Assigns a NotebookRuntime to a user for a particular Notebook file. This method will either returns an existing assignment or generates a new one.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes:assign",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.notebookRuntimes.assign",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the Location to get the NotebookRuntime assignment. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/notebookRuntimes:assign",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1AssignNotebookRuntimeRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a NotebookRuntime.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes/{notebookRuntimesId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.notebookRuntimes.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NotebookRuntime resource to be deleted. Instead of checking whether the name is in valid NotebookRuntime resource name format, directly throw NotFound exception if there is no such NotebookRuntime in spanner.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a NotebookRuntime.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes/{notebookRuntimesId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.notebookRuntimes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NotebookRuntime resource. Instead of checking whether the name is in valid NotebookRuntime resource name format, directly throw NotFound exception if there is no such NotebookRuntime in spanner.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1NotebookRuntime"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists NotebookRuntimes in a Location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.notebookRuntimes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. Some examples: * `notebookRuntime=\"notebookRuntime123\"` * `displayName=\"myDisplayName\"` and `displayName=~\"myDisplayNameRegex\"` * `notebookRuntimeTemplate=\"notebookRuntimeTemplate321\"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser=\"test@google.com\"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `display_name` * `create_time` * `update_time` Example: `display_name, create_time desc`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The standard list page token. Typically obtained via ListNotebookRuntimesResponse.next_page_token of the previous NotebookService.ListNotebookRuntimes call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location from which to list the NotebookRuntimes. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Optional. Mask specifying which fields to read.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/notebookRuntimes",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1ListNotebookRuntimesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "start": {
+                  "description": "Starts a NotebookRuntime.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/notebookRuntimes/{notebookRuntimesId}:start",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.notebookRuntimes.start",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NotebookRuntime resource to be started. Instead of checking whether the name is in valid NotebookRuntime resource name format, directly throw NotFound exception if there is no such NotebookRuntime in spanner.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:start",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1StartNotebookRuntimeRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -8495,7 +9058,7 @@
                       "type": "string"
                     },
                     "pipelineJobId": {
-                      "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are /a-z-/.",
+                      "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.",
                       "location": "query",
                       "type": "string"
                     }
@@ -10524,7 +11087,7 @@
                           "type": "string"
                         },
                         "tensorboardExperimentId": {
-                          "description": "Required. The ID to use for the Tensorboard experiment, which becomes the final component of the Tensorboard experiment's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.",
+                          "description": "Required. The ID to use for the Tensorboard experiment, which becomes the final component of the Tensorboard experiment's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.",
                           "location": "query",
                           "type": "string"
                         }
@@ -10906,7 +11469,7 @@
                               "type": "string"
                             },
                             "tensorboardRunId": {
-                              "description": "Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.",
+                              "description": "Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.",
                               "location": "query",
                               "type": "string"
                             }
@@ -12270,7 +12833,7 @@
       }
     }
   },
-  "revision": "20230809",
+  "revision": "20230914",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -12555,6 +13118,40 @@
         },
         "uri": {
           "description": "The uniform resource identifier of the artifact file. May be empty if there is no actual artifact file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1AssignNotebookRuntimeOperationMetadata": {
+      "description": "Metadata information for NotebookService.AssignNotebookRuntime.",
+      "id": "GoogleCloudAiplatformV1AssignNotebookRuntimeOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+          "description": "The operation generic information."
+        },
+        "progressMessage": {
+          "description": "A human-readable message that shows the intermediate progress details of NotebookRuntime.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1AssignNotebookRuntimeRequest": {
+      "description": "Request message for NotebookService.AssignNotebookRuntime.",
+      "id": "GoogleCloudAiplatformV1AssignNotebookRuntimeRequest",
+      "properties": {
+        "notebookRuntime": {
+          "$ref": "GoogleCloudAiplatformV1NotebookRuntime",
+          "description": "Required. Provide runtime specific information (e.g. runtime owner, notebook id) used for NotebookRuntime assignment."
+        },
+        "notebookRuntimeId": {
+          "description": "Optional. User specified ID for the notebook runtime.",
+          "type": "string"
+        },
+        "notebookRuntimeTemplate": {
+          "description": "Required. The resource name of the NotebookRuntimeTemplate based on which a NotebookRuntime will be assigned (reuse or create a new one).",
           "type": "string"
         }
       },
@@ -13641,7 +14238,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1CreateFeatureRequest": {
-      "description": "Request message for FeaturestoreService.CreateFeature and FeatureRegistryService.CreateFeature.",
+      "description": "Request message for FeaturestoreService.CreateFeature.",
       "id": "GoogleCloudAiplatformV1CreateFeatureRequest",
       "properties": {
         "feature": {
@@ -13649,11 +14246,11 @@
           "description": "Required. The Feature to create."
         },
         "featureId": {
-          "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.",
+          "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .",
           "type": "string"
         },
         "parent": {
-          "description": "Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+          "description": "Required. The resource name of the EntityType to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
           "type": "string"
         }
       },
@@ -13707,6 +14304,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1CreateNotebookRuntimeTemplateOperationMetadata": {
+      "description": "Metadata information for NotebookService.CreateNotebookRuntimeTemplate.",
+      "id": "GoogleCloudAiplatformV1CreateNotebookRuntimeTemplateOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+          "description": "The operation generic information."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1CreatePipelineJobRequest": {
       "description": "Request message for PipelineService.CreatePipelineJob.",
       "id": "GoogleCloudAiplatformV1CreatePipelineJobRequest",
@@ -13720,7 +14328,7 @@
           "description": "Required. The PipelineJob to create."
         },
         "pipelineJobId": {
-          "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are /a-z-/.",
+          "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.",
           "type": "string"
         }
       },
@@ -13761,7 +14369,7 @@
           "description": "Required. The TensorboardRun to create."
         },
         "tensorboardRunId": {
-          "description": "Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.",
+          "description": "Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.",
           "type": "string"
         }
       },
@@ -14522,7 +15130,7 @@
           "readOnly": true
         },
         "reservedIpRanges": {
-          "description": "Optional. A list of reserved ip ranges under the VPC network that can be used for this DeployedIndex. If set, we will deploy the index within the provided ip ranges. Otherwise, the index might be deployed to any ip ranges under the provided VPC network. The value should be the name of the address (https://cloud.google.com/compute/docs/reference/rest/v1/addresses) Example: 'vertex-ai-ip-range'.",
+          "description": "Optional. A list of reserved ip ranges under the VPC network that can be used for this DeployedIndex. If set, we will deploy the index within the provided ip ranges. Otherwise, the index might be deployed to any ip ranges under the provided VPC network. The value should be the name of the address (https://cloud.google.com/compute/docs/reference/rest/v1/addresses) Example: ['vertex-ai-ip-range']. For more information about subnets and network IP ranges, please see https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.",
           "items": {
             "type": "string"
           },
@@ -14613,7 +15221,7 @@
           "description": "Explanation configuration for this DeployedModel. When deploying a Model using EndpointService.DeployModel, this value overrides the value of Model.explanation_spec. All fields of explanation_spec are optional in the request. If a field of explanation_spec is not populated, the value of the same field of Model.explanation_spec is inherited. If the corresponding Model.explanation_spec is not populated, all fields of the explanation_spec will be used for the explanation configuration."
         },
         "id": {
-          "description": "Immutable. The ID of the DeployedModel. If not provided upon deployment, Vertex AI will generate a value for this ID. This value should be 1-10 characters, and valid characters are /[0-9]/.",
+          "description": "Immutable. The ID of the DeployedModel. If not provided upon deployment, Vertex AI will generate a value for this ID. This value should be 1-10 characters, and valid characters are `/[0-9]/`.",
           "type": "string"
         },
         "model": {
@@ -15975,7 +16583,7 @@
           "type": "string"
         },
         "valueType": {
-          "description": "Required. Immutable. Type of Feature value.",
+          "description": "Immutable. Type of Feature value.",
           "enum": [
             "VALUE_TYPE_UNSPECIFIED",
             "BOOL",
@@ -16001,13 +16609,6 @@
             "Used for Feature that is bytes."
           ],
           "type": "string"
-        },
-        "versionLabels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "The labels with user-defined metadata to organize your versions. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.",
-          "type": "object"
         }
       },
       "type": "object"
@@ -16973,6 +17574,10 @@
           "description": "Required. The display name of the Index. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
           "type": "string"
         },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1EncryptionSpec",
+          "description": "Immutable. Customer-managed encryption key spec for an Index. If set, this Index and all sub-resources of this Index will be secured by this key."
+        },
         "etag": {
           "description": "Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
           "type": "string"
@@ -16991,7 +17596,7 @@
           ],
           "enumDescriptions": [
             "Should not be used.",
-            "BatchUpdate: user can call UpdateIndex with files on Cloud Storage of datapoints to update.",
+            "BatchUpdate: user can call UpdateIndex with files on Cloud Storage of Datapoints to update.",
             "StreamUpdate: user can call UpsertDatapoints/DeleteDatapoints to update the Index and the updates will be applied in corresponding DeployedIndexes in nearly real-time."
           ],
           "type": "string"
@@ -17046,7 +17651,7 @@
           "type": "array"
         },
         "restricts": {
-          "description": "Optional. List of Restrict of the datapoint, used to perform \"restricted searches\" where boolean rule are used to filter the subset of the database eligible for matching. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering",
+          "description": "Optional. List of Restrict of the datapoint, used to perform \"restricted searches\" where boolean rule are used to filter the subset of the database eligible for matching. This uses categorical tokens. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering",
           "items": {
             "$ref": "GoogleCloudAiplatformV1IndexDatapointRestriction"
           },
@@ -17071,21 +17676,21 @@
       "id": "GoogleCloudAiplatformV1IndexDatapointRestriction",
       "properties": {
         "allowList": {
-          "description": "The attributes to allow in this namespace. eg: 'red'",
+          "description": "The attributes to allow in this namespace. e.g.: 'red'",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "denyList": {
-          "description": "The attributes to deny in this namespace. eg: 'blue'",
+          "description": "The attributes to deny in this namespace. e.g.: 'blue'",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "namespace": {
-          "description": "The namespace of this restriction. eg: color.",
+          "description": "The namespace of this restriction. e.g.: color.",
           "type": "string"
         }
       },
@@ -17121,6 +17726,10 @@
           "deprecated": true,
           "description": "Optional. Deprecated: If true, expose the IndexEndpoint via private service connect. Only one of the fields, network or enable_private_service_connect, can be set.",
           "type": "boolean"
+        },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1EncryptionSpec",
+          "description": "Immutable. Customer-managed encryption key spec for an IndexEndpoint. If set, this IndexEndpoint and all sub-resources of this IndexEndpoint will be secured by this key."
         },
         "etag": {
           "description": "Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
@@ -17528,7 +18137,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1ListFeaturesResponse": {
-      "description": "Response message for FeaturestoreService.ListFeatures. Response message for FeatureRegistryService.ListFeatures.",
+      "description": "Response message for FeaturestoreService.ListFeatures.",
       "id": "GoogleCloudAiplatformV1ListFeaturesResponse",
       "properties": {
         "features": {
@@ -17775,6 +18384,42 @@
         "nextPageToken": {
           "description": "A token to retrieve the next page of results. Pass to ListNasTrialDetailsRequest.page_token to obtain that page.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse": {
+      "description": "Response message for NotebookService.ListNotebookRuntimeTemplates.",
+      "id": "GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass to ListNotebookRuntimeTemplatesRequest.page_token to obtain that page.",
+          "type": "string"
+        },
+        "notebookRuntimeTemplates": {
+          "description": "List of NotebookRuntimeTemplates in the requested page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1NotebookRuntimeTemplate"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1ListNotebookRuntimesResponse": {
+      "description": "Response message for NotebookService.ListNotebookRuntimes.",
+      "id": "GoogleCloudAiplatformV1ListNotebookRuntimesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass to ListNotebookRuntimesRequest.page_token to obtain that page.",
+          "type": "string"
+        },
+        "notebookRuntimes": {
+          "description": "List of NotebookRuntimes in the requested page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1NotebookRuntime"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -19977,6 +20622,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1NetworkSpec": {
+      "description": "Network spec.",
+      "id": "GoogleCloudAiplatformV1NetworkSpec",
+      "properties": {
+        "enableInternetAccess": {
+          "description": "Whether to enable public internet access. Default false.",
+          "type": "boolean"
+        },
+        "network": {
+          "description": "The full name of the Google Compute Engine [network](https://cloud.google.com//compute/docs/networks-and-firewalls#networks)",
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "The name of the subnet that this instance is in. Format: `projects/{project_id_or_number}/regions/{region}/subnetworks/{subnetwork_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1NfsMount": {
       "description": "Represents a mount configuration for Network File System (NFS) to mount.",
       "id": "GoogleCloudAiplatformV1NfsMount",
@@ -19996,6 +20660,226 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1NotebookEucConfig": {
+      "description": "The euc configuration of NotebookRuntimeTemplate.",
+      "id": "GoogleCloudAiplatformV1NotebookEucConfig",
+      "properties": {
+        "bypassActasCheck": {
+          "description": "Output only. Whether ActAs check is bypassed for service account attached to the VM. If false, we need ActAs check for the default Compute Engine Service account. When a Runtime is created, a VM is allocated using Default Compute Engine Service Account. Any user requesting to use this Runtime requires Service Account User (ActAs) permission over this SA. If true, Runtime owner is using EUC and does not require the above permission as VM no longer use default Compute Engine SA, but a P4SA.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "eucDisabled": {
+          "description": "Input only. Whether EUC is disabled in this NotebookRuntimeTemplate. In proto3, the default value of a boolean is false. In this way, by default EUC will be enabled for NotebookRuntimeTemplate.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NotebookIdleShutdownConfig": {
+      "description": "The idle shutdown configuration of NotebookRuntimeTemplate, which contains the idle_timeout as required field.",
+      "id": "GoogleCloudAiplatformV1NotebookIdleShutdownConfig",
+      "properties": {
+        "idleShutdownDisabled": {
+          "description": "Whether Idle Shutdown is disabled in this NotebookRuntimeTemplate.",
+          "type": "boolean"
+        },
+        "idleTimeout": {
+          "description": "Required. Duration is accurate to the second. In Notebook, Idle Timeout is accurate to minute so the range of idle_timeout (second) is: 10 * 60 ~ 1440 * 60.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NotebookRuntime": {
+      "description": "A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime limited to 24 hours.",
+      "id": "GoogleCloudAiplatformV1NotebookRuntime",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this NotebookRuntime was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the NotebookRuntime.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the NotebookRuntime. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
+          "type": "string"
+        },
+        "expirationTime": {
+          "description": "Output only. Timestamp when this NotebookRuntime will be expired: 1. System Predefined NotebookRuntime: 24 hours after creation. After expiration, system predifined runtime will be deleted. 2. User created NotebookRuntime: 6 months after last upgrade. After expiration, user created runtime will be stopped and allowed for upgrade.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "healthState": {
+          "description": "Output only. The health state of the NotebookRuntime.",
+          "enum": [
+            "HEALTH_STATE_UNSPECIFIED",
+            "HEALTHY",
+            "UNHEALTHY"
+          ],
+          "enumDescriptions": [
+            "Unspecified health state.",
+            "NotebookRuntime is in healthy state. Applies to ACTIVE state.",
+            "NotebookRuntime is in unhealthy state. Applies to ACTIVE state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The labels with user-defined metadata to organize your NotebookRuntime. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one Dataset (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with \"aiplatform.googleapis.com/\" and are immutable. Following system labels exist for NotebookRuntime: * \"aiplatform.googleapis.com/notebook_runtime_gce_instance_id\": output only, its value is the Compute Engine instance id. * \"aiplatform.googleapis.com/colab_enterprise_entry_service\": its value is either \"BigQuery\" or \"Vertex\"; if absent, it should be \"Vertex\". This is to describe the entry service, either BigQuery or Vertex.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The resource name of the NotebookRuntime.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "notebookRuntimeTemplateRef": {
+          "$ref": "GoogleCloudAiplatformV1NotebookRuntimeTemplateRef",
+          "description": "Output only. The pointer to NotebookRuntimeTemplate this NotebookRuntime is created from.",
+          "readOnly": true
+        },
+        "proxyUri": {
+          "description": "Output only. The proxy endpoint used to access the NotebookRuntime.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "runtimeState": {
+          "description": "Output only. The runtime (instance) state of the NotebookRuntime.",
+          "enum": [
+            "RUNTIME_STATE_UNSPECIFIED",
+            "RUNNING",
+            "BEING_STARTED",
+            "BEING_STOPPED",
+            "STOPPED",
+            "BEING_UPGRADED"
+          ],
+          "enumDescriptions": [
+            "Unspecified runtime state.",
+            "NotebookRuntime is in running state.",
+            "NotebookRuntime is in starting state.",
+            "NotebookRuntime is in stopping state.",
+            "NotebookRuntime is in stopped state.",
+            "NotebookRuntime is in upgrading state. It is in the middle of upgrading process."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "runtimeUser": {
+          "description": "Required. The user email of the NotebookRuntime.",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Output only. The service account that the NotebookRuntime workload runs as.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this NotebookRuntime was most recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. The VM os image version of NotebookRuntime.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NotebookRuntimeTemplate": {
+      "description": "A template that specifies runtime configurations such as machine type, runtime version, network configurations, etc. Multiple runtimes can be created from a runtime template.",
+      "id": "GoogleCloudAiplatformV1NotebookRuntimeTemplate",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this NotebookRuntimeTemplate was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataPersistentDiskSpec": {
+          "$ref": "GoogleCloudAiplatformV1PersistentDiskSpec",
+          "description": "Optional. The specification of persistent disk attached to the runtime as data disk storage."
+        },
+        "description": {
+          "description": "The description of the NotebookRuntimeTemplate.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the NotebookRuntimeTemplate. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
+          "type": "string"
+        },
+        "eucConfig": {
+          "$ref": "GoogleCloudAiplatformV1NotebookEucConfig",
+          "description": "EUC configuration of the NotebookRuntimeTemplate."
+        },
+        "idleShutdownConfig": {
+          "$ref": "GoogleCloudAiplatformV1NotebookIdleShutdownConfig",
+          "description": "The idle shutdown configuration of NotebookRuntimeTemplate. This config will only be set when idle shutdown is enabled."
+        },
+        "isDefault": {
+          "description": "Output only. The default template to use if not specified.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The labels with user-defined metadata to organize the NotebookRuntimeTemplates. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.",
+          "type": "object"
+        },
+        "machineSpec": {
+          "$ref": "GoogleCloudAiplatformV1MachineSpec",
+          "description": "Optional. Immutable. The specification of a single machine for the template."
+        },
+        "name": {
+          "description": "Output only. The resource name of the NotebookRuntimeTemplate.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "networkSpec": {
+          "$ref": "GoogleCloudAiplatformV1NetworkSpec",
+          "description": "Optional. Network spec."
+        },
+        "serviceAccount": {
+          "description": "The service account that the runtime workload runs as. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this NotebookRuntimeTemplate was most recently updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1NotebookRuntimeTemplateRef": {
+      "description": "Points to a NotebookRuntimeTemplateRef.",
+      "id": "GoogleCloudAiplatformV1NotebookRuntimeTemplateRef",
+      "properties": {
+        "notebookRuntimeTemplate": {
+          "description": "Immutable. A resource name of the NotebookRuntimeTemplate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1PauseModelDeploymentMonitoringJobRequest": {
       "description": "Request message for JobService.PauseModelDeploymentMonitoringJob.",
       "id": "GoogleCloudAiplatformV1PauseModelDeploymentMonitoringJobRequest",
@@ -20006,6 +20890,22 @@
       "description": "Request message for ScheduleService.PauseSchedule.",
       "id": "GoogleCloudAiplatformV1PauseScheduleRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1PersistentDiskSpec": {
+      "description": "Represents the spec of persistent disk options.",
+      "id": "GoogleCloudAiplatformV1PersistentDiskSpec",
+      "properties": {
+        "diskSizeGb": {
+          "description": "Size in GB of the disk (default is 100GB).",
+          "format": "int64",
+          "type": "string"
+        },
+        "diskType": {
+          "description": "Type of the disk (default is \"pd-standard\"). Valid values: \"pd-ssd\" (Persistent Disk Solid State Drive) \"pd-standard\" (Persistent Disk Hard Disk Drive) \"pd-balanced\" (Balanced Persistent Disk) \"pd-extreme\" (Extreme Persistent Disk)",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1PipelineJob": {
@@ -21628,6 +22528,10 @@
       "description": "All parameters related to queuing and scheduling of custom jobs.",
       "id": "GoogleCloudAiplatformV1Scheduling",
       "properties": {
+        "disableRetries": {
+          "description": "Optional. Indicates if the job should retry for internal errors after the job starts running. If true, overrides `Scheduling.restart_job_on_worker_restart` to false.",
+          "type": "boolean"
+        },
         "restartJobOnWorkerRestart": {
           "description": "Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.",
           "type": "boolean"
@@ -25474,6 +26378,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1StartNotebookRuntimeOperationMetadata": {
+      "description": "Metadata information for NotebookService.StartNotebookRuntime.",
+      "id": "GoogleCloudAiplatformV1StartNotebookRuntimeOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
+          "description": "The operation generic information."
+        },
+        "progressMessage": {
+          "description": "A human-readable message that shows the intermediate progress details of NotebookRuntime.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1StartNotebookRuntimeRequest": {
+      "description": "Request message for NotebookService.StartNotebookRuntime.",
+      "id": "GoogleCloudAiplatformV1StartNotebookRuntimeRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1StopTrialRequest": {
       "description": "Request message for VizierService.StopTrial.",
       "id": "GoogleCloudAiplatformV1StopTrialRequest",
@@ -26020,6 +26945,13 @@
         "clientId": {
           "description": "Required. The identifier of the client that is requesting the suggestion. If multiple SuggestTrialsRequests have the same `client_id`, the service will return the identical suggested Trial if the Trial is pending, and provide a new Trial if the last suggested Trial was completed.",
           "type": "string"
+        },
+        "contexts": {
+          "description": "Optional. This allows you to specify the \"context\" for a Trial; a context is a slice (a subspace) of the search space. Typical uses for contexts: 1) You are using Vizier to tune a server for best performance, but there's a strong weekly cycle. The context specifies the day-of-week. This allows Tuesday to generalize from Wednesday without assuming that everything is identical. 2) Imagine you're optimizing some medical treatment for people. As they walk in the door, you know certain facts about them (e.g. sex, weight, height, blood-pressure). Put that information in the context, and Vizier will adapt its suggestions to the patient. 3) You want to do a fair A/B test efficiently. Specify the \"A\" and \"B\" conditions as contexts, and Vizier will generalize between \"A\" and \"B\" conditions. If they are similar, this will allow Vizier to converge to the optimum faster than if \"A\" and \"B\" were separate Studies. NOTE: You can also enter contexts as REQUESTED Trials, e.g. via the CreateTrial() RPC; that's the asynchronous option where you don't need a close association between contexts and suggestions. NOTE: All the Parameters you set in a context MUST be defined in the Study. NOTE: You must supply 0 or $suggestion_count contexts. If you don't supply any contexts, Vizier will make suggestions from the full search space specified in the StudySpec; if you supply a full set of context, each suggestion will match the corresponding context. NOTE: A Context with no features set matches anything, and allows suggestions from the full search space. NOTE: Contexts MUST lie within the search space specified in the StudySpec. It's an error if they don't. NOTE: Contexts preferentially match ACTIVE then REQUESTED trials before new suggestions are generated. NOTE: Generation of suggestions involves a match between a Context and (optionally) a REQUESTED trial; if that match is not fully specified, a suggestion will be geneated in the merged subspace.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1TrialContext"
+          },
+          "type": "array"
         },
         "suggestionCount": {
           "description": "Required. The number of suggestions requested. It must be positive.",
@@ -26824,6 +27756,24 @@
           "description": "Output only. URIs for accessing [interactive shells](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell) (one URI for each training node). Only available if this trial is part of a HyperparameterTuningJob and the job's trial_job_spec.enable_web_access field is `true`. The keys are names of each node used for the trial; for example, `workerpool0-0` for the primary node, `workerpool1-0` for the first node in the second worker pool, and `workerpool1-1` for the second node in the second worker pool. The values are the URIs for each node's interactive shell.",
           "readOnly": true,
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1TrialContext": {
+      "description": "Next ID: 3",
+      "id": "GoogleCloudAiplatformV1TrialContext",
+      "properties": {
+        "description": {
+          "description": "A human-readable field which can store a description of this context. This will become part of the resulting Trial's description field.",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "If/when a Trial is generated or selected from this Context, its Parameters will match any parameters specified here. (I.e. if this context specifies parameter name:'a' int_value:3, then a resulting Trial will have int_value:3 for its parameter named 'a'.) Note that we first attempt to match existing REQUESTED Trials with contexts, and if there are no matches, we generate suggestions in the subspace defined by the parameters specified here. NOTE: a Context without any Parameters matches the entire feasible search space.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1TrialParameter"
+          },
+          "type": "array"
         }
       },
       "type": "object"

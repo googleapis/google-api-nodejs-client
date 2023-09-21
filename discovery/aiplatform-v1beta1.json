@@ -18,6 +18,178 @@
   "description": "Train high-quality custom machine learning models with minimal machine learning expertise and effort.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/vertex-ai/",
+  "endpoints": [
+    {
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
+      "location": "asia-east1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "asia-east2",
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "asia-northeast1",
+      "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
+      "location": "asia-northeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "asia-northeast3"
+    },
+    {
+      "location": "asia-south1",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/"
+    },
+    {
+      "location": "asia-southeast1",
+      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "asia-southeast2",
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
+      "location": "australia-southeast1"
+    },
+    {
+      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/",
+      "location": "australia-southeast2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "location": "europe-north1",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
+      "location": "europe-southwest1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
+      "location": "europe-west2",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "europe-west3",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
+      "location": "europe-west4"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "europe-west6",
+      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "europe-west8",
+      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
+      "location": "europe-west9",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "me-west1",
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "location": "northamerica-northeast2",
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
+      "location": "southamerica-east1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
+      "location": "southamerica-west1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "us-central1",
+      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/"
+    },
+    {
+      "location": "us-central2",
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "us-east1",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
+      "location": "us-east4",
+      "description": "Locational Endpoint"
+    },
+    {
+      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
+      "location": "us-south1",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "us-west1",
+      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "us-west2",
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "location": "us-west3",
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "us-west4",
+      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -5171,12 +5343,12 @@
                           ],
                           "parameters": {
                             "featureId": {
-                              "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.",
+                              "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .",
                               "location": "query",
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                              "description": "Required. The resource name of the EntityType to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -5204,7 +5376,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the Features to be deleted. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`",
+                              "description": "Required. The name of the Features to be deleted. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+/features/[^/]+$",
                               "required": true,
@@ -5229,7 +5401,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the Feature resource. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                              "description": "Required. The name of the Feature resource. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+/features/[^/]+$",
                               "required": true,
@@ -5265,7 +5437,7 @@
                               "type": "integer"
                             },
                             "orderBy": {
-                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `feature_id` * `value_type` * `create_time` * `update_time`",
+                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `feature_id` * `value_type` (Not supported for FeatureRegistry Feature) * `create_time` * `update_time`",
                               "location": "query",
                               "type": "string"
                             },
@@ -5281,7 +5453,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the Location to list Features. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                              "description": "Required. The resource name of the Location to list Features. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -9936,6 +10108,66 @@
                 }
               }
             },
+            "notebookExecutionJobs": {
+              "methods": {
+                "generateAccessToken": {
+                  "description": "Internal only: Called from Compute Engine instance to obtain EUC for owner Anonymous access: authenticates caller using VM identity JWT. Design doc: go/colab-on-vertex-euc-dd",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs/{notebookExecutionJobsId}:generateAccessToken",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.notebookExecutionJobs.generateAccessToken",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NotebookRuntime resource. Format: `projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:generateAccessToken",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1GenerateAccessTokenRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "reportEvent": {
+                  "description": "",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/notebookExecutionJobs/{notebookExecutionJobsId}:reportEvent",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.notebookExecutionJobs.reportEvent",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the NotebookRuntime resource. Format: `projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:reportEvent",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ReportRuntimeEventRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "notebookRuntimeTemplates": {
               "methods": {
                 "create": {
@@ -10553,7 +10785,7 @@
                       "type": "string"
                     },
                     "persistentResourceId": {
-                      "description": "Required. The ID to use for the PersistentResource, which become the final component of the PersistentResource's resource name. The maximum length is 63 characters, and valid characters are /^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$/.",
+                      "description": "Required. The ID to use for the PersistentResource, which become the final component of the PersistentResource's resource name. The maximum length is 63 characters, and valid characters are `/^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$/`.",
                       "location": "query",
                       "type": "string"
                     }
@@ -10650,6 +10882,40 @@
                   "path": "v1beta1/{+parent}/persistentResources",
                   "response": {
                     "$ref": "GoogleCloudAiplatformV1beta1ListPersistentResourcesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a PersistentResource.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/persistentResources/{persistentResourcesId}",
+                  "httpMethod": "PATCH",
+                  "id": "aiplatform.projects.locations.persistentResources.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Resource name of a PersistentResource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/persistentResources/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Specify the fields to be overwritten in the PersistentResource by the update method.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1PersistentResource"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -10857,7 +11123,7 @@
                       "type": "string"
                     },
                     "pipelineJobId": {
-                      "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are /a-z-/.",
+                      "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.",
                       "location": "query",
                       "type": "string"
                     }
@@ -13011,7 +13277,7 @@
                           "type": "string"
                         },
                         "tensorboardExperimentId": {
-                          "description": "Required. The ID to use for the Tensorboard experiment, which becomes the final component of the Tensorboard experiment's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.",
+                          "description": "Required. The ID to use for the Tensorboard experiment, which becomes the final component of the Tensorboard experiment's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.",
                           "location": "query",
                           "type": "string"
                         }
@@ -13391,7 +13657,7 @@
                               "type": "string"
                             },
                             "tensorboardRunId": {
-                              "description": "Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.",
+                              "description": "Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.",
                               "location": "query",
                               "type": "string"
                             }
@@ -14749,7 +15015,7 @@
       }
     }
   },
-  "revision": "20230809",
+  "revision": "20230914",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -16249,7 +16515,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1CreateFeatureRequest": {
-      "description": "Request message for FeaturestoreService.CreateFeature and FeatureRegistryService.CreateFeature.",
+      "description": "Request message for FeaturestoreService.CreateFeature.",
       "id": "GoogleCloudAiplatformV1beta1CreateFeatureRequest",
       "properties": {
         "feature": {
@@ -16257,11 +16523,11 @@
           "description": "Required. The Feature to create."
         },
         "featureId": {
-          "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.",
+          "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .",
           "type": "string"
         },
         "parent": {
-          "description": "Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+          "description": "Required. The resource name of the EntityType to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
           "type": "string"
         }
       },
@@ -16350,7 +16616,7 @@
           "description": "Required. The PipelineJob to create."
         },
         "pipelineJobId": {
-          "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are /a-z-/.",
+          "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.",
           "type": "string"
         }
       },
@@ -16402,7 +16668,7 @@
           "description": "Required. The TensorboardRun to create."
         },
         "tensorboardRunId": {
-          "description": "Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.",
+          "description": "Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.",
           "type": "string"
         }
       },
@@ -17178,7 +17444,7 @@
           "readOnly": true
         },
         "reservedIpRanges": {
-          "description": "Optional. A list of reserved ip ranges under the VPC network that can be used for this DeployedIndex. If set, we will deploy the index within the provided ip ranges. Otherwise, the index might be deployed to any ip ranges under the provided VPC network. The value should be the name of the address (https://cloud.google.com/compute/docs/reference/rest/v1/addresses) Example: 'vertex-ai-ip-range'.",
+          "description": "Optional. A list of reserved ip ranges under the VPC network that can be used for this DeployedIndex. If set, we will deploy the index within the provided ip ranges. Otherwise, the index might be deployed to any ip ranges under the provided VPC network. The value should be the name of the address (https://cloud.google.com/compute/docs/reference/rest/v1/addresses) Example: ['vertex-ai-ip-range']. For more information about subnets and network IP ranges, please see https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.",
           "items": {
             "type": "string"
           },
@@ -17273,7 +17539,7 @@
           "description": "Explanation configuration for this DeployedModel. When deploying a Model using EndpointService.DeployModel, this value overrides the value of Model.explanation_spec. All fields of explanation_spec are optional in the request. If a field of explanation_spec is not populated, the value of the same field of Model.explanation_spec is inherited. If the corresponding Model.explanation_spec is not populated, all fields of the explanation_spec will be used for the explanation configuration."
         },
         "id": {
-          "description": "Immutable. The ID of the DeployedModel. If not provided upon deployment, Vertex AI will generate a value for this ID. This value should be 1-10 characters, and valid characters are /[0-9]/.",
+          "description": "Immutable. The ID of the DeployedModel. If not provided upon deployment, Vertex AI will generate a value for this ID. This value should be 1-10 characters, and valid characters are `/[0-9]/`.",
           "type": "string"
         },
         "model": {
@@ -18402,6 +18668,39 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ExportEndpointOperationMetadata": {
+      "description": "Details of EndpointService.ExportEndpoint operation.",
+      "id": "GoogleCloudAiplatformV1beta1ExportEndpointOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "The common part of the operation metadata."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ExportEndpointResponse": {
+      "description": "Response message of EndpointService.ExportEndpoint operation.",
+      "id": "GoogleCloudAiplatformV1beta1ExportEndpointResponse",
+      "properties": {
+        "outputInfo": {
+          "$ref": "GoogleCloudAiplatformV1beta1ExportEndpointResponseOutputInfo",
+          "description": "Information further describing the output of this Endpoint export."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ExportEndpointResponseOutputInfo": {
+      "description": "Describes the output of the ExportEndpoint.",
+      "id": "GoogleCloudAiplatformV1beta1ExportEndpointResponseOutputInfo",
+      "properties": {
+        "bigQueryDestination": {
+          "$ref": "GoogleCloudAiplatformV1beta1BigQueryDestination",
+          "description": "If the Endpoint is being exported to BigQuery this is the full path of the BigQuery ML model created."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ExportFeatureValuesOperationMetadata": {
       "description": "Details of operations that exports Features values.",
       "id": "GoogleCloudAiplatformV1beta1ExportFeatureValuesOperationMetadata",
@@ -18677,7 +18976,7 @@
           "type": "string"
         },
         "valueType": {
-          "description": "Required. Immutable. Type of Feature value.",
+          "description": "Immutable. Type of Feature value.",
           "enum": [
             "VALUE_TYPE_UNSPECIFIED",
             "BOOL",
@@ -18702,34 +19001,6 @@
             "Used for Feature that is a list of String.",
             "Used for Feature that is bytes."
           ],
-          "type": "string"
-        },
-        "versionCreateTime": {
-          "description": "Output only. Timestamp when this version was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "versionDescription": {
-          "description": "The description of this version.",
-          "type": "string"
-        },
-        "versionId": {
-          "description": "Output only. Immutable. The version ID of the feature. It is an auto-incrementing decimal number in string representation. A new version is committed when a new model version is created under an existing feature id.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "versionLabels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "The labels with user-defined metadata to organize your versions. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.",
-          "type": "object"
-        },
-        "versionUpdateTime": {
-          "description": "Output only. Timestamp when this version was most recently updated.",
-          "format": "google-datetime",
-          "readOnly": true,
           "type": "string"
         }
       },
@@ -19748,6 +20019,10 @@
           "description": "Required. The display name of the Index. The name can be up to 128 characters long and can consist of any UTF-8 characters.",
           "type": "string"
         },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EncryptionSpec",
+          "description": "Immutable. Customer-managed encryption key spec for an Index. If set, this Index and all sub-resources of this Index will be secured by this key."
+        },
         "etag": {
           "description": "Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
           "type": "string"
@@ -19766,7 +20041,7 @@
           ],
           "enumDescriptions": [
             "Should not be used.",
-            "BatchUpdate: user can call UpdateIndex with files on Cloud Storage of datapoints to update.",
+            "BatchUpdate: user can call UpdateIndex with files on Cloud Storage of Datapoints to update.",
             "StreamUpdate: user can call UpsertDatapoints/DeleteDatapoints to update the Index and the updates will be applied in corresponding DeployedIndexes in nearly real-time."
           ],
           "type": "string"
@@ -19821,7 +20096,7 @@
           "type": "array"
         },
         "restricts": {
-          "description": "Optional. List of Restrict of the datapoint, used to perform \"restricted searches\" where boolean rule are used to filter the subset of the database eligible for matching. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering",
+          "description": "Optional. List of Restrict of the datapoint, used to perform \"restricted searches\" where boolean rule are used to filter the subset of the database eligible for matching. This uses categorical tokens. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1IndexDatapointRestriction"
           },
@@ -19846,21 +20121,21 @@
       "id": "GoogleCloudAiplatformV1beta1IndexDatapointRestriction",
       "properties": {
         "allowList": {
-          "description": "The attributes to allow in this namespace. eg: 'red'",
+          "description": "The attributes to allow in this namespace. e.g.: 'red'",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "denyList": {
-          "description": "The attributes to deny in this namespace. eg: 'blue'",
+          "description": "The attributes to deny in this namespace. e.g.: 'blue'",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "namespace": {
-          "description": "The namespace of this restriction. eg: color.",
+          "description": "The namespace of this restriction. e.g.: color.",
           "type": "string"
         }
       },
@@ -19896,6 +20171,10 @@
           "deprecated": true,
           "description": "Optional. Deprecated: If true, expose the IndexEndpoint via private service connect. Only one of the fields, network or enable_private_service_connect, can be set.",
           "type": "boolean"
+        },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EncryptionSpec",
+          "description": "Immutable. Customer-managed encryption key spec for an IndexEndpoint. If set, this IndexEndpoint and all sub-resources of this IndexEndpoint will be secured by this key."
         },
         "etag": {
           "description": "Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
@@ -20321,7 +20600,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1ListFeaturesResponse": {
-      "description": "Response message for FeaturestoreService.ListFeatures. Response message for FeatureRegistryService.ListFeatures.",
+      "description": "Response message for FeaturestoreService.ListFeatures.",
       "id": "GoogleCloudAiplatformV1beta1ListFeaturesResponse",
       "properties": {
         "features": {
@@ -22979,6 +23258,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The labels with user-defined metadata to organize your NotebookRuntime. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one Dataset (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with \"aiplatform.googleapis.com/\" and are immutable. Following system labels exist for NotebookRuntime: * \"aiplatform.googleapis.com/notebook_runtime_gce_instance_id\": output only, its value is the Compute Engine instance id. * \"aiplatform.googleapis.com/colab_enterprise_entry_service\": its value is either \"BigQuery\" or \"Vertex\"; if absent, it should be \"Vertex\". This is to describe the entry service, either BigQuery or Vertex.",
+          "type": "object"
+        },
         "name": {
           "description": "Output only. The resource name of the NotebookRuntime.",
           "readOnly": true,
@@ -23027,6 +23313,11 @@
         "updateTime": {
           "description": "Output only. Timestamp when this NotebookRuntime was most recently updated.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "description": "Output only. The VM os image version of NotebookRuntime.",
           "readOnly": true,
           "type": "string"
         }
@@ -23081,7 +23372,7 @@
         },
         "machineSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1MachineSpec",
-          "description": "Required. Immutable. The specification of a single machine used by the prediction."
+          "description": "Optional. Immutable. The specification of a single machine for the template."
         },
         "name": {
           "description": "Output only. The resource name of the NotebookRuntimeTemplate.",
@@ -24370,14 +24661,20 @@
       "description": "Configuration information for the Ray cluster. For experimental launch, Ray cluster creation and Persistent cluster creation are 1:1 mapping: We will provision all the nodes within the Persistent cluster as Ray nodes.",
       "id": "GoogleCloudAiplatformV1beta1RaySpec",
       "properties": {
-        "headMachineSpec": {
-          "$ref": "GoogleCloudAiplatformV1beta1MachineSpec",
-          "deprecated": true,
-          "description": "Optional. Will use the machine from the first workerpool as the head node by default. For Ray-on-Vertex Experimental scope launch, we will only support one resource pool for Ray cluster and thus will not support head machine selection."
+        "headNodeResourcePoolId": {
+          "description": "Optional. This will be used to indicate which resource pool will serve as the Ray head node(the first node within that pool). Will use the machine from the first workerpool as the head node by default if this field is not set.",
+          "type": "string"
         },
         "imageUri": {
           "description": "Optional. Default image for user to choose a preferred ML framework(e.g. tensorflow or Pytorch) by choosing from Vertex prebuild images(https://cloud.google.com/vertex-ai/docs/training/pre-built-containers). Either this or the resource_pool_images is required. Use this field if you need all the resource pools to have the same Ray image, Otherwise, use the {@code resource_pool_images} field.",
           "type": "string"
+        },
+        "resourcePoolImages": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Required if image_uri is not set. A map of resource_pool_id to prebuild Ray image if user need to use different images for different head/worker pools. This map needs to cover all the resource pool ids. Example: { \"ray_head_node_pool\": \"head image\" \"ray_worker_node_pool1\": \"worker image\" \"ray_worker_node_pool2\": \"another worker image\" }",
+          "type": "object"
         }
       },
       "type": "object"
@@ -24732,6 +25029,11 @@
           "description": "Output only. URIs for user to connect to the Cluster. Example: { \"RAY_HEAD_NODE_INTERNAL_IP\": \"head-node-IP:10001\" \"RAY_DASHBOARD_URI\": \"ray-dashboard-address:8888\" }",
           "readOnly": true,
           "type": "object"
+        },
+        "notebookRuntimeTemplate": {
+          "description": "Output only. The resource name of NotebookRuntimeTemplate for the RoV Persistent Cluster The NotebokRuntimeTemplate is created in the same VPC (if set), and with the same Ray and Python version as the Persistent Cluster. Example: \"projects/1000/locations/us-central1/notebookRuntimeTemplates/abc123\"",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -25054,6 +25356,10 @@
       "description": "All parameters related to queuing and scheduling of custom jobs.",
       "id": "GoogleCloudAiplatformV1beta1Scheduling",
       "properties": {
+        "disableRetries": {
+          "description": "Optional. Indicates if the job should retry for internal errors after the job starts running. If true, overrides `Scheduling.restart_job_on_worker_restart` to false.",
+          "type": "boolean"
+        },
         "restartJobOnWorkerRestart": {
           "description": "Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.",
           "type": "boolean"
@@ -29503,6 +29809,13 @@
           "description": "Required. The identifier of the client that is requesting the suggestion. If multiple SuggestTrialsRequests have the same `client_id`, the service will return the identical suggested Trial if the Trial is pending, and provide a new Trial if the last suggested Trial was completed.",
           "type": "string"
         },
+        "contexts": {
+          "description": "Optional. This allows you to specify the \"context\" for a Trial; a context is a slice (a subspace) of the search space. Typical uses for contexts: 1) You are using Vizier to tune a server for best performance, but there's a strong weekly cycle. The context specifies the day-of-week. This allows Tuesday to generalize from Wednesday without assuming that everything is identical. 2) Imagine you're optimizing some medical treatment for people. As they walk in the door, you know certain facts about them (e.g. sex, weight, height, blood-pressure). Put that information in the context, and Vizier will adapt its suggestions to the patient. 3) You want to do a fair A/B test efficiently. Specify the \"A\" and \"B\" conditions as contexts, and Vizier will generalize between \"A\" and \"B\" conditions. If they are similar, this will allow Vizier to converge to the optimum faster than if \"A\" and \"B\" were separate Studies. NOTE: You can also enter contexts as REQUESTED Trials, e.g. via the CreateTrial() RPC; that's the asynchronous option where you don't need a close association between contexts and suggestions. NOTE: All the Parameters you set in a context MUST be defined in the Study. NOTE: You must supply 0 or $suggestion_count contexts. If you don't supply any contexts, Vizier will make suggestions from the full search space specified in the StudySpec; if you supply a full set of context, each suggestion will match the corresponding context. NOTE: A Context with no features set matches anything, and allows suggestions from the full search space. NOTE: Contexts MUST lie within the search space specified in the StudySpec. It's an error if they don't. NOTE: Contexts preferentially match ACTIVE then REQUESTED trials before new suggestions are generated. NOTE: Generation of suggestions involves a match between a Context and (optionally) a REQUESTED trial; if that match is not fully specified, a suggestion will be geneated in the merged subspace.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1TrialContext"
+          },
+          "type": "array"
+        },
         "suggestionCount": {
           "description": "Required. The number of suggestions requested. It must be positive.",
           "format": "int32",
@@ -30310,6 +30623,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1TrialContext": {
+      "description": "Next ID: 3",
+      "id": "GoogleCloudAiplatformV1beta1TrialContext",
+      "properties": {
+        "description": {
+          "description": "A human-readable field which can store a description of this context. This will become part of the resulting Trial's description field.",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "If/when a Trial is generated or selected from this Context, its Parameters will match any parameters specified here. (I.e. if this context specifies parameter name:'a' int_value:3, then a resulting Trial will have int_value:3 for its parameter named 'a'.) Note that we first attempt to match existing REQUESTED Trials with contexts, and if there are no matches, we generate suggestions in the subspace defined by the parameters specified here. NOTE: a Context without any Parameters matches the entire feasible search space.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1TrialParameter"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1TrialParameter": {
       "description": "A message representing a parameter to be tuned.",
       "id": "GoogleCloudAiplatformV1beta1TrialParameter",
@@ -30493,6 +30824,17 @@
         "genericMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
           "description": "The operation generic information."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1UpdatePersistentResourceOperationMetadata": {
+      "description": "Details of operations that perform update PersistentResource.",
+      "id": "GoogleCloudAiplatformV1beta1UpdatePersistentResourceOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Operation metadata for PersistentResource."
         }
       },
       "type": "object"
