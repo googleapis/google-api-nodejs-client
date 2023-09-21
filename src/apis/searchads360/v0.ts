@@ -127,6 +127,31 @@ export namespace searchads360_v0 {
   }
 
   /**
+   * Represents an AdSchedule criterion. AdSchedule is specified as the day of the week and a time interval within which ads will be shown. No more than six AdSchedules can be added for the same day.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__AdScheduleInfo {
+    /**
+     * Day of the week the schedule applies to. This field is required for CREATE operations and is prohibited on UPDATE operations.
+     */
+    dayOfWeek?: string | null;
+    /**
+     * Ending hour in 24 hour time; 24 signifies end of the day. This field must be between 0 and 24, inclusive. This field is required for CREATE operations and is prohibited on UPDATE operations.
+     */
+    endHour?: number | null;
+    /**
+     * Minutes after the end hour at which this schedule ends. The schedule is exclusive of the end minute. This field is required for CREATE operations and is prohibited on UPDATE operations.
+     */
+    endMinute?: string | null;
+    /**
+     * Starting hour in 24 hour time. This field must be between 0 and 23, inclusive. This field is required for CREATE operations and is prohibited on UPDATE operations.
+     */
+    startHour?: number | null;
+    /**
+     * Minutes after the start hour at which this schedule starts. This field is required for CREATE operations and is prohibited on UPDATE operations.
+     */
+    startMinute?: string | null;
+  }
+  /**
    * An age range criterion.
    */
   export interface Schema$GoogleAdsSearchads360V0Common__AgeRangeInfo {
@@ -134,6 +159,36 @@ export namespace searchads360_v0 {
      * Type of the age range.
      */
     type?: string | null;
+  }
+  /**
+   * An AssetInteractionTarget segment.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__AssetInteractionTarget {
+    /**
+     * The asset resource name.
+     */
+    asset?: string | null;
+    /**
+     * Only used with CustomerAsset, CampaignAsset and AdGroupAsset metrics. Indicates whether the interaction metrics occurred on the asset itself or a different asset or ad unit.
+     */
+    interactionOnThisAsset?: boolean | null;
+  }
+  /**
+   * Business Profile location data synced from the linked Business Profile account.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__BusinessProfileLocation {
+    /**
+     * Advertiser specified label for the location on the Business Profile account. This is synced from the Business Profile account.
+     */
+    labels?: string[] | null;
+    /**
+     * Listing ID of this Business Profile location. This is synced from the linked Business Profile account.
+     */
+    listingId?: string | null;
+    /**
+     * Business Profile store code of this location. This is synced from the Business Profile account.
+     */
+    storeCode?: string | null;
   }
   /**
    * A mapping that can be used by custom parameter tags in a `tracking_url_template`, `final_urls`, or `mobile_final_urls`.
@@ -368,11 +423,11 @@ export namespace searchads360_v0 {
      */
     averageCost?: number | null;
     /**
-     * The total cost of all clicks divided by the total number of clicks received.
+     * The total cost of all clicks divided by the total number of clicks received. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
      */
     averageCpc?: number | null;
     /**
-     * Average cost-per-thousand impressions (CPM).
+     * Average cost-per-thousand impressions (CPM). This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
      */
     averageCpm?: number | null;
     /**
@@ -432,7 +487,7 @@ export namespace searchads360_v0 {
      */
     conversionsValuePerCost?: number | null;
     /**
-     * The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period.
+     * The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
      */
     costMicros?: string | null;
     /**
@@ -720,6 +775,10 @@ export namespace searchads360_v0 {
      */
     adNetworkType?: string | null;
     /**
+     * Only used with CustomerAsset, CampaignAsset and AdGroupAsset metrics. Indicates whether the interaction metrics occurred on the asset itself or a different asset or ad unit. Interactions (for example, clicks) are counted across all the parts of the served ad (for example, Ad itself and other components like Sitelinks) when they are served together. When interaction_on_this_asset is true, it means the interactions are on this specific asset and when interaction_on_this_asset is false, it means the interactions is not on this specific asset but on other parts of the served ad this asset is served with.
+     */
+    assetInteractionTarget?: Schema$GoogleAdsSearchads360V0Common__AssetInteractionTarget;
+    /**
      * Resource name of the conversion action.
      */
     conversionAction?: string | null;
@@ -877,6 +936,147 @@ export namespace searchads360_v0 {
     description?: string | null;
   }
   /**
+   * A unified call asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__UnifiedCallAsset {
+    /**
+     * List of non-overlapping schedules specifying all time intervals for which the asset may serve. There can be a maximum of 6 schedules per day, 42 in total.
+     */
+    adScheduleTargets?: Schema$GoogleAdsSearchads360V0Common__AdScheduleInfo[];
+    /**
+     * The conversion action to attribute a call conversion to. If not set, the default conversion action is used. This field only has effect if call_conversion_reporting_state is set to USE_RESOURCE_LEVEL_CALL_CONVERSION_ACTION.
+     */
+    callConversionAction?: string | null;
+    /**
+     * Output only. Indicates whether this CallAsset should use its own call conversion setting, follow the account level setting, or disable call conversion.
+     */
+    callConversionReportingState?: string | null;
+    /**
+     * Whether the call only shows the phone number without a link to the website. Applies to Microsoft Ads.
+     */
+    callOnly?: boolean | null;
+    /**
+     * Whether the call should be enabled on call tracking. Applies to Microsoft Ads.
+     */
+    callTrackingEnabled?: boolean | null;
+    /**
+     * Two-letter country code of the phone number. Examples: 'US', 'us'.
+     */
+    countryCode?: string | null;
+    /**
+     * Last date of when this asset is effective and still serving, in yyyy-MM-dd format.
+     */
+    endDate?: string | null;
+    /**
+     * The advertiser's raw phone number. Examples: '1234567890', '(123)456-7890'
+     */
+    phoneNumber?: string | null;
+    /**
+     * Start date of when this asset is effective and can begin serving, in yyyy-MM-dd format.
+     */
+    startDate?: string | null;
+    /**
+     * Whether to show the call extension in search user's time zone. Applies to Microsoft Ads.
+     */
+    useSearcherTimeZone?: boolean | null;
+  }
+  /**
+   * A unified callout asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__UnifiedCalloutAsset {
+    /**
+     * List of non-overlapping schedules specifying all time intervals for which the asset may serve. There can be a maximum of 6 schedules per day, 42 in total.
+     */
+    adScheduleTargets?: Schema$GoogleAdsSearchads360V0Common__AdScheduleInfo[];
+    /**
+     * The callout text. The length of this string should be between 1 and 25, inclusive.
+     */
+    calloutText?: string | null;
+    /**
+     * Last date of when this asset is effective and still serving, in yyyy-MM-dd format.
+     */
+    endDate?: string | null;
+    /**
+     * Start date of when this asset is effective and can begin serving, in yyyy-MM-dd format.
+     */
+    startDate?: string | null;
+    /**
+     * Whether to show the asset in search user's time zone. Applies to Microsoft Ads.
+     */
+    useSearcherTimeZone?: boolean | null;
+  }
+  /**
+   * A unified location asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__UnifiedLocationAsset {
+    /**
+     * The list of business locations for the customer. This will only be returned if the Location Asset is syncing from the Business Profile account. It is possible to have multiple Business Profile listings under the same account that point to the same Place ID.
+     */
+    businessProfileLocations?: Schema$GoogleAdsSearchads360V0Common__BusinessProfileLocation[];
+    /**
+     * The type of location ownership. If the type is BUSINESS_OWNER, it will be served as a location extension. If the type is AFFILIATE, it will be served as an affiliate location.
+     */
+    locationOwnershipType?: string | null;
+    /**
+     * Place IDs uniquely identify a place in the Google Places database and on Google Maps. This field is unique for a given customer ID and asset type. See https://developers.google.com/places/web-service/place-id to learn more about Place ID.
+     */
+    placeId?: string | null;
+  }
+  /**
+   * A Unified Page Feed asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__UnifiedPageFeedAsset {
+    /**
+     * Labels used to group the page urls.
+     */
+    labels?: string[] | null;
+    /**
+     * The webpage that advertisers want to target.
+     */
+    pageUrl?: string | null;
+  }
+  /**
+   * A unified sitelink asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__UnifiedSitelinkAsset {
+    /**
+     * List of non-overlapping schedules specifying all time intervals for which the asset may serve. There can be a maximum of 6 schedules per day, 42 in total.
+     */
+    adScheduleTargets?: Schema$GoogleAdsSearchads360V0Common__AdScheduleInfo[];
+    /**
+     * First line of the description for the sitelink. If set, the length should be between 1 and 35, inclusive, and description2 must also be set.
+     */
+    description1?: string | null;
+    /**
+     * Second line of the description for the sitelink. If set, the length should be between 1 and 35, inclusive, and description1 must also be set.
+     */
+    description2?: string | null;
+    /**
+     * Last date of when this asset is effective and still serving, in yyyy-MM-dd format.
+     */
+    endDate?: string | null;
+    /**
+     * URL display text for the sitelink. The length of this string should be between 1 and 25, inclusive.
+     */
+    linkText?: string | null;
+    /**
+     * Whether the preference is for the sitelink asset to be displayed on mobile devices. Applies to Microsoft Ads.
+     */
+    mobilePreferred?: boolean | null;
+    /**
+     * Start date of when this asset is effective and can begin serving, in yyyy-MM-dd format.
+     */
+    startDate?: string | null;
+    /**
+     * ID used for tracking clicks for the sitelink asset. This is a Yahoo! Japan only field.
+     */
+    trackingId?: string | null;
+    /**
+     * Whether to show the sitelink asset in search user's time zone. Applies to Microsoft Ads.
+     */
+    useSearcherTimeZone?: boolean | null;
+  }
+  /**
    * A User List criterion. Represents a user list that is defined by the advertiser to be targeted.
    */
   export interface Schema$GoogleAdsSearchads360V0Common__UserListInfo {
@@ -994,6 +1194,10 @@ export namespace searchads360_v0 {
      */
     internalError?: string | null;
     /**
+     * The reasons for invalid parameter errors.
+     */
+    invalidParameterError?: string | null;
+    /**
      * An error with the query
      */
     queryError?: string | null;
@@ -1088,6 +1292,15 @@ export namespace searchads360_v0 {
     requestId?: string | null;
   }
   /**
+   * Estimates for criterion bids at various positions.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates {
+    /**
+     * Output only. The estimate of the CPC bid required for ad to be displayed at the top of the first page of search results.
+     */
+    topOfPageCpcMicros?: string | null;
+  }
+  /**
    * A container for ad group criterion quality information.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources_AdGroupCriterion_QualityInfo {
@@ -1157,7 +1370,7 @@ export namespace searchads360_v0 {
     optimizationGoalTypes?: string[] | null;
   }
   /**
-   * Selective optimization setting for this campaign, which includes a set of conversion actions to optimize this campaign towards.
+   * Selective optimization setting for this campaign, which includes a set of conversion actions to optimize this campaign towards. This feature only applies to app campaigns that use MULTI_CHANNEL as AdvertisingChannelType and APP_CAMPAIGN or APP_CAMPAIGN_FOR_ENGAGEMENT as AdvertisingChannelSubType.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization {
     /**
@@ -1423,6 +1636,48 @@ export namespace searchads360_v0 {
     resourceName?: string | null;
   }
   /**
+   * A link between an ad group and an asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupAsset {
+    /**
+     * Required. Immutable. The ad group to which the asset is linked.
+     */
+    adGroup?: string | null;
+    /**
+     * Required. Immutable. The asset which is linked to the ad group.
+     */
+    asset?: string | null;
+    /**
+     * Immutable. The resource name of the ad group asset. AdGroupAsset resource names have the form: `customers/{customer_id\}/adGroupAssets/{ad_group_id\}~{asset_id\}~{field_type\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Status of the ad group asset.
+     */
+    status?: string | null;
+  }
+  /**
+   * AdGroupAssetSet is the linkage between an ad group and an asset set. Creating an AdGroupAssetSet links an asset set with an ad group.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupAssetSet {
+    /**
+     * Immutable. The ad group to which this asset set is linked.
+     */
+    adGroup?: string | null;
+    /**
+     * Immutable. The asset set which is linked to the ad group.
+     */
+    assetSet?: string | null;
+    /**
+     * Immutable. The resource name of the ad group asset set. Ad group asset set resource names have the form: `customers/{customer_id\}/adGroupAssetSets/{ad_group_id\}~{asset_set_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. The status of the ad group asset set. Read-only.
+     */
+    status?: string | null;
+  }
+  /**
    * An ad group audience view. Includes performance data from interests and remarketing lists for Display Network and YouTube Network ads, and remarketing lists for search ads (RLSA), aggregated at the audience level.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupAudienceView {
@@ -1517,13 +1772,17 @@ export namespace searchads360_v0 {
      */
     listingGroup?: Schema$GoogleAdsSearchads360V0Common__ListingGroupInfo;
     /**
-     * Output only. Location.
+     * Immutable. Location.
      */
     location?: Schema$GoogleAdsSearchads360V0Common__LocationInfo;
     /**
      * Immutable. Whether to target (`false`) or exclude (`true`) the criterion. This field is immutable. To switch a criterion from positive to negative, remove then re-add it.
      */
     negative?: boolean | null;
+    /**
+     * Output only. Estimates for criterion bids at various positions.
+     */
+    positionEstimates?: Schema$GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates;
     /**
      * Output only. Information regarding the quality of the criterion.
      */
@@ -1601,6 +1860,14 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__Asset {
     /**
+     * Output only. A unified call asset.
+     */
+    callAsset?: Schema$GoogleAdsSearchads360V0Common__UnifiedCallAsset;
+    /**
+     * Output only. A unified callout asset.
+     */
+    calloutAsset?: Schema$GoogleAdsSearchads360V0Common__UnifiedCalloutAsset;
+    /**
      * Output only. The timestamp when this asset was created. The timestamp is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss" format.
      */
     creationTime?: string | null;
@@ -1621,13 +1888,25 @@ export namespace searchads360_v0 {
      */
     lastModifiedTime?: string | null;
     /**
+     * Output only. A unified location asset.
+     */
+    locationAsset?: Schema$GoogleAdsSearchads360V0Common__UnifiedLocationAsset;
+    /**
      * A mobile app asset.
      */
     mobileAppAsset?: Schema$GoogleAdsSearchads360V0Common__MobileAppAsset;
     /**
+     * Output only. A unified page feed asset.
+     */
+    pageFeedAsset?: Schema$GoogleAdsSearchads360V0Common__UnifiedPageFeedAsset;
+    /**
      * Immutable. The resource name of the asset. Asset resource names have the form: `customers/{customer_id\}/assets/{asset_id\}`
      */
     resourceName?: string | null;
+    /**
+     * Output only. A unified sitelink asset.
+     */
+    sitelinkAsset?: Schema$GoogleAdsSearchads360V0Common__UnifiedSitelinkAsset;
     /**
      * Output only. The status of the asset.
      */
@@ -1653,6 +1932,27 @@ export namespace searchads360_v0 {
      * Immutable. The resource name of the asset set. Asset set resource names have the form: `customers/{customer_id\}/assetSets/{asset_set_id\}`
      */
     resourceName?: string | null;
+  }
+  /**
+   * AssetSetAsset is the link between an asset and an asset set. Adding an AssetSetAsset links an asset with an asset set.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AssetSetAsset {
+    /**
+     * Immutable. The asset which this asset set asset is linking to.
+     */
+    asset?: string | null;
+    /**
+     * Immutable. The asset set which this asset set asset is linking to.
+     */
+    assetSet?: string | null;
+    /**
+     * Immutable. The resource name of the asset set asset. Asset set asset resource names have the form: `customers/{customer_id\}/assetSetAssets/{asset_set_id\}~{asset_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. The status of the asset set asset. Read-only.
+     */
+    status?: string | null;
   }
   /**
    * A bidding strategy.
@@ -1852,7 +2152,7 @@ export namespace searchads360_v0 {
      */
     resourceName?: string | null;
     /**
-     * Selective optimization setting for this campaign, which includes a set of conversion actions to optimize this campaign towards.
+     * Selective optimization setting for this campaign, which includes a set of conversion actions to optimize this campaign towards. This feature only applies to app campaigns that use MULTI_CHANNEL as AdvertisingChannelType and APP_CAMPAIGN or APP_CAMPAIGN_FOR_ENGAGEMENT as AdvertisingChannelSubType.
      */
     selectiveOptimization?: Schema$GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization;
     /**
@@ -1907,6 +2207,48 @@ export namespace searchads360_v0 {
      * Represents opting out of URL expansion to more targeted URLs. If opted out (true), only the final URLs in the asset group or URLs specified in the advertiser's Google Merchant Center or business data feeds are targeted. If opted in (false), the entire domain will be targeted. This field can only be set for Performance Max campaigns, where the default value is false.
      */
     urlExpansionOptOut?: boolean | null;
+  }
+  /**
+   * A link between a Campaign and an Asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__CampaignAsset {
+    /**
+     * Immutable. The asset which is linked to the campaign.
+     */
+    asset?: string | null;
+    /**
+     * Immutable. The campaign to which the asset is linked.
+     */
+    campaign?: string | null;
+    /**
+     * Immutable. The resource name of the campaign asset. CampaignAsset resource names have the form: `customers/{customer_id\}/campaignAssets/{campaign_id\}~{asset_id\}~{field_type\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. Status of the campaign asset.
+     */
+    status?: string | null;
+  }
+  /**
+   * CampaignAssetSet is the linkage between a campaign and an asset set. Adding a CampaignAssetSet links an asset set with a campaign.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__CampaignAssetSet {
+    /**
+     * Immutable. The asset set which is linked to the campaign.
+     */
+    assetSet?: string | null;
+    /**
+     * Immutable. The campaign to which this asset set is linked.
+     */
+    campaign?: string | null;
+    /**
+     * Immutable. The resource name of the campaign asset set. Asset set asset resource names have the form: `customers/{customer_id\}/campaignAssetSets/{campaign_id\}~{asset_set_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. The status of the campaign asset set asset. Read-only.
+     */
+    status?: string | null;
   }
   /**
    * A campaign audience view. Includes performance data from interests and remarketing lists for Display Network and YouTube Network ads, and remarketing lists for search ads (RLSA), aggregated by campaign and audience criterion. This view only includes audiences attached at the campaign level.
@@ -2245,6 +2587,44 @@ export namespace searchads360_v0 {
     trackingUrlTemplate?: string | null;
   }
   /**
+   * A link between a customer and an asset.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__CustomerAsset {
+    /**
+     * Required. Immutable. The asset which is linked to the customer.
+     */
+    asset?: string | null;
+    /**
+     * Immutable. The resource name of the customer asset. CustomerAsset resource names have the form: `customers/{customer_id\}/customerAssets/{asset_id\}~{field_type\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Status of the customer asset.
+     */
+    status?: string | null;
+  }
+  /**
+   * CustomerAssetSet is the linkage between a customer and an asset set. Adding a CustomerAssetSet links an asset set with a customer.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__CustomerAssetSet {
+    /**
+     * Immutable. The asset set which is linked to the customer.
+     */
+    assetSet?: string | null;
+    /**
+     * Immutable. The customer to which this asset set is linked.
+     */
+    customer?: string | null;
+    /**
+     * Immutable. The resource name of the customer asset set. Asset set asset resource names have the form: `customers/{customer_id\}/customerAssetSets/{asset_set_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. The status of the customer asset set asset. Read-only.
+     */
+    status?: string | null;
+  }
+  /**
    * A link between the given customer and a client customer. CustomerClients only exist for manager customers. All direct and indirect client customers are included, as well as the manager itself.
    */
   export interface Schema$GoogleAdsSearchads360V0Resources__CustomerClient {
@@ -2356,6 +2736,43 @@ export namespace searchads360_v0 {
      * Output only. The resource name of the gender view. Gender view resource names have the form: `customers/{customer_id\}/genderViews/{ad_group_id\}~{criterion_id\}`
      */
     resourceName?: string | null;
+  }
+  /**
+   * A geo target constant.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__GeoTargetConstant {
+    /**
+     * Output only. The fully qualified English name, consisting of the target's name and that of its parent and country.
+     */
+    canonicalName?: string | null;
+    /**
+     * Output only. The ISO-3166-1 alpha-2 country code that is associated with the target.
+     */
+    countryCode?: string | null;
+    /**
+     * Output only. The ID of the geo target constant.
+     */
+    id?: string | null;
+    /**
+     * Output only. Geo target constant English name.
+     */
+    name?: string | null;
+    /**
+     * Output only. The resource name of the parent geo target constant. Geo target constant resource names have the form: `geoTargetConstants/{parent_geo_target_constant_id\}`
+     */
+    parentGeoTarget?: string | null;
+    /**
+     * Output only. The resource name of the geo target constant. Geo target constant resource names have the form: `geoTargetConstants/{geo_target_constant_id\}`
+     */
+    resourceName?: string | null;
+    /**
+     * Output only. Geo target constant status.
+     */
+    status?: string | null;
+    /**
+     * Output only. Geo target constant target type.
+     */
+    targetType?: string | null;
   }
   /**
    * A keyword view.
@@ -2552,6 +2969,14 @@ export namespace searchads360_v0 {
      */
     adGroupAdLabel?: Schema$GoogleAdsSearchads360V0Resources__AdGroupAdLabel;
     /**
+     * The ad group asset referenced in the query.
+     */
+    adGroupAsset?: Schema$GoogleAdsSearchads360V0Resources__AdGroupAsset;
+    /**
+     * The ad group asset set referenced in the query.
+     */
+    adGroupAssetSet?: Schema$GoogleAdsSearchads360V0Resources__AdGroupAssetSet;
+    /**
      * The ad group audience view referenced in the query.
      */
     adGroupAudienceView?: Schema$GoogleAdsSearchads360V0Resources__AdGroupAudienceView;
@@ -2584,6 +3009,10 @@ export namespace searchads360_v0 {
      */
     assetSet?: Schema$GoogleAdsSearchads360V0Resources__AssetSet;
     /**
+     * The asset set asset referenced in the query.
+     */
+    assetSetAsset?: Schema$GoogleAdsSearchads360V0Resources__AssetSetAsset;
+    /**
      * The bidding strategy referenced in the query.
      */
     biddingStrategy?: Schema$GoogleAdsSearchads360V0Resources__BiddingStrategy;
@@ -2591,6 +3020,14 @@ export namespace searchads360_v0 {
      * The campaign referenced in the query.
      */
     campaign?: Schema$GoogleAdsSearchads360V0Resources__Campaign;
+    /**
+     * The campaign asset referenced in the query.
+     */
+    campaignAsset?: Schema$GoogleAdsSearchads360V0Resources__CampaignAsset;
+    /**
+     * The campaign asset set referenced in the query.
+     */
+    campaignAssetSet?: Schema$GoogleAdsSearchads360V0Resources__CampaignAssetSet;
     /**
      * The campaign audience view referenced in the query.
      */
@@ -2620,6 +3057,14 @@ export namespace searchads360_v0 {
      */
     customer?: Schema$GoogleAdsSearchads360V0Resources__Customer;
     /**
+     * The customer asset referenced in the query.
+     */
+    customerAsset?: Schema$GoogleAdsSearchads360V0Resources__CustomerAsset;
+    /**
+     * The customer asset set referenced in the query.
+     */
+    customerAssetSet?: Schema$GoogleAdsSearchads360V0Resources__CustomerAssetSet;
+    /**
      * The CustomerClient referenced in the query.
      */
     customerClient?: Schema$GoogleAdsSearchads360V0Resources__CustomerClient;
@@ -2635,6 +3080,10 @@ export namespace searchads360_v0 {
      * The gender view referenced in the query.
      */
     genderView?: Schema$GoogleAdsSearchads360V0Resources__GenderView;
+    /**
+     * The geo target constant referenced in the query.
+     */
+    geoTargetConstant?: Schema$GoogleAdsSearchads360V0Resources__GeoTargetConstant;
     /**
      * The keyword view referenced in the query.
      */
