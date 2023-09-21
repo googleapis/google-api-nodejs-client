@@ -1307,7 +1307,7 @@
       }
     }
   },
-  "revision": "20230808",
+  "revision": "20230920",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -2042,7 +2042,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the finalized deal. Format: `buyers/{accountId}/finalizeddeals/{finalizedDealId}`",
+          "description": "The resource name of the finalized deal. Format: `buyers/{accountId}/finalizedDeals/{finalizedDealId}`",
           "type": "string"
         },
         "readyToServe": {
