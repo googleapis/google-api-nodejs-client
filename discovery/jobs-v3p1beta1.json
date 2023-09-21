@@ -682,7 +682,7 @@
       }
     }
   },
-  "revision": "20230705",
+  "revision": "20230919",
   "rootUrl": "https://jobs.googleapis.com/",
   "schemas": {
     "ApplicationInfo": {
@@ -898,6 +898,7 @@
           "type": "string"
         },
         "keywordSearchableJobCustomAttributes": {
+          "deprecated": true,
           "description": "Optional. This field is deprecated. Please set the searchability of the custom attribute in the Job.custom_attributes going forward. A list of keys of filterable Job.custom_attributes, whose corresponding `string_values` are used in keyword search. Jobs with `string_values` under these specified field keys are returned if any of the values matches the search keyword. Custom field values with parenthesis, brackets and special symbols won't be properly searchable, and those keyword queries need to be surrounded by quotes.",
           "items": {
             "type": "string"
@@ -1829,6 +1830,7 @@
           "type": "string"
         },
         "visibility": {
+          "deprecated": true,
           "description": "Deprecated. The job is only visible to the owner. The visibility of the job. Defaults to Visibility.ACCOUNT_ONLY if not specified.",
           "enum": [
             "VISIBILITY_UNSPECIFIED",
@@ -2306,6 +2308,12 @@
             "TELECOMMUTE_ALLOWED",
             "TELECOMMUTE_JOBS_EXCLUDED"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Default value if the telecommute preference is not specified.",
             "Deprecated: Ignore telecommute status of jobs. Use TELECOMMUTE_JOBS_EXCLUDED if want to exclude telecommute jobs.",
@@ -2564,7 +2572,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -2773,6 +2781,7 @@
           "description": "Required. The meta information collected about the job searcher, used to improve the search quality of the service. The identifiers (such as `user_id`) are provided by users, and must be unique and consistent."
         },
         "requirePreciseResultSize": {
+          "deprecated": true,
           "description": "This field is deprecated.",
           "type": "boolean"
         },
