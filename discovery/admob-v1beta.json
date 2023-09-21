@@ -202,12 +202,115 @@
               "response": {
                 "$ref": "ListAdSourcesResponse"
               },
+              "scopes": [
+                "https://www.googleapis.com/auth/admob.readonly",
+                "https://www.googleapis.com/auth/admob.report"
+              ],
+              "streamingType": "NONE"
+            }
+          },
+          "resources": {
+            "adapters": {
+              "methods": {
+                "list": {
+                  "description": "List the adapters of the ad source.",
+                  "flatPath": "v1beta/accounts/{accountsId}/adSources/{adSourcesId}/adapters",
+                  "httpMethod": "GET",
+                  "id": "admob.accounts.adSources.adapters.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of adapters to return. If unspecified or 0, at most 10,000 adapters will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListAdapters` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent which owns this collection of adapters. Format: accounts/{publisher_id}/adSources/{ad_source_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/adSources/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/adapters",
+                  "response": {
+                    "$ref": "ListAdaptersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admob.readonly"
+                  ],
+                  "streamingType": "NONE"
+                }
+              }
+            }
+          }
+        },
+        "adUnitMappings": {
+          "methods": {
+            "batchCreate": {
+              "description": "Batch create the ad unit mappings under the specific AdMob account. The maximum allowed batch size is 100. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+              "flatPath": "v1beta/accounts/{accountsId}/adUnitMappings:batchCreate",
+              "httpMethod": "POST",
+              "id": "admob.accounts.adUnitMappings.batchCreate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The AdMob account which owns this collection of ad unit mappings. Format: accounts/{publisher_id} See https://support.google.com/admob/answer/2784578 for instructions on how to find your AdMob publisher ID.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/adUnitMappings:batchCreate",
+              "request": {
+                "$ref": "BatchCreateAdUnitMappingsRequest"
+              },
+              "response": {
+                "$ref": "BatchCreateAdUnitMappingsResponse"
+              },
               "streamingType": "NONE"
             }
           }
         },
         "adUnits": {
           "methods": {
+            "create": {
+              "description": "Creates an ad unit under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+              "flatPath": "v1beta/accounts/{accountsId}/adUnits",
+              "httpMethod": "POST",
+              "id": "admob.accounts.adUnits.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Resource name of the account to create the specified ad unit for. Example: accounts/pub-9876543210987654",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/adUnits",
+              "request": {
+                "$ref": "AdUnit"
+              },
+              "response": {
+                "$ref": "AdUnit"
+              },
+              "streamingType": "NONE"
+            },
             "list": {
               "description": "List the ad units under the specified AdMob account.",
               "flatPath": "v1beta/accounts/{accountsId}/adUnits",
@@ -245,10 +348,110 @@
               ],
               "streamingType": "NONE"
             }
+          },
+          "resources": {
+            "adUnitMappings": {
+              "methods": {
+                "create": {
+                  "description": "Create an ad unit mapping under the specific AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+                  "flatPath": "v1beta/accounts/{accountsId}/adUnits/{adUnitsId}/adUnitMappings",
+                  "httpMethod": "POST",
+                  "id": "admob.accounts.adUnits.adUnitMappings.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/adUnits/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/adUnitMappings",
+                  "request": {
+                    "$ref": "AdUnitMapping"
+                  },
+                  "response": {
+                    "$ref": "AdUnitMapping"
+                  },
+                  "streamingType": "NONE"
+                },
+                "list": {
+                  "description": "List ad unit mappings under the specified AdMob account and ad unit. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+                  "flatPath": "v1beta/accounts/{accountsId}/adUnits/{adUnitsId}/adUnitMappings",
+                  "httpMethod": "GET",
+                  "id": "admob.accounts.adUnits.adUnitMappings.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible field to filter by is: - \"DISPLAY_NAME\" Possible filter function is: - `IN`: Used to filter fields that represent a singleton including \"DISPLAY_NAME\". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, \"Test Ad Unit Mapping 1\", \"Test Ad Unit Mapping 2\")",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of ad unit mappings to return. If unspecified or 0, at most 10,000 ad unit mappings will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListAdUnitMappings` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent which owns this collection of ad unit mappings. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/adUnits/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/adUnitMappings",
+                  "response": {
+                    "$ref": "ListAdUnitMappingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/admob.readonly"
+                  ],
+                  "streamingType": "NONE"
+                }
+              }
+            }
           }
         },
         "apps": {
           "methods": {
+            "create": {
+              "description": "Creates an app under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+              "flatPath": "v1beta/accounts/{accountsId}/apps",
+              "httpMethod": "POST",
+              "id": "admob.accounts.apps.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Resource name of the account for which the app is being created. Example: accounts/pub-9876543210987654",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/apps",
+              "request": {
+                "$ref": "App"
+              },
+              "response": {
+                "$ref": "App"
+              },
+              "streamingType": "NONE"
+            },
             "list": {
               "description": "List the apps under the specified AdMob account.",
               "flatPath": "v1beta/accounts/{accountsId}/apps",
@@ -285,6 +488,202 @@
                 "https://www.googleapis.com/auth/admob.readonly"
               ],
               "streamingType": "NONE"
+            }
+          }
+        },
+        "campaignReport": {
+          "methods": {
+            "generate": {
+              "description": "Generates Campaign Report based on provided specifications.",
+              "flatPath": "v1beta/accounts/{accountsId}/campaignReport:generate",
+              "httpMethod": "POST",
+              "id": "admob.accounts.campaignReport.generate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/campaignReport:generate",
+              "request": {
+                "$ref": "GenerateCampaignReportRequest"
+              },
+              "response": {
+                "$ref": "GenerateCampaignReportResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/admob.readonly",
+                "https://www.googleapis.com/auth/admob.report"
+              ],
+              "streamingType": "NONE"
+            }
+          }
+        },
+        "mediationGroups": {
+          "methods": {
+            "create": {
+              "description": "Create a mediation group under the specific AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+              "flatPath": "v1beta/accounts/{accountsId}/mediationGroups",
+              "httpMethod": "POST",
+              "id": "admob.accounts.mediationGroups.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent which owns the mediation group. Format: accounts/{publisher_id}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/mediationGroups",
+              "request": {
+                "$ref": "MediationGroup"
+              },
+              "response": {
+                "$ref": "MediationGroup"
+              },
+              "streamingType": "NONE"
+            },
+            "list": {
+              "description": "List mediation groups under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+              "flatPath": "v1beta/accounts/{accountsId}/mediationGroups",
+              "httpMethod": "GET",
+              "id": "admob.accounts.mediationGroups.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "The filter string that uses [EBNF grammar syntax](https://google.aip.dev/assets/misc/ebnf-filtering.txt). Possible fields to filter by are: - \"AD_SOURCE_IDS\" - \"AD_UNIT_IDS\" - \"APP_IDS\" - \"DISPLAY_NAME\" - \"FORMAT\" - \"MEDIATION_GROUP_ID\" - \"PLATFORM\" - \"STATE\" - \"TARGETED_REGION_CODES\" Possible filter functions are: - `IN`: Used to filter fields that represent a singleton including \"MEDIATION_GROUP_ID\", \"DISPLAY_NAME\", \"STATE\", \"PLATFORM\", and \"FORMAT\". - `CONTAINS_ANY`: Used to filter fields that represent a collection including \"AD_SOURCE_IDS\", \"AD_UNIT_IDS\", \"APP_IDS\", and \"TARGETED_REGION_CODES\". The filter functions can be added together using `AND`. `OR` functionality is not supported. Example: filter: IN(DISPLAY_NAME, \"Test Group 1\", \"Test Group 2\") AND IN(PLATFORM, \"ANDROID\") AND CONTAINS_ANY(AD_SOURCE_IDS, \"5450213213286189855\")",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of mediation groups to return. If unspecified or 0, at most 10,000 mediation groups will be returned. The maximum value is 20,000; values above 20,000 will be coerced to 20,000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The value returned by the last `ListMediationGroupsResponse`; indicates that this is a continuation of a prior `ListMediationGroups` call, and that the system should return the next page of data.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the account to list mediation groups for. Example: accounts/pub-9876543210987654",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/mediationGroups",
+              "response": {
+                "$ref": "ListMediationGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/admob.readonly"
+              ],
+              "streamingType": "NONE"
+            },
+            "patch": {
+              "description": "Update the specified mediation group under the specified AdMob account. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+              "flatPath": "v1beta/accounts/{accountsId}/mediationGroups/{mediationGroupsId}",
+              "httpMethod": "PATCH",
+              "id": "admob.accounts.mediationGroups.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Resource name for this mediation group. Format is: accounts/{publisher_id}/mediationGroups/{mediation_group_id} Example: accounts/pub-9876543210987654/mediationGroups/0123456789",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/mediationGroups/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "List of mediation group fields to be updated. Updates to repeated fields such as items in a list will fully replace the existing value(s) with the new value(s). Updates to individual values in a map can be done by indexing by the key. The following field masks are supported for mediation group updates: - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"]\" clang-format off - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].ad_unit_mappings[\\\"{ad_unit_id}\\\"]\" clang-format on - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].cpm_micros\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].cpm_mode\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].state\" - \"mediation_group_lines[\\\"{mediation_group_line_id}\\\"].display_name\" - \"targeting.ad_unit_ids\" To update a mediation group with a new mediation group line, use a distinct negative number for the \"mediation_group_line_id\". For Example: update_mask { paths: \"mediation_group_lines[\\\"123456789012345\\\"].cpm_micros\" }",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "request": {
+                "$ref": "MediationGroup"
+              },
+              "response": {
+                "$ref": "MediationGroup"
+              },
+              "streamingType": "NONE"
+            }
+          },
+          "resources": {
+            "mediationAbExperiments": {
+              "methods": {
+                "create": {
+                  "description": "Create an A/B testing experiment for a specified AdMob account and a mediation group. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+                  "flatPath": "v1beta/accounts/{accountsId}/mediationGroups/{mediationGroupsId}/mediationAbExperiments",
+                  "httpMethod": "POST",
+                  "id": "admob.accounts.mediationGroups.mediationAbExperiments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent which owns the mediation group. Format: accounts/{publisher_id}/mediationGroups/{mediation_group_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/mediationGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/mediationAbExperiments",
+                  "request": {
+                    "$ref": "MediationAbExperiment"
+                  },
+                  "response": {
+                    "$ref": "MediationAbExperiment"
+                  },
+                  "streamingType": "NONE"
+                },
+                "stop": {
+                  "description": "Stop the mediation A/B experiment and choose a variant. This method has limited access. If you see a 403 permission denied error, please reach out to your account manager for access.",
+                  "flatPath": "v1beta/accounts/{accountsId}/mediationGroups/{mediationGroupsId}/mediationAbExperiments:stop",
+                  "httpMethod": "POST",
+                  "id": "admob.accounts.mediationGroups.mediationAbExperiments.stop",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Name of the mediation group, the experiment for which to choose a variant for. Example: accounts/pub-9876543210987654/mediationGroups/0123456789/ mediationAbExperiments",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/mediationGroups/[^/]+/mediationAbExperiments$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}:stop",
+                  "request": {
+                    "$ref": "StopMediationAbExperimentRequest"
+                  },
+                  "response": {
+                    "$ref": "MediationAbExperiment"
+                  },
+                  "streamingType": "NONE"
+                }
+              }
             }
           }
         },
@@ -359,7 +758,7 @@
       }
     }
   },
-  "revision": "20230430",
+  "revision": "20230920",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdSource": {
@@ -411,6 +810,128 @@
         "name": {
           "description": "Resource name for this ad unit. Format is accounts/{publisher_id}/adUnits/{ad_unit_id_fragment} Example: accounts/pub-9876543210987654/adUnits/0123456789",
           "type": "string"
+        },
+        "rewardSettings": {
+          "$ref": "AdUnitRewardSettings",
+          "description": "Optional. Settings for a rewarded ad unit. This can be set or unset only when the ad_format is \"REWARDED\"."
+        }
+      },
+      "type": "object"
+    },
+    "AdUnitMapping": {
+      "description": "Settings to map an AdMob ad unit to a 3rd party ad unit.",
+      "id": "AdUnitMapping",
+      "properties": {
+        "adUnitConfigurations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Settings for the specified ad unit to make an ad request to 3rd party ad network. Key-value pairs with values set by the user for the keys requested by the ad network. Please see https://support.google.com/admob/answer/3245073 for details on how to configure the network settings.",
+          "type": "object"
+        },
+        "adapterId": {
+          "description": "The ID of mediation ad source adapter used by this ad unit mapping. The adapter determines the information needed in the ad_network_settings.",
+          "format": "int64",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. The display name of this ad unit mapping instance.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name of this ad unit mapping. Format is: accounts/{publisher_id}/adUnits/{ad_unit_id_fragment}/adUnitMappings/{ad_unit_mapping_id} Example: accounts/pub-1234567890123456/adUnits/0123456789/adUnitMappings/987654321",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The status of this ad unit mapping.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "The default value.",
+            "The ad unit mapping is active and used to serve ads or collecting stats."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdUnitRewardSettings": {
+      "description": "Settings for a rewarded ad unit.",
+      "id": "AdUnitRewardSettings",
+      "properties": {
+        "unitAmount": {
+          "description": "Reward amount for this ad unit.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unitType": {
+          "description": "Reward item for this ad unit.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Adapter": {
+      "description": "Describes adapters supported by each mediation ad source. Adapters correspond to a specific SDK implementation of the ad source, and are each associated with a single platform and a list of supported ad unit formats. Adapters may also require setting some configurations to perform ad requests. Configurations can be specified in the AdUnitMapping by setting the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations) key/value pairs. For example, the ad_unit_configurations can be used to pass various IDs to the adapter's third-party SDK.",
+      "id": "Adapter",
+      "properties": {
+        "adapterConfigMetadata": {
+          "description": "Output only. Configuration metadata associated with this adapter.",
+          "items": {
+            "$ref": "AdapterAdapterConfigMetadata"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "adapterId": {
+          "description": "Output only. ID of this adapter. It is used to set [adapter_id](#AdUnitMapping.adapter_id).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "formats": {
+          "description": "Output only. Indicates the formats of the ad units supported by this adapter.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Resource name of the adapter. Format is: accounts/{publisher_id}/adSources/{ad_source_id}/adapters/{adapter_id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "platform": {
+          "description": "Output only. Mobile application platform supported by this adapter. Supported values are: IOS, ANDROID, WINDOWS_PHONE",
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "description": "Output only. The display name of this adapter.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdapterAdapterConfigMetadata": {
+      "description": "Configuration metadata associated with this adapter. They are used to define the ad_unit_configurations associated with AdUnitMappings for the this adapter.",
+      "id": "AdapterAdapterConfigMetadata",
+      "properties": {
+        "adapterConfigMetadataId": {
+          "description": "This is used to fill the key of the [ad_unit_configurations](#AdUnitMapping.ad_unit_configurations).",
+          "type": "string"
+        },
+        "adapterConfigMetadataLabel": {
+          "description": "Name of the adapter configuration metadata.",
+          "type": "string"
+        },
+        "isRequired": {
+          "description": "Whether this metadata is required for configuring the AdUnitMappings.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -463,6 +984,31 @@
       "description": "Information from the app store if the app is linked to an app store.",
       "id": "AppLinkedAppInfo",
       "properties": {
+        "androidAppStores": {
+          "description": "Optional. The app store information for published Android apps. This field is only used for apps on the Android platform and will be ignored if the PLATFORM is set to iOS. The default value is the Google Play App store. This field can be updated after app is created. If the app is not published, this field will not be included in the response.",
+          "items": {
+            "enum": [
+              "ANDROID_APP_STORE_UNSPECIFIED",
+              "GOOGLE_PLAY_APP_STORE",
+              "AMAZON_APP_STORE",
+              "OPPO_APP_STORE",
+              "SAMSUNG_APP_STORE",
+              "VIVO_APP_STORE",
+              "XIAOMI_APP_STORE"
+            ],
+            "enumDescriptions": [
+              "Default value for an unset field. Do not use.",
+              "Google Play Store.",
+              "Amazon Appstore.",
+              "Oppo App Market.",
+              "Samsung Galaxy Store.",
+              "VIVO App Store.",
+              "Xiaomi GetApps."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "appStoreId": {
           "description": "The app store ID of the app; present if and only if the app is linked to an app store. If the app is added to the Google Play store, it will be the application ID of the app. For example: \"com.example.myapp\". See https://developer.android.com/studio/build/application-id. If the app is added to the Apple App Store, it will be app store ID. For example \"105169111\". Note that setting the app store id is considered an irreversible action. Once an app is linked, it cannot be unlinked.",
           "type": "string"
@@ -481,6 +1027,122 @@
       "properties": {
         "displayName": {
           "description": "The display name of the app as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchCreateAdUnitMappingsRequest": {
+      "description": "Request to create a batch of ad unit mappings under the specific AdMob account.",
+      "id": "BatchCreateAdUnitMappingsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The request message specifying the ad unit mappings to create. A maximum of 100 ad unit mappings can be created in a batch. If the number of ad unit mappings in the batch request exceed 100, the entire request will be rejected and no ad unit mappings will be created.",
+          "items": {
+            "$ref": "CreateAdUnitMappingRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchCreateAdUnitMappingsResponse": {
+      "description": "Response containing a batch of created ad unit mappings.",
+      "id": "BatchCreateAdUnitMappingsResponse",
+      "properties": {
+        "adUnitMappings": {
+          "description": "The Ad units mappings created under the requested account.",
+          "items": {
+            "$ref": "AdUnitMapping"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CampaignReportSpec": {
+      "description": "The specification for generating a Campaign report. For example, the specification to get IMPRESSIONS and CLICKS sliced by CAMPAIGN_ID can look like the following example: { \"date_range\": { \"start_date\": {\"year\": 2021, \"month\": 12, \"day\": 1}, \"end_date\": {\"year\": 2021, \"month\": 12, \"day\": 30} }, \"dimensions\": [\"CAMPAIGN_ID\"], \"metrics\": [\"IMPRESSIONS\", \"CLICKS\"], }",
+      "id": "CampaignReportSpec",
+      "properties": {
+        "dateRange": {
+          "$ref": "DateRange",
+          "description": "The date range for which the report is generated. The max range is 30 days."
+        },
+        "dimensions": {
+          "description": "List of dimensions of the report. The value combination of these dimensions determines the row of the report. If no dimensions are specified, the report returns a single row of requested metrics for the entire account.",
+          "items": {
+            "enum": [
+              "DIMENSION_UNSPECIFIED",
+              "DATE",
+              "CAMPAIGN_ID",
+              "CAMPAIGN_NAME",
+              "AD_ID",
+              "AD_NAME",
+              "PLACEMENT_ID",
+              "PLACEMENT_NAME",
+              "PLACEMENT_PLATFORM",
+              "COUNTRY",
+              "FORMAT"
+            ],
+            "enumDescriptions": [
+              "Default value of an unspecified dimension. Do not use.",
+              "A date in the YYYYMMDD format (for example, \"20210701\").",
+              "The unique ID of the campaign, for example \"123456789\", which is consistent with the campaign id from campaign list api.",
+              "The name of the campaign.",
+              "The unique ID of the ad, for example \"123456789\".",
+              "The name of the ad, which may not be unique.",
+              "The vendor-specific unique ID of the app where the ad is placed. For example, com.goog.bar for Android and 123456789 for iOS apps.",
+              "The name of the app where the ad is placed.",
+              "The platform of the app where the ad is placed.",
+              "The name of the targeted country.",
+              "Format of the ad unit (for example, \"banner\", \"native\"), an ad delivery dimension."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "languageCode": {
+          "description": "Language used for any localized text, such as certain applicable dimension values. The language tag is defined in the IETF BCP47. Defaults to 'en-US' if unspecified or invalid.",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "List of metrics of the report. A report must specify at least one metric.",
+          "items": {
+            "enum": [
+              "METRIC_UNSPECIFIED",
+              "IMPRESSIONS",
+              "CLICKS",
+              "CLICK_THROUGH_RATE",
+              "INSTALLS",
+              "ESTIMATED_COST",
+              "AVERAGE_CPI"
+            ],
+            "enumDescriptions": [
+              "Default value for an unset field. Do not use.",
+              "The number of times an ad is shown to the user.",
+              "The number of times a user clicks an ad.",
+              "The number of clicks an ad receives divided by the number of times the ad is shown.",
+              "The number of times apps were downloaded to devices.",
+              "The estimated cost of serving a campaign ad instead of an ad that earns revenue. The currency is the reporting currency for campaigns.",
+              "The average cost per install. This means the average amount that was spent to acquire a new user. The currency is the reporting currency for campaigns."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CreateAdUnitMappingRequest": {
+      "description": "Request to create an ad unit mapping under the specific AdMob account and ad unit.",
+      "id": "CreateAdUnitMappingRequest",
+      "properties": {
+        "adUnitMapping": {
+          "$ref": "AdUnitMapping",
+          "description": "Required. The ad unit mapping to create."
+        },
+        "parent": {
+          "description": "Required. The parent which owns the ad unit mapping. Format: accounts/{publisher_id}/adUnits/{ad_unit_id}",
           "type": "string"
         }
       },
@@ -519,6 +1181,31 @@
         "startDate": {
           "$ref": "Date",
           "description": "Start date of the date range, inclusive. Must be less than or equal to the end date."
+        }
+      },
+      "type": "object"
+    },
+    "GenerateCampaignReportRequest": {
+      "description": "Request to generate campaign report.",
+      "id": "GenerateCampaignReportRequest",
+      "properties": {
+        "reportSpec": {
+          "$ref": "CampaignReportSpec",
+          "description": "Campaign report specification."
+        }
+      },
+      "type": "object"
+    },
+    "GenerateCampaignReportResponse": {
+      "description": "Campaign Report API response.",
+      "id": "GenerateCampaignReportResponse",
+      "properties": {
+        "rows": {
+          "description": "The campaign report data from the specified publisher. At most 100000 rows will be returned from the API.",
+          "items": {
+            "$ref": "ReportRow"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -601,6 +1288,24 @@
       },
       "type": "object"
     },
+    "ListAdUnitMappingsResponse": {
+      "description": "Response for the ListAdUnitMappingsRequest.",
+      "id": "ListAdUnitMappingsResponse",
+      "properties": {
+        "adUnitMappings": {
+          "description": "The ad unit mappings from the specified account and ad unit.",
+          "items": {
+            "$ref": "AdUnitMapping"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Used to set the `page_token` in the `ListAdUnitMappingsRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAdUnitsResponse": {
       "description": "Response for the ad units list request.",
       "id": "ListAdUnitsResponse",
@@ -619,6 +1324,24 @@
       },
       "type": "object"
     },
+    "ListAdaptersResponse": {
+      "description": "Response for the ListAdaptersRequest.",
+      "id": "ListAdaptersResponse",
+      "properties": {
+        "adapters": {
+          "description": "The adapter.",
+          "items": {
+            "$ref": "Adapter"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Used to set the `page_token` in the `ListAdapterRequest` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListAppsResponse": {
       "description": "Response for the apps list request.",
       "id": "ListAppsResponse",
@@ -632,6 +1355,24 @@
         },
         "nextPageToken": {
           "description": "If not empty, indicates that there may be more apps for the request; this value should be passed in a new `ListAppsRequest`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListMediationGroupsResponse": {
+      "description": "Response for the mediation groups list request.",
+      "id": "ListMediationGroupsResponse",
+      "properties": {
+        "mediationGroups": {
+          "description": "The resulting mediation groups for the requested account.",
+          "items": {
+            "$ref": "MediationGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If not empty, indicates that there may be more mediation groups for the request; this value should be passed in a new `ListMediationGroupsRequest`.",
           "type": "string"
         }
       },
@@ -666,6 +1407,265 @@
         "languageCode": {
           "description": "Language used for any localized text, such as some dimension value display labels. The language tag defined in the IETF BCP47. Defaults to 'en-US' if unspecified.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MediationAbExperiment": {
+      "description": "The mediation A/B experiment.",
+      "id": "MediationAbExperiment",
+      "properties": {
+        "controlMediationLines": {
+          "description": "Output only. The experiment mediation lines for control. They are inherited from the parent mediation group. It is an output only field.",
+          "items": {
+            "$ref": "MediationAbExperimentExperimentMediationLine"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "description": "The display name for the mediation A/B experiment.",
+          "type": "string"
+        },
+        "experimentId": {
+          "description": "Output only. Unique identifier for the mediation A/B experiment. It is an output only property.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name for this experiment. The format is accounts/{publisher_id}/ mediationGroups/{mediation_group_id}/mediationAbExperiment/ {mediation_group_experiment_id}. For example: accounts/pub-9876543210987654/mediationGroups/0123456789/ mediationAbExperiment/12345",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the experiment. It is an output only field.",
+          "enum": [
+            "EXPERIMENT_STATE_UNSPECIFIED",
+            "EXPIRED",
+            "RUNNING",
+            "ENDED"
+          ],
+          "enumDescriptions": [
+            "Default for an unset field. Do not use.",
+            "The experiment has expired.",
+            "The experiment is running and thus used in serving.",
+            "The experiment is ended, but not yet expired. Serving continues in the original configurations while the experiment is ready to call an action."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "treatmentMediationLines": {
+          "description": "The experiment mediation lines created for the treatment. They will be used for serving when the experiment status is RUNNING.",
+          "items": {
+            "$ref": "MediationAbExperimentExperimentMediationLine"
+          },
+          "type": "array"
+        },
+        "treatmentTrafficPercentage": {
+          "description": "The percentage of the mediation A/B experiment traffic that will be send to the treatment (variant B). The remainder is sent to the control (variant A). The percentage is expressed as an integer in the inclusive range of [1,99]. See https://support.google.com/admob/answer/9572326 for details.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MediationAbExperimentExperimentMediationLine": {
+      "description": "The mediation group line for the experiment. It will be used for serving during the run of the experiment.",
+      "id": "MediationAbExperimentExperimentMediationLine",
+      "properties": {
+        "mediationGroupLine": {
+          "$ref": "MediationGroupMediationGroupLine",
+          "description": "The mediation group line used by the experiment."
+        }
+      },
+      "type": "object"
+    },
+    "MediationGroup": {
+      "description": "Describes an AdMob mediation group.",
+      "id": "MediationGroup",
+      "properties": {
+        "displayName": {
+          "description": "User provided name for the mediation group. The maximum length allowed is 120 characters.",
+          "type": "string"
+        },
+        "mediationAbExperimentState": {
+          "description": "Output only. The state of the mediation a/b experiment that belongs to this mediation group.",
+          "enum": [
+            "EXPERIMENT_STATE_UNSPECIFIED",
+            "RUNNING",
+            "NOT_RUNNING"
+          ],
+          "enumDescriptions": [
+            "Default value for an unset field. Do not use.",
+            "The mediation group has an experiment in the RUNNING state.",
+            "There is no experiment in the RUNNING state in the mediation group."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "mediationGroupId": {
+          "description": "The ID of the mediation group. Example: \"0123456789\". This is a read only property.",
+          "type": "string"
+        },
+        "mediationGroupLines": {
+          "additionalProperties": {
+            "$ref": "MediationGroupMediationGroupLine"
+          },
+          "description": "The mediation lines used for serving for this mediation group. Key is the ID of the mediation group line. For creation, use distinct negative values as placeholder.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Resource name for this mediation group. Format is: accounts/{publisher_id}/mediationGroups/{mediation_group_id} Example: accounts/pub-9876543210987654/mediationGroups/0123456789",
+          "type": "string"
+        },
+        "state": {
+          "description": "The status of the mediation group. Only enabled mediation groups will be served.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value for an unset field. Do not use.",
+            "The mediation group is active and used to serve ads or to collect stats.",
+            "The mediation group has been disabled and is no longer serving ads or collecting stats. Disabled mediation groups can be re-enabled."
+          ],
+          "type": "string"
+        },
+        "targeting": {
+          "$ref": "MediationGroupTargeting",
+          "description": "Set of criteria targeted by this mediation group, such as ad units and geo locations."
+        }
+      },
+      "type": "object"
+    },
+    "MediationGroupMediationGroupLine": {
+      "description": "Settings for an ad network used by a mediation group.",
+      "id": "MediationGroupMediationGroupLine",
+      "properties": {
+        "adSourceId": {
+          "description": "The ID of the ad source this mediation line is associated with.",
+          "type": "string"
+        },
+        "adUnitMappings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "References of the ad unit mappings for each ad unit associated with this mediation line. Key is the ad unit ID, value is resource name of the ad unit mapping. For mediation lines where the ad source id is the AdMob Network, ad unit mappings will be ignored.",
+          "type": "object"
+        },
+        "cpmMicros": {
+          "description": "The CPM for this allocation line. $0.01 is the minimum allowed amount. For LIVE CPM modes, the default amount is $0.01. This value is ignored if `cpm_mode` is `LIVE`. **Warning:** \"USD\" is the only supported currency at the moment. The unit is in micros.",
+          "format": "int64",
+          "type": "string"
+        },
+        "cpmMode": {
+          "description": "Indicates how the CPM for this mediation line is provided. Note that `MANUAL` and `LIVE` are the only fully-supported mode at the moment. Please use the AdMob UI (https://admob.google.com) if you wish to create or update to other cpm modes.",
+          "enum": [
+            "CPM_MODE_UNSPECIFIED",
+            "LIVE",
+            "MANUAL",
+            "ANO"
+          ],
+          "enumDescriptions": [
+            "Default value for an unset field. Do not use.",
+            "CPM is calculated per ad request based on the ad auction.",
+            "CPM is set by the user manually.",
+            "CPM is retrieved from the ad network using the publisher specified credentials. Output only."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "description": "User-provided label for this mediation line. The maximum length allowed is 255 characters.",
+          "type": "string"
+        },
+        "experimentVariant": {
+          "description": "Output only. The Mediation A/B experiment variant to which the mediation group line belongs to.",
+          "enum": [
+            "VARIANT_UNSPECIFIED",
+            "VARIANT_A",
+            "VARIANT_B",
+            "ORIGINAL"
+          ],
+          "enumDescriptions": [
+            "Default value for an unset field. Do not use.",
+            "The mediation group line belongs to the variant A.",
+            "The mediation group line belongs to the variant B.",
+            "The mediation group line isn't a part of an experiment."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "The 16 digit ID for this mediation line e.g. 0123456789012345. When creating a new mediation group line, use a distinct negative integer as the ID place holder.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The status of the mediation group line. Only enabled mediation group lines will be served.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "Default value for an unset field. Do not use.",
+            "The mediation group line is active and used to serve ads.",
+            "The mediation group line has been disabled and is no longer served. Disabled mediation group lines can be re-enabled.",
+            "The mediation group line will be removed and no longer served. Removed mediation group lines can not be re-enabled and will no longer be visible. This is an input only field."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MediationGroupTargeting": {
+      "description": "Set of criteria targeted by this mediation group. For example, a mediation group can target specific ad unit IDs, platform, format and geo location.",
+      "id": "MediationGroupTargeting",
+      "properties": {
+        "adUnitIds": {
+          "description": "Ad units targeted by this mediation group. Example: \"ca-app-pub-1234/8790\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "excludedRegionCodes": {
+          "description": "The Unicode country/region code (CLDR) of a location, such as \"US\". Unset if this mediation group does not exclude any region.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "format": {
+          "description": "Ad format targeted by this mediation group. Examples: \"banner\", \"native\".",
+          "type": "string"
+        },
+        "idfaTargeting": {
+          "description": "The parameter can be used to target ad requests based on the availability of the IDFA. If set to ALL, the mediation group applies to all ad requests (with or without IDFA). If set to AVAILABLE, the mediation group applies to ad requests with IDFA. If set to NOT_AVAILABLE, the mediation group applies to ad requests without IDFA. Doesn't need to be specified for an ANDROID device.",
+          "enum": [
+            "IDFA_TARGETING_UNSPECIFIED",
+            "ALL",
+            "AVAILABLE",
+            "NOT_AVAILABLE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "All the devices are targeted, regardless of IDFA availability.",
+            "Only the devices with IDFA availability are targeted.",
+            "Only the devices without IDFA availability are targeted."
+          ],
+          "type": "string"
+        },
+        "platform": {
+          "description": "Describes the platform of the app. Examples: \"IOS\", \"Android\".",
+          "type": "string"
+        },
+        "targetedRegionCodes": {
+          "description": "The Unicode country/region code (CLDR) of a location, such as \"US\". Unset if this mediation group targets all available regions. For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1300,6 +2300,27 @@
             "There is an unusual delay in processing the source data for the requested date range. The report results might be less up to date than usual. AdMob is aware of the issue and is actively working to resolve it.",
             "Warnings that are exposed without a specific type. Useful when new warning types are added but the API is not changed yet.",
             "The currency being requested is not the account currency. The earning metrics will be based on the requested currency, and thus not a good estimation of the final payment anymore, due to the currency rate fluctuation."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StopMediationAbExperimentRequest": {
+      "description": "Request to end the mediation A/B experiment and choose a winning variant.",
+      "id": "StopMediationAbExperimentRequest",
+      "properties": {
+        "variantChoice": {
+          "description": "The choice for the winning variant.",
+          "enum": [
+            "VARIANT_CHOICE_UNSPECIFIED",
+            "VARIANT_CHOICE_A",
+            "VARIANT_CHOICE_B"
+          ],
+          "enumDescriptions": [
+            "Default value for an unset field. Do not use.",
+            "Use the mediation lines from Variant A and complete the experiment. Variant A contains the original serving lines before the experiment creation.",
+            "Use the mediation lines form Variant B and complete the experiment. Variant B contains the newly added serving lines."
           ],
           "type": "string"
         }
