@@ -978,10 +978,6 @@ export namespace analyticsadmin_v1alpha {
      */
     dailyExportEnabled?: boolean | null;
     /**
-     * If set true, enables enterprise export to the linked Google Cloud project.
-     */
-    enterpriseExportEnabled?: boolean | null;
-    /**
      * The list of event names that will be excluded from exports.
      */
     excludedEvents?: string[] | null;
@@ -989,6 +985,10 @@ export namespace analyticsadmin_v1alpha {
      * The list of streams under the parent property for which data will be exported. Format: properties/{property_id\}/dataStreams/{stream_id\} Example: ['properties/1000/dataStreams/2000']
      */
     exportStreams?: string[] | null;
+    /**
+     * If set true, enables fresh daily export to the linked Google Cloud project.
+     */
+    freshDailyExportEnabled?: boolean | null;
     /**
      * If set true, exported data will include advertising identifiers for mobile app streams.
      */
@@ -1123,6 +1123,10 @@ export namespace analyticsadmin_v1alpha {
      * A snapshot of a SearchAds360Link resource in change history.
      */
     searchAds360Link?: Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link;
+    /**
+     * A snapshot of SKAdNetworkConversionValueSchema resource in change history.
+     */
+    skadnetworkConversionValueSchema?: Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema;
   }
   /**
    * A set of changes within a Google Analytics account or its child properties that resulted from the same cause. Common causes would be updates made in the Google Analytics UI, changes from customer support, or automatic Google Analytics system changes.
@@ -1288,6 +1292,31 @@ export namespace analyticsadmin_v1alpha {
      * Output only. Resource name of this conversion event. Format: properties/{property\}/conversionEvents/{conversion_event\}
      */
     name?: string | null;
+  }
+  /**
+   * Conversion value settings for a postback window for SKAdNetwork conversion value schema.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaConversionValues {
+    /**
+     * Required. A coarse grained conversion value. This value is not guaranteed to be unique.
+     */
+    coarseValue?: string | null;
+    /**
+     * Display name of the SKAdNetwork conversion value. The max allowed display name length is 50 UTF-16 code units.
+     */
+    displayName?: string | null;
+    /**
+     * Event conditions that must be met for this Conversion Value to be achieved. The conditions in this list are ANDed together. It must have minimum of 1 entry and maximum of 3 entries, if the postback window is enabled.
+     */
+    eventMappings?: Schema$GoogleAnalyticsAdminV1alphaEventMapping[];
+    /**
+     * The fine-grained conversion value. This is applicable only to the first postback window. Its valid values are [0,63], both inclusive. It must be set for postback window 1, and must not be set for postback window 2 & 3. This value is not guaranteed to be unique. If the configuration for the first postback window is re-used for second or third postback windows this field has no effect.
+     */
+    fineValue?: number | null;
+    /**
+     * If true, the SDK should lock to this conversion value for the current postback window.
+     */
+    lockEnabled?: boolean | null;
   }
   /**
    * Request message for CreateAccessBinding RPC.
@@ -1694,6 +1723,31 @@ export namespace analyticsadmin_v1alpha {
      * If true, the source parameters are copied to the new event. If false, or unset, all non-internal parameters are not copied from the source event. Parameter mutations are applied after the parameters have been copied.
      */
     sourceCopyParameters?: boolean | null;
+  }
+  /**
+   * Event setting conditions to match an event.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaEventMapping {
+    /**
+     * Required. Name of the GA4 event. It must always be set. The max allowed display name length is 40 UTF-16 code units.
+     */
+    eventName?: string | null;
+    /**
+     * The maximum number of times the event occurred. If not set, maximum event count won't be checked.
+     */
+    maxEventCount?: string | null;
+    /**
+     * The maximum revenue generated due to the event. Revenue currency will be defined at the property level. If not set, maximum event value won't be checked.
+     */
+    maxEventValue?: number | null;
+    /**
+     * At least one of the following four min/max values must be set. The values set will be ANDed together to qualify an event. The minimum number of times the event occurred. If not set, minimum event count won't be checked.
+     */
+    minEventCount?: string | null;
+    /**
+     * The minimum revenue generated due to the event. Revenue currency will be defined at the property level. If not set, minimum event value won't be checked.
+     */
+    minEventValue?: number | null;
   }
   /**
    * A resource message representing a GA4 ExpandedDataSet.
@@ -2217,6 +2271,19 @@ export namespace analyticsadmin_v1alpha {
     searchAds360Links?: Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link[];
   }
   /**
+   * Response message for ListSKAdNetworkConversionValueSchemas RPC
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. Currently, Google Analytics supports only one SKAdNetworkConversionValueSchema per dataStream, so this will never be populated.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of SKAdNetworkConversionValueSchemas. This will have at most one value.
+     */
+    skadnetworkConversionValueSchemas?: Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema[];
+  }
+  /**
    * Response message for ListUserLinks RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse {
@@ -2292,6 +2359,19 @@ export namespace analyticsadmin_v1alpha {
      * Required. The value mutation to perform. * Must be less than 100 characters. * To specify a constant value for the param, use the value's string. * To copy value from another parameter, use syntax like "[[other_parameter]]" For more details, see this [help center article](https://support.google.com/analytics/answer/10085872#modify-an-event&zippy=%2Cin-this-article%2Cmodify-parameters).
      */
     parameterValue?: string | null;
+  }
+  /**
+   * Settings for a SKAdNetwork conversion postback window.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaPostbackWindow {
+    /**
+     * Ordering of the repeated field will be used to prioritize the conversion value settings. Lower indexed entries are prioritized higher. The first conversion value setting that evaluates to true will be selected. It must have at least one entry if enable_postback_window_settings is set to true. It can have maximum of 128 entries.
+     */
+    conversionValues?: Schema$GoogleAnalyticsAdminV1alphaConversionValues[];
+    /**
+     * If enable_postback_window_settings is true, conversion_values must be populated and will be used for determining when and how to set the Conversion Value on a client device and exporting schema to linked Ads accounts. If false, the settings are not used, but are retained in case they may be used in the future. This must always be true for postback_window_one.
+     */
+    postbackWindowSettingsEnabled?: boolean | null;
   }
   /**
    * A resource message representing a Google Analytics GA4 property.
@@ -2563,6 +2643,31 @@ export namespace analyticsadmin_v1alpha {
    * Response message for setting the opt out status for the automated GA4 setup process.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse {}
+  /**
+   * SKAdNetwork conversion value schema of an iOS stream.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema {
+    /**
+     * If enabled, the GA SDK will set conversion values using this schema definition, and schema will be exported to any Google Ads accounts linked to this property. If disabled, the GA SDK will not automatically set conversion values, and also the schema will not be exported to Ads.
+     */
+    applyConversionValues?: boolean | null;
+    /**
+     * Output only. Resource name of the schema. This will be child of ONLY an iOS stream, and there can be at most one such child under an iOS stream. Format: properties/{property\}/dataStreams/{dataStream\}/sKAdNetworkConversionValueSchema
+     */
+    name?: string | null;
+    /**
+     * Required. The conversion value settings for the first postback window. These differ from values for postback window two and three in that they contain a "Fine" grained conversion value (a numeric value). Conversion values for this postback window must be set. The other windows are optional and may inherit this window's settings if unset or disabled.
+     */
+    postbackWindowOne?: Schema$GoogleAnalyticsAdminV1alphaPostbackWindow;
+    /**
+     * The conversion value settings for the third postback window. This field should only be set if the user chose to define different conversion values for this postback window. It is allowed to configure window 3 without setting window 2. In case window 1 & 2 settings are set and enable_postback_window_settings for this postback window is set to false, the schema will inherit settings from postback_window_two.
+     */
+    postbackWindowThree?: Schema$GoogleAnalyticsAdminV1alphaPostbackWindow;
+    /**
+     * The conversion value settings for the second postback window. This field should only be configured if there is a need to define different conversion values for this postback window. If enable_postback_window_settings is set to false for this postback window, the values from postback_window_one will be used.
+     */
+    postbackWindowTwo?: Schema$GoogleAnalyticsAdminV1alphaPostbackWindow;
+  }
   /**
    * Request message for UpdateAccessBinding RPC.
    */
@@ -11949,12 +12054,17 @@ export namespace analyticsadmin_v1alpha {
     context: APIRequestContext;
     eventCreateRules: Resource$Properties$Datastreams$Eventcreaterules;
     measurementProtocolSecrets: Resource$Properties$Datastreams$Measurementprotocolsecrets;
+    sKAdNetworkConversionValueSchema: Resource$Properties$Datastreams$Skadnetworkconversionvalueschema;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.eventCreateRules =
         new Resource$Properties$Datastreams$Eventcreaterules(this.context);
       this.measurementProtocolSecrets =
         new Resource$Properties$Datastreams$Measurementprotocolsecrets(
+          this.context
+        );
+      this.sKAdNetworkConversionValueSchema =
+        new Resource$Properties$Datastreams$Skadnetworkconversionvalueschema(
           this.context
         );
     }
@@ -13878,6 +13988,544 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret;
+  }
+
+  export class Resource$Properties$Datastreams$Skadnetworkconversionvalueschema {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a SKAdNetworkConversionValueSchema.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>;
+    create(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/sKAdNetworkConversionValueSchema'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes target SKAdNetworkConversionValueSchema.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Looks up a single SKAdNetworkConversionValueSchema.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>;
+    get(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists SKAdNetworkConversionValueSchema on a stream. Properties can have at most one SKAdNetworkConversionValueSchema.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>;
+    list(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/sKAdNetworkConversionValueSchema'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a SKAdNetworkConversionValueSchema.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>;
+    patch(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this schema will be created. Format: properties/{property\}/dataStreams/{dataStream\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema;
+  }
+  export interface Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the SKAdNetworkConversionValueSchema to delete. Format: properties/{property\}/dataStreams/{dataStream\}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of SKAdNetwork conversion value schema to look up. Format: properties/{property\}/dataStreams/{dataStream\}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListSKAdNetworkConversionValueSchemas` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSKAdNetworkConversionValueSchema` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: properties/{property_id\}/dataStreams/{dataStream\}/sKAdNetworkConversionValueSchema Example: properties/1234/dataStreams/5678/sKAdNetworkConversionValueSchema
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Skadnetworkconversionvalueschema$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of the schema. This will be child of ONLY an iOS stream, and there can be at most one such child under an iOS stream. Format: properties/{property\}/dataStreams/{dataStream\}/sKAdNetworkConversionValueSchema
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Omitted fields will not be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema;
   }
 
   export class Resource$Properties$Displayvideo360advertiserlinkproposals {

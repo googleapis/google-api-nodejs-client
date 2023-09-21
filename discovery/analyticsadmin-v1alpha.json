@@ -1718,7 +1718,10 @@
               },
               "response": {
                 "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
             },
             "delete": {
               "description": "Deletes an AdSenseLink.",
@@ -1740,7 +1743,10 @@
               "path": "v1alpha/{+name}",
               "response": {
                 "$ref": "GoogleProtobufEmpty"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
             },
             "get": {
               "description": "Looks up a single AdSenseLink.",
@@ -1762,7 +1768,11 @@
               "path": "v1alpha/{+name}",
               "response": {
                 "$ref": "GoogleAnalyticsAdminV1alphaAdSenseLink"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
             },
             "list": {
               "description": "Lists AdSenseLinks on a property.",
@@ -1795,7 +1805,11 @@
               "path": "v1alpha/{+parent}/adSenseLinks",
               "response": {
                 "$ref": "GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
             }
           }
         },
@@ -3192,6 +3206,160 @@
                   ]
                 }
               }
+            },
+            "sKAdNetworkConversionValueSchema": {
+              "methods": {
+                "create": {
+                  "description": "Creates a SKAdNetworkConversionValueSchema.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/sKAdNetworkConversionValueSchema",
+                  "httpMethod": "POST",
+                  "id": "analyticsadmin.properties.dataStreams.sKAdNetworkConversionValueSchema.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this schema will be created. Format: properties/{property}/dataStreams/{dataStream}",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/sKAdNetworkConversionValueSchema",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema"
+                  },
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes target SKAdNetworkConversionValueSchema.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/sKAdNetworkConversionValueSchema/{sKAdNetworkConversionValueSchemaId}",
+                  "httpMethod": "DELETE",
+                  "id": "analyticsadmin.properties.dataStreams.sKAdNetworkConversionValueSchema.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the SKAdNetworkConversionValueSchema to delete. Format: properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/sKAdNetworkConversionValueSchema/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
+                "get": {
+                  "description": "Looks up a single SKAdNetworkConversionValueSchema.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/sKAdNetworkConversionValueSchema/{sKAdNetworkConversionValueSchemaId}",
+                  "httpMethod": "GET",
+                  "id": "analyticsadmin.properties.dataStreams.sKAdNetworkConversionValueSchema.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of SKAdNetwork conversion value schema to look up. Format: properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema/{skadnetwork_conversion_value_schema}",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/sKAdNetworkConversionValueSchema/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit",
+                    "https://www.googleapis.com/auth/analytics.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "Lists SKAdNetworkConversionValueSchema on a stream. Properties can have at most one SKAdNetworkConversionValueSchema.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/sKAdNetworkConversionValueSchema",
+                  "httpMethod": "GET",
+                  "id": "analyticsadmin.properties.dataStreams.sKAdNetworkConversionValueSchema.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListSKAdNetworkConversionValueSchemas` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSKAdNetworkConversionValueSchema` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Format: properties/{property_id}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema Example: properties/1234/dataStreams/5678/sKAdNetworkConversionValueSchema",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/sKAdNetworkConversionValueSchema",
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit",
+                    "https://www.googleapis.com/auth/analytics.readonly"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a SKAdNetworkConversionValueSchema.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/sKAdNetworkConversionValueSchema/{sKAdNetworkConversionValueSchemaId}",
+                  "httpMethod": "PATCH",
+                  "id": "analyticsadmin.properties.dataStreams.sKAdNetworkConversionValueSchema.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of the schema. This will be child of ONLY an iOS stream, and there can be at most one such child under an iOS stream. Format: properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/sKAdNetworkConversionValueSchema/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to be updated. Omitted fields will not be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema"
+                  },
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                }
+              }
             }
           }
         },
@@ -4356,7 +4524,7 @@
       }
     }
   },
-  "revision": "20230814",
+  "revision": "20230919",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5623,10 +5791,6 @@
           "description": "If set true, enables daily data export to the linked Google Cloud project.",
           "type": "boolean"
         },
-        "enterpriseExportEnabled": {
-          "description": "If set true, enables enterprise export to the linked Google Cloud project.",
-          "type": "boolean"
-        },
         "excludedEvents": {
           "description": "The list of event names that will be excluded from exports.",
           "items": {
@@ -5640,6 +5804,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "freshDailyExportEnabled": {
+          "description": "If set true, enables fresh daily export to the linked Google Cloud project.",
+          "type": "boolean"
         },
         "includeAdvertisingId": {
           "description": "If set true, exported data will include advertising identifiers for mobile app streams.",
@@ -5793,6 +5961,10 @@
         "searchAds360Link": {
           "$ref": "GoogleAnalyticsAdminV1alphaSearchAds360Link",
           "description": "A snapshot of a SearchAds360Link resource in change history."
+        },
+        "skadnetworkConversionValueSchema": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema",
+          "description": "A snapshot of SKAdNetworkConversionValueSchema resource in change history."
         }
       },
       "type": "object"
@@ -6036,6 +6208,49 @@
           "description": "Output only. Resource name of this conversion event. Format: properties/{property}/conversionEvents/{conversion_event}",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaConversionValues": {
+      "description": "Conversion value settings for a postback window for SKAdNetwork conversion value schema.",
+      "id": "GoogleAnalyticsAdminV1alphaConversionValues",
+      "properties": {
+        "coarseValue": {
+          "description": "Required. A coarse grained conversion value. This value is not guaranteed to be unique.",
+          "enum": [
+            "COARSE_VALUE_UNSPECIFIED",
+            "COARSE_VALUE_LOW",
+            "COARSE_VALUE_MEDIUM",
+            "COARSE_VALUE_HIGH"
+          ],
+          "enumDescriptions": [
+            "Coarse value not specified.",
+            "Coarse value of low.",
+            "Coarse value of medium.",
+            "Coarse value of high."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name of the SKAdNetwork conversion value. The max allowed display name length is 50 UTF-16 code units.",
+          "type": "string"
+        },
+        "eventMappings": {
+          "description": "Event conditions that must be met for this Conversion Value to be achieved. The conditions in this list are ANDed together. It must have minimum of 1 entry and maximum of 3 entries, if the postback window is enabled.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaEventMapping"
+          },
+          "type": "array"
+        },
+        "fineValue": {
+          "description": "The fine-grained conversion value. This is applicable only to the first postback window. Its valid values are [0,63], both inclusive. It must be set for postback window 1, and must not be set for postback window 2 & 3. This value is not guaranteed to be unique. If the configuration for the first postback window is re-used for second or third postback windows this field has no effect.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "lockEnabled": {
+          "description": "If true, the SDK should lock to this conversion value for the current postback window.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6593,6 +6808,37 @@
         "sourceCopyParameters": {
           "description": "If true, the source parameters are copied to the new event. If false, or unset, all non-internal parameters are not copied from the source event. Parameter mutations are applied after the parameters have been copied.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaEventMapping": {
+      "description": "Event setting conditions to match an event.",
+      "id": "GoogleAnalyticsAdminV1alphaEventMapping",
+      "properties": {
+        "eventName": {
+          "description": "Required. Name of the GA4 event. It must always be set. The max allowed display name length is 40 UTF-16 code units.",
+          "type": "string"
+        },
+        "maxEventCount": {
+          "description": "The maximum number of times the event occurred. If not set, maximum event count won't be checked.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxEventValue": {
+          "description": "The maximum revenue generated due to the event. Revenue currency will be defined at the property level. If not set, maximum event value won't be checked.",
+          "format": "double",
+          "type": "number"
+        },
+        "minEventCount": {
+          "description": "At least one of the following four min/max values must be set. The values set will be ANDed together to qualify an event. The minimum number of times the event occurred. If not set, minimum event count won't be checked.",
+          "format": "int64",
+          "type": "string"
+        },
+        "minEventValue": {
+          "description": "The minimum revenue generated due to the event. Revenue currency will be defined at the property level. If not set, minimum event value won't be checked.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -7326,6 +7572,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse": {
+      "description": "Response message for ListSKAdNetworkConversionValueSchemas RPC",
+      "id": "GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. Currently, Google Analytics supports only one SKAdNetworkConversionValueSchema per dataStream, so this will never be populated.",
+          "type": "string"
+        },
+        "skadnetworkConversionValueSchemas": {
+          "description": "List of SKAdNetworkConversionValueSchemas. This will have at most one value.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse": {
       "description": "Response message for ListSearchAds360Links RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse",
@@ -7468,6 +7732,24 @@
         "parameterValue": {
           "description": "Required. The value mutation to perform. * Must be less than 100 characters. * To specify a constant value for the param, use the value's string. * To copy value from another parameter, use syntax like \"[[other_parameter]]\" For more details, see this [help center article](https://support.google.com/analytics/answer/10085872#modify-an-event&zippy=%2Cin-this-article%2Cmodify-parameters).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaPostbackWindow": {
+      "description": "Settings for a SKAdNetwork conversion postback window.",
+      "id": "GoogleAnalyticsAdminV1alphaPostbackWindow",
+      "properties": {
+        "conversionValues": {
+          "description": "Ordering of the repeated field will be used to prioritize the conversion value settings. Lower indexed entries are prioritized higher. The first conversion value setting that evaluates to true will be selected. It must have at least one entry if enable_postback_window_settings is set to true. It can have maximum of 128 entries.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaConversionValues"
+          },
+          "type": "array"
+        },
+        "postbackWindowSettingsEnabled": {
+          "description": "If enable_postback_window_settings is true, conversion_values must be populated and will be used for determining when and how to set the Conversion Value on a client device and exporting schema to linked Ads accounts. If false, the settings are not used, but are retained in case they may be used in the future. This must always be true for postback_window_one.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7780,6 +8062,34 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema": {
+      "description": "SKAdNetwork conversion value schema of an iOS stream.",
+      "id": "GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema",
+      "properties": {
+        "applyConversionValues": {
+          "description": "If enabled, the GA SDK will set conversion values using this schema definition, and schema will be exported to any Google Ads accounts linked to this property. If disabled, the GA SDK will not automatically set conversion values, and also the schema will not be exported to Ads.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. Resource name of the schema. This will be child of ONLY an iOS stream, and there can be at most one such child under an iOS stream. Format: properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema",
+          "readOnly": true,
+          "type": "string"
+        },
+        "postbackWindowOne": {
+          "$ref": "GoogleAnalyticsAdminV1alphaPostbackWindow",
+          "description": "Required. The conversion value settings for the first postback window. These differ from values for postback window two and three in that they contain a \"Fine\" grained conversion value (a numeric value). Conversion values for this postback window must be set. The other windows are optional and may inherit this window's settings if unset or disabled."
+        },
+        "postbackWindowThree": {
+          "$ref": "GoogleAnalyticsAdminV1alphaPostbackWindow",
+          "description": "The conversion value settings for the third postback window. This field should only be set if the user chose to define different conversion values for this postback window. It is allowed to configure window 3 without setting window 2. In case window 1 & 2 settings are set and enable_postback_window_settings for this postback window is set to false, the schema will inherit settings from postback_window_two."
+        },
+        "postbackWindowTwo": {
+          "$ref": "GoogleAnalyticsAdminV1alphaPostbackWindow",
+          "description": "The conversion value settings for the second postback window. This field should only be configured if there is a need to define different conversion values for this postback window. If enable_postback_window_settings is set to false for this postback window, the values from postback_window_one will be used."
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaSearchAds360Link": {
       "description": "A link between a GA4 property and a Search Ads 360 entity.",
       "id": "GoogleAnalyticsAdminV1alphaSearchAds360Link",
@@ -7893,6 +8203,7 @@
               "EXPANDED_DATA_SET",
               "CHANNEL_GROUP",
               "ENHANCED_MEASUREMENT_SETTINGS",
+              "SKADNETWORK_CONVERSION_VALUE_SCHEMA",
               "ADSENSE_LINK",
               "AUDIENCE",
               "EVENT_CREATE_RULE"
@@ -7917,6 +8228,7 @@
               "ExpandedDataSet resource",
               "ChannelGroup resource",
               "EnhancedMeasurementSettings resource",
+              "SKAdNetworkConversionValueSchema resource",
               "AdSenseLink resource",
               "Audience resource",
               "EventCreateRule resource"
