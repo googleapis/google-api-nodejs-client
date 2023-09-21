@@ -183,7 +183,7 @@ export namespace gkehub_v1 {
      */
     identityProvider?: string | null;
     /**
-     * Optional. A JSON Web Token (JWT) issuer URI. `issuer` must start with `https://` and be a valid URL with length <2000 characters. If set, then Google will allow valid OIDC tokens from this issuer to authenticate within the workload_identity_pool. OIDC discovery will be performed on this URI to validate tokens from the issuer. Clearing `issuer` disables Workload Identity. `issuer` cannot be directly modified; it must be cleared (and Workload Identity disabled) before using a new issuer (and re-enabling Workload Identity).
+     * Optional. A JSON Web Token (JWT) issuer URI. `issuer` must start with `https://` and be a valid URL with length <2000 characters, it must use `location` rather than `zone` for GKE clusters. If set, then Google will allow valid OIDC tokens from this issuer to authenticate within the workload_identity_pool. OIDC discovery will be performed on this URI to validate tokens from the issuer. Clearing `issuer` disables Workload Identity. `issuer` cannot be directly modified; it must be cleared (and Workload Identity disabled) before using a new issuer (and re-enabling Workload Identity).
      */
     issuer?: string | null;
     /**
@@ -253,7 +253,12 @@ export namespace gkehub_v1 {
   /**
    * CommonFleetDefaultMemberConfigSpec contains default configuration information for memberships of a fleet
    */
-  export interface Schema$CommonFleetDefaultMemberConfigSpec {}
+  export interface Schema$CommonFleetDefaultMemberConfigSpec {
+    /**
+     * Config Management-specific spec.
+     */
+    configmanagement?: Schema$ConfigManagementMembershipSpec;
+  }
   /**
    * Configuration for Config Sync
    */
@@ -1147,10 +1152,6 @@ export namespace gkehub_v1 {
      * Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.
      */
     tenant?: string | null;
-    /**
-     * Optional. Claim in the AzureAD ID Token that holds the user details.
-     */
-    userClaim?: string | null;
   }
   /**
    * Configuration for the Google Plugin Auth flow.
@@ -1517,10 +1518,6 @@ export namespace gkehub_v1 {
      * Output only. When the membership binding was deleted.
      */
     deleteTime?: string | null;
-    /**
-     * Whether the membershipbinding is Fleet-wide; true means that this Membership should be bound to all Namespaces in this entire Fleet.
-     */
-    fleet?: boolean | null;
     /**
      * Optional. Labels for this MembershipBinding.
      */
