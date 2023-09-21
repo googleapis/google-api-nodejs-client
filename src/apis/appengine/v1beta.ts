@@ -200,6 +200,10 @@ export namespace appengine_v1beta {
      * Output only. The Google Container Registry domain used for storing managed build docker images for this application.
      */
     gcrDomain?: string | null;
+    /**
+     * Additional Google Generated Customer Metadata, this field won't be provided by default and can be requested by setting the IncludeExtraData field in GetApplicationRequest
+     */
+    generatedCustomerMetadata?: {[key: string]: any} | null;
     iap?: Schema$IdentityAwareProxy;
     /**
      * Identifier of the Application resource. This identifier is equivalent to the project ID of the Google Cloud Platform project where you want to deploy your application. Example: myapp.
@@ -476,6 +480,23 @@ export namespace appengine_v1beta {
      * The target value for the metric.
      */
     targetUtilization?: number | null;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values. A month and day, with a zero year (for example, an anniversary). A year on its own, with a zero month and a zero day. A year and month, with a zero day (for example, a credit card expiration date).Related types: google.type.TimeOfDay google.type.DateTime google.protobuf.Timestamp
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
   }
   /**
    * Request message for Instances.DebugInstance.
@@ -1413,6 +1434,18 @@ export namespace appengine_v1beta {
    */
   export interface Schema$Runtime {
     /**
+     * Date when Runtime is decommissioned.
+     */
+    decommissionedDate?: Schema$Date;
+    /**
+     * Date when Runtime is deprecated.
+     */
+    deprecationDate?: Schema$Date;
+    /**
+     * Date when Runtime is end of support.
+     */
+    endOfSupportDate?: Schema$Date;
+    /**
      * The environment of the runtime.
      */
     environment?: string | null;
@@ -1442,6 +1475,10 @@ export namespace appengine_v1beta {
    * A Service resource is a logical component of an application that can share state and communicate in a secure fashion with other services. For example, an application that handles customer requests might include separate services to handle tasks such as backend data analysis or API requests from mobile devices. Each service has a collection of versions that define a specific set of code used to implement the functionality of that service.
    */
   export interface Schema$Service {
+    /**
+     * Additional Google Generated Customer Metadata, this field won't be provided by default and can be requested by setting the IncludeExtraData field in GetServiceRequest
+     */
+    generatedCustomerMetadata?: {[key: string]: any} | null;
     /**
      * Relative name of the service within the application. Example: default.@OutputOnly
      */
@@ -1691,6 +1728,10 @@ export namespace appengine_v1beta {
      */
     flexibleRuntimeSettings?: Schema$FlexibleRuntimeSettings;
     /**
+     * Additional Google Generated Customer Metadata, this field won't be provided by default and can be requested by setting the IncludeExtraData field in GetVersionRequest
+     */
+    generatedCustomerMetadata?: {[key: string]: any} | null;
+    /**
      * An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the request and other request handlers are not attempted.Only returned in GET requests if view=FULL is set.
      */
     handlers?: Schema$UrlMap[];
@@ -1813,7 +1854,7 @@ export namespace appengine_v1beta {
      */
     egressSetting?: string | null;
     /**
-     * Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.
+     * Full Serverless VPC Access Connector name e.g. projects/my-project/locations/us-central1/connectors/c1.
      */
     name?: string | null;
   }
@@ -2210,6 +2251,10 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the Application resource to get. Example: apps/myapp.
      */
     appsId?: string;
+    /**
+     * Optional. Options to include extra data
+     */
+    includeExtraData?: string;
   }
   export interface Params$Resource$Apps$Patch extends StandardParameters {
     /**
@@ -4599,14 +4644,6 @@ export namespace appengine_v1beta {
      * Optional. The environment of the Application.
      */
     environment?: string;
-    /**
-     * Optional. Maximum results to return per page.
-     */
-    pageSize?: number;
-    /**
-     * Optional. Continuation token for fetching the next page of results.
-     */
-    pageToken?: string;
   }
 
   export class Resource$Apps$Services {
@@ -4985,6 +5022,10 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
      */
     appsId?: string;
+    /**
+     * Optional. Options to include extra data
+     */
+    includeExtraData?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
@@ -5516,6 +5557,10 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
      */
     appsId?: string;
+    /**
+     * Optional. Options to include extra data
+     */
+    includeExtraData?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
