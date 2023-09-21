@@ -159,6 +159,10 @@ export namespace gkeonprem_v1 {
      */
     bareMetalVersion?: string | null;
     /**
+     * Binary Authorization related configurations.
+     */
+    binaryAuthorization?: Schema$BinaryAuthorization;
+    /**
      * Cluster operations configuration.
      */
     clusterOperations?: Schema$BareMetalAdminClusterOperationsConfig;
@@ -281,7 +285,7 @@ export namespace gkeonprem_v1 {
      */
     apiServerArgs?: Schema$BareMetalAdminApiServerArgument[];
     /**
-     * Configures the node pool running the control plane. If specified the corresponding NodePool will be created for the cluster's control plane. The NodePool will have the same name and namespace as the cluster.
+     * Required. Configures the node pool running the control plane. If specified the corresponding NodePool will be created for the cluster's control plane. The NodePool will have the same name and namespace as the cluster.
      */
     controlPlaneNodePoolConfig?: Schema$BareMetalAdminControlPlaneNodePoolConfig;
   }
@@ -290,7 +294,7 @@ export namespace gkeonprem_v1 {
    */
   export interface Schema$BareMetalAdminControlPlaneNodePoolConfig {
     /**
-     * The generic configuration for a node pool running the control plane.
+     * Required. The generic configuration for a node pool running the control plane.
      */
     nodePoolConfig?: Schema$BareMetalNodePoolConfig;
   }
@@ -546,6 +550,10 @@ export namespace gkeonprem_v1 {
      * Required. The Anthos clusters on bare metal version for your user cluster.
      */
     bareMetalVersion?: string | null;
+    /**
+     * Binary Authorization related configurations.
+     */
+    binaryAuthorization?: Schema$BinaryAuthorization;
     /**
      * Cluster operations configuration.
      */
@@ -1143,6 +1151,15 @@ export namespace gkeonprem_v1 {
     maxPodsPerNode?: string | null;
   }
   /**
+   * Configuration for Binary Authorization.
+   */
+  export interface Schema$BinaryAuthorization {
+    /**
+     * Mode of operation for binauthz policy evaluation. If unspecified, defaults to DISABLED.
+     */
+    evaluationMode?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -1504,7 +1521,7 @@ export namespace gkeonprem_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1588,7 +1605,7 @@ export namespace gkeonprem_v1 {
     state?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1725,6 +1742,10 @@ export namespace gkeonprem_v1 {
      * Local name of the dependency.
      */
     localName?: string | null;
+    /**
+     * Membership names are formatted as `projects//locations//memberships/`.
+     */
+    membership?: string | null;
     /**
      * Resource name of the dependency.
      */
@@ -2073,6 +2094,10 @@ export namespace gkeonprem_v1 {
      */
     masterIp?: string | null;
     /**
+     * Name to be used by Stackdriver.
+     */
+    stackdriverName?: string | null;
+    /**
      * Names of the VMs created for this Seesaw group.
      */
     vms?: string[] | null;
@@ -2207,6 +2232,10 @@ export namespace gkeonprem_v1 {
      */
     description?: string | null;
     /**
+     * Disable bundled ingress.
+     */
+    disableBundledIngress?: boolean | null;
+    /**
      * Enable control plane V2. Default to false.
      */
     enableControlPlaneV2?: boolean | null;
@@ -2267,17 +2296,30 @@ export namespace gkeonprem_v1 {
      */
     updateTime?: string | null;
     /**
+     * Specifies upgrade policy for the cluster.
+     */
+    upgradePolicy?: Schema$VmwareClusterUpgradePolicy;
+    /**
      * Output only. ValidationCheck represents the result of the preflight check job.
      */
     validationCheck?: Schema$ValidationCheck;
     /**
-     * Output only. VmwareVCenterConfig specifies vCenter config for the user cluster. Inherited from the admin cluster.
+     * VmwareVCenterConfig specifies vCenter config for the user cluster. If unspecified, it is inherited from the admin cluster.
      */
     vcenter?: Schema$VmwareVCenterConfig;
     /**
      * Enable VM tracking.
      */
     vmTrackingEnabled?: boolean | null;
+  }
+  /**
+   * VmwareClusterUpgradePolicy defines the cluster upgrade policy.
+   */
+  export interface Schema$VmwareClusterUpgradePolicy {
+    /**
+     * Controls whether the upgrade applies to the control plane only.
+     */
+    controlPlaneOnly?: boolean | null;
   }
   /**
    * Specifies control plane node config for the VMware user cluster.
@@ -2321,6 +2363,10 @@ export namespace gkeonprem_v1 {
      * The Vsphere datastore used by the control plane Node.
      */
     datastore?: string | null;
+    /**
+     * The Vsphere storage policy used by the control plane Node.
+     */
+    storagePolicyName?: string | null;
   }
   /**
    * Contains configurations for Dataplane V2, which is optimized dataplane for Kubernetes networking. For more information, see: https://cloud.google.com/kubernetes-engine/docs/concepts/dataplane-v2
@@ -2428,6 +2474,10 @@ export namespace gkeonprem_v1 {
      * Configuration for MetalLB typed load balancers.
      */
     metalLbConfig?: Schema$VmwareMetalLbConfig;
+    /**
+     * Output only. Configuration for Seesaw typed load balancers.
+     */
+    seesawConfig?: Schema$VmwareSeesawConfig;
     /**
      * The VIPs used by the load balancer.
      */
@@ -2637,6 +2687,35 @@ export namespace gkeonprem_v1 {
     status?: Schema$ResourceStatus;
   }
   /**
+   * VmwareSeesawConfig represents configuration parameters for an already existing Seesaw load balancer. IMPORTANT: Please note that the Anthos On-Prem API will not generate or update Seesaw configurations it can only bind a pre-existing configuration to a new user cluster. IMPORTANT: When attempting to create a user cluster with a pre-existing Seesaw load balancer you will need to follow some preparation steps before calling the 'CreateVmwareCluster' API method. First you will need to create the user cluster's namespace via kubectl. The namespace will need to use the following naming convention : -gke-onprem-mgmt or -gke-onprem-mgmt depending on whether you used the 'VmwareCluster.local_name' to disambiguate collisions; for more context see the documentation of 'VmwareCluster.local_name'. Once the namespace is created you will need to create a secret resource via kubectl. This secret will contain copies of your Seesaw credentials. The Secret must be called 'user-cluster-creds' and contain Seesaw's SSH and Cert credentials. The credentials must be keyed with the following names: 'seesaw-ssh-private-key', 'seesaw-ssh-public-key', 'seesaw-ssh-ca-key', 'seesaw-ssh-ca-cert'.
+   */
+  export interface Schema$VmwareSeesawConfig {
+    /**
+     * Enable two load balancer VMs to achieve a highly-available Seesaw load balancer.
+     */
+    enableHa?: boolean | null;
+    /**
+     * Required. In general the following format should be used for the Seesaw group name: seesaw-for-[cluster_name].
+     */
+    group?: string | null;
+    /**
+     * Required. The IP Blocks to be used by the Seesaw load balancer
+     */
+    ipBlocks?: Schema$VmwareIpBlock[];
+    /**
+     * Required. MasterIP is the IP announced by the master of Seesaw group.
+     */
+    masterIp?: string | null;
+    /**
+     * Name to be used by Stackdriver.
+     */
+    stackdriverName?: string | null;
+    /**
+     * Names of the VMs created for this Seesaw group.
+     */
+    vms?: string[] | null;
+  }
+  /**
    * Represents the network configuration required for the VMware user clusters with Static IP configurations.
    */
   export interface Schema$VmwareStaticIpConfig {
@@ -2659,7 +2738,7 @@ export namespace gkeonprem_v1 {
    */
   export interface Schema$VmwareVCenterConfig {
     /**
-     * The vCenter IP address.
+     * Output only. The vCenter IP address.
      */
     address?: string | null;
     /**
@@ -2686,11 +2765,19 @@ export namespace gkeonprem_v1 {
      * The name of the vCenter resource pool for the user cluster.
      */
     resourcePool?: string | null;
+    /**
+     * The name of the vCenter storage policy for the user cluster.
+     */
+    storagePolicyName?: string | null;
   }
   /**
    * Contains information about a specific Anthos on VMware version.
    */
   export interface Schema$VmwareVersionInfo {
+    /**
+     * The list of upgrade dependencies for this version.
+     */
+    dependencies?: Schema$UpgradeDependency[];
     /**
      * If set, the cluster dependencies (e.g. the admin cluster, other user clusters managed by the same admin cluster) must be upgraded before this version can be installed or upgraded to.
      */
