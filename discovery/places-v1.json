@@ -111,30 +111,6 @@
   },
   "protocol": "rest",
   "resources": {
-    "Text": {
-      "methods": {
-        "search": {
-          "description": "Text query based place search.",
-          "flatPath": "v1/Text:search",
-          "httpMethod": "POST",
-          "id": "places.Text.search",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/Text:search",
-          "request": {
-            "$ref": "GoogleMapsPlacesV1SearchTextRequest"
-          },
-          "response": {
-            "$ref": "GoogleMapsPlacesV1SearchTextResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/maps-platform.places",
-            "https://www.googleapis.com/auth/maps-platform.places.textsearch"
-          ]
-        }
-      }
-    },
     "places": {
       "methods": {
         "searchText": {
@@ -160,7 +136,7 @@
       }
     }
   },
-  "revision": "20230808",
+  "revision": "20230918",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -212,23 +188,6 @@
           "description": "Required. Radius measured in meters. The radius must be within [0.0, 50000.0].",
           "format": "double",
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleMapsPlacesV1Int32Range": {
-      "description": "int 32 range. Both min and max are optional. If only min is set, then the range only has a lower bound. If only max is set, then range only has an upper bound. At least one of min and max must be set. Values are inclusive.",
-      "id": "GoogleMapsPlacesV1Int32Range",
-      "properties": {
-        "max": {
-          "description": "Upper bound. If unset, behavior is documented on the range field.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "min": {
-          "description": "Lower bound. If unset, behavior is documented on the range field.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -384,7 +343,7 @@
             "Place provides inexpensive services.",
             "Place provides moderately priced services.",
             "Place provides expensive services.",
-            "Place provides very expensive services."
+            "Place provides very expensive service s."
           ],
           "readOnly": true,
           "type": "string"
@@ -487,7 +446,8 @@
           "type": "string"
         },
         "wheelchairAccessibleEntrance": {
-          "description": "Output only. Specifies if the place has an entrance that is wheelchair-accessible.",
+          "deprecated": true,
+          "description": "Output only. [Deprecated!] Specifies if the place has an entrance that is wheelchair-accessible.",
           "readOnly": true,
           "type": "boolean"
         }
@@ -640,12 +600,6 @@
           "description": "Output only. Date in the local timezone for the place.",
           "readOnly": true
         },
-        "dateDeprecated": {
-          "deprecated": true,
-          "description": "Output only. Date of the endpoint expressed in RFC3339 format in the local timezone for the place. For example 2010-12-31.",
-          "readOnly": true,
-          "type": "string"
-        },
         "day": {
           "description": "Output only. A day of the week, as an integer in the range 0-6. 0 is Sunday, 1 is Monday, etc.",
           "format": "int32",
@@ -752,11 +706,6 @@
           "description": "Place details will be displayed with the preferred language if available. If the language code is unspecified or unrecognized, place details of any language may be returned, with a preference for English if such details exist. Current list of supported languages: https://developers.google.com/maps/faq#languagesupport.",
           "type": "string"
         },
-        "location": {
-          "$ref": "GoogleMapsPlacesV1SearchTextRequestLocation",
-          "deprecated": true,
-          "description": "[Deprecated!]The region to search. Setting location would usually yields better results. Recommended to set. This location serves as a bias unless strict_restriction is set to true, which turns the location to a strict restriction."
-        },
         "locationBias": {
           "$ref": "GoogleMapsPlacesV1SearchTextRequestLocationBias",
           "description": "The region to search. This location serves as a bias which means results around given location might be returned. Cannot be set along with location_restriction."
@@ -796,16 +745,11 @@
               "Place provides inexpensive services.",
               "Place provides moderately priced services.",
               "Place provides expensive services.",
-              "Place provides very expensive services."
+              "Place provides very expensive service s."
             ],
             "type": "string"
           },
           "type": "array"
-        },
-        "priceRange": {
-          "$ref": "GoogleMapsPlacesV1Int32Range",
-          "deprecated": true,
-          "description": "[Deprecated!]Used to restrict the search to places that are within a certain price range. This is on a scale of 0 to 4. Set a minimum of 0 or set a maximum of 4 has no effect on the search results. Min price is default to 0 and max price is default to 4. Default value will be used if either min or max is unset."
         },
         "rankPreference": {
           "description": "How results will be ranked in the response.",
@@ -822,7 +766,7 @@
           "type": "string"
         },
         "regionCode": {
-          "description": "The Unicode country/region code (CLDR) of the location where the request is coming from. It is used to display the place details, like region-specific place name, if available. For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag. Note that 3-digit region codes are not currently supported.",
+          "description": "The Unicode country/region code (CLDR) of the location where the request is coming from. This parameter is used to display the place details, like region-specific place name, if available. The parameter can affect results based on applicable law. For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag. Note that 3-digit region codes are not currently supported.",
           "type": "string"
         },
         "strictTypeFiltering": {
@@ -832,21 +776,6 @@
         "textQuery": {
           "description": "Required. The text query for textual search.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleMapsPlacesV1SearchTextRequestLocation": {
-      "description": "[Deprecated!]The region to search.",
-      "id": "GoogleMapsPlacesV1SearchTextRequestLocation",
-      "properties": {
-        "rectangle": {
-          "$ref": "GoogleGeoTypeViewport",
-          "description": "A rectangle box defined by northeast and southwest corner."
-        },
-        "strictRestriction": {
-          "description": "Make location field a strict restriction and filter out POIs outside of the given location. If location type field is unset this field will have no effect.",
-          "type": "boolean"
         }
       },
       "type": "object"
