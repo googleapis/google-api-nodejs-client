@@ -131,7 +131,7 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$AddEnableRulesMetadata {}
   /**
-   * The response message of "AddEnableRules" method.
+   * The response message of `AddEnableRules` method.
    */
   export interface Schema$AddEnableRulesResponse {
     /**
@@ -473,7 +473,7 @@ export namespace serviceusage_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Output only. The resource name of the policy. For example, We only allow consumer policy name as "default" for now: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`. Legacy format: `projects/12345/consumerPoly`
+     * Output only. The resource name of the policy. We only allow consumer policy name as `default` for now: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.
      */
     name?: string | null;
     /**
@@ -768,7 +768,7 @@ export namespace serviceusage_v1beta1 {
      */
     enableType?: string | null;
     /**
-     * DEPRECATED: Please use field `values`. Service group should have prefix `groups/`. The names of the service groups that are enabled (Not Implemented). go/predefined-service-groups. Example: `groups/googleServices`.
+     * DEPRECATED: Please use field `values`. Service group should have prefix `groups/`. The names of the service groups that are enabled (Not Implemented). Example: `groups/googleServices`.
      */
     groups?: string[] | null;
     /**
@@ -776,7 +776,7 @@ export namespace serviceusage_v1beta1 {
      */
     services?: string[] | null;
     /**
-     * The names of the services or service groups that are enabled. Example: `services/storage.googleapis.com`, groups/googleServices`, groups/allServices`.
+     * The names of the services or service groups that are enabled. Example: `services/storage.googleapis.com`, `groups/googleServices`, `groups/allServices`.
      */
     values?: string[] | null;
   }
@@ -1999,7 +1999,7 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$RemoveEnableRulesMetadata {}
   /**
-   * The response message of "RemoveEnableRules" method.
+   * The response message of `RemoveEnableRules` method.
    */
   export interface Schema$RemoveEnableRulesResponse {
     /**
