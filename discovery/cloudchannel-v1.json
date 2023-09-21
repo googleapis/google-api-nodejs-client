@@ -2178,7 +2178,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20230918",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2747,7 +2747,7 @@
         },
         "orgPostalAddress": {
           "$ref": "GoogleTypePostalAddress",
-          "description": "Required. The organization address for the customer. To enforce US laws and embargoes, we require a region and zip code. You must provide valid addresses for every customer. To set the customer's language, use the Customer-level language code."
+          "description": "Required. The organization address for the customer. To enforce US laws and embargoes, we require a region, postal code, and address lines. You must provide valid addresses for every customer. To set the customer's language, use the Customer-level language code."
         },
         "primaryContactInfo": {
           "$ref": "GoogleCloudChannelV1ContactInfo",
@@ -4428,7 +4428,8 @@
         },
         "channelPartnerGranularity": {
           "$ref": "GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity",
-          "description": "Applies the repricing configuration at the channel partner level. Only ChannelPartnerRepricingConfig supports this value."
+          "deprecated": true,
+          "description": "Applies the repricing configuration at the channel partner level. Only ChannelPartnerRepricingConfig supports this value. Deprecated: This is no longer supported. Use RepricingConfig.entitlement_granularity instead."
         },
         "conditionalOverrides": {
           "description": "The conditional overrides to apply for this configuration. If you list multiple overrides, only the first valid override is used. If you don't list any overrides, the API uses the normal adjustment and rebilling basis.",
@@ -4463,7 +4464,8 @@
       "type": "object"
     },
     "GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity": {
-      "description": "Applies the repricing configuration at the channel partner level. The channel partner value is derived from the resource name. Takes an empty json object.",
+      "deprecated": true,
+      "description": "Applies the repricing configuration at the channel partner level. The channel partner value is derived from the resource name. Takes an empty json object. Deprecated: This is no longer supported. Use RepricingConfig.EntitlementGranularity instead.",
       "id": "GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity",
       "properties": {},
       "type": "object"
