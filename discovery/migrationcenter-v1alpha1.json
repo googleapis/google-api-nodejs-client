@@ -2102,7 +2102,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230918",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2980,7 +2980,7 @@
       "id": "DiskUsageSample",
       "properties": {
         "averageIops": {
-          "description": "Average IOPS sampled over a short window. Must be non-negative.",
+          "description": "Average IOPS sampled over a short window. Must be non-negative. Must be equal to the sum of read and write if one of them is positive. if both read and write are zero they are ignored.",
           "format": "float",
           "type": "number"
         }
@@ -3224,11 +3224,11 @@
       "type": "object"
     },
     "GenericInsight": {
-      "description": "An insight about an asset (experimental insight)",
+      "description": "A generic insight about an asset.",
       "id": "GenericInsight",
       "properties": {
         "additionalInformation": {
-          "description": "Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links",
+          "description": "Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links.",
           "items": {
             "type": "string"
           },
@@ -4849,7 +4849,8 @@
           "type": "string"
         },
         "overlappingAssetCount": {
-          "description": "Count of the number of assets in this group which are also included in another group within the same report.",
+          "deprecated": true,
+          "description": "This field is deprecated, do not rely on it having a value.",
           "format": "int64",
           "type": "string"
         },
@@ -5803,9 +5804,17 @@
           "$ref": "ComputeEnginePreferences",
           "description": "Compute Engine preferences concern insights and recommendations for Compute Engine target."
         },
+        "networkCostParameters": {
+          "$ref": "VirtualMachinePreferencesNetworkCostParameters",
+          "description": "Optional. Parameters that affect network cost estimations. If not set, default values will be used for the parameters."
+        },
         "regionPreferences": {
           "$ref": "RegionPreferences",
           "description": "Region preferences for assets using this preference set. If you are unsure which value to set, the migration service API region is often a good value to start with."
+        },
+        "sizingOptimizationCustomParameters": {
+          "$ref": "VirtualMachinePreferencesSizingOptimizationCustomParameters",
+          "description": "Optional. Custom data to use for sizing optimizations. Relevant when SizingOptimizationStrategy is set to \"custom\"."
         },
         "sizingOptimizationStrategy": {
           "description": "Sizing optimization strategy specifies the preferred strategy used when extrapolating usage data to calculate insights and recommendations for a virtual machine. If you are unsure which value to set, a moderate sizing optimization strategy is often a good value to start with.",
@@ -5813,13 +5822,15 @@
             "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
             "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",
             "SIZING_OPTIMIZATION_STRATEGY_MODERATE",
-            "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE"
+            "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE",
+            "SIZING_OPTIMIZATION_STRATEGY_CUSTOM"
           ],
           "enumDescriptions": [
             "Unspecified (default value).",
             "No optimization applied. Virtual machine sizing matches as closely as possible the machine shape on the source site, not considering any actual performance data.",
             "Virtual machine sizing will match the reported usage and shape, with some slack. This a good value to start with.",
-            "Virtual machine sizing will match the reported usage, with little slack. Using this option can help reduce costs."
+            "Virtual machine sizing will match the reported usage, with little slack. Using this option can help reduce costs.",
+            "Virtual machine sizing will be determined by custom parameters. While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API."
           ],
           "type": "string"
         },
@@ -5846,6 +5857,58 @@
         "vmwareEnginePreferences": {
           "$ref": "VmwareEnginePreferences",
           "description": "Preferences concerning insights and recommendations for Google Cloud VMware Engine."
+        }
+      },
+      "type": "object"
+    },
+    "VirtualMachinePreferencesNetworkCostParameters": {
+      "description": "Parameters that affect network cost estimations.",
+      "id": "VirtualMachinePreferencesNetworkCostParameters",
+      "properties": {
+        "estimatedEgressTrafficPercentage": {
+          "description": "Optional. An estimated percentage of priced outbound traffic (egress traffic) from the measured outbound traffic. Must be in the interval [0, 100].",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "VirtualMachinePreferencesSizingOptimizationCustomParameters": {
+      "description": "Custom data to use for sizing optimizations.",
+      "id": "VirtualMachinePreferencesSizingOptimizationCustomParameters",
+      "properties": {
+        "aggregationMethod": {
+          "description": "Optional. Type of statistical aggregation of a resource utilization data, on which to base the sizing metrics.",
+          "enum": [
+            "AGGREGATION_METHOD_UNSPECIFIED",
+            "AGGREGATION_METHOD_AVERAGE",
+            "AGGREGATION_METHOD_MEDIAN",
+            "AGGREGATION_METHOD_NINETY_FIFTH_PERCENTILE",
+            "AGGREGATION_METHOD_PEAK"
+          ],
+          "enumDescriptions": [
+            "Unspecified aggregation method. Can be used for default value.",
+            "Average of utilization data.",
+            "Median of utilization data.",
+            "95th percentile of utilization data.",
+            "Peak of utilization data."
+          ],
+          "type": "string"
+        },
+        "cpuUsagePercentage": {
+          "description": "Optional. Desired percentage of CPU usage. Must be in the interval [1, 100] (or 0 for default value).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "memoryUsagePercentage": {
+          "description": "Optional. Desired percentage of memory usage. Must be in the interval [1, 100] (or 0 for default value).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "storageMultiplier": {
+          "description": "Optional. Desired increase factor of storage, relative to currently used storage. Must be in the interval [1.0, 2.0] (or 0 for default value).",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"

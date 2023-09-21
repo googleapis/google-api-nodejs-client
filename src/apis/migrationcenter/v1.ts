@@ -855,11 +855,11 @@ export namespace migrationcenter_v1 {
     entries?: Schema$FstabEntry[];
   }
   /**
-   * An insight about an asset (experimental insight)
+   * A generic insight about an asset.
    */
   export interface Schema$GenericInsight {
     /**
-     * Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links
+     * Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links.
      */
     additionalInformation?: string[] | null;
     /**
@@ -1818,7 +1818,7 @@ export namespace migrationcenter_v1 {
      */
     network?: Schema$NetworkUsageSample;
     /**
-     * Time the sample was If omitted, the frame report time will be used.
+     * Time the sample was collected. If omitted, the frame report time will be used.
      */
     sampleTime?: string | null;
   }
@@ -2112,7 +2112,7 @@ export namespace migrationcenter_v1 {
      */
     displayName?: string | null;
     /**
-     * Count of the number of assets in this group which are also included in another group within the same report.
+     * This field is deprecated, do not rely on it having a value.
      */
     overlappingAssetCount?: string | null;
     /**

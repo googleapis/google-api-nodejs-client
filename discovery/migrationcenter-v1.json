@@ -2099,7 +2099,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230918",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3126,11 +3126,11 @@
       "type": "object"
     },
     "GenericInsight": {
-      "description": "An insight about an asset (experimental insight)",
+      "description": "A generic insight about an asset.",
       "id": "GenericInsight",
       "properties": {
         "additionalInformation": {
-          "description": "Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links",
+          "description": "Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links.",
           "items": {
             "type": "string"
           },
@@ -4515,7 +4515,7 @@
           "description": "Network usage sample."
         },
         "sampleTime": {
-          "description": "Time the sample was If omitted, the frame report time will be used.",
+          "description": "Time the sample was collected. If omitted, the frame report time will be used.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -4915,7 +4915,8 @@
           "type": "string"
         },
         "overlappingAssetCount": {
-          "description": "Count of the number of assets in this group which are also included in another group within the same report.",
+          "deprecated": true,
+          "description": "This field is deprecated, do not rely on it having a value.",
           "format": "int64",
           "type": "string"
         },
