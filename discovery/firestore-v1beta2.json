@@ -415,12 +415,24 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20230912",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1CreateDatabaseMetadata": {
+      "description": "Metadata related to the create database operation.",
+      "id": "GoogleFirestoreAdminV1CreateDatabaseMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1DeleteDatabaseMetadata": {
+      "description": "Metadata related to the delete database operation.",
+      "id": "GoogleFirestoreAdminV1DeleteDatabaseMetadata",
       "properties": {},
       "type": "object"
     },
