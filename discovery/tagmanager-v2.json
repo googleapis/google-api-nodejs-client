@@ -2451,7 +2451,7 @@
                       ]
                     },
                     "move_entities_to_folder": {
-                      "description": "Moves entities to a GTM Folder.",
+                      "description": "Moves entities to a GTM Folder. If {folder_id} in the request path equals 0, this will instead move entities out of the folder they currently belong to.",
                       "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/folders/{foldersId}:move_entities_to_folder",
                       "httpMethod": "POST",
                       "id": "tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder",
@@ -3890,7 +3890,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20230918",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5527,7 +5527,7 @@
       "id": "Parameter",
       "properties": {
         "isWeakReference": {
-          "description": "Whether or not a reference type parameter is strongly or weakly referenced. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update",
+          "description": "Whether or not a reference type parameter is strongly or weakly referenced. Only used by Transformations. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update",
           "type": "boolean"
         },
         "key": {
