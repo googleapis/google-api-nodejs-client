@@ -145,7 +145,7 @@ export namespace vpcaccess_v1beta1 {
      */
     maxInstances?: number | null;
     /**
-     * Maximum throughput of the connector in Mbps. Default is 300, max is 1000. If both maxThroughput and maxInstances are set, the value for maxInstances is utilzed.
+     * Maximum throughput of the connector in Mbps. Default is 300, max is 1000. If both max-throughput and max-instances are provided, max-instances takes precedence over max-throughput.
      */
     maxThroughput?: number | null;
     /**
@@ -153,7 +153,7 @@ export namespace vpcaccess_v1beta1 {
      */
     minInstances?: number | null;
     /**
-     * Minimum throughput of the connector in Mbps. Default and min is 200. If both max-throughput and max-instances are provided, max-instances takes precedence over max-throughput.
+     * Minimum throughput of the connector in Mbps. Default and min is 200. If both min-throughput and min-instances are provided, min-instances takes precedence over min-throughput.
      */
     minThroughput?: number | null;
     /**
@@ -937,7 +937,7 @@ export namespace vpcaccess_v1beta1 {
      */
     connectorId?: string;
     /**
-     * Required. The project id and location in which the configuration should be created, specified in the format `projects/x/locations/x`.
+     * Required. The project ID and location in which the configuration should be created, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
 
