@@ -180,7 +180,7 @@
             "clusters": {
               "methods": {
                 "create": {
-                  "description": "Creates a Redis cluster based on the specified tier and memory size. The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis cluster will be fully functional. The completed longrunning.Operation will contain the new cluster object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.",
+                  "description": "Creates a Redis cluster based on the specified properties. The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis cluster will be fully functional. The completed longrunning.Operation will contain the new cluster object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clusters",
                   "httpMethod": "POST",
                   "id": "redis.projects.locations.clusters.create",
@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230915",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "CertChain": {
@@ -1747,7 +1747,7 @@
       "id": "PscConfig",
       "properties": {
         "network": {
-          "description": "Required. The consumer network where the IP address of the discovery endpoint will be reserved, in the form of projects/{network_host_project}/global/networks/{network_id}.",
+          "description": "Required. The network where the IP address of the discovery endpoint will be reserved, in the form of projects/{network_project}/global/networks/{network_id}.",
           "type": "string"
         }
       },
@@ -1772,7 +1772,8 @@
           "type": "string"
         },
         "projectId": {
-          "description": "The consumer project_id where the forwarding rule is created from.",
+          "description": "Output only. The consumer project_id where the forwarding rule is created from.",
+          "readOnly": true,
           "type": "string"
         },
         "pscConnectionId": {
