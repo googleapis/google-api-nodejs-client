@@ -964,7 +964,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230911",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1086,7 +1086,7 @@
         },
         "sharingEnvironmentConfig": {
           "$ref": "SharingEnvironmentConfig",
-          "description": "Required. Configurable data sharing environment option for a data exchange."
+          "description": "Optional. Configurable data sharing environment option for a data exchange."
         }
       },
       "type": "object"
@@ -1719,7 +1719,7 @@
       "type": "object"
     },
     "Subscription": {
-      "description": "A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets. TODO(b/267528977) Consider port the new resource to v1beta1 and dataexchange APIs.",
+      "description": "A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets.",
       "id": "Subscription",
       "properties": {
         "creationTime": {
