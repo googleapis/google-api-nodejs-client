@@ -655,6 +655,16 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. List filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sort results. Supported values are \"name\", \"name desc\" or \"\" (unsorted).",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Maximum return size of the list call.",
                       "format": "int32",
@@ -1446,6 +1456,16 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. List filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Sort results. Supported values are \"name\", \"name desc\" or \"\" (unsorted).",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Maximum return size of the list call.",
                       "format": "int32",
@@ -1932,7 +1952,7 @@
       }
     }
   },
-  "revision": "20230720",
+  "revision": "20230914",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1954,6 +1974,7 @@
             "NVIDIA_TESLA_P4",
             "NVIDIA_TESLA_T4",
             "NVIDIA_TESLA_A100",
+            "NVIDIA_L4",
             "NVIDIA_TESLA_T4_VWS",
             "NVIDIA_TESLA_P100_VWS",
             "NVIDIA_TESLA_P4_VWS",
@@ -1968,6 +1989,7 @@
             "Accelerator type is Nvidia Tesla P4.",
             "Accelerator type is Nvidia Tesla T4.",
             "Accelerator type is Nvidia Tesla A100.",
+            "Accelerator type is Nvidia Tesla L4.",
             "Accelerator type is NVIDIA Tesla T4 Virtual Workstations.",
             "Accelerator type is NVIDIA Tesla P100 Virtual Workstations.",
             "Accelerator type is NVIDIA Tesla P4 Virtual Workstations.",
@@ -2598,6 +2620,11 @@
           "description": "Whether the end user authorizes Google Cloud to install GPU driver on this instance. If this field is empty or set to false, the GPU driver won't be installed. Only applicable to instances with GPUs.",
           "type": "boolean"
         },
+        "instanceMigrationEligibility": {
+          "$ref": "InstanceMigrationEligibility",
+          "description": "Output only. Checks how feasible a migration from UmN to WbI is.",
+          "readOnly": true
+        },
         "instanceOwners": {
           "description": "Input only. The owner of this instance after creation. Format: `alias@example.com` Currently supports one owner only. If not specified, all of the service account users of your VM instance's service account can use the instance.",
           "items": {
@@ -2670,11 +2697,6 @@
         "postStartupScript": {
           "description": "Path to a Bash script that automatically runs after a notebook instance fully boots up. The path must be a URL or Cloud Storage path (`gs://path-to-file/file-name`).",
           "type": "string"
-        },
-        "preMigrationCheck": {
-          "$ref": "PreMigrationCheck",
-          "description": "Output only. Check how possible a migration from UmN to WbI is.",
-          "readOnly": true
         },
         "proxyUri": {
           "description": "Output only. The proxy endpoint that is used to access the Jupyter notebook.",
@@ -2775,6 +2797,55 @@
         "notebookUpgradeSchedule": {
           "description": "Cron expression in UTC timezone, used to schedule instance auto upgrade. Please follow the [cron format](https://en.wikipedia.org/wiki/Cron).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceMigrationEligibility": {
+      "description": "InstanceMigrationEligibility represents the feasibility information of a migration from UmN to WbI.",
+      "id": "InstanceMigrationEligibility",
+      "properties": {
+        "errors": {
+          "description": "Output only. Certain configurations make the UmN ineligible for an automatic migration. A manual migration is required.",
+          "items": {
+            "enum": [
+              "ERROR_UNSPECIFIED",
+              "DATAPROC_HUB"
+            ],
+            "enumDescriptions": [
+              "Default type.",
+              "The UmN uses Dataproc Hub and cannot be migrated."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warnings": {
+          "description": "Output only. Certain configurations will be defaulted during the migration.",
+          "items": {
+            "enum": [
+              "WARNING_UNSPECIFIED",
+              "UNSUPPORTED_MACHINE_TYPE",
+              "UNSUPPORTED_ACCELERATOR_TYPE",
+              "UNSUPPORTED_OS",
+              "NO_REMOVE_DATA_DISK",
+              "GCS_BACKUP",
+              "POST_STARTUP_SCRIPT"
+            ],
+            "enumDescriptions": [
+              "Default type.",
+              "The UmN uses an machine type that's unsupported in WbI. It will be migrated with the default machine type n2-standard-4. Users can change the machine type after the migration.",
+              "The UmN uses an accelerator type that's unsupported in WbI. It will be migrated without an accelerator. User can attach an accelerator after the migration.",
+              "The UmN uses an operating system that's unsupported in WbI (e.g. Debian 10, Ubuntu). It will be replaced with Debian 11 in WbI.",
+              "This UmN is configured with no_remove_data_disk, which is no longer available in WbI.",
+              "This UmN is configured with the Cloud Storage backup feature, which is no longer available in WbI.",
+              "This UmN is configured with a post startup script. Please optionally provide the `post_startup_script_option` for the migration."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -3140,7 +3211,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -3188,7 +3259,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "bindings": {
@@ -3207,33 +3278,6 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "PreMigrationCheck": {
-      "description": "PreMigrationCheck checks how feasible a migration from UmN is.",
-      "id": "PreMigrationCheck",
-      "properties": {
-        "message": {
-          "description": "Message provides a summary or workaround.",
-          "type": "string"
-        },
-        "result": {
-          "description": "Result returns the result of the check.",
-          "enum": [
-            "RESULT_UNSPECIFIED",
-            "IDENTICAL",
-            "PARTIAL",
-            "NOT_RECOMMENDED"
-          ],
-          "enumDescriptions": [
-            "Default type.",
-            "UmN can be migrated to WbI as is minus non-relevant parts.",
-            "Part of the UmN won't be ported. The migration might default some values.",
-            "UmN has too many unsupported options for a migration to WbI."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -3442,6 +3486,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "runtimeMigrationEligibility": {
+          "$ref": "RuntimeMigrationEligibility",
+          "description": "Output only. Checks how feasible a migration from GmN to WbI is.",
+          "readOnly": true
+        },
         "softwareConfig": {
           "$ref": "RuntimeSoftwareConfig",
           "description": "The config settings for software inside the runtime."
@@ -3599,6 +3648,55 @@
           "description": "Output only. The system metrics.",
           "readOnly": true,
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "RuntimeMigrationEligibility": {
+      "description": "RuntimeMigrationEligibility represents the feasibility information of a migration from GmN to WbI.",
+      "id": "RuntimeMigrationEligibility",
+      "properties": {
+        "errors": {
+          "description": "Output only. Certain configurations make the GmN ineligible for an automatic migration. A manual migration is required.",
+          "items": {
+            "enum": [
+              "ERROR_UNSPECIFIED",
+              "CUSTOM_CONTAINER"
+            ],
+            "enumDescriptions": [
+              "Default type.",
+              "The GmN is configured with custom container(s) and cannot be migrated."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "warnings": {
+          "description": "Output only. Certain configurations will be defaulted during the migration.",
+          "items": {
+            "enum": [
+              "WARNING_UNSPECIFIED",
+              "UNSUPPORTED_ACCELERATOR_TYPE",
+              "UNSUPPORTED_OS",
+              "RESERVED_IP_RANGE",
+              "GOOGLE_MANAGED_NETWORK",
+              "POST_STARTUP_SCRIPT",
+              "SINGLE_USER"
+            ],
+            "enumDescriptions": [
+              "Default type.",
+              "The GmN uses an accelerator type that's unsupported in WbI. It will be migrated without an accelerator. Users can attach an accelerator after the migration.",
+              "The GmN uses an operating system that's unsupported in WbI (e.g. Debian 10). It will be replaced with Debian 11 in WbI.",
+              "This GmN is configured with reserved IP range, which is no longer applicable in WbI.",
+              "This GmN is configured with a Google managed network. Please provide the `network` and `subnet` options for the migration.",
+              "This GmN is configured with a post startup script. Please optionally provide the `post_startup_script_option` for the migration.",
+              "This GmN is configured with single user mode. Please optionally provide the `service_account` option for the migration."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -3839,6 +3937,7 @@
             "NVIDIA_TESLA_P4",
             "NVIDIA_TESLA_T4",
             "NVIDIA_TESLA_A100",
+            "NVIDIA_L4",
             "NVIDIA_TESLA_T4_VWS",
             "NVIDIA_TESLA_P100_VWS",
             "NVIDIA_TESLA_P4_VWS",
@@ -3853,6 +3952,7 @@
             "Accelerator type is Nvidia Tesla P4.",
             "Accelerator type is Nvidia Tesla T4.",
             "Accelerator type is Nvidia Tesla A100.",
+            "Accelerator type is Nvidia Tesla L4.",
             "Accelerator type is NVIDIA Tesla T4 Virtual Workstations.",
             "Accelerator type is NVIDIA Tesla P100 Virtual Workstations.",
             "Accelerator type is NVIDIA Tesla P4 Virtual Workstations.",
