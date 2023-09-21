@@ -877,6 +877,10 @@ export namespace chromepolicy_v1 {
    * Describes a complete .proto file.
    */
   export interface Schema$Proto2FileDescriptorProto {
+    /**
+     * The edition of the proto file.
+     */
+    editionEnum?: string | null;
     enumType?: Schema$Proto2EnumDescriptorProto[];
     /**
      * All top-level definitions in this file.
