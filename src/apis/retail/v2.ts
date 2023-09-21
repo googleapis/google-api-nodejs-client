@@ -1419,6 +1419,10 @@ export namespace retail_v2 {
      */
     exactSearchableOption?: string | null;
     /**
+     * Contains facet options.
+     */
+    facetConfig?: Schema$GoogleCloudRetailV2CatalogAttributeFacetConfig;
+    /**
      * When AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, if INDEXABLE_ENABLED attribute values are indexed so that it can be filtered, faceted, or boosted in SearchService.Search. Must be specified when AttributesConfig.attribute_config_level is CATALOG_LEVEL_ATTRIBUTE_CONFIG, otherwise throws INVALID_FORMAT error.
      */
     indexableOption?: string | null;
@@ -1442,6 +1446,53 @@ export namespace retail_v2 {
      * Output only. The type of this attribute. This is derived from the attribute in Product.attributes.
      */
     type?: string | null;
+  }
+  /**
+   * Possible options for the facet that corresponds to the current attribute config.
+   */
+  export interface Schema$GoogleCloudRetailV2CatalogAttributeFacetConfig {
+    /**
+     * If you don't set the facet SearchRequest.FacetSpec.FacetKey.intervals in the request to a numerical attribute, then we use the computed intervals with rounded bounds obtained from all its product numerical attribute values. The computed intervals might not be ideal for some attributes. Therefore, we give you the option to overwrite them with the facet_intervals field. The maximum of facet intervals per CatalogAttribute is 40. Each interval must have a lower bound or an upper bound. If both bounds are provided, then the lower bound must be smaller or equal than the upper bound.
+     */
+    facetIntervals?: Schema$GoogleCloudRetailV2Interval[];
+    /**
+     * Each instance represents a list of attribute values to ignore as facet values for a specific time range. The maximum number of instances per CatalogAttribute is 25.
+     */
+    ignoredFacetValues?: Schema$GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues[];
+    /**
+     * Each instance replaces a list of facet values by a merged facet value. If a facet value is not in any list, then it will stay the same. To avoid conflicts, only paths of length 1 are accepted. In other words, if "dark_blue" merged into "BLUE", then the latter can't merge into "blues" because this would create a path of length 2. The maximum number of instances of MergedFacetValue per CatalogAttribute is 100.
+     */
+    mergedFacetValues?: Schema$GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue[];
+  }
+  /**
+   * Facet values to ignore on facets during the specified time range for the given SearchResponse.Facet.key attribute.
+   */
+  export interface Schema$GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues {
+    /**
+     * If start time is empty and end time is not empty, then ignore these facet values before end time.
+     */
+    endTime?: string | null;
+    /**
+     * Time range for the current list of facet values to ignore. If multiple time ranges are specified for an facet value for the current attribute, consider all of them. If both are empty, ignore always. If start time and end time are set, then start time must be before end time. If start time is not empty and end time is empty, then will ignore these facet values after the start time.
+     */
+    startTime?: string | null;
+    /**
+     * List of facet values to ignore for the following time range. The facet values are the same as the attribute values. There is a limit of 10 values per instance of IgnoredFacetValues. Each value can have at most 60 characters.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * Replaces a set of facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute.
+   */
+  export interface Schema$GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue {
+    /**
+     * All the previous values are replaced by this merged facet value. This merged_value must be non-empty and can have up to 60 characters.
+     */
+    mergedValue?: string | null;
+    /**
+     * All the facet values that are replaces by the same merged_value that follows. The maximum number of values per MergedFacetValue is 25. Each value can have up to 60 characters.
+     */
+    values?: string[] | null;
   }
   /**
    * The color information of a Product.
@@ -1580,6 +1631,10 @@ export namespace retail_v2 {
      * Range of time(s) specifying when Condition is active. Condition true if any time range matches.
      */
     activeTimeRange?: Schema$GoogleCloudRetailV2ConditionTimeRange[];
+    /**
+     * Used to support browse uses cases. A list (up to 10 entries) of categories or departments. The format should be the same as UserEvent.page_categories;
+     */
+    pageCategories?: string[] | null;
     /**
      * A list (up to 10 entries) of terms to match the query on. If not specified, match all queries. If many query terms are specified, the condition is matched if any of the terms is a match (i.e. using the OR operator).
      */
@@ -2657,6 +2712,10 @@ export namespace retail_v2 {
      */
     filterAction?: Schema$GoogleCloudRetailV2RuleFilterAction;
     /**
+     * Force returns an attribute as a facet in the request.
+     */
+    forceReturnFacetAction?: Schema$GoogleCloudRetailV2RuleForceReturnFacetAction;
+    /**
      * Ignores specific terms from query during search.
      */
     ignoreAction?: Schema$GoogleCloudRetailV2RuleIgnoreAction;
@@ -2668,6 +2727,10 @@ export namespace retail_v2 {
      * Redirects a shopper to a specific page.
      */
     redirectAction?: Schema$GoogleCloudRetailV2RuleRedirectAction;
+    /**
+     * Remove an attribute as a facet in the request (if present).
+     */
+    removeFacetAction?: Schema$GoogleCloudRetailV2RuleRemoveFacetAction;
     /**
      * Replaces specific terms in the query.
      */
@@ -2717,6 +2780,28 @@ export namespace retail_v2 {
     filter?: string | null;
   }
   /**
+   * Force returns an attribute/facet in the request around a certain position or above. * Rule Condition: - Must specify non-empty Condition.query_terms (for search only) or Condition.page_categories (for browse only), but can't specify both. * Action Inputs: attribute name, position * Action Result: Will force return a facet key around a certain position or above if the condition is satisfied. Example: Suppose the query is "shoes", the Condition.query_terms is "shoes", the ForceReturnFacetAction.FacetPositionAdjustment.attribute_name is "size" and the ForceReturnFacetAction.FacetPositionAdjustment.position is 8. Two cases: a) The facet key "size" is not already in the top 8 slots, then the facet "size" will appear at a position close to 8. b) The facet key "size" in among the top 8 positions in the request, then it will stay at its current rank.
+   */
+  export interface Schema$GoogleCloudRetailV2RuleForceReturnFacetAction {
+    /**
+     * Each instance corresponds to a force return attribute for the given condition. There can't be more 3 instances here.
+     */
+    facetPositionAdjustments?: Schema$GoogleCloudRetailV2RuleForceReturnFacetActionFacetPositionAdjustment[];
+  }
+  /**
+   * Each facet position adjustment consists of a single attribute name (i.e. facet key) along with a specified position.
+   */
+  export interface Schema$GoogleCloudRetailV2RuleForceReturnFacetActionFacetPositionAdjustment {
+    /**
+     * The attribute name to force return as a facet. Each attribute name should be a valid attribute name, be non-empty and contain at most 80 characters long.
+     */
+    attributeName?: string | null;
+    /**
+     * This is the position in the request as explained above. It should be strictly positive be at most 100.
+     */
+    position?: number | null;
+  }
+  /**
    * Prevents a term in the query from being used in search. Example: Don't search for "shoddy".
    */
   export interface Schema$GoogleCloudRetailV2RuleIgnoreAction {
@@ -2750,6 +2835,15 @@ export namespace retail_v2 {
      * URL must have length equal or less than 2000 characters.
      */
     redirectUri?: string | null;
+  }
+  /**
+   * Removes an attribute/facet in the request if is present. * Rule Condition: - Must specify non-empty Condition.query_terms (for search only) or Condition.page_categories (for browse only), but can't specify both. * Action Input: attribute name * Action Result: Will remove the attribute (as a facet) from the request if it is present. Example: Suppose the query is "shoes", the Condition.query_terms is "shoes" and the attribute name "size", then facet key "size" will be removed from the request (if it is present).
+   */
+  export interface Schema$GoogleCloudRetailV2RuleRemoveFacetAction {
+    /**
+     * The attribute names (i.e. facet keys) to remove from the dynamic facets (if present in the request). There can't be more 3 attribute names. Each attribute name should be a valid attribute name, be non-empty and contain at most 80 characters.
+     */
+    attributeNames?: string[] | null;
   }
   /**
    * Replaces a term in the query. Multiple replacement candidates can be specified. All `query_terms` will be replaced with the replacement term. Example: Replace "gShoe" with "google shoe".
