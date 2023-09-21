@@ -387,7 +387,7 @@ export namespace artifactregistry_v1beta1 {
      */
     description?: string | null;
     /**
-     * The format of packages that are stored in the repository.
+     * Optional. The format of packages that are stored in the repository.
      */
     format?: string | null;
     /**

@@ -1051,7 +1051,7 @@ export namespace artifactregistry_v1 {
      */
     dockerConfig?: Schema$DockerRepositoryConfig;
     /**
-     * The format of packages that are stored in the repository.
+     * Optional. The format of packages that are stored in the repository.
      */
     format?: string | null;
     /**
@@ -1067,7 +1067,7 @@ export namespace artifactregistry_v1 {
      */
     mavenConfig?: Schema$MavenRepositoryConfig;
     /**
-     * The mode of the repository.
+     * Optional. The mode of the repository.
      */
     mode?: string | null;
     /**
@@ -1083,10 +1083,6 @@ export namespace artifactregistry_v1 {
      */
     satisfiesPzs?: boolean | null;
     /**
-     * Optional. Config and state for sbom generation for resources within this Repository.
-     */
-    sbomConfig?: Schema$SbomConfig;
-    /**
      * Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.
      */
     sizeBytes?: string | null;
@@ -1098,19 +1094,6 @@ export namespace artifactregistry_v1 {
      * Configuration specific for a Virtual Repository.
      */
     virtualRepositoryConfig?: Schema$VirtualRepositoryConfig;
-  }
-  /**
-   * Config for whether to generate SBOMs for resources in this repository, as well as output fields describing current state.
-   */
-  export interface Schema$SbomConfig {
-    /**
-     * Optional. Config for whether this repository has sbom generation disabled.
-     */
-    enablementConfig?: string | null;
-    /**
-     * Output only. The last time this repository config was set to INHERITED.
-     */
-    lastEnableTime?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1286,7 +1269,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$UploadYumArtifactResponse {
     /**
-     * The Apt artifacts updated.
+     * The Yum artifacts updated.
      */
     yumArtifacts?: Schema$YumArtifact[];
   }

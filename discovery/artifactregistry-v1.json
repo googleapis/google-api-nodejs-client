@@ -18,6 +18,13 @@
   "description": "Store and manage build artifacts in a scalable and integrated service built on Google infrastructure.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/artifacts/docs/",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "location": "me-central2",
+      "endpointUrl": "https://artifactregistry.me-central2.rep.googleapis.com/"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1661,7 +1668,7 @@
       }
     }
   },
-  "revision": "20230809",
+  "revision": "20230913",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -2998,7 +3005,7 @@
           "description": "Docker repository config contains repository level configuration for the repositories of docker type."
         },
         "format": {
-          "description": "The format of packages that are stored in the repository.",
+          "description": "Optional. The format of packages that are stored in the repository.",
           "enum": [
             "FORMAT_UNSPECIFIED",
             "DOCKER",
@@ -3041,7 +3048,7 @@
           "description": "Maven repository config contains repository level configuration for the repositories of maven type."
         },
         "mode": {
-          "description": "The mode of the repository.",
+          "description": "Optional. The mode of the repository.",
           "enum": [
             "MODE_UNSPECIFIED",
             "STANDARD_REPOSITORY",
@@ -3069,10 +3076,6 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "sbomConfig": {
-          "$ref": "SbomConfig",
-          "description": "Optional. Config and state for sbom generation for resources within this Repository."
-        },
         "sizeBytes": {
           "description": "Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.",
           "format": "int64",
@@ -3088,33 +3091,6 @@
         "virtualRepositoryConfig": {
           "$ref": "VirtualRepositoryConfig",
           "description": "Configuration specific for a Virtual Repository."
-        }
-      },
-      "type": "object"
-    },
-    "SbomConfig": {
-      "description": "Config for whether to generate SBOMs for resources in this repository, as well as output fields describing current state.",
-      "id": "SbomConfig",
-      "properties": {
-        "enablementConfig": {
-          "description": "Optional. Config for whether this repository has sbom generation disabled.",
-          "enum": [
-            "ENABLEMENT_CONFIG_UNSPECIFIED",
-            "INHERITED",
-            "DISABLED"
-          ],
-          "enumDescriptions": [
-            "Unspecified config was not set. This will be interpreted as DISABLED.",
-            "Inherited indicates the repository is allowed for SBOM generation, however the actual state will be inherited from the API enablement state.",
-            "Disabled indicates the repository will not generate SBOMs."
-          ],
-          "type": "string"
-        },
-        "lastEnableTime": {
-          "description": "Output only. The last time this repository config was set to INHERITED.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
@@ -3360,7 +3336,7 @@
       "id": "UploadYumArtifactResponse",
       "properties": {
         "yumArtifacts": {
-          "description": "The Apt artifacts updated.",
+          "description": "The Yum artifacts updated.",
           "items": {
             "$ref": "YumArtifact"
           },
