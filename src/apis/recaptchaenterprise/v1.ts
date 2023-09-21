@@ -238,6 +238,10 @@ export namespace recaptchaenterprise_v1 {
      */
     fraudPreventionAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment;
     /**
+     * Output only. Fraud Signals specific to the users involved in a payment transaction.
+     */
+    fraudSignals?: Schema$GoogleCloudRecaptchaenterpriseV1FraudSignals;
+    /**
      * Output only. The resource name for the Assessment in the format "projects/{project\}/assessments/{assessment\}".
      */
     name?: string | null;
@@ -497,6 +501,41 @@ export namespace recaptchaenterprise_v1 {
      * Probability of this transaction being executed with a stolen instrument. Values are from 0.0 (lowest) to 1.0 (highest).
      */
     risk?: number | null;
+  }
+  /**
+   * Fraud signals describing users and cards involved in the transaction.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudSignals {
+    /**
+     * Output only. Signals describing the payment card or cards used in this transaction.
+     */
+    cardSignals?: Schema$GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals;
+    /**
+     * Output only. Signals describing the end user in this transaction.
+     */
+    userSignals?: Schema$GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals;
+  }
+  /**
+   * Signals describing the payment card used in this transaction.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals {
+    /**
+     * Output only. The labels for the payment card in this transaction.
+     */
+    cardLabels?: string[] | null;
+  }
+  /**
+   * Signals describing the user involved in this transaction.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals {
+    /**
+     * Output only. This user (based on email, phone, and other identifiers) has been seen on the internet for at least this number of days.
+     */
+    activeDaysLowerBound?: number | null;
+    /**
+     * Output only. Likelihood (from 0.0 to 1.0) this user includes synthetic components in their identity, such as a randomly generated email address, temporary phone number, or fake shipping address.
+     */
+    syntheticRisk?: number | null;
   }
   /**
    * Settings specific to keys that can be used by iOS apps.
