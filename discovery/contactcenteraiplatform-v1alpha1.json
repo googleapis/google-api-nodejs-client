@@ -512,7 +512,7 @@
       }
     }
   },
-  "revision": "20230809",
+  "revision": "20230913",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -537,7 +537,7 @@
       "type": "object"
     },
     "ContactCenter": {
-      "description": "Message describing ContactCenter object Next ID: 15",
+      "description": "Message describing ContactCenter object Next ID: 16",
       "id": "ContactCenter",
       "properties": {
         "adminUser": {
@@ -960,6 +960,10 @@
       "properties": {
         "certificate": {
           "description": "SAML certificate",
+          "type": "string"
+        },
+        "emailMapping": {
+          "description": "IdP field that maps to the user’s email address",
           "type": "string"
         },
         "entityId": {
