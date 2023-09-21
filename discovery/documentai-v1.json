@@ -1042,7 +1042,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230911",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -1205,6 +1205,44 @@
     "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse": {
       "description": "Response of the batch move documents operation.",
       "id": "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata": {
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long-running operation."
+        },
+        "individualBatchUpdateStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus": {
+      "description": "The status of each individual document in the batch update process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus",
+      "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the document."
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of updating the document in storage."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse": {
+      "description": "Response of the batch update documents operation.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse",
       "properties": {},
       "type": "object"
     },
@@ -3987,7 +4025,7 @@
         },
         "computeStyleInfo": {
           "deprecated": true,
-          "description": "Turn on font id model and returns font style information. Use PremiumFeatures.compute_style_info instead.",
+          "description": "Turn on font identification model and return font style information.",
           "type": "boolean"
         },
         "enableImageQualityScores": {
@@ -4336,7 +4374,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `}`,`'`, `\\\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID will be generated.",
+          "description": "The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `}`,`'`, `\\\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID is generated.",
           "type": "string"
         },
         "mimeType": {
