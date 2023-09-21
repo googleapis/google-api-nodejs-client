@@ -506,11 +506,11 @@ export namespace cloudsupport_v2 {
    */
   export interface Schema$ListAttachmentsResponse {
     /**
-     * The list of attachments associated with the given case.
+     * The list of attachments associated with a case.
      */
     attachments?: Schema$Attachment[];
     /**
-     * A token to retrieve the next page of results. This should be set in the `page_token` field of subsequent `cases.attachments.list` requests. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the `page_token` field of subsequent `cases.attachments.list` requests. If unspecified, there are no more results to retrieve.
      */
     nextPageToken?: string | null;
   }
@@ -532,11 +532,11 @@ export namespace cloudsupport_v2 {
    */
   export interface Schema$ListCommentsResponse {
     /**
-     * The list of Comments associated with the given Case.
+     * List of the comments associated with the case.
      */
     comments?: Schema$Comment[];
     /**
-     * A token to retrieve the next page of results. This should be set in the `page_token` field of subsequent `ListCommentsRequest` message that is issued. If unspecified, there are no more results to retrieve.
+     * A token to retrieve the next page of results. Set this in the `page_token` field of subsequent `cases.comments.list` requests. If unspecified, there are no more results to retrieve.
      */
     nextPageToken?: string | null;
   }
@@ -939,7 +939,7 @@ export namespace cloudsupport_v2 {
     }
 
     /**
-     * Create a new case and associate it with the given Google Cloud Resource. The case object must have the following fields set: `display_name`, `description`, `classification`, and `priority`. Here is an example of calling this endpoint using cURL: ```shell parent="projects/some-project" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --header 'Content-Type: application/json' \ --data '{ "display_name": "Test case created by me.", "description": "a random test case, feel free to close", "classification": { "id": "100IK2AKCLHMGRJ9CDGMOCGP8DM6UTB4BT262T31BT1M2T31DHNMENPO6KS36CPJ786L2TBFEHGN6NPI64R3CDHN8880G08I1H3MURR7DHII0GRCDTQM8" \}, "time_zone": "-07:00", "subscriber_email_addresses": [ "foo@domain.com", "bar@domain.com" ], "testCase": true, "priority": "P3" \}' \ "https://cloudsupport.googleapis.com/v2/$parent/cases" ```
+     * Create a new case and associate it with a Google Cloud Resource. The case object must have the following fields set: `display_name`, `description`, `classification`, and `priority`. If you're just testing the API and don't want to route your case to an agent, set `testCase=true`. Here is an example of calling this endpoint using cURL: ```shell parent="projects/some-project" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --header 'Content-Type: application/json' \ --data '{ "display_name": "Test case created by me.", "description": "a random test case, feel free to close", "classification": { "id": "100IK2AKCLHMGRJ9CDGMOCGP8DM6UTB4BT262T31BT1M2T31DHNMENPO6KS36CPJ786L2TBFEHGN6NPI64R3CDHN8880G08I1H3MURR7DHII0GRCDTQM8" \}, "time_zone": "-07:00", "subscriber_email_addresses": [ "foo@domain.com", "bar@domain.com" ], "testCase": true, "priority": "P3" \}' \ "https://cloudsupport.googleapis.com/v2/$parent/cases" ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1553,7 +1553,7 @@ export namespace cloudsupport_v2 {
     }
 
     /**
-     * Retrieve all attachments associated with a support case. Here is an example of calling this endpoint using cURL: ```shell case="projects/some-project/cases/23598314" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$case/attachments" ```
+     * List all the attachments associated with a support case. EXAMPLES: cURL: ```shell case="projects/some-project/cases/23598314" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$case/attachments" ``` Python: ```python import googleapiclient.discovery api_version = "v2" supportApiService = googleapiclient.discovery.build( serviceName="cloudsupport", version=api_version, discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version\}", ) request = ( supportApiService.cases() .attachments() .list(parent="projects/some-project/cases/43595344") ) print(request.execute()) ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1656,7 +1656,7 @@ export namespace cloudsupport_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of Case object for which attachments should be listed.
+     * Required. The name of the case for which attachments should be listed.
      */
     parent?: string;
   }
@@ -1668,7 +1668,7 @@ export namespace cloudsupport_v2 {
     }
 
     /**
-     * Add a new comment to the specified Case. The comment object must have the following fields set: body. Here is an example of calling this endpoint using cURL: ```shell case="projects/some-project/cases/43591344" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --header 'Content-Type: application/json' \ --data '{ "body": "This is a test comment." \}' \ "https://cloudsupport.googleapis.com/v2/$case/comments" ```
+     * Add a new comment to a case. The comment must have the following fields set: `body`. EXAMPLES: cURL: ```shell case="projects/some-project/cases/43591344" curl \ --request POST \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --header 'Content-Type: application/json' \ --data '{ "body": "This is a test comment." \}' \ "https://cloudsupport.googleapis.com/v2/$case/comments" ``` Python: ```python import googleapiclient.discovery api_version = "v2" supportApiService = googleapiclient.discovery.build( serviceName="cloudsupport", version=api_version, discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version\}", ) request = ( supportApiService.cases() .comments() .create( parent="projects/some-project/cases/43595344", body={"body": "This is a test comment."\}, ) ) print(request.execute()) ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1755,7 +1755,7 @@ export namespace cloudsupport_v2 {
     }
 
     /**
-     * Retrieve all comments associated with the Case object. Here is an example of calling this endpoint using cURL: ```shell case="projects/cloud-support-qa-premium/cases/43595344" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$case/comments" ```
+     * List all the comments associated with a case. EXAMPLES: cURL: ```shell case="projects/some-project/cases/43595344" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$case/comments" ``` Python: ```python import googleapiclient.discovery api_version = "v2" supportApiService = googleapiclient.discovery.build( serviceName="cloudsupport", version=api_version, discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version\}", ) request = ( supportApiService.cases() .comments() .list(parent="projects/some-project/cases/43595344") ) print(request.execute()) ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1850,7 +1850,7 @@ export namespace cloudsupport_v2 {
   export interface Params$Resource$Cases$Comments$Create
     extends StandardParameters {
     /**
-     * Required. The resource name of Case to which this comment should be added.
+     * Required. The name of the case to which the comment should be added.
      */
     parent?: string;
 
@@ -1862,15 +1862,15 @@ export namespace cloudsupport_v2 {
   export interface Params$Resource$Cases$Comments$List
     extends StandardParameters {
     /**
-     * The maximum number of comments fetched with each request. Defaults to 10.
+     * The maximum number of comments to fetch. Defaults to 10.
      */
     pageSize?: number;
     /**
-     * A token identifying the page of results to return. If unspecified, the first page is retrieved.
+     * A token identifying the page of results to return. If unspecified, the first page is returned.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of Case object for which comments should be listed.
+     * Required. The name of the case for which to list comments.
      */
     parent?: string;
   }
@@ -1882,7 +1882,7 @@ export namespace cloudsupport_v2 {
     }
 
     /**
-     * Download a file attachment on a case. Note: HTTP requests must append "?alt=media" to the URL. Here is an example of calling this endpoint using cURL: ```shell name="projects/some-project/cases/43594844/attachments/0674M00000WijAnZAJ" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$name:download?alt=media" ```
+     * Download a file attached to a case. Note: HTTP requests must append "?alt=media" to the URL. EXAMPLES: cURL: ```shell name="projects/some-project/cases/43594844/attachments/0674M00000WijAnZAJ" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ "https://cloudsupport.googleapis.com/v2/$name:download?alt=media" ``` Python: ```python import googleapiclient.discovery api_version = "v2" supportApiService = googleapiclient.discovery.build( serviceName="cloudsupport", version=api_version, discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version\}", ) request = supportApiService.media().download( name="projects/some-project/cases/43595344/attachments/0684M00000Pw6pHQAR" ) request.uri = request.uri.split("?")[0] + "?alt=media" print(request.execute()) ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1968,7 +1968,7 @@ export namespace cloudsupport_v2 {
     }
 
     /**
-     * Create a file attachment on a case or Cloud resource. The attachment object must have the following fields set: filename. Here is an example of calling this endpoint using cURL: ```shell echo "This text is in a file I'm uploading using CSAPI." \ \> "./example_file.txt" case="projects/some-project/cases/43594844" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --data-binary @"./example_file.txt" \ "https://cloudsupport.googleapis.com/upload/v2beta/$case/attachments?attachment.filename=uploaded_via_curl.txt" ```
+     * Create a file attachment on a case or Cloud resource. The attachment must have the following fields set: `filename`. EXAMPLES: cURL: ```shell echo "This text is in a file I'm uploading using CSAPI." \ \> "./example_file.txt" case="projects/some-project/cases/43594844" curl \ --header "Authorization: Bearer $(gcloud auth print-access-token)" \ --data-binary @"./example_file.txt" \ "https://cloudsupport.googleapis.com/upload/v2beta/$case/attachments?attachment.filename=uploaded_via_curl.txt" ``` Python: ```python import googleapiclient.discovery api_version = "v2" supportApiService = googleapiclient.discovery.build( serviceName="cloudsupport", version=api_version, discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version\}", ) file_path = "./example_file.txt" with open(file_path, "w") as file: file.write( "This text is inside a file I'm going to upload using the Cloud Support API.", ) request = supportApiService.media().upload( parent="projects/some-project/cases/43595344", media_body=file_path ) request.uri = request.uri.split("?")[0] + "?attachment.filename=uploaded_via_python.txt" print(request.execute()) ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2060,13 +2060,13 @@ export namespace cloudsupport_v2 {
 
   export interface Params$Resource$Media$Download extends StandardParameters {
     /**
-     * The resource name of the attachment to be downloaded.
+     * The name of the file attachment to download.
      */
     name?: string;
   }
   export interface Params$Resource$Media$Upload extends StandardParameters {
     /**
-     * Required. The resource name of the case (or case parent) to which the attachment should be attached.
+     * Required. The name of the case or Cloud resource to which the attachment should be attached.
      */
     parent?: string;
 
