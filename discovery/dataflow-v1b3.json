@@ -2214,7 +2214,7 @@
       }
     }
   },
-  "revision": "20230729",
+  "revision": "20230910",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4780,6 +4780,10 @@
           },
           "description": "Optional. Additional metadata for describing this parameter.",
           "type": "object"
+        },
+        "defaultValue": {
+          "description": "Optional. The default values will pre-populate the parameter with the given value from the proto. If default_value is left empty, the parameter will be populated with a default of the relevant type, e.g. false for a boolean.",
+          "type": "string"
         },
         "enumOptions": {
           "description": "Optional. The options shown when ENUM ParameterType is specified.",
