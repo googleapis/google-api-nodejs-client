@@ -1115,7 +1115,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20230910",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1701,7 +1701,7 @@
           "type": "integer"
         },
         "service": {
-          "description": "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.",
+          "description": "Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If this is not specified, the default behavior is defined by gRPC.",
           "type": "string"
         }
       },
@@ -1984,6 +1984,28 @@
           "description": "The resulting list of Tasks.",
           "items": {
             "$ref": "GoogleCloudRunV2Task"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2NetworkInterface": {
+      "description": "VPC network settings.",
+      "id": "GoogleCloudRunV2NetworkInterface",
+      "properties": {
+        "network": {
+          "description": "The VPC network name to access to. Defaults to \"default\" network.",
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "The VPC subnetwork name to access to. Defaults to the same vaule of network.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "Network tags applied to this VPC network.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -3039,6 +3061,13 @@
             "Only private IP ranges are routed through the VPC connector."
           ],
           "type": "string"
+        },
+        "networkInterfaces": {
+          "description": "VPC network to access to. Currently only single network interface is supported.",
+          "items": {
+            "$ref": "GoogleCloudRunV2NetworkInterface"
+          },
+          "type": "array"
         }
       },
       "type": "object"
