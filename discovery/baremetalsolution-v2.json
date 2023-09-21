@@ -1588,7 +1588,7 @@
       }
     }
   },
-  "revision": "20230814",
+  "revision": "20230915",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -1832,7 +1832,7 @@
           "type": "string"
         },
         "pod": {
-          "description": "Immutable. Pod name. Pod is an independent part of infrastructure. Instance can be connected to the assets (networks, volumes) allocated in the same pod only.",
+          "description": "Immutable. Pod name. Pod is an independent part of infrastructure. Instance can only be connected to the assets (networks, volumes) allocated in the same pod.",
           "type": "string"
         },
         "state": {
@@ -1908,6 +1908,7 @@
           "type": "boolean"
         },
         "id": {
+          "deprecated": true,
           "description": "A transient unique identifier to idenfity an instance within an ProvisioningConfig request.",
           "type": "string"
         },
@@ -1923,8 +1924,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. The name of the instance config.",
-          "readOnly": true,
+          "description": "The name of the instance config.",
           "type": "string"
         },
         "networkConfig": {
@@ -1955,7 +1955,7 @@
           "description": "Private network address, if any. Filled if InstanceConfig.multivlan_config is false."
         },
         "sshKeyNames": {
-          "description": "List of names of ssh keys used to provision the instance.",
+          "description": "Optional. List of names of ssh keys used to provision the instance.",
           "items": {
             "type": "string"
           },
@@ -2486,8 +2486,7 @@
           "type": "string"
         },
         "pod": {
-          "description": "Output only. Pod name.",
-          "readOnly": true,
+          "description": "Immutable. Pod name. Pod is an independent part of infrastructure. Network can only be connected to the assets (instances, nfsshares) allocated in the same pod.",
           "type": "string"
         },
         "reservations": {
@@ -2793,6 +2792,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "pod": {
+          "description": "Immutable. Pod name. Pod is an independent part of infrastructure. NFSShare can only be connected to the assets (networks, instances) allocated in the same pod.",
+          "type": "string"
+        },
         "requestedSizeGib": {
           "description": "The requested size, in GiB.",
           "format": "int64",
@@ -2952,6 +2955,10 @@
             "$ref": "NetworkConfig"
           },
           "type": "array"
+        },
+        "pod": {
+          "description": "Optional. Pod name. Pod is an independent part of infrastructure. Instance can be connected to the assets (networks, volumes, nfsshares) allocated in the same pod only.",
+          "type": "string"
         },
         "state": {
           "description": "Output only. State of ProvisioningConfig.",
@@ -3460,7 +3467,7 @@
           "type": "string"
         },
         "pod": {
-          "description": "Immutable. Pod name.",
+          "description": "Immutable. Pod name. Pod is an independent part of infrastructure. Volume can only be connected to the instances allocated in the same pod.",
           "type": "string"
         },
         "protocol": {
