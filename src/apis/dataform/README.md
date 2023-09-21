@@ -2,7 +2,7 @@
 
 # dataform
 
-> 
+> Service to develop, version control, and operationalize SQL pipelines in BigQuery.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
