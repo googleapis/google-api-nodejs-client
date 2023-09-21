@@ -488,6 +488,15 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Fairplay {}
   /**
+   * `fmp4` container configuration.
+   */
+  export interface Schema$Fmp4Config {
+    /**
+     * Optional. Specify the codec tag string that will be used in the media bitstream. When not specified, the codec appropriate value is used. Supported H265 codec tags: - `hvc1` (default) - `hev1`
+     */
+    codecTag?: string | null;
+  }
+  /**
    * H264 codec settings.
    */
   export interface Schema$H264CodecSettings {
@@ -902,6 +911,10 @@ export namespace transcoder_v1 {
      * The name of the generated file. The default is MuxStream.key with the extension suffix corresponding to the MuxStream.container. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.
      */
     fileName?: string | null;
+    /**
+     * Optional. `fmp4` container configuration.
+     */
+    fmp4?: Schema$Fmp4Config;
     /**
      * A unique key for this multiplexed stream.
      */
