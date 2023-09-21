@@ -514,6 +514,10 @@ export namespace testing_v1 {
     bundleLocation?: Schema$FileReference;
   }
   /**
+   * The request object for cancelling a Device Session.
+   */
+  export interface Schema$CancelDeviceSessionRequest {}
+  /**
    * Response containing the current state of the specified test matrix.
    */
   export interface Schema$CancelTestMatrixResponse {
@@ -605,6 +609,68 @@ export namespace testing_v1 {
     ipBlocks?: Schema$DeviceIpBlock[];
   }
   /**
+   * Protobuf message describing the device message, used from several RPCs.
+   */
+  export interface Schema$DeviceSession {
+    /**
+     * Output only. The timestamp that the session first became ACTIVE.
+     */
+    activeStartTime?: string | null;
+    /**
+     * Required. The requested device
+     */
+    androidDevice?: Schema$AndroidDevice;
+    /**
+     * Optional. The list of requested devices. At most two devices may be simultaneously requested.
+     */
+    androidDeviceList?: Schema$AndroidDeviceList;
+    /**
+     * Output only. The time that the Session was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The title of the DeviceSession to be presented in the UI.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. If the device is still in use at this time, any connections will be ended and the SessionState will transition from ACTIVE to FINISHED.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. The interval of time that this device must be interacted with before it transitions from ACTIVE to TIMEOUT_INACTIVITY.
+     */
+    inactivityTimeout?: string | null;
+    /**
+     * Optional. Name of the DeviceSession, e.g. "projects/{project_id\}/deviceSessions/{session_id\}"
+     */
+    name?: string | null;
+    /**
+     * Output only. Current state of the DeviceSession.
+     */
+    state?: string | null;
+    /**
+     * Output only. The historical state transitions of the session_state message including the current session state.
+     */
+    stateHistories?: Schema$SessionStateEvent[];
+    /**
+     * Optional. The amount of time that a device will be initially allocated for. This can eventually be extended with the ExtendDeviceSession RPC. Default: 30 minutes.
+     */
+    ttl?: string | null;
+  }
+  /**
+   * Denotes whether Direct Access is supported, and by which client versions. DirectAccessService is currently available as a preview to select developers. You can register today on behalf of you and your team at https://developer.android.com/studio/preview/android-device-streaming
+   */
+  export interface Schema$DirectAccessVersionInfo {
+    /**
+     * Whether direct access is supported at all. Clients are expected to filter down the device list to only android models and versions which support Direct Access when that is the user intent.
+     */
+    directAccessSupported?: boolean | null;
+    /**
+     * Output only. Indicates client-device compatibility, where a device is known to work only with certain workarounds implemented in the Android Studio client. Expected format "major.minor.micro.patch", e.g. "5921.22.2211.8881706".
+     */
+    minimumAndroidStudioVersion?: string | null;
+  }
+  /**
    * Data about the relative number of devices running a given configuration of the Android platform.
    */
   export interface Schema$Distribution {
@@ -617,6 +683,10 @@ export namespace testing_v1 {
      */
     measurementTime?: string | null;
   }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
   /**
    * The environment in which the test is run.
    */
@@ -944,6 +1014,19 @@ export namespace testing_v1 {
    */
   export interface Schema$LauncherActivityIntent {}
   /**
+   * A list of device sessions.
+   */
+  export interface Schema$ListDeviceSessionsResponse {
+    /**
+     * The sessions matching the specified filter in the given cloud project.
+     */
+    deviceSessions?: Schema$DeviceSession[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * A location/region designation for language.
    */
   export interface Schema$Locale {
@@ -1045,6 +1128,10 @@ export namespace testing_v1 {
      * The number of online devices for an Android version.
      */
     deviceCapacity?: string | null;
+    /**
+     * Output only. Identifies supported clients for DirectAccess for this Android version.
+     */
+    directAccessVersionInfo?: Schema$DirectAccessVersionInfo;
     /**
      * An Android version.
      */
@@ -1160,6 +1247,23 @@ export namespace testing_v1 {
      * The android:name value
      */
     name?: string | null;
+  }
+  /**
+   * A message encapsulating a series of Session states and the time that the DeviceSession first entered those states.
+   */
+  export interface Schema$SessionStateEvent {
+    /**
+     * Output only. The time that the session_state first encountered that state.
+     */
+    eventTime?: string | null;
+    /**
+     * Output only. The session_state tracked by this event
+     */
+    sessionState?: string | null;
+    /**
+     * Output only. A human-readable message to explain the state.
+     */
+    stateMessage?: string | null;
   }
   /**
    * Output only. Details about the shard.
@@ -1380,7 +1484,7 @@ export namespace testing_v1 {
      */
     account?: Schema$Account;
     /**
-     * APKs to install in addition to those being directly tested. Currently capped at 100.
+     * APKs to install in addition to those being directly tested. These will be installed after the app under test. Currently capped at 100.
      */
     additionalApks?: Schema$Apk[];
     /**
@@ -1688,11 +1792,520 @@ export namespace testing_v1 {
 
   export class Resource$Projects {
     context: APIRequestContext;
+    deviceSessions: Resource$Projects$Devicesessions;
     testMatrices: Resource$Projects$Testmatrices;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.deviceSessions = new Resource$Projects$Devicesessions(this.context);
       this.testMatrices = new Resource$Projects$Testmatrices(this.context);
     }
+  }
+
+  export class Resource$Projects$Devicesessions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * POST /v1/projects/{project_id\}/deviceSessions/{device_session_id\}:cancel Changes the DeviceSession to state FINISHED and terminates all connections. Canceled sessions are not deleted and can be retrieved or listed by the user until they expire based on the 28 day deletion policy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Devicesessions$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Devicesessions$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Devicesessions$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Devicesessions$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Devicesessions$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Devicesessions$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Devicesessions$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Devicesessions$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * POST /v1/projects/{project_id\}/deviceSessions
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Devicesessions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Devicesessions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeviceSession>;
+    create(
+      params: Params$Resource$Projects$Devicesessions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Devicesessions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$DeviceSession>,
+      callback: BodyResponseCallback<Schema$DeviceSession>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Devicesessions$Create,
+      callback: BodyResponseCallback<Schema$DeviceSession>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$DeviceSession>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Devicesessions$Create
+        | BodyResponseCallback<Schema$DeviceSession>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceSession>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceSession>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceSession> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Devicesessions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Devicesessions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/deviceSessions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeviceSession>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeviceSession>(parameters);
+      }
+    }
+
+    /**
+     * GET /v1/projects/{project_id\}/deviceSessions/{device_session_id\} Return a DeviceSession, which documents the allocation status and whether the device is allocated. Clients making requests from this API must poll GetDeviceSession.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Devicesessions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Devicesessions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeviceSession>;
+    get(
+      params: Params$Resource$Projects$Devicesessions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Devicesessions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DeviceSession>,
+      callback: BodyResponseCallback<Schema$DeviceSession>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Devicesessions$Get,
+      callback: BodyResponseCallback<Schema$DeviceSession>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DeviceSession>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Devicesessions$Get
+        | BodyResponseCallback<Schema$DeviceSession>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceSession>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceSession>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceSession> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Devicesessions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Devicesessions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeviceSession>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeviceSession>(parameters);
+      }
+    }
+
+    /**
+     * GET /v1/projects/{project_id\}/deviceSessions Lists device Sessions owned by the project user.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Devicesessions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Devicesessions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDeviceSessionsResponse>;
+    list(
+      params: Params$Resource$Projects$Devicesessions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Devicesessions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDeviceSessionsResponse>,
+      callback: BodyResponseCallback<Schema$ListDeviceSessionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Devicesessions$List,
+      callback: BodyResponseCallback<Schema$ListDeviceSessionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDeviceSessionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Devicesessions$List
+        | BodyResponseCallback<Schema$ListDeviceSessionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDeviceSessionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDeviceSessionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDeviceSessionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Devicesessions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Devicesessions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/deviceSessions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDeviceSessionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDeviceSessionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * PATCH /v1/projects/{projectId\}/deviceSessions/deviceSessionId\}:updateDeviceSession Updates the current device session to the fields described by the update_mask.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Devicesessions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Devicesessions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeviceSession>;
+    patch(
+      params: Params$Resource$Projects$Devicesessions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Devicesessions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$DeviceSession>,
+      callback: BodyResponseCallback<Schema$DeviceSession>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Devicesessions$Patch,
+      callback: BodyResponseCallback<Schema$DeviceSession>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$DeviceSession>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Devicesessions$Patch
+        | BodyResponseCallback<Schema$DeviceSession>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceSession>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceSession>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceSession> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Devicesessions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Devicesessions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeviceSession>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeviceSession>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Devicesessions$Cancel
+    extends StandardParameters {
+    /**
+     * Required. Name of the DeviceSession, e.g. "projects/{project_id\}/deviceSessions/{session_id\}"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelDeviceSessionRequest;
+  }
+  export interface Params$Resource$Projects$Devicesessions$Create
+    extends StandardParameters {
+    /**
+     * Required. The Compute Engine project under which this device will be allocated. "projects/{project_id\}"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeviceSession;
+  }
+  export interface Params$Resource$Projects$Devicesessions$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the DeviceSession, e.g. "projects/{project_id\}/deviceSessions/{session_id\}"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Devicesessions$List
+    extends StandardParameters {
+    /**
+     * Optional. If specified, responses will be filtered by the given filter. Allowed fields are: session_state.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of DeviceSessions to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A continuation token for paging.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent to request, e.g. "projects/{project_id\}"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Devicesessions$Patch
+    extends StandardParameters {
+    /**
+     * Optional. Name of the DeviceSession, e.g. "projects/{project_id\}/deviceSessions/{session_id\}"
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeviceSession;
   }
 
   export class Resource$Projects$Testmatrices {
