@@ -133,7 +133,7 @@
           ]
         },
         "updatePolicy": {
-          "description": "Creates or updates a project's policy, and returns a copy of the new policy. A policy is always updated as a whole, to avoid race conditions with concurrent policy enforcement (or management!) requests. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is malformed.",
+          "description": "Creates or updates a project's policy, and returns a copy of the new policy. A policy is always updated as a whole, to avoid race conditions with concurrent policy enforcement (or management!) requests. Returns `NOT_FOUND` if the project does not exist, `INVALID_ARGUMENT` if the request is malformed.",
           "flatPath": "v1/projects/{projectsId}/policy",
           "httpMethod": "PUT",
           "id": "binaryauthorization.projects.updatePolicy",
@@ -165,7 +165,7 @@
         "attestors": {
           "methods": {
             "create": {
-              "description": "Creates an attestor, and returns a copy of the new attestor. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the attestor already exists.",
+              "description": "Creates an attestor, and returns a copy of the new attestor. Returns `NOT_FOUND` if the project does not exist, `INVALID_ARGUMENT` if the request is malformed, `ALREADY_EXISTS` if the attestor already exists.",
               "flatPath": "v1/projects/{projectsId}/attestors",
               "httpMethod": "POST",
               "id": "binaryauthorization.projects.attestors.create",
@@ -198,7 +198,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes an attestor. Returns NOT_FOUND if the attestor does not exist.",
+              "description": "Deletes an attestor. Returns `NOT_FOUND` if the attestor does not exist.",
               "flatPath": "v1/projects/{projectsId}/attestors/{attestorsId}",
               "httpMethod": "DELETE",
               "id": "binaryauthorization.projects.attestors.delete",
@@ -223,7 +223,7 @@
               ]
             },
             "get": {
-              "description": "Gets an attestor. Returns NOT_FOUND if the attestor does not exist.",
+              "description": "Gets an attestor. Returns `NOT_FOUND` if the attestor does not exist.",
               "flatPath": "v1/projects/{projectsId}/attestors/{attestorsId}",
               "httpMethod": "GET",
               "id": "binaryauthorization.projects.attestors.get",
@@ -279,7 +279,7 @@
               ]
             },
             "list": {
-              "description": "Lists attestors. Returns INVALID_ARGUMENT if the project does not exist.",
+              "description": "Lists attestors. Returns `INVALID_ARGUMENT` if the project does not exist.",
               "flatPath": "v1/projects/{projectsId}/attestors",
               "httpMethod": "GET",
               "id": "binaryauthorization.projects.attestors.list",
@@ -371,7 +371,7 @@
               ]
             },
             "update": {
-              "description": "Updates an attestor. Returns NOT_FOUND if the attestor does not exist.",
+              "description": "Updates an attestor. Returns `NOT_FOUND` if the attestor does not exist.",
               "flatPath": "v1/projects/{projectsId}/attestors/{attestorsId}",
               "httpMethod": "PUT",
               "id": "binaryauthorization.projects.attestors.update",
@@ -399,7 +399,7 @@
               ]
             },
             "validateAttestationOccurrence": {
-              "description": "Returns whether the given Attestation for the given image URI was signed by the given Attestor",
+              "description": "Returns whether the given `Attestation` for the given image URI was signed by the given `Attestor`",
               "flatPath": "v1/projects/{projectsId}/attestors/{attestorsId}:validateAttestationOccurrence",
               "httpMethod": "POST",
               "id": "binaryauthorization.projects.attestors.validateAttestationOccurrence",
@@ -433,7 +433,7 @@
             "policies": {
               "methods": {
                 "create": {
-                  "description": "Creates a platform policy, and returns a copy of it. Returns NOT_FOUND if the project or platform doesn't exist, INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the policy already exists, and INVALID_ARGUMENT if the policy contains a platform-specific policy that does not match the platform value specified in the URL.",
+                  "description": "Creates a platform policy, and returns a copy of it. Returns `NOT_FOUND` if the project or platform doesn't exist, `INVALID_ARGUMENT` if the request is malformed, `ALREADY_EXISTS` if the policy already exists, and `INVALID_ARGUMENT` if the policy contains a platform-specific policy that does not match the platform value specified in the URL.",
                   "flatPath": "v1/projects/{projectsId}/platforms/{platformsId}/policies",
                   "httpMethod": "POST",
                   "id": "binaryauthorization.projects.platforms.policies.create",
@@ -466,7 +466,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a platform policy. Returns NOT_FOUND if the policy doesn't exist.",
+                  "description": "Deletes a platform policy. Returns `NOT_FOUND` if the policy doesn't exist.",
                   "flatPath": "v1/projects/{projectsId}/platforms/{platformsId}/policies/{policiesId}",
                   "httpMethod": "DELETE",
                   "id": "binaryauthorization.projects.platforms.policies.delete",
@@ -491,7 +491,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets a platform policy. Returns NOT_FOUND if the policy doesn't exist.",
+                  "description": "Gets a platform policy. Returns `NOT_FOUND` if the policy doesn't exist.",
                   "flatPath": "v1/projects/{projectsId}/platforms/{platformsId}/policies/{policiesId}",
                   "httpMethod": "GET",
                   "id": "binaryauthorization.projects.platforms.policies.get",
@@ -516,7 +516,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists platform policies owned by a project in the specified platform. Returns INVALID_ARGUMENT if the project or the platform doesn't exist.",
+                  "description": "Lists platform policies owned by a project in the specified platform. Returns `INVALID_ARGUMENT` if the project or the platform doesn't exist.",
                   "flatPath": "v1/projects/{projectsId}/platforms/{platformsId}/policies",
                   "httpMethod": "GET",
                   "id": "binaryauthorization.projects.platforms.policies.list",
@@ -552,7 +552,7 @@
                   ]
                 },
                 "replacePlatformPolicy": {
-                  "description": "Replaces a platform policy. Returns NOT_FOUND if the policy doesn't exist.",
+                  "description": "Replaces a platform policy. Returns `NOT_FOUND` if the policy doesn't exist.",
                   "flatPath": "v1/projects/{projectsId}/platforms/{platformsId}/policies/{policiesId}",
                   "httpMethod": "PUT",
                   "id": "binaryauthorization.projects.platforms.policies.replacePlatformPolicy",
@@ -561,7 +561,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The relative resource name of the BinAuthz platform policy, in the form of `projects/*/platforms/*/policies/*`.",
+                      "description": "Output only. The relative resource name of the Binary Authorization platform policy, in the form of `projects/*/platforms/*/policies/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/platforms/[^/]+/policies/[^/]+$",
                       "required": true,
@@ -706,7 +706,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230915",
   "rootUrl": "https://binaryauthorization.googleapis.com/",
   "schemas": {
     "AdmissionRule": {
@@ -737,14 +737,14 @@
           ],
           "enumDescriptions": [
             "Do not use.",
-            "This rule allows all all pod creations.",
+            "This rule allows all pod creations.",
             "This rule allows a pod creation if all the attestors listed in `require_attestations_by` have valid attestations for all of the images in the pod spec.",
             "This rule denies all pod creations."
           ],
           "type": "string"
         },
         "requireAttestationsBy": {
-          "description": "Optional. The resource names of the attestors that must attest to a container image, in the format `projects/*/attestors/*`. Each attestor must exist before a policy can reference it. To add an attestor to a policy the principal issuing the policy change request must be able to read the attestor resource. Note: this field must be non-empty when the evaluation_mode field specifies REQUIRE_ATTESTATION, otherwise it must be empty.",
+          "description": "Optional. The resource names of the attestors that must attest to a container image, in the format `projects/*/attestors/*`. Each attestor must exist before a policy can reference it. To add an attestor to a policy the principal issuing the policy change request must be able to read the attestor resource. Note: this field must be non-empty when the `evaluation_mode` field specifies `REQUIRE_ATTESTATION`, otherwise it must be empty.",
           "items": {
             "type": "string"
           },
@@ -769,7 +769,7 @@
       "id": "AttestationAuthenticator",
       "properties": {
         "displayName": {
-          "description": "Optional. A user-provided name for this AttestationAuthenticator. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.",
+          "description": "Optional. A user-provided name for this `AttestationAuthenticator`. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.",
           "type": "string"
         },
         "pkixPublicKeySet": {
@@ -810,7 +810,7 @@
       "id": "AttestationSource",
       "properties": {
         "containerAnalysisAttestationProjects": {
-          "description": "The ids of the GCP projects storing the SLSA attestations as container analysis Occurrences.",
+          "description": "The IDs of the GCP projects storing the SLSA attestations as Container Analysis Occurrences.",
           "items": {
             "type": "string"
           },
@@ -853,7 +853,7 @@
       "id": "AttestorPublicKey",
       "properties": {
         "asciiArmoredPgpPublicKey": {
-          "description": "ASCII-armored representation of a PGP public key, as the entire output by the command `gpg --export --armor foo@example.com` (either LF or CRLF line endings). When using this field, `id` should be left blank. The BinAuthz API handlers will calculate the ID and fill it in automatically. BinAuthz computes this ID as the OpenPGP RFC4880 V4 fingerprint, represented as upper-case hex. If `id` is provided by the caller, it will be overwritten by the API-calculated ID.",
+          "description": "ASCII-armored representation of a PGP public key, as the entire output by the command `gpg --export --armor foo@example.com` (either LF or CRLF line endings). When using this field, `id` should be left blank. The Binary Authorization API handlers will calculate the ID and fill it in automatically. Binary Authorization computes this ID as the OpenPGP RFC4880 V4 fingerprint, represented as upper-case hex. If `id` is provided by the caller, it will be overwritten by the API-calculated ID.",
           "type": "string"
         },
         "comment": {
@@ -861,7 +861,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The ID of this public key. Signatures verified by BinAuthz must include the ID of the public key that can be used to verify them, and that ID must match the contents of this field exactly. Additional restrictions on this field can be imposed based on which public key type is encapsulated. See the documentation on `public_key` cases below for details.",
+          "description": "The ID of this public key. Signatures verified by Binary Authorization must include the ID of the public key that can be used to verify them, and that ID must match the contents of this field exactly. Additional restrictions on this field can be imposed based on which public key type is encapsulated. See the documentation on `public_key` cases below for details.",
           "type": "string"
         },
         "pkixPublicKey": {
@@ -894,20 +894,20 @@
       "type": "object"
     },
     "Check": {
-      "description": "A single check to perform against a Pod. Checks are grouped into CheckSets, which are defined by the top-level policy.",
+      "description": "A single check to perform against a Pod. Checks are grouped into `CheckSet` objects, which are defined by the top-level policy.",
       "id": "Check",
       "properties": {
         "alwaysDeny": {
-          "description": "Optional. A special-case check that always denies. Note that this still only applies when the scope of the CheckSet applies and the image isn't exempted by an image allowlist. This check is primarily useful for testing, or to set the default behavior for all unmatched scopes to \"deny\".",
+          "description": "Optional. A special-case check that always denies. Note that this still only applies when the scope of the `CheckSet` applies and the image isn't exempted by an image allowlist. This check is primarily useful for testing, or to set the default behavior for all unmatched scopes to \"deny\".",
           "type": "boolean"
         },
         "displayName": {
-          "description": "Optional. A user-provided name for this Check. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.",
+          "description": "Optional. A user-provided name for this check. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.",
           "type": "string"
         },
         "imageAllowlist": {
           "$ref": "ImageAllowlist",
-          "description": "Optional. Images exempted from this Check. If any of the patterns match the image url, the check will not be evaluated."
+          "description": "Optional. Images exempted from this check. If any of the patterns match the image url, the check will not be evaluated."
         },
         "imageFreshnessCheck": {
           "$ref": "ImageFreshnessCheck",
@@ -919,7 +919,7 @@
         },
         "slsaCheck": {
           "$ref": "SlsaCheck",
-          "description": "Optional. Require that an image was built by a trusted builder (such as Google Cloud Build or GitHub), meets requirements for Supply chain Levels for Software Artifacts (SLSA), and was built from a trusted source code repostitory."
+          "description": "Optional. Require that an image was built by a trusted builder (such as Google Cloud Build), meets requirements for Supply chain Levels for Software Artifacts (SLSA), and was built from a trusted source code repostitory."
         },
         "trustedDirectoryCheck": {
           "$ref": "TrustedDirectoryCheck",
@@ -933,27 +933,27 @@
       "type": "object"
     },
     "CheckSet": {
-      "description": "A conjunction of policy checks, scoped to a particular namespace or Kubernetes service account. In order for evaluation of a CheckSet to return \"allowed\" for a given image in a given Pod, one of the following conditions must be satisfied: * The image is explicitly exempted by an entry in `image_allowlist`, OR * ALL of the `checks` evaluate to \"allowed\".",
+      "description": "A conjunction of policy checks, scoped to a particular namespace or Kubernetes service account. In order for evaluation of a `CheckSet` to return \"allowed\" for a given image in a given Pod, one of the following conditions must be satisfied: * The image is explicitly exempted by an entry in `image_allowlist`, OR * ALL of the `checks` evaluate to \"allowed\".",
       "id": "CheckSet",
       "properties": {
         "checks": {
-          "description": "Optional. The checks to apply. The ultimate result of evaluating the check set will be \"allow\" if and only if every check in 'checks' evaluates to \"allow\". If `checks` is empty, the default behavior is \"always allow\".",
+          "description": "Optional. The checks to apply. The ultimate result of evaluating the check set will be \"allow\" if and only if every check in `checks` evaluates to \"allow\". If `checks` is empty, the default behavior is \"always allow\".",
           "items": {
             "$ref": "Check"
           },
           "type": "array"
         },
         "displayName": {
-          "description": "Optional. A user-provided name for this CheckSet. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.",
+          "description": "Optional. A user-provided name for this `CheckSet`. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.",
           "type": "string"
         },
         "imageAllowlist": {
           "$ref": "ImageAllowlist",
-          "description": "Optional. Images exempted from this CheckSet. If any of the patterns match the image being evaluated, no checks in the CheckSet will be evaluated."
+          "description": "Optional. Images exempted from this `CheckSet`. If any of the patterns match the image being evaluated, no checks in the `CheckSet` will be evaluated."
         },
         "scope": {
           "$ref": "Scope",
-          "description": "Optional. The scope to which this CheckSet applies. If unset or an empty string (the default), applies to all namespaces and service accounts. See the Scope message documentation for details on scoping rules."
+          "description": "Optional. The scope to which this `CheckSet` applies. If unset or an empty string (the default), applies to all namespaces and service accounts. See the `Scope` message documentation for details on scoping rules."
         }
       },
       "type": "object"
@@ -992,7 +992,7 @@
       "id": "GkePolicy",
       "properties": {
         "checkSets": {
-          "description": "Optional. The CheckSets to apply, scoped by namespace or namespace and service account. Exactly one CheckSet will be evaluated for a given Pod (unless the list is empty, in which case the behavior is \"always allow\"). If multiple CheckSets have scopes that match the namespace and service account of the Pod being evaluated, only the CheckSet with the MOST SPECIFIC scope will match. CheckSets must be listed in order of decreasing specificity, i.e. if a scope matches a given service account (which must include the namespace), it must come before a CheckSet with a scope matching just that namespace. This property is enforced by server-side validation. The purpose of this restriction is to ensure that if more than one CheckSet matches a given Pod, the CheckSet that will be evaluated will always be the first in the list to match (because if any other matches, it must be less specific). If `check_sets` is empty, the default behavior is to allow all images. If `check_sets` is non-empty, the last `check_sets` entry must always be a CheckSet with no scope set, i.e. a catchall to handle any situation not caught by the preceding CheckSets.",
+          "description": "Optional. The `CheckSet` objects to apply, scoped by namespace or namespace and service account. Exactly one `CheckSet` will be evaluated for a given Pod (unless the list is empty, in which case the behavior is \"always allow\"). If multiple `CheckSet` objects have scopes that match the namespace and service account of the Pod being evaluated, only the `CheckSet` with the MOST SPECIFIC scope will match. `CheckSet` objects must be listed in order of decreasing specificity, i.e. if a scope matches a given service account (which must include the namespace), it must come before a `CheckSet` with a scope matching just that namespace. This property is enforced by server-side validation. The purpose of this restriction is to ensure that if more than one `CheckSet` matches a given Pod, the `CheckSet` that will be evaluated will always be the first in the list to match (because if any other matches, it must be less specific). If `check_sets` is empty, the default behavior is to allow all images. If `check_sets` is non-empty, the last `check_sets` entry must always be a `CheckSet` with no scope set, i.e. a catchall to handle any situation not caught by the preceding `CheckSet` objects.",
           "items": {
             "$ref": "CheckSet"
           },
@@ -1066,7 +1066,7 @@
       "type": "object"
     },
     "ListAttestorsResponse": {
-      "description": "Response message for BinauthzManagementService.ListAttestors.",
+      "description": "Response message for BinauthzManagementServiceV1.ListAttestors.",
       "id": "ListAttestorsResponse",
       "properties": {
         "attestors": {
@@ -1102,7 +1102,7 @@
       "type": "object"
     },
     "PkixPublicKey": {
-      "description": "A public key in the PkixPublicKey format (see https://tools.ietf.org/html/rfc5280#section-4.1.2.7 for details). Public keys of this type are typically textually encoded using the PEM format.",
+      "description": "A public key in the PkixPublicKey [format](https://tools.ietf.org/html/rfc5280#section-4.1.2.7). Public keys of this type are typically textually encoded using the PEM format.",
       "id": "PkixPublicKey",
       "properties": {
         "publicKeyPem": {
@@ -1159,7 +1159,7 @@
       "type": "object"
     },
     "PkixPublicKeySet": {
-      "description": "A bundle of PKIX public keys, used to authenticate attestation signatures. Generally, a signature is considered to be authenticated by a PkixPublicKeySet if any of the public keys verify it (i.e. it is an \"OR\" of the keys).",
+      "description": "A bundle of PKIX public keys, used to authenticate attestation signatures. Generally, a signature is considered to be authenticated by a `PkixPublicKeySet` if any of the public keys verify it (i.e. it is an \"OR\" of the keys).",
       "id": "PkixPublicKeySet",
       "properties": {
         "pkixPublicKeys": {
@@ -1185,7 +1185,7 @@
           "description": "Optional. GKE platform-specific policy."
         },
         "name": {
-          "description": "Output only. The relative resource name of the BinAuthz platform policy, in the form of `projects/*/platforms/*/policies/*`.",
+          "description": "Output only. The relative resource name of the Binary Authorization platform policy, in the form of `projects/*/platforms/*/policies/*`.",
           "readOnly": true,
           "type": "string"
         },
@@ -1236,7 +1236,7 @@
             "DISABLE"
           ],
           "enumDescriptions": [
-            "Not specified: DISABLE is assumed.",
+            "Not specified: `DISABLE` is assumed.",
             "Enables system policy evaluation.",
             "Disables system policy evaluation."
           ],
@@ -1278,7 +1278,7 @@
       "type": "object"
     },
     "Scope": {
-      "description": "A scope specifier for CheckSets.",
+      "description": "A scope specifier for `CheckSet` objects.",
       "id": "Scope",
       "properties": {
         "kubernetesNamespace": {
@@ -1286,7 +1286,7 @@
           "type": "string"
         },
         "kubernetesServiceAccount": {
-          "description": "Optional. Matches a single Kubernetes service account, e.g. 'my-namespace:my-service-account'. `kubernetes_service_account` scope is always more specific than `kubernetes_namespace` scope for the same namespace.",
+          "description": "Optional. Matches a single Kubernetes service account, e.g. `my-namespace:my-service-account`. `kubernetes_service_account` scope is always more specific than `kubernetes_namespace` scope for the same namespace.",
           "type": "string"
         }
       },
@@ -1387,7 +1387,7 @@
       "id": "TrustedDirectoryCheck",
       "properties": {
         "trustedDirPatterns": {
-          "description": "Required. List of trusted directory patterns. A pattern is in the form \"registry/path/to/directory\". The registry domain part is defined as two or more dot-separated words, e.g., us.pkg.dev, or gcr.io. Additionally, * can be used in three ways as wildcards: 1. leading * to match varying prefixes in registry subdomain (useful for location prefixes); 2. trailing * after registry/ to match varying endings; 3. trailing ** after registry/ to match \"/\" as well. For example: -- gcr.io/my-project/my-repo is valid to match a single directory -- *-docker.pkg.dev/my-project/my-repo or *.gcr.io/my-project are valid to match varying prefixes -- gcr.io/my-project/* will match all direct directories in my-project -- gcr.io/my-project/** would match all directories in my-project -- gcr.i* is not allowed since the registry is not completely specified -- sub*domain.gcr.io/nginx is not valid because only leading * or trailing * are allowed. -- *pkg.dev/my-project/my-repo is not valid because leading * can only match subdomain -- **-docker.pkg.dev is not valid because one leading * is allowed, and that it cannot match \"/\"",
+          "description": "Required. List of trusted directory patterns. A pattern is in the form \"registry/path/to/directory\". The registry domain part is defined as two or more dot-separated words, e.g., `us.pkg.dev`, or `gcr.io`. Additionally, `*` can be used in three ways as wildcards: 1. leading `*` to match varying prefixes in registry subdomain (useful for location prefixes); 2. trailing `*` after registry/ to match varying endings; 3. trailing `**` after registry/ to match \"/\" as well. For example: -- `gcr.io/my-project/my-repo` is valid to match a single directory -- `*-docker.pkg.dev/my-project/my-repo` or `*.gcr.io/my-project` are valid to match varying prefixes -- `gcr.io/my-project/*` will match all direct directories in `my-project` -- `gcr.io/my-project/**` would match all directories in `my-project` -- `gcr.i*` is not allowed since the registry is not completely specified -- `sub*domain.gcr.io/nginx` is not valid because only leading `*` or trailing `*` are allowed. -- `*pkg.dev/my-project/my-repo` is not valid because leading `*` can only match subdomain -- `**-docker.pkg.dev` is not valid because one leading `*` is allowed, and that it cannot match `/`",
           "items": {
             "type": "string"
           },
@@ -1401,7 +1401,7 @@
       "id": "UserOwnedGrafeasNote",
       "properties": {
         "delegationServiceAccountEmail": {
-          "description": "Output only. This field will contain the service account email address that this Attestor will use as the principal when querying Container Analysis. Attestor administrators must grant this service account the IAM role needed to read attestations from the note_reference in Container Analysis (`containeranalysis.notes.occurrences.viewer`). This email address is fixed for the lifetime of the Attestor, but callers should not make any other assumptions about the service account email; future versions may use an email based on a different naming pattern.",
+          "description": "Output only. This field will contain the service account email address that this attestor will use as the principal when querying Container Analysis. Attestor administrators must grant this service account the IAM role needed to read attestations from the note_reference in Container Analysis (`containeranalysis.notes.occurrences.viewer`). This email address is fixed for the lifetime of the attestor, but callers should not make any other assumptions about the service account email; future versions may use an email based on a different naming pattern.",
           "readOnly": true,
           "type": "string"
         },
@@ -1425,7 +1425,7 @@
       "properties": {
         "attestation": {
           "$ref": "AttestationOccurrence",
-          "description": "Required. An AttestationOccurrence to be checked that it can be verified by the Attestor. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid AttestationOccurrence."
+          "description": "Required. An AttestationOccurrence to be checked that it can be verified by the `Attestor`. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid `AttestationOccurrence`."
         },
         "occurrenceNote": {
           "description": "Required. The resource name of the Note to which the containing Occurrence is associated.",
@@ -1472,7 +1472,7 @@
           "description": "Specifies where to fetch the provenances attestations generated by the builder (group)."
         },
         "configBasedBuildRequired": {
-          "description": "If true, require the image to be built from a top-level configuration. trusted_source_repo patterns specifies the repositories containing this configuration.",
+          "description": "If true, require the image to be built from a top-level configuration. `trusted_source_repo_patterns` specifies the repositories containing this configuration.",
           "type": "boolean"
         },
         "trustedBuilder": {
@@ -1488,7 +1488,7 @@
           "type": "string"
         },
         "trustedSourceRepoPatterns": {
-          "description": "List of trusted source code repository URL patterns. These patterns match the full repository URL without its scheme (e.g. \"https://\"). The patterns must not include schemes. For example, the pattern \"source.cloud.google.com/my-project/my-repo-name\" matches the following URLs: - \"source.cloud.google.com/my-project/my-repo-name\" - \"git+ssh://source.cloud.google.com/my-project/my-repo-name\" - \"https://source.cloud.google.com/my-project/my-repo-name\" A pattern matches a URL either exactly or with * wildcards. * can be used in only two ways: 1. trailing * after hosturi/ to match varying endings; 2. trailing ** after hosturi/ to match \"/\" as well. * and ** can only be used as wildcards and can only occur at the end of the pattern after a /. (So it's not possible to match a URL that contains literal *.) For example: - \"github.com/my-project/my-repo\" is valid to match a single repo - \"github.com/my-project/*\" will match all direct repos in my-project - \"github.com/**\" matches all repos in GitHub",
+          "description": "List of trusted source code repository URL patterns. These patterns match the full repository URL without its scheme (e.g. `https://`). The patterns must not include schemes. For example, the pattern `source.cloud.google.com/my-project/my-repo-name` matches the following URLs: - `source.cloud.google.com/my-project/my-repo-name` - `git+ssh://source.cloud.google.com/my-project/my-repo-name` - `https://source.cloud.google.com/my-project/my-repo-name` A pattern matches a URL either exactly or with `*` wildcards. `*` can be used in only two ways: 1. trailing `*` after hosturi/ to match varying endings; 2. trailing `**` after hosturi/ to match `/` as well. `*` and `**` can only be used as wildcards and can only occur at the end of the pattern after a `/`. (So it's not possible to match a URL that contains literal `*`.) For example: - `github.com/my-project/my-repo` is valid to match a single repo - `github.com/my-project/*` will match all direct repos in `my-project` - `github.com/**` matches all repos in GitHub",
           "items": {
             "type": "string"
           },
@@ -1502,21 +1502,21 @@
       "id": "VulnerabilityCheck",
       "properties": {
         "allowedCves": {
-          "description": "Optional. A list of specific CVEs to ignore even if the vulnerability level violates maximumUnfixableSeverity or maximumFixableSeverity. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will allow vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`.",
+          "description": "Optional. A list of specific CVEs to ignore even if the vulnerability level violates `maximumUnfixableSeverity` or `maximumFixableSeverity`. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will allow vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "blockedCves": {
-          "description": "Optional. A list of specific CVEs to always raise warnings about even if the vulnerability level meets maximumUnfixableSeverity or maximumFixableSeverity. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will block vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`.",
+          "description": "Optional. A list of specific CVEs to always raise warnings about even if the vulnerability level meets `maximumUnfixableSeverity` or `maximumFixableSeverity`. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will block vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "containerAnalysisVulnerabilityProjects": {
-          "description": "Optional. The projects where vulnerabilities are stored as Container Analysis Occurrences. Each project is expressed in the resource format of `projects/[PROJECT_ID]`, e.g., projects/my-gcp-project. An attempt will be made for each project to fetch vulnerabilities, and all valid vulnerabilities will be used to check against the vulnerability policy. If no valid scan is found in all projects configured here, an error will be returned for the check.",
+          "description": "Optional. The projects where vulnerabilities are stored as Container Analysis Occurrences. Each project is expressed in the resource format of `projects/[PROJECT_ID]`, e.g., `projects/my-gcp-project`. An attempt will be made for each project to fetch vulnerabilities, and all valid vulnerabilities will be used to check against the vulnerability policy. If no valid scan is found in all projects configured here, an error will be returned for the check.",
           "items": {
             "type": "string"
           },

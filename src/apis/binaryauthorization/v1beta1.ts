@@ -423,7 +423,7 @@ export namespace binaryauthorization_v1beta1 {
    */
   export interface Schema$ValidateAttestationOccurrenceRequest {
     /**
-     * Required. An AttestationOccurrence to be checked that it can be verified by the Attestor. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid AttestationOccurrence.
+     * Required. An AttestationOccurrence to be checked that it can be verified by the `Attestor`. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid `AttestationOccurrence`.
      */
     attestation?: Schema$AttestationOccurrence;
     /**
@@ -1364,7 +1364,7 @@ export namespace binaryauthorization_v1beta1 {
     }
 
     /**
-     * Returns whether the given Attestation for the given image URI was signed by the given Attestor
+     * Returns whether the given `Attestation` for the given image URI was signed by the given `Attestor`
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

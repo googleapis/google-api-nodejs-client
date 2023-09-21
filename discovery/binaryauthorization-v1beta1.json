@@ -399,7 +399,7 @@
               ]
             },
             "validateAttestationOccurrence": {
-              "description": "Returns whether the given Attestation for the given image URI was signed by the given Attestor",
+              "description": "Returns whether the given `Attestation` for the given image URI was signed by the given `Attestor`",
               "flatPath": "v1beta1/projects/{projectsId}/attestors/{attestorsId}:validateAttestationOccurrence",
               "httpMethod": "POST",
               "id": "binaryauthorization.projects.attestors.validateAttestationOccurrence",
@@ -551,7 +551,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230915",
   "rootUrl": "https://binaryauthorization.googleapis.com/",
   "schemas": {
     "AdmissionRule": {
@@ -1010,7 +1010,7 @@
       "properties": {
         "attestation": {
           "$ref": "AttestationOccurrence",
-          "description": "Required. An AttestationOccurrence to be checked that it can be verified by the Attestor. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid AttestationOccurrence."
+          "description": "Required. An AttestationOccurrence to be checked that it can be verified by the `Attestor`. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid `AttestationOccurrence`."
         },
         "occurrenceNote": {
           "description": "Required. The resource name of the Note to which the containing Occurrence is associated.",
