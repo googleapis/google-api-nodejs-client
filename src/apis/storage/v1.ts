@@ -107,6 +107,7 @@ export namespace storage_v1 {
     notifications: Resource$Notifications;
     objectAccessControls: Resource$Objectaccesscontrols;
     objects: Resource$Objects;
+    operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -127,6 +128,7 @@ export namespace storage_v1 {
         this.context
       );
       this.objects = new Resource$Objects(this.context);
+      this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -142,7 +144,12 @@ export namespace storage_v1 {
     /**
      * The bucket's Autoclass configuration.
      */
-    autoclass?: {enabled?: boolean; toggleTime?: string} | null;
+    autoclass?: {
+      enabled?: boolean;
+      terminalStorageClass?: string;
+      terminalStorageClassUpdateTime?: string;
+      toggleTime?: string;
+    } | null;
     /**
      * The bucket's billing configuration.
      */
@@ -239,6 +246,10 @@ export namespace storage_v1 {
      */
     name?: string | null;
     /**
+     * The bucket's object retention config.
+     */
+    objectRetention?: {mode?: string} | null;
+    /**
      * The owner of the bucket. This is always the project team's owner group.
      */
     owner?: {entity?: string; entityId?: string} | null;
@@ -266,6 +277,13 @@ export namespace storage_v1 {
      * The URI of this bucket.
      */
     selfLink?: string | null;
+    /**
+     * The bucket's soft delete policy, which defines the period of time that soft-deleted objects will be retained, and cannot be permanently deleted.
+     */
+    softDeletePolicy?: {
+      effectiveTime?: string;
+      retentionDurationSeconds?: string;
+    } | null;
     /**
      * The bucket's default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, ARCHIVE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see storage classes.
      */
@@ -378,6 +396,31 @@ export namespace storage_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * A bulk restore objects request.
+   */
+  export interface Schema$BulkRestoreObjectsRequest {
+    /**
+     * If false (default), the restore will not overwrite live objects with the same name at the destination. This means some deleted objects may be skipped. If true, live objects will be overwritten resulting in a noncurrent object (if versioning is enabled). If versioning is not enabled, overwriting the object will result in a soft-deleted object. In either case, if a noncurrent object already exists with the same name, a live version can be written without issue.
+     */
+    allowOverwrite?: boolean | null;
+    /**
+     * If true, copies the source object's ACL; otherwise, uses the bucket's default object ACL. The default is false.
+     */
+    copySourceAcl?: boolean | null;
+    /**
+     * Restores only the objects matching any of the specified glob(s). If this parameter is not specified, all objects will be restored within the specified time range.
+     */
+    matchGlobs?: string[] | null;
+    /**
+     * Restores only the objects that were soft-deleted after this time.
+     */
+    softDeletedAfterTime?: string | null;
+    /**
+     * Restores only the objects that were soft-deleted before this time.
+     */
+    softDeletedBeforeTime?: string | null;
+  }
+  /**
    * An notification channel used to watch for resource changes.
    */
   export interface Schema$Channel {
@@ -463,6 +506,61 @@ export namespace storage_v1 {
      * An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * The response message for storage.buckets.operations.list.
+   */
+  export interface Schema$GoogleLongrunningListOperationsResponse {
+    /**
+     * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of operations that matches the specified filter in the request.
+     */
+    operations?: Schema$GoogleLongrunningOperation[];
+  }
+  /**
+   * This resource represents a long-running operation that is the result of a network API call.
+   */
+  export interface Schema$GoogleLongrunningOperation {
+    /**
+     * If the value is "false", it means the operation is still in progress. If "true", the operation is completed, and either "error" or "response" is available.
+     */
+    done?: boolean | null;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the "name" should be a resource name ending with "operations/{operationId\}".
+     */
+    name?: string | null;
+    /**
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as "Delete", the response is google.protobuf.Empty. If the original method is standard Get/Create/Update, the response should be the resource. For other methods, the response should have the type "XxxResponse", where "Xxx" is the original method name. For example, if the original method name is "TakeSnapshot()", the inferred response type is "TakeSnapshotResponse".
+     */
+    response?: {[key: string]: any} | null;
+  }
+  /**
+   * The "Status" type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each "Status" message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$GoogleRpcStatus {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English.
+     */
+    message?: string | null;
   }
   /**
    * JSON template to produce a JSON-style HMAC Key resource for Create responses.
@@ -696,6 +794,10 @@ export namespace storage_v1 {
      * The owner of the object. This will always be the uploader of the object.
      */
     owner?: {entity?: string; entityId?: string} | null;
+    /**
+     * A collection of object level retention parameters.
+     */
+    retention?: {mode?: string; retainUntilTime?: string} | null;
     /**
      * A server-determined value that specifies the earliest time that the object's retention period expires. This value is in RFC 3339 format. Note 1: This field is not provided for objects with an active event-based hold, since retention expiration is unknown until the hold is removed. Note 2: This value can be provided even when temporary hold is set (so that the user can reason about policy without having to first unset the temporary hold).
      */
@@ -2500,6 +2602,10 @@ export namespace storage_v1 {
     userProject?: string;
   }
   export interface Params$Resource$Buckets$Insert extends StandardParameters {
+    /**
+     * When set to true, object retention is enabled for this bucket.
+     */
+    enableObjectRetention?: boolean;
     /**
      * Apply a predefined set of access controls to this bucket.
      */
@@ -4515,6 +4621,100 @@ export namespace storage_v1 {
     }
 
     /**
+     * Initiates a long-running bulk restore operation on the specified bucket.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkRestore(
+      params: Params$Resource$Objects$Bulkrestore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkRestore(
+      params?: Params$Resource$Objects$Bulkrestore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    bulkRestore(
+      params: Params$Resource$Objects$Bulkrestore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkRestore(
+      params: Params$Resource$Objects$Bulkrestore,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkRestore(
+      params: Params$Resource$Objects$Bulkrestore,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkRestore(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    bulkRestore(
+      paramsOrCallback?:
+        | Params$Resource$Objects$Bulkrestore
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Objects$Bulkrestore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Bulkrestore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/o/bulkRestore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Concatenates a list of existing objects into a new object in the same bucket.
      *
      * @param params - Parameters for request
@@ -5216,6 +5416,91 @@ export namespace storage_v1 {
     }
 
     /**
+     * Restores a soft-deleted object.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Objects$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Objects$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Object>;
+    restore(
+      params: Params$Resource$Objects$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Objects$Restore,
+      options: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
+    restore(
+      params: Params$Resource$Objects$Restore,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
+    restore(callback: BodyResponseCallback<Schema$Object>): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Objects$Restore
+        | BodyResponseCallback<Schema$Object>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Object>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Object>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/storage/v1/b/{bucket}/o/{object}/restore'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'object'],
+        pathParams: ['bucket', 'object'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Object>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Object>(parameters);
+      }
+    }
+
+    /**
      * Rewrites a source object to a destination object. Optionally overrides metadata.
      *
      * @param params - Parameters for request
@@ -5664,6 +5949,18 @@ export namespace storage_v1 {
     }
   }
 
+  export interface Params$Resource$Objects$Bulkrestore
+    extends StandardParameters {
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkRestoreObjectsRequest;
+  }
   export interface Params$Resource$Objects$Compose extends StandardParameters {
     /**
      * Name of the bucket containing the source objects. The destination object is stored in this bucket.
@@ -5842,6 +6139,10 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
+     * If true, only soft-deleted object versions will be listed. The default is false. For more information, see Soft Delete.
+     */
+    softDeleted?: boolean;
+    /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
@@ -5969,6 +6270,10 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
+     * If true, only soft-deleted object versions will be listed. The default is false. For more information, see Soft Delete.
+     */
+    softDeleted?: boolean;
+    /**
      * Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      */
     startOffset?: string;
@@ -6011,6 +6316,10 @@ export namespace storage_v1 {
      */
     object?: string;
     /**
+     * Must be true to remove the retention configuration, reduce its unlocked retention period, or change its mode from unlocked to locked.
+     */
+    overrideUnlockedRetention?: boolean;
+    /**
      * Apply a predefined set of access controls to this object.
      */
     predefinedAcl?: string;
@@ -6020,6 +6329,49 @@ export namespace storage_v1 {
     projection?: string;
     /**
      * The project to be billed for this request, for Requester Pays buckets.
+     */
+    userProject?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Object;
+  }
+  export interface Params$Resource$Objects$Restore extends StandardParameters {
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+    /**
+     * Selects a specific revision of this object.
+     */
+    generation?: string;
+    /**
+     * Makes the operation conditional on whether the object's one live generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
+     */
+    ifGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether none of the object's live generations match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
+     */
+    ifGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's one live metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether none of the object's live metagenerations match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * Set of properties to return. Defaults to full.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
      */
     userProject?: string;
 
@@ -6188,6 +6540,10 @@ export namespace storage_v1 {
      */
     object?: string;
     /**
+     * Must be true to remove the retention configuration, reduce its unlocked retention period, or change its mode from unlocked to locked.
+     */
+    overrideUnlockedRetention?: boolean;
+    /**
      * Apply a predefined set of access controls to this object.
      */
     predefinedAcl?: string;
@@ -6255,6 +6611,324 @@ export namespace storage_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Channel;
+  }
+
+  export class Resource$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    cancel(
+      params: Params$Resource$Operations$Cancel,
+      callback: BodyResponseCallback<void>
+    ): void;
+    cancel(callback: BodyResponseCallback<void>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Cancel
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/storage/v1/b/{bucket}/operations/{operationId}/cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'operationId'],
+        pathParams: ['bucket', 'operationId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/storage/v1/b/{bucket}/operations/{operationId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'operationId'],
+        pathParams: ['bucket', 'operationId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Operations$List,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The parent bucket of the operation resource.
+     */
+    bucket?: string;
+    /**
+     * The ID of the operation resource.
+     */
+    operationId?: string;
+  }
+  export interface Params$Resource$Operations$Get extends StandardParameters {
+    /**
+     * The parent bucket of the operation resource.
+     */
+    bucket?: string;
+    /**
+     * The ID of the operation resource.
+     */
+    operationId?: string;
+  }
+  export interface Params$Resource$Operations$List extends StandardParameters {
+    /**
+     * Name of the bucket in which to look for operations.
+     */
+    bucket?: string;
+    /**
+     * A filter to narrow down results to a preferred subset. The filtering language is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * Maximum number of items to return in a single page of responses. Fewer total results may be returned than requested. The service uses this parameter or 100 items, whichever is smaller.
+     */
+    pageSize?: number;
+    /**
+     * A previously-returned page token representing part of the larger set of results to view.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Projects {
