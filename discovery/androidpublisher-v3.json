@@ -4047,7 +4047,7 @@
       }
     }
   },
-  "revision": "20230816",
+  "revision": "20230920",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -4062,7 +4062,8 @@
             "ARMEABI_V7A",
             "ARM64_V8A",
             "X86",
-            "X86_64"
+            "X86_64",
+            "RISCV64"
           ],
           "enumDescriptions": [
             "Unspecified abi.",
@@ -4070,7 +4071,8 @@
             "ARMEABI_V7A abi.",
             "ARM64_V8A abi.",
             "X86 abi.",
-            "X86_64 abi."
+            "X86_64 abi.",
+            "RISCV64 abi."
           ],
           "type": "string"
         }
@@ -6865,12 +6867,14 @@
           "enum": [
             "PRICE_CHANGE_MODE_UNSPECIFIED",
             "PRICE_DECREASE",
-            "PRICE_INCREASE"
+            "PRICE_INCREASE",
+            "OPT_OUT_PRICE_INCREASE"
           ],
           "enumDescriptions": [
             "Price change mode unspecified. This value should never be set.",
             "If the subscription price is decreasing.",
-            "If the subscription price is increasing and the user needs to accept it."
+            "If the subscription price is increasing and the user needs to accept it.",
+            "If the subscription price is increasing with opt out mode."
           ],
           "type": "string"
         },
@@ -7366,6 +7370,25 @@
           },
           "description": "A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's \"CLDR\".",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "SystemApkOptions": {
+      "description": "Options for system APKs.",
+      "id": "SystemApkOptions",
+      "properties": {
+        "rotated": {
+          "description": "Whether to use the rotated key for signing the system APK.",
+          "type": "boolean"
+        },
+        "uncompressedDexFiles": {
+          "description": "Whether system APK was generated with uncompressed dex files.",
+          "type": "boolean"
+        },
+        "uncompressedNativeLibraries": {
+          "description": "Whether system APK was generated with uncompressed native libraries.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7926,6 +7949,10 @@
         "deviceSpec": {
           "$ref": "DeviceSpec",
           "description": "The device spec used to generate the APK."
+        },
+        "options": {
+          "$ref": "SystemApkOptions",
+          "description": "Optional. Options applied to the generated APK."
         },
         "variantId": {
           "description": "Output only. The ID of a previously created system APK variant.",
