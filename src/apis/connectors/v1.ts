@@ -397,6 +397,10 @@ export namespace connectors_v1 {
      */
     imageLocation?: string | null;
     /**
+     * Output only. Is trusted tester program enabled for the project.
+     */
+    isTrustedTester?: boolean | null;
+    /**
      * Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources
      */
     labels?: {[key: string]: string} | null;
@@ -545,6 +549,10 @@ export namespace connectors_v1 {
    */
   export interface Schema$ConnectorInfraConfig {
     /**
+     * HPA autoscaling config.
+     */
+    hpaConfig?: Schema$HPAConfig;
+    /**
      * Max QPS supported for internal requests originating from Connd.
      */
     internalclientRatelimitThreshold?: string | null;
@@ -552,6 +560,18 @@ export namespace connectors_v1 {
      * Max QPS supported by the connector version before throttling of requests.
      */
     ratelimitThreshold?: string | null;
+    /**
+     * System resource limits.
+     */
+    resourceLimits?: Schema$ResourceLimits;
+    /**
+     * System resource requests.
+     */
+    resourceRequests?: Schema$ResourceRequests;
+    /**
+     * The name of shared connector deployment.
+     */
+    sharedDeployment?: string | null;
   }
   /**
    * Log configuration for the connection.
@@ -640,6 +660,10 @@ export namespace connectors_v1 {
    */
   export interface Schema$ConnectorVersionInfraConfig {
     /**
+     * Output only. HPA autoscaling config.
+     */
+    hpaConfig?: Schema$HPAConfig;
+    /**
      * Output only. Max QPS supported for internal requests originating from Connd.
      */
     internalclientRatelimitThreshold?: string | null;
@@ -647,6 +671,18 @@ export namespace connectors_v1 {
      * Output only. Max QPS supported by the connector version before throttling of requests.
      */
     ratelimitThreshold?: string | null;
+    /**
+     * Output only. System resource limits.
+     */
+    resourceLimits?: Schema$ResourceLimits;
+    /**
+     * Output only. System resource requests.
+     */
+    resourceRequests?: Schema$ResourceRequests;
+    /**
+     * Output only. The name of shared connector deployment.
+     */
+    sharedDeployment?: string | null;
   }
   export interface Schema$Destination {
     /**
@@ -826,7 +862,15 @@ export namespace connectors_v1 {
      */
     enrichmentEnabled?: boolean | null;
     /**
-     * Registration endpoint for auto regsitration.
+     * Optional. Private Connectivity Enabled.
+     */
+    privateConnectivityEnabled?: boolean | null;
+    /**
+     * Optional. Public Events listener endpoint.
+     */
+    publicEventsListenerEndpoint?: string | null;
+    /**
+     * Registration endpoint for auto registration.
      */
     registrationDestinationConfig?: Schema$DestinationConfig;
   }
@@ -1098,6 +1142,10 @@ export namespace connectors_v1 {
      */
     field?: string | null;
     /**
+     * JsonSchema representation of this entity's schema
+     */
+    jsonSchema?: Schema$JsonSchema;
+    /**
      * The following boolean field specifies if the current Field acts as a primary key or id if the parent is of type entity.
      */
     key?: boolean | null;
@@ -1149,6 +1197,19 @@ export namespace connectors_v1 {
     value?: string | null;
   }
   /**
+   * Autoscaling config for connector deployment system metrics.
+   */
+  export interface Schema$HPAConfig {
+    /**
+     * Output only. Percent CPU utilization where HPA triggers autoscaling.
+     */
+    cpuUtilizationThreshold?: string | null;
+    /**
+     * Output only. Percent Memory utilization where HPA triggers autoscaling.
+     */
+    memoryUtilizationThreshold?: string | null;
+  }
+  /**
    * Metadata of an input parameter.
    */
   export interface Schema$InputParameter {
@@ -1165,6 +1226,10 @@ export namespace connectors_v1 {
      */
     description?: string | null;
     /**
+     * JsonSchema representation of this action's parameter
+     */
+    jsonSchema?: Schema$JsonSchema;
+    /**
      * Specifies whether a null value is allowed.
      */
     nullable?: boolean | null;
@@ -1172,6 +1237,47 @@ export namespace connectors_v1 {
      * Name of the Parameter.
      */
     parameter?: string | null;
+  }
+  /**
+   * JsonSchema representation of schema metadata
+   */
+  export interface Schema$JsonSchema {
+    /**
+     * The default value of the field or object described by this schema.
+     */
+    default?: any | null;
+    /**
+     * A description of this schema.
+     */
+    description?: string | null;
+    /**
+     * Possible values for an enumeration. This works in conjunction with `type` to represent types with a fixed set of legal values
+     */
+    enum?: any[] | null;
+    /**
+     * Format of the value as per https://json-schema.org/understanding-json-schema/reference/string.html#format
+     */
+    format?: string | null;
+    /**
+     * Schema that applies to array values, applicable only if this is of type `array`.
+     */
+    items?: Schema$JsonSchema;
+    /**
+     * JDBC datatype of the field.
+     */
+    jdbcType?: string | null;
+    /**
+     * The child schemas, applicable only if this is of type `object`. The key is the name of the property and the value is the json schema that describes that property
+     */
+    properties?: {[key: string]: Schema$JsonSchema} | null;
+    /**
+     * Whether this property is required.
+     */
+    required?: string[] | null;
+    /**
+     * JSON Schema Validation: A Vocabulary for Structural Validation of JSON
+     */
+    type?: string[] | null;
   }
   /**
    * JWT claims used for the jwt-bearer authorization grant.
@@ -1684,6 +1790,32 @@ export namespace connectors_v1 {
     type?: string | null;
   }
   /**
+   * Resource limits defined for connection pods of a given connector type.
+   */
+  export interface Schema$ResourceLimits {
+    /**
+     * Output only. CPU limit.
+     */
+    cpu?: string | null;
+    /**
+     * Output only. Memory limit.
+     */
+    memory?: string | null;
+  }
+  /**
+   * Resource requests defined for connection pods of a given connector type.
+   */
+  export interface Schema$ResourceRequests {
+    /**
+     * Output only. CPU request.
+     */
+    cpu?: string | null;
+    /**
+     * Output only. Memory request.
+     */
+    memory?: string | null;
+  }
+  /**
    * Metadata of result field.
    */
   export interface Schema$ResultMetadata {
@@ -1699,6 +1831,10 @@ export namespace connectors_v1 {
      * Name of the result field.
      */
     field?: string | null;
+    /**
+     * JsonSchema representation of this action's result
+     */
+    jsonSchema?: Schema$JsonSchema;
   }
   /**
    * Request message for ConnectorsService.RefreshEventSubscription
@@ -1734,9 +1870,17 @@ export namespace connectors_v1 {
      */
     action?: string | null;
     /**
+     * Output only. JsonSchema representation of this action's input metadata
+     */
+    inputJsonSchema?: Schema$JsonSchema;
+    /**
      * Output only. List of input parameter metadata for the action.
      */
     inputParameters?: Schema$InputParameter[];
+    /**
+     * Output only. JsonSchema representation of this action's result metadata
+     */
+    resultJsonSchema?: Schema$JsonSchema;
     /**
      * Output only. List of result field metadata.
      */
@@ -1799,6 +1943,10 @@ export namespace connectors_v1 {
      * Output only. List of fields in the entity.
      */
     fields?: Schema$Field[];
+    /**
+     * Output only. JsonSchema representation of this entity's metadata
+     */
+    jsonSchema?: Schema$JsonSchema;
   }
   /**
    * Secret provides a reference to entries in Secret Manager.
