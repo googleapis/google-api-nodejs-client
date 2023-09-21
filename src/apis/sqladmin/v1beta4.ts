@@ -598,6 +598,10 @@ export namespace sqladmin_v1beta4 {
      */
     outOfDiskReport?: Schema$SqlOutOfDiskReport;
     /**
+     * Output only. The dns name of the primary instance in a replication group.
+     */
+    primaryDnsName?: string | null;
+    /**
      * The project ID of the project containing the Cloud SQL instance. The Google apps domain is prefixed if applicable.
      */
     project?: string | null;
@@ -1221,7 +1225,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
-     * The preferred Compute Engine zone for the secondary/failover (for example: us-central1-a, us-central1-b, etc.).
+     * The preferred Compute Engine zone for the secondary/failover (for example: us-central1-a, us-central1-b, etc.). To disable this field, set it to 'no_secondary_zone'.
      */
     secondaryZone?: string | null;
     /**
