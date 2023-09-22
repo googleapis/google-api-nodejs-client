@@ -1383,6 +1383,10 @@ export namespace networkservices_v1 {
      */
     gateways?: string[] | null;
     /**
+     * Optional. Set of label tags associated with the TlsRoute resource.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Optional. Meshes defines a list of meshes this TlsRoute is attached to, as one of the routing rules to route the requests served by the mesh. Each mesh reference should match the pattern: `projects/x/locations/global/meshes/` The attached Mesh should be of a type SIDECAR
      */
     meshes?: string[] | null;
