@@ -198,6 +198,10 @@ export namespace appengine_v1 {
      * Output only. The Google Container Registry domain used for storing managed build docker images for this application.
      */
     gcrDomain?: string | null;
+    /**
+     * Additional Google Generated Customer Metadata, this field won't be provided by default and can be requested by setting the IncludeExtraData field in GetApplicationRequest
+     */
+    generatedCustomerMetadata?: {[key: string]: any} | null;
     iap?: Schema$IdentityAwareProxy;
     /**
      * Identifier of the Application resource. This identifier is equivalent to the project ID of the Google Cloud Platform project where you want to deploy your application. Example: myapp.
@@ -1365,6 +1369,10 @@ export namespace appengine_v1 {
    */
   export interface Schema$Service {
     /**
+     * Additional Google Generated Customer Metadata, this field won't be provided by default and can be requested by setting the IncludeExtraData field in GetServiceRequest
+     */
+    generatedCustomerMetadata?: {[key: string]: any} | null;
+    /**
      * Relative name of the service within the application. Example: default.@OutputOnly
      */
     id?: string | null;
@@ -1735,7 +1743,7 @@ export namespace appengine_v1 {
      */
     egressSetting?: string | null;
     /**
-     * Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.
+     * Full Serverless VPC Access Connector name e.g. projects/my-project/locations/us-central1/connectors/c1.
      */
     name?: string | null;
   }
@@ -2124,6 +2132,10 @@ export namespace appengine_v1 {
      * Part of `name`. Name of the Application resource to get. Example: apps/myapp.
      */
     appsId?: string;
+    /**
+     * Options to include extra data
+     */
+    includeExtraData?: string;
   }
   export interface Params$Resource$Apps$Patch extends StandardParameters {
     /**
