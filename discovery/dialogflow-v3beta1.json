@@ -294,6 +294,37 @@
                     "https://www.googleapis.com/auth/dialogflow"
                   ]
                 },
+                "getGenerativeSettings": {
+                  "description": "Gets the generative settings for the agent.",
+                  "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/generativeSettings",
+                  "httpMethod": "GET",
+                  "id": "dialogflow.projects.locations.agents.getGenerativeSettings",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "languageCode": {
+                      "description": "Required. Language code of the generative settings.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. Format: `projects//locations//agents//generativeSettings`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/generativeSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v3beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowCxV3beta1GenerativeSettings"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
                 "getValidationResult": {
                   "description": "Gets the latest agent validation result. Agent validation is performed when ValidateAgent is called.",
                   "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/validationResult",
@@ -420,6 +451,41 @@
                   },
                   "response": {
                     "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "updateGenerativeSettings": {
+                  "description": "Updates the generative settings for the agent.",
+                  "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/generativeSettings",
+                  "httpMethod": "PATCH",
+                  "id": "dialogflow.projects.locations.agents.updateGenerativeSettings",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Format: `projects//locations//agents//generativeSettings`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/generativeSettings$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The mask to control which fields get updated. If the mask is not present, all fields will be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v3beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowCxV3beta1GenerativeSettings"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowCxV3beta1GenerativeSettings"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -4002,9 +4068,63 @@
       }
     }
   },
-  "revision": "20230811",
+  "revision": "20230906",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
+    "GoogleCloudDialogflowCxV3AdvancedSettings": {
+      "description": "Hierarchical advanced settings for agent/flow/page/fulfillment/parameter. Settings exposed at lower level overrides the settings exposed at higher level. Overriding occurs at the sub-setting level. For example, the playback_interruption_settings at fulfillment level only overrides the playback_interruption_settings at the agent level, leaving other settings at the agent level unchanged. DTMF settings does not override each other. DTMF settings set at different levels define DTMF detections running in parallel. Hierarchy: Agent->Flow->Page->Fulfillment/Parameter.",
+      "id": "GoogleCloudDialogflowCxV3AdvancedSettings",
+      "properties": {
+        "audioExportGcsDestination": {
+          "$ref": "GoogleCloudDialogflowCxV3GcsDestination",
+          "description": "If present, incoming audio is exported by Dialogflow to the configured Google Cloud Storage destination. Exposed at the following levels: - Agent level - Flow level"
+        },
+        "dtmfSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings",
+          "description": "Settings for DTMF. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level."
+        },
+        "loggingSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings",
+          "description": "Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings": {
+      "description": "Define behaviors for DTMF (dual tone multi frequency).",
+      "id": "GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings",
+      "properties": {
+        "enabled": {
+          "description": "If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a \"3\" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).",
+          "type": "boolean"
+        },
+        "finishDigit": {
+          "description": "The digit that terminates a DTMF digit sequence.",
+          "type": "string"
+        },
+        "maxDigits": {
+          "description": "Max length of DTMF digits.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings": {
+      "description": "Define behaviors on logging.",
+      "id": "GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings",
+      "properties": {
+        "enableInteractionLogging": {
+          "description": "If true, DF Interaction logging is currently enabled.",
+          "type": "boolean"
+        },
+        "enableStackdriverLogging": {
+          "description": "If true, StackDriver logging is currently enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3AudioInput": {
       "description": "Represents the natural speech audio to be processed.",
       "id": "GoogleCloudDialogflowCxV3AudioInput",
@@ -4206,6 +4326,33 @@
       "properties": {
         "version": {
           "description": "Name of the created version. Format: `projects//locations//agents//flows//versions/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3DataStoreConnection": {
+      "description": "A data store connection. It represents a data store in Discovery Engine and the type of the contents it contains.",
+      "id": "GoogleCloudDialogflowCxV3DataStoreConnection",
+      "properties": {
+        "dataStore": {
+          "description": "The full name of the referenced data store. Formats: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}` `projects/{project}/locations/{location}/dataStores/{data_store}`",
+          "type": "string"
+        },
+        "dataStoreType": {
+          "description": "The type of the connected data store.",
+          "enum": [
+            "DATA_STORE_TYPE_UNSPECIFIED",
+            "PUBLIC_WEB",
+            "UNSTRUCTURED",
+            "STRUCTURED"
+          ],
+          "enumDescriptions": [
+            "Not specified. This value indicates that the data store type is not specified, so it will not be used during search.",
+            "A data store that contains public web content.",
+            "A data store that contains unstructured private data.",
+            "A data store that contains structured data (for example FAQ)."
+          ],
           "type": "string"
         }
       },
@@ -4468,6 +4615,10 @@
       "description": "Represents a form parameter.",
       "id": "GoogleCloudDialogflowCxV3FormParameter",
       "properties": {
+        "advancedSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3AdvancedSettings",
+          "description": "Hierarchical advanced settings for this parameter. The settings exposed at the lower level overrides the settings exposed at the higher level."
+        },
         "defaultValue": {
           "description": "The default value of an optional parameter. If the parameter is required, the default value will be ignored.",
           "type": "any"
@@ -4521,12 +4672,20 @@
       "description": "A fulfillment can do one or more of the following actions at the same time: * Generate rich message responses. * Set parameter values. * Call the webhook. Fulfillments can be called at various stages in the Page or Form lifecycle. For example, when a DetectIntentRequest drives a session to enter a new page, the page's entry fulfillment can add a static response to the QueryResult in the returning DetectIntentResponse, call the webhook (for example, to load user data from a database), or both.",
       "id": "GoogleCloudDialogflowCxV3Fulfillment",
       "properties": {
+        "advancedSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3AdvancedSettings",
+          "description": "Hierarchical advanced settings for this fulfillment. The settings exposed at the lower level overrides the settings exposed at the higher level."
+        },
         "conditionalCases": {
           "description": "Conditional cases for this fulfillment.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3FulfillmentConditionalCases"
           },
           "type": "array"
+        },
+        "enableGenerativeFallback": {
+          "description": "If the flag is true, the agent will utilize LLM to generate a text response. If LLM generation fails, the defined responses in the fulfillment will be respected. This flag is only useful for fulfillments associated with no-match event handlers.",
+          "type": "boolean"
         },
         "messages": {
           "description": "The list of rich message responses to present to the user.",
@@ -4615,6 +4774,17 @@
         "value": {
           "description": "The new value of the parameter. A null value clears the parameter.",
           "type": "any"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3GcsDestination": {
+      "description": "Google Cloud Storage location for a Dialogflow operation that writes or exports objects (e.g. exported agent or transcripts) outside of Dialogflow.",
+      "id": "GoogleCloudDialogflowCxV3GcsDestination",
+      "properties": {
+        "uri": {
+          "description": "Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4899,10 +5069,44 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3KnowledgeConnectorSettings": {
+      "description": "The Knowledge Connector settings for this page or flow. This includes information such as the attached Knowledge Bases, and the way to execute fulfillment.",
+      "id": "GoogleCloudDialogflowCxV3KnowledgeConnectorSettings",
+      "properties": {
+        "dataStoreConnections": {
+          "description": "Optional. List of related data store connections.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3DataStoreConnection"
+          },
+          "type": "array"
+        },
+        "enabled": {
+          "description": "Whether Knowledge Connector is enabled or not.",
+          "type": "boolean"
+        },
+        "targetFlow": {
+          "description": "The target flow to transition to. Format: `projects//locations//agents//flows/`.",
+          "type": "string"
+        },
+        "targetPage": {
+          "description": "The target page to transition to. Format: `projects//locations//agents//flows//pages/`.",
+          "type": "string"
+        },
+        "triggerFulfillment": {
+          "$ref": "GoogleCloudDialogflowCxV3Fulfillment",
+          "description": "The fulfillment to be triggered. When the answers from the Knowledge Connector are selected by Dialogflow, you can utitlize the request scoped parameter `$request.knowledge.answers` (contains up to the 5 highest confidence answers) and `$request.knowledge.questions` (contains the corresponding questions) to construct the fulfillment."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3Page": {
       "description": "A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).",
       "id": "GoogleCloudDialogflowCxV3Page",
       "properties": {
+        "advancedSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3AdvancedSettings",
+          "description": "Hierarchical advanced settings for this page. The settings exposed at the lower level overrides the settings exposed at the higher level."
+        },
         "displayName": {
           "description": "Required. The human-readable name of the page, unique within the flow.",
           "type": "string"
@@ -4922,12 +5126,16 @@
           "$ref": "GoogleCloudDialogflowCxV3Form",
           "description": "The form associated with the page, used for collecting parameters relevant to the page."
         },
+        "knowledgeConnectorSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3KnowledgeConnectorSettings",
+          "description": "Optional. Knowledge connector configuration."
+        },
         "name": {
           "description": "The unique identifier of the page. Required for the Pages.UpdatePage method. Pages.CreatePage populates the name automatically. Format: `projects//locations//agents//flows//pages/`.",
           "type": "string"
         },
         "transitionRouteGroups": {
-          "description": "Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -> page's transition route group -> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
+          "description": "Ordered list of `TransitionRouteGroups` added to the page. Transition route groups must be unique within a page. If the page links both flow-level transition route groups and agent-level transition route groups, the flow-level ones will have higher priority and will be put before the agent-level ones. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -> page's transition route group -> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
           "items": {
             "type": "string"
           },
@@ -5074,6 +5282,10 @@
           "description": "Output only. A signal that indicates the interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only when the conversation reaches `END_SESSION` page. It is not supposed to be defined by the user. It's guaranteed that there is at most one such message in each response.",
           "readOnly": true
         },
+        "knowledgeInfoCard": {
+          "$ref": "GoogleCloudDialogflowCxV3ResponseMessageKnowledgeInfoCard",
+          "description": "Represents info card for knowledge answers, to be better rendered in Dialogflow Messenger."
+        },
         "liveAgentHandoff": {
           "$ref": "GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff",
           "description": "Hands off conversation to a human agent."
@@ -5144,6 +5356,12 @@
     "GoogleCloudDialogflowCxV3ResponseMessageEndInteraction": {
       "description": "Indicates that interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only and not supposed to be defined by the user.",
       "id": "GoogleCloudDialogflowCxV3ResponseMessageEndInteraction",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ResponseMessageKnowledgeInfoCard": {
+      "description": "Represents info card response. If the response contains generative knowledge prediction, Dialogflow will return a payload with Infobot Messenger compatible info card. Otherwise, the info card response is skipped.",
+      "id": "GoogleCloudDialogflowCxV3ResponseMessageKnowledgeInfoCard",
       "properties": {},
       "type": "object"
     },
@@ -5516,6 +5734,10 @@
       "properties": {
         "condition": {
           "description": "The condition to evaluate against form parameters or session parameters. See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition). At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the transition route. The maximum length is 500 characters.",
           "type": "string"
         },
         "intent": {
@@ -5961,9 +6183,33 @@
           "$ref": "GoogleCloudDialogflowCxV3beta1GcsDestination",
           "description": "If present, incoming audio is exported by Dialogflow to the configured Google Cloud Storage destination. Exposed at the following levels: - Agent level - Flow level"
         },
+        "dtmfSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings",
+          "description": "Settings for DTMF. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level."
+        },
         "loggingSettings": {
           "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings",
           "description": "Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings": {
+      "description": "Define behaviors for DTMF (dual tone multi frequency).",
+      "id": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings",
+      "properties": {
+        "enabled": {
+          "description": "If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a \"3\" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).",
+          "type": "boolean"
+        },
+        "finishDigit": {
+          "description": "The digit that terminates a DTMF digit sequence.",
+          "type": "string"
+        },
+        "maxDigits": {
+          "description": "Max length of DTMF digits.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -6016,6 +6262,10 @@
           "description": "Indicates if stackdriver logging is enabled for the agent. Please use agent.advanced_settings instead.",
           "type": "boolean"
         },
+        "genAppBuilderSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AgentGenAppBuilderSettings",
+          "description": "Gen App Builder-related agent-level settings."
+        },
         "gitIntegrationSettings": {
           "$ref": "GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettings",
           "description": "Git integration settings for this agent."
@@ -6053,6 +6303,17 @@
         },
         "timeZone": {
           "description": "Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1AgentGenAppBuilderSettings": {
+      "description": "Settings for Gen App Builder.",
+      "id": "GoogleCloudDialogflowCxV3beta1AgentGenAppBuilderSettings",
+      "properties": {
+        "engine": {
+          "description": "Required. The full name of the Gen App Builder engine related to this agent if there is one. Format: `projects/{Project ID}/locations/{Location ID}/collections/{Collection ID}/engines/{Engine ID}`",
           "type": "string"
         }
       },
@@ -6444,6 +6705,33 @@
       "properties": {
         "version": {
           "description": "Name of the created version. Format: `projects//locations//agents//flows//versions/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1DataStoreConnection": {
+      "description": "A data store connection. It represents a data store in Discovery Engine and the type of the contents it contains.",
+      "id": "GoogleCloudDialogflowCxV3beta1DataStoreConnection",
+      "properties": {
+        "dataStore": {
+          "description": "The full name of the referenced data store. Formats: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}` `projects/{project}/locations/{location}/dataStores/{data_store}`",
+          "type": "string"
+        },
+        "dataStoreType": {
+          "description": "The type of the connected data store.",
+          "enum": [
+            "DATA_STORE_TYPE_UNSPECIFIED",
+            "PUBLIC_WEB",
+            "UNSTRUCTURED",
+            "STRUCTURED"
+          ],
+          "enumDescriptions": [
+            "Not specified. This value indicates that the data store type is not specified, so it will not be used during search.",
+            "A data store that contains public web content.",
+            "A data store that contains unstructured private data.",
+            "A data store that contains structured data (for example FAQ)."
+          ],
           "type": "string"
         }
       },
@@ -7247,6 +7535,10 @@
       "description": "Flows represents the conversation flows when you build your chatbot agent. A flow consists of many pages connected by the transition routes. Conversations always start with the built-in Start Flow (with an all-0 ID). Transition routes can direct the conversation session from the current flow (parent flow) to another flow (sub flow). When the sub flow is finished, Dialogflow will bring the session back to the parent flow, where the sub flow is started. Usually, when a transition route is followed by a matched intent, the intent will be \"consumed\". This means the intent won't activate more transition routes. However, when the followed transition route moves the conversation session into a different flow, the matched intent can be carried over and to be consumed in the target flow.",
       "id": "GoogleCloudDialogflowCxV3beta1Flow",
       "properties": {
+        "advancedSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettings",
+          "description": "Hierarchical advanced settings for this flow. The settings exposed at the lower level overrides the settings exposed at the higher level."
+        },
         "description": {
           "description": "The description of the flow. The maximum length is 500 characters. If exceeded, the request is rejected.",
           "type": "string"
@@ -7261,6 +7553,10 @@
             "$ref": "GoogleCloudDialogflowCxV3beta1EventHandler"
           },
           "type": "array"
+        },
+        "knowledgeConnectorSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings",
+          "description": "Optional. Knowledge connector configuration."
         },
         "name": {
           "description": "The unique identifier of the flow. Format: `projects//locations//agents//flows/`.",
@@ -7355,6 +7651,10 @@
       "description": "Represents a form parameter.",
       "id": "GoogleCloudDialogflowCxV3beta1FormParameter",
       "properties": {
+        "advancedSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettings",
+          "description": "Hierarchical advanced settings for this parameter. The settings exposed at the lower level overrides the settings exposed at the higher level."
+        },
         "defaultValue": {
           "description": "The default value of an optional parameter. If the parameter is required, the default value will be ignored.",
           "type": "any"
@@ -7451,12 +7751,20 @@
       "description": "A fulfillment can do one or more of the following actions at the same time: * Generate rich message responses. * Set parameter values. * Call the webhook. Fulfillments can be called at various stages in the Page or Form lifecycle. For example, when a DetectIntentRequest drives a session to enter a new page, the page's entry fulfillment can add a static response to the QueryResult in the returning DetectIntentResponse, call the webhook (for example, to load user data from a database), or both.",
       "id": "GoogleCloudDialogflowCxV3beta1Fulfillment",
       "properties": {
+        "advancedSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettings",
+          "description": "Hierarchical advanced settings for this fulfillment. The settings exposed at the lower level overrides the settings exposed at the higher level."
+        },
         "conditionalCases": {
           "description": "Conditional cases for this fulfillment.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases"
           },
           "type": "array"
+        },
+        "enableGenerativeFallback": {
+          "description": "If the flag is true, the agent will utilize LLM to generate a text response. If LLM generation fails, the defined responses in the fulfillment will be respected. This flag is only useful for fulfillments associated with no-match event handlers.",
+          "type": "boolean"
         },
         "messages": {
           "description": "The list of rich message responses to present to the user.",
@@ -7555,6 +7863,97 @@
       "properties": {
         "uri": {
           "description": "Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1GenerativeSettings": {
+      "description": "Settings for Generative AI.",
+      "id": "GoogleCloudDialogflowCxV3beta1GenerativeSettings",
+      "properties": {
+        "fallbackSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettings",
+          "description": "Settings for Generative Fallback."
+        },
+        "generativeSafetySettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1SafetySettings",
+          "description": "Settings for Generative Safety."
+        },
+        "knowledgeConnectorSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1GenerativeSettingsKnowledgeConnectorSettings",
+          "description": "Settings for knowledge connector."
+        },
+        "languageCode": {
+          "description": "Language for this settings.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Format: `projects//locations//agents//generativeSettings`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettings": {
+      "description": "Settings for Generative Fallback.",
+      "id": "GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettings",
+      "properties": {
+        "promptTemplates": {
+          "description": "Stored prompts that can be selected, for example default templates like \"conservative\" or \"chatty\", or user defined ones.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettingsPromptTemplate"
+          },
+          "type": "array"
+        },
+        "selectedPrompt": {
+          "description": "Display name of the selected prompt.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettingsPromptTemplate": {
+      "description": "Prompt template.",
+      "id": "GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettingsPromptTemplate",
+      "properties": {
+        "displayName": {
+          "description": "Prompt name.",
+          "type": "string"
+        },
+        "frozen": {
+          "description": "If the flag is true, the prompt is frozen and cannot be modified by users.",
+          "type": "boolean"
+        },
+        "promptText": {
+          "description": "Prompt text that is sent to a LLM on no-match default, placeholders are filled downstream. For example: \"Here is a conversation $conversation, a response is: \"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1GenerativeSettingsKnowledgeConnectorSettings": {
+      "description": "Settings for knowledge connector. These parameters are used for LLM prompt like \"You are . You are a helpful and verbose at , . Your task is to help humans on \".",
+      "id": "GoogleCloudDialogflowCxV3beta1GenerativeSettingsKnowledgeConnectorSettings",
+      "properties": {
+        "agent": {
+          "description": "Name of the virtual agent. Used for LLM prompt. Can be left empty.",
+          "type": "string"
+        },
+        "agentIdentity": {
+          "description": "Identity of the agent, e.g. \"virtual agent\", \"AI assistant\".",
+          "type": "string"
+        },
+        "agentScope": {
+          "description": "Agent scope, e.g. \"Example company website\", \"internal Example company website for employees\", \"manual of car owner\".",
+          "type": "string"
+        },
+        "business": {
+          "description": "Name of the company, organization or other entity that the agent represents. Used for knowledge connector LLM prompt and for knowledge search.",
+          "type": "string"
+        },
+        "businessDescription": {
+          "description": "Company description, used for LLM prompt, e.g. \"a family company selling freshly roasted coffee beans\".",
           "type": "string"
         }
       },
@@ -7920,6 +8319,36 @@
         "text": {
           "description": "Required. The text for this part.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings": {
+      "description": "The Knowledge Connector settings for this page or flow. This includes information such as the attached Knowledge Bases, and the way to execute fulfillment.",
+      "id": "GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings",
+      "properties": {
+        "dataStoreConnections": {
+          "description": "Optional. List of related data store connections.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1DataStoreConnection"
+          },
+          "type": "array"
+        },
+        "enabled": {
+          "description": "Whether Knowledge Connector is enabled or not.",
+          "type": "boolean"
+        },
+        "targetFlow": {
+          "description": "The target flow to transition to. Format: `projects//locations//agents//flows/`.",
+          "type": "string"
+        },
+        "targetPage": {
+          "description": "The target page to transition to. Format: `projects//locations//agents//flows//pages/`.",
+          "type": "string"
+        },
+        "triggerFulfillment": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1Fulfillment",
+          "description": "The fulfillment to be triggered. When the answers from the Knowledge Connector are selected by Dialogflow, you can utitlize the request scoped parameter `$request.knowledge.answers` (contains up to the 5 highest confidence answers) and `$request.knowledge.questions` (contains the corresponding questions) to construct the fulfillment."
         }
       },
       "type": "object"
@@ -8446,6 +8875,10 @@
       "description": "A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).",
       "id": "GoogleCloudDialogflowCxV3beta1Page",
       "properties": {
+        "advancedSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettings",
+          "description": "Hierarchical advanced settings for this page. The settings exposed at the lower level overrides the settings exposed at the higher level."
+        },
         "displayName": {
           "description": "Required. The human-readable name of the page, unique within the flow.",
           "type": "string"
@@ -8465,12 +8898,16 @@
           "$ref": "GoogleCloudDialogflowCxV3beta1Form",
           "description": "The form associated with the page, used for collecting parameters relevant to the page."
         },
+        "knowledgeConnectorSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings",
+          "description": "Optional. Knowledge connector configuration."
+        },
         "name": {
           "description": "The unique identifier of the page. Required for the Pages.UpdatePage method. Pages.CreatePage populates the name automatically. Format: `projects//locations//agents//flows//pages/`.",
           "type": "string"
         },
         "transitionRouteGroups": {
-          "description": "Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -> page's transition route group -> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
+          "description": "Ordered list of `TransitionRouteGroups` added to the page. Transition route groups must be unique within a page. If the page links both flow-level transition route groups and agent-level transition route groups, the flow-level ones will have higher priority and will be put before the agent-level ones. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -> page's transition route group -> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
           "items": {
             "type": "string"
           },
@@ -8666,6 +9103,10 @@
       "description": "Represents the result of a conversational query.",
       "id": "GoogleCloudDialogflowCxV3beta1QueryResult",
       "properties": {
+        "advancedSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettings",
+          "description": "Returns the current advanced settings including IVR settings. Even though the operations configured by these settings are performed by Dialogflow, the client may need to perform special logic at the moment. For example, if Dialogflow exports audio to Google Cloud Storage, then the client may need to wait for the resulting object to appear in the bucket before proceeding."
+        },
         "currentPage": {
           "$ref": "GoogleCloudDialogflowCxV3beta1Page",
           "description": "The current Page. Some, not all fields are filled in this message, including but not limited to `name` and `display_name`."
@@ -8800,6 +9241,10 @@
           "description": "Output only. A signal that indicates the interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only when the conversation reaches `END_SESSION` page. It is not supposed to be defined by the user. It's guaranteed that there is at most one such message in each response.",
           "readOnly": true
         },
+        "knowledgeInfoCard": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageKnowledgeInfoCard",
+          "description": "Represents info card for knowledge answers, to be better rendered in Dialogflow Messenger."
+        },
         "liveAgentHandoff": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff",
           "description": "Hands off conversation to a human agent."
@@ -8854,6 +9299,12 @@
     "GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction": {
       "description": "Indicates that interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only and not supposed to be defined by the user.",
       "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ResponseMessageKnowledgeInfoCard": {
+      "description": "Represents info card response. If the response contains generative knowledge prediction, Dialogflow will return a payload with Infobot Messenger compatible info card. Otherwise, the info card response is skipped.",
+      "id": "GoogleCloudDialogflowCxV3beta1ResponseMessageKnowledgeInfoCard",
       "properties": {},
       "type": "object"
     },
@@ -9141,6 +9592,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1SafetySettings": {
+      "description": "Settings for Generative Safety.",
+      "id": "GoogleCloudDialogflowCxV3beta1SafetySettings",
+      "properties": {
+        "bannedPhrases": {
+          "description": "Banned phrases for generated text.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1SafetySettingsPhrase"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1SafetySettingsPhrase": {
+      "description": "Text input which can be used for prompt or banned phrases.",
+      "id": "GoogleCloudDialogflowCxV3beta1SafetySettingsPhrase",
+      "properties": {
+        "languageCode": {
+          "description": "Required. Language code of the phrase.",
+          "type": "string"
+        },
+        "text": {
+          "description": "Required. Text input which can be used for prompt or banned phrases.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1SecuritySettings": {
       "description": "Represents the settings related to security issues, such as data redaction and data retention. It may take hours for updates on the settings to propagate to all the related components and take effect.",
       "id": "GoogleCloudDialogflowCxV3beta1SecuritySettings",
@@ -9205,6 +9685,18 @@
           "enumDescriptions": [
             "Do not redact.",
             "Call redaction service to clean up the data to be persisted."
+          ],
+          "type": "string"
+        },
+        "retentionStrategy": {
+          "description": "Specifies the retention behavior defined by SecuritySettings.RetentionStrategy.",
+          "enum": [
+            "RETENTION_STRATEGY_UNSPECIFIED",
+            "REMOVE_AFTER_CONVERSATION"
+          ],
+          "enumDescriptions": [
+            "Retains the persisted data with Dialogflow's internal default 365d TTLs.",
+            "Removes data when the conversation ends. If there is no Conversation explicitly established, a default conversation ends when the corresponding Dialogflow session ends."
           ],
           "type": "string"
         },
@@ -9666,6 +10158,10 @@
           "description": "The condition to evaluate against form parameters or session parameters. See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition). At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.",
           "type": "string"
         },
+        "description": {
+          "description": "Optional. The description of the transition route. The maximum length is 500 characters.",
+          "type": "string"
+        },
         "intent": {
           "description": "The unique identifier of an Intent. Format: `projects//locations//agents//intents/`. Indicates that the transition can only happen when the given intent is matched. At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.",
           "type": "string"
@@ -9898,7 +10394,8 @@
             "FLOW",
             "PAGE",
             "PAGES",
-            "TRANSITION_ROUTE_GROUP"
+            "TRANSITION_ROUTE_GROUP",
+            "AGENT_TRANSITION_ROUTE_GROUP"
           ],
           "enumDescriptions": [
             "Unspecified.",
@@ -9914,7 +10411,8 @@
             "Flow.",
             "Page.",
             "Multiple pages.",
-            "Transition route group."
+            "Transition route group.",
+            "Agent transition route group."
           ],
           "type": "string"
         },
@@ -10545,13 +11043,15 @@
             "TYPE_UNSPECIFIED",
             "ARTICLE_SUGGESTION",
             "FAQ",
-            "SMART_REPLY"
+            "SMART_REPLY",
+            "KNOWLEDGE_SEARCH"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
             "Run article suggestion model for chat.",
             "Run FAQ model for chat.",
-            "Run smart reply model for chat."
+            "Run smart reply model for chat.",
+            "Run knowledge search with text input from agent or text generated query."
           ],
           "type": "string"
         }
@@ -12305,13 +12805,15 @@
             "TYPE_UNSPECIFIED",
             "ARTICLE_SUGGESTION",
             "FAQ",
-            "SMART_REPLY"
+            "SMART_REPLY",
+            "KNOWLEDGE_SEARCH"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
             "Run article suggestion model for chat.",
             "Run FAQ model for chat.",
-            "Run smart reply model for chat."
+            "Run smart reply model for chat.",
+            "Run knowledge search with text input from agent or text generated query."
           ],
           "type": "string"
         }
@@ -12656,7 +13158,8 @@
             "FAQ",
             "SMART_REPLY",
             "DIALOGFLOW_ASSIST",
-            "CONVERSATION_SUMMARIZATION"
+            "CONVERSATION_SUMMARIZATION",
+            "KNOWLEDGE_SEARCH"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
@@ -12664,7 +13167,8 @@
             "Run FAQ model.",
             "Run smart reply model for chat.",
             "Run Dialogflow assist model for chat, which will return automated agent response as suggestion.",
-            "Run conversation summarization model for chat."
+            "Run conversation summarization model for chat.",
+            "Run knowledge search with text input from agent or text generated query."
           ],
           "type": "string"
         }
@@ -14569,7 +15073,8 @@
             "FAQ",
             "SMART_REPLY",
             "DIALOGFLOW_ASSIST",
-            "CONVERSATION_SUMMARIZATION"
+            "CONVERSATION_SUMMARIZATION",
+            "KNOWLEDGE_SEARCH"
           ],
           "enumDescriptions": [
             "Unspecified feature type.",
@@ -14577,7 +15082,8 @@
             "Run FAQ model.",
             "Run smart reply model for chat.",
             "Run Dialogflow assist model for chat, which will return automated agent response as suggestion.",
-            "Run conversation summarization model for chat."
+            "Run conversation summarization model for chat.",
+            "Run knowledge search with text input from agent or text generated query."
           ],
           "type": "string"
         }

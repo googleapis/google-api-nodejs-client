@@ -125,6 +125,53 @@ export namespace dialogflow_v2 {
   }
 
   /**
+   * Hierarchical advanced settings for agent/flow/page/fulfillment/parameter. Settings exposed at lower level overrides the settings exposed at higher level. Overriding occurs at the sub-setting level. For example, the playback_interruption_settings at fulfillment level only overrides the playback_interruption_settings at the agent level, leaving other settings at the agent level unchanged. DTMF settings does not override each other. DTMF settings set at different levels define DTMF detections running in parallel. Hierarchy: Agent-\>Flow-\>Page-\>Fulfillment/Parameter.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettings {
+    /**
+     * If present, incoming audio is exported by Dialogflow to the configured Google Cloud Storage destination. Exposed at the following levels: - Agent level - Flow level
+     */
+    audioExportGcsDestination?: Schema$GoogleCloudDialogflowCxV3GcsDestination;
+    /**
+     * Settings for DTMF. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level.
+     */
+    dtmfSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings;
+    /**
+     * Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level.
+     */
+    loggingSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings;
+  }
+  /**
+   * Define behaviors for DTMF (dual tone multi frequency).
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings {
+    /**
+     * If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a "3" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).
+     */
+    enabled?: boolean | null;
+    /**
+     * The digit that terminates a DTMF digit sequence.
+     */
+    finishDigit?: string | null;
+    /**
+     * Max length of DTMF digits.
+     */
+    maxDigits?: number | null;
+  }
+  /**
+   * Define behaviors on logging.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings {
+    /**
+     * If true, DF Interaction logging is currently enabled.
+     */
+    enableInteractionLogging?: boolean | null;
+    /**
+     * If true, StackDriver logging is currently enabled.
+     */
+    enableStackdriverLogging?: boolean | null;
+  }
+  /**
    * Represents the natural speech audio to be processed.
    */
   export interface Schema$GoogleCloudDialogflowCxV3AudioInput {
@@ -154,6 +201,53 @@ export namespace dialogflow_v2 {
      * The test case results. The detailed conversation turns are empty in this response.
      */
     results?: Schema$GoogleCloudDialogflowCxV3TestCaseResult[];
+  }
+  /**
+   * Hierarchical advanced settings for agent/flow/page/fulfillment/parameter. Settings exposed at lower level overrides the settings exposed at higher level. Overriding occurs at the sub-setting level. For example, the playback_interruption_settings at fulfillment level only overrides the playback_interruption_settings at the agent level, leaving other settings at the agent level unchanged. DTMF settings does not override each other. DTMF settings set at different levels define DTMF detections running in parallel. Hierarchy: Agent-\>Flow-\>Page-\>Fulfillment/Parameter.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings {
+    /**
+     * If present, incoming audio is exported by Dialogflow to the configured Google Cloud Storage destination. Exposed at the following levels: - Agent level - Flow level
+     */
+    audioExportGcsDestination?: Schema$GoogleCloudDialogflowCxV3beta1GcsDestination;
+    /**
+     * Settings for DTMF. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level.
+     */
+    dtmfSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings;
+    /**
+     * Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level.
+     */
+    loggingSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings;
+  }
+  /**
+   * Define behaviors for DTMF (dual tone multi frequency).
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings {
+    /**
+     * If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a "3" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).
+     */
+    enabled?: boolean | null;
+    /**
+     * The digit that terminates a DTMF digit sequence.
+     */
+    finishDigit?: string | null;
+    /**
+     * Max length of DTMF digits.
+     */
+    maxDigits?: number | null;
+  }
+  /**
+   * Define behaviors on logging.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings {
+    /**
+     * If true, DF Interaction logging is currently enabled.
+     */
+    enableInteractionLogging?: boolean | null;
+    /**
+     * If true, StackDriver logging is currently enabled.
+     */
+    enableStackdriverLogging?: boolean | null;
   }
   /**
    * Represents the natural speech audio to be processed.
@@ -300,6 +394,19 @@ export namespace dialogflow_v2 {
      * Name of the created version. Format: `projects//locations//agents//flows//versions/`.
      */
     version?: string | null;
+  }
+  /**
+   * A data store connection. It represents a data store in Discovery Engine and the type of the contents it contains.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnection {
+    /**
+     * The full name of the referenced data store. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}`
+     */
+    dataStore?: string | null;
+    /**
+     * The type of the connected data store.
+     */
+    dataStoreType?: string | null;
   }
   /**
    * Metadata for DeleteDocument operation.
@@ -508,6 +615,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1FormParameter {
     /**
+     * Hierarchical advanced settings for this parameter. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
+    /**
      * The default value of an optional parameter. If the parameter is required, the default value will be ignored.
      */
     defaultValue?: any | null;
@@ -554,9 +665,17 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Fulfillment {
     /**
+     * Hierarchical advanced settings for this fulfillment. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
+    /**
      * Conditional cases for this fulfillment.
      */
     conditionalCases?: Schema$GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases[];
+    /**
+     * If the flag is true, the agent will utilize LLM to generate a text response. If LLM generation fails, the defined responses in the fulfillment will be respected. This flag is only useful for fulfillments associated with no-match event handlers.
+     */
+    enableGenerativeFallback?: boolean | null;
     /**
      * The list of rich message responses to present to the user.
      */
@@ -625,6 +744,15 @@ export namespace dialogflow_v2 {
      * The new value of the parameter. A null value clears the parameter.
      */
     value?: any | null;
+  }
+  /**
+   * Google Cloud Storage location for a Dialogflow operation that writes or exports objects (e.g. exported agent or transcripts) outside of Dialogflow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1GcsDestination {
+    /**
+     * Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.
+     */
+    uri?: string | null;
   }
   /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
@@ -811,9 +939,38 @@ export namespace dialogflow_v2 {
     text?: string | null;
   }
   /**
+   * The Knowledge Connector settings for this page or flow. This includes information such as the attached Knowledge Bases, and the way to execute fulfillment.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings {
+    /**
+     * Optional. List of related data store connections.
+     */
+    dataStoreConnections?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnection[];
+    /**
+     * Whether Knowledge Connector is enabled or not.
+     */
+    enabled?: boolean | null;
+    /**
+     * The target flow to transition to. Format: `projects//locations//agents//flows/`.
+     */
+    targetFlow?: string | null;
+    /**
+     * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
+     */
+    targetPage?: string | null;
+    /**
+     * The fulfillment to be triggered. When the answers from the Knowledge Connector are selected by Dialogflow, you can utitlize the request scoped parameter `$request.knowledge.answers` (contains up to the 5 highest confidence answers) and `$request.knowledge.questions` (contains the corresponding questions) to construct the fulfillment.
+     */
+    triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3beta1Fulfillment;
+  }
+  /**
    * A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Page {
+    /**
+     * Hierarchical advanced settings for this page. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
     /**
      * Required. The human-readable name of the page, unique within the flow.
      */
@@ -831,11 +988,15 @@ export namespace dialogflow_v2 {
      */
     form?: Schema$GoogleCloudDialogflowCxV3beta1Form;
     /**
+     * Optional. Knowledge connector configuration.
+     */
+    knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings;
+    /**
      * The unique identifier of the page. Required for the Pages.UpdatePage method. Pages.CreatePage populates the name automatically. Format: `projects//locations//agents//flows//pages/`.
      */
     name?: string | null;
     /**
-     * Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -\> page's transition route group -\> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
+     * Ordered list of `TransitionRouteGroups` added to the page. Transition route groups must be unique within a page. If the page links both flow-level transition route groups and agent-level transition route groups, the flow-level ones will have higher priority and will be put before the agent-level ones. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -\> page's transition route group -\> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
      */
     transitionRouteGroups?: string[] | null;
     /**
@@ -949,6 +1110,10 @@ export namespace dialogflow_v2 {
      */
     endInteraction?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction;
     /**
+     * Represents info card for knowledge answers, to be better rendered in Dialogflow Messenger.
+     */
+    knowledgeInfoCard?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageKnowledgeInfoCard;
+    /**
      * Hands off conversation to a human agent.
      */
     liveAgentHandoff?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff;
@@ -990,6 +1155,10 @@ export namespace dialogflow_v2 {
    * Indicates that interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only and not supposed to be defined by the user.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction {}
+  /**
+   * Represents info card response. If the response contains generative knowledge prediction, Dialogflow will return a payload with Infobot Messenger compatible info card. Otherwise, the info card response is skipped.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageKnowledgeInfoCard {}
   /**
    * Indicates that the conversation should be handed off to a live agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
    */
@@ -1260,6 +1429,10 @@ export namespace dialogflow_v2 {
      * The condition to evaluate against form parameters or session parameters. See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition). At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.
      */
     condition?: string | null;
+    /**
+     * Optional. The description of the transition route. The maximum length is 500 characters.
+     */
+    description?: string | null;
     /**
      * The unique identifier of an Intent. Format: `projects//locations//agents//intents/`. Indicates that the transition can only happen when the given intent is matched. At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.
      */
@@ -1697,6 +1870,19 @@ export namespace dialogflow_v2 {
     version?: string | null;
   }
   /**
+   * A data store connection. It represents a data store in Discovery Engine and the type of the contents it contains.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3DataStoreConnection {
+    /**
+     * The full name of the referenced data store. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}`
+     */
+    dataStore?: string | null;
+    /**
+     * The type of the connected data store.
+     */
+    dataStoreType?: string | null;
+  }
+  /**
    * Metadata for DeleteDocument operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata {
@@ -1903,6 +2089,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3FormParameter {
     /**
+     * Hierarchical advanced settings for this parameter. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettings;
+    /**
      * The default value of an optional parameter. If the parameter is required, the default value will be ignored.
      */
     defaultValue?: any | null;
@@ -1949,9 +2139,17 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3Fulfillment {
     /**
+     * Hierarchical advanced settings for this fulfillment. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettings;
+    /**
      * Conditional cases for this fulfillment.
      */
     conditionalCases?: Schema$GoogleCloudDialogflowCxV3FulfillmentConditionalCases[];
+    /**
+     * If the flag is true, the agent will utilize LLM to generate a text response. If LLM generation fails, the defined responses in the fulfillment will be respected. This flag is only useful for fulfillments associated with no-match event handlers.
+     */
+    enableGenerativeFallback?: boolean | null;
     /**
      * The list of rich message responses to present to the user.
      */
@@ -2020,6 +2218,15 @@ export namespace dialogflow_v2 {
      * The new value of the parameter. A null value clears the parameter.
      */
     value?: any | null;
+  }
+  /**
+   * Google Cloud Storage location for a Dialogflow operation that writes or exports objects (e.g. exported agent or transcripts) outside of Dialogflow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3GcsDestination {
+    /**
+     * Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.
+     */
+    uri?: string | null;
   }
   /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
@@ -2206,9 +2413,38 @@ export namespace dialogflow_v2 {
     text?: string | null;
   }
   /**
+   * The Knowledge Connector settings for this page or flow. This includes information such as the attached Knowledge Bases, and the way to execute fulfillment.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3KnowledgeConnectorSettings {
+    /**
+     * Optional. List of related data store connections.
+     */
+    dataStoreConnections?: Schema$GoogleCloudDialogflowCxV3DataStoreConnection[];
+    /**
+     * Whether Knowledge Connector is enabled or not.
+     */
+    enabled?: boolean | null;
+    /**
+     * The target flow to transition to. Format: `projects//locations//agents//flows/`.
+     */
+    targetFlow?: string | null;
+    /**
+     * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
+     */
+    targetPage?: string | null;
+    /**
+     * The fulfillment to be triggered. When the answers from the Knowledge Connector are selected by Dialogflow, you can utitlize the request scoped parameter `$request.knowledge.answers` (contains up to the 5 highest confidence answers) and `$request.knowledge.questions` (contains the corresponding questions) to construct the fulfillment.
+     */
+    triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3Fulfillment;
+  }
+  /**
    * A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).
    */
   export interface Schema$GoogleCloudDialogflowCxV3Page {
+    /**
+     * Hierarchical advanced settings for this page. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettings;
     /**
      * Required. The human-readable name of the page, unique within the flow.
      */
@@ -2226,11 +2462,15 @@ export namespace dialogflow_v2 {
      */
     form?: Schema$GoogleCloudDialogflowCxV3Form;
     /**
+     * Optional. Knowledge connector configuration.
+     */
+    knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3KnowledgeConnectorSettings;
+    /**
      * The unique identifier of the page. Required for the Pages.UpdatePage method. Pages.CreatePage populates the name automatically. Format: `projects//locations//agents//flows//pages/`.
      */
     name?: string | null;
     /**
-     * Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -\> page's transition route group -\> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
+     * Ordered list of `TransitionRouteGroups` added to the page. Transition route groups must be unique within a page. If the page links both flow-level transition route groups and agent-level transition route groups, the flow-level ones will have higher priority and will be put before the agent-level ones. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -\> page's transition route group -\> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
      */
     transitionRouteGroups?: string[] | null;
     /**
@@ -2344,6 +2584,10 @@ export namespace dialogflow_v2 {
      */
     endInteraction?: Schema$GoogleCloudDialogflowCxV3ResponseMessageEndInteraction;
     /**
+     * Represents info card for knowledge answers, to be better rendered in Dialogflow Messenger.
+     */
+    knowledgeInfoCard?: Schema$GoogleCloudDialogflowCxV3ResponseMessageKnowledgeInfoCard;
+    /**
      * Hands off conversation to a human agent.
      */
     liveAgentHandoff?: Schema$GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff;
@@ -2389,6 +2633,10 @@ export namespace dialogflow_v2 {
    * Indicates that interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only and not supposed to be defined by the user.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageEndInteraction {}
+  /**
+   * Represents info card response. If the response contains generative knowledge prediction, Dialogflow will return a payload with Infobot Messenger compatible info card. Otherwise, the info card response is skipped.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageKnowledgeInfoCard {}
   /**
    * Indicates that the conversation should be handed off to a live agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
    */
@@ -2659,6 +2907,10 @@ export namespace dialogflow_v2 {
      * The condition to evaluate against form parameters or session parameters. See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition). At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.
      */
     condition?: string | null;
+    /**
+     * Optional. The description of the transition route. The maximum length is 500 characters.
+     */
+    description?: string | null;
     /**
      * The unique identifier of an Intent. Format: `projects//locations//agents//intents/`. Indicates that the transition can only happen when the given intent is matched. At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.
      */
@@ -3050,9 +3302,26 @@ export namespace dialogflow_v2 {
      */
     documentEfficiency?: string | null;
     /**
+     * Optional. Feedback for knowledge search.
+     */
+    knowledgeSearchFeedback?: Schema$GoogleCloudDialogflowV2AgentAssistantFeedbackKnowledgeSearchFeedback;
+    /**
      * Optional. Feedback for conversation summarization.
      */
     summarizationFeedback?: Schema$GoogleCloudDialogflowV2AgentAssistantFeedbackSummarizationFeedback;
+  }
+  /**
+   * Feedback for knowledge search.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AgentAssistantFeedbackKnowledgeSearchFeedback {
+    /**
+     * Whether the answer was copied by the human agent or not. If the value is set to be true, AnswerFeedback.clicked will be updated to be true.
+     */
+    answerCopied?: boolean | null;
+    /**
+     * The URIs clicked by the human agent. The value is appended for each UpdateAnswerRecordRequest. If the value is not empty, AnswerFeedback.clicked will be updated to be true.
+     */
+    clickedUris?: string[] | null;
   }
   /**
    * Feedback for conversation summarization.
@@ -3079,6 +3348,10 @@ export namespace dialogflow_v2 {
      * Output only. The article suggestion answer.
      */
     articleSuggestionAnswer?: Schema$GoogleCloudDialogflowV2ArticleAnswer;
+    /**
+     * Output only. Dialogflow assist answer.
+     */
+    dialogflowAssistAnswer?: Schema$GoogleCloudDialogflowV2DialogflowAssistAnswer;
     /**
      * Output only. The FAQ answer.
      */
@@ -3112,6 +3385,10 @@ export namespace dialogflow_v2 {
      * A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.
      */
     requestId?: string | null;
+    /**
+     * An input representing the selection of a suggestion.
+     */
+    suggestionInput?: Schema$GoogleCloudDialogflowV2SuggestionInput;
     /**
      * The natural language text to be processed.
      */
@@ -5443,6 +5720,23 @@ export namespace dialogflow_v2 {
     webhookStatus?: Schema$GoogleRpcStatus;
   }
   /**
+   * Represents a Dialogflow assist answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2DialogflowAssistAnswer {
+    /**
+     * The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * An intent suggestion generated from conversation.
+     */
+    intentSuggestion?: Schema$GoogleCloudDialogflowV2IntentSuggestion;
+    /**
+     * Result from v2 agent.
+     */
+    queryResult?: Schema$GoogleCloudDialogflowV2QueryResult;
+  }
+  /**
    * A knowledge document to be used by a KnowledgeBase. For more information, see the [knowledge base guide](https://cloud.google.com/dialogflow/docs/how/knowledge-bases). Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
    */
   export interface Schema$GoogleCloudDialogflowV2Document {
@@ -5893,6 +6187,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2GenerateStatelessSummaryResponseSummary {
     /**
+     * The baseline model version used to generate this summary. It is empty if a baseline model was not used to generate this summary.
+     */
+    baselineModelVersion?: string | null;
+    /**
      * The summary content that is concatenated into one string.
      */
     text?: string | null;
@@ -5983,7 +6281,11 @@ export namespace dialogflow_v2 {
      */
     conversationProcessConfig?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationProcessConfig;
     /**
-     * Automatically iterates all participants and tries to compile suggestions. Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST.
+     * Optional. Disable the logging of search queries sent by human agents. It can prevent those queries from being stored at answer records. Supported features: KNOWLEDGE_SEARCH.
+     */
+    disableAgentQueryLogging?: boolean | null;
+    /**
+     * Automatically iterates all participants and tries to compile suggestions. Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST, KNOWLEDGE_ASSIST.
      */
     enableEventBasedSuggestion?: boolean | null;
     /**
@@ -6051,6 +6353,19 @@ export namespace dialogflow_v2 {
   export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfigDialogflowQuerySource {
     /**
      * Required. The name of a Dialogflow virtual agent used for end user side intent detection and suggestion. Format: `projects//locations//agent`. When multiple agents are allowed in the same Dialogflow project.
+     */
+    agent?: string | null;
+    /**
+     * Optional. The Dialogflow assist configuration for human agent.
+     */
+    humanAgentSideConfig?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfigDialogflowQuerySourceHumanAgentSideConfig;
+  }
+  /**
+   * The configuration used for human agent side Dialogflow assist suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfigDialogflowQuerySourceHumanAgentSideConfig {
+    /**
+     * Optional. The name of a dialogflow virtual agent used for intent detection and suggestion triggered by human agent. Format: `projects//locations//agent`.
      */
     agent?: string | null;
   }
@@ -6924,6 +7239,23 @@ export namespace dialogflow_v2 {
     value?: string | null;
   }
   /**
+   * Represents an intent suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2IntentSuggestion {
+    /**
+     * Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.
+     */
+    description?: string | null;
+    /**
+     * The display name of the intent.
+     */
+    displayName?: string | null;
+    /**
+     * The unique identifier of this intent. Format: `projects//locations//agent/intents/`.
+     */
+    intentV2?: string | null;
+  }
+  /**
    * Represents an example that the agent is trained on.
    */
   export interface Schema$GoogleCloudDialogflowV2IntentTrainingPhrase {
@@ -7526,6 +7858,82 @@ export namespace dialogflow_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * Represents a SearchKnowledge answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeAnswer {
+    /**
+     * The piece of text from the knowledge base documents that answers the search query
+     */
+    answer?: string | null;
+    /**
+     * The name of the answer record. Format: `projects//locations//answer Records/`
+     */
+    answerRecord?: string | null;
+    /**
+     * All sources used to generate the answer.
+     */
+    answerSources?: Schema$GoogleCloudDialogflowV2SearchKnowledgeAnswerAnswerSource[];
+    /**
+     * The type of the answer.
+     */
+    answerType?: string | null;
+  }
+  /**
+   * The sources of the answers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeAnswerAnswerSource {
+    /**
+     * The relevant snippet of the article.
+     */
+    snippet?: string | null;
+    /**
+     * The title of the article.
+     */
+    title?: string | null;
+    /**
+     * The URI of the article.
+     */
+    uri?: string | null;
+  }
+  /**
+   * The request message for Conversations.SearchKnowledge.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequest {
+    /**
+     * The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
+     */
+    conversation?: string | null;
+    /**
+     * Required. The conversation profile used to configure the search. Format: `projects//locations//conversationProfiles/`.
+     */
+    conversationProfile?: string | null;
+    /**
+     * The name of the latest conversation message when the request is triggered. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+    /**
+     * The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
+     */
+    parent?: string | null;
+    /**
+     * Required. The natural language text query for knowledge search.
+     */
+    query?: Schema$GoogleCloudDialogflowV2TextInput;
+    /**
+     * The ID of the search session. The session_id can be combined with Dialogflow V3 Agent ID retrieved from conversation profile or on its own to identify a search session. The search history of the same session will impact the search result. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length must not exceed 36 characters.
+     */
+    sessionId?: string | null;
+  }
+  /**
+   * The response message for Conversations.SearchKnowledge.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse {
+    /**
+     * Most relevant snippets extracted from articles in the given knowledge base, ordered by confidence.
+     */
+    answers?: Schema$GoogleCloudDialogflowV2SearchKnowledgeAnswer[];
+  }
+  /**
    * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.
    */
   export interface Schema$GoogleCloudDialogflowV2Sentiment {
@@ -7688,6 +8096,10 @@ export namespace dialogflow_v2 {
      * The speech model used in speech to text. `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as `USE_ENHANCED`. It can be overridden in AnalyzeContentRequest and StreamingAnalyzeContentRequest request. If enhanced model variant is specified and an enhanced version of the specified model for the language does not exist, then it would emit an error.
      */
     speechModelVariant?: string | null;
+    /**
+     * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
+     */
+    useTimeoutBasedEndpointing?: boolean | null;
   }
   /**
    * The request message for Participants.SuggestArticles.
@@ -7766,6 +8178,10 @@ export namespace dialogflow_v2 {
      */
     answerRecord?: string | null;
     /**
+     * The baseline model version used to generate this summary. It is empty if a baseline model was not used to generate this summary.
+     */
+    baselineModelVersion?: string | null;
+    /**
      * The summary content that is concatenated into one string.
      */
     text?: string | null;
@@ -7816,6 +8232,15 @@ export namespace dialogflow_v2 {
      * Type of Human Agent Assistant API feature to request.
      */
     type?: string | null;
+  }
+  /**
+   * Represents the selection of a suggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestionInput {
+    /**
+     * Required. The ID of a suggestion selected by the human agent. The suggestion(s) were generated in a previous call to request Dialogflow assist. The format is: `projects//locations//answerRecords/` where is an alphanumeric string.
+     */
+    answerRecord?: string | null;
   }
   /**
    * One response of different type of suggestion response which is used in the response of Participants.AnalyzeContent and Participants.AnalyzeContent, as well as HumanAgentAssistantEvent.
@@ -20110,6 +20535,102 @@ export namespace dialogflow_v2 {
     }
 
     /**
+     * Get answers for the given query based on knowledge documents.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchKnowledge(
+      params: Params$Resource$Projects$Conversations$Suggestions$Searchknowledge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchKnowledge(
+      params?: Params$Resource$Projects$Conversations$Suggestions$Searchknowledge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>;
+    searchKnowledge(
+      params: Params$Resource$Projects$Conversations$Suggestions$Searchknowledge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchKnowledge(
+      params: Params$Resource$Projects$Conversations$Suggestions$Searchknowledge,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      params: Params$Resource$Projects$Conversations$Suggestions$Searchknowledge,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Suggestions$Searchknowledge
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Suggestions$Searchknowledge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Conversations$Suggestions$Searchknowledge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+conversation}/suggestions:searchKnowledge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversation'],
+        pathParams: ['conversation'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Suggests summary for a conversation based on specific historical messages. The range of the messages to be used for summary can be specified in the request.
      *
      * @param params - Parameters for request
@@ -20207,6 +20728,18 @@ export namespace dialogflow_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Conversations$Suggestions$Searchknowledge
+    extends StandardParameters {
+    /**
+     * The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
+     */
+    conversation?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequest;
+  }
   export interface Params$Resource$Projects$Conversations$Suggestions$Suggestconversationsummary
     extends StandardParameters {
     /**
@@ -32813,6 +33346,102 @@ export namespace dialogflow_v2 {
     }
 
     /**
+     * Get answers for the given query based on knowledge documents.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchKnowledge(
+      params: Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchKnowledge(
+      params?: Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>;
+    searchKnowledge(
+      params: Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchKnowledge(
+      params: Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      params: Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+conversation}/suggestions:searchKnowledge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversation'],
+        pathParams: ['conversation'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Suggests summary for a conversation based on specific historical messages. The range of the messages to be used for summary can be specified in the request.
      *
      * @param params - Parameters for request
@@ -32910,6 +33539,18 @@ export namespace dialogflow_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Searchknowledge
+    extends StandardParameters {
+    /**
+     * The conversation (between human agent and end user) where the search request is triggered. Format: `projects//locations//conversations/`.
+     */
+    conversation?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequest;
+  }
   export interface Params$Resource$Projects$Locations$Conversations$Suggestions$Suggestconversationsummary
     extends StandardParameters {
     /**
@@ -34735,6 +35376,102 @@ export namespace dialogflow_v2 {
         );
       }
     }
+
+    /**
+     * Get answers for the given query based on knowledge documents.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchKnowledge(
+      params: Params$Resource$Projects$Locations$Suggestions$Searchknowledge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchKnowledge(
+      params?: Params$Resource$Projects$Locations$Suggestions$Searchknowledge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>;
+    searchKnowledge(
+      params: Params$Resource$Projects$Locations$Suggestions$Searchknowledge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchKnowledge(
+      params: Params$Resource$Projects$Locations$Suggestions$Searchknowledge,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      params: Params$Resource$Projects$Locations$Suggestions$Searchknowledge,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Suggestions$Searchknowledge
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Suggestions$Searchknowledge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Suggestions$Searchknowledge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/suggestions:searchKnowledge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Suggestions$Generatestatelesssummary
@@ -34748,6 +35485,18 @@ export namespace dialogflow_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2GenerateStatelessSummaryRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Suggestions$Searchknowledge
+    extends StandardParameters {
+    /**
+     * The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequest;
   }
 
   export class Resource$Projects$Operations {
@@ -35166,6 +35915,101 @@ export namespace dialogflow_v2 {
         );
       }
     }
+
+    /**
+     * Get answers for the given query based on knowledge documents.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchKnowledge(
+      params: Params$Resource$Projects$Suggestions$Searchknowledge,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchKnowledge(
+      params?: Params$Resource$Projects$Suggestions$Searchknowledge,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>;
+    searchKnowledge(
+      params: Params$Resource$Projects$Suggestions$Searchknowledge,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchKnowledge(
+      params: Params$Resource$Projects$Suggestions$Searchknowledge,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      params: Params$Resource$Projects$Suggestions$Searchknowledge,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+    ): void;
+    searchKnowledge(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Suggestions$Searchknowledge
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Suggestions$Searchknowledge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Suggestions$Searchknowledge;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/suggestions:searchKnowledge'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2SearchKnowledgeResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Suggestions$Generatestatelesssummary
@@ -35179,5 +36023,17 @@ export namespace dialogflow_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2GenerateStatelessSummaryRequest;
+  }
+  export interface Params$Resource$Projects$Suggestions$Searchknowledge
+    extends StandardParameters {
+    /**
+     * The parent resource contains the conversation profile Format: 'projects/' or `projects//locations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequest;
   }
 }
