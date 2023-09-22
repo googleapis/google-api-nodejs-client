@@ -155,6 +155,19 @@ export namespace workflows_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Response for the ListWorkflowRevisions method.
+   */
+  export interface Schema$ListWorkflowRevisionsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The revisions of the workflow, ordered in reverse chronological order.
+     */
+    workflows?: Schema$Workflow[];
+  }
+  /**
    * Response for the ListWorkflows method.
    */
   export interface Schema$ListWorkflowsResponse {
@@ -1218,6 +1231,103 @@ export namespace workflows_v1 {
     }
 
     /**
+     * Lists revisions for a given workflow.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Workflows$Listrevisions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listRevisions(
+      params?: Params$Resource$Projects$Locations$Workflows$Listrevisions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkflowRevisionsResponse>;
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Workflows$Listrevisions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Workflows$Listrevisions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkflowRevisionsResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkflowRevisionsResponse>
+    ): void;
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Workflows$Listrevisions,
+      callback: BodyResponseCallback<Schema$ListWorkflowRevisionsResponse>
+    ): void;
+    listRevisions(
+      callback: BodyResponseCallback<Schema$ListWorkflowRevisionsResponse>
+    ): void;
+    listRevisions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflows$Listrevisions
+        | BodyResponseCallback<Schema$ListWorkflowRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkflowRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkflowRevisionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkflowRevisionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflows$Listrevisions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Listrevisions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://workflows.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:listRevisions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkflowRevisionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkflowRevisionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow might be created as a result of a successful update operation. In that case, the new revision is used in new workflow executions.
      *
      * @param params - Parameters for request
@@ -1358,6 +1468,21 @@ export namespace workflows_v1 {
      * Required. Project and location from which the workflows should be listed. Format: projects/{project\}/locations/{location\}
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Workflows$Listrevisions
+    extends StandardParameters {
+    /**
+     * Required. Workflow from which the revisions should be listed. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
+     */
+    name?: string;
+    /**
+     * The maximum number of revisions to return per page. If a value is not specified, a default value of 20 is used. The maximum permitted value is 100 and values greater than 100 coerced down to 100.
+     */
+    pageSize?: number;
+    /**
+     * The page token, received from a previous ListWorkflowRevisions call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Workflows$Patch
     extends StandardParameters {
