@@ -137,6 +137,43 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "processOpenLineageRunEvent": {
+              "description": "Creates new lineage events together with their parents: process and run. Updates the process and run if they already exist. Mapped from Open Lineage specification: https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.json.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:processOpenLineageRunEvent",
+              "httpMethod": "POST",
+              "id": "datalineage.projects.locations.processOpenLineageRunEvent",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The name of the project and its location that should own the process, run, and lineage event.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "requestId": {
+                  "description": "A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}:processOpenLineageRunEvent",
+              "request": {
+                "additionalProperties": {
+                  "description": "Properties of the object.",
+                  "type": "any"
+                },
+                "type": "object"
+              },
+              "response": {
+                "$ref": "GoogleCloudDatacatalogLineageV1ProcessOpenLineageRunEventResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "searchLinks": {
               "description": "Retrieve a list of links connected to a specific asset. Links represent the data flow between **source** (upstream) and **target** (downstream) assets in transformation pipelines. Links are stored in the same project as the Lineage Events that create them. You can retrieve links in every project where you have the `datalineage.events.get` permission. The project provided in the URL is used for Billing and Quota.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:searchLinks",
@@ -761,7 +798,7 @@
       }
     }
   },
-  "revision": "20230623",
+  "revision": "20230908",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest": {
@@ -1104,6 +1141,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogLineageV1ProcessOpenLineageRunEventResponse": {
+      "description": "Response message for ProcessOpenLineageRunEvent.",
+      "id": "GoogleCloudDatacatalogLineageV1ProcessOpenLineageRunEventResponse",
+      "properties": {
+        "lineageEvents": {
+          "description": "Created lineage event names. Format: `projects/{project}/locations/{location}/processes/{process}/runs/{run}/lineageEvents/{lineage_event}`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "process": {
+          "description": "Created process name. Format: `projects/{project}/locations/{location}/processes/{process}`.",
+          "type": "string"
+        },
+        "run": {
+          "description": "Created run name. Format: `projects/{project}/locations/{location}/processes/{process}/runs/{run}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogLineageV1Run": {
       "description": "A lineage run represents an execution of a process that creates lineage events.",
       "id": "GoogleCloudDatacatalogLineageV1Run",
@@ -1249,7 +1308,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },

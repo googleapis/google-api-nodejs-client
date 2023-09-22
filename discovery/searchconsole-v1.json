@@ -400,7 +400,7 @@
       }
     }
   },
-  "revision": "20230708",
+  "revision": "20230920",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "AmpInspectionResult": {
@@ -1114,9 +1114,11 @@
           "enum": [
             "AUTO",
             "BY_PROPERTY",
-            "BY_PAGE"
+            "BY_PAGE",
+            "BY_NEWS_SHOWCASE_PANEL"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
@@ -1237,9 +1239,11 @@
           "enum": [
             "AUTO",
             "BY_PROPERTY",
-            "BY_PAGE"
+            "BY_PAGE",
+            "BY_NEWS_SHOWCASE_PANEL"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
