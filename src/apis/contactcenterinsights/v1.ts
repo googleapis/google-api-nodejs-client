@@ -1054,7 +1054,7 @@ export namespace contactcenterinsights_v1 {
      */
     conversationConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig;
     /**
-     * A cloud storage bucket source.
+     * A cloud storage bucket source. Note that any previously ingested objects from the source will be skipped to avoid duplication.
      */
     gcsSource?: Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource;
     /**
@@ -2483,7 +2483,7 @@ export namespace contactcenterinsights_v1 {
      */
     conversationConfig?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig;
     /**
-     * A cloud storage bucket source.
+     * A cloud storage bucket source. Note that any previously ingested objects from the source will be skipped to avoid duplication.
      */
     gcsSource?: Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource;
     /**
