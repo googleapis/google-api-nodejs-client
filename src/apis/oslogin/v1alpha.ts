@@ -216,6 +216,10 @@ export namespace oslogin_v1alpha {
    */
   export interface Schema$SecurityKey {
     /**
+     * The security key nickname explicitly set by the user.
+     */
+    deviceNickname?: string | null;
+    /**
      * Hardware-backed private key text in SSH format.
      */
     privateKey?: string | null;
