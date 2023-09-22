@@ -142,7 +142,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Message describing ContactCenter object Next ID: 15
+   * Message describing ContactCenter object Next ID: 16
    */
   export interface Schema$ContactCenter {
     /**
@@ -420,6 +420,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * SAML certificate
      */
     certificate?: string | null;
+    /**
+     * IdP field that maps to the user’s email address
+     */
+    emailMapping?: string | null;
     /**
      * Entity id URL
      */
