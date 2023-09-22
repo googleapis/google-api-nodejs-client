@@ -903,7 +903,7 @@
       }
     }
   },
-  "revision": "20230531",
+  "revision": "20230919",
   "rootUrl": "https://jobs.googleapis.com/",
   "schemas": {
     "ApplicationInfo": {
@@ -1223,6 +1223,7 @@
           "type": "string"
         },
         "keywordSearchableJobCustomAttributes": {
+          "deprecated": true,
           "description": "This field is deprecated. Please set the searchability of the custom attribute in the Job.custom_attributes going forward. A list of keys of filterable Job.custom_attributes, whose corresponding `string_values` are used in keyword searches. Jobs with `string_values` under these specified field keys are returned if any of the values match the search keyword. Custom field values with parenthesis, brackets and special symbols are not searchable as-is, and those keyword queries must be surrounded by quotes.",
           "items": {
             "type": "string"
@@ -1885,6 +1886,7 @@
           "type": "string"
         },
         "visibility": {
+          "deprecated": true,
           "description": "Deprecated. The job is only visible to the owner. The visibility of the job. Defaults to Visibility.ACCOUNT_ONLY if not specified.",
           "enum": [
             "VISIBILITY_UNSPECIFIED",
@@ -2397,6 +2399,12 @@
             "TELECOMMUTE_ALLOWED",
             "TELECOMMUTE_JOBS_EXCLUDED"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Default value if the telecommute preference isn't specified.",
             "Deprecated: Ignore telecommute status of jobs. Use TELECOMMUTE_JOBS_EXCLUDED if want to exclude telecommute jobs.",
@@ -2612,7 +2620,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -2748,6 +2756,7 @@
           "description": "Controls over how job documents get ranked on top of existing relevance score (determined by API algorithm)."
         },
         "disableKeywordMatch": {
+          "deprecated": true,
           "description": "This field is deprecated. Please use SearchJobsRequest.keyword_match_mode going forward. To migrate, disable_keyword_match set to false maps to KeywordMatchMode.KEYWORD_MATCH_ALL, and disable_keyword_match set to true maps to KeywordMatchMode.KEYWORD_MATCH_DISABLED. If SearchJobsRequest.keyword_match_mode is set, this field is ignored. Controls whether to disable exact keyword match on Job.title, Job.description, Job.company_display_name, Job.addresses, Job.qualifications. When disable keyword match is turned off, a keyword match returns jobs that do not match given category filters when there are matching keywords. For example, for the query \"program manager,\" a result is returned even if the job posting has the title \"software developer,\" which doesn't fall into \"program manager\" ontology, but does have \"program manager\" appearing in its description. For queries like \"cloud\" that don't contain title or location specific ontology, jobs with \"cloud\" keyword matches are returned regardless of this flag's value. Use Company.keyword_searchable_job_custom_attributes if company-specific globally matched custom field/attribute string values are needed. Enabling keyword match improves recall of subsequent search requests. Defaults to false.",
           "type": "boolean"
         },
