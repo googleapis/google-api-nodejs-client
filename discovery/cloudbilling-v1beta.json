@@ -664,7 +664,7 @@
       }
     }
   },
-  "revision": "20230811",
+  "revision": "20230915",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "CacheFillRegions": {
@@ -1302,7 +1302,7 @@
           "description": "Percentage of the fixed discount."
         },
         "discountScopeType": {
-          "description": "Type of the fixed discount scope which indicates the source of the discount. It can have values such as 'sku-group'.",
+          "description": "Type of the fixed discount scope which indicates the source of the discount. It can have values such as 'unspecified' and 'sku-group'.",
           "type": "string"
         },
         "fixTime": {
@@ -1332,7 +1332,7 @@
           "description": "Percentage of the floating discount."
         },
         "discountScopeType": {
-          "description": "Type of the floating discount scope which indicates the source of the discount. It can have values such as 'sku-group'.",
+          "description": "Type of the floating discount scope which indicates the source of the discount. It can have values such as 'unspecified' and 'sku-group'.",
           "type": "string"
         },
         "skuGroup": {
@@ -1358,16 +1358,8 @@
       "description": "Encapsulates a price migrated from other SKUs.",
       "id": "GoogleCloudBillingBillingaccountpricesV1betaMigratedPrice",
       "properties": {
-        "sourceDiscountOnTargetPrice": {
-          "$ref": "GoogleCloudBillingBillingaccountpricesV1betaSourceDiscountOnTargetPrice",
-          "description": "The source SKU floating discount is applied on the target SKU's default price."
-        },
         "sourceSku": {
-          "description": "Source SKU where the discount is migrated from.",
-          "type": "string"
-        },
-        "type": {
-          "description": "Type of the migrated price. It can have values such as 'source-discount-on-target-price'.",
+          "description": "Source SKU where the discount is migrated from. Format: billingAccounts/{billing_account}/skus/{sku}",
           "type": "string"
         }
       },
@@ -1406,7 +1398,7 @@
           "description": "Price migrated from other SKUs."
         },
         "type": {
-          "description": "Type of the price reason. It can values such as 'default-price', 'fixed-price', 'fixed-discount', 'floating-discount', 'migrated-price', 'merged-price', 'list-price-as-ceiling'.",
+          "description": "Type of the price reason. It can have values such as 'unspecified', 'default-price', 'fixed-price', 'fixed-discount', 'floating-discount', 'migrated-price', 'merged-price', 'list-price-as-ceiling'.",
           "type": "string"
         }
       },
@@ -1453,17 +1445,6 @@
         "startAmount": {
           "$ref": "Decimal",
           "description": "Lower bound amount for a tier. Tiers 0-100, 100-200 will be represented with two tiers with `start_amount` 0 and 100."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudBillingBillingaccountpricesV1betaSourceDiscountOnTargetPrice": {
-      "description": "Encapsulates a type of MigratedPrice where the source SKU floating discount is applied on the target SKU's default price.",
-      "id": "GoogleCloudBillingBillingaccountpricesV1betaSourceDiscountOnTargetPrice",
-      "properties": {
-        "migratedDiscountPercent": {
-          "$ref": "Decimal",
-          "description": "Discount percent of the source SKU that is applied on the target SKU's default price."
         }
       },
       "type": "object"
