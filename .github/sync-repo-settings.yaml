@@ -7,7 +7,6 @@ branchProtectionRules:
     requiredStatusCheckContexts:
       - "ci/kokoro: Samples test"
       - "ci/kokoro: System test"
-      - docs
       - lint
       - test (14)
       - test (16)
