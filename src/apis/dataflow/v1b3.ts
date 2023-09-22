@@ -1901,6 +1901,10 @@ export namespace dataflow_v1b3 {
      */
     customMetadata?: {[key: string]: string} | null;
     /**
+     * Optional. The default values will pre-populate the parameter with the given value from the proto. If default_value is left empty, the parameter will be populated with a default of the relevant type, e.g. false for a boolean.
+     */
+    defaultValue?: string | null;
+    /**
      * Optional. The options shown when ENUM ParameterType is specified.
      */
     enumOptions?: Schema$ParameterMetadataEnumOption[];
