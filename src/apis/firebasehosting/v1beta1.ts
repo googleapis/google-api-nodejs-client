@@ -166,6 +166,48 @@ export namespace firebasehosting_v1beta1 {
     token?: string | null;
   }
   /**
+   * An SSL certificate used to provide end-to-end encryption for requests against your domain name. A `Certificate` can be an actual SSL certificate or, for newly-created custom domains, Hosting's intent to create one.
+   */
+  export interface Schema$Certificate {
+    /**
+     * Output only. The certificate's creation time. For `TEMPORARY` certs this is the time Hosting first generated challenges for your domain name. For all other cert types, it's the time the actual cert was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The certificate's expiration time. After this time, the cert can no longer be used to provide secure communication between Hosting and your site's visitors.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. A set of errors Hosting encountered when attempting to create a cert for your domain name. Resolve these issues to ensure Hosting is able to provide secure communication with your site's visitors.
+     */
+    issues?: Schema$Status[];
+    /**
+     * Output only. The state of the certificate. Only the `CERT_ACTIVE` and `CERT_EXPIRING_SOON` states provide SSL coverage for a domain name. If the state is `PROPAGATING` and Hosting had an active cert for the domain name before, that formerly-active cert provides SSL coverage for the domain name until the current cert propagates.
+     */
+    state?: string | null;
+    /**
+     * Output only. The certificate's type.
+     */
+    type?: string | null;
+    /**
+     * Output only. A set of ACME challenges you can add to your DNS records or existing, non-Hosting hosting provider to allow Hosting to create an SSL certificate for your domain name before you point traffic toward hosting. You can use thse challenges as part of a zero downtime transition from your old provider to Hosting.
+     */
+    verification?: Schema$CertVerification;
+  }
+  /**
+   * A set of ACME challenges you can use to allow Hosting to create an SSL certificate for your domain name before directing traffic to Hosting servers. Use either the DNS or HTTP challenge; it's not necessary to provide both.
+   */
+  export interface Schema$CertVerification {
+    /**
+     * Output only. A `TXT` record to add to your DNS records that confirms your intent to let Hosting create an SSL cert for your domain name.
+     */
+    dns?: Schema$DnsUpdates;
+    /**
+     * Output only. A file to add to your existing, non-Hosting hosting service that confirms your intent to let Hosting create an SSL cert for your domain name.
+     */
+    http?: Schema$HttpUpdate;
+  }
+  /**
    * A `Channel` represents a stream of releases for a site. All sites have a default `live` channel that serves content to the Firebase-provided subdomains and any connected custom domains.
    */
   export interface Schema$Channel {
@@ -240,6 +282,159 @@ export namespace firebasehosting_v1beta1 {
      * Optional. User-provided TrafficConfig tag to send traffic to. When omitted, traffic is sent to the service-wide URI
      */
     tag?: string | null;
+  }
+  /**
+   * A `CustomDomain` is an entity that links a domain name to a Firebase Hosting site. Add a `CustomDomain` to your site to allow Hosting to serve the site's content in response to requests against your domain name.
+   */
+  export interface Schema$CustomDomain {
+    /**
+     * Annotations you can add to leave both human- and machine-readable metadata about your `CustomDomain`.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. The SSL certificate Hosting has for this custom domain's domain name. For new custom domains, this often represents Hosting's intent to create a certificate, rather than an actual cert. Check the `state` field for more.
+     */
+    cert?: Schema$Certificate;
+    /**
+     * A field that lets you specify which SSL certificate type Hosting creates for your domain name. Spark plan custom domains only have access to the `GROUPED` cert type, while Blaze plan domains can select any option.
+     */
+    certPreference?: string | null;
+    /**
+     * Output only. The custom domain's create time.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the `CustomDomain` was deleted; null for custom domains that haven't been deleted. Deleted custom domains persist for approximately 30 days, after which time Hosting removes them completely. To restore a deleted custom domain, make an `UndeleteCustomDomain` request.
+     */
+    deleteTime?: string | null;
+    /**
+     * Output only. A string that represents the current state of the `CustomDomain` and allows you to confirm its initial state in requests that would modify it. Use the tag to ensure consistency when making `UpdateCustomDomain`, `DeleteCustomDomain`, and `UndeleteCustomDomain` requests.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The minimum time before a soft-deleted `CustomDomain` is completely removed from Hosting; null for custom domains that haven't been deleted.
+     */
+    expireTime?: string | null;
+    /**
+     * Output only. The `HostState` of the domain name this `CustomDomain` refers to.
+     */
+    hostState?: string | null;
+    /**
+     * Output only. A set of errors Hosting systems encountered when trying to establish Hosting's ability to serve secure content for your domain name. Resolve these issues to ensure your `CustomDomain` behaves properly.
+     */
+    issues?: Schema$Status[];
+    /**
+     * Labels used for extra metadata and/or filtering.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The fully-qualified name of the `CustomDomain`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The `OwnershipState` of the domain name this `CustomDomain` refers to.
+     */
+    ownershipState?: string | null;
+    /**
+     * Output only. A field that, if true, indicates that Hosting's systems are attmepting to make the custom domain's state match your preferred state. This is most frequently `true` when initially provisioning a `CustomDomain` after a `CreateCustomDomain` request or when creating a new SSL certificate to match an updated `cert_preference` after an `UpdateCustomDomain` request.
+     */
+    reconciling?: boolean | null;
+    /**
+     * A domain name that this `CustomDomain` should direct traffic towards. If specified, Hosting will respond to requests against this custom domain with an HTTP 301 code, and route traffic to the specified `redirect_target` instead.
+     */
+    redirectTarget?: string | null;
+    /**
+     * Output only. A set of updates you should make to the domain name's DNS records to let Hosting serve secure content on its behalf.
+     */
+    requiredDnsUpdates?: Schema$DnsUpdates;
+    /**
+     * Output only. The last time the `CustomDomain` was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Metadata associated with a`CustomDomain` operation.
+   */
+  export interface Schema$CustomDomainMetadata {
+    /**
+     * The `CertState` of the domain name's SSL certificate.
+     */
+    certState?: string | null;
+    /**
+     * The `HostState` of the domain name this `CustomDomain` refers to.
+     */
+    hostState?: string | null;
+    /**
+     * A list of issues that are currently preventing Hosting from completing the operation. These are generally DNS-related issues that Hosting encounters when querying a domain name's records or attempting to mint an SSL certificate.
+     */
+    issues?: Schema$Status[];
+    /**
+     * A set of DNS record updates and ACME challenges that allow you to transition domain names to Firebase Hosting with zero downtime. These updates allow Hosting to create an SSL certificate and establish ownership for your custom domain before Hosting begins serving traffic on it. If your domain name is already in active use with another provider, add one of the challenges and make the recommended DNS updates. After adding challenges and adjusting DNS records as necessary, wait for the `ownershipState` to be `OWNERSHIP_ACTIVE` and the `certState` to be `CERT_ACTIVE` before sending traffic to Hosting.
+     */
+    liveMigrationSteps?: Schema$LiveMigrationStep[];
+    /**
+     * The `OwnershipState` of the domain name this `CustomDomain` refers to.
+     */
+    ownershipState?: string | null;
+    /**
+     * A set of DNS record updates that allow Hosting to serve secure content on your domain name. The record type determines the update's purpose: - `A` and `AAAA`: Updates your domain name's IP addresses so that they direct traffic to Hosting servers. - `TXT`: Updates ownership permissions on your domain name, letting Hosting know that your custom domain's project has permission to perfrom actions for that domain name. - `CAA`: Updates your domain name's list of authorized Certificate Authorities (CAs). Only present if you have existing `CAA` records that prohibit Hosting's CA from minting certs for your domain name. These updates include all DNS changes you'll need to get started with Hosting, but, if made all at once, can result in a brief period of downtime for your domain name--while Hosting creates and uploads an SSL cert, for example. If you'd like to add your domain name to Hosting without downtime, complete the `liveMigrationSteps` first, before making the remaining updates in this field.
+     */
+    quickSetupUpdates?: Schema$DnsUpdates;
+  }
+  /**
+   * DNS records are resource records that define how systems and services should behave when handling requests for a domain name. For example, when you add `A` records to your domain name's DNS records, you're informing other systems (such as your users' web browsers) to contact those IPv4 addresses to retrieve resources relevant to your domain name (such as your Hosting site files).
+   */
+  export interface Schema$DnsRecord {
+    /**
+     * Output only. The domain name the record pertains to, e.g. `foo.bar.com.`.
+     */
+    domainName?: string | null;
+    /**
+     * Output only. The data of the record. The meaning of the value depends on record type: - A and AAAA: IP addresses for the domain name. - CNAME: Another domain to check for records. - TXT: Arbitrary text strings associated with the domain name. Hosting uses TXT records to determine which Firebase projects have permission to act on the domain name's behalf. - CAA: The record's flags, tag, and value, e.g. `0 issue "pki.goog"`.
+     */
+    rdata?: string | null;
+    /**
+     * Output only. An enum that indicates the a required action for this record.
+     */
+    requiredAction?: string | null;
+    /**
+     * Output only. The record's type, which determines what data the record contains.
+     */
+    type?: string | null;
+  }
+  /**
+   * A set of DNS records relevant to the setup and maintenance of a custom domain in Firebase Hosting.
+   */
+  export interface Schema$DnsRecordSet {
+    /**
+     * Output only. An error Hosting services encountered when querying your domain name's DNS records. Note: Hosting ignores `NXDOMAIN` errors, as those generally just mean that a domain name hasn't been set up yet.
+     */
+    checkError?: Schema$Status;
+    /**
+     * Output only. The domain name the record set pertains to.
+     */
+    domainName?: string | null;
+    /**
+     * Output only. Records on the domain.
+     */
+    records?: Schema$DnsRecord[];
+  }
+  /**
+   * A set of DNS record updates that you should make to allow Hosting to serve secure content in response to requests against your domain name. These updates present the current state of your domain name's DNS records when Hosting last queried them, and the desired set of records that Hosting needs to see before your custom domain can be fully active.
+   */
+  export interface Schema$DnsUpdates {
+    /**
+     * The last time Hosting checked your custom domain's DNS records.
+     */
+    checkTime?: string | null;
+    /**
+     * The set of DNS records Hosting needs to serve secure content on the domain.
+     */
+    desired?: Schema$DnsRecordSet[];
+    /**
+     * The set of DNS records Hosting discovered when inspecting a domain.
+     */
+    discovered?: Schema$DnsRecordSet[];
   }
   /**
    * The intended behavior and status information of a domain.
@@ -342,6 +537,31 @@ export namespace firebasehosting_v1beta1 {
     regex?: string | null;
   }
   /**
+   * A file you can add to your existing, non-Hosting hosting service that confirms your intent to allow Hosting's Certificate Authorities to create an SSL certificate for your domain.
+   */
+  export interface Schema$HttpUpdate {
+    /**
+     * Output only. An error encountered during the last contents check. If null, the check completed successfully.
+     */
+    checkError?: Schema$Status;
+    /**
+     * Output only. A text string to serve at the path.
+     */
+    desired?: string | null;
+    /**
+     * Output only. Whether Hosting was able to find the required file contents on the specified path during its last check.
+     */
+    discovered?: string | null;
+    /**
+     * Output only. The last time Hosting systems checked for the file contents.
+     */
+    lastCheckTime?: string | null;
+    /**
+     * Output only. The path to the file.
+     */
+    path?: string | null;
+  }
+  /**
    * If provided, i18n rewrites are enabled.
    */
   export interface Schema$I18nConfig {
@@ -361,6 +581,19 @@ export namespace firebasehosting_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response from `ListCustomDomains`.
+   */
+  export interface Schema$ListCustomDomainsResponse {
+    /**
+     * A list of `CustomDomain` entities associated with the specified Firebase `Site`.
+     */
+    customDomains?: Schema$CustomDomain[];
+    /**
+     * The pagination token, if more results exist beyond the ones in this response. Include this token in your next call to `ListCustomDomains`. Page tokens are short-lived and should not be stored.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response to listing Domains.
    */
   export interface Schema$ListDomainsResponse {
@@ -372,6 +605,19 @@ export namespace firebasehosting_v1beta1 {
      * The pagination token, if more results exist.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * The response message for Operations.ListOperations.
+   */
+  export interface Schema$ListOperationsResponse {
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of operations that matches the specified filter in the request.
+     */
+    operations?: Schema$Operation[];
   }
   export interface Schema$ListReleasesResponse {
     /**
@@ -412,6 +658,27 @@ export namespace firebasehosting_v1beta1 {
      * The list of versions, if any exist.
      */
     versions?: Schema$Version[];
+  }
+  /**
+   * A set of updates including ACME challenges and DNS records that allow Hosting to create an SSL certificate and establish project ownership for your domain name before you direct traffic to Hosting servers. Use these updates to facilitate zero downtime migrations to Hosting from other services. After you've made the recommended updates, check your custom domain's `ownershipState` and `certState`. To avoid downtime, they should be `OWNERSHIP_ACTIVE` and `CERT_ACTIVE`, respectively, before you update your `A` and `AAAA` records.
+   */
+  export interface Schema$LiveMigrationStep {
+    /**
+     * Output only. A pair of ACME challenges that Hosting's Certificate Authority (CA) can use to create an SSL cert for your domain name. Use either the DNS or HTTP challenge; it's not necessary to provide both.
+     */
+    certVerification?: Schema$CertVerification;
+    /**
+     * Output only. DNS updates to facilitate your domain's zero-downtime migration to Hosting.
+     */
+    dnsUpdates?: Schema$DnsUpdates;
+    /**
+     * Output only. Issues that prevent the current step from completing.
+     */
+    issues?: Schema$Status[];
+    /**
+     * Output only. The state of the live migration step, indicates whether you should work to complete the step now, in the future, or have already completed it.
+     */
+    state?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -635,6 +902,19 @@ export namespace firebasehosting_v1beta1 {
     message?: string | null;
   }
   /**
+   * The request sent to `UndeleteCustomDomain`.
+   */
+  export interface Schema$UndeleteCustomDomainRequest {
+    /**
+     * A tag that represents the state of the `CustomDomain` as you know it. If present, the supplied tag must match the current value on your `CustomDomain`, or the request fails.
+     */
+    etag?: string | null;
+    /**
+     * If true, Hosting validates that it's possible to complete your request but doesn't actually delete the `CustomDomain`.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
    * A `Version` is a configuration and a collection of static files which determine how a site is displayed.
    */
   export interface Schema$Version {
@@ -819,12 +1099,16 @@ export namespace firebasehosting_v1beta1 {
   export class Resource$Projects$Sites {
     context: APIRequestContext;
     channels: Resource$Projects$Sites$Channels;
+    customDomains: Resource$Projects$Sites$Customdomains;
     domains: Resource$Projects$Sites$Domains;
     releases: Resource$Projects$Sites$Releases;
     versions: Resource$Projects$Sites$Versions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.channels = new Resource$Projects$Sites$Channels(this.context);
+      this.customDomains = new Resource$Projects$Sites$Customdomains(
+        this.context
+      );
       this.domains = new Resource$Projects$Sites$Domains(this.context);
       this.releases = new Resource$Projects$Sites$Releases(this.context);
       this.versions = new Resource$Projects$Sites$Versions(this.context);
@@ -1445,6 +1729,10 @@ export namespace firebasehosting_v1beta1 {
      * Required. Immutable. A globally unique identifier for the Hosting site. This identifier is used to construct the Firebase-provisioned subdomains for the site, so it must also be a valid domain name label.
      */
     siteId?: string;
+    /**
+     * Optional. If set, validates that the site_id is available and that the request would succeed, returning the expected resulting site or error.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -2339,6 +2627,859 @@ export namespace firebasehosting_v1beta1 {
      * Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Sites$Customdomains {
+    context: APIRequestContext;
+    operations: Resource$Projects$Sites$Customdomains$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Sites$Customdomains$Operations(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a `CustomDomain`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Sites$Customdomains$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Sites$Customdomains$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Sites$Customdomains$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Sites$Customdomains$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Sites$Customdomains$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Customdomains$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Customdomains$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Customdomains$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/customDomains').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `CustomDomain`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Sites$Customdomains$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Sites$Customdomains$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Sites$Customdomains$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Sites$Customdomains$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Sites$Customdomains$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Customdomains$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Customdomains$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Customdomains$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the specified `CustomDomain`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Sites$Customdomains$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Sites$Customdomains$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomDomain>;
+    get(
+      params: Params$Resource$Projects$Sites$Customdomains$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Customdomains$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomDomain>,
+      callback: BodyResponseCallback<Schema$CustomDomain>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Customdomains$Get,
+      callback: BodyResponseCallback<Schema$CustomDomain>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CustomDomain>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Customdomains$Get
+        | BodyResponseCallback<Schema$CustomDomain>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomDomain>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomDomain>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomDomain> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Customdomains$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Customdomains$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomDomain>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomDomain>(parameters);
+      }
+    }
+
+    /**
+     * Lists each `CustomDomain` associated with the specified parent Hosting site. Returns `CustomDomain`s in a consistent, but undefined, order to facilitate pagination.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Sites$Customdomains$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Sites$Customdomains$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCustomDomainsResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$Customdomains$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sites$Customdomains$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCustomDomainsResponse>,
+      callback: BodyResponseCallback<Schema$ListCustomDomainsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sites$Customdomains$List,
+      callback: BodyResponseCallback<Schema$ListCustomDomainsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCustomDomainsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Customdomains$List
+        | BodyResponseCallback<Schema$ListCustomDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCustomDomainsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCustomDomainsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCustomDomainsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Customdomains$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Customdomains$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/customDomains').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCustomDomainsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCustomDomainsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the specified `CustomDomain`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Sites$Customdomains$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Sites$Customdomains$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Sites$Customdomains$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Sites$Customdomains$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Sites$Customdomains$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Customdomains$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Customdomains$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Customdomains$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Undeletes the specified `CustomDomain` if it has been soft-deleted. Hosting retains soft-deleted custom domains for around 30 days before permanently deleting them.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Projects$Sites$Customdomains$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Projects$Sites$Customdomains$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    undelete(
+      params: Params$Resource$Projects$Sites$Customdomains$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Sites$Customdomains$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Sites$Customdomains$Undelete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$Operation>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Customdomains$Undelete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Customdomains$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Customdomains$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Sites$Customdomains$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the `CustomDomain`, which is the domain name you'd like to use with Firebase Hosting.
+     */
+    customDomainId?: string;
+    /**
+     * Required. The custom domain's parent, specifically a Firebase Hosting `Site`.
+     */
+    parent?: string;
+    /**
+     * If true, Hosting validates that it's possible to complete your request but doesn't actually create a new `CustomDomain`.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomDomain;
+  }
+  export interface Params$Resource$Projects$Sites$Customdomains$Delete
+    extends StandardParameters {
+    /**
+     * If true, the request succeeds even if the `CustomDomain` doesn't exist.
+     */
+    allowMissing?: boolean;
+    /**
+     * A tag that represents the state of the `CustomDomain` as you know it. If present, the supplied tag must match the current value on your `CustomDomain`, or the request fails.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the `CustomDomain` to delete.
+     */
+    name?: string;
+    /**
+     * If true, Hosting validates that it's possible to complete your request but doesn't actually delete the `CustomDomain`.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Sites$Customdomains$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the `CustomDomain` to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Sites$Customdomains$List
+    extends StandardParameters {
+    /**
+     * The max number of `CustomDomain` entities to return in a request. Defaults to 10.
+     */
+    pageSize?: number;
+    /**
+     * A token from a previous call to `ListCustomDomains` that tells the server where to resume listing.
+     */
+    pageToken?: string;
+    /**
+     * Required. The Firebase Hosting `Site` with `CustomDomain` entities you'd like to list.
+     */
+    parent?: string;
+    /**
+     * If true, the request returns soft-deleted `CustomDomain`s that haven't been fully-deleted yet. To restore deleted `CustomDomain`s, make an `UndeleteCustomDomain` request.
+     */
+    showDeleted?: boolean;
+  }
+  export interface Params$Resource$Projects$Sites$Customdomains$Patch
+    extends StandardParameters {
+    /**
+     * If true, Hosting creates the `CustomDomain` if it doesn't already exist.
+     */
+    allowMissing?: boolean;
+    /**
+     * Output only. The fully-qualified name of the `CustomDomain`.
+     */
+    name?: string;
+    /**
+     * The set of field names from your `CustomDomain` that you want to update. A field will be overwritten if, and only if, it's in the mask. If you don't provide a mask, Hosting updates the entire `CustomDomain`.
+     */
+    updateMask?: string;
+    /**
+     * If true, Hosting validates that it's possible to complete your request but doesn't actually create or update the `CustomDomain`.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomDomain;
+  }
+  export interface Params$Resource$Projects$Sites$Customdomains$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The name of the `CustomDomain` to delete.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteCustomDomainRequest;
+  }
+
+  export class Resource$Projects$Sites$Customdomains$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Sites$Customdomains$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Sites$Customdomains$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Sites$Customdomains$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Customdomains$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Customdomains$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Customdomains$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Customdomains$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Sites$Customdomains$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Sites$Customdomains$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Sites$Customdomains$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$Customdomains$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sites$Customdomains$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sites$Customdomains$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Customdomains$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Customdomains$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Sites$Customdomains$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Sites$Customdomains$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Sites$Customdomains$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Projects$Sites$Domains {
