@@ -148,6 +148,35 @@ export namespace alertcenter_v1beta1 {
     variationType?: string | null;
   }
   /**
+   * Alert that is triggered when Google support requests to access customer data.
+   */
+  export interface Schema$AccessApproval {
+    /**
+     * Justification for data access based on justification enums.
+     */
+    justificationReason?: string[] | null;
+    /**
+     * Office location of Google staff requesting access such as "US".
+     */
+    officeLocation?: string | null;
+    /**
+     * Products within scope of the Access Approvals request.
+     */
+    products?: string[] | null;
+    /**
+     * ID of the Access Approvals request. This is a helpful field when requesting support from Google.
+     */
+    requestId?: string | null;
+    /**
+     * Scope of access, also known as a resource. This is further narrowed down by the product field.
+     */
+    scope?: string | null;
+    /**
+     * Support tickets related to this Access Approvals request. Populated if there is an associated case number.
+     */
+    tickets?: Schema$SupportTicket[];
+  }
+  /**
    * Details about why an account is receiving an account suspension warning.
    */
   export interface Schema$AccountSuspensionDetails {
@@ -1124,6 +1153,19 @@ export namespace alertcenter_v1beta1 {
      * email of person whose password was reset
      */
     userEmail?: string | null;
+  }
+  /**
+   * Support ticket related to Access Approvals request
+   */
+  export interface Schema$SupportTicket {
+    /**
+     * Support ticket ID
+     */
+    ticketId?: string | null;
+    /**
+     * Link to support ticket
+     */
+    ticketUrl?: string | null;
   }
   /**
    * A mobile suspicious activity alert. Derived from audit logs.
