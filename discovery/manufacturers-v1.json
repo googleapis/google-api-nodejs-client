@@ -416,7 +416,7 @@
       }
     }
   },
-  "revision": "20230602",
+  "revision": "20230831",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -643,6 +643,10 @@
           "description": "Required. Name of the certification body.",
           "type": "string"
         },
+        "code": {
+          "description": "Required. A unique code to identify the certification.",
+          "type": "string"
+        },
         "link": {
           "description": "Optional. A URL link to the certification.",
           "type": "string"
@@ -660,7 +664,7 @@
           "type": "string"
         },
         "value": {
-          "description": "Required. A custom value of the certification.",
+          "description": "Optional. A custom value of the certification.",
           "type": "string"
         }
       },

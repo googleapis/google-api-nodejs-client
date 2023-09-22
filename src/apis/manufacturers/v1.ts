@@ -311,6 +311,10 @@ export namespace manufacturers_v1 {
      */
     authority?: string | null;
     /**
+     * Required. A unique code to identify the certification.
+     */
+    code?: string | null;
+    /**
      * Optional. A URL link to the certification.
      */
     link?: string | null;
@@ -327,7 +331,7 @@ export namespace manufacturers_v1 {
      */
     validUntil?: string | null;
     /**
-     * Required. A custom value of the certification.
+     * Optional. A custom value of the certification.
      */
     value?: string | null;
   }
