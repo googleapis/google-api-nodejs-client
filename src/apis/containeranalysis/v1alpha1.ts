@@ -1161,7 +1161,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     buildStepImages?: string[] | null;
     /**
-     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 4KB of data is stored.
+     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored.
      */
     buildStepOutputs?: string[] | null;
     /**
@@ -1261,6 +1261,14 @@ export namespace containeranalysis_v1alpha1 {
         key: string
       ]: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes;
     } | null;
+    /**
+     * Output only. A copy of the build's `source.connected_repository`, if exists, with any revisions resolved.
+     */
+    resolvedConnectedRepository?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository;
+    /**
+     * Output only. A copy of the build's `source.git_source`, if exists, with any revisions resolved.
+     */
+    resolvedGitSource?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource;
     /**
      * A copy of the build's `source.repo_source`, if exists, with any revisions resolved.
      */
