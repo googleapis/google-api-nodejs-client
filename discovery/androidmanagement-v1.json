@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20230911",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1534,7 +1534,7 @@
       "type": "object"
     },
     "ApplicationPolicy": {
-      "description": "Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled.",
+      "description": "Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled. The maximum number of applications that you can specify per enterprise policy is 3,000.",
       "id": "ApplicationPolicy",
       "properties": {
         "accessibleTrackIds": {
@@ -1605,7 +1605,7 @@
           "type": "string"
         },
         "delegatedScopes": {
-          "description": "The scopes delegated to the app from Android Device Policy.",
+          "description": "The scopes delegated to the app from Android Device Policy. These provide additional privileges for the applications they are applied to.",
           "items": {
             "enum": [
               "DELEGATED_SCOPE_UNSPECIFIED",
@@ -1616,7 +1616,8 @@
               "PACKAGE_ACCESS",
               "ENABLE_SYSTEM_APP",
               "NETWORK_ACTIVITY_LOGS",
-              "SECURITY_LOGS"
+              "SECURITY_LOGS",
+              "CERT_SELECTION"
             ],
             "enumDescriptions": [
               "No delegation scope specified.",
@@ -1627,7 +1628,8 @@
               "Grants access to package access state.",
               "Grants access for enabling system apps.",
               "Grants access to network activity logs. Allows the delegated application to call setNetworkLoggingEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#setNetworkLoggingEnabled%28android.content.ComponentName,%20boolean%29), isNetworkLoggingEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#isNetworkLoggingEnabled%28android.content.ComponentName%29) and retrieveNetworkLogs (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#retrieveNetworkLogs%28android.content.ComponentName,%20long%29) methods. This scope can be delegated to at most one application. Supported for fully managed devices on Android 10 and above. Supported for a work profile on Android 12 and above. When delegation is supported and set, NETWORK_ACTIVITY_LOGS is ignored.",
-              "Grants access to security logs. Allows the delegated application to call setSecurityLoggingEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#setSecurityLoggingEnabled%28android.content.ComponentName,%20boolean%29), isSecurityLoggingEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#isSecurityLoggingEnabled%28android.content.ComponentName%29), retrieveSecurityLogs (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#retrieveSecurityLogs%28android.content.ComponentName%29) and retrievePreRebootSecurityLogs (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#retrievePreRebootSecurityLogs%28android.content.ComponentName%29) methods. This scope can be delegated to at most one application. Supported for fully managed devices and company-owned devices with a work profile on Android 12 and above. When delegation is supported and set, SECURITY_LOGS is ignored."
+              "Grants access to security logs. Allows the delegated application to call setSecurityLoggingEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#setSecurityLoggingEnabled%28android.content.ComponentName,%20boolean%29), isSecurityLoggingEnabled (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#isSecurityLoggingEnabled%28android.content.ComponentName%29), retrieveSecurityLogs (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#retrieveSecurityLogs%28android.content.ComponentName%29) and retrievePreRebootSecurityLogs (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#retrievePreRebootSecurityLogs%28android.content.ComponentName%29) methods. This scope can be delegated to at most one application. Supported for fully managed devices and company-owned devices with a work profile on Android 12 and above. When delegation is supported and set, SECURITY_LOGS is ignored.",
+              "Grants access to selection of KeyChain certificates on behalf of requesting apps. Once granted, the delegated application will start receiving DelegatedAdminReceiver#onChoosePrivateKeyAlias (https://developer.android.com/reference/android/app/admin/DelegatedAdminReceiver#onChoosePrivateKeyAlias%28android.content.Context,%20android.content.Intent,%20int,%20android.net.Uri,%20java.lang.String%29). Allows the delegated application to call grantKeyPairToApp (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#grantKeyPairToApp%28android.content.ComponentName,%20java.lang.String,%20java.lang.String%29) and revokeKeyPairFromApp (https://developer.android.com/reference/android/app/admin/DevicePolicyManager#revokeKeyPairFromApp%28android.content.ComponentName,%20java.lang.String,%20java.lang.String%29) methods. There can be at most one app that has this delegation. choosePrivateKeyRules must be empty and privateKeySelectionEnabled has no effect if certificate selection is delegated to an application."
             ],
             "type": "string"
           },
@@ -1656,7 +1658,7 @@
             "Unspecified. Defaults to AVAILABLE.",
             "The app is automatically installed and can be removed by the user.",
             "The app is automatically installed and can't be removed by the user.",
-            "The app is blocked and can't be installed. If the app was installed under a previous policy, it will be uninstalled.",
+            "The app is blocked and can't be installed. If the app was installed under a previous policy, it will be uninstalled. This also blocks its instant app functionality.",
             "The app is available to install.",
             "The app is automatically installed and can't be removed by the user and will prevent setup from completion until installation is complete.",
             "The app is automatically installed in kiosk mode: it's set as the preferred home intent and whitelisted for lock task mode. Device setup won't complete until the app is installed. After installation, users won't be able to remove the app. You can only set this installType for one app per policy. When this is present in the policy, status bar will be automatically disabled."
@@ -2249,17 +2251,23 @@
           ],
           "type": "string"
         },
+        "exemptionsToShowWorkContactsInPersonalProfile": {
+          "$ref": "PackageNameList",
+          "description": "List of apps which are excluded from the ShowWorkContactsInPersonalProfile setting. For this to be set, ShowWorkContactsInPersonalProfile must be set to one of the following values: * SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED. In this case, these exemptions act as a blocklist. * SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED. In this case, these exemptions act as an allowlist. * SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM. In this case, these exemptions act as an allowlist, in addition to the already allowlisted system apps. Supported on Android 14 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 14."
+        },
         "showWorkContactsInPersonalProfile": {
           "description": "Whether contacts stored in the work profile can be shown in personal profile contact searches and incoming calls.",
           "enum": [
             "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_UNSPECIFIED",
             "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED",
-            "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED"
+            "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED",
+            "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM"
           ],
           "enumDescriptions": [
             "Unspecified. Defaults to SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED.",
             "Prevents work profile contacts from appearing in personal profile contact searches and incoming calls",
-            "Default. Allows work profile contacts to appear in personal profile contact searches and incoming calls"
+            "Default. Allows work profile contacts to appear in personal profile contact searches and incoming calls",
+            "Prevents most personal apps from accessing work profile contacts including contact searches and incoming calls, except for the OEM default Dialer, Messages, and Contacts apps. Neither user-configured Dialer, Messages, and Contacts apps, nor any other system or play installed apps, will be able to query work contacts directly. When this is set, personal apps specified in exemptions_to_show_work_contacts_in_personal_profile are allowlisted and can access work profile contacts. Supported on Android 14 and above. If this is set on a device with Android version less than 14, the behaviour falls back to SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED and a nonComplianceDetail with API_LEVEL is reported."
           ],
           "type": "string"
         },
@@ -2620,14 +2628,14 @@
       "id": "DeviceRadioState",
       "properties": {
         "airplaneModeState": {
-          "description": "Controls whether airplane mode can be toggled by the user or not",
+          "description": "Controls whether airplane mode can be toggled by the user or not.",
           "enum": [
             "AIRPLANE_MODE_STATE_UNSPECIFIED",
             "AIRPLANE_MODE_USER_CHOICE",
             "AIRPLANE_MODE_DISABLED"
           ],
           "enumDescriptions": [
-            "Unspecified. Defaults to AIRPLANE_MODE_USER_CHOICE",
+            "Unspecified. Defaults to AIRPLANE_MODE_USER_CHOICE.",
             "The user is allowed to toggle airplane mode on or off.",
             "Airplane mode is disabled. The user is not allowed to toggle airplane mode on. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 9."
           ],
@@ -4510,7 +4518,7 @@
           "type": "boolean"
         },
         "choosePrivateKeyRules": {
-          "description": "Rules for determining apps' access to private keys. See ChoosePrivateKeyRule for details.",
+          "description": "Rules for determining apps' access to private keys. See ChoosePrivateKeyRule for details. This must be empty if any application has CERT_SELECTION delegation scope.",
           "items": {
             "$ref": "ChoosePrivateKeyRule"
           },
@@ -4846,7 +4854,7 @@
           "type": "string"
         },
         "privateKeySelectionEnabled": {
-          "description": "Allows showing UI on a device for a user to choose a private key alias if there are no matching rules in ChoosePrivateKeyRules. For devices below Android P, setting this may leave enterprise keys vulnerable.",
+          "description": "Allows showing UI on a device for a user to choose a private key alias if there are no matching rules in ChoosePrivateKeyRules. For devices below Android P, setting this may leave enterprise keys vulnerable. This value will have no effect if any application has CERT_SELECTION delegation scope.",
           "type": "boolean"
         },
         "recommendedGlobalProxy": {
