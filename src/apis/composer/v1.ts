@@ -247,6 +247,10 @@ export namespace composer_v1 {
      */
     state?: string | null;
     /**
+     * Optional. Storage configuration for this environment.
+     */
+    storageConfig?: Schema$StorageConfig;
+    /**
      * Output only. The time at which this environment was last modified.
      */
     updateTime?: string | null;
@@ -922,6 +926,10 @@ export namespace composer_v1 {
      */
     output?: string[] | null;
   }
+  /**
+   * The configuration for data storage in the environment.
+   */
+  export interface Schema$StorageConfig {}
   /**
    * The configuration settings for the Airflow web server App Engine instance. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*
    */
