@@ -1892,7 +1892,7 @@ export namespace cloudbuild_v1 {
      */
     buildStepImages?: string[] | null;
     /**
-     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 4KB of data is stored.
+     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored.
      */
     buildStepOutputs?: string[] | null;
     /**
@@ -6971,7 +6971,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new `BuildTrigger`. This API is experimental.
+     * Creates a new `BuildTrigger`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7058,7 +7058,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Deletes a `BuildTrigger` by its project ID and trigger ID. This API is experimental.
+     * Deletes a `BuildTrigger` by its project ID and trigger ID.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7142,7 +7142,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Returns information about a `BuildTrigger`. This API is experimental.
+     * Returns information about a `BuildTrigger`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7226,7 +7226,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Lists existing `BuildTrigger`s. This API is experimental.
+     * Lists existing `BuildTrigger`s.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7320,7 +7320,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Updates a `BuildTrigger` by its project ID and trigger ID. This API is experimental.
+     * Updates a `BuildTrigger` by its project ID and trigger ID.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8240,7 +8240,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Creates a new `BuildTrigger`. This API is experimental.
+     * Creates a new `BuildTrigger`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8327,7 +8327,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Deletes a `BuildTrigger` by its project ID and trigger ID. This API is experimental.
+     * Deletes a `BuildTrigger` by its project ID and trigger ID.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8413,7 +8413,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Returns information about a `BuildTrigger`. This API is experimental.
+     * Returns information about a `BuildTrigger`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8499,7 +8499,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Lists existing `BuildTrigger`s. This API is experimental.
+     * Lists existing `BuildTrigger`s.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8593,7 +8593,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Updates a `BuildTrigger` by its project ID and trigger ID. This API is experimental.
+     * Updates a `BuildTrigger` by its project ID and trigger ID.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

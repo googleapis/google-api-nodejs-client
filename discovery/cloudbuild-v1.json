@@ -1582,7 +1582,7 @@
             "triggers": {
               "methods": {
                 "create": {
-                  "description": "Creates a new `BuildTrigger`. This API is experimental.",
+                  "description": "Creates a new `BuildTrigger`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers",
                   "httpMethod": "POST",
                   "id": "cloudbuild.projects.locations.triggers.create",
@@ -1615,7 +1615,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a `BuildTrigger` by its project ID and trigger ID. This API is experimental.",
+                  "description": "Deletes a `BuildTrigger` by its project ID and trigger ID.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
                   "httpMethod": "DELETE",
                   "id": "cloudbuild.projects.locations.triggers.delete",
@@ -1650,7 +1650,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Returns information about a `BuildTrigger`. This API is experimental.",
+                  "description": "Returns information about a `BuildTrigger`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
                   "httpMethod": "GET",
                   "id": "cloudbuild.projects.locations.triggers.get",
@@ -1685,7 +1685,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists existing `BuildTrigger`s. This API is experimental.",
+                  "description": "Lists existing `BuildTrigger`s.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers",
                   "httpMethod": "GET",
                   "id": "cloudbuild.projects.locations.triggers.list",
@@ -1726,7 +1726,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a `BuildTrigger` by its project ID and trigger ID. This API is experimental.",
+                  "description": "Updates a `BuildTrigger` by its project ID and trigger ID.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
                   "httpMethod": "PATCH",
                   "id": "cloudbuild.projects.locations.triggers.patch",
@@ -2026,7 +2026,7 @@
         "triggers": {
           "methods": {
             "create": {
-              "description": "Creates a new `BuildTrigger`. This API is experimental.",
+              "description": "Creates a new `BuildTrigger`.",
               "flatPath": "v1/projects/{projectId}/triggers",
               "httpMethod": "POST",
               "id": "cloudbuild.projects.triggers.create",
@@ -2058,7 +2058,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes a `BuildTrigger` by its project ID and trigger ID. This API is experimental.",
+              "description": "Deletes a `BuildTrigger` by its project ID and trigger ID.",
               "flatPath": "v1/projects/{projectId}/triggers/{triggerId}",
               "httpMethod": "DELETE",
               "id": "cloudbuild.projects.triggers.delete",
@@ -2094,7 +2094,7 @@
               ]
             },
             "get": {
-              "description": "Returns information about a `BuildTrigger`. This API is experimental.",
+              "description": "Returns information about a `BuildTrigger`.",
               "flatPath": "v1/projects/{projectId}/triggers/{triggerId}",
               "httpMethod": "GET",
               "id": "cloudbuild.projects.triggers.get",
@@ -2130,7 +2130,7 @@
               ]
             },
             "list": {
-              "description": "Lists existing `BuildTrigger`s. This API is experimental.",
+              "description": "Lists existing `BuildTrigger`s.",
               "flatPath": "v1/projects/{projectId}/triggers",
               "httpMethod": "GET",
               "id": "cloudbuild.projects.triggers.list",
@@ -2170,7 +2170,7 @@
               ]
             },
             "patch": {
-              "description": "Updates a `BuildTrigger` by its project ID and trigger ID. This API is experimental.",
+              "description": "Updates a `BuildTrigger` by its project ID and trigger ID.",
               "flatPath": "v1/projects/{projectId}/triggers/{triggerId}",
               "httpMethod": "PATCH",
               "id": "cloudbuild.projects.triggers.patch",
@@ -2319,7 +2319,7 @@
       }
     }
   },
-  "revision": "20230811",
+  "revision": "20230907",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -4783,7 +4783,7 @@
           "type": "array"
         },
         "buildStepOutputs": {
-          "description": "List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 4KB of data is stored.",
+          "description": "List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored.",
           "items": {
             "format": "byte",
             "type": "string"
