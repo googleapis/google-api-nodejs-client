@@ -666,7 +666,7 @@
       }
     }
   },
-  "revision": "20230729",
+  "revision": "20230917",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -901,6 +901,11 @@
         "fraudPreventionAssessment": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment",
           "description": "Assessment returned by Fraud Prevention when TransactionData is provided."
+        },
+        "fraudSignals": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FraudSignals",
+          "description": "Output only. Fraud Signals specific to the users involved in a payment transaction.",
+          "readOnly": true
         },
         "name": {
           "description": "Output only. The resource name for the Assessment in the format \"projects/{project}/assessments/{assessment}\".",
@@ -1212,6 +1217,69 @@
         "risk": {
           "description": "Probability of this transaction being executed with a stolen instrument. Values are from 0.0 (lowest) to 1.0 (highest).",
           "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FraudSignals": {
+      "description": "Fraud signals describing users and cards involved in the transaction.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FraudSignals",
+      "properties": {
+        "cardSignals": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals",
+          "description": "Output only. Signals describing the payment card or cards used in this transaction.",
+          "readOnly": true
+        },
+        "userSignals": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals",
+          "description": "Output only. Signals describing the end user in this transaction.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals": {
+      "description": "Signals describing the payment card used in this transaction.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals",
+      "properties": {
+        "cardLabels": {
+          "description": "Output only. The labels for the payment card in this transaction.",
+          "items": {
+            "enum": [
+              "CARD_LABEL_UNSPECIFIED",
+              "PREPAID",
+              "VIRTUAL",
+              "UNEXPECTED_LOCATION"
+            ],
+            "enumDescriptions": [
+              "No label specified.",
+              "This card has been detected as prepaid.",
+              "This card has been detected as virtual, such as a card number generated for a single transaction or merchant.",
+              "This card has been detected as being used in an unexpected geographic location."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals": {
+      "description": "Signals describing the user involved in this transaction.",
+      "id": "GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals",
+      "properties": {
+        "activeDaysLowerBound": {
+          "description": "Output only. This user (based on email, phone, and other identifiers) has been seen on the internet for at least this number of days.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "syntheticRisk": {
+          "description": "Output only. Likelihood (from 0.0 to 1.0) this user includes synthetic components in their identity, such as a randomly generated email address, temporary phone number, or fake shipping address.",
+          "format": "float",
+          "readOnly": true,
           "type": "number"
         }
       },
