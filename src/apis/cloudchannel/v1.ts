@@ -973,7 +973,7 @@ export namespace cloudchannel_v1 {
      */
     orgDisplayName?: string | null;
     /**
-     * Required. The organization address for the customer. To enforce US laws and embargoes, we require a region and zip code. You must provide valid addresses for every customer. To set the customer's language, use the Customer-level language code.
+     * Required. The organization address for the customer. To enforce US laws and embargoes, we require a region, postal code, and address lines. You must provide valid addresses for every customer. To set the customer's language, use the Customer-level language code.
      */
     orgPostalAddress?: Schema$GoogleTypePostalAddress;
     /**
@@ -2045,7 +2045,7 @@ export namespace cloudchannel_v1 {
      */
     adjustment?: Schema$GoogleCloudChannelV1RepricingAdjustment;
     /**
-     * Applies the repricing configuration at the channel partner level. Only ChannelPartnerRepricingConfig supports this value.
+     * Applies the repricing configuration at the channel partner level. Only ChannelPartnerRepricingConfig supports this value. Deprecated: This is no longer supported. Use RepricingConfig.entitlement_granularity instead.
      */
     channelPartnerGranularity?: Schema$GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity;
     /**
@@ -2066,7 +2066,7 @@ export namespace cloudchannel_v1 {
     rebillingBasis?: string | null;
   }
   /**
-   * Applies the repricing configuration at the channel partner level. The channel partner value is derived from the resource name. Takes an empty json object.
+   * Applies the repricing configuration at the channel partner level. The channel partner value is derived from the resource name. Takes an empty json object. Deprecated: This is no longer supported. Use RepricingConfig.EntitlementGranularity instead.
    */
   export interface Schema$GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity {}
   /**
