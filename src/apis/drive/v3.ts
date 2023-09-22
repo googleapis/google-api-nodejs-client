@@ -328,7 +328,7 @@ export namespace drive_v3 {
     type?: string | null;
   }
   /**
-   * A comment on a file.
+   * A comment on a file. Some resource methods (such as `comments.update`) require a `commentId`. Use the `comments.list` method to retrieve the ID for a comment in a file.
    */
   export interface Schema$Comment {
     /**
@@ -427,7 +427,7 @@ export namespace drive_v3 {
     type?: string | null;
   }
   /**
-   * Representation of a shared drive.
+   * Representation of a shared drive. Some resource methods (such as `drives.update`) require a `driveId`. Use the `drives.list` method to retrieve the ID for a shared drive.
    */
   export interface Schema$Drive {
     /**
@@ -529,7 +529,7 @@ export namespace drive_v3 {
     nextPageToken?: string | null;
   }
   /**
-   * The metadata for a file.
+   * The metadata for a file. Some resource methods (such as `files.update`) require a `fileId`. Use the `files.list` method to retrieve the ID for a file.
    */
   export interface Schema$File {
     /**
@@ -1059,7 +1059,7 @@ export namespace drive_v3 {
     modifiedLabels?: Schema$Label[];
   }
   /**
-   * A permission for a file. A permission grants a user, group, domain or the world access to a file or a folder hierarchy.
+   * A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.
    */
   export interface Schema$Permission {
     /**
@@ -1151,7 +1151,7 @@ export namespace drive_v3 {
     permissions?: Schema$Permission[];
   }
   /**
-   * A reply to a comment on a file.
+   * A reply to a comment on a file. Some resource methods (such as `replies.update`) require a `replyId`. Use the `replies.list` method to retrieve the ID for a reply.
    */
   export interface Schema$Reply {
     /**
@@ -1209,7 +1209,7 @@ export namespace drive_v3 {
     replies?: Schema$Reply[];
   }
   /**
-   * The metadata for a revision to a file.
+   * The metadata for a revision to a file. Some resource methods (such as `revisions.update`) require a `revisionId`. Use the `revisions.list` method to retrieve the ID for a revision.
    */
   export interface Schema$Revision {
     /**
@@ -2616,7 +2616,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Permanently deletes a shared drive for which the user is an organizer. The shared drive cannot contain any untrashed items.
+     * Permanently deletes a shared drive for which the user is an `organizer`. The shared drive cannot contain any untrashed items.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3388,7 +3388,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Permanently deletes a file owned by the user without moving it to the trash. If the file belongs to a shared drive the user must be an organizer on the parent. If the target is a folder, all descendants owned by the user are also deleted.
+     * Permanently deletes a file owned by the user without moving it to the trash. If the file belongs to a shared drive, the user must be an `organizer` on the parent folder. If the target is a folder, all descendants owned by the user are also deleted.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4496,7 +4496,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Listlabels extends StandardParameters {
     /**
-     * The ID for the file or shared drive.
+     * The ID for the file.
      */
     fileId?: string;
     /**

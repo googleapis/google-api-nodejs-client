@@ -282,7 +282,7 @@ export namespace drive_v2 {
     user?: Schema$User;
   }
   /**
-   * The apps resource provides a list of the apps that a user has installed, with information about each app's supported MIME types, file extensions, and other details.
+   * The apps resource provides a list of the apps that a user has installed, with information about each app's supported MIME types, file extensions, and other details. Some resource methods (such as `apps.get`) require an `appId`. Use the `apps.list` method to retrieve the ID for an installed application.
    */
   export interface Schema$App {
     /**
@@ -576,7 +576,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A reference to a folder's child.
+   * A reference to a folder's child. Some resource methods (such as `children.get`) require a `childId`. Use the `children.list` method to retrieve the ID of the child.
    */
   export interface Schema$ChildReference {
     /**
@@ -597,7 +597,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A comment on a file in Google Drive.
+   * A comment on a file in Google Drive. Some resource methods (such as `comments.update`) require a `commentId`. Use the `comments.list` method to retrieve the ID for a comment in a file.
    */
   export interface Schema$Comment {
     /**
@@ -687,7 +687,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A comment on a file in Google Drive.
+   * A comment on a file in Google Drive. Some resource methods (such as `replies.update`) require a `replyId`. Use the `replies.list` method to retrieve the ID for a reply.
    */
   export interface Schema$CommentReply {
     /**
@@ -782,7 +782,7 @@ export namespace drive_v2 {
     type?: string | null;
   }
   /**
-   * Representation of a shared drive.
+   * Representation of a shared drive. Some resource methods (such as `drives.update`) require a `driveId`. Use the `drives.list` method to retrieve the ID for a shared drive.
    */
   export interface Schema$Drive {
     /**
@@ -884,7 +884,7 @@ export namespace drive_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * The metadata for a file.
+   * The metadata for a file. Some resource methods (such as `files.update`) require a `fileId`. Use the `files.list` method to retrieve the ID for a file.
    */
   export interface Schema$File {
     /**
@@ -1501,7 +1501,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A reference to a file's parent.
+   * A reference to a file's parent. Some resource methods (such as `parents.get`) require a `parentId`. Use the `parents.list` method to retrieve the ID for a parent.
    */
   export interface Schema$ParentReference {
     /**
@@ -1526,7 +1526,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A permission for a file.
+   * A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.
    */
   export interface Schema$Permission {
     /**
@@ -1661,7 +1661,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A key-value pair attached to a file that is either public or private to an application. The following limits apply to file properties: * Maximum of 100 properties total per file * Maximum of 30 private properties per app * Maximum of 30 public properties * Maximum of 124 bytes size limit on (key + value) string in UTF-8 encoding for a single property
+   * A key-value pair attached to a file that is either public or private to an application. The following limits apply to file properties: * Maximum of 100 properties total per file * Maximum of 30 private properties per app * Maximum of 30 public properties * Maximum of 124 bytes size limit on (key + value) string in UTF-8 encoding for a single property Some resource methods (such as `properties.update`) require a `propertyKey`. Use the `properties.list` method to retrieve the key for a property.
    */
   export interface Schema$Property {
     /**
@@ -1711,7 +1711,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A revision of a file.
+   * A revision of a file. Some resource methods (such as `revisions.update`) require a `revisionId`. Use the `revisions.list` method to retrieve the ID for a revision.
    */
   export interface Schema$Revision {
     /**
@@ -3902,7 +3902,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Permanently deletes a shared drive for which the user is an organizer. The shared drive cannot contain any untrashed items.
+     * Permanently deletes a shared drive for which the user is an `organizer`. The shared drive cannot contain any untrashed items.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4670,7 +4670,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Permanently deletes a file by ID. Skips the trash. The currently authenticated user must own the file or be an organizer on the parent for shared drive files.
+     * Permanently deletes a file owned by the user without moving it to the trash. If the file belongs to a shared drive, the user must be an `organizer` on the parent folder. If the target is a folder, all descendants owned by the user are also deleted.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5617,7 +5617,7 @@ export namespace drive_v2 {
     }
 
     /**
-     *  Moves a file to the trash. The currently authenticated user must own the file or be at least a `fileOrganizer` on the parent for shared drive files. Only the owner may trash a file. The trashed item is excluded from all `files.list` responses returned for any user who doesn't own the file. However, all users with access to the file can see the trashed item metadata in an API response. All users with access can copy, download, export, and share the file. *Note:* Files moved to the trash still appear by default in results from the `files.list` method. To permanently remove a file, use `files.delete`.
+     * Moves a file to the trash. The currently authenticated user must own the file or be at least a `fileOrganizer` on the parent for shared drive files.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5703,7 +5703,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Restores a file from the trash. The currently authenticated user must own the file or be at least a `fileOrganizer` on the parent for shared drive files. Only the owner may untrash a file.
+     * Restores a file from the trash. The currently authenticated user must own the file or be at least a `fileOrganizer` on the parent for shared drive files.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6257,7 +6257,7 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Files$Listlabels extends StandardParameters {
     /**
-     * The ID for the file or shared drive.
+     * The ID for the file.
      */
     fileId?: string;
     /**
