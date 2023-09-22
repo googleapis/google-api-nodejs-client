@@ -11,7 +11,7 @@
   "basePath": "",
   "baseUrl": "https://dataform.googleapis.com/",
   "batchPath": "batch",
-  "description": "",
+  "description": "Service to develop, version control, and operationalize SQL pipelines in BigQuery.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/dataform/docs",
   "fullyEncodeReservedExpansion": true,
@@ -1961,7 +1961,7 @@
       }
     }
   },
-  "revision": "20230812",
+  "revision": "20230909",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {

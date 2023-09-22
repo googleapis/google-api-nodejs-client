@@ -102,7 +102,7 @@ export namespace dataform_v1beta1 {
   /**
    * Dataform API
    *
-   *
+   * Service to develop, version control, and operationalize SQL pipelines in BigQuery.
    *
    * @example
    * ```js
