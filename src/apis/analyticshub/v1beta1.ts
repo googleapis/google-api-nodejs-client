@@ -539,7 +539,7 @@ export namespace analyticshub_v1beta1 {
    */
   export interface Schema$SubscribeListingResponse {}
   /**
-   * A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets. TODO(b/267528977) Consider port the new resource to v1beta1 and dataexchange APIs.
+   * A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets.
    */
   export interface Schema$Subscription {
     /**
