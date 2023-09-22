@@ -1847,6 +1847,19 @@ export namespace dlp_v2 {
     versions?: Schema$GooglePrivacyDlpV2VersionDescription[];
   }
   /**
+   * Configuration to control custom minimum likelihoods per infotype. Used when certain infotypes need to return with higher or lower precision than the baseline, i.e. when wanting PERSON_NAME to return all possible names without lowering the precision of other infotypes.
+   */
+  export interface Schema$GooglePrivacyDlpV2InfoTypeLikelihood {
+    /**
+     * Type of information the likelihood threshold applies to. Only one likelihood per info_type should be provided. If InfoTypeLikelihood does not have an info_type, the configuration fails.
+     */
+    infoType?: Schema$GooglePrivacyDlpV2InfoType;
+    /**
+     * Only returns findings equal or above this threshold. This field is required or else the configuration fails.
+     */
+    minLikelihood?: string | null;
+  }
+  /**
    * Max findings configuration per infoType, per content item or long running DlpJob.
    */
   export interface Schema$GooglePrivacyDlpV2InfoTypeLimit {
@@ -1939,6 +1952,10 @@ export namespace dlp_v2 {
      * Only returns findings equal or above this threshold. The default is POSSIBLE. See https://cloud.google.com/dlp/docs/likelihood to learn more.
      */
     minLikelihood?: string | null;
+    /**
+     * Per infotype likelihoods. For each infotype, a user can specify a minimum likelihood, and only return that infotype if it is above that threshold. If an infotype is not included, it uses the InspectConfig min_likelihood.
+     */
+    minLikelihoodPerInfoType?: Schema$GooglePrivacyDlpV2InfoTypeLikelihood[];
     /**
      * Set of rules to apply to the findings for this InspectConfig. Exclusion rules, contained in the set are executed in the end, other rules are executed in the order they are specified for each info type.
      */
