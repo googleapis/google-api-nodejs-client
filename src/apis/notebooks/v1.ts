@@ -557,6 +557,10 @@ export namespace notebooks_v1 {
      */
     installGpuDriver?: boolean | null;
     /**
+     * Output only. Checks how feasible a migration from UmN to WbI is.
+     */
+    instanceMigrationEligibility?: Schema$InstanceMigrationEligibility;
+    /**
      * Input only. The owner of this instance after creation. Format: `alias@example.com` Currently supports one owner only. If not specified, all of the service account users of your VM instance's service account can use the instance.
      */
     instanceOwners?: string[] | null;
@@ -608,10 +612,6 @@ export namespace notebooks_v1 {
      * Path to a Bash script that automatically runs after a notebook instance fully boots up. The path must be a URL or Cloud Storage path (`gs://path-to-file/file-name`).
      */
     postStartupScript?: string | null;
-    /**
-     * Output only. Check how possible a migration from UmN to WbI is.
-     */
-    preMigrationCheck?: Schema$PreMigrationCheck;
     /**
      * Output only. The proxy endpoint that is used to access the Jupyter notebook.
      */
@@ -669,6 +669,19 @@ export namespace notebooks_v1 {
      * Cron expression in UTC timezone, used to schedule instance auto upgrade. Please follow the [cron format](https://en.wikipedia.org/wiki/Cron).
      */
     notebookUpgradeSchedule?: string | null;
+  }
+  /**
+   * InstanceMigrationEligibility represents the feasibility information of a migration from UmN to WbI.
+   */
+  export interface Schema$InstanceMigrationEligibility {
+    /**
+     * Output only. Certain configurations make the UmN ineligible for an automatic migration. A manual migration is required.
+     */
+    errors?: string[] | null;
+    /**
+     * Output only. Certain configurations will be defaulted during the migration.
+     */
+    warnings?: string[] | null;
   }
   /**
    * Response for checking if a notebook instance is upgradeable.
@@ -926,7 +939,7 @@ export namespace notebooks_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -968,7 +981,7 @@ export namespace notebooks_v1 {
     verb?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -983,19 +996,6 @@ export namespace notebooks_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
-  }
-  /**
-   * PreMigrationCheck checks how feasible a migration from UmN is.
-   */
-  export interface Schema$PreMigrationCheck {
-    /**
-     * Message provides a summary or workaround.
-     */
-    message?: string | null;
-    /**
-     * Result returns the result of the check.
-     */
-    result?: string | null;
   }
   /**
    * Request for getting a new access token.
@@ -1139,6 +1139,10 @@ export namespace notebooks_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Checks how feasible a migration from GmN to WbI is.
+     */
+    runtimeMigrationEligibility?: Schema$RuntimeMigrationEligibility;
+    /**
      * The config settings for software inside the runtime.
      */
     softwareConfig?: Schema$RuntimeSoftwareConfig;
@@ -1202,6 +1206,19 @@ export namespace notebooks_v1 {
      * Output only. The system metrics.
      */
     systemMetrics?: {[key: string]: string} | null;
+  }
+  /**
+   * RuntimeMigrationEligibility represents the feasibility information of a migration from GmN to WbI.
+   */
+  export interface Schema$RuntimeMigrationEligibility {
+    /**
+     * Output only. Certain configurations make the GmN ineligible for an automatic migration. A manual migration is required.
+     */
+    errors?: string[] | null;
+    /**
+     * Output only. Certain configurations will be defaulted during the migration.
+     */
+    warnings?: string[] | null;
   }
   /**
    * A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.
@@ -5037,6 +5054,14 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Instances$List
     extends StandardParameters {
     /**
+     * Optional. List filter.
+     */
+    filter?: string;
+    /**
+     * Optional. Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     */
+    orderBy?: string;
+    /**
      * Maximum return size of the list call.
      */
     pageSize?: number;
@@ -7115,6 +7140,14 @@ export namespace notebooks_v1 {
   }
   export interface Params$Resource$Projects$Locations$Runtimes$List
     extends StandardParameters {
+    /**
+     * Optional. List filter.
+     */
+    filter?: string;
+    /**
+     * Optional. Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     */
+    orderBy?: string;
     /**
      * Maximum return size of the list call.
      */
