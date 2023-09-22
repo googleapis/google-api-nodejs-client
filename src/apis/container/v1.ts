@@ -2474,6 +2474,10 @@ export namespace container_v1 {
      */
     policyName?: string | null;
     /**
+     * Optional. TPU placement topology for pod slice node pool. https://cloud.google.com/tpu/docs/types-topologies#tpu_topologies
+     */
+    tpuTopology?: string | null;
+    /**
      * The type of placement.
      */
     type?: string | null;
@@ -3312,6 +3316,14 @@ export namespace container_v1 {
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
+     * Optional. The desired disk size for nodes in the node pool specified in GB. The smallest allowed disk size is 10GB. Initiates an upgrade operation that migrates the nodes in the node pool to the specified disk size.
+     */
+    diskSizeGb?: string | null;
+    /**
+     * Optional. The desired disk type (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified disk type.
+     */
+    diskType?: string | null;
+    /**
      * The current etag of the node pool. If an etag is provided and does not match the current etag of the node pool, update will be blocked and an ABORTED error will be returned.
      */
     etag?: string | null;
@@ -3351,6 +3363,10 @@ export namespace container_v1 {
      * Logging configuration.
      */
     loggingConfig?: Schema$NodePoolLoggingConfig;
+    /**
+     * Optional. The desired [Google Compute Engine machine type](https://cloud.google.com/compute/docs/machine-types) for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified machine type.
+     */
+    machineType?: string | null;
     /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
