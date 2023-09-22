@@ -232,6 +232,36 @@ export namespace advisorynotifications_v1 {
     subject?: Schema$GoogleCloudAdvisorynotificationsV1Subject;
   }
   /**
+   * Settings for each NotificationType.
+   */
+  export interface Schema$GoogleCloudAdvisorynotificationsV1NotificationSettings {
+    /**
+     * Whether the associated NotificationType is enabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Settings for Advisory Notifications.
+   */
+  export interface Schema$GoogleCloudAdvisorynotificationsV1Settings {
+    /**
+     * Required. Fingerprint for optimistic concurrency returned in Get requests. Must be provided for Update requests. If the value provided does not match the value known to the server, ABORTED will be thrown, and the client should retry the read-modify-write cycle.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings.
+     */
+    name?: string | null;
+    /**
+     * Required. Map of each notification type and its settings to get/set all settings at once. The server will validate the value for each notification type.
+     */
+    notificationSettings?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudAdvisorynotificationsV1NotificationSettings;
+    } | null;
+  }
+  /**
    * A subject line of a notification.
    */
   export interface Schema$GoogleCloudAdvisorynotificationsV1Subject {
@@ -276,6 +306,214 @@ export namespace advisorynotifications_v1 {
         this.context
       );
     }
+
+    /**
+     * Get notification settings.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSettings(
+      params: Params$Resource$Organizations$Locations$Getsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSettings(
+      params?: Params$Resource$Organizations$Locations$Getsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
+    getSettings(
+      params: Params$Resource$Organizations$Locations$Getsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSettings(
+      params: Params$Resource$Organizations$Locations$Getsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+    ): void;
+    getSettings(
+      params: Params$Resource$Organizations$Locations$Getsettings,
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+    ): void;
+    getSettings(
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+    ): void;
+    getSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Getsettings
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Getsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Getsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://advisorynotifications.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAdvisorynotificationsV1Settings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAdvisorynotificationsV1Settings>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update notification settings.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateSettings(
+      params: Params$Resource$Organizations$Locations$Updatesettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateSettings(
+      params?: Params$Resource$Organizations$Locations$Updatesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>;
+    updateSettings(
+      params: Params$Resource$Organizations$Locations$Updatesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateSettings(
+      params: Params$Resource$Organizations$Locations$Updatesettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+    ): void;
+    updateSettings(
+      params: Params$Resource$Organizations$Locations$Updatesettings,
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+    ): void;
+    updateSettings(
+      callback: BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+    ): void;
+    updateSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Updatesettings
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAdvisorynotificationsV1Settings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Updatesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Updatesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://advisorynotifications.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAdvisorynotificationsV1Settings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAdvisorynotificationsV1Settings>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Getsettings
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Updatesettings
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the settings to retrieve. Format: organizations/{organization\}/locations/{location\}/settings.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAdvisorynotificationsV1Settings;
   }
 
   export class Resource$Organizations$Locations$Notifications {
