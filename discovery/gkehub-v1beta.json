@@ -2100,7 +2100,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230907",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2802,7 +2802,8 @@
       "properties": {
         "binauthz": {
           "$ref": "ConfigManagementBinauthzConfig",
-          "description": "Binauthz conifguration for the cluster."
+          "deprecated": true,
+          "description": "Binauthz conifguration for the cluster. Deprecated: This field will be ignored and should not be set."
         },
         "cluster": {
           "description": "The user-specified cluster name used by Config Sync cluster-name-selector annotation or ClusterSelector, for applying configs to only a subset of clusters. Omit this field if the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector. Set this field if a name different from the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector.",
@@ -3632,10 +3633,6 @@
         "tenant": {
           "description": "Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.",
           "type": "string"
-        },
-        "userClaim": {
-          "description": "Optional. Claim in the AzureAD ID Token that holds the user details.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -4010,10 +4007,6 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
-        },
-        "fleet": {
-          "description": "Whether the membershipbinding is Fleet-wide; true means that this Membership should be bound to all Namespaces in this entire Fleet.",
-          "type": "boolean"
         },
         "labels": {
           "additionalProperties": {
@@ -4392,11 +4385,13 @@
           "enum": [
             "TYPE_UNSPECIFIED",
             "FLEET",
+            "FLEET_OUT_OF_SYNC",
             "USER"
           ],
           "enumDescriptions": [
             "Type is unknown or not set.",
             "Per-Membership spec was inherited from the fleet-level default.",
+            "Per-Membership spec was inherited from the fleet-level default but is now out of sync with the current default.",
             "Per-Membership spec was inherited from a user specification."
           ],
           "type": "string"
