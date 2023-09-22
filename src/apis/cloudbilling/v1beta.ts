@@ -531,7 +531,7 @@ export namespace cloudbilling_v1beta {
      */
     discountPercent?: Schema$Decimal;
     /**
-     * Type of the fixed discount scope which indicates the source of the discount. It can have values such as 'sku-group'.
+     * Type of the fixed discount scope which indicates the source of the discount. It can have values such as 'unspecified' and 'sku-group'.
      */
     discountScopeType?: string | null;
     /**
@@ -556,7 +556,7 @@ export namespace cloudbilling_v1beta {
      */
     discountPercent?: Schema$Decimal;
     /**
-     * Type of the floating discount scope which indicates the source of the discount. It can have values such as 'sku-group'.
+     * Type of the floating discount scope which indicates the source of the discount. It can have values such as 'unspecified' and 'sku-group'.
      */
     discountScopeType?: string | null;
     /**
@@ -577,17 +577,9 @@ export namespace cloudbilling_v1beta {
    */
   export interface Schema$GoogleCloudBillingBillingaccountpricesV1betaMigratedPrice {
     /**
-     * The source SKU floating discount is applied on the target SKU's default price.
-     */
-    sourceDiscountOnTargetPrice?: Schema$GoogleCloudBillingBillingaccountpricesV1betaSourceDiscountOnTargetPrice;
-    /**
-     * Source SKU where the discount is migrated from.
+     * Source SKU where the discount is migrated from. Format: billingAccounts/{billing_account\}/skus/{sku\}
      */
     sourceSku?: string | null;
-    /**
-     * Type of the migrated price. It can have values such as 'source-discount-on-target-price'.
-     */
-    type?: string | null;
   }
   /**
    * Encapsulates a price reason which contains background information about the origin of the price.
@@ -622,7 +614,7 @@ export namespace cloudbilling_v1beta {
      */
     migratedPrice?: Schema$GoogleCloudBillingBillingaccountpricesV1betaMigratedPrice;
     /**
-     * Type of the price reason. It can values such as 'default-price', 'fixed-price', 'fixed-discount', 'floating-discount', 'migrated-price', 'merged-price', 'list-price-as-ceiling'.
+     * Type of the price reason. It can have values such as 'unspecified', 'default-price', 'fixed-price', 'fixed-discount', 'floating-discount', 'migrated-price', 'merged-price', 'list-price-as-ceiling'.
      */
     type?: string | null;
   }
@@ -663,15 +655,6 @@ export namespace cloudbilling_v1beta {
      * Lower bound amount for a tier. Tiers 0-100, 100-200 will be represented with two tiers with `start_amount` 0 and 100.
      */
     startAmount?: Schema$Decimal;
-  }
-  /**
-   * Encapsulates a type of MigratedPrice where the source SKU floating discount is applied on the target SKU's default price.
-   */
-  export interface Schema$GoogleCloudBillingBillingaccountpricesV1betaSourceDiscountOnTargetPrice {
-    /**
-     * Discount percent of the source SKU that is applied on the target SKU's default price.
-     */
-    migratedDiscountPercent?: Schema$Decimal;
   }
   /**
    * Encapsulates the unit information for a Rate
