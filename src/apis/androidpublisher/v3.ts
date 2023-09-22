@@ -2553,6 +2553,23 @@ export namespace androidpublisher_v3 {
     } | null;
   }
   /**
+   * Options for system APKs.
+   */
+  export interface Schema$SystemApkOptions {
+    /**
+     * Whether to use the rotated key for signing the system APK.
+     */
+    rotated?: boolean | null;
+    /**
+     * Whether system APK was generated with uncompressed dex files.
+     */
+    uncompressedDexFiles?: boolean | null;
+    /**
+     * Whether system APK was generated with uncompressed native libraries.
+     */
+    uncompressedNativeLibraries?: boolean | null;
+  }
+  /**
    * Response to list previously created system APK variants.
    */
   export interface Schema$SystemApksListResponse {
@@ -2730,7 +2747,7 @@ export namespace androidpublisher_v3 {
      */
     kind?: string | null;
     /**
-     * All tracks.
+     * All tracks (including tracks with no releases).
      */
     tracks?: Schema$Track[];
   }
@@ -2906,6 +2923,10 @@ export namespace androidpublisher_v3 {
      * The device spec used to generate the APK.
      */
     deviceSpec?: Schema$DeviceSpec;
+    /**
+     * Optional. Options applied to the generated APK.
+     */
+    options?: Schema$SystemApkOptions;
     /**
      * Output only. The ID of a previously created system APK variant.
      */

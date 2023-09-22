@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20230731",
+  "revision": "20230906",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -848,6 +848,17 @@
       "description": "Fairplay configuration.",
       "id": "Fairplay",
       "properties": {},
+      "type": "object"
+    },
+    "Fmp4Config": {
+      "description": "`fmp4` container configuration.",
+      "id": "Fmp4Config",
+      "properties": {
+        "codecTag": {
+          "description": "Optional. Specify the codec tag string that will be used in the media bitstream. When not specified, the codec appropriate value is used. Supported H265 codec tags: - `hvc1` (default) - `hev1`",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "H264CodecSettings": {
@@ -1414,6 +1425,10 @@
         "fileName": {
           "description": "The name of the generated file. The default is MuxStream.key with the extension suffix corresponding to the MuxStream.container. Individual segments also have an incremental 10-digit zero-padded suffix starting from 0 before the extension, such as `mux_stream0000000123.ts`.",
           "type": "string"
+        },
+        "fmp4": {
+          "$ref": "Fmp4Config",
+          "description": "Optional. `fmp4` container configuration."
         },
         "key": {
           "description": "A unique key for this multiplexed stream.",

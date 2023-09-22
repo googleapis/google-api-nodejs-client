@@ -571,7 +571,7 @@
       }
     }
   },
-  "revision": "20230803",
+  "revision": "20230914",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -702,6 +702,28 @@
         "workerPool": {
           "description": "Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project}/locations/{region}/workerPools/{workerPool}` where {project} and {region} are the project id and region respectively where the worker pool is defined and {workerPool} is the short name of the worker pool. If the project id is not the same as the function, then the Cloud Functions Service Agent (service-@gcf-admin-robot.iam.gserviceaccount.com) must be granted the role Cloud Build Custom Workers Builder (roles/cloudbuild.customworkers.builder) in the project.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1733,6 +1755,14 @@
       "description": "Describes a runtime and any special information (e.g., deprecation status) related to it.",
       "id": "Runtime",
       "properties": {
+        "decommissionDate": {
+          "$ref": "Date",
+          "description": "Decommission date for the runtime."
+        },
+        "deprecationDate": {
+          "$ref": "Date",
+          "description": "Deprecation date for the runtime."
+        },
         "displayName": {
           "description": "The user facing name, eg 'Go 1.13', 'Node.js 12', etc.",
           "type": "string"

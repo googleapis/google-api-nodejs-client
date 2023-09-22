@@ -551,6 +551,10 @@ export namespace privateca_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Optional. The maximum lifetime allowed for issued Certificates that use this template. If the issuing CaPool's IssuancePolicy specifies a maximum_lifetime the minimum of the two durations will be the maximum lifetime for issued Certificates. Note that if the issuing CertificateAuthority expires before a Certificate's requested maximum_lifetime, the effective lifetime will be explicitly truncated to match it.
+     */
+    maximumLifetime?: string | null;
+    /**
      * Output only. The resource name for this CertificateTemplate in the format `projects/x/locations/x/certificateTemplates/x`.
      */
     name?: string | null;
@@ -1262,7 +1266,7 @@ export namespace privateca_v1 {
    */
   export interface Schema$SubjectConfig {
     /**
-     * Required. Contains distinguished name fields such as the common name, location and organization.
+     * Optional. Contains distinguished name fields such as the common name, location and organization.
      */
     subject?: Schema$Subject;
     /**

@@ -2109,7 +2109,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markdismissed
     extends StandardParameters {
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      */
     name?: string;
 
@@ -3151,7 +3151,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$Markdismissed
     extends StandardParameters {
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      */
     name?: string;
 
@@ -4741,7 +4741,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markdismissed
     extends StandardParameters {
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      */
     name?: string;
 
@@ -6215,7 +6215,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$Markdismissed
     extends StandardParameters {
     /**
-     * Name of the recommendation.
+     * Required. Name of the recommendation.
      */
     name?: string;
 

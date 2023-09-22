@@ -1260,13 +1260,1015 @@ export namespace beyondcorp_v1 {
 
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
+    global: Resource$Organizations$Locations$Global;
     operations: Resource$Organizations$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.global = new Resource$Organizations$Locations$Global(this.context);
       this.operations = new Resource$Organizations$Locations$Operations(
         this.context
       );
     }
+  }
+
+  export class Resource$Organizations$Locations$Global {
+    context: APIRequestContext;
+    partnerTenants: Resource$Organizations$Locations$Global$Partnertenants;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.partnerTenants =
+        new Resource$Organizations$Locations$Global$Partnertenants(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Organizations$Locations$Global$Partnertenants {
+    context: APIRequestContext;
+    browserDlpRules: Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules;
+    proxyConfigs: Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.browserDlpRules =
+        new Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules(
+          this.context
+        );
+      this.proxyConfigs =
+        new Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs(
+          this.context
+        );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Global$Partnertenants$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Partnertenants$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Global$Partnertenants$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Partnertenants$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
+  }
+
+  export class Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Browserdlprules$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
+  }
+
+  export class Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Global$Partnertenants$Proxyconfigs$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
   }
 
   export class Resource$Organizations$Locations$Operations {

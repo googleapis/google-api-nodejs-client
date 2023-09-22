@@ -777,6 +777,18 @@ export namespace sasportal_v1alpha1 {
     resource?: string | null;
   }
   /**
+   * Metadata returned by the long running operation for the SetupSasAnalytics rpc.
+   */
+  export interface Schema$SasPortalSetupSasAnalyticsMetadata {}
+  /**
+   * Request for the SetupSasAnalytics rpc.
+   */
+  export interface Schema$SasPortalSetupSasAnalyticsRequest {}
+  /**
+   * Response returned by the long running operation for the SetupSasAnalytics rpc.
+   */
+  export interface Schema$SasPortalSetupSasAnalyticsResponse {}
+  /**
    * Request for SignDevice.
    */
   export interface Schema$SasPortalSignDeviceRequest {
@@ -1420,6 +1432,98 @@ export namespace sasportal_v1alpha1 {
         );
       }
     }
+
+    /**
+     * Setups the a GCP Project to receive SAS Analytics messages via GCP Pub/Sub with a subscription to BigQuery. All the Pub/Sub topics and BigQuery tables are created automatically as part of this service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setupSasAnalytics(
+      params: Params$Resource$Customers$Setupsasanalytics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setupSasAnalytics(
+      params?: Params$Resource$Customers$Setupsasanalytics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SasPortalOperation>;
+    setupSasAnalytics(
+      params: Params$Resource$Customers$Setupsasanalytics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setupSasAnalytics(
+      params: Params$Resource$Customers$Setupsasanalytics,
+      options: MethodOptions | BodyResponseCallback<Schema$SasPortalOperation>,
+      callback: BodyResponseCallback<Schema$SasPortalOperation>
+    ): void;
+    setupSasAnalytics(
+      params: Params$Resource$Customers$Setupsasanalytics,
+      callback: BodyResponseCallback<Schema$SasPortalOperation>
+    ): void;
+    setupSasAnalytics(
+      callback: BodyResponseCallback<Schema$SasPortalOperation>
+    ): void;
+    setupSasAnalytics(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Setupsasanalytics
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SasPortalOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SasPortalOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Setupsasanalytics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Setupsasanalytics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sasportal.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/customers:setupSasAnalytics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SasPortalOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SasPortalOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Customers$Checkhasprovisioneddeployment
@@ -1468,6 +1572,13 @@ export namespace sasportal_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$SasPortalProvisionDeploymentRequest;
+  }
+  export interface Params$Resource$Customers$Setupsasanalytics
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SasPortalSetupSasAnalyticsRequest;
   }
 
   export class Resource$Customers$Deployments {

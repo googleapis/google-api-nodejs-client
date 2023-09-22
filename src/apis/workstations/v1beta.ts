@@ -227,6 +227,19 @@ export namespace workstations_v1beta {
     kmsKeyServiceAccount?: string | null;
   }
   /**
+   * An ephemeral directory which won't persist across workstation sessions. It is freshly created on every workstation start operation.
+   */
+  export interface Schema$EphemeralDirectory {
+    /**
+     * An EphemeralDirectory backed by a Compute Engine persistent disk.
+     */
+    gcePd?: Schema$GcePersistentDisk;
+    /**
+     * Required. Location of this directory in the running workstation.
+     */
+    mountPath?: string | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -297,6 +310,10 @@ export namespace workstations_v1beta {
      */
     serviceAccount?: string | null;
     /**
+     * Optional. Scopes to grant to the service_account. Various scopes are automatically added based on feature usage. When specified, users of workstations under this configuration must have `iam.serviceAccounts.actAs` on the service account.
+     */
+    serviceAccountScopes?: string[] | null;
+    /**
      * Optional. A set of Compute Engine Shielded instance options.
      */
     shieldedInstanceConfig?: Schema$GceShieldedInstanceConfig;
@@ -304,6 +321,27 @@ export namespace workstations_v1beta {
      * Optional. Network tags to add to the Compute Engine VMs backing the workstations. This option applies [network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags) to VMs created with this configuration. These network tags enable the creation of [firewall rules](https://cloud.google.com/workstations/docs/configure-firewall-rules).
      */
     tags?: string[] | null;
+  }
+  /**
+   * An EphemeralDirectory is backed by a Compute Engine persistent disk.
+   */
+  export interface Schema$GcePersistentDisk {
+    /**
+     * Optional. Type of the disk to use. Defaults to `"pd-standard"`.
+     */
+    diskType?: string | null;
+    /**
+     * Optional. Whether the disk is read only. If true, the disk may be shared by multiple VMs and source_snapshot must be set.
+     */
+    readOnly?: boolean | null;
+    /**
+     * Optional. Name of the disk image to use as the source for the disk. Must be empty if source_snapshot is set. Updating source_image will update content in the ephemeral directory after the workstation is restarted. This field is mutable.
+     */
+    sourceImage?: string | null;
+    /**
+     * Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. This field is mutable.
+     */
+    sourceSnapshot?: string | null;
   }
   /**
    * A PersistentDirectory backed by a Compute Engine regional persistent disk. The persistent_directories field is repeated, but it may contain only one entry. It creates a [persistent disk](https://cloud.google.com/compute/docs/disks/persistent-disks) that mounts to the workstation VM at `/home` when the session starts and detaches when the session ends. If this field is empty, workstations created with this configuration do not have a persistent home directory.
@@ -729,6 +767,10 @@ export namespace workstations_v1beta {
      */
     reconciling?: boolean | null;
     /**
+     * Output only. Time when this workstation was most recently successfully started, regardless of the workstation's initial state.
+     */
+    startTime?: string | null;
+    /**
      * Output only. Current state of the workstation.
      */
     state?: string | null;
@@ -851,6 +893,10 @@ export namespace workstations_v1beta {
      */
     encryptionKey?: Schema$CustomerEncryptionKey;
     /**
+     * Optional. Ephemeral directories which won't persist across workstation sessions.
+     */
+    ephemeralDirectories?: Schema$EphemeralDirectory[];
+    /**
      * Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
@@ -882,6 +928,10 @@ export namespace workstations_v1beta {
      * Output only. Indicates whether this workstation configuration is currently being updated to match its intended state.
      */
     reconciling?: boolean | null;
+    /**
+     * Optional. Immutable. Specifies the zones used to replicate the VM and disk resources within the region. If set, exactly two zones within the workstation cluster's region must be specified—for example, `['us-central1-a', 'us-central1-f']`. If this field is empty, two default zones within the region are used. Immutable after the workstation configuration is created.
+     */
+    replicaZones?: string[] | null;
     /**
      * Optional. Number of seconds that a workstation can run until it is automatically shut down. We recommend that workstations be shut down daily to reduce costs and so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field shuts down VMs after the specified time, regardless of whether or not the VMs are idle. Provide duration terminated by `s` for seconds—for example, `"54000s"` (15 hours). Defaults to `"43200s"` (12 hours). A value of `"0s"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `"0s"` and less than `"86400s"` (24 hours). Warning: A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.
      */

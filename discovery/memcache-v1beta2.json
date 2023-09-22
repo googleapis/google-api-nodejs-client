@@ -453,6 +453,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "upgrade": {
+                  "description": "Upgrades the Memcache instance to a newer memcached engine version specified in the request.",
+                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:upgrade",
+                  "httpMethod": "POST",
+                  "id": "memcache.projects.locations.instances.upgrade",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Memcache instance resource name using the form: `projects/{project}/locations/{location}/instances/{instance}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta2/{+name}:upgrade",
+                  "request": {
+                    "$ref": "GoogleCloudMemcacheV1beta2UpgradeInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -584,7 +612,7 @@
       }
     }
   },
-  "revision": "20230803",
+  "revision": "20230907",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -776,6 +804,27 @@
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudMemcacheV1beta2UpgradeInstanceRequest": {
+      "description": "Request for UpgradeInstance.",
+      "id": "GoogleCloudMemcacheV1beta2UpgradeInstanceRequest",
+      "properties": {
+        "memcacheVersion": {
+          "description": "Required. Specifies the target version of memcached engine to upgrade to.",
+          "enum": [
+            "MEMCACHE_VERSION_UNSPECIFIED",
+            "MEMCACHE_1_5",
+            "MEMCACHE_1_6_15"
+          ],
+          "enumDescriptions": [
+            "Memcache version is not specified by customer",
+            "Memcached 1.5 version.",
+            "Memcached 1.6.15 version."
+          ],
           "type": "string"
         }
       },
@@ -1124,11 +1173,13 @@
           "description": "The major version of Memcached software. If not provided, latest supported version will be used. Currently the latest supported major version is `MEMCACHE_1_5`. The minor version will be automatically determined by our system based on the latest supported minor version.",
           "enum": [
             "MEMCACHE_VERSION_UNSPECIFIED",
-            "MEMCACHE_1_5"
+            "MEMCACHE_1_5",
+            "MEMCACHE_1_6_15"
           ],
           "enumDescriptions": [
             "Memcache version is not specified by customer",
-            "Memcached 1.5 version."
+            "Memcached 1.5 version.",
+            "Memcached 1.6.15 version."
           ],
           "type": "string"
         },
@@ -1164,7 +1215,8 @@
             "READY",
             "UPDATING",
             "DELETING",
-            "PERFORMING_MAINTENANCE"
+            "PERFORMING_MAINTENANCE",
+            "MEMCACHE_VERSION_UPGRADING"
           ],
           "enumDescriptions": [
             "State not set.",
@@ -1172,7 +1224,8 @@
             "Memcached instance has been created and ready to be used.",
             "Memcached instance is updating configuration such as maintenance policy and schedule.",
             "Memcached instance is being deleted.",
-            "Memcached instance is going through maintenance, e.g. data plane rollout."
+            "Memcached instance is going through maintenance, e.g. data plane rollout.",
+            "Memcached instance is undergoing memcached engine version upgrade."
           ],
           "readOnly": true,
           "type": "string"
@@ -1443,6 +1496,26 @@
       "properties": {
         "host": {
           "description": "Output only. Hostname or IP address of the Memcached node used by the clients to connect to the Memcached server on this node.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "memcacheFullVersion": {
+          "description": "Output only. The full version of memcached server running on this node. e.g. - memcached-1.5.16",
+          "readOnly": true,
+          "type": "string"
+        },
+        "memcacheVersion": {
+          "description": "Output only. Major version of memcached server running on this node, e.g. MEMCACHE_1_5",
+          "enum": [
+            "MEMCACHE_VERSION_UNSPECIFIED",
+            "MEMCACHE_1_5",
+            "MEMCACHE_1_6_15"
+          ],
+          "enumDescriptions": [
+            "Memcache version is not specified by customer",
+            "Memcached 1.5 version.",
+            "Memcached 1.6.15 version."
+          ],
           "readOnly": true,
           "type": "string"
         },

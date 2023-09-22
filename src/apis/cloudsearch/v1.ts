@@ -3355,7 +3355,7 @@ export namespace cloudsearch_v1 {
      */
     matchRanges?: Schema$MatchRange[];
     /**
-     * The snippet of the document. The snippet of the document. May contain escaped HTML character that should be unescaped prior to rendering.
+     * The snippet of the document. May contain escaped HTML character that should be unescaped prior to rendering.
      */
     snippet?: string | null;
   }

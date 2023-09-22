@@ -632,7 +632,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20230914",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -723,6 +723,10 @@
         },
         "bucketName": {
           "description": "Required. S3 Bucket name (see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).",
+          "type": "string"
+        },
+        "cloudfrontDomain": {
+          "description": "Optional. Cloudfront domain name pointing to this bucket (as origin), to use when fetching. Format: `https://{id}.cloudfront.net` or any valid custom domain `https://...`",
           "type": "string"
         },
         "credentialsSecret": {

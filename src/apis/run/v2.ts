@@ -465,7 +465,7 @@ export namespace run_v2 {
      */
     port?: number | null;
     /**
-     * Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md). If this is not specified, the default behavior is defined by gRPC.
+     * Service is the name of the service to place in the gRPC HealthCheckRequest (see https://github.com/grpc/grpc/blob/master/doc/health-checking.md ). If this is not specified, the default behavior is defined by gRPC.
      */
     service?: string | null;
   }
@@ -664,6 +664,23 @@ export namespace run_v2 {
      * The resulting list of Tasks.
      */
     tasks?: Schema$GoogleCloudRunV2Task[];
+  }
+  /**
+   * Direct VPC egress settings.
+   */
+  export interface Schema$GoogleCloudRunV2NetworkInterface {
+    /**
+     * The VPC network that the Cloud Run resource will be able to send traffic to. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If network is not specified, it will be looked up from the subnetwork.
+     */
+    network?: string | null;
+    /**
+     * The VPC subnetwork that the Cloud Run resource will get IPs from. At least one of network or subnetwork must be specified. If both network and subnetwork are specified, the given VPC subnetwork must belong to the given VPC network. If subnetwork is not specified, the subnetwork with the same name with the network will be used.
+     */
+    subnetwork?: string | null;
+    /**
+     * Network tags applied to this Cloud Run resource.
+     */
+    tags?: string[] | null;
   }
   /**
    * Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
@@ -1175,6 +1192,10 @@ export namespace run_v2 {
      */
     satisfiesPzs?: boolean | null;
     /**
+     * Output only. Represents time when the task was scheduled to run by the system. It is not guaranteed to be set in happens-before order across separate operations.
+     */
+    scheduledTime?: string | null;
+    /**
      * Email address of the IAM service account associated with the Task of a Job. The service account represents the identity of the running task, and determines what permissions the task has. If not provided, the task will use the project's default service account.
      */
     serviceAccount?: string | null;
@@ -1360,17 +1381,21 @@ export namespace run_v2 {
     name?: string | null;
   }
   /**
-   * VPC Access settings. For more information on creating a VPC Connector, visit https://cloud.google.com/vpc/docs/configure-serverless-vpc-access For information on how to configure Cloud Run with an existing VPC Connector, visit https://cloud.google.com/run/docs/configuring/connecting-vpc
+   * VPC Access settings. For more information on sending traffic to a VPC network, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
    */
   export interface Schema$GoogleCloudRunV2VpcAccess {
     /**
-     * VPC Access connector name. Format: projects/{project\}/locations/{location\}/connectors/{connector\}, where {project\} can be project id or number.
+     * VPC Access connector name. Format: projects/{project\}/locations/{location\}/connectors/{connector\}, where {project\} can be project id or number. For more information on sending traffic to a VPC network via a connector, visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      */
     connector?: string | null;
     /**
      * Traffic VPC egress settings. If not provided, it defaults to PRIVATE_RANGES_ONLY.
      */
     egress?: string | null;
+    /**
+     * Direct VPC egress settings. Currently only single network interface is supported.
+     */
+    networkInterfaces?: Schema$GoogleCloudRunV2NetworkInterface[];
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.

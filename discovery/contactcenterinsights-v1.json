@@ -1384,7 +1384,7 @@
       }
     }
   },
-  "revision": "20230813",
+  "revision": "20230919",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -2751,7 +2751,7 @@
         },
         "gcsSource": {
           "$ref": "GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource",
-          "description": "A cloud storage bucket source."
+          "description": "A cloud storage bucket source. Note that any previously ingested objects from the source will be skipped to avoid duplication."
         },
         "parent": {
           "description": "Required. The parent resource for new conversations.",
@@ -4932,7 +4932,7 @@
         },
         "gcsSource": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource",
-          "description": "A cloud storage bucket source."
+          "description": "A cloud storage bucket source. Note that any previously ingested objects from the source will be skipped to avoid duplication."
         },
         "parent": {
           "description": "Required. The parent resource for new conversations.",

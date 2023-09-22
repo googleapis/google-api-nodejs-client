@@ -1813,7 +1813,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230918",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2347,7 +2347,8 @@
             "CLOUD_SPANNER",
             "CLOUD_BIGTABLE",
             "CLOUD_SQL",
-            "LOOKER"
+            "LOOKER",
+            "VERTEX_AI"
           ],
           "enumDescriptions": [
             "Default unknown system.",
@@ -2358,7 +2359,8 @@
             "Cloud Spanner",
             "Cloud Bigtable",
             "Cloud Sql",
-            "Looker"
+            "Looker",
+            "Vertex AI"
           ],
           "type": "string"
         }
@@ -2421,6 +2423,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1DatasetSpec": {
+      "description": "Specification that applies to a dataset. Valid only for entries with the `DATASET` type.",
+      "id": "GoogleCloudDatacatalogV1DatasetSpec",
+      "properties": {
+        "vertexDatasetSpec": {
+          "$ref": "GoogleCloudDatacatalogV1VertexDatasetSpec",
+          "description": "Vertex AI Dataset specific fields"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1DumpItem": {
       "description": "Wrapper for any item that can be contained in the dump.",
       "id": "GoogleCloudDatacatalogV1DumpItem",
@@ -2467,6 +2480,10 @@
           "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpec",
           "description": "Specification that applies to a table resource. Valid only for entries with the `TABLE` or `EXPLORE` type."
         },
+        "datasetSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DatasetSpec",
+          "description": "Specification that applies to a dataset."
+        },
         "description": {
           "description": "Entry description that can consist of several sentences or paragraphs that describe entry contents. The description must not contain Unicode non-characters as well as C0 and C1 control codes except tabs (HT), new lines (LF), carriage returns (CR), and page breaks (FF). The maximum size is 2000 bytes when encoded in UTF-8. Default value is an empty string.",
           "type": "string"
@@ -2498,7 +2515,8 @@
             "CLOUD_SPANNER",
             "CLOUD_BIGTABLE",
             "CLOUD_SQL",
-            "LOOKER"
+            "LOOKER",
+            "VERTEX_AI"
           ],
           "enumDescriptions": [
             "Default unknown system.",
@@ -2509,7 +2527,8 @@
             "Cloud Spanner",
             "Cloud Bigtable",
             "Cloud Sql",
-            "Looker"
+            "Looker",
+            "Vertex AI"
           ],
           "readOnly": true,
           "type": "string"
@@ -2528,6 +2547,10 @@
         "lookerSystemSpec": {
           "$ref": "GoogleCloudDatacatalogV1LookerSystemSpec",
           "description": "Specification that applies to Looker sysstem. Only settable when `user_specified_system` is equal to `LOOKER`"
+        },
+        "modelSpec": {
+          "$ref": "GoogleCloudDatacatalogV1ModelSpec",
+          "description": "Model specification."
         },
         "name": {
           "description": "Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.",
@@ -2756,6 +2779,17 @@
         "parentViewId": {
           "description": "ID of the parent View. Empty if it does not exist.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1ModelSpec": {
+      "description": "Specification that applies to a model. Valid only for entries with the `MODEL` type.",
+      "id": "GoogleCloudDatacatalogV1ModelSpec",
+      "properties": {
+        "vertexModelSpec": {
+          "$ref": "GoogleCloudDatacatalogV1VertexModelSpec",
+          "description": "Specification for vertex model resources."
         }
       },
       "type": "object"
@@ -3248,6 +3282,111 @@
           "description": "The number of failed attempts to use the underlying entry.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1VertexDatasetSpec": {
+      "description": "Specification for vertex dataset resources.",
+      "id": "GoogleCloudDatacatalogV1VertexDatasetSpec",
+      "properties": {
+        "dataItemCount": {
+          "description": "The number of DataItems in this Dataset. Only apply for non-structured Dataset.",
+          "format": "int64",
+          "type": "string"
+        },
+        "dataType": {
+          "description": "Type of the dataset.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "TABLE",
+            "IMAGE",
+            "TEXT",
+            "VIDEO",
+            "CONVERSATION",
+            "TIME_SERIES",
+            "DOCUMENT",
+            "TEXT_TO_SPEECH",
+            "TRANSLATION",
+            "STORE_VISION",
+            "ENTERPRISE_KNOWLEDGE_GRAPH",
+            "TEXT_PROMPT"
+          ],
+          "enumDescriptions": [
+            "Should not be used.",
+            "Structured data dataset.",
+            "Image dataset which supports ImageClassification, ImageObjectDetection and ImageSegmentation problems.",
+            "Document dataset which supports TextClassification, TextExtraction and TextSentiment problems.",
+            "Video dataset which supports VideoClassification, VideoObjectTracking and VideoActionRecognition problems.",
+            "Conversation dataset which supports conversation problems.",
+            "TimeSeries dataset.",
+            "Document dataset which supports DocumentAnnotation problems.",
+            "TextToSpeech dataset which supports TextToSpeech problems.",
+            "Translation dataset which supports Translation problems.",
+            "Store Vision dataset which is used for HITL integration.",
+            "Enterprise Knowledge Graph dataset which is used for HITL labeling integration.",
+            "Text prompt dataset which supports Large Language Models."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1VertexModelSourceInfo": {
+      "description": "Detail description of the source information of a Vertex model.",
+      "id": "GoogleCloudDatacatalogV1VertexModelSourceInfo",
+      "properties": {
+        "copy": {
+          "description": "If this Model is copy of another Model. If true then source_type pertains to the original.",
+          "type": "boolean"
+        },
+        "sourceType": {
+          "description": "Type of the model source.",
+          "enum": [
+            "MODEL_SOURCE_TYPE_UNSPECIFIED",
+            "AUTOML",
+            "CUSTOM",
+            "BQML",
+            "MODEL_GARDEN"
+          ],
+          "enumDescriptions": [
+            "Should not be used.",
+            "The Model is uploaded by automl training pipeline.",
+            "The Model is uploaded by user or custom training pipeline.",
+            "The Model is registered and sync'ed from BigQuery ML.",
+            "The Model is saved or tuned from Model Garden."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1VertexModelSpec": {
+      "description": "Specification for vertex model resources.",
+      "id": "GoogleCloudDatacatalogV1VertexModelSpec",
+      "properties": {
+        "containerImageUri": {
+          "description": "URI of the Docker image to be used as the custom container for serving predictions.",
+          "type": "string"
+        },
+        "versionAliases": {
+          "description": "User provided version aliases so that a model version can be referenced via alias",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "versionDescription": {
+          "description": "The description of this version.",
+          "type": "string"
+        },
+        "versionId": {
+          "description": "The version ID of the model.",
+          "type": "string"
+        },
+        "vertexModelSourceInfo": {
+          "$ref": "GoogleCloudDatacatalogV1VertexModelSourceInfo",
+          "description": "Source of a Vertex model."
         }
       },
       "type": "object"

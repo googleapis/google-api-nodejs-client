@@ -252,6 +252,25 @@
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/sasportal"
           ]
+        },
+        "setupSasAnalytics": {
+          "description": "Setups the a GCP Project to receive SAS Analytics messages via GCP Pub/Sub with a subscription to BigQuery. All the Pub/Sub topics and BigQuery tables are created automatically as part of this service.",
+          "flatPath": "v1alpha1/customers:setupSasAnalytics",
+          "httpMethod": "POST",
+          "id": "prod_tt_sasportal.customers.setupSasAnalytics",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha1/customers:setupSasAnalytics",
+          "request": {
+            "$ref": "SasPortalSetupSasAnalyticsRequest"
+          },
+          "response": {
+            "$ref": "SasPortalOperation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sasportal"
+          ]
         }
       },
       "resources": {
@@ -2618,7 +2637,7 @@
       }
     }
   },
-  "revision": "20230808",
+  "revision": "20230920",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -3555,6 +3574,24 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SasPortalSetupSasAnalyticsMetadata": {
+      "description": "Metadata returned by the long running operation for the SetupSasAnalytics rpc.",
+      "id": "SasPortalSetupSasAnalyticsMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "SasPortalSetupSasAnalyticsRequest": {
+      "description": "Request for the SetupSasAnalytics rpc.",
+      "id": "SasPortalSetupSasAnalyticsRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "SasPortalSetupSasAnalyticsResponse": {
+      "description": "Response returned by the long running operation for the SetupSasAnalytics rpc.",
+      "id": "SasPortalSetupSasAnalyticsResponse",
+      "properties": {},
       "type": "object"
     },
     "SasPortalSignDeviceRequest": {

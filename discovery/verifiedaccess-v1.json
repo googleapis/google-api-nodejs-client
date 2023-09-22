@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20230711",
+  "revision": "20230912",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Challenge": {
@@ -206,6 +206,10 @@
       "description": "Result message for VerifiedAccess.VerifyChallengeResponse.",
       "id": "VerifyChallengeResponseResult",
       "properties": {
+        "attestedDeviceId": {
+          "description": "Attested device id (ADID) of the device, read from the verified data.",
+          "type": "string"
+        },
         "deviceEnrollmentId": {
           "description": "Device enrollment id is returned in this field (for the machine response only).",
           "type": "string"

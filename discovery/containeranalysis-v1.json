@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20230811",
+  "revision": "20230915",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2735,7 +2735,7 @@
           "type": "array"
         },
         "buildStepOutputs": {
-          "description": "List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 4KB of data is stored.",
+          "description": "List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored.",
           "items": {
             "format": "byte",
             "type": "string"
@@ -2871,6 +2871,16 @@
           "description": "Output only. Hash(es) of the build source, which can be used to verify that the original source integrity was maintained in the build. Note that `FileHashes` will only be populated if `BuildOptions` has requested a `SourceProvenanceHash`. The keys to this map are file paths used as build source and the values contain the hash values for those files. If the build source came in a single package such as a gzipped tarfile (`.tar.gz`), the `FileHash` will be for the single path to that file.",
           "readOnly": true,
           "type": "object"
+        },
+        "resolvedConnectedRepository": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository",
+          "description": "Output only. A copy of the build's `source.connected_repository`, if exists, with any revisions resolved.",
+          "readOnly": true
+        },
+        "resolvedGitSource": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource",
+          "description": "Output only. A copy of the build's `source.git_source`, if exists, with any revisions resolved.",
+          "readOnly": true
         },
         "resolvedRepoSource": {
           "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource",
@@ -5481,6 +5491,10 @@
             "$ref": "Detail"
           },
           "type": "array"
+        },
+        "extraDetails": {
+          "description": "Occurrence-specific extra details about the vulnerability.",
+          "type": "string"
         },
         "severity": {
           "description": "The note provider assigned severity of this vulnerability.",

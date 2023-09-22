@@ -223,6 +223,36 @@ export namespace spanner_v1 {
     session?: Schema$Session[];
   }
   /**
+   * The request for BatchWrite.
+   */
+  export interface Schema$BatchWriteRequest {
+    /**
+     * Required. The groups of mutations to be applied.
+     */
+    mutationGroups?: Schema$MutationGroup[];
+    /**
+     * Common options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
+  }
+  /**
+   * The result of applying a batch of mutations.
+   */
+  export interface Schema$BatchWriteResponse {
+    /**
+     * The commit timestamp of the transaction that applied this batch. Present if `status` is `OK`, absent otherwise.
+     */
+    commitTimestamp?: string | null;
+    /**
+     * The mutation groups applied in this batch. The values index into the `mutation_groups` field in the corresponding `BatchWriteRequest`.
+     */
+    indexes?: number[] | null;
+    /**
+     * An `OK` status indicates success. Any other status indicates a failure.
+     */
+    status?: Schema$Status;
+  }
+  /**
    * The request for BeginTransaction.
    */
   export interface Schema$BeginTransactionRequest {
@@ -1343,6 +1373,15 @@ export namespace spanner_v1 {
     update?: Schema$Write;
   }
   /**
+   * A group of mutations to be committed together. Related mutations should be placed in a group. For example, two mutations inserting rows with the same primary key prefix in both parent and child tables are related.
+   */
+  export interface Schema$MutationGroup {
+    /**
+     * Required. The mutations in this group.
+     */
+    mutations?: Schema$Mutation[];
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -1363,7 +1402,7 @@ export namespace spanner_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -1549,7 +1588,7 @@ export namespace spanner_v1 {
     shortRepresentation?: Schema$ShortRepresentation;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -7643,6 +7682,97 @@ export namespace spanner_v1 {
     }
 
     /**
+     * Batches the supplied mutation groups in a collection of efficient transactions. All mutations in a group are committed atomically. However, mutations across groups can be committed non-atomically in an unspecified order and thus, they must be independent of each other. Partial failure is possible, i.e., some groups may have been committed successfully, while some may have failed. The results of individual batches are streamed into the response as the batches are applied. BatchWrite requests are not replay protected, meaning that each mutation group may be applied more than once. Replays of non-idempotent mutations may have undesirable effects. For example, replays of an insert mutation may produce an already exists error or result in additional rows if using generated or commit timestamp-based keys. We recommend structuring your mutation groups to be idempotent to avoid this issue.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchWrite(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchWrite(
+      params?: Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchWriteResponse>;
+    batchWrite(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchWrite(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite,
+      options: MethodOptions | BodyResponseCallback<Schema$BatchWriteResponse>,
+      callback: BodyResponseCallback<Schema$BatchWriteResponse>
+    ): void;
+    batchWrite(
+      params: Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite,
+      callback: BodyResponseCallback<Schema$BatchWriteResponse>
+    ): void;
+    batchWrite(callback: BodyResponseCallback<Schema$BatchWriteResponse>): void;
+    batchWrite(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite
+        | BodyResponseCallback<Schema$BatchWriteResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchWriteResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchWriteResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchWriteResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+session}:batchWrite').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['session'],
+        pathParams: ['session'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchWriteResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchWriteResponse>(parameters);
+      }
+    }
+
+    /**
      * Begins a new transaction. This step can often be skipped: Read, ExecuteSql and Commit can begin a new transaction as a side-effect.
      *
      * @param params - Parameters for request
@@ -8906,6 +9036,18 @@ export namespace spanner_v1 {
      * Request body metadata
      */
     requestBody?: Schema$BatchCreateSessionsRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Batchwrite
+    extends StandardParameters {
+    /**
+     * Required. The session in which the batch request is to be run.
+     */
+    session?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchWriteRequest;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction
     extends StandardParameters {

@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20230802",
+  "revision": "20230906",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -908,6 +908,11 @@
           "description": "Required. Unique name of the resource using the form: `projects/{project_id}/locations/global/connectivityTests/{test_id}`",
           "type": "string"
         },
+        "probingDetails": {
+          "$ref": "ProbingDetails",
+          "description": "Output only. The probing details of this test from the latest run, present for applicable tests only. The details are updated when creating a new test, updating an existing test, or triggering a one-time rerun of an existing test.",
+          "readOnly": true
+        },
         "protocol": {
           "description": "IP Protocol of the test. When not provided, \"TCP\" is assumed.",
           "type": "string"
@@ -956,7 +961,8 @@
             "CLOUD_SQL_INSTANCE",
             "PSC_PUBLISHED_SERVICE",
             "PSC_GOOGLE_API",
-            "PSC_VPC_SC"
+            "PSC_VPC_SC",
+            "SERVERLESS_NEG"
           ],
           "enumDescriptions": [
             "Target not specified.",
@@ -967,7 +973,8 @@
             "Target is a Cloud SQL instance.",
             "Target is a published service that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).",
             "Target is all Google APIs that use [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
-            "Target is a VPC-SC that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis)."
+            "Target is a VPC-SC that uses [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
+            "Target is a serverless network endpoint group."
           ],
           "type": "string"
         }
@@ -1073,6 +1080,17 @@
       },
       "type": "object"
     },
+    "EdgeLocation": {
+      "description": "Representation of a network edge location as per https://cloud.google.com/vpc/docs/edge-locations.",
+      "id": "EdgeLocation",
+      "properties": {
+        "metropolitanArea": {
+          "description": "Name of the metropolitan area.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -1103,6 +1121,25 @@
           "description": "A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Format: projects/{project}/global/forwardingRules/{id} or projects/{project}/regions/{region}/forwardingRules/{id}",
           "type": "string"
         },
+        "forwardingRuleTarget": {
+          "description": "Output only. Specifies the type of the target of the forwarding rule.",
+          "enum": [
+            "FORWARDING_RULE_TARGET_UNSPECIFIED",
+            "INSTANCE",
+            "LOAD_BALANCER",
+            "VPN_GATEWAY",
+            "PSC"
+          ],
+          "enumDescriptions": [
+            "Forwarding rule target is unknown.",
+            "Compute Engine instance for protocol forwarding.",
+            "Load Balancer. The specific type can be found from load_balancer_type.",
+            "Classic Cloud VPN Gateway.",
+            "Forwarding Rule is a Private Service Connect endpoint."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "gkeMasterCluster": {
           "description": "A cluster URI for [Google Kubernetes Engine master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).",
           "type": "string"
@@ -1112,7 +1149,43 @@
           "type": "string"
         },
         "ipAddress": {
-          "description": "The IP address of the endpoint, which can be an external or internal IP. An IPv6 address is only allowed when the test's destination is a [global load balancer VIP](/load-balancing/docs/load-balancing-overview).",
+          "description": "The IP address of the endpoint, which can be an external or internal IP. An IPv6 address is only allowed when the test's destination is a [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).",
+          "type": "string"
+        },
+        "loadBalancerId": {
+          "description": "Output only. ID of the load balancer the forwarding rule points to. Empty for forwarding rules not related to load balancers.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "loadBalancerType": {
+          "description": "Output only. Type of the load balancer the forwarding rule points to.",
+          "enum": [
+            "LOAD_BALANCER_TYPE_UNSPECIFIED",
+            "HTTPS_ADVANCED_LOAD_BALANCER",
+            "HTTPS_LOAD_BALANCER",
+            "REGIONAL_HTTPS_LOAD_BALANCER",
+            "INTERNAL_HTTPS_LOAD_BALANCER",
+            "SSL_PROXY_LOAD_BALANCER",
+            "TCP_PROXY_LOAD_BALANCER",
+            "INTERNAL_TCP_PROXY_LOAD_BALANCER",
+            "NETWORK_LOAD_BALANCER",
+            "LEGACY_NETWORK_LOAD_BALANCER",
+            "TCP_UDP_INTERNAL_LOAD_BALANCER"
+          ],
+          "enumDescriptions": [
+            "Forwarding rule points to a different target than a load balancer or a load balancer type is unknown.",
+            "Global external HTTP(S) load balancer.",
+            "Global external HTTP(S) load balancer (classic)",
+            "Regional external HTTP(S) load balancer.",
+            "Internal HTTP(S) load balancer.",
+            "External SSL proxy load balancer.",
+            "External TCP proxy load balancer.",
+            "Internal regional TCP proxy load balancer.",
+            "External TCP/UDP Network load balancer.",
+            "Target-pool based external TCP/UDP Network load balancer.",
+            "Internal TCP/UDP load balancer."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "network": {
@@ -1164,6 +1237,10 @@
         },
         "protocol": {
           "description": "IP protocol in string format, for example: \"TCP\", \"UDP\", \"ICMP\".",
+          "type": "string"
+        },
+        "sourceAgentUri": {
+          "description": "URI of the source telemetry agent this packet originates from.",
           "type": "string"
         },
         "sourceIp": {
@@ -1229,7 +1306,8 @@
             "VPC_FIREWALL_RULE",
             "IMPLIED_VPC_FIREWALL_RULE",
             "SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE",
-            "NETWORK_FIREWALL_POLICY_RULE"
+            "NETWORK_FIREWALL_POLICY_RULE",
+            "NETWORK_REGIONAL_FIREWALL_POLICY_RULE"
           ],
           "enumDescriptions": [
             "Unspecified type.",
@@ -1237,7 +1315,8 @@
             "VPC firewall rule. For details, see [VPC firewall rules overview](https://cloud.google.com/vpc/docs/firewalls).",
             "Implied VPC firewall rule. For details, see [Implied rules](https://cloud.google.com/vpc/docs/firewalls#default_firewall_rules).",
             "Implicit firewall rules that are managed by serverless VPC access to allow ingress access. They are not visible in the Google Cloud console. For details, see [VPC connector's implicit rules](https://cloud.google.com/functions/docs/networking/connecting-vpc#restrict-access).",
-            "Global network firewall policy rule. For details, see [Network firewall policies](https://cloud.google.com/vpc/docs/network-firewall-policies)."
+            "Global network firewall policy rule. For details, see [Network firewall policies](https://cloud.google.com/vpc/docs/network-firewall-policies).",
+            "Regional network firewall policy rule. For details, see [Regional network firewall policies](https://cloud.google.com/firewall/docs/regional-firewall-policies)."
           ],
           "type": "string"
         },
@@ -1436,6 +1515,37 @@
         "uri": {
           "description": "URI of a Compute Engine instance.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LatencyDistribution": {
+      "description": "Describes measured latency distribution.",
+      "id": "LatencyDistribution",
+      "properties": {
+        "latencyPercentiles": {
+          "description": "Representative latency percentiles.",
+          "items": {
+            "$ref": "LatencyPercentile"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LatencyPercentile": {
+      "description": "Latency percentile rank and value.",
+      "id": "LatencyPercentile",
+      "properties": {
+        "latencyMicros": {
+          "description": "percent-th percentile of latency observed, in microseconds. Fraction of percent/100 of samples have latency lower or equal to the value of this field.",
+          "format": "int64",
+          "type": "string"
+        },
+        "percent": {
+          "description": "Percentage of samples this data point applies to.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1754,6 +1864,76 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ProbingDetails": {
+      "description": "Results of active probing from the last run of the test.",
+      "id": "ProbingDetails",
+      "properties": {
+        "abortCause": {
+          "description": "The reason probing was aborted.",
+          "enum": [
+            "PROBING_ABORT_CAUSE_UNSPECIFIED",
+            "PERMISSION_DENIED",
+            "NO_SOURCE_LOCATION"
+          ],
+          "enumDescriptions": [
+            "No reason was specified.",
+            "The user lacks permission to access some of the network resources required to run the test.",
+            "No valid source endpoint could be derived from the request."
+          ],
+          "type": "string"
+        },
+        "destinationEgressLocation": {
+          "$ref": "EdgeLocation",
+          "description": "The EdgeLocation from which a packet destined for/originating from the internet will egress/ingress the Google network. This will only be populated for a connectivity test which has an internet destination/source address. The absence of this field *must not* be used as an indication that the destination/source is part of the Google network."
+        },
+        "endpointInfo": {
+          "$ref": "EndpointInfo",
+          "description": "The source and destination endpoints derived from the test input and used for active probing."
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "Details about an internal failure or the cancellation of active probing."
+        },
+        "probingLatency": {
+          "$ref": "LatencyDistribution",
+          "description": "Latency as measured by active probing in one direction: from the source to the destination endpoint."
+        },
+        "result": {
+          "description": "The overall result of active probing.",
+          "enum": [
+            "PROBING_RESULT_UNSPECIFIED",
+            "REACHABLE",
+            "UNREACHABLE",
+            "REACHABILITY_INCONSISTENT",
+            "UNDETERMINED"
+          ],
+          "enumDescriptions": [
+            "No result was specified.",
+            "At least 95% of packets reached the destination.",
+            "No packets reached the destination.",
+            "Less than 95% of packets reached the destination.",
+            "Reachability could not be determined. Possible reasons are: * The user lacks permission to access some of the network resources required to run the test. * No valid source endpoint could be derived from the request. * An internal error occurred."
+          ],
+          "type": "string"
+        },
+        "sentProbeCount": {
+          "description": "Number of probes sent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "successfulProbeCount": {
+          "description": "Number of probes that reached the destination.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "verifyTime": {
+          "description": "The time that reachability was assessed through active probing.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"

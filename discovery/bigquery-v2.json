@@ -1681,7 +1681,7 @@
       }
     }
   },
-  "revision": "20230805",
+  "revision": "20230812",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2817,6 +2817,10 @@
           "description": "[Output-only] A hash of the resource.",
           "type": "string"
         },
+        "externalDatasetReference": {
+          "$ref": "ExternalDatasetReference",
+          "description": "[Optional] Information about the external metadata storage where the dataset is defined. Filled out when the dataset type is EXTERNAL."
+        },
         "friendlyName": {
           "description": "[Optional] A descriptive name for the dataset.",
           "type": "string"
@@ -3486,6 +3490,20 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExternalDatasetReference": {
+      "id": "ExternalDatasetReference",
+      "properties": {
+        "connection": {
+          "description": "[Required] The connection id that is used to access the external_source. Format: projects/{project_id}/locations/{location_id}/connections/{connection_id}",
+          "type": "string"
+        },
+        "externalSource": {
+          "description": "[Required] External source that backs this dataset.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6895,6 +6913,16 @@
           "description": "[Optional] Precision (maximum number of total digits in base 10) and scale (maximum number of digits in the fractional part in base 10) constraints for values of this field for NUMERIC or BIGNUMERIC. It is invalid to set precision or scale if type ≠ \"NUMERIC\" and ≠ \"BIGNUMERIC\". If precision and scale are not specified, no value range constraint is imposed on this field insofar as values are permitted by the type. Values of this NUMERIC or BIGNUMERIC field must be in this range when: - Precision (P) and scale (S) are specified: [-10P-S + 10-S, 10P-S - 10-S] - Precision (P) is specified but not scale (and thus scale is interpreted to be equal to zero): [-10P + 1, 10P - 1]. Acceptable values for precision and scale if both are specified: - If type = \"NUMERIC\": 1 ≤ precision - scale ≤ 29 and 0 ≤ scale ≤ 9. - If type = \"BIGNUMERIC\": 1 ≤ precision - scale ≤ 38 and 0 ≤ scale ≤ 38. Acceptable values for precision if only precision is specified but not scale (and thus scale is interpreted to be equal to zero): - If type = \"NUMERIC\": 1 ≤ precision ≤ 29. - If type = \"BIGNUMERIC\": 1 ≤ precision ≤ 38. If scale is specified but not precision, then it is invalid.",
           "format": "int64",
           "type": "string"
+        },
+        "rangeElementType": {
+          "description": "Optional. The subtype of the RANGE, if the type of this field is RANGE. If the type is RANGE, this field is required. Possible values for the field element type of a RANGE include: - DATE - DATETIME - TIMESTAMP",
+          "properties": {
+            "type": {
+              "description": "The field element type of a RANGE",
+              "type": "string"
+            }
+          },
+          "type": "object"
         },
         "roundingMode": {
           "description": "Optional. Rounding Mode specification of the field. It only can be set on NUMERIC or BIGNUMERIC type fields.",

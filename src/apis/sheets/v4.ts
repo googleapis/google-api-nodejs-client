@@ -389,7 +389,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BandedRange {
     /**
-     * The id of the banded range.
+     * The ID of the banded range.
      */
     bandedRangeId?: number | null;
     /**
@@ -645,7 +645,7 @@ export namespace sheets_v4 {
      */
     colorStyle?: Schema$ColorStyle;
     /**
-     * Zero based index of the series data point.
+     * The zero-based index of the series data point.
      */
     index?: number | null;
     /**
@@ -895,7 +895,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BigQueryDataSourceSpec {
     /**
-     * The ID of a BigQuery enabled GCP project with a billing account attached. For any queries executed against the data source, the project is charged.
+     * The ID of a BigQuery enabled Google Cloud project with a billing account attached. For any queries executed against the data source, the project is charged.
      */
     projectId?: string | null;
     /**
@@ -917,7 +917,7 @@ export namespace sheets_v4 {
     rawQuery?: string | null;
   }
   /**
-   * Specifies a BigQuery table definition. Only [native tables](https://cloud.google.com/bigquery/docs/tables-intro) is allowed.
+   * Specifies a BigQuery table definition. Only [native tables](https://cloud.google.com/bigquery/docs/tables-intro) are allowed.
    */
   export interface Schema$BigQueryTableSpec {
     /**
@@ -955,7 +955,7 @@ export namespace sheets_v4 {
      */
     condition?: Schema$BooleanCondition;
     /**
-     * The format to apply. Conditional formatting can only apply a subset of formatting: bold, italic, strikethrough, foreground color & background color.
+     * The format to apply. Conditional formatting can only apply a subset of formatting: bold, italic, strikethrough, foreground color and, background color.
      */
     format?: Schema$CellFormat;
   }
@@ -1781,7 +1781,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$DataSourceRefreshMonthlySchedule {
     /**
-     * Days of the month to refresh. Only 1-28 are supported, mapping to the 1st to the 28th day. At lesat one day must be specified.
+     * Days of the month to refresh. Only 1-28 are supported, mapping to the 1st to the 28th day. At least one day must be specified.
      */
     daysOfMonth?: number[] | null;
     /**
@@ -1790,7 +1790,7 @@ export namespace sheets_v4 {
     startTime?: Schema$TimeOfDay;
   }
   /**
-   * Schedule for refreshing the data source. Data sources in the spreadsheet are refreshed within a time interval. You can specify the start time by clicking the Scheduled Refresh button in the Sheets editor, but the interval is fixed at 4 hours. For example, if you specify a start time of 8am , the refresh will take place between 8am and 12pm every day.
+   * Schedule for refreshing the data source. Data sources in the spreadsheet are refreshed within a time interval. You can specify the start time by clicking the Scheduled Refresh button in the Sheets editor, but the interval is fixed at 4 hours. For example, if you specify a start time of 8 AM , the refresh will take place between 8 AM and 12 PM every day.
    */
   export interface Schema$DataSourceRefreshSchedule {
     /**
@@ -2432,7 +2432,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$FilterSpec {
     /**
-     * The column index.
+     * The zero-based column index.
      */
     columnIndex?: number | null;
     /**
@@ -3099,7 +3099,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$PivotFilterSpec {
     /**
-     * The column offset of the source range.
+     * The zero-based column offset of the source range.
      */
     columnOffsetIndex?: number | null;
     /**
@@ -3328,7 +3328,7 @@ export namespace sheets_v4 {
      */
     unprotectedRanges?: Schema$GridRange[];
     /**
-     * True if this protected range will show a warning when editing. Warning-based protection means that every user can edit data in the protected range, except editing will prompt a warning asking the user to confirm the edit. When writing: if this field is true, then editors is ignored. Additionally, if this field is changed from true to false and the `editors` field is not set (nor included in the field mask), then the editors will be set to all the editors in the document.
+     * True if this protected range will show a warning when editing. Warning-based protection means that every user can edit data in the protected range, except editing will prompt a warning asking the user to confirm the edit. When writing: if this field is true, then editors are ignored. Additionally, if this field is changed from true to false and the `editors` field is not set (nor included in the field mask), then the editors will be set to all the editors in the document.
      */
     warningOnly?: boolean | null;
   }
@@ -3923,7 +3923,7 @@ export namespace sheets_v4 {
      */
     hidden?: boolean | null;
     /**
-     * The index of the sheet within the spreadsheet. When adding or updating sheet properties, if this field is excluded then the sheet is added or moved to the end of the sheet list. When updating sheet indices or inserting sheets, movement is considered in "before the move" indexes. For example, if there were 3 sheets (S1, S2, S3) in order to move S1 ahead of S2 the index would have to be set to 2. A sheet index update request is ignored if the requested index is identical to the sheets current index or if the requested new index is equal to the current sheet index + 1.
+     * The index of the sheet within the spreadsheet. When adding or updating sheet properties, if this field is excluded then the sheet is added or moved to the end of the sheet list. When updating sheet indices or inserting sheets, movement is considered in "before the move" indexes. For example, if there were three sheets (S1, S2, S3) in order to move S1 ahead of S2 the index would have to be set to 2. A sheet index update request is ignored if the requested index is identical to the sheets current index or if the requested new index is equal to the current sheet index + 1.
      */
     index?: number | null;
     /**
@@ -3985,7 +3985,7 @@ export namespace sheets_v4 {
      */
     backgroundColorStyle?: Schema$ColorStyle;
     /**
-     * The column index in the data table on which the filter is applied to.
+     * The zero-based column index in the data table on which the filter is applied to.
      */
     columnIndex?: number | null;
     /**
@@ -4841,7 +4841,7 @@ export namespace sheets_v4 {
      */
     label?: string | null;
     /**
-     * The 0-based index of a data point within the series. If data_is_subtotal is true, the data point at this index is the subtotal. Otherwise, the subtotal appears after the data point with this index. A series can have multiple subtotals at arbitrary indices, but subtotals do not affect the indices of the data points. For example, if a series has three data points, their indices will always be 0, 1, and 2, regardless of how many subtotals exist on the series or what data points they are associated with.
+     * The zero-based index of a data point within the series. If data_is_subtotal is true, the data point at this index is the subtotal. Otherwise, the subtotal appears after the data point with this index. A series can have multiple subtotals at arbitrary indices, but subtotals do not affect the indices of the data points. For example, if a series has three data points, their indices will always be 0, 1, and 2, regardless of how many subtotals exist on the series or what data points they are associated with.
      */
     subtotalIndex?: number | null;
   }

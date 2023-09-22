@@ -602,6 +602,21 @@ export namespace androiddeviceprovisioning_v1 {
     totalSize?: number | null;
   }
   /**
+   * Request to get a device's SIM lock status.
+   */
+  export interface Schema$GetDeviceSimLockStateRequest {
+    /**
+     * Required. Required. The device identifier to search for.
+     */
+    deviceIdentifier?: Schema$DeviceIdentifier;
+  }
+  /**
+   * Response containing a device's SimLock state.
+   */
+  export interface Schema$GetDeviceSimLockStateResponse {
+    simLockState?: string | null;
+  }
+  /**
    * A Google Workspace customer.
    */
   export interface Schema$GoogleWorkspaceAccount {
@@ -2892,6 +2907,102 @@ export namespace androiddeviceprovisioning_v1 {
     }
 
     /**
+     * Gets a device's SIM lock state.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSimLockState(
+      params: Params$Resource$Partners$Devices$Getsimlockstate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSimLockState(
+      params?: Params$Resource$Partners$Devices$Getsimlockstate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetDeviceSimLockStateResponse>;
+    getSimLockState(
+      params: Params$Resource$Partners$Devices$Getsimlockstate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSimLockState(
+      params: Params$Resource$Partners$Devices$Getsimlockstate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetDeviceSimLockStateResponse>,
+      callback: BodyResponseCallback<Schema$GetDeviceSimLockStateResponse>
+    ): void;
+    getSimLockState(
+      params: Params$Resource$Partners$Devices$Getsimlockstate,
+      callback: BodyResponseCallback<Schema$GetDeviceSimLockStateResponse>
+    ): void;
+    getSimLockState(
+      callback: BodyResponseCallback<Schema$GetDeviceSimLockStateResponse>
+    ): void;
+    getSimLockState(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Devices$Getsimlockstate
+        | BodyResponseCallback<Schema$GetDeviceSimLockStateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetDeviceSimLockStateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetDeviceSimLockStateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetDeviceSimLockStateResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Devices$Getsimlockstate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Devices$Getsimlockstate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androiddeviceprovisioning.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/partners/{+partnerId}/devices:getSimLockState'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId'],
+        pathParams: ['partnerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetDeviceSimLockStateResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetDeviceSimLockStateResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates reseller metadata associated with the device. Android devices only.
      *
      * @param params - Parameters for request
@@ -3295,6 +3406,18 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The device API resource name in the format `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Partners$Devices$Getsimlockstate
+    extends StandardParameters {
+    /**
+     * Required. The ID of the partner.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetDeviceSimLockStateRequest;
   }
   export interface Params$Resource$Partners$Devices$Metadata
     extends StandardParameters {

@@ -4361,7 +4361,7 @@ export namespace certificatemanager_v1 {
      */
     parent?: string;
     /**
-     * Required. A user-provided name of the TrustConfig.
+     * Required. A user-provided name of the TrustConfig. Must match the regexp `[a-z0-9-]{1,63\}`.
      */
     trustConfigId?: string;
 

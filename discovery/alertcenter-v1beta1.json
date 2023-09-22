@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20230424",
+  "revision": "20230918",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -455,6 +455,62 @@
             "Variation displayed for Limited Disable alerts, when a Google service is disabled for a user, totally or partially, due to the user's abusive behavior."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccessApproval": {
+      "description": "Alert that is triggered when Google support requests to access customer data.",
+      "id": "AccessApproval",
+      "properties": {
+        "justificationReason": {
+          "description": "Justification for data access based on justification enums.",
+          "items": {
+            "enum": [
+              "JUSTIFICATION_UNSPECIFIED",
+              "CUSTOMER_INITIATED_SUPPORT",
+              "GOOGLE_INITIATED_REVIEW",
+              "GOOGLE_INITIATED_SERVICE",
+              "THIRD_PARTY_DATA_REQUEST",
+              "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT"
+            ],
+            "enumDescriptions": [
+              "Justification unspecified",
+              "Customer Initiated Support",
+              "Google Initiated Review",
+              "Google Initiated Service",
+              "Third Party Data Request",
+              "Google Response to Production Alert"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "officeLocation": {
+          "description": "Office location of Google staff requesting access such as \"US\".",
+          "type": "string"
+        },
+        "products": {
+          "description": "Products within scope of the Access Approvals request.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requestId": {
+          "description": "ID of the Access Approvals request. This is a helpful field when requesting support from Google.",
+          "type": "string"
+        },
+        "scope": {
+          "description": "Scope of access, also known as a resource. This is further narrowed down by the product field.",
+          "type": "string"
+        },
+        "tickets": {
+          "description": "Support tickets related to this Access Approvals request. Populated if there is an associated case number.",
+          "items": {
+            "$ref": "SupportTicket"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1811,6 +1867,21 @@
       "properties": {
         "userEmail": {
           "description": "email of person whose password was reset",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SupportTicket": {
+      "description": "Support ticket related to Access Approvals request",
+      "id": "SupportTicket",
+      "properties": {
+        "ticketId": {
+          "description": "Support ticket ID",
+          "type": "string"
+        },
+        "ticketUrl": {
+          "description": "Link to support ticket",
           "type": "string"
         }
       },

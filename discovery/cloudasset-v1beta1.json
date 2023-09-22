@@ -411,7 +411,7 @@
       }
     }
   },
-  "revision": "20230805",
+  "revision": "20230916",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AnalyzeIamPolicyLongrunningMetadata": {
@@ -936,7 +936,7 @@
           "type": "string"
         },
         "scopes": {
-          "description": "The scopes of a policy define which resources an ACM policy can restrict, and where ACM resources can be referenced. For example, a policy with scopes=[\"folders/123\"] has the following behavior: - vpcsc perimeters can only restrict projects within folders/123 - access levels can only be referenced by resources within folders/123. If empty, there are no limitations on which resources can be restricted by an ACM policy, and there are no limitations on where ACM resources can be referenced. Only one policy can include a given scope (attempting to create a second policy which includes \"folders/123\" will result in an error). Currently, scopes cannot be modified after a policy is created. Currently, policies can only have a single scope. Format: list of `folders/{folder_number}` or `projects/{project_number}`",
+          "description": "The scopes of the AccessPolicy. Scopes define which resources a policy can restrict and where its resources can be referenced. For example, policy A with `scopes=[\"folders/123\"]` has the following behavior: - ServicePerimeter can only restrict projects within `folders/123`. - ServicePerimeter within policy A can only reference access levels defined within policy A. - Only one policy can include a given scope; thus, attempting to create a second policy which includes `folders/123` will result in an error. If no scopes are provided, then any resource within the organization can be restricted. Scopes cannot be modified after a policy is created. Policies can only have a single scope. Format: list of `folders/{folder_number}` or `projects/{project_number}`",
           "items": {
             "type": "string"
           },
@@ -1030,6 +1030,13 @@
           "description": "A list of other access levels defined in the same `Policy`, referenced by resource name. Referencing an `AccessLevel` which does not exist is an error. All access levels listed must be granted for the Condition to be true. Example: \"`accessPolicies/MY_POLICY/accessLevels/LEVEL_NAME\"`",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "vpcNetworkSources": {
+          "description": "The request must originate from one of the provided VPC networks in Google Cloud. Cannot specify this field together with `ip_subnetworks`.",
+          "items": {
+            "$ref": "GoogleIdentityAccesscontextmanagerV1VpcNetworkSource"
           },
           "type": "array"
         }
@@ -1137,6 +1144,27 @@
             "Authorize access from all service accounts outside the perimeter."
           ],
           "type": "string"
+        },
+        "sourceRestriction": {
+          "description": "Whether to enforce traffic restrictions based on `sources` field. If the `sources` fields is non-empty, then this field must be set to `SOURCE_RESTRICTION_ENABLED`.",
+          "enum": [
+            "SOURCE_RESTRICTION_UNSPECIFIED",
+            "SOURCE_RESTRICTION_ENABLED",
+            "SOURCE_RESTRICTION_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Enforcement preference unspecified, will not enforce traffic restrictions based on `sources` in EgressFrom.",
+            "Enforcement preference enabled, traffic restrictions will be enforced based on `sources` in EgressFrom.",
+            "Enforcement preference disabled, will not enforce traffic restrictions based on `sources` in EgressFrom."
+          ],
+          "type": "string"
+        },
+        "sources": {
+          "description": "Sources that this EgressPolicy authorizes access from. If this field is not empty, then `source_restriction` must be set to `SOURCE_RESTRICTION_ENABLED`.",
+          "items": {
+            "$ref": "GoogleIdentityAccesscontextmanagerV1EgressSource"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1152,6 +1180,17 @@
         "egressTo": {
           "$ref": "GoogleIdentityAccesscontextmanagerV1EgressTo",
           "description": "Defines the conditions on the ApiOperation and destination resources that cause this EgressPolicy to apply."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIdentityAccesscontextmanagerV1EgressSource": {
+      "description": "The source that EgressPolicy authorizes access from inside the ServicePerimeter to somewhere outside the ServicePerimeter boundaries.",
+      "id": "GoogleIdentityAccesscontextmanagerV1EgressSource",
+      "properties": {
+        "accessLevel": {
+          "description": "An AccessLevel resource name that allows protected resources inside the ServicePerimeters to access outside the ServicePerimeter boundaries. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If an AccessLevel name is not specified, only resources within the perimeter can be accessed through Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all EgressSources will be allowed.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1427,6 +1466,35 @@
         "enableRestriction": {
           "description": "Whether to restrict API calls within the Service Perimeter to the list of APIs specified in 'allowed_services'.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIdentityAccesscontextmanagerV1VpcNetworkSource": {
+      "description": "The originating network source in Google Cloud.",
+      "id": "GoogleIdentityAccesscontextmanagerV1VpcNetworkSource",
+      "properties": {
+        "vpcSubnetwork": {
+          "$ref": "GoogleIdentityAccesscontextmanagerV1VpcSubNetwork",
+          "description": "Sub-segment ranges of a VPC network."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleIdentityAccesscontextmanagerV1VpcSubNetwork": {
+      "description": "Sub-segment ranges inside of a VPC Network.",
+      "id": "GoogleIdentityAccesscontextmanagerV1VpcSubNetwork",
+      "properties": {
+        "network": {
+          "description": "Required. Network name. If the network is not part of the organization, the `compute.network.get` permission must be granted to the caller. Format: `//compute.googleapis.com/projects/{PROJECT_ID}/global/networks/{NETWORK_NAME}` Example: `//compute.googleapis.com/projects/my-project/global/networks/network-1`",
+          "type": "string"
+        },
+        "vpcIpSubnetworks": {
+          "description": "CIDR block IP subnetwork specification. The IP address must be an IPv4 address and can be a public or private IP address. Note that for a CIDR IP address block, the specified IP address portion must be properly truncated (i.e. all the host bits must be zero) or the input is considered malformed. For example, \"192.0.2.0/24\" is accepted but \"192.0.2.1/24\" is not. If empty, all IP addresses are allowed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

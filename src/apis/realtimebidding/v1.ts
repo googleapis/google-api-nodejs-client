@@ -630,11 +630,11 @@ export namespace realtimebidding_v1 {
     url?: string | null;
   }
   /**
-   * Response for a request to get remarketing tag.
+   * Deprecated. This will be removed in October 2023. For more information, see the release notes: https://developers.google.com/authorized-buyers/apis/relnotes#real-time-bidding-api Response for a request to get remarketing tag.
    */
   export interface Schema$GetRemarketingTagResponse {
     /**
-     * A HTML tag that can be placed on the advertiser's page to add users to a user list. For more information and code samples on using snippet on your website refer to [Tag your site for remarketing]( https://support.google.com/google-ads/answer/2476688).
+     * An HTML tag that can be placed on the advertiser's page to add users to a user list. For more information and code samples on using snippets on your website, refer to [Tag your site for remarketing](https://support.google.com/google-ads/answer/2476688).
      */
     snippet?: string | null;
   }
@@ -777,7 +777,7 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$ListUserListsResponse {
     /**
-     * The continuation page token to send back to the server in a subsequent request. Due to a currently known issue, it is recommended that the caller keep invoking the list method till the time a next page token is not returned (even if the result set is empty).
+     * The continuation page token to send back to the server in a subsequent request. Due to a currently known issue, it is recommended that the caller keep invoking the list method until the time a next page token is not returned, even if the result set is empty.
      */
     nextPageToken?: string | null;
     /**
@@ -1119,7 +1119,7 @@ export namespace realtimebidding_v1 {
     normalizedUrl?: string | null;
   }
   /**
-   * Represents the URL restriction (for the URL captured by the pixel callback) for a user list.
+   * Deprecated. This will be removed in October 2023. For more information, see the release notes: https://developers.google.com/authorized-buyers/apis/relnotes#real-time-bidding-api Represents the URL restriction (for the URL captured by the pixel callback) for a user list.
    */
   export interface Schema$UrlRestriction {
     /**
@@ -1164,7 +1164,7 @@ export namespace realtimebidding_v1 {
      */
     status?: string | null;
     /**
-     * Required. The URL restriction for the user list.
+     * Required. Deprecated. This will be removed in October 2023. For more information, see the release notes: https://developers.google.com/authorized-buyers/apis/relnotes#real-time-bidding-api The URL restriction for the user list.
      */
     urlRestriction?: Schema$UrlRestriction;
   }
@@ -3862,7 +3862,7 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
+     * Deprecated. This will be removed in October 2023. For more information, see the release notes: https://developers.google.com/authorized-buyers/apis/relnotes#real-time-bidding-api Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4053,7 +4053,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Getremarketingtag
     extends StandardParameters {
     /**
-     * Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId\}` where `{accountId\}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
+     * Required. To fetch the remarketing tag for an account, the name must follow the pattern `buyers/{accountId\}`, where `{accountId\}` represents the ID of the buyer that owns the remarketing tag. For a bidder accessing the remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch the remarketing tag for a specific user list, the name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
      */
     name?: string;
   }
@@ -4496,7 +4496,7 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * Change the status of a user list to CLOSED. This prevents new users from being added to the user list.
+     * Changes the status of a user list to CLOSED. This prevents new users from being added to the user list.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4581,7 +4581,7 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * Create a new user list.
+     * Creates a new user list.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4754,7 +4754,7 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
+     * Deprecated. This will be removed in October 2023. For more information, see the release notes: https://developers.google.com/authorized-buyers/apis/relnotes#real-time-bidding-api Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4942,7 +4942,7 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * Change the status of a user list to OPEN. This allows new users to be added to the user list.
+     * Changes the status of a user list to OPEN. This allows new users to be added to the user list.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5027,7 +5027,7 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * Update the given user list. Only user lists with URLRestrictions can be updated.
+     * Updates the given user list. Only user lists with URLRestrictions can be updated.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5127,7 +5127,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Userlists$Create
     extends StandardParameters {
     /**
-     * Required. The name of the parent buyer of the user list to be retrieved that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId\}` should represent the account ID of the child seat buyer.
+     * Required. The name of the parent buyer of the user list to be retrieved, which must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyerAccountId\}` should represent the account ID of the child seat buyer.
      */
     parent?: string;
 
@@ -5146,7 +5146,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Userlists$Getremarketingtag
     extends StandardParameters {
     /**
-     * Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId\}` where `{accountId\}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
+     * Required. To fetch the remarketing tag for an account, the name must follow the pattern `buyers/{accountId\}`, where `{accountId\}` represents the ID of the buyer that owns the remarketing tag. For a bidder accessing the remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch the remarketing tag for a specific user list, the name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
      */
     name?: string;
   }
@@ -5157,7 +5157,7 @@ export namespace realtimebidding_v1 {
      */
     pageSize?: number;
     /**
-     * Continuation page token (as received from a previous response).
+     * Continuation page token as received from a previous response.
      */
     pageToken?: string;
     /**

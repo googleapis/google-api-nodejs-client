@@ -1042,7 +1042,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230914",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -1072,7 +1072,12 @@
       "description": "The status of individual documents in the auto-labeling process.",
       "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus",
       "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the auto-labeled document. This will replace the gcs_uri."
+        },
         "gcsUri": {
+          "deprecated": true,
           "description": "The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.",
           "type": "string"
         },
@@ -1205,6 +1210,44 @@
     "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse": {
       "description": "Response of the batch move documents operation.",
       "id": "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata": {
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long-running operation."
+        },
+        "individualBatchUpdateStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus": {
+      "description": "The status of each individual document in the batch update process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus",
+      "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the document."
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of updating the document in storage."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse": {
+      "description": "Response of the batch update documents operation.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse",
       "properties": {},
       "type": "object"
     },
@@ -3987,7 +4030,11 @@
         },
         "computeStyleInfo": {
           "deprecated": true,
-          "description": "Turn on font id model and returns font style information. Use PremiumFeatures.compute_style_info instead.",
+          "description": "Turn on font identification model and return font style information. Deprecated, use PremiumFeatures.compute_style_info instead.",
+          "type": "boolean"
+        },
+        "disableCharacterBoxesDetection": {
+          "description": "Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0+ processors.",
           "type": "boolean"
         },
         "enableImageQualityScores": {
@@ -4005,6 +4052,10 @@
         "hints": {
           "$ref": "GoogleCloudDocumentaiV1OcrConfigHints",
           "description": "Hints for the OCR model."
+        },
+        "premiumFeatures": {
+          "$ref": "GoogleCloudDocumentaiV1OcrConfigPremiumFeatures",
+          "description": "Configurations for premium OCR features."
         }
       },
       "type": "object"
@@ -4023,13 +4074,61 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1OcrConfigPremiumFeatures": {
+      "description": "Configurations for premium OCR features.",
+      "id": "GoogleCloudDocumentaiV1OcrConfigPremiumFeatures",
+      "properties": {
+        "computeStyleInfo": {
+          "description": "Turn on font identification model and return font style information.",
+          "type": "boolean"
+        },
+        "enableMathOcr": {
+          "description": "Turn on the model that can extract LaTeX math formulas.",
+          "type": "boolean"
+        },
+        "enableSelectionMarkDetection": {
+          "description": "Turn on selection mark detector in OCR engine. Only available in OCR 2.0+ processors.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1ProcessOptions": {
       "description": "Options for Process API",
       "id": "GoogleCloudDocumentaiV1ProcessOptions",
       "properties": {
+        "fromEnd": {
+          "description": "Only process certain pages from the end, same as above.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "fromStart": {
+          "description": "Only process certain pages from the start, process all if the document has less pages.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "individualPageSelector": {
+          "$ref": "GoogleCloudDocumentaiV1ProcessOptionsIndividualPageSelector",
+          "description": "Which pages to process (1-indexed)."
+        },
         "ocrConfig": {
           "$ref": "GoogleCloudDocumentaiV1OcrConfig",
           "description": "Only applicable to `OCR_PROCESSOR`. Returns error if set on other processor types."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1ProcessOptionsIndividualPageSelector": {
+      "description": "A list of individual page numbers.",
+      "id": "GoogleCloudDocumentaiV1ProcessOptionsIndividualPageSelector",
+      "properties": {
+        "pages": {
+          "description": "Optional. Indices of the pages (starting from 1).",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4336,7 +4435,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `}`,`'`, `\\\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID will be generated.",
+          "description": "The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `}`,`'`, `\\\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID is generated.",
           "type": "string"
         },
         "mimeType": {
@@ -7571,7 +7670,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3Dataset": {
-      "description": "A singleton resource under a Processor which configures a collection of documents.",
+      "description": "A singleton resource under a Processor which configures a collection of documents. Next Id: 8.",
       "id": "GoogleCloudDocumentaiV1beta3Dataset",
       "properties": {
         "documentWarehouseConfig": {

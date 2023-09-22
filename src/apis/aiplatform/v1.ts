@@ -332,6 +332,36 @@ export namespace aiplatform_v1 {
     uri?: string | null;
   }
   /**
+   * Metadata information for NotebookService.AssignNotebookRuntime.
+   */
+  export interface Schema$GoogleCloudAiplatformV1AssignNotebookRuntimeOperationMetadata {
+    /**
+     * The operation generic information.
+     */
+    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
+    /**
+     * A human-readable message that shows the intermediate progress details of NotebookRuntime.
+     */
+    progressMessage?: string | null;
+  }
+  /**
+   * Request message for NotebookService.AssignNotebookRuntime.
+   */
+  export interface Schema$GoogleCloudAiplatformV1AssignNotebookRuntimeRequest {
+    /**
+     * Required. Provide runtime specific information (e.g. runtime owner, notebook id) used for NotebookRuntime assignment.
+     */
+    notebookRuntime?: Schema$GoogleCloudAiplatformV1NotebookRuntime;
+    /**
+     * Optional. User specified ID for the notebook runtime.
+     */
+    notebookRuntimeId?: string | null;
+    /**
+     * Required. The resource name of the NotebookRuntimeTemplate based on which a NotebookRuntime will be assigned (reuse or create a new one).
+     */
+    notebookRuntimeTemplate?: string | null;
+  }
+  /**
    * Attribution that explains a particular prediction output.
    */
   export interface Schema$GoogleCloudAiplatformV1Attribution {
@@ -1129,7 +1159,7 @@ export namespace aiplatform_v1 {
     genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
   }
   /**
-   * Request message for FeaturestoreService.CreateFeature and FeatureRegistryService.CreateFeature.
+   * Request message for FeaturestoreService.CreateFeature.
    */
   export interface Schema$GoogleCloudAiplatformV1CreateFeatureRequest {
     /**
@@ -1137,11 +1167,11 @@ export namespace aiplatform_v1 {
      */
     feature?: Schema$GoogleCloudAiplatformV1Feature;
     /**
-     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.
+     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .
      */
     featureId?: string | null;
     /**
-     * Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     * Required. The resource name of the EntityType to create a Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
      */
     parent?: string | null;
   }
@@ -1186,6 +1216,15 @@ export namespace aiplatform_v1 {
     genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
   }
   /**
+   * Metadata information for NotebookService.CreateNotebookRuntimeTemplate.
+   */
+  export interface Schema$GoogleCloudAiplatformV1CreateNotebookRuntimeTemplateOperationMetadata {
+    /**
+     * The operation generic information.
+     */
+    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
+  }
+  /**
    * Request message for PipelineService.CreatePipelineJob.
    */
   export interface Schema$GoogleCloudAiplatformV1CreatePipelineJobRequest {
@@ -1198,7 +1237,7 @@ export namespace aiplatform_v1 {
      */
     pipelineJob?: Schema$GoogleCloudAiplatformV1PipelineJob;
     /**
-     * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are /a-z-/.
+     * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.
      */
     pipelineJobId?: string | null;
   }
@@ -1233,7 +1272,7 @@ export namespace aiplatform_v1 {
      */
     tensorboardRun?: Schema$GoogleCloudAiplatformV1TensorboardRun;
     /**
-     * Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.
      */
     tensorboardRunId?: string | null;
   }
@@ -1733,7 +1772,7 @@ export namespace aiplatform_v1 {
      */
     privateEndpoints?: Schema$GoogleCloudAiplatformV1IndexPrivateEndpoints;
     /**
-     * Optional. A list of reserved ip ranges under the VPC network that can be used for this DeployedIndex. If set, we will deploy the index within the provided ip ranges. Otherwise, the index might be deployed to any ip ranges under the provided VPC network. The value should be the name of the address (https://cloud.google.com/compute/docs/reference/rest/v1/addresses) Example: 'vertex-ai-ip-range'.
+     * Optional. A list of reserved ip ranges under the VPC network that can be used for this DeployedIndex. If set, we will deploy the index within the provided ip ranges. Otherwise, the index might be deployed to any ip ranges under the provided VPC network. The value should be the name of the address (https://cloud.google.com/compute/docs/reference/rest/v1/addresses) Example: ['vertex-ai-ip-range']. For more information about subnets and network IP ranges, please see https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.
      */
     reservedIpRanges?: string[] | null;
   }
@@ -1805,7 +1844,7 @@ export namespace aiplatform_v1 {
      */
     explanationSpec?: Schema$GoogleCloudAiplatformV1ExplanationSpec;
     /**
-     * Immutable. The ID of the DeployedModel. If not provided upon deployment, Vertex AI will generate a value for this ID. This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * Immutable. The ID of the DeployedModel. If not provided upon deployment, Vertex AI will generate a value for this ID. This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      */
     id?: string | null;
     /**
@@ -2832,13 +2871,9 @@ export namespace aiplatform_v1 {
      */
     updateTime?: string | null;
     /**
-     * Required. Immutable. Type of Feature value.
+     * Immutable. Type of Feature value.
      */
     valueType?: string | null;
-    /**
-     * The labels with user-defined metadata to organize your versions. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.
-     */
-    versionLabels?: {[key: string]: string} | null;
   }
   /**
    * A list of historical SnapshotAnalysis or ImportFeaturesAnalysis stats requested by user, sorted by FeatureStatsAnomaly.start_time descending.
@@ -3528,6 +3563,10 @@ export namespace aiplatform_v1 {
      */
     displayName?: string | null;
     /**
+     * Immutable. Customer-managed encryption key spec for an Index. If set, this Index and all sub-resources of this Index will be secured by this key.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
+    /**
      * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
@@ -3577,7 +3616,7 @@ export namespace aiplatform_v1 {
      */
     featureVector?: number[] | null;
     /**
-     * Optional. List of Restrict of the datapoint, used to perform "restricted searches" where boolean rule are used to filter the subset of the database eligible for matching. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
+     * Optional. List of Restrict of the datapoint, used to perform "restricted searches" where boolean rule are used to filter the subset of the database eligible for matching. This uses categorical tokens. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      */
     restricts?: Schema$GoogleCloudAiplatformV1IndexDatapointRestriction[];
   }
@@ -3595,15 +3634,15 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1IndexDatapointRestriction {
     /**
-     * The attributes to allow in this namespace. eg: 'red'
+     * The attributes to allow in this namespace. e.g.: 'red'
      */
     allowList?: string[] | null;
     /**
-     * The attributes to deny in this namespace. eg: 'blue'
+     * The attributes to deny in this namespace. e.g.: 'blue'
      */
     denyList?: string[] | null;
     /**
-     * The namespace of this restriction. eg: color.
+     * The namespace of this restriction. e.g.: color.
      */
     namespace?: string | null;
   }
@@ -3631,6 +3670,10 @@ export namespace aiplatform_v1 {
      * Optional. Deprecated: If true, expose the IndexEndpoint via private service connect. Only one of the fields, network or enable_private_service_connect, can be set.
      */
     enablePrivateServiceConnect?: boolean | null;
+    /**
+     * Immutable. Customer-managed encryption key spec for an IndexEndpoint. If set, this IndexEndpoint and all sub-resources of this IndexEndpoint will be secured by this key.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
     /**
      * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
@@ -3939,7 +3982,7 @@ export namespace aiplatform_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Response message for FeaturestoreService.ListFeatures. Response message for FeatureRegistryService.ListFeatures.
+   * Response message for FeaturestoreService.ListFeatures.
    */
   export interface Schema$GoogleCloudAiplatformV1ListFeaturesResponse {
     /**
@@ -4119,6 +4162,32 @@ export namespace aiplatform_v1 {
      * A token to retrieve the next page of results. Pass to ListNasTrialDetailsRequest.page_token to obtain that page.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for NotebookService.ListNotebookRuntimes.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse {
+    /**
+     * A token to retrieve next page of results. Pass to ListNotebookRuntimesRequest.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of NotebookRuntimes in the requested page.
+     */
+    notebookRuntimes?: Schema$GoogleCloudAiplatformV1NotebookRuntime[];
+  }
+  /**
+   * Response message for NotebookService.ListNotebookRuntimeTemplates.
+   */
+  export interface Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse {
+    /**
+     * A token to retrieve next page of results. Pass to ListNotebookRuntimeTemplatesRequest.page_token to obtain that page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of NotebookRuntimeTemplates in the requested page.
+     */
+    notebookRuntimeTemplates?: Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate[];
   }
   /**
    * Request message for VizierService.ListOptimalTrials.
@@ -5651,6 +5720,23 @@ export namespace aiplatform_v1 {
     neighborId?: string | null;
   }
   /**
+   * Network spec.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NetworkSpec {
+    /**
+     * Whether to enable public internet access. Default false.
+     */
+    enableInternetAccess?: boolean | null;
+    /**
+     * The full name of the Google Compute Engine [network](https://cloud.google.com//compute/docs/networks-and-firewalls#networks)
+     */
+    network?: string | null;
+    /**
+     * The name of the subnet that this instance is in. Format: `projects/{project_id_or_number\}/regions/{region\}/subnetworks/{subnetwork_id\}`
+     */
+    subnetwork?: string | null;
+  }
+  /**
    * Represents a mount configuration for Network File System (NFS) to mount.
    */
   export interface Schema$GoogleCloudAiplatformV1NfsMount {
@@ -5668,6 +5754,163 @@ export namespace aiplatform_v1 {
     server?: string | null;
   }
   /**
+   * The euc configuration of NotebookRuntimeTemplate.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NotebookEucConfig {
+    /**
+     * Output only. Whether ActAs check is bypassed for service account attached to the VM. If false, we need ActAs check for the default Compute Engine Service account. When a Runtime is created, a VM is allocated using Default Compute Engine Service Account. Any user requesting to use this Runtime requires Service Account User (ActAs) permission over this SA. If true, Runtime owner is using EUC and does not require the above permission as VM no longer use default Compute Engine SA, but a P4SA.
+     */
+    bypassActasCheck?: boolean | null;
+    /**
+     * Input only. Whether EUC is disabled in this NotebookRuntimeTemplate. In proto3, the default value of a boolean is false. In this way, by default EUC will be enabled for NotebookRuntimeTemplate.
+     */
+    eucDisabled?: boolean | null;
+  }
+  /**
+   * The idle shutdown configuration of NotebookRuntimeTemplate, which contains the idle_timeout as required field.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NotebookIdleShutdownConfig {
+    /**
+     * Whether Idle Shutdown is disabled in this NotebookRuntimeTemplate.
+     */
+    idleShutdownDisabled?: boolean | null;
+    /**
+     * Required. Duration is accurate to the second. In Notebook, Idle Timeout is accurate to minute so the range of idle_timeout (second) is: 10 * 60 ~ 1440 * 60.
+     */
+    idleTimeout?: string | null;
+  }
+  /**
+   * A runtime is a virtual machine allocated to a particular user for a particular Notebook file on temporary basis with lifetime limited to 24 hours.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NotebookRuntime {
+    /**
+     * Output only. Timestamp when this NotebookRuntime was created.
+     */
+    createTime?: string | null;
+    /**
+     * The description of the NotebookRuntime.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name of the NotebookRuntime. The name can be up to 128 characters long and can consist of any UTF-8 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Timestamp when this NotebookRuntime will be expired: 1. System Predefined NotebookRuntime: 24 hours after creation. After expiration, system predifined runtime will be deleted. 2. User created NotebookRuntime: 6 months after last upgrade. After expiration, user created runtime will be stopped and allowed for upgrade.
+     */
+    expirationTime?: string | null;
+    /**
+     * Output only. The health state of the NotebookRuntime.
+     */
+    healthState?: string | null;
+    /**
+     * The labels with user-defined metadata to organize your NotebookRuntime. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one Dataset (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with "aiplatform.googleapis.com/" and are immutable. Following system labels exist for NotebookRuntime: * "aiplatform.googleapis.com/notebook_runtime_gce_instance_id": output only, its value is the Compute Engine instance id. * "aiplatform.googleapis.com/colab_enterprise_entry_service": its value is either "BigQuery" or "Vertex"; if absent, it should be "Vertex". This is to describe the entry service, either BigQuery or Vertex.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The resource name of the NotebookRuntime.
+     */
+    name?: string | null;
+    /**
+     * Output only. The pointer to NotebookRuntimeTemplate this NotebookRuntime is created from.
+     */
+    notebookRuntimeTemplateRef?: Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplateRef;
+    /**
+     * Output only. The proxy endpoint used to access the NotebookRuntime.
+     */
+    proxyUri?: string | null;
+    /**
+     * Output only. The runtime (instance) state of the NotebookRuntime.
+     */
+    runtimeState?: string | null;
+    /**
+     * Required. The user email of the NotebookRuntime.
+     */
+    runtimeUser?: string | null;
+    /**
+     * Output only. The service account that the NotebookRuntime workload runs as.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Output only. Timestamp when this NotebookRuntime was most recently updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. The VM os image version of NotebookRuntime.
+     */
+    version?: string | null;
+  }
+  /**
+   * A template that specifies runtime configurations such as machine type, runtime version, network configurations, etc. Multiple runtimes can be created from a runtime template.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate {
+    /**
+     * Output only. Timestamp when this NotebookRuntimeTemplate was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The specification of persistent disk attached to the runtime as data disk storage.
+     */
+    dataPersistentDiskSpec?: Schema$GoogleCloudAiplatformV1PersistentDiskSpec;
+    /**
+     * The description of the NotebookRuntimeTemplate.
+     */
+    description?: string | null;
+    /**
+     * Required. The display name of the NotebookRuntimeTemplate. The name can be up to 128 characters long and can consist of any UTF-8 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
+     */
+    etag?: string | null;
+    /**
+     * EUC configuration of the NotebookRuntimeTemplate.
+     */
+    eucConfig?: Schema$GoogleCloudAiplatformV1NotebookEucConfig;
+    /**
+     * The idle shutdown configuration of NotebookRuntimeTemplate. This config will only be set when idle shutdown is enabled.
+     */
+    idleShutdownConfig?: Schema$GoogleCloudAiplatformV1NotebookIdleShutdownConfig;
+    /**
+     * Output only. The default template to use if not specified.
+     */
+    isDefault?: boolean | null;
+    /**
+     * The labels with user-defined metadata to organize the NotebookRuntimeTemplates. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Immutable. The specification of a single machine for the template.
+     */
+    machineSpec?: Schema$GoogleCloudAiplatformV1MachineSpec;
+    /**
+     * Output only. The resource name of the NotebookRuntimeTemplate.
+     */
+    name?: string | null;
+    /**
+     * Optional. Network spec.
+     */
+    networkSpec?: Schema$GoogleCloudAiplatformV1NetworkSpec;
+    /**
+     * The service account that the runtime workload runs as. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Output only. Timestamp when this NotebookRuntimeTemplate was most recently updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Points to a NotebookRuntimeTemplateRef.
+   */
+  export interface Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplateRef {
+    /**
+     * Immutable. A resource name of the NotebookRuntimeTemplate.
+     */
+    notebookRuntimeTemplate?: string | null;
+  }
+  /**
    * Request message for JobService.PauseModelDeploymentMonitoringJob.
    */
   export interface Schema$GoogleCloudAiplatformV1PauseModelDeploymentMonitoringJobRequest {}
@@ -5675,6 +5918,19 @@ export namespace aiplatform_v1 {
    * Request message for ScheduleService.PauseSchedule.
    */
   export interface Schema$GoogleCloudAiplatformV1PauseScheduleRequest {}
+  /**
+   * Represents the spec of persistent disk options.
+   */
+  export interface Schema$GoogleCloudAiplatformV1PersistentDiskSpec {
+    /**
+     * Size in GB of the disk (default is 100GB).
+     */
+    diskSizeGb?: string | null;
+    /**
+     * Type of the disk (default is "pd-standard"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) "pd-standard" (Persistent Disk Hard Disk Drive) "pd-balanced" (Balanced Persistent Disk) "pd-extreme" (Extreme Persistent Disk)
+     */
+    diskType?: string | null;
+  }
   /**
    * An instance of a machine learning PipelineJob.
    */
@@ -6820,6 +7076,10 @@ export namespace aiplatform_v1 {
    * All parameters related to queuing and scheduling of custom jobs.
    */
   export interface Schema$GoogleCloudAiplatformV1Scheduling {
+    /**
+     * Optional. Indicates if the job should retry for internal errors after the job starts running. If true, overrides `Scheduling.restart_job_on_worker_restart` to false.
+     */
+    disableRetries?: boolean | null;
     /**
      * Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.
      */
@@ -9474,6 +9734,23 @@ export namespace aiplatform_v1 {
     specialistWorkerEmails?: string[] | null;
   }
   /**
+   * Metadata information for NotebookService.StartNotebookRuntime.
+   */
+  export interface Schema$GoogleCloudAiplatformV1StartNotebookRuntimeOperationMetadata {
+    /**
+     * The operation generic information.
+     */
+    genericMetadata?: Schema$GoogleCloudAiplatformV1GenericOperationMetadata;
+    /**
+     * A human-readable message that shows the intermediate progress details of NotebookRuntime.
+     */
+    progressMessage?: string | null;
+  }
+  /**
+   * Request message for NotebookService.StartNotebookRuntime.
+   */
+  export interface Schema$GoogleCloudAiplatformV1StartNotebookRuntimeRequest {}
+  /**
    * Request message for VizierService.StopTrial.
    */
   export interface Schema$GoogleCloudAiplatformV1StopTrialRequest {}
@@ -9851,6 +10128,10 @@ export namespace aiplatform_v1 {
      * Required. The identifier of the client that is requesting the suggestion. If multiple SuggestTrialsRequests have the same `client_id`, the service will return the identical suggested Trial if the Trial is pending, and provide a new Trial if the last suggested Trial was completed.
      */
     clientId?: string | null;
+    /**
+     * Optional. This allows you to specify the "context" for a Trial; a context is a slice (a subspace) of the search space. Typical uses for contexts: 1) You are using Vizier to tune a server for best performance, but there's a strong weekly cycle. The context specifies the day-of-week. This allows Tuesday to generalize from Wednesday without assuming that everything is identical. 2) Imagine you're optimizing some medical treatment for people. As they walk in the door, you know certain facts about them (e.g. sex, weight, height, blood-pressure). Put that information in the context, and Vizier will adapt its suggestions to the patient. 3) You want to do a fair A/B test efficiently. Specify the "A" and "B" conditions as contexts, and Vizier will generalize between "A" and "B" conditions. If they are similar, this will allow Vizier to converge to the optimum faster than if "A" and "B" were separate Studies. NOTE: You can also enter contexts as REQUESTED Trials, e.g. via the CreateTrial() RPC; that's the asynchronous option where you don't need a close association between contexts and suggestions. NOTE: All the Parameters you set in a context MUST be defined in the Study. NOTE: You must supply 0 or $suggestion_count contexts. If you don't supply any contexts, Vizier will make suggestions from the full search space specified in the StudySpec; if you supply a full set of context, each suggestion will match the corresponding context. NOTE: A Context with no features set matches anything, and allows suggestions from the full search space. NOTE: Contexts MUST lie within the search space specified in the StudySpec. It's an error if they don't. NOTE: Contexts preferentially match ACTIVE then REQUESTED trials before new suggestions are generated. NOTE: Generation of suggestions involves a match between a Context and (optionally) a REQUESTED trial; if that match is not fully specified, a suggestion will be geneated in the merged subspace.
+     */
+    contexts?: Schema$GoogleCloudAiplatformV1TrialContext[];
     /**
      * Required. The number of suggestions requested. It must be positive.
      */
@@ -10369,6 +10650,19 @@ export namespace aiplatform_v1 {
      * Output only. URIs for accessing [interactive shells](https://cloud.google.com/vertex-ai/docs/training/monitor-debug-interactive-shell) (one URI for each training node). Only available if this trial is part of a HyperparameterTuningJob and the job's trial_job_spec.enable_web_access field is `true`. The keys are names of each node used for the trial; for example, `workerpool0-0` for the primary node, `workerpool1-0` for the first node in the second worker pool, and `workerpool1-1` for the second node in the second worker pool. The values are the URIs for each node's interactive shell.
      */
     webAccessUris?: {[key: string]: string} | null;
+  }
+  /**
+   * Next ID: 3
+   */
+  export interface Schema$GoogleCloudAiplatformV1TrialContext {
+    /**
+     * A human-readable field which can store a description of this context. This will become part of the resulting Trial's description field.
+     */
+    description?: string | null;
+    /**
+     * If/when a Trial is generated or selected from this Context, its Parameters will match any parameters specified here. (I.e. if this context specifies parameter name:'a' int_value:3, then a resulting Trial will have int_value:3 for its parameter named 'a'.) Note that we first attempt to match existing REQUESTED Trials with contexts, and if there are no matches, we generate suggestions in the subspace defined by the parameters specified here. NOTE: a Context without any Parameters matches the entire feasible search space.
+     */
+    parameters?: Schema$GoogleCloudAiplatformV1TrialParameter[];
   }
   /**
    * A message representing a parameter to be tuned.
@@ -10965,6 +11259,8 @@ export namespace aiplatform_v1 {
     modelDeploymentMonitoringJobs: Resource$Projects$Locations$Modeldeploymentmonitoringjobs;
     models: Resource$Projects$Locations$Models;
     nasJobs: Resource$Projects$Locations$Nasjobs;
+    notebookRuntimes: Resource$Projects$Locations$Notebookruntimes;
+    notebookRuntimeTemplates: Resource$Projects$Locations$Notebookruntimetemplates;
     operations: Resource$Projects$Locations$Operations;
     pipelineJobs: Resource$Projects$Locations$Pipelinejobs;
     publishers: Resource$Projects$Locations$Publishers;
@@ -11007,6 +11303,11 @@ export namespace aiplatform_v1 {
         );
       this.models = new Resource$Projects$Locations$Models(this.context);
       this.nasJobs = new Resource$Projects$Locations$Nasjobs(this.context);
+      this.notebookRuntimes = new Resource$Projects$Locations$Notebookruntimes(
+        this.context
+      );
+      this.notebookRuntimeTemplates =
+        new Resource$Projects$Locations$Notebookruntimetemplates(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -23592,11 +23893,11 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Create
     extends StandardParameters {
     /**
-     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.
+     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .
      */
     featureId?: string;
     /**
-     * Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     * Required. The resource name of the EntityType to create a Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
      */
     parent?: string;
 
@@ -23608,14 +23909,14 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the Features to be deleted. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}/features/{feature\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}/features/{feature\}`
+     * Required. The name of the Features to be deleted. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}/features/{feature\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Get
     extends StandardParameters {
     /**
-     * Required. The name of the Feature resource. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     * Required. The name of the Feature resource. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
      */
     name?: string;
   }
@@ -23630,7 +23931,7 @@ export namespace aiplatform_v1 {
      */
     latestStatsCount?: number;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `feature_id` * `value_type` * `create_time` * `update_time`
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `feature_id` * `value_type` (Not supported for FeatureRegistry Feature) * `create_time` * `update_time`
      */
     orderBy?: string;
     /**
@@ -23642,7 +23943,7 @@ export namespace aiplatform_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Location to list Features. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     * Required. The resource name of the Location to list Features. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
      */
     parent?: string;
     /**
@@ -38476,6 +38777,1307 @@ export namespace aiplatform_v1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Notebookruntimes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Assigns a NotebookRuntime to a user for a particular Notebook file. This method will either returns an existing assignment or generates a new one.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    assign(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Assign,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    assign(
+      params?: Params$Resource$Projects$Locations$Notebookruntimes$Assign,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    assign(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Assign,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    assign(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Assign,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    assign(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Assign,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    assign(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    assign(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimes$Assign
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimes$Assign;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimes$Assign;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notebookRuntimes:assign').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a NotebookRuntime.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Notebookruntimes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimes$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a NotebookRuntime.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Notebookruntimes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1NotebookRuntime>;
+    get(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntime>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntime>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntime>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntime>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimes$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntime>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntime>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntime>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1NotebookRuntime>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebookruntimes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1NotebookRuntime>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1NotebookRuntime>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists NotebookRuntimes in a Location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Notebookruntimes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimes$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebookruntimes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notebookRuntimes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListNotebookRuntimesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Starts a NotebookRuntime.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    start(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Start,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    start(
+      params?: Params$Resource$Projects$Locations$Notebookruntimes$Start,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    start(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Start,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Start,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Notebookruntimes$Start,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    start(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    start(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimes$Start
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimes$Start;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimes$Start;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notebookruntimes$Assign
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Location to get the NotebookRuntime assignment. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1AssignNotebookRuntimeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimes$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the NotebookRuntime resource to be deleted. Instead of checking whether the name is in valid NotebookRuntime resource name format, directly throw NotFound exception if there is no such NotebookRuntime in spanner.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimes$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the NotebookRuntime resource. Instead of checking whether the name is in valid NotebookRuntime resource name format, directly throw NotFound exception if there is no such NotebookRuntime in spanner.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimes$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. Some examples: * `notebookRuntime="notebookRuntime123"` * `displayName="myDisplayName"` and `displayName=~"myDisplayNameRegex"` * `notebookRuntimeTemplate="notebookRuntimeTemplate321"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser="test@google.com"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED`
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `display_name` * `create_time` * `update_time` Example: `display_name, create_time desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard list page token. Typically obtained via ListNotebookRuntimesResponse.next_page_token of the previous NotebookService.ListNotebookRuntimes call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Location from which to list the NotebookRuntimes. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+    /**
+     * Optional. Mask specifying which fields to read.
+     */
+    readMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimes$Start
+    extends StandardParameters {
+    /**
+     * Required. The name of the NotebookRuntime resource to be started. Instead of checking whether the name is in valid NotebookRuntime resource name format, directly throw NotFound exception if there is no such NotebookRuntime in spanner.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1StartNotebookRuntimeRequest;
+  }
+
+  export class Resource$Projects$Locations$Notebookruntimetemplates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a NotebookRuntimeTemplate.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimetemplates$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimetemplates$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimetemplates$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notebookRuntimeTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a NotebookRuntimeTemplate.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a NotebookRuntimeTemplate.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>;
+    get(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimetemplates$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimetemplates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimetemplates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists NotebookRuntimeTemplates in a Location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimetemplates$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimetemplates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimetemplates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/notebookRuntimeTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListNotebookRuntimeTemplatesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$Create
+    extends StandardParameters {
+    /**
+     * Optional. User specified ID for the notebook runtime template.
+     */
+    notebookRuntimeTemplateId?: string;
+    /**
+     * Required. The resource name of the Location to create the NotebookRuntimeTemplate. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1NotebookRuntimeTemplate;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the NotebookRuntimeTemplate resource to be deleted. Format: `projects/{project\}/locations/{location\}/notebookRuntimeTemplates/{notebook_runtime_template\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the NotebookRuntimeTemplate resource. Format: `projects/{project\}/locations/{location\}/notebookRuntimeTemplates/{notebook_runtime_template\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. Some examples: * `notebookRuntimeTemplate=notebookRuntimeTemplate123` * `displayName="myDisplayName"` * `labels.myKey="myValue"`
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `display_name` * `create_time` * `update_time` Example: `display_name, create_time desc`.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard list page token. Typically obtained via ListNotebookRuntimeTemplatesResponse.next_page_token of the previous NotebookService.ListNotebookRuntimeTemplates call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Location from which to list the NotebookRuntimeTemplates. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+    /**
+     * Optional. Mask specifying which fields to read.
+     */
+    readMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookruntimetemplates$Testiampermissions
+    extends StandardParameters {
+    /**
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     */
+    permissions?: string[];
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -39480,7 +41082,7 @@ export namespace aiplatform_v1 {
      */
     parent?: string;
     /**
-     * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are /a-z-/.
+     * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.
      */
     pipelineJobId?: string;
 
@@ -46696,7 +48298,7 @@ export namespace aiplatform_v1 {
      */
     parent?: string;
     /**
-     * Required. The ID to use for the Tensorboard experiment, which becomes the final component of the Tensorboard experiment's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the Tensorboard experiment, which becomes the final component of the Tensorboard experiment's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.
      */
     tensorboardExperimentId?: string;
 
@@ -47989,7 +49591,7 @@ export namespace aiplatform_v1 {
      */
     parent?: string;
     /**
-     * Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.
      */
     tensorboardRunId?: string;
 

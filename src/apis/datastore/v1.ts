@@ -1029,7 +1029,7 @@ export namespace datastore_v1 {
    */
   export interface Schema$PropertyReference {
     /**
-     * The name of the property. If name includes "."s, it may be interpreted as a property name path.
+     * A reference to a property. Requires: * MUST be a dot-delimited (`.`) string of segments, where each segment conforms to entity property name limitations.
      */
     name?: string | null;
   }

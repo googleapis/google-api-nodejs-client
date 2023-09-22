@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20230802",
+  "revision": "20230904",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1278,6 +1278,21 @@
       },
       "type": "object"
     },
+    "EphemeralDirectory": {
+      "description": "An ephemeral directory which won't persist across workstation sessions. It is freshly created on every workstation start operation.",
+      "id": "EphemeralDirectory",
+      "properties": {
+        "gcePd": {
+          "$ref": "GcePersistentDisk",
+          "description": "An EphemeralDirectory backed by a Compute Engine persistent disk."
+        },
+        "mountPath": {
+          "description": "Required. Location of this directory in the running workstation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -1359,6 +1374,13 @@
           "description": "Optional. The email address of the service account for Cloud Workstations VMs created with this configuration. When specified, be sure that the service account has `logginglogEntries.create` permission on the project so it can write logs out to Cloud Logging. If using a custom container image, the service account must have permissions to pull the specified image. If you as the administrator want to be able to `ssh` into the underlying VM, you need to set this value to a service account for which you have the `iam.serviceAccounts.actAs` permission. Conversely, if you don't want anyone to be able to `ssh` into the underlying VM, use a service account where no one has that permission. If not set, VMs run with a service account provided by the Cloud Workstations service, and the image must be publicly accessible.",
           "type": "string"
         },
+        "serviceAccountScopes": {
+          "description": "Optional. Scopes to grant to the service_account. Various scopes are automatically added based on feature usage. When specified, users of workstations under this configuration must have `iam.serviceAccounts.actAs` on the service account.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "shieldedInstanceConfig": {
           "$ref": "GceShieldedInstanceConfig",
           "description": "Optional. A set of Compute Engine Shielded instance options."
@@ -1369,6 +1391,29 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GcePersistentDisk": {
+      "description": "An EphemeralDirectory is backed by a Compute Engine persistent disk.",
+      "id": "GcePersistentDisk",
+      "properties": {
+        "diskType": {
+          "description": "Optional. Type of the disk to use. Defaults to `\"pd-standard\"`.",
+          "type": "string"
+        },
+        "readOnly": {
+          "description": "Optional. Whether the disk is read only. If true, the disk may be shared by multiple VMs and source_snapshot must be set.",
+          "type": "boolean"
+        },
+        "sourceImage": {
+          "description": "Optional. Name of the disk image to use as the source for the disk. Must be empty if source_snapshot is set. Updating source_image will update content in the ephemeral directory after the workstation is restarted. This field is mutable.",
+          "type": "string"
+        },
+        "sourceSnapshot": {
+          "description": "Optional. Name of the snapshot to use as the source for the disk. Must be empty if source_image is set. Updating source_snapshot will update content in the ephemeral directory after the workstation is restarted. This field is mutable.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1952,6 +1997,12 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "startTime": {
+          "description": "Output only. Time when this workstation was most recently successfully started, regardless of the workstation's initial state.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "state": {
           "description": "Output only. Current state of the workstation.",
           "enum": [
@@ -2128,6 +2179,13 @@
           "$ref": "CustomerEncryptionKey",
           "description": "Immutable. Encrypts resources of this workstation configuration using a customer-managed encryption key (CMEK). If specified, the boot disk of the Compute Engine instance and the persistent disk are encrypted using this encryption key. If this field is not set, the disks are encrypted using a generated key. Customer-managed encryption keys do not protect disk metadata. If the customer-managed encryption key is rotated, when the workstation instance is stopped, the system attempts to recreate the persistent disk with the new version of the key. Be sure to keep older versions of the key until the persistent disk is recreated. Otherwise, data on the persistent disk might be lost. If the encryption key is revoked, the workstation session automatically stops within 7 hours. Immutable after the workstation configuration is created."
         },
+        "ephemeralDirectories": {
+          "description": "Optional. Ephemeral directories which won't persist across workstation sessions.",
+          "items": {
+            "$ref": "EphemeralDirectory"
+          },
+          "type": "array"
+        },
         "etag": {
           "description": "Optional. Checksum computed by the server. May be sent on update and delete requests to make sure that the client has an up-to-date value before proceeding.",
           "type": "string"
@@ -2170,6 +2228,13 @@
           "description": "Output only. Indicates whether this workstation configuration is currently being updated to match its intended state.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "replicaZones": {
+          "description": "Optional. Immutable. Specifies the zones used to replicate the VM and disk resources within the region. If set, exactly two zones within the workstation cluster's region must be specified—for example, `['us-central1-a', 'us-central1-f']`. If this field is empty, two default zones within the region are used. Immutable after the workstation configuration is created.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "runningTimeout": {
           "description": "Optional. Number of seconds that a workstation can run until it is automatically shut down. We recommend that workstations be shut down daily to reduce costs and so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field shuts down VMs after the specified time, regardless of whether or not the VMs are idle. Provide duration terminated by `s` for seconds—for example, `\"54000s\"` (15 hours). Defaults to `\"43200s\"` (12 hours). A value of `\"0s\"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `\"0s\"` and less than `\"86400s\"` (24 hours). Warning: A value of `\"0s\"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.",

@@ -631,6 +631,32 @@
                 "$ref": "Device"
               }
             },
+            "getSimLockState": {
+              "description": "Gets a device's SIM lock state.",
+              "flatPath": "v1/partners/{partnersId}/devices:getSimLockState",
+              "httpMethod": "POST",
+              "id": "androiddeviceprovisioning.partners.devices.getSimLockState",
+              "parameterOrder": [
+                "partnerId"
+              ],
+              "parameters": {
+                "partnerId": {
+                  "description": "Required. The ID of the partner.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/partners/{+partnerId}/devices:getSimLockState",
+              "request": {
+                "$ref": "GetDeviceSimLockStateRequest"
+              },
+              "response": {
+                "$ref": "GetDeviceSimLockStateResponse"
+              }
+            },
             "metadata": {
               "description": "Updates reseller metadata associated with the device. Android devices only.",
               "flatPath": "v1/partners/{partnersId}/devices/{devicesId}/metadata",
@@ -825,7 +851,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230920",
   "rootUrl": "https://androiddeviceprovisioning.googleapis.com/",
   "schemas": {
     "ClaimDeviceRequest": {
@@ -1496,6 +1522,39 @@
           "description": "The total count of items in the list irrespective of pagination.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GetDeviceSimLockStateRequest": {
+      "description": "Request to get a device's SIM lock status.",
+      "id": "GetDeviceSimLockStateRequest",
+      "properties": {
+        "deviceIdentifier": {
+          "$ref": "DeviceIdentifier",
+          "description": "Required. Required. The device identifier to search for."
+        }
+      },
+      "type": "object"
+    },
+    "GetDeviceSimLockStateResponse": {
+      "description": "Response containing a device's SimLock state.",
+      "id": "GetDeviceSimLockStateResponse",
+      "properties": {
+        "simLockState": {
+          "enum": [
+            "SIM_LOCK_STATE_UNSPECIFIED",
+            "UNLOCKED",
+            "LOCKED_TO_PARTNER",
+            "LOCKED_TO_OTHER_PARTNER"
+          ],
+          "enumDescriptions": [
+            "Invalid code. Shouldn't be used.",
+            "Device is not SIM locked.",
+            "Device is SIM locked to the partner querying SIM lock state.",
+            "Device is SIM locked to a different partner."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

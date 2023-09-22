@@ -113,7 +113,6 @@ export namespace mybusinessverifications_v1 {
   export class Mybusinessverifications {
     context: APIRequestContext;
     locations: Resource$Locations;
-    verificationTokens: Resource$Verificationtokens;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -122,7 +121,6 @@ export namespace mybusinessverifications_v1 {
       };
 
       this.locations = new Resource$Locations(this.context);
-      this.verificationTokens = new Resource$Verificationtokens(this.context);
     }
   }
 
@@ -210,24 +208,6 @@ export namespace mybusinessverifications_v1 {
     options?: Schema$VerificationOption[];
   }
   /**
-   * Request message for Verifications.GenerateVerificationToken.
-   */
-  export interface Schema$GenerateVerificationTokenRequest {
-    /**
-     * Required. The target location. Note: The location information should exactly match the target Location, otherwise the generated verification token won't be able to verify the target Location.
-     */
-    location?: Schema$Location;
-  }
-  /**
-   * Response message for Verifications.GenerateVerificationToken.
-   */
-  export interface Schema$GenerateVerificationTokenResponse {
-    /**
-     * The generated token to verify the location.
-     */
-    token?: Schema$VerificationToken;
-  }
-  /**
    * Response message for Verifications.ListVerifications.
    */
   export interface Schema$ListVerificationsResponse {
@@ -239,31 +219,6 @@ export namespace mybusinessverifications_v1 {
      * List of the verifications.
      */
     verifications?: Schema$Verification[];
-  }
-  /**
-   * A subset of location info. See the [help center article] (https://support.google.com/business/answer/3038177) for a detailed description of these fields, or the [category endpoint](/my-business/reference/rest/v4/categories) for a list of valid business categories.
-   */
-  export interface Schema$Location {
-    /**
-     * Required. A precise, accurate address to describe your business location. PO boxes or mailboxes located at remote locations are not acceptable. At this time, you can specify a maximum of five `address_lines` values in the address.
-     */
-    address?: Schema$PostalAddress;
-    /**
-     * Required. Location name should reflect your business's real-world name, as used consistently on your storefront, website, and stationery, and as known to customers. Any additional information, when relevant, can be included in other fields of the resource (for example, `Address`, `Categories`). Don't add unnecessary information to your name (for example, prefer "Google" over "Google Inc. - Mountain View Corporate Headquarters"). Don't include marketing taglines, store codes, special characters, hours or closed/open status, phone numbers, website URLs, service/product information, location/address or directions, or containment information (for example, "Chase ATM in Duane Reade").
-     */
-    name?: string | null;
-    /**
-     * Required. Id of the category that best describes the core business this location engages in. e.g. gcid:bakery.
-     */
-    primaryCategoryId?: string | null;
-    /**
-     * Optional. A phone number that connects to your individual business location as directly as possible. Use a local phone number instead of a central, call center helpline number whenever possible.
-     */
-    primaryPhone?: string | null;
-    /**
-     * Optional. A URL for this business. If possible, use a URL that represents this individual business location instead of a generic website/URL that represents all locations, or the brand.
-     */
-    websiteUri?: string | null;
   }
   /**
    * Represents a postal address, e.g. for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created via user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, please see: https://support.google.com/business/answer/6397478
@@ -1017,117 +972,5 @@ export namespace mybusinessverifications_v1 {
      * Required. Resource name of the location that verification requests belong to.
      */
     parent?: string;
-  }
-
-  export class Resource$Verificationtokens {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Generates a token for the provided location data as a vetted [partner](https://support.google.com/business/answer/7674102). Throws PERMISSION_DENIED if the caller is not a vetted partner account. Throws FAILED_PRECONDITION if the caller's VettedStatus is INVALID.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    generate(
-      params: Params$Resource$Verificationtokens$Generate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    generate(
-      params?: Params$Resource$Verificationtokens$Generate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateVerificationTokenResponse>;
-    generate(
-      params: Params$Resource$Verificationtokens$Generate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    generate(
-      params: Params$Resource$Verificationtokens$Generate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenerateVerificationTokenResponse>,
-      callback: BodyResponseCallback<Schema$GenerateVerificationTokenResponse>
-    ): void;
-    generate(
-      params: Params$Resource$Verificationtokens$Generate,
-      callback: BodyResponseCallback<Schema$GenerateVerificationTokenResponse>
-    ): void;
-    generate(
-      callback: BodyResponseCallback<Schema$GenerateVerificationTokenResponse>
-    ): void;
-    generate(
-      paramsOrCallback?:
-        | Params$Resource$Verificationtokens$Generate
-        | BodyResponseCallback<Schema$GenerateVerificationTokenResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GenerateVerificationTokenResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GenerateVerificationTokenResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GenerateVerificationTokenResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Verificationtokens$Generate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Verificationtokens$Generate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://mybusinessverifications.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/verificationTokens:generate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GenerateVerificationTokenResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GenerateVerificationTokenResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Verificationtokens$Generate
-    extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GenerateVerificationTokenRequest;
   }
 }

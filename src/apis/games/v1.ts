@@ -119,6 +119,7 @@ export namespace games_v1 {
     leaderboards: Resource$Leaderboards;
     metagame: Resource$Metagame;
     players: Resource$Players;
+    recall: Resource$Recall;
     revisions: Resource$Revisions;
     scores: Resource$Scores;
     snapshots: Resource$Snapshots;
@@ -139,6 +140,7 @@ export namespace games_v1 {
       this.leaderboards = new Resource$Leaderboards(this.context);
       this.metagame = new Resource$Metagame(this.context);
       this.players = new Resource$Players(this.context);
+      this.recall = new Resource$Recall(this.context);
       this.revisions = new Resource$Revisions(this.context);
       this.scores = new Resource$Scores(this.context);
       this.snapshots = new Resource$Snapshots(this.context);
@@ -1019,6 +1021,48 @@ export namespace games_v1 {
     prevPageToken?: string | null;
   }
   /**
+   * Request to link an in-game account with a PGS principal (encoded in the session id).
+   */
+  export interface Schema$LinkPersonaRequest {
+    /**
+     * Required. Cardinality constraint to observe when linking a persona to a player in the scope of a game.
+     */
+    cardinalityConstraint?: string | null;
+    /**
+     * Required. Resolution policy to apply when the linking of a persona to a player would result in violating the specified cardinality constraint.
+     */
+    conflictingLinksResolutionPolicy?: string | null;
+    /**
+     * Input only. Optional expiration time.
+     */
+    expireTime?: string | null;
+    /**
+     * Required. Stable identifier of the in-game account. Please refrain from re-using the same persona for different games.
+     */
+    persona?: string | null;
+    /**
+     * Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
+     */
+    sessionId?: string | null;
+    /**
+     * Required. Value of the token to create. Opaque to Play Games and assumed to be non-stable (encrypted with key rotation).
+     */
+    token?: string | null;
+    /**
+     * Input only. Optional time-to-live.
+     */
+    ttl?: string | null;
+  }
+  /**
+   * Outcome of a persona linking attempt.
+   */
+  export interface Schema$LinkPersonaResponse {
+    /**
+     * Output only. State of a persona linking attempt.
+     */
+    state?: string | null;
+  }
+  /**
    * The metagame config resource
    */
   export interface Schema$MetagameConfig {
@@ -1408,6 +1452,50 @@ export namespace games_v1 {
     profileVisible?: boolean | null;
   }
   /**
+   * Recall token data returned from RetrievePlayerTokens RPC
+   */
+  export interface Schema$RecallToken {
+    /**
+     * Optional. Optional expiration time of the token
+     */
+    expireTime?: string | null;
+    /**
+     * Required. Whether the persona identified by the token is linked to multiple PGS Players
+     */
+    multiPlayerPersona?: boolean | null;
+    /**
+     * Required. Value of the Recall token as it is provided by the client via LinkPersona RPC
+     */
+    token?: string | null;
+  }
+  /**
+   * Request to remove all Recall tokens associated with a persona for an app.
+   */
+  export interface Schema$ResetPersonaRequest {
+    /**
+     * Value of the 'persona' field as it was provided by the client in LinkPersona RPC
+     */
+    persona?: string | null;
+  }
+  /**
+   * Response for the ResetPersona RPC
+   */
+  export interface Schema$ResetPersonaResponse {
+    /**
+     * Required. Whether any tokens were unlinked as a result of this request.
+     */
+    unlinked?: boolean | null;
+  }
+  /**
+   * Response for the RetrievePlayerTokens RPC
+   */
+  export interface Schema$RetrievePlayerTokensResponse {
+    /**
+     * Required. Recall tokens associated with the requested PGS Player principal
+     */
+    tokens?: Schema$RecallToken[];
+  }
+  /**
    * A third party checking a revision response.
    */
   export interface Schema$RevisionCheckResponse {
@@ -1601,6 +1689,32 @@ export namespace games_v1 {
      * The predicted amount of money that the player going to spend in the next 28 days. E.g., 1, 30, 60, ... . Not populated if there is not enough information.
      */
     total_spend_next_28_days?: number | null;
+  }
+  /**
+   * Request to remove a Recall token linking PGS principal and an in-game account
+   */
+  export interface Schema$UnlinkPersonaRequest {
+    /**
+     * Value of the 'persona' field as it was provided by the client in LinkPersona RPC
+     */
+    persona?: string | null;
+    /**
+     * Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
+     */
+    sessionId?: string | null;
+    /**
+     * Value of the Recall token as it was provided by the client in LinkPersona RPC
+     */
+    token?: string | null;
+  }
+  /**
+   * Response for the UnlinkPersona RPC
+   */
+  export interface Schema$UnlinkPersonaResponse {
+    /**
+     * Required. Whether a Recall token specified by the request was deleted. Can be 'false' when there were no Recall tokens satisfied the criteria from the request.
+     */
+    unlinked?: boolean | null;
   }
 
   export class Resource$Achievementdefinitions {
@@ -2307,7 +2421,7 @@ export namespace games_v1 {
      */
     requestId?: string;
     /**
-     * The number of steps to increment.
+     * Required. The number of steps to increment.
      */
     stepsToIncrement?: number;
   }
@@ -2348,7 +2462,7 @@ export namespace games_v1 {
      */
     achievementId?: string;
     /**
-     * The minimum value to set the steps to.
+     * Required. The minimum value to set the steps to.
      */
     steps?: number;
   }
@@ -3913,6 +4027,418 @@ export namespace games_v1 {
     pageToken?: string;
   }
 
+  export class Resource$Recall {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Associate the PGS Player principal encoded in the provided recall session id with an in-game account
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    linkPersona(
+      params: Params$Resource$Recall$Linkpersona,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    linkPersona(
+      params?: Params$Resource$Recall$Linkpersona,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LinkPersonaResponse>;
+    linkPersona(
+      params: Params$Resource$Recall$Linkpersona,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    linkPersona(
+      params: Params$Resource$Recall$Linkpersona,
+      options: MethodOptions | BodyResponseCallback<Schema$LinkPersonaResponse>,
+      callback: BodyResponseCallback<Schema$LinkPersonaResponse>
+    ): void;
+    linkPersona(
+      params: Params$Resource$Recall$Linkpersona,
+      callback: BodyResponseCallback<Schema$LinkPersonaResponse>
+    ): void;
+    linkPersona(
+      callback: BodyResponseCallback<Schema$LinkPersonaResponse>
+    ): void;
+    linkPersona(
+      paramsOrCallback?:
+        | Params$Resource$Recall$Linkpersona
+        | BodyResponseCallback<Schema$LinkPersonaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LinkPersonaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LinkPersonaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LinkPersonaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Recall$Linkpersona;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Recall$Linkpersona;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/games/v1/recall:linkPersona').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LinkPersonaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LinkPersonaResponse>(parameters);
+      }
+    }
+
+    /**
+     * Delete all Recall tokens linking the given persona to any player (with or without a profile).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resetPersona(
+      params: Params$Resource$Recall$Resetpersona,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resetPersona(
+      params?: Params$Resource$Recall$Resetpersona,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResetPersonaResponse>;
+    resetPersona(
+      params: Params$Resource$Recall$Resetpersona,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resetPersona(
+      params: Params$Resource$Recall$Resetpersona,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResetPersonaResponse>,
+      callback: BodyResponseCallback<Schema$ResetPersonaResponse>
+    ): void;
+    resetPersona(
+      params: Params$Resource$Recall$Resetpersona,
+      callback: BodyResponseCallback<Schema$ResetPersonaResponse>
+    ): void;
+    resetPersona(
+      callback: BodyResponseCallback<Schema$ResetPersonaResponse>
+    ): void;
+    resetPersona(
+      paramsOrCallback?:
+        | Params$Resource$Recall$Resetpersona
+        | BodyResponseCallback<Schema$ResetPersonaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResetPersonaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResetPersonaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResetPersonaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Recall$Resetpersona;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Recall$Resetpersona;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/games/v1/recall:resetPersona').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResetPersonaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResetPersonaResponse>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve all Recall tokens associated with the PGS Player principal encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveTokens(
+      params: Params$Resource$Recall$Retrievetokens,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retrieveTokens(
+      params?: Params$Resource$Recall$Retrievetokens,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RetrievePlayerTokensResponse>;
+    retrieveTokens(
+      params: Params$Resource$Recall$Retrievetokens,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveTokens(
+      params: Params$Resource$Recall$Retrievetokens,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RetrievePlayerTokensResponse>,
+      callback: BodyResponseCallback<Schema$RetrievePlayerTokensResponse>
+    ): void;
+    retrieveTokens(
+      params: Params$Resource$Recall$Retrievetokens,
+      callback: BodyResponseCallback<Schema$RetrievePlayerTokensResponse>
+    ): void;
+    retrieveTokens(
+      callback: BodyResponseCallback<Schema$RetrievePlayerTokensResponse>
+    ): void;
+    retrieveTokens(
+      paramsOrCallback?:
+        | Params$Resource$Recall$Retrievetokens
+        | BodyResponseCallback<Schema$RetrievePlayerTokensResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetrievePlayerTokensResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetrievePlayerTokensResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RetrievePlayerTokensResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Recall$Retrievetokens;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Recall$Retrievetokens;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/games/v1/recall/tokens/{sessionId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['sessionId'],
+        pathParams: ['sessionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetrievePlayerTokensResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetrievePlayerTokensResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Delete a Recall token linking the PGS Player principal identified by the Recall session and an in-game account identified either by the 'persona' or by the token value.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    unlinkPersona(
+      params: Params$Resource$Recall$Unlinkpersona,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unlinkPersona(
+      params?: Params$Resource$Recall$Unlinkpersona,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UnlinkPersonaResponse>;
+    unlinkPersona(
+      params: Params$Resource$Recall$Unlinkpersona,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    unlinkPersona(
+      params: Params$Resource$Recall$Unlinkpersona,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UnlinkPersonaResponse>,
+      callback: BodyResponseCallback<Schema$UnlinkPersonaResponse>
+    ): void;
+    unlinkPersona(
+      params: Params$Resource$Recall$Unlinkpersona,
+      callback: BodyResponseCallback<Schema$UnlinkPersonaResponse>
+    ): void;
+    unlinkPersona(
+      callback: BodyResponseCallback<Schema$UnlinkPersonaResponse>
+    ): void;
+    unlinkPersona(
+      paramsOrCallback?:
+        | Params$Resource$Recall$Unlinkpersona
+        | BodyResponseCallback<Schema$UnlinkPersonaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UnlinkPersonaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UnlinkPersonaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UnlinkPersonaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Recall$Unlinkpersona;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Recall$Unlinkpersona;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/games/v1/recall:unlinkPersona').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UnlinkPersonaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UnlinkPersonaResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Recall$Linkpersona
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LinkPersonaRequest;
+  }
+  export interface Params$Resource$Recall$Resetpersona
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResetPersonaRequest;
+  }
+  export interface Params$Resource$Recall$Retrievetokens
+    extends StandardParameters {
+    /**
+     * Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.
+     */
+    sessionId?: string;
+  }
+  export interface Params$Resource$Recall$Unlinkpersona
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UnlinkPersonaRequest;
+  }
+
   export class Resource$Revisions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4013,7 +4539,7 @@ export namespace games_v1 {
 
   export interface Params$Resource$Revisions$Check extends StandardParameters {
     /**
-     * The revision of the client SDK used by your application. Format: `[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are: * `ANDROID` - Client is running the Android SDK. * `IOS` - Client is running the iOS SDK. * `WEB_APP` - Client is running as a Web App.
+     * Required. The revision of the client SDK used by your application. Format: `[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are: * `ANDROID` - Client is running the Android SDK. * `IOS` - Client is running the iOS SDK. * `WEB_APP` - Client is running as a Web App.
      */
     clientRevision?: string;
   }
@@ -4533,7 +5059,7 @@ export namespace games_v1 {
      */
     pageToken?: string;
     /**
-     * The time span for the scores and ranks you're requesting.
+     * Required. The time span for the scores and ranks you're requesting.
      */
     timeSpan?: string;
   }
@@ -4568,7 +5094,7 @@ export namespace games_v1 {
      */
     returnTopIfAbsent?: boolean;
     /**
-     * The time span for the scores and ranks you're requesting.
+     * Required. The time span for the scores and ranks you're requesting.
      */
     timeSpan?: string;
   }
@@ -4582,7 +5108,7 @@ export namespace games_v1 {
      */
     leaderboardId?: string;
     /**
-     * The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
+     * Required. The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.
      */
     score?: string;
     /**

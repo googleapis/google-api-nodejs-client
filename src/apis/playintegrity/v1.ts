@@ -190,7 +190,7 @@ export namespace playintegrity_v1 {
    */
   export interface Schema$DeviceIntegrity {
     /**
-     * Details about the integrity of the device the app is running on
+     * Details about the integrity of the device the app is running on.
      */
     deviceRecognitionVerdict?: string[] | null;
   }
@@ -199,9 +199,9 @@ export namespace playintegrity_v1 {
    */
   export interface Schema$GuidanceDetails {
     /**
-     * This shows when there is an issue with at least one of the integrity verdicts, and provides user remediation guidance.
+     * This shows when there is an issue with at least one of the integrity verdicts, which can be remedied by the user and provides additional details.
      */
-    userRemediation?: string[] | null;
+    userRemediationDetails?: Schema$UserRemediationDetails[];
   }
   /**
    * Contains the integrity request information.
@@ -261,6 +261,15 @@ export namespace playintegrity_v1 {
      * Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status.
      */
     testingDetails?: Schema$TestingDetails;
+  }
+  /**
+   * Contains details of remediation guidance that the user can perform. See go/pia-interstitials-dd
+   */
+  export interface Schema$UserRemediationDetails {
+    /**
+     * Description of the user remediation action. Required.
+     */
+    remediation?: string | null;
   }
 
   export class Resource$V1 {

@@ -2096,7 +2096,7 @@
       }
     }
   },
-  "revision": "20230809",
+  "revision": "20230831",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -7391,7 +7391,7 @@
           "type": "array"
         },
         "snippet": {
-          "description": "The snippet of the document. The snippet of the document. May contain escaped HTML character that should be unescaped prior to rendering.",
+          "description": "The snippet of the document. May contain escaped HTML character that should be unescaped prior to rendering.",
           "type": "string"
         }
       },

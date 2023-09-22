@@ -211,7 +211,7 @@ export namespace analyticshub_v1 {
      */
     primaryContact?: string | null;
     /**
-     * Required. Configurable data sharing environment option for a data exchange.
+     * Optional. Configurable data sharing environment option for a data exchange.
      */
     sharingEnvironmentConfig?: Schema$SharingEnvironmentConfig;
   }
@@ -666,7 +666,7 @@ export namespace analyticshub_v1 {
     subscription?: Schema$Subscription;
   }
   /**
-   * A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets. TODO(b/267528977) Consider port the new resource to v1beta1 and dataexchange APIs.
+   * A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets.
    */
   export interface Schema$Subscription {
     /**

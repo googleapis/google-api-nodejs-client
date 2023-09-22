@@ -784,7 +784,7 @@ export namespace container_v1beta1 {
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
     /**
-     * Enable/Disable Protect API features for the cluster.
+     * Deprecated: Use SecurityPostureConfig instead. Enable/Disable Protect API features for the cluster.
      */
     protectConfig?: Schema$ProtectConfig;
     /**
@@ -1072,7 +1072,7 @@ export namespace container_v1beta1 {
      */
     desiredPrivateIpv6GoogleAccess?: string | null;
     /**
-     * Enable/Disable Protect API features for the cluster.
+     * Deprecated: Use DesiredSecurityPostureConfig instead. Enable/Disable Protect API features for the cluster.
      */
     desiredProtectConfig?: Schema$ProtectConfig;
     /**
@@ -2183,6 +2183,10 @@ export namespace container_v1beta1 {
      * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
+    /**
+     * Optional. Enable confidential storage on Hyperdisk. boot_disk_kms_key is required when enable_confidential_storage is true. This is only available for private preview.
+     */
+    enableConfidentialStorage?: boolean | null;
     /**
      * Parameters for the ephemeral storage filesystem. If unspecified, ephemeral storage is backed by the boot disk.
      */
@@ -3590,6 +3594,14 @@ export namespace container_v1beta1 {
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
+     * Optional. The desired disk size for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified disk size.
+     */
+    diskSizeGb?: string | null;
+    /**
+     * Optional. The desired disk type for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified disk type.
+     */
+    diskType?: string | null;
+    /**
      * The current etag of the node pool. If an etag is provided and does not match the current etag of the node pool, update will be blocked and an ABORTED error will be returned.
      */
     etag?: string | null;
@@ -3629,6 +3641,10 @@ export namespace container_v1beta1 {
      * Logging configuration.
      */
     loggingConfig?: Schema$NodePoolLoggingConfig;
+    /**
+     * Optional. The desired machine type for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified machine type.
+     */
+    machineType?: string | null;
     /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */

@@ -285,9 +285,9 @@ export namespace vmmigration_v1 {
      */
     firmware?: string | null;
     /**
-     * Output only. Unordered list. List of VM certain capabilities needed for some Compute Engine features.
+     * Output only. Information about VM capabilities needed for some Compute Engine features.
      */
-    vmCapabilities?: string[] | null;
+    vmCapabilitiesInfo?: Schema$VmCapabilities;
   }
   /**
    * AwsVmDetails describes a VM in AWS.
@@ -376,6 +376,143 @@ export namespace vmmigration_v1 {
     details?: Schema$AwsVmDetails[];
   }
   /**
+   * The details of an Azure VM disk.
+   */
+  export interface Schema$AzureDiskDetails {
+    /**
+     * Azure disk ID.
+     */
+    diskId?: string | null;
+    /**
+     * The ordinal number of the disk.
+     */
+    diskNumber?: number | null;
+    /**
+     * Size in GB.
+     */
+    sizeGb?: string | null;
+  }
+  /**
+   * AzureSourceDetails message describes a specific source details for the Azure source type.
+   */
+  export interface Schema$AzureSourceDetails {
+    /**
+     * Immutable. The Azure location (region) that the source VMs will be migrated from.
+     */
+    azureLocation?: string | null;
+    /**
+     * Azure Credentials using tenant ID, client ID and secret.
+     */
+    clientSecretCreds?: Schema$ClientSecretCredentials;
+    /**
+     * Output only. Provides details on the state of the Source in case of an error.
+     */
+    error?: Schema$Status;
+    /**
+     * User specified tags to add to every M2VM generated resource in Azure. These tags will be set in addition to the default tags that are set as part of the migration process. The tags must not begin with the reserved prefix `m4ce` or `m2vm`.
+     */
+    migrationResourcesUserTags?: {[key: string]: string} | null;
+    /**
+     * Output only. The ID of the Azure resource group that contains all resources related to the migration process of this source.
+     */
+    resourceGroupId?: string | null;
+    /**
+     * Output only. State of the source as determined by the health check.
+     */
+    state?: string | null;
+    /**
+     * Immutable. Azure subscription ID.
+     */
+    subscriptionId?: string | null;
+  }
+  /**
+   * Represent the source Azure VM details.
+   */
+  export interface Schema$AzureSourceVmDetails {
+    /**
+     * The total size of the disks being migrated in bytes.
+     */
+    committedStorageBytes?: string | null;
+    /**
+     * The disks attached to the source VM.
+     */
+    disks?: Schema$AzureDiskDetails[];
+    /**
+     * The firmware type of the source VM.
+     */
+    firmware?: string | null;
+    /**
+     * Output only. Information about VM capabilities needed for some Compute Engine features.
+     */
+    vmCapabilitiesInfo?: Schema$VmCapabilities;
+  }
+  /**
+   * AwsVmDetails describes a VM in AWS.
+   */
+  export interface Schema$AzureVmDetails {
+    /**
+     * The VM Boot Option.
+     */
+    bootOption?: string | null;
+    /**
+     * The total size of the storage allocated to the VM in MB.
+     */
+    committedStorageMb?: string | null;
+    /**
+     * The VM's ComputerName.
+     */
+    computerName?: string | null;
+    /**
+     * The number of cpus the VM has.
+     */
+    cpuCount?: number | null;
+    /**
+     * The number of disks the VM has, including OS disk.
+     */
+    diskCount?: number | null;
+    /**
+     * Description of the data disks.
+     */
+    disks?: Schema$Disk[];
+    /**
+     * The memory size of the VM in MB.
+     */
+    memoryMb?: number | null;
+    /**
+     * Description of the OS.
+     */
+    osDescription?: Schema$OSDescription;
+    /**
+     * Description of the OS disk.
+     */
+    osDisk?: Schema$OSDisk;
+    /**
+     * The power state of the VM at the moment list was taken.
+     */
+    powerState?: string | null;
+    /**
+     * The tags of the VM.
+     */
+    tags?: {[key: string]: string} | null;
+    /**
+     * The VM full path in Azure.
+     */
+    vmId?: string | null;
+    /**
+     * VM size as configured in Azure. Determines the VM's hardware spec.
+     */
+    vmSize?: string | null;
+  }
+  /**
+   * AzureVmsDetails describes VMs in Azure.
+   */
+  export interface Schema$AzureVmsDetails {
+    /**
+     * The details of the Azure VMs.
+     */
+    details?: Schema$AzureVmDetails[];
+  }
+  /**
    * Request message for 'CancelCloneJob' request.
    */
   export interface Schema$CancelCloneJobRequest {}
@@ -387,6 +524,23 @@ export namespace vmmigration_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Message describing Azure Credentials using tenant ID, client ID and secret.
+   */
+  export interface Schema$ClientSecretCredentials {
+    /**
+     * Azure client ID.
+     */
+    clientId?: string | null;
+    /**
+     * Input only. Azure client secret.
+     */
+    clientSecret?: string | null;
+    /**
+     * Azure tenant ID.
+     */
+    tenantId?: string | null;
+  }
   /**
    * CloneJob describes the process of creating a clone of a MigratingVM to the requested target based on the latest successful uploaded snapshots. While the migration cycles of a MigratingVm take place, it is possible to verify the uploaded VM can be started in the cloud, by creating a clone. The clone can be created without any downtime, and it is created using the latest snapshots which are already in the cloud. The cloneJob is only responsible for its work, not its products, which means once it is finished, it will never touch the instance it created. It will only delete it in case of the CloneJob being cancelled or upon failure to clone.
    */
@@ -832,6 +986,23 @@ export namespace vmmigration_v1 {
     version?: string | null;
   }
   /**
+   * A message describing a data disk.
+   */
+  export interface Schema$Disk {
+    /**
+     * The disk's Logical Unit Number (LUN).
+     */
+    lun?: number | null;
+    /**
+     * The disk name.
+     */
+    name?: string | null;
+    /**
+     * The disk size in GB.
+     */
+    sizeGb?: number | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -843,6 +1014,10 @@ export namespace vmmigration_v1 {
      * The description of the VMs in a Source of type AWS.
      */
     awsVms?: Schema$AwsVmsDetails;
+    /**
+     * The description of the VMs in a Source of type Azure.
+     */
+    azureVms?: Schema$AzureVmsDetails;
     /**
      * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -1136,6 +1311,10 @@ export namespace vmmigration_v1 {
      */
     awsSourceVmDetails?: Schema$AwsSourceVmDetails;
     /**
+     * Output only. Details of the VM from an Azure source.
+     */
+    azureSourceVmDetails?: Schema$AzureSourceVmDetails;
+    /**
      * Details of the target Persistent Disks in Compute Engine.
      */
     computeEngineDisksTargetDefaults?: Schema$ComputeEngineDisksTargetDefaults;
@@ -1215,6 +1394,10 @@ export namespace vmmigration_v1 {
      * Output only. The last time the migrating VM resource was updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. Details of the VM from a Vmware source.
+     */
+    vmwareSourceVmDetails?: Schema$VmwareSourceVmDetails;
   }
   /**
    * Represents migration resource error information that can be used with google.rpc.Status message. MigrationError is used to present the user with error information in migration operations.
@@ -1344,6 +1527,44 @@ export namespace vmmigration_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * A message describing the VM's OS. Including OS, Publisher, Offer and Plan if applicable.
+   */
+  export interface Schema$OSDescription {
+    /**
+     * OS offer.
+     */
+    offer?: string | null;
+    /**
+     * OS plan.
+     */
+    plan?: string | null;
+    /**
+     * OS publisher.
+     */
+    publisher?: string | null;
+    /**
+     * OS type.
+     */
+    type?: string | null;
+  }
+  /**
+   * A message describing the OS disk.
+   */
+  export interface Schema$OSDisk {
+    /**
+     * The disk's full name.
+     */
+    name?: string | null;
+    /**
+     * The disk's size in GB.
+     */
+    sizeGb?: number | null;
+    /**
+     * The disk's type.
+     */
+    type?: string | null;
   }
   /**
    * Request message for 'PauseMigration' request.
@@ -1522,6 +1743,10 @@ export namespace vmmigration_v1 {
      */
     aws?: Schema$AwsSourceDetails;
     /**
+     * Azure type source details.
+     */
+    azure?: Schema$AzureSourceDetails;
+    /**
      * Output only. The create time timestamp.
      */
     createTime?: string | null;
@@ -1685,6 +1910,19 @@ export namespace vmmigration_v1 {
     vms?: Schema$VmUtilizationInfo[];
   }
   /**
+   * Migrating VM source information about the VM capabilities needed for some Compute Engine features.
+   */
+  export interface Schema$VmCapabilities {
+    /**
+     * Output only. The last time OS capabilities list was updated.
+     */
+    lastOsCapabilitiesUpdateTime?: string | null;
+    /**
+     * Output only. Unordered list. List of certain VM OS capabilities needed for some Compute Engine features.
+     */
+    osCapabilities?: string[] | null;
+  }
+  /**
    * Utilization information of a single VM.
    */
   export interface Schema$VmUtilizationInfo {
@@ -1739,6 +1977,23 @@ export namespace vmmigration_v1 {
     networkThroughputMaxKbps?: string | null;
   }
   /**
+   * The details of a Vmware VM disk.
+   */
+  export interface Schema$VmwareDiskDetails {
+    /**
+     * The ordinal number of the disk.
+     */
+    diskNumber?: number | null;
+    /**
+     * The disk label.
+     */
+    label?: string | null;
+    /**
+     * Size in GB.
+     */
+    sizeGb?: string | null;
+  }
+  /**
    * VmwareSourceDetails message describes a specific source details for the vmware source type.
    */
   export interface Schema$VmwareSourceDetails {
@@ -1762,6 +2017,27 @@ export namespace vmmigration_v1 {
      * The ip address of the vcenter this Source represents.
      */
     vcenterIp?: string | null;
+  }
+  /**
+   * Represent the source Vmware VM details.
+   */
+  export interface Schema$VmwareSourceVmDetails {
+    /**
+     * The total size of the disks being migrated in bytes.
+     */
+    committedStorageBytes?: string | null;
+    /**
+     * The disks attached to the source VM.
+     */
+    disks?: Schema$VmwareDiskDetails[];
+    /**
+     * The firmware type of the source VM.
+     */
+    firmware?: string | null;
+    /**
+     * Output only. Information about VM capabilities needed for some Compute Engine features.
+     */
+    vmCapabilitiesInfo?: Schema$VmCapabilities;
   }
   /**
    * VmwareVmDetails describes a VM in vCenter.

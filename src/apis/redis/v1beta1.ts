@@ -706,7 +706,7 @@ export namespace redis_v1beta1 {
   }
   export interface Schema$PscConfig {
     /**
-     * Required. The consumer network where the IP address of the discovery endpoint will be reserved, in the form of projects/{network_host_project\}/global/networks/{network_id\}.
+     * Required. The network where the IP address of the discovery endpoint will be reserved, in the form of projects/{network_project\}/global/networks/{network_id\}.
      */
     network?: string | null;
   }
@@ -727,7 +727,7 @@ export namespace redis_v1beta1 {
      */
     network?: string | null;
     /**
-     * The consumer project_id where the forwarding rule is created from.
+     * Output only. The consumer project_id where the forwarding rule is created from.
      */
     projectId?: string | null;
     /**
@@ -1107,7 +1107,7 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * Creates a Redis cluster based on the specified tier and memory size. The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis cluster will be fully functional. The completed longrunning.Operation will contain the new cluster object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
+     * Creates a Redis cluster based on the specified properties. The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis cluster will be fully functional. The completed longrunning.Operation will contain the new cluster object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
