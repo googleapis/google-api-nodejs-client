@@ -451,7 +451,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Name of the recommendation.",
+                          "description": "Required. Name of the recommendation.",
                           "location": "path",
                           "pattern": "^billingAccounts/[^/]+/locations/[^/]+/recommenders/[^/]+/recommendations/[^/]+$",
                           "required": true,
@@ -747,7 +747,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Name of the recommendation.",
+                          "description": "Required. Name of the recommendation.",
                           "location": "path",
                           "pattern": "^folders/[^/]+/locations/[^/]+/recommenders/[^/]+/recommendations/[^/]+$",
                           "required": true,
@@ -1175,7 +1175,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Name of the recommendation.",
+                          "description": "Required. Name of the recommendation.",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/locations/[^/]+/recommenders/[^/]+/recommendations/[^/]+$",
                           "required": true,
@@ -1603,7 +1603,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Name of the recommendation.",
+                          "description": "Required. Name of the recommendation.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/recommenders/[^/]+/recommendations/[^/]+$",
                           "required": true,
@@ -1686,7 +1686,7 @@
       }
     }
   },
-  "revision": "20230122",
+  "revision": "20230917",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1CostProjection": {
