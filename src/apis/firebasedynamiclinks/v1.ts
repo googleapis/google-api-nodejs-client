@@ -397,7 +397,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     sdkVersion?: string | null;
     /**
-     * Possible unique matched link that server need to check before performing fingerprint match. If passed link is short server need to expand the link. If link is long server need to vslidate the link.
+     * Possible unique matched link that server need to check before performing device heuristics match. If passed link is short server need to expand the link. If link is long server need to vslidate the link.
      */
     uniqueMatchLinkToCheck?: string | null;
     /**
@@ -418,7 +418,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     attributionConfidence?: string | null;
     /**
-     * The deep-link attributed post-install via one of several techniques (fingerprint, copy unique).
+     * The deep-link attributed post-install via one of several techniques (device heuristics, copy unique).
      */
     deepLink?: string | null;
     /**
@@ -430,7 +430,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     fallbackLink?: string | null;
     /**
-     * Invitation ID attributed post-install via one of several techniques (fingerprint, copy unique).
+     * Invitation ID attributed post-install via one of several techniques (device heuristics, copy unique).
      */
     invitationId?: string | null;
     /**
@@ -442,7 +442,7 @@ export namespace firebasedynamiclinks_v1 {
      */
     matchMessage?: string | null;
     /**
-     * Entire FDL (short or long) attributed post-install via one of several techniques (fingerprint, copy unique).
+     * Entire FDL (short or long) attributed post-install via one of several techniques (device heuristics, copy unique).
      */
     requestedLink?: string | null;
     /**
