@@ -683,11 +683,11 @@ export namespace datastream_v1 {
    */
   export interface Schema$MysqlLogPosition {
     /**
-     * The binary log file name.
+     * Required. The binary log file name.
      */
     logFile?: string | null;
     /**
-     * The position within the binary log file. Default is head of file.
+     * Optional. The position within the binary log file. Default is head of file.
      */
     logPosition?: number | null;
   }
@@ -938,6 +938,10 @@ export namespace datastream_v1 {
      */
     hostname?: string | null;
     /**
+     * Optional. SSL configuration for the Oracle connection.
+     */
+    oracleSslConfig?: Schema$OracleSslConfig;
+    /**
      * Required. Password for the Oracle connection.
      */
     password?: string | null;
@@ -1000,6 +1004,19 @@ export namespace datastream_v1 {
      * Stream large object values. NOTE: This feature is currently experimental.
      */
     streamLargeObjects?: Schema$StreamLargeObjects;
+  }
+  /**
+   * Oracle SSL configuration information.
+   */
+  export interface Schema$OracleSslConfig {
+    /**
+     * Input only. PEM-encoded certificate of the CA that signed the source database server's certificate.
+     */
+    caCertificate?: string | null;
+    /**
+     * Output only. Indicates whether the ca_certificate field has been set for this Connection-Profile.
+     */
+    caCertificateSet?: boolean | null;
   }
   /**
    * Oracle table.
@@ -1385,6 +1402,10 @@ export namespace datastream_v1 {
      * Labels.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Output only. If the stream was recovered, the time of the last recovery. Note: This field is currently experimental.
+     */
+    lastRecoveryTime?: string | null;
     /**
      * Output only. The stream's name.
      */
@@ -4350,11 +4371,11 @@ export namespace datastream_v1 {
   export interface Params$Resource$Projects$Locations$Streams$Patch
     extends StandardParameters {
     /**
-     * The binary log file name.
+     * Required. The binary log file name.
      */
     'cdcStrategy.specificStartPosition.mysqlLogPosition.logFile'?: string;
     /**
-     * The position within the binary log file. Default is head of file.
+     * Optional. The position within the binary log file. Default is head of file.
      */
     'cdcStrategy.specificStartPosition.mysqlLogPosition.logPosition'?: number;
     /**
