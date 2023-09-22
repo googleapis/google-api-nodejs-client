@@ -2059,7 +2059,7 @@
       }
     }
   },
-  "revision": "20230805",
+  "revision": "20230914",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2449,6 +2449,10 @@
           ],
           "type": "string"
         },
+        "facetConfig": {
+          "$ref": "GoogleCloudRetailV2CatalogAttributeFacetConfig",
+          "description": "Contains facet options."
+        },
         "inUse": {
           "description": "Output only. Indicates whether this attribute has been used by any products. `True` if at least one Product is using this attribute in Product.attributes. Otherwise, this field is `False`. CatalogAttribute can be pre-loaded by using CatalogService.AddCatalogAttribute, CatalogService.ImportCatalogAttributes, or CatalogService.UpdateAttributesConfig APIs. This field is `False` for pre-loaded CatalogAttributes. Only pre-loaded catalog attributes that are neither in use by products nor predefined can be deleted. Catalog attributes that are either in use by products or are predefined attributes cannot be deleted; however, their configuration properties will reset to default values upon removal request. After catalog changes, it takes about 10 minutes for this field to update.",
           "readOnly": true,
@@ -2514,6 +2518,76 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2CatalogAttributeFacetConfig": {
+      "description": "Possible options for the facet that corresponds to the current attribute config.",
+      "id": "GoogleCloudRetailV2CatalogAttributeFacetConfig",
+      "properties": {
+        "facetIntervals": {
+          "description": "If you don't set the facet SearchRequest.FacetSpec.FacetKey.intervals in the request to a numerical attribute, then we use the computed intervals with rounded bounds obtained from all its product numerical attribute values. The computed intervals might not be ideal for some attributes. Therefore, we give you the option to overwrite them with the facet_intervals field. The maximum of facet intervals per CatalogAttribute is 40. Each interval must have a lower bound or an upper bound. If both bounds are provided, then the lower bound must be smaller or equal than the upper bound.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2Interval"
+          },
+          "type": "array"
+        },
+        "ignoredFacetValues": {
+          "description": "Each instance represents a list of attribute values to ignore as facet values for a specific time range. The maximum number of instances per CatalogAttribute is 25.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues"
+          },
+          "type": "array"
+        },
+        "mergedFacetValues": {
+          "description": "Each instance replaces a list of facet values by a merged facet value. If a facet value is not in any list, then it will stay the same. To avoid conflicts, only paths of length 1 are accepted. In other words, if \"dark_blue\" merged into \"BLUE\", then the latter can't merge into \"blues\" because this would create a path of length 2. The maximum number of instances of MergedFacetValue per CatalogAttribute is 100.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues": {
+      "description": "Facet values to ignore on facets during the specified time range for the given SearchResponse.Facet.key attribute.",
+      "id": "GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues",
+      "properties": {
+        "endTime": {
+          "description": "If start time is empty and end time is not empty, then ignore these facet values before end time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Time range for the current list of facet values to ignore. If multiple time ranges are specified for an facet value for the current attribute, consider all of them. If both are empty, ignore always. If start time and end time are set, then start time must be before end time. If start time is not empty and end time is empty, then will ignore these facet values after the start time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "values": {
+          "description": "List of facet values to ignore for the following time range. The facet values are the same as the attribute values. There is a limit of 10 values per instance of IgnoredFacetValues. Each value can have at most 60 characters.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue": {
+      "description": "Replaces a set of facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute.",
+      "id": "GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue",
+      "properties": {
+        "mergedValue": {
+          "description": "All the previous values are replaced by this merged facet value. This merged_value must be non-empty and can have up to 60 characters.",
+          "type": "string"
+        },
+        "values": {
+          "description": "All the facet values that are replaces by the same merged_value that follows. The maximum number of values per MergedFacetValue is 25. Each value can have up to 60 characters.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2693,6 +2767,13 @@
           "description": "Range of time(s) specifying when Condition is active. Condition true if any time range matches.",
           "items": {
             "$ref": "GoogleCloudRetailV2ConditionTimeRange"
+          },
+          "type": "array"
+        },
+        "pageCategories": {
+          "description": "Used to support browse uses cases. A list (up to 10 entries) of categories or departments. The format should be the same as UserEvent.page_categories;",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -4222,6 +4303,10 @@
           "$ref": "GoogleCloudRetailV2RuleFilterAction",
           "description": "Filters results."
         },
+        "forceReturnFacetAction": {
+          "$ref": "GoogleCloudRetailV2RuleForceReturnFacetAction",
+          "description": "Force returns an attribute as a facet in the request."
+        },
         "ignoreAction": {
           "$ref": "GoogleCloudRetailV2RuleIgnoreAction",
           "description": "Ignores specific terms from query during search."
@@ -4233,6 +4318,10 @@
         "redirectAction": {
           "$ref": "GoogleCloudRetailV2RuleRedirectAction",
           "description": "Redirects a shopper to a specific page."
+        },
+        "removeFacetAction": {
+          "$ref": "GoogleCloudRetailV2RuleRemoveFacetAction",
+          "description": "Remove an attribute as a facet in the request (if present)."
         },
         "replacementAction": {
           "$ref": "GoogleCloudRetailV2RuleReplacementAction",
@@ -4300,6 +4389,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2RuleForceReturnFacetAction": {
+      "description": "Force returns an attribute/facet in the request around a certain position or above. * Rule Condition: - Must specify non-empty Condition.query_terms (for search only) or Condition.page_categories (for browse only), but can't specify both. * Action Inputs: attribute name, position * Action Result: Will force return a facet key around a certain position or above if the condition is satisfied. Example: Suppose the query is \"shoes\", the Condition.query_terms is \"shoes\", the ForceReturnFacetAction.FacetPositionAdjustment.attribute_name is \"size\" and the ForceReturnFacetAction.FacetPositionAdjustment.position is 8. Two cases: a) The facet key \"size\" is not already in the top 8 slots, then the facet \"size\" will appear at a position close to 8. b) The facet key \"size\" in among the top 8 positions in the request, then it will stay at its current rank.",
+      "id": "GoogleCloudRetailV2RuleForceReturnFacetAction",
+      "properties": {
+        "facetPositionAdjustments": {
+          "description": "Each instance corresponds to a force return attribute for the given condition. There can't be more 3 instances here.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2RuleForceReturnFacetActionFacetPositionAdjustment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RuleForceReturnFacetActionFacetPositionAdjustment": {
+      "description": "Each facet position adjustment consists of a single attribute name (i.e. facet key) along with a specified position.",
+      "id": "GoogleCloudRetailV2RuleForceReturnFacetActionFacetPositionAdjustment",
+      "properties": {
+        "attributeName": {
+          "description": "The attribute name to force return as a facet. Each attribute name should be a valid attribute name, be non-empty and contain at most 80 characters long.",
+          "type": "string"
+        },
+        "position": {
+          "description": "This is the position in the request as explained above. It should be strictly positive be at most 100.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2RuleIgnoreAction": {
       "description": "Prevents a term in the query from being used in search. Example: Don't search for \"shoddy\".",
       "id": "GoogleCloudRetailV2RuleIgnoreAction",
@@ -4349,6 +4468,20 @@
         "redirectUri": {
           "description": "URL must have length equal or less than 2000 characters.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RuleRemoveFacetAction": {
+      "description": "Removes an attribute/facet in the request if is present. * Rule Condition: - Must specify non-empty Condition.query_terms (for search only) or Condition.page_categories (for browse only), but can't specify both. * Action Input: attribute name * Action Result: Will remove the attribute (as a facet) from the request if it is present. Example: Suppose the query is \"shoes\", the Condition.query_terms is \"shoes\" and the attribute name \"size\", then facet key \"size\" will be removed from the request (if it is present).",
+      "id": "GoogleCloudRetailV2RuleRemoveFacetAction",
+      "properties": {
+        "attributeNames": {
+          "description": "The attribute names (i.e. facet keys) to remove from the dynamic facets (if present in the request). There can't be more 3 attribute names. Each attribute name should be a valid attribute name, be non-empty and contain at most 80 characters.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
