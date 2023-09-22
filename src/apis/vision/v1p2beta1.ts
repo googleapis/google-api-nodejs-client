@@ -1541,6 +1541,10 @@ export namespace vision_v1p2beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1AsyncBatchAnnotateFilesRequest {
     /**
+     * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string | null;
@@ -1563,6 +1567,10 @@ export namespace vision_v1p2beta1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1AsyncBatchAnnotateImagesRequest {
     /**
+     * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Required. The desired output location and metadata (e.g. format).
      */
     outputConfig?: Schema$GoogleCloudVisionV1p2beta1OutputConfig;
@@ -1579,6 +1587,10 @@ export namespace vision_v1p2beta1 {
    * A list of requests to annotate files using the BatchAnnotateFiles API.
    */
   export interface Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesRequest {
+    /**
+     * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
@@ -1601,6 +1613,10 @@ export namespace vision_v1p2beta1 {
    * Multiple image annotation requests are batched into a single service call.
    */
   export interface Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesRequest {
+    /**
+     * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
