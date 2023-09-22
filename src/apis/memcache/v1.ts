@@ -257,6 +257,15 @@ export namespace memcache_v1 {
      */
     verb?: string | null;
   }
+  /**
+   * Request for UpgradeInstance.
+   */
+  export interface Schema$GoogleCloudMemcacheV1UpgradeInstanceRequest {
+    /**
+     * Required. Specifies the target version of memcached engine to upgrade to.
+     */
+    memcacheVersion?: string | null;
+  }
   export interface Schema$GoogleCloudMemcacheV1ZoneMetadata {}
   /**
    * Instance represents the interface for SLM services to actuate the state of control plane resources. Example Instance in JSON, where consumer-project-number=123456, producer-project-id=cloud-sql: ```json Instance: { "name": "projects/123456/locations/us-east1/instances/prod-instance", "create_time": { "seconds": 1526406431, \}, "labels": { "env": "prod", "foo": "bar" \}, "state": READY, "software_versions": { "software_update": "cloud-sql-09-28-2018", \}, "maintenance_policy_names": { "UpdatePolicy": "projects/123456/locations/us-east1/maintenancePolicies/prod-update-policy", \} "tenant_project_id": "cloud-sql-test-tenant", "producer_metadata": { "cloud-sql-tier": "basic", "cloud-sql-instance-size": "1G", \}, "provisioned_resources": [ { "resource-type": "compute-instance", "resource-url": "https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1", \} ], "maintenance_schedules": { "csa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \}, "ncsa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \} \}, "consumer_defined_name": "my-sql-instance1", \} ``` LINT.IfChange
@@ -709,6 +718,14 @@ export namespace memcache_v1 {
      * Output only. Hostname or IP address of the Memcached node used by the clients to connect to the Memcached server on this node.
      */
     host?: string | null;
+    /**
+     * Output only. The full version of memcached server running on this node. e.g. - memcached-1.5.16
+     */
+    memcacheFullVersion?: string | null;
+    /**
+     * Output only. Major version of memcached server running on this node, e.g. MEMCACHE_1_5
+     */
+    memcacheVersion?: string | null;
     /**
      * Output only. Identifier of the Memcached node. The node id does not include project or location like the Memcached instance name.
      */
@@ -1854,6 +1871,93 @@ export namespace memcache_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Upgrades the Memcache instance to a newer memcached engine version specified in the request.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upgrade(
+      params?: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgrade(
+      params: Params$Resource$Projects$Locations$Instances$Upgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgrade(callback: BodyResponseCallback<Schema$Operation>): void;
+    upgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Upgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Upgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Upgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://memcache.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:upgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Instances$Applyparameters
@@ -1960,6 +2064,18 @@ export namespace memcache_v1 {
      * Request body metadata
      */
     requestBody?: Schema$UpdateParametersRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Upgrade
+    extends StandardParameters {
+    /**
+     * Required. Memcache instance resource name using the form: `projects/{project\}/locations/{location\}/instances/{instance\}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMemcacheV1UpgradeInstanceRequest;
   }
 
   export class Resource$Projects$Locations$Operations {
