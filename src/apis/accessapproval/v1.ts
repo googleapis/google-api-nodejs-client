@@ -174,6 +174,10 @@ export namespace accessapproval_v1 {
      */
     notificationEmails?: string[] | null;
     /**
+     * Optional. A pubsub topic to which notifications relating to approval requests should be sent.
+     */
+    notificationPubsubTopic?: string | null;
+    /**
      * This preference is communicated to Google personnel when sending an approval request but can be overridden if necessary.
      */
     preferNoBroadApprovalRequests?: boolean | null;
