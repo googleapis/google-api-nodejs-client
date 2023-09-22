@@ -148,6 +148,10 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus {
     /**
+     * The document id of the auto-labeled document. This will replace the gcs_uri.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
      * The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.
      */
     gcsUri?: string | null;
@@ -230,6 +234,33 @@ export namespace documentai_v1 {
    * Response of the batch move documents operation.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse {}
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata {
+    /**
+     * The basic metadata of the long-running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+    /**
+     * The list of response details of each document.
+     */
+    individualBatchUpdateStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus[];
+  }
+  /**
+   * The status of each individual document in the batch update process.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus {
+    /**
+     * The document id of the document.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
+     * The status of updating the document in storage.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * Response of the batch update documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse {}
   /**
    * The common metadata for long running operations.
    */
@@ -2967,7 +2998,7 @@ export namespace documentai_v1 {
     updateTime?: string | null;
   }
   /**
-   * A singleton resource under a Processor which configures a collection of documents.
+   * A singleton resource under a Processor which configures a collection of documents. Next Id: 8.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
     /**
@@ -4812,9 +4843,13 @@ export namespace documentai_v1 {
      */
     advancedOcrOptions?: string[] | null;
     /**
-     * Turn on font id model and returns font style information. Use PremiumFeatures.compute_style_info instead.
+     * Turn on font identification model and return font style information. Deprecated, use PremiumFeatures.compute_style_info instead.
      */
     computeStyleInfo?: boolean | null;
+    /**
+     * Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0+ processors.
+     */
+    disableCharacterBoxesDetection?: boolean | null;
     /**
      * Enables intelligent document quality scores after OCR. Can help with diagnosing why OCR responses are of poor quality for a given input. Adds additional latency comparable to regular OCR to the process call.
      */
@@ -4831,6 +4866,10 @@ export namespace documentai_v1 {
      * Hints for the OCR model.
      */
     hints?: Schema$GoogleCloudDocumentaiV1OcrConfigHints;
+    /**
+     * Configurations for premium OCR features.
+     */
+    premiumFeatures?: Schema$GoogleCloudDocumentaiV1OcrConfigPremiumFeatures;
   }
   /**
    * Hints for OCR Engine
@@ -4842,13 +4881,51 @@ export namespace documentai_v1 {
     languageHints?: string[] | null;
   }
   /**
+   * Configurations for premium OCR features.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1OcrConfigPremiumFeatures {
+    /**
+     * Turn on font identification model and return font style information.
+     */
+    computeStyleInfo?: boolean | null;
+    /**
+     * Turn on the model that can extract LaTeX math formulas.
+     */
+    enableMathOcr?: boolean | null;
+    /**
+     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0+ processors.
+     */
+    enableSelectionMarkDetection?: boolean | null;
+  }
+  /**
    * Options for Process API
    */
   export interface Schema$GoogleCloudDocumentaiV1ProcessOptions {
     /**
+     * Only process certain pages from the end, same as above.
+     */
+    fromEnd?: number | null;
+    /**
+     * Only process certain pages from the start, process all if the document has less pages.
+     */
+    fromStart?: number | null;
+    /**
+     * Which pages to process (1-indexed).
+     */
+    individualPageSelector?: Schema$GoogleCloudDocumentaiV1ProcessOptionsIndividualPageSelector;
+    /**
      * Only applicable to `OCR_PROCESSOR`. Returns error if set on other processor types.
      */
     ocrConfig?: Schema$GoogleCloudDocumentaiV1OcrConfig;
+  }
+  /**
+   * A list of individual page numbers.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1ProcessOptionsIndividualPageSelector {
+    /**
+     * Optional. Indices of the pages (starting from 1).
+     */
+    pages?: number[] | null;
   }
   /**
    * The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.
@@ -5055,7 +5132,7 @@ export namespace documentai_v1 {
      */
     content?: string | null;
     /**
-     * The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `\}`,`'`, `\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID will be generated.
+     * The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `\}`,`'`, `\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID is generated.
      */
     displayName?: string | null;
     /**

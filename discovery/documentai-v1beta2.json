@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230914",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -322,7 +322,12 @@
       "description": "The status of individual documents in the auto-labeling process.",
       "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus",
       "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the auto-labeled document. This will replace the gcs_uri."
+        },
         "gcsUri": {
+          "deprecated": true,
           "description": "The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.",
           "type": "string"
         },
@@ -455,6 +460,44 @@
     "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse": {
       "description": "Response of the batch move documents operation.",
       "id": "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata": {
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long-running operation."
+        },
+        "individualBatchUpdateStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus": {
+      "description": "The status of each individual document in the batch update process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus",
+      "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the document."
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of updating the document in storage."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse": {
+      "description": "Response of the batch update documents operation.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse",
       "properties": {},
       "type": "object"
     },
@@ -4679,7 +4722,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3Dataset": {
-      "description": "A singleton resource under a Processor which configures a collection of documents.",
+      "description": "A singleton resource under a Processor which configures a collection of documents. Next Id: 8.",
       "id": "GoogleCloudDocumentaiV1beta3Dataset",
       "properties": {
         "documentWarehouseConfig": {

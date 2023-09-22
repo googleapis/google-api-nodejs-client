@@ -1256,7 +1256,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230914",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -1286,7 +1286,12 @@
       "description": "The status of individual documents in the auto-labeling process.",
       "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus",
       "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the auto-labeled document. This will replace the gcs_uri."
+        },
         "gcsUri": {
+          "deprecated": true,
           "description": "The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.",
           "type": "string"
         },
@@ -1419,6 +1424,44 @@
     "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse": {
       "description": "Response of the batch move documents operation.",
       "id": "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata": {
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long-running operation."
+        },
+        "individualBatchUpdateStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus": {
+      "description": "The status of each individual document in the batch update process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus",
+      "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the document."
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of updating the document in storage."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse": {
+      "description": "Response of the batch update documents operation.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse",
       "properties": {},
       "type": "object"
     },
@@ -5619,7 +5662,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3Dataset": {
-      "description": "A singleton resource under a Processor which configures a collection of documents.",
+      "description": "A singleton resource under a Processor which configures a collection of documents. Next Id: 8.",
       "id": "GoogleCloudDocumentaiV1beta3Dataset",
       "properties": {
         "documentWarehouseConfig": {
@@ -7493,6 +7536,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3FieldExtractionMetadata": {
+      "description": "Metadata for how this field value is extracted.",
+      "id": "GoogleCloudDocumentaiV1beta3FieldExtractionMetadata",
+      "properties": {
+        "summaryOptions": {
+          "$ref": "GoogleCloudDocumentaiV1beta3SummaryOptions",
+          "description": "Summary options config."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3GcsDocument": {
       "description": "Specifies a document stored on Cloud Storage.",
       "id": "GoogleCloudDocumentaiV1beta3GcsDocument",
@@ -7713,12 +7767,12 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest": {
-      "description": "The request message for the ImportProcessorVersion method. Requirements: - The Document AI [Service Agent](https://cloud.google.com/iam/docs/service-agents) of the destination project must have [Document AI Editor role](https://cloud.google.com/document-ai/docs/access-control/iam-roles) on the source project. The destination project is specified as part of the parent field. The source project is specified as part of the source field.",
+      "description": "The request message for the ImportProcessorVersion method. The Document AI [Service Agent](https://cloud.google.com/iam/docs/service-agents) of the destination project must have [Document AI Editor role](https://cloud.google.com/document-ai/docs/access-control/iam-roles) on the source project. The destination project is specified as part of the parent field. The source project is specified as part of the source or external_processor_version_source field.",
       "id": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest",
       "properties": {
         "externalProcessorVersionSource": {
           "$ref": "GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequestExternalProcessorVersionSource",
-          "description": "The source processor version to import from, and can be from different environment and region than the destination processor."
+          "description": "The source processor version to import from. It can be from a different environment and region than the destination processor."
         },
         "processorVersionSource": {
           "description": "The source processor version to import from. The source processor version and destination processor need to be in the same environment and region.",
@@ -7855,7 +7909,11 @@
         },
         "computeStyleInfo": {
           "deprecated": true,
-          "description": "Turn on font id model and returns font style information. Use PremiumFeatures.compute_style_info instead.",
+          "description": "Turn on font identification model and return font style information. Deprecated, use PremiumFeatures.compute_style_info instead.",
+          "type": "boolean"
+        },
+        "disableCharacterBoxesDetection": {
+          "description": "Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0+ processors.",
           "type": "boolean"
         },
         "enableImageQualityScores": {
@@ -7873,6 +7931,10 @@
         "hints": {
           "$ref": "GoogleCloudDocumentaiV1beta3OcrConfigHints",
           "description": "Hints for the OCR model."
+        },
+        "premiumFeatures": {
+          "$ref": "GoogleCloudDocumentaiV1beta3OcrConfigPremiumFeatures",
+          "description": "Configurations for premium OCR features."
         }
       },
       "type": "object"
@@ -7891,13 +7953,65 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3OcrConfigPremiumFeatures": {
+      "description": "Configurations for premium OCR features.",
+      "id": "GoogleCloudDocumentaiV1beta3OcrConfigPremiumFeatures",
+      "properties": {
+        "computeStyleInfo": {
+          "description": "Turn on font identification model and return font style information.",
+          "type": "boolean"
+        },
+        "enableMathOcr": {
+          "description": "Turn on the model that can extract LaTeX math formulas.",
+          "type": "boolean"
+        },
+        "enableSelectionMarkDetection": {
+          "description": "Turn on selection mark detector in OCR engine. Only available in OCR 2.0+ processors.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3ProcessOptions": {
       "description": "Options for Process API",
       "id": "GoogleCloudDocumentaiV1beta3ProcessOptions",
       "properties": {
+        "fromEnd": {
+          "description": "Only process certain pages from the end, same as above.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "fromStart": {
+          "description": "Only process certain pages from the start, process all if the document has less pages.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "individualPageSelector": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessOptionsIndividualPageSelector",
+          "description": "Which pages to process (1-indexed)."
+        },
         "ocrConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3OcrConfig",
           "description": "Only applicable to `OCR_PROCESSOR`. Returns error if set on other processor types."
+        },
+        "schemaOverride": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchema",
+          "description": "Optional. Override the schema of the ProcessorVersion. Will return an Invalid Argument error if this field is set when the underlying ProcessorVersion doesn't support schema override."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessOptionsIndividualPageSelector": {
+      "description": "A list of individual page numbers.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessOptionsIndividualPageSelector",
+      "properties": {
+        "pages": {
+          "description": "Optional. Indices of the pages (starting from 1).",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8208,6 +8322,10 @@
       "description": "Metadata about a property.",
       "id": "GoogleCloudDocumentaiV1beta3PropertyMetadata",
       "properties": {
+        "fieldExtractionMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3FieldExtractionMetadata",
+          "description": "Field extraction metadata on the property."
+        },
         "inactive": {
           "description": "Whether the property should be considered as \"inactive\".",
           "type": "boolean"
@@ -8225,7 +8343,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `}`,`'`, `\\\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID will be generated.",
+          "description": "The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `}`,`'`, `\\\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID is generated.",
           "type": "string"
         },
         "mimeType": {
@@ -8406,6 +8524,43 @@
       "description": "Response message for the SetDefaultProcessorVersion method.",
       "id": "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3SummaryOptions": {
+      "description": "Metadata for document summarization.",
+      "id": "GoogleCloudDocumentaiV1beta3SummaryOptions",
+      "properties": {
+        "format": {
+          "description": "The format the summary should be in.",
+          "enum": [
+            "FORMAT_UNSPECIFIED",
+            "PARAGRAPH",
+            "BULLETS"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "Format the output in paragraphs.",
+            "Format the output in bullets."
+          ],
+          "type": "string"
+        },
+        "length": {
+          "description": "How long the summary should be.",
+          "enum": [
+            "LENGTH_UNSPECIFIED",
+            "BRIEF",
+            "MODERATE",
+            "COMPREHENSIVE"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "A brief summary of one or two sentences.",
+            "A paragraph-length summary.",
+            "The longest option available."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadata": {
