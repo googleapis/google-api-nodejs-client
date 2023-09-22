@@ -189,9 +189,31 @@ export namespace tpu_v2alpha1 {
    */
   export interface Schema$BestEffort {}
   /**
+   * Boot disk configurations.
+   */
+  export interface Schema$BootDiskConfig {
+    /**
+     * Optional. Customer encryption key for boot disk.
+     */
+    customerEncryptionKey?: Schema$CustomerEncryptionKey;
+    /**
+     * Optional. Whether the boot disk will be created with confidential compute mode.
+     */
+    enableConfidentialCompute?: boolean | null;
+  }
+  /**
    * Further data for the creating state.
    */
   export interface Schema$CreatingData {}
+  /**
+   * Customer's encryption key.
+   */
+  export interface Schema$CustomerEncryptionKey {
+    /**
+     * The name of the encryption key that is stored in Google Cloud KMS. For example: "kmsKeyName": "projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key The fully-qualifed key name may be returned for resource GET requests. For example: "kmsKeyName": "projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key /cryptoKeyVersions/1
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * Further data for the deleting state.
    */
@@ -495,6 +517,10 @@ export namespace tpu_v2alpha1 {
      * Output only. The API version that created this Node.
      */
     apiVersion?: string | null;
+    /**
+     * Optional. Boot disk configuration.
+     */
+    bootDiskConfig?: Schema$BootDiskConfig;
     /**
      * The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is peered with another network that is using that CIDR block.
      */
