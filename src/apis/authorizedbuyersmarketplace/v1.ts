@@ -524,7 +524,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     dealServingStatus?: string | null;
     /**
-     * The resource name of the finalized deal. Format: `buyers/{accountId\}/finalizeddeals/{finalizedDealId\}`
+     * The resource name of the finalized deal. Format: `buyers/{accountId\}/finalizedDeals/{finalizedDealId\}`
      */
     name?: string | null;
     /**
