@@ -599,7 +599,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20230906",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -780,6 +780,10 @@
             "The environment has encountered an error and cannot be used."
           ],
           "type": "string"
+        },
+        "storageConfig": {
+          "$ref": "StorageConfig",
+          "description": "Optional. Storage configuration for this environment."
         },
         "updateTime": {
           "description": "Output only. The time at which this environment was last modified.",
@@ -1661,6 +1665,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "StorageConfig": {
+      "description": "The configuration for data storage in the environment.",
+      "id": "StorageConfig",
+      "properties": {},
       "type": "object"
     },
     "WebServerConfig": {
