@@ -408,6 +408,42 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "listRevisions": {
+                  "description": "Lists revisions for a given workflow.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}:listRevisions",
+                  "httpMethod": "GET",
+                  "id": "workflows.projects.locations.workflows.listRevisions",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Workflow from which the revisions should be listed. Format: projects/{project}/locations/{location}/workflows/{workflow}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workflows/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of revisions to return per page. If a value is not specified, a default value of 20 is used. The maximum permitted value is 100 and values greater than 100 coerced down to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token, received from a previous ListWorkflowRevisions call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:listRevisions",
+                  "response": {
+                    "$ref": "ListWorkflowRevisionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "patch": {
                   "description": "Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow might be created as a result of a successful update operation. In that case, the new revision is used in new workflow executions.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}",
@@ -449,7 +485,7 @@
       }
     }
   },
-  "revision": "20230802",
+  "revision": "20230906",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -488,6 +524,24 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListWorkflowRevisionsResponse": {
+      "description": "Response for the ListWorkflowRevisions method.",
+      "id": "ListWorkflowRevisionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "workflows": {
+          "description": "The revisions of the workflow, ordered in reverse chronological order.",
+          "items": {
+            "$ref": "Workflow"
           },
           "type": "array"
         }
