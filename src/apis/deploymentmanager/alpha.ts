@@ -220,6 +220,28 @@ export namespace deploymentmanager_alpha {
      */
     role?: string | null;
   }
+  export interface Schema$BulkInsertOperationStatus {
+    /**
+     * [Output Only] Count of VMs successfully created so far.
+     */
+    createdVmCount?: number | null;
+    /**
+     * [Output Only] Count of VMs that got deleted during rollback.
+     */
+    deletedVmCount?: number | null;
+    /**
+     * [Output Only] Count of VMs that started creating but encountered an error.
+     */
+    failedToCreateVmCount?: number | null;
+    /**
+     * [Output Only] Creation status of BulkInsert operation - information if the flow is rolling forward or rolling back.
+     */
+    status?: string | null;
+    /**
+     * [Output Only] Count of VMs originally planned to be created.
+     */
+    targetVmCount?: number | null;
+  }
   /**
    * CollectionOverride allows resource handling overrides for specific resources within a BaseType
    */
@@ -534,6 +556,14 @@ export namespace deploymentmanager_alpha {
      */
     value?: string | null;
   }
+  export interface Schema$InstancesBulkInsertOperationMetadata {
+    /**
+     * Status information per location (location name is key). Example key: zones/us-central1-a
+     */
+    perLocationStatus?: {
+      [key: string]: Schema$BulkInsertOperationStatus;
+    } | null;
+  }
   export interface Schema$Manifest {
     /**
      * Output only. The YAML configuration for this manifest.
@@ -612,7 +642,7 @@ export namespace deploymentmanager_alpha {
     update?: string | null;
   }
   /**
-   * Represents an Operation resource. Google Compute Engine has three Operation resources: * [Global](/compute/docs/reference/rest/{$api_version\}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version\}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version\}/zoneOperations) You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses. Operations can be global, regional or zonal. - For global operations, use the `globalOperations` resource. - For regional operations, use the `regionOperations` resource. - For zonal operations, use the `zonalOperations` resource. For more information, read Global, Regional, and Zonal Resources.
+   * Represents an Operation resource. Google Compute Engine has three Operation resources: * [Global](/compute/docs/reference/rest/{$api_version\}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version\}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version\}/zoneOperations) You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses. Operations can be global, regional or zonal. - For global operations, use the `globalOperations` resource. - For regional operations, use the `regionOperations` resource. - For zonal operations, use the `zoneOperations` resource. For more information, read Global, Regional, and Zonal Resources.
    */
   export interface Schema$Operation {
     /**
@@ -653,6 +683,7 @@ export namespace deploymentmanager_alpha {
      * [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
      */
     insertTime?: string | null;
+    instancesBulkInsertOperationMetadata?: Schema$InstancesBulkInsertOperationMetadata;
     /**
      * [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      */
@@ -682,6 +713,10 @@ export namespace deploymentmanager_alpha {
      */
     selfLink?: string | null;
     /**
+     * [Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state.
+     */
+    setCommonInstanceMetadataOperationMetadata?: Schema$SetCommonInstanceMetadataOperationMetadata;
+    /**
      * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      */
     startTime?: string | null;
@@ -702,7 +737,7 @@ export namespace deploymentmanager_alpha {
      */
     targetLink?: string | null;
     /**
-     * [Output Only] User who requested the operation, for example: `user@example.com`.
+     * [Output Only] User who requested the operation, for example: `user@example.com` or `alice_smith_identifier (global/workforcePools/example-com-us-employees)`.
      */
     user?: string | null;
     /**
@@ -753,7 +788,7 @@ export namespace deploymentmanager_alpha {
     validationOptions?: Schema$ValidationOptions;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -932,6 +967,47 @@ export namespace deploymentmanager_alpha {
      * The IAM service account email address like test@myproject.iam.gserviceaccount.com
      */
     email?: string | null;
+  }
+  export interface Schema$SetCommonInstanceMetadataOperationMetadata {
+    /**
+     * [Output Only] The client operation id.
+     */
+    clientOperationId?: string | null;
+    /**
+     * [Output Only] Status information per location (location name is key). Example key: zones/us-central1-a
+     */
+    perLocationOperations?: {
+      [
+        key: string
+      ]: Schema$SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo;
+    } | null;
+  }
+  export interface Schema$SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo {
+    /**
+     * [Output Only] If state is `ABANDONED` or `FAILED`, this field is populated.
+     */
+    error?: Schema$Status;
+    /**
+     * [Output Only] Status of the action, which can be one of the following: `PROPAGATING`, `PROPAGATED`, `ABANDONED`, `FAILED`, or `DONE`.
+     */
+    state?: string | null;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
   }
   export interface Schema$TargetConfiguration {
     /**
