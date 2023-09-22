@@ -307,7 +307,7 @@ export namespace language_v2 {
      */
     mentions?: Schema$EntityMention[];
     /**
-     * Metadata associated with the entity. For most entity types, the metadata is a Wikipedia URL (`wikipedia_url`) and Knowledge Graph MID (`mid`), if they are available. For the metadata associated with other entity types, see the Type table below.
+     * Metadata associated with the entity. For the metadata associated with other entity types, see the Type table below.
      */
     metadata?: {[key: string]: string} | null;
     /**
