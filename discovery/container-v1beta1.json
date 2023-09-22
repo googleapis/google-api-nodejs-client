@@ -2565,7 +2565,7 @@
       }
     }
   },
-  "revision": "20230802",
+  "revision": "20230914",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3408,7 +3408,8 @@
         },
         "protectConfig": {
           "$ref": "ProtectConfig",
-          "description": "Enable/Disable Protect API features for the cluster."
+          "deprecated": true,
+          "description": "Deprecated: Use SecurityPostureConfig instead. Enable/Disable Protect API features for the cluster."
         },
         "releaseChannel": {
           "$ref": "ReleaseChannel",
@@ -3788,7 +3789,8 @@
         },
         "desiredProtectConfig": {
           "$ref": "ProtectConfig",
-          "description": "Enable/Disable Protect API features for the cluster."
+          "deprecated": true,
+          "description": "Deprecated: Use DesiredSecurityPostureConfig instead. Enable/Disable Protect API features for the cluster."
         },
         "desiredReleaseChannel": {
           "$ref": "ReleaseChannel",
@@ -5428,6 +5430,10 @@
           "description": "Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'",
           "type": "string"
         },
+        "enableConfidentialStorage": {
+          "description": "Optional. Enable confidential storage on Hyperdisk. boot_disk_kms_key is required when enable_confidential_storage is true. This is only available for private preview.",
+          "type": "boolean"
+        },
         "ephemeralStorageConfig": {
           "$ref": "EphemeralStorageConfig",
           "description": "Parameters for the ephemeral storage filesystem. If unspecified, ephemeral storage is backed by the boot disk."
@@ -6631,12 +6637,14 @@
           "enum": [
             "VULNERABILITY_MODE_UNSPECIFIED",
             "VULNERABILITY_DISABLED",
-            "VULNERABILITY_BASIC"
+            "VULNERABILITY_BASIC",
+            "VULNERABILITY_ENTERPRISE"
           ],
           "enumDescriptions": [
             "Default value not specified.",
             "Disables vulnerability scanning on the cluster.",
-            "Applies basic vulnerability scanning on the cluster."
+            "Applies basic vulnerability scanning on the cluster.",
+            "Applies the Security Posture's vulnerability on cluster Enterprise level features."
           ],
           "type": "string"
         }
@@ -7422,6 +7430,15 @@
           "$ref": "ConfidentialNodes",
           "description": "Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled."
         },
+        "diskSizeGb": {
+          "description": "Optional. The desired disk size for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified disk size.",
+          "format": "int64",
+          "type": "string"
+        },
+        "diskType": {
+          "description": "Optional. The desired disk type for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified disk type.",
+          "type": "string"
+        },
         "etag": {
           "description": "The current etag of the node pool. If an etag is provided and does not match the current etag of the node pool, update will be blocked and an ABORTED error will be returned.",
           "type": "string"
@@ -7464,6 +7481,10 @@
         "loggingConfig": {
           "$ref": "NodePoolLoggingConfig",
           "description": "Logging configuration."
+        },
+        "machineType": {
+          "description": "Optional. The desired machine type for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified machine type.",
+          "type": "string"
         },
         "name": {
           "description": "The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/*/locations/*/clusters/*/nodePools/*`.",
