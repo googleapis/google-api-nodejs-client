@@ -209,7 +209,7 @@ export namespace gkehub_v1alpha {
      */
     identityProvider?: string | null;
     /**
-     * Optional. A JSON Web Token (JWT) issuer URI. `issuer` must start with `https://` and be a valid URL with length <2000 characters. If set, then Google will allow valid OIDC tokens from this issuer to authenticate within the workload_identity_pool. OIDC discovery will be performed on this URI to validate tokens from the issuer. Clearing `issuer` disables Workload Identity. `issuer` cannot be directly modified; it must be cleared (and Workload Identity disabled) before using a new issuer (and re-enabling Workload Identity).
+     * Optional. A JSON Web Token (JWT) issuer URI. `issuer` must start with `https://` and be a valid URL with length <2000 characters, it must use `location` rather than `zone` for GKE clusters. If set, then Google will allow valid OIDC tokens from this issuer to authenticate within the workload_identity_pool. OIDC discovery will be performed on this URI to validate tokens from the issuer. Clearing `issuer` disables Workload Identity. `issuer` cannot be directly modified; it must be cleared (and Workload Identity disabled) before using a new issuer (and re-enabling Workload Identity).
      */
     issuer?: string | null;
     /**
@@ -263,6 +263,40 @@ export namespace gkehub_v1alpha {
      * Version of the cloud build software on the cluster.
      */
     version?: string | null;
+  }
+  /**
+   * **ClusterUpgrade**: The configuration for the fleet-level ClusterUpgrade feature.
+   */
+  export interface Schema$ClusterUpgradeFleetSpec {
+    /**
+     * Allow users to override some properties of each GKE upgrade.
+     */
+    gkeUpgradeOverrides?: Schema$ClusterUpgradeGKEUpgradeOverride[];
+    /**
+     * Required. Post conditions to evaluate to mark an upgrade COMPLETE. Required.
+     */
+    postConditions?: Schema$ClusterUpgradePostConditions;
+    /**
+     * This fleet consumes upgrades that have COMPLETE status code in the upstream fleets. See UpgradeStatus.Code for code definitions. The fleet name should be either fleet project number or id. This is defined as repeated for future proof reasons. Initial implementation will enforce at most one upstream fleet.
+     */
+    upstreamFleets?: string[] | null;
+  }
+  /**
+   * **ClusterUpgrade**: The state for the fleet-level ClusterUpgrade feature.
+   */
+  export interface Schema$ClusterUpgradeFleetState {
+    /**
+     * This fleets whose upstream_fleets contain the current fleet. The fleet name should be either fleet project number or id.
+     */
+    downstreamFleets?: string[] | null;
+    /**
+     * Feature state for GKE clusters.
+     */
+    gkeState?: Schema$ClusterUpgradeGKEUpgradeFeatureState;
+    /**
+     * A list of memberships ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel. The membership resource is in the format: `projects/{p\}/locations/{l\}/membership/{m\}`.
+     */
+    ignored?: {[key: string]: Schema$ClusterUpgradeIgnoredMembership} | null;
   }
   /**
    * GKEUpgrade represents a GKE provided upgrade, e.g., control plane upgrade.
@@ -372,6 +406,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ClusterUpgradeMembershipState {
     /**
+     * Project number or id of the fleet. It is set only for Memberships that are part of fleet-based Rollout Sequencing.
+     */
+    fleet?: string | null;
+    /**
      * Whether this membership is ignored by the feature. For example, manually upgraded clusters can be ignored if they are newer than the default versions of its release channel.
      */
     ignored?: Schema$ClusterUpgradeIgnoredMembership;
@@ -461,6 +499,10 @@ export namespace gkehub_v1alpha {
      */
     cloudauditlogging?: Schema$CloudAuditLoggingFeatureSpec;
     /**
+     * ClusterUpgrade (fleet-based) feature spec.
+     */
+    clusterupgrade?: Schema$ClusterUpgradeFleetSpec;
+    /**
      * FleetObservability feature spec.
      */
     fleetobservability?: Schema$FleetObservabilityFeatureSpec;
@@ -481,6 +523,10 @@ export namespace gkehub_v1alpha {
      * Appdevexperience specific state.
      */
     appdevexperience?: Schema$AppDevExperienceFeatureState;
+    /**
+     * ClusterUpgrade fleet-level state.
+     */
+    clusterupgrade?: Schema$ClusterUpgradeFleetState;
     /**
      * FleetObservability feature state.
      */
@@ -829,7 +875,7 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementMembershipSpec {
     /**
-     * Binauthz conifguration for the cluster.
+     * Binauthz conifguration for the cluster. Deprecated: This field will be ignored and should not be set.
      */
     binauthz?: Schema$ConfigManagementBinauthzConfig;
     /**
@@ -1457,10 +1503,6 @@ export namespace gkehub_v1alpha {
      * Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.
      */
     tenant?: string | null;
-    /**
-     * Optional. Claim in the AzureAD ID Token that holds the user details.
-     */
-    userClaim?: string | null;
   }
   /**
    * Configuration for the Google Plugin Auth flow.
@@ -1883,10 +1925,6 @@ export namespace gkehub_v1alpha {
      * Output only. When the membership binding was deleted.
      */
     deleteTime?: string | null;
-    /**
-     * Whether the membershipbinding is Fleet-wide; true means that this Membership should be bound to all Namespaces in this entire Fleet.
-     */
-    fleet?: boolean | null;
     /**
      * Optional. Labels for this MembershipBinding.
      */

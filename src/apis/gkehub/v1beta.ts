@@ -585,7 +585,7 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$ConfigManagementMembershipSpec {
     /**
-     * Binauthz conifguration for the cluster.
+     * Binauthz conifguration for the cluster. Deprecated: This field will be ignored and should not be set.
      */
     binauthz?: Schema$ConfigManagementBinauthzConfig;
     /**
@@ -1156,10 +1156,6 @@ export namespace gkehub_v1beta {
      * Kind of Azure AD account to be authenticated. Supported values are or for accounts belonging to a specific tenant.
      */
     tenant?: string | null;
-    /**
-     * Optional. Claim in the AzureAD ID Token that holds the user details.
-     */
-    userClaim?: string | null;
   }
   /**
    * Configuration for the Google Plugin Auth flow.
@@ -1441,10 +1437,6 @@ export namespace gkehub_v1beta {
      * Output only. When the membership binding was deleted.
      */
     deleteTime?: string | null;
-    /**
-     * Whether the membershipbinding is Fleet-wide; true means that this Membership should be bound to all Namespaces in this entire Fleet.
-     */
-    fleet?: boolean | null;
     /**
      * Optional. Labels for this MembershipBinding.
      */
