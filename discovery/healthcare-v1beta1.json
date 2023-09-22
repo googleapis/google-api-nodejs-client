@@ -3092,6 +3092,62 @@
                 },
                 "fhirStores": {
                   "methods": {
+                    "applyAdminConsents": {
+                      "description": "Applies the admin Consent resources for the FHIR store and reindexes the underlying resources in the FHIR store according to the aggregate consents. This method also updates the `consent_config.enforced_admin_consents` field of the FhirStore unless `validate_only=true` in ApplyAdminConsentsRequest. Any admin Consent resource change after this operation execution (including deletion) requires you to call ApplyAdminConsents again for the change to take effect. This method returns an Operation that can be used to track the progress of the resources that were reindexed, by calling GetOperation. Upon completion, the ApplyAdminConsentsResponse additionally contains the number of resources that were reindexed. If at least one Consent resource contains an error or fails be be enforced for any reason, the method returns an error instead of an Operation. No resources will be reindexed and the `consent_config.enforced_admin_consents` field will be unchanged. To enforce a consent check for data access, `consent_config.access_enforced` must be set to true for the FhirStore.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:applyAdminConsents",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.fhirStores.applyAdminConsents",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the FHIR store to enforce, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:applyAdminConsents",
+                      "request": {
+                        "$ref": "ApplyAdminConsentsRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "applyConsents": {
+                      "description": "Apply the Consent resources for the FHIR store and reindex the underlying resources in the FHIR store according to the aggregate consent. The aggregate consent of the patient in scope in this request replaces any previous call of this method. Any Consent resource change after this operation execution (including deletion) requires you to call ApplyConsents again to have effect. This method returns an Operation that can be used to track the progress of the consent resources that were processed by calling GetOperation. Upon completion, the ApplyConsentsResponse additionally contains the number of resources that was reindexed. Errors are logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). To enforce consent check for data access, `consent_config.access_enforced` must be set to true for the FhirStore.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:applyConsents",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.fhirStores.applyConsents",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the FHIR store to enforce, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:applyConsents",
+                      "request": {
+                        "$ref": "ApplyConsentsRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "configureSearch": {
                       "description": "Configure the search parameters for the FHIR store and reindex resources in the FHIR store according to the defined search parameters. The search parameters provided in this request will replace any previous search configuration. The target SearchParameter resources need to exist in the store before calling ConfigureSearch, otherwise an error will occur. This method returns an Operation that can be used to track the progress of the reindexing by calling GetOperation.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:configureSearch",
@@ -3573,6 +3629,31 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
+                        "Consent-enforcement-status": {
+                          "description": "Returns the consent enforcement status of a single consent resource. On success, the response body contains a JSON-encoded representation of a `Parameters` (http://hl7.org/fhir/parameters.html) FHIR resource, containing the current enforcement status. Does not support DSTU2.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}/fhir/Consent/{ConsentId}/$consent-enforcement-status",
+                          "httpMethod": "GET",
+                          "id": "healthcare.projects.locations.datasets.fhirStores.fhir.Consent-enforcement-status",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the consent resource to find enforcement status, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{consent_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+/fhir/Consent/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}/$consent-enforcement-status",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "Observation-lastn": {
                           "description": "Retrieves the N most recent `Observation` resources for a subject matching search criteria specified as query parameters, grouped by `Observation.code`, sorted from most recent to oldest. Implements the FHIR extended operation Observation-lastn ([STU3](https://hl7.org/implement/standards/fhir/STU3/observation-operations.html#lastn), [R4](https://hl7.org/implement/standards/fhir/R4/observation-operations.html#lastn)). DSTU2 doesn't define the Observation-lastn method, but the server supports it the same way it supports STU3. Search terms are provided as query parameters following the same pattern as the search method. The following search parameters must be provided: - `subject` or `patient` to specify a subject for the Observation. - `code`, `category` or any of the composite parameters that include `code`. Any other valid Observation search parameters can also be provided. This operation accepts an additional query parameter `max`, which specifies N, the maximum number of Observations to return from each group, with a default of 1. Searches with over 1000 results are rejected. Results are counted before grouping and limiting the results with `max`. To stay within the limit, constrain these searches using Observation search parameters such as `_lastUpdated` or `date`. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the operation. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}/fhir/Observation/$lastn",
@@ -3591,6 +3672,42 @@
                             }
                           },
                           "path": "v1beta1/{+parent}/fhir/Observation/$lastn",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "Patient-consent-enforcement-status": {
+                          "description": "Returns the consent enforcement status of all consent resources for a patient. On success, the response body contains a JSON-encoded representation of a bundle of `Parameters` (http://hl7.org/fhir/parameters.html) FHIR resources, containing the current enforcement status for each consent resource of the patient. Does not support DSTU2.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}/fhir/Patient/{PatientId}/$consent-enforcement-status",
+                          "httpMethod": "GET",
+                          "id": "healthcare.projects.locations.datasets.fhirStores.fhir.Patient-consent-enforcement-status",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "_count": {
+                              "description": "Optional. The maximum number of results on a page. If not specified, 100 is used. May not be larger than 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "_page_token": {
+                              "description": "Optional. Used to retrieve the first, previous, next, or last page of consent enforcement statuses when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is \"previous\" or \"next\". Omit `_page_token` if no previous request has been made.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Required. The name of the patient to find enforcement statuses, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Patient/{patient_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+/fhir/Patient/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}/$consent-enforcement-status",
                           "response": {
                             "$ref": "HttpBody"
                           },
@@ -4090,7 +4207,7 @@
                           ]
                         },
                         "search": {
-                          "description": "Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports four methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method across all resources. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method for the specified type. The `GET` and `POST` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `recurse` (DSTU2 and STU3) or `:iterate` (R4). Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. The server might return fewer resources than requested to prevent excessively large responses. If there are additional results, the returned `Bundle` contains a link of `relation` \"next\", which has a `_page_token` parameter for an opaque pagination token that can be used to retrieve the next page. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changed, and the time when the change reflects in search results. The only exception is resource identifier data, which is indexed synchronously as a special index. As a result, searching using resource identifier is not subject to indexing delay. To use the special synchronous index, the search term for identifier should be in the pattern `identifier=[system]|[value]` or `identifier=[value]`, and any of the following search result parameters can be used: * `_count` * `_include` * `_revinclude` * `_summary` * `_elements` If your query contains any other search parameters, the standard asynchronous index will be used instead. Note that searching against the special index is optimized for resolving a small number of matches. The search isn't optimized if your identifier search criteria matches a large number (i.e. more than 2,000) of resources. For a search query that will match a large number of resources, you can avoiding using the special synchronous index by including an additional `_sort` parameter in your query. Use `_sort=-_lastUpdated` if you want to keep the default sorting order. For samples and detailed information, see [Searching for FHIR resources](https://cloud.google.com/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](https://cloud.google.com/healthcare/docs/how-tos/fhir-advanced-search).",
+                          "description": "Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports four methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method across all resources. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method for the specified type. The `GET` and `POST` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `recurse` (DSTU2 and STU3) or `:iterate` (R4). Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. The server might return fewer resources than requested to prevent excessively large responses. If there are additional results, the returned `Bundle` contains a link of `relation` \"next\", which has a `_page_token` parameter for an opaque pagination token that can be used to retrieve the next page. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results. For samples and detailed information, see [Searching for FHIR resources](https://cloud.google.com/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](https://cloud.google.com/healthcare/docs/how-tos/fhir-advanced-search).",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}/fhir/_search",
                           "httpMethod": "POST",
                           "id": "healthcare.projects.locations.datasets.fhirStores.fhir.search",
@@ -4118,7 +4235,7 @@
                           ]
                         },
                         "search-type": {
-                          "description": "Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports four methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method across all resources. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method for the specified type. The `GET` and `POST` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `recurse` (DSTU2 and STU3) or `:iterate` (R4). Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. The server might return fewer resources than requested to prevent excessively large responses. If there are additional results, the returned `Bundle` contains a link of `relation` \"next\", which has a `_page_token` parameter for an opaque pagination token that can be used to retrieve the next page. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changed, and the time when the change reflects in search results. The only exception is resource identifier data, which is indexed synchronously as a special index. As a result, searching using resource identifier is not subject to indexing delay. To use the special synchronous index, the search term for identifier should be in the pattern `identifier=[system]|[value]` or `identifier=[value]`, and any of the following search result parameters can be used: * `_count` * `_include` * `_revinclude` * `_summary` * `_elements` If your query contains any other search parameters, the standard asynchronous index will be used instead. Note that searching against the special index is optimized for resolving a small number of matches. The search isn't optimized if your identifier search criteria matches a large number (i.e. more than 2,000) of resources. For a search query that will match a large number of resources, you can avoiding using the special synchronous index by including an additional `_sort` parameter in your query. Use `_sort=-_lastUpdated` if you want to keep the default sorting order. For samples and detailed information, see [Searching for FHIR resources](https://cloud.google.com/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](https://cloud.google.com/healthcare/docs/how-tos/fhir-advanced-search).",
+                          "description": "Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports four methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method across all resources. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method for the specified type. The `GET` and `POST` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `recurse` (DSTU2 and STU3) or `:iterate` (R4). Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. The server might return fewer resources than requested to prevent excessively large responses. If there are additional results, the returned `Bundle` contains a link of `relation` \"next\", which has a `_page_token` parameter for an opaque pagination token that can be used to retrieve the next page. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results. For samples and detailed information, see [Searching for FHIR resources](https://cloud.google.com/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](https://cloud.google.com/healthcare/docs/how-tos/fhir-advanced-search).",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}/fhir/{resourceType}/_search",
                           "httpMethod": "POST",
                           "id": "healthcare.projects.locations.datasets.fhirStores.fhir.search-type",
@@ -4941,9 +5058,32 @@
       }
     }
   },
-  "revision": "20230728",
+  "revision": "20230912",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
+    "AccessDeterminationLogConfig": {
+      "description": "Configures consent audit log config for FHIR create, read, update, and delete (CRUD) operations. Cloud audit log for healthcare API must be [enabled](https://cloud.google.com/logging/docs/audit/configure-data-access#config-console-enable). The consent-related logs are included as part of `protoPayload.metadata`.",
+      "id": "AccessDeterminationLogConfig",
+      "properties": {
+        "logLevel": {
+          "description": "Optional. Controls the amount of detail to include as part of the audit logs.",
+          "enum": [
+            "LOG_LEVEL_UNSPECIFIED",
+            "DISABLED",
+            "MINIMUM",
+            "VERBOSE"
+          ],
+          "enumDescriptions": [
+            "No log level specified. This value is unused.",
+            "No additional consent-related logging is added to audit logs.",
+            "The following information is included: - One of the following [`consentMode`](https://cloud.google.com/healthcare-api/private/docs/how-tos/fhir-consent#audit_logs) fields: (`off`|`emptyScope`|`enforced`|`btg`|`bypass`). - The accessor's request headers - The `log_level` of the [AccessDeterminationLogConfig](google.cloud.healthcare.v1beta1.fhir.FhirStore.ConsentConfig.AccessDeterminationLogConfig) - The final consent evaluation (`PERMIT`, `DENY`, or `NO_CONSENT`) - A human-readable summary of the evaluation",
+            "Includes `MINIMUM` and, for each resource owner, returns: - The resource owner's name - Most specific part of the `X-Consent-Scope` resulting in consensual determination - Timestamp of the applied enforcement leading to the decision - Enforcement version at the time the applicable consents were applied - The Consent resource name - The timestamp of the Consent resource used for enforcement - Policy type (PATIENT or ADMIN) Note that this mode adds some overhead to CRUD operations."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Action": {
       "description": "Specifies a selection of tags and an `Action` to apply to each one.",
       "id": "Action",
@@ -5007,6 +5147,20 @@
           "description": "The time to live for this Consent from when it is marked as active.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdminConsents": {
+      "description": "List of admin Consent resources to be applied.",
+      "id": "AdminConsents",
+      "properties": {
+        "names": {
+          "description": "The versioned names of the admin Consent resource(s), in the format `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}/_history/{version_id}`. For FHIR stores with `disable_resource_versioning=true`, the format is `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5156,6 +5310,89 @@
         },
         "name": {
           "description": "Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyAdminConsentsRequest": {
+      "description": "Request to apply the admin Consent resources for the specified FHIR store.",
+      "id": "ApplyAdminConsentsRequest",
+      "properties": {
+        "newConsentsList": {
+          "$ref": "AdminConsents",
+          "description": "A new list of admin Consent resources to be applied. Any existing enforced Consents, which are specified in `consent_config.enforced_admin_consents` of the FhirStore, that are not part of this list will be disabled. An empty list is equivalent to clearing or disabling all Consents enforced on the FHIR store. When a FHIR store has `disable_resource_versioning=true` and this list contains a Consent resource that exists in `consent_config.enforced_admin_consents`, the method enforces any updates to the existing resource since the last enforcement. If the existing resource hasn't been updated since the last enforcement, the resource is unaffected. After the method finishes, the resulting consent enforcement model is determined by the contents of the Consent resource(s) when the method was called: * When `disable_resource_versioning=true`, the result is identical to the current resource(s) in the FHIR store. * When `disable_resource_versioning=false`, the result is based on the historical version(s) of the Consent resource(s) at the point in time when the method was called. At most 200 Consents can be specified."
+        },
+        "validateOnly": {
+          "description": "If true, the method only validates Consent resources to make sure they are supported. Otherwise, the method applies the aggregate consent information to update the enforcement model and reindex the FHIR resources. If all Consent resources can be applied successfully, the ApplyAdminConsentsResponse is returned containing the following fields: * `consent_apply_success` to indicate the number of Consent resources applied. * `affected_resources` to indicate the number of resources that might have had their consent access changed. If, however, one or more Consent resources are unsupported or cannot be applied, the method fails and ApplyAdminConsentsErrorDetail is is returned with details about the unsupported Consent resources.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyAdminConsentsResponse": {
+      "description": "Response when all admin Consent resources in scope were processed and all affected resources were reindexed successfully. This structure will be included in the response when the operation finishes successfully.",
+      "id": "ApplyAdminConsentsResponse",
+      "properties": {
+        "affectedResources": {
+          "description": "The number of resources (including the Consent resources) that may have consent access change.",
+          "format": "int64",
+          "type": "string"
+        },
+        "consentApplySuccess": {
+          "description": "If `validate_only=false` in ApplyAdminConsentsRequest, this counter contains the number of Consent resources that were successfully applied. Otherwise, it is the number of Consent resources that are supported.",
+          "format": "int64",
+          "type": "string"
+        },
+        "failedResources": {
+          "description": "The number of resources (including the Consent resources) that ApplyAdminConsents failed to re-index.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyConsentsRequest": {
+      "description": "Request to apply the Consent resources for the specified FHIR store.",
+      "id": "ApplyConsentsRequest",
+      "properties": {
+        "patientScope": {
+          "$ref": "PatientScope",
+          "description": "Optional. Scope down to a list of patients."
+        },
+        "timeRange": {
+          "$ref": "TimeRange",
+          "description": "Optional. Scope down to patients whose most recent consent changes are in the time range. Can only be used with a versioning store (i.e. when disable_resource_versioning is set to false)."
+        },
+        "validateOnly": {
+          "description": "Optional. If true, the method only validates Consent resources to make sure they are supported. When the operation completes, ApplyConsentsResponse is returned where `consent_apply_success` and `consent_apply_failure` indicate supported and unsupported (or invalid) Consent resources, respectively. Otherwise, the method propagates the aggregate consensual information to the patient's resources. Upon success, `affected_resources` in the ApplyConsentsResponse indicates the number of resources that may have consensual access changed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyConsentsResponse": {
+      "description": "Response when all Consent resources in scope were processed and all affected resources were reindexed successfully. This structure is included in the response when the operation finishes successfully.",
+      "id": "ApplyConsentsResponse",
+      "properties": {
+        "affectedResources": {
+          "description": "The number of resources (including the Consent resources) that may have consensual access change.",
+          "format": "int64",
+          "type": "string"
+        },
+        "consentApplyFailure": {
+          "description": "If `validate_only = false` in ApplyConsentsRequest, this counter is the number of Consent resources that were failed to apply. Otherwise, it is the number of Consent resources that are not supported or invalid.",
+          "format": "int64",
+          "type": "string"
+        },
+        "consentApplySuccess": {
+          "description": "If `validate_only = false` in ApplyConsentsRequest, this counter is the number of Consent resources that were successfully applied. Otherwise, it is the number of Consent resources that are supported.",
+          "format": "int64",
+          "type": "string"
+        },
+        "failedResources": {
+          "description": "The number of resources (including the Consent resources) that ApplyConsents failed to re-index.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -5358,7 +5595,7 @@
       "type": "object"
     },
     "CharacterMaskField": {
-      "description": "Replace field value with masking character. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml",
+      "description": "Replace field value with masking character. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml.",
       "id": "CharacterMaskField",
       "properties": {},
       "type": "object"
@@ -5418,13 +5655,13 @@
       "type": "object"
     },
     "CleanDescriptorsOption": {
-      "description": "This option is based on the DICOM Standard's [Clean Descriptors Option](http://dicom.nema.org/medical/dicom/2018e/output/chtml/part15/sect_E.3.5.html), and the `CleanText` `Action` is applied to all the specified fields. When cleaning text, the process attempts to transform phrases matching any of the tags marked for removal (action codes D, Z, X, and U) in the [Basic Profile](http://dicom.nema.org/medical/dicom/2018e/output/chtml/part15/chapter_E.html). These contextual phrases are replaced with the token \"[CTX]\". This option uses an additional `InfoType` during inspection.",
+      "description": "This option is based on the DICOM Standard's [Clean Descriptors Option](http://dicom.nema.org/medical/dicom/2018e/output/chtml/part15/sect_E.3.5.html), and the `CleanText` `Action` is applied to all the specified fields. When cleaning text, the process attempts to transform phrases matching any of the tags marked for removal (action codes D, Z, X, and U) in the [Basic Profile](http://dicom.nema.org/medical/dicom/2018e/output/chtml/part15/chapter_E.html). These contextual phrases are replaced with the token \"[CTX]\". This option uses an additional infoType during inspection.",
       "id": "CleanDescriptorsOption",
       "properties": {},
       "type": "object"
     },
     "CleanTextField": {
-      "description": "Inspect text and transform sensitive text. Configure using `TextConfig`. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml",
+      "description": "Inspect text and transform sensitive text. Configure using TextConfig. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml.",
       "id": "CleanTextField",
       "properties": {},
       "type": "object"
@@ -5583,6 +5820,44 @@
       },
       "type": "object"
     },
+    "ConsentConfig": {
+      "description": "Configures whether to enforce consent for the FHIR store and which consent enforcement version is being used.",
+      "id": "ConsentConfig",
+      "properties": {
+        "accessDeterminationLogConfig": {
+          "$ref": "AccessDeterminationLogConfig",
+          "description": "Optional. Specifies how the server logs the consent-aware requests. If not specified, the `AccessDeterminationLogConfig.LogLevel.MINIMUM` option is used."
+        },
+        "accessEnforced": {
+          "description": "Optional. If set to true, when accessing FHIR resources, the consent headers provided using [SMART-on-FHIR](https://cloud.google.com/healthcare/private/docs/how-tos/smart-on-fhir) will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.",
+          "type": "boolean"
+        },
+        "consentHeaderHandling": {
+          "$ref": "ConsentHeaderHandling",
+          "description": "Optional. Different options to configure the behaviour of the server when handling the `X-Consent-Scope` header."
+        },
+        "enforcedAdminConsents": {
+          "description": "The versioned names of the enforced admin Consent resource(s), in the format `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}/_history/{version_id}`. For FHIR stores with `disable_resource_versioning=true`, the format is `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}`. This field can only be updated using ApplyAdminConsents.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "Required. Specifies which consent enforcement version is being used for this FHIR store. This field can only be set once by either CreateFhirStore or UpdateFhirStore. After that, you must call ApplyConsents to change the version.",
+          "enum": [
+            "CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED",
+            "V1"
+          ],
+          "enumDescriptions": [
+            "Users must specify an enforcement version or an error is returned.",
+            "Enforcement version 1. See the [FHIR Consent resources in the Cloud Healthcare API](https://cloud.google.com/healthcare-api/private/docs/how-tos/fhir-consent) guide for more details."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConsentEvaluation": {
       "description": "The detailed evaluation of a particular Consent.",
       "id": "ConsentEvaluation",
@@ -5602,6 +5877,27 @@
             "The Consent does not have a policy that matches the `resource_attributes` of the evaluated resource.",
             "The Consent has at least one policy that matches the `resource_attributes` of the evaluated resource, but no `authorization_rule` was satisfied.",
             "The Consent has at least one policy that matches the `resource_attributes` of the evaluated resource, and at least one `authorization_rule` was satisfied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConsentHeaderHandling": {
+      "description": "How the server handles the consent header.",
+      "id": "ConsentHeaderHandling",
+      "properties": {
+        "profile": {
+          "description": "Optional. Specifies the default server behavior when the header is empty. If not specified, the `ScopeProfile.PERMIT_EMPTY_SCOPE` option is used.",
+          "enum": [
+            "SCOPE_PROFILE_UNSPECIFIED",
+            "PERMIT_EMPTY_SCOPE",
+            "REQUIRED_ON_READ"
+          ],
+          "enumDescriptions": [
+            "If not specified, the default value `PERMIT_EMPTY_SCOPE` is used.",
+            "When no consent scopes are provided (for example, if there's an empty or missing header), then consent check is disabled, similar to when `access_enforced` is `false`. You can use audit logs to differentiate these two cases by looking at the value of `protopayload.metadata.consentMode`. If consents scopes are present, they must be valid and within the allowed limits, otherwise the request will be rejected with a `4xx` code.",
+            "The consent header must be non-empty when performing read and search operations, otherwise the request is rejected with a `4xx` code. Additionally, invalid consent scopes or scopes exceeding the allowed limits are rejected."
           ],
           "type": "string"
         }
@@ -5650,7 +5946,7 @@
       "type": "object"
     },
     "ContextualDeidConfig": {
-      "description": "The fields that aren't marked `Keep` or `CleanText` in the `BASIC` profile are collected into a contextual phrase list. For fields marked `CleanText`, the process attempts to transform phrases matching these contextual entries. These contextual phrases are replaced with the token \"[CTX]\". This feature uses an additional InfoType during inspection.",
+      "description": "Fields that don't match a KeepField or CleanTextField `action` in the BASIC profile are collected into a contextual phrase list. For fields that match a CleanTextField `action` in FieldMetadata or ProfileType, the process attempts to transform phrases matching these contextual entries. These contextual phrases are replaced with the token \"[CTX]\". This feature uses an additional InfoType during inspection.",
       "id": "ContextualDeidConfig",
       "properties": {},
       "type": "object"
@@ -5671,19 +5967,19 @@
       "id": "CryptoHashConfig",
       "properties": {
         "cryptoKey": {
-          "description": "An AES 128/192/256 bit key. Causes the hash to be computed based on this key. A default key is generated for each Deidentify operation and is used when neither `crypto_key` nor `kms_wrapped` is specified. Must not be set if `kms_wrapped` is set.",
+          "description": "An AES 128/192/256 bit key. Causes the hash to be computed based on this key. A default key is generated for each Deidentify operation and is used when neither crypto_key nor kms_wrapped is specified. Must not be set if kms_wrapped is set.",
           "format": "byte",
           "type": "string"
         },
         "kmsWrapped": {
           "$ref": "KmsWrappedCryptoKey",
-          "description": "KMS wrapped key. Must not be set if `crypto_key` is set."
+          "description": "KMS wrapped key. Must not be set if crypto_key is set."
         }
       },
       "type": "object"
     },
     "CryptoHashField": {
-      "description": "Replace field value with a hash of that value. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml",
+      "description": "Replace field value with a hash of that value. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml.",
       "id": "CryptoHashField",
       "properties": {},
       "type": "object"
@@ -5708,19 +6004,19 @@
       "id": "DateShiftConfig",
       "properties": {
         "cryptoKey": {
-          "description": "An AES 128/192/256 bit key. The date shift is computed based on this key and the patient ID. If the patient ID is empty for a DICOM resource, the date shift is computed based on this key and the study instance UID. If `crypto_key` is not set, then `kms_wrapped` is used to calculate the date shift. If neither is set, a default key is generated for each de-identify operation. Must not be set if `kms_wrapped` is set.",
+          "description": "An AES 128/192/256 bit key. The date shift is computed based on this key and the patient ID. If the patient ID is empty for a DICOM resource, the date shift is computed based on this key and the study instance UID. If crypto_key is not set, then kms_wrapped is used to calculate the date shift. If neither is set, a default key is generated for each de-identify operation. Must not be set if kms_wrapped is set.",
           "format": "byte",
           "type": "string"
         },
         "kmsWrapped": {
           "$ref": "KmsWrappedCryptoKey",
-          "description": "KMS wrapped key. If `kms_wrapped` is not set, then `crypto_key` is used to calculate the date shift. If neither is set, a default key is generated for each de-identify operation. Must not be set if `crypto_key` is set."
+          "description": "KMS wrapped key. If kms_wrapped is not set, then crypto_key is used to calculate the date shift. If neither is set, a default key is generated for each de-identify operation. Must not be set if crypto_key is set."
         }
       },
       "type": "object"
     },
     "DateShiftField": {
-      "description": "Shift the date by a randomized number of days. See [date shifting](https://cloud.google.com/dlp/docs/concepts-date-shifting) for more information. Supported [types](https://www.hl7.org/fhir/datatypes.html): Date, DateTime",
+      "description": "Shift the date by a randomized number of days. See [date shifting](https://cloud.google.com/dlp/docs/concepts-date-shifting) for more information. Supported [types](https://www.hl7.org/fhir/datatypes.html): Date, DateTime.",
       "id": "DateShiftField",
       "properties": {},
       "type": "object"
@@ -6375,7 +6671,7 @@
       "id": "FhirFieldConfig",
       "properties": {
         "fieldMetadataList": {
-          "description": "Specifies FHIR paths to match and how to transform them. Any field that is not matched by a `FieldMetadata` is passed through to the output dataset unmodified. All extensions will be processed according to `keep_extensions`. If a field can be matched by more than one `FieldMetadata`, the first `FieldMetadata.Action` is applied. Overrides `options` and `profile`.",
+          "description": "Specifies FHIR paths to match and how to transform them. Any field that is not matched by a FieldMetadata `action` is passed through to the output dataset unmodified. All extensions will be processed according to keep_extensions. If a field can be matched by more than one FieldMetadata `action`, the first `action` option is applied. Overrides options and the union field `profile` in FhirFieldConfig.",
           "items": {
             "$ref": "GoogleCloudHealthcareV1beta1DeidentifyFieldMetadata"
           },
@@ -6383,7 +6679,7 @@
         },
         "options": {
           "$ref": "GoogleCloudHealthcareV1beta1DeidentifyOptions",
-          "description": "Specifies additional options, overriding the base `profile`."
+          "description": "Specifies additional options, overriding the base ProfileType."
         },
         "profileType": {
           "description": "Base profile type for handling FHIR fields.",
@@ -6395,9 +6691,9 @@
           ],
           "enumDescriptions": [
             "No profile provided. Same as `BASIC`.",
-            "`Keep` all fields.",
-            "Transforms known HIPAA 18 fields and cleans known unstructured text fields.",
-            "Cleans all supported tags. Applies to types: Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml"
+            "Keep all fields.",
+            "Transforms known [HIPAA 18](https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html#standard)",
+            "Cleans all supported tags. Applies to types: Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml."
           ],
           "type": "string"
         }
@@ -6462,6 +6758,10 @@
             "References in complex data types are parsed."
           ],
           "type": "string"
+        },
+        "consentConfig": {
+          "$ref": "ConsentConfig",
+          "description": "Optional. Specifies whether this store has consent enforcement. Not available for DSTU2 FHIR version due to absence of Consent resources."
         },
         "defaultSearchHandlingStrict": {
           "description": "If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`.",
@@ -6838,26 +7138,26 @@
       "properties": {
         "characterMaskField": {
           "$ref": "CharacterMaskField",
-          "description": "Replace the field's value with a masking character. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml"
+          "description": "Replace the field's value with a masking character. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml."
         },
         "cleanTextField": {
           "$ref": "CleanTextField",
-          "description": "Inspect the field's text and transform sensitive text. Configure using `TextConfig`. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml"
+          "description": "Inspect the field's text and transform sensitive text. Configure using TextConfig. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Date, DateTime, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml."
         },
         "cryptoHashField": {
           "$ref": "CryptoHashField",
-          "description": "Replace field value with a hash of that value. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml"
+          "description": "Replace field value with a hash of that value. Supported [types](https://www.hl7.org/fhir/datatypes.html): Code, Decimal, HumanName, Id, LanguageCode, Markdown, Oid, String, Uri, Uuid, Xhtml."
         },
         "dateShiftField": {
           "$ref": "DateShiftField",
-          "description": "Shift the date by a randomized number of days. See [date shifting](https://cloud.google.com/dlp/docs/concepts-date-shifting) for more information. Supported [types](https://www.hl7.org/fhir/datatypes.html): Date, DateTime"
+          "description": "Shift the date by a randomized number of days. See [date shifting](https://cloud.google.com/dlp/docs/concepts-date-shifting) for more information. Supported [types](https://www.hl7.org/fhir/datatypes.html): Date, DateTime."
         },
         "keepField": {
           "$ref": "KeepField",
           "description": "Keep the field unchanged."
         },
         "paths": {
-          "description": "List of paths to FHIR fields to redact. Each path is a period-separated list where each component is either a field name or FHIR type name. All types begin with an upper case letter. For example, the resource field \"Patient.Address.city\", which uses a string type, can be matched by \"Patient.Address.String\". Path also supports partialkk matching. For example, \"Patient.Address.city\" can be matched by \"Address.city\" (Patient omitted). Partial matching and type matching can be combined, for example \"Patient.Address.city\" can be matched by \"Address.String\". For \"choice\" types (those defined in the FHIR spec with the form: field[x]), use two separate components. For example, \"deceasedAge.unit\" is matched by \"Deceased.Age.unit\". Supported [types](https://www.hl7.org/fhir/datatypes.html) are: AdministrativeGenderCode, Base64Binary, Boolean, Code, Date, DateTime, Decimal, HumanName, Id, Instant, Integer, LanguageCode, Markdown, Oid, PositiveInt, String, UnsignedInt, Uri, Uuid, Xhtml. The sub-type for HumanName (for example HumanName.given, HumanName.family) can be omitted.",
+          "description": "List of paths to FHIR fields to redact. Each path is a period-separated list where each component is either a field name or FHIR [type](https://www.hl7.org/fhir/datatypes.html) name. All types begin with an upper case letter. For example, the resource field `Patient.Address.city`, which uses a [string](https://www.hl7.org/fhir/datatypes-definitions.html#Address.city) type, can be matched by `Patient.Address.String`. Partial matching is supported. For example, `Patient.Address.city` can be matched by `Address.city` (with `Patient` omitted). Partial matching and type matching can be combined, for example `Patient.Address.city` can be matched by `Address.String`. For \"choice\" types (those defined in the FHIR spec with the format `field[x]`), use two separate components. For example, `deceasedAge.unit` is matched by `Deceased.Age.unit`. The following types are supported: AdministrativeGenderCode, Base64Binary, Boolean, Code, Date, DateTime, Decimal, HumanName, Id, Instant, Integer, LanguageCode, Markdown, Oid, PositiveInt, String, UnsignedInt, Uri, Uuid, Xhtml. The sub-type for HumanName (for example `HumanName.given`, `HumanName.family`) can be omitted.",
           "items": {
             "type": "string"
           },
@@ -6871,12 +7171,12 @@
       "type": "object"
     },
     "GoogleCloudHealthcareV1beta1DeidentifyOptions": {
-      "description": "Specifies additional options to apply to the base `profile`.",
+      "description": "Specifies additional options to apply to the base ProfileType.",
       "id": "GoogleCloudHealthcareV1beta1DeidentifyOptions",
       "properties": {
         "characterMaskConfig": {
           "$ref": "CharacterMaskConfig",
-          "description": "Character mask config for `CharacterMaskField` `FieldMetadatas`."
+          "description": "Character mask config for CharacterMaskField."
         },
         "contextualDeid": {
           "$ref": "ContextualDeidConfig",
@@ -6884,11 +7184,11 @@
         },
         "cryptoHashConfig": {
           "$ref": "CryptoHashConfig",
-          "description": "Crypo hash config for `CharacterMaskField` `FieldMetadatas`."
+          "description": "Crypto hash config for CharacterMaskField."
         },
         "dateShiftConfig": {
           "$ref": "DateShiftConfig",
-          "description": "Date shifting config for `CharacterMaskField` `FieldMetadatas`."
+          "description": "Date shifting config for CharacterMaskField."
         },
         "keepExtensions": {
           "$ref": "KeepExtensionsConfig",
@@ -7401,7 +7701,7 @@
       "type": "object"
     },
     "KeepExtensionsConfig": {
-      "description": "The behaviour for handling FHIR extensions that aren't otherwise specified for de-identification. If provided, all extensions are preserved during de-identification by default. If unspecified, all extensions are removed during de-identification by default.",
+      "description": "The behavior for handling FHIR extensions that aren't otherwise specified for de-identification. If provided, all extensions are preserved during de-identification by default. If unspecified, all extensions are removed during de-identification by default.",
       "id": "KeepExtensionsConfig",
       "properties": {},
       "type": "object"
@@ -7845,7 +8145,7 @@
             "description": "Properties of the object. Contains field @type with type URL.",
             "type": "any"
           },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
         }
       },
@@ -7872,12 +8172,12 @@
           "type": "string"
         },
         "endTime": {
-          "description": "The time at which execution was completed.",
+          "description": "The time at which execution workloads were completed. Some tasks will complete after this time such as logging audit logs.",
           "format": "google-datetime",
           "type": "string"
         },
         "logsUrl": {
-          "description": "A link to audit and error logs in the log viewer. Error logs are generated only by some operations, listed at [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging).",
+          "description": "A link to audit and error logs in the log viewer. Error logs are generated only by some operations, listed at [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging). The `end_time` specified in this URL may not match the end time on the metadata because logs are written asynchronously from execution.",
           "type": "string"
         }
       },
@@ -7976,8 +8276,22 @@
       },
       "type": "object"
     },
+    "PatientScope": {
+      "description": "Apply consents given by a list of patients.",
+      "id": "PatientScope",
+      "properties": {
+        "patientIds": {
+          "description": "Optional. The list of patient IDs whose Consent resources will be enforced. At most 10,000 patients can be specified. An empty list is equivalent to all patients (meaning the entire FHIR store).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -8018,6 +8332,16 @@
         },
         "pending": {
           "description": "The number of units that are pending in the operation.",
+          "format": "int64",
+          "type": "string"
+        },
+        "secondaryFailure": {
+          "description": "The number of secondary units that failed in the operation.",
+          "format": "int64",
+          "type": "string"
+        },
+        "secondarySuccess": {
+          "description": "The number of secondary units that succeeded in the operation.",
           "format": "int64",
           "type": "string"
         },
@@ -8581,9 +8905,9 @@
             "BASIC"
           ],
           "enumDescriptions": [
-            "Same as BASIC.",
+            "No profile provided. Same as BASIC.",
             "Empty profile which does not perform any transformations.",
-            "Basic profile applies: DATE -> DateShift Default -> ReplaceWithInfoType"
+            "Automatically converts \"DATE\" infoTypes using a DateShiftConfig, and all other infoTypes using a ReplaceWithInfoTypeConfig."
           ],
           "type": "string"
         },
@@ -8639,6 +8963,21 @@
             "Data partitioned by month.",
             "Data partitioned by year."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimeRange": {
+      "description": "Apply consents given by patients whose most recent consent changes are in the time range. Note that after identifying these patients, the server applies all Consent resources given by those patients, not just the Consent resources within the timestamp in the range.",
+      "id": "TimeRange",
+      "properties": {
+        "end": {
+          "description": "Optional. The latest consent change time, in format YYYY-MM-DDThh:mm:ss.sss+zz:zz If not specified, the system uses the time when ApplyConsents was called.",
+          "type": "string"
+        },
+        "start": {
+          "description": "Optional. The earliest consent change time, in format YYYY-MM-DDThh:mm:ss.sss+zz:zz If not specified, the system uses the FHIR store creation time.",
           "type": "string"
         }
       },
