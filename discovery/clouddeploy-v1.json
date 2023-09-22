@@ -448,6 +448,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "rollbackTarget": {
+                  "description": "Creates a `Rollout` to roll back the specified target.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}:rollbackTarget",
+                  "httpMethod": "POST",
+                  "id": "clouddeploy.projects.locations.deliveryPipelines.rollbackTarget",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The `DeliveryPipeline` for which the rollback `Rollout` should be created. Format should be projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:rollbackTarget",
+                  "request": {
+                    "$ref": "RollbackTargetRequest"
+                  },
+                  "response": {
+                    "$ref": "RollbackTargetResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deliveryPipelines/{deliveryPipelinesId}:setIamPolicy",
@@ -1451,7 +1479,7 @@
       }
     }
   },
-  "revision": "20230802",
+  "revision": "20230904",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -3384,6 +3412,63 @@
       "properties": {},
       "type": "object"
     },
+    "RollbackTargetConfig": {
+      "description": "Configs for the Rollback rollout.",
+      "id": "RollbackTargetConfig",
+      "properties": {
+        "rollout": {
+          "$ref": "Rollout",
+          "description": "Optional. The rollback `Rollout` to create."
+        },
+        "startingPhaseId": {
+          "description": "Optional. The starting phase ID for the `Rollout`. If unspecified, the `Rollout` will start in the stable phase.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RollbackTargetRequest": {
+      "description": "The request object for `RollbackTarget`.",
+      "id": "RollbackTargetRequest",
+      "properties": {
+        "releaseId": {
+          "description": "Optional. ID of the `Release` to roll back to. If this isn't specified, the previous successful `Rollout` to the specified target will be used to determine the `Release`.",
+          "type": "string"
+        },
+        "rollbackConfig": {
+          "$ref": "RollbackTargetConfig",
+          "description": "Optional. Configs for the rollback `Rollout`."
+        },
+        "rolloutId": {
+          "description": "Required. ID of the rollback `Rollout` to create.",
+          "type": "string"
+        },
+        "rolloutToRollBack": {
+          "description": "Optional. If provided, this must be the latest `Rollout` that is on the `Target`.",
+          "type": "string"
+        },
+        "targetId": {
+          "description": "Required. ID of the `Target` that is being rolled back.",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set to true, the request is validated and the user is provided with a `RollbackTargetResponse`.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RollbackTargetResponse": {
+      "description": "The response object from `RollbackTarget`.",
+      "id": "RollbackTargetResponse",
+      "properties": {
+        "rollbackConfig": {
+          "$ref": "RollbackTargetConfig",
+          "description": "The config of the rollback `Rollout` created or will be created."
+        }
+      },
+      "type": "object"
+    },
     "Rollout": {
       "description": "A `Rollout` resource in the Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.",
       "id": "Rollout",
@@ -3512,6 +3597,19 @@
           "description": "Output only. The phases that represent the workflows of this `Rollout`.",
           "items": {
             "$ref": "Phase"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "rollbackOfRollout": {
+          "description": "Output only. Name of the `Rollout` that is rolled back by this `Rollout`. Empty if this `Rollout` wasn't created as a rollback.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rolledBackByRollouts": {
+          "description": "Output only. Names of `Rollouts` that rolled back this `Rollout`.",
+          "items": {
+            "type": "string"
           },
           "readOnly": true,
           "type": "array"
