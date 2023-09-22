@@ -133,7 +133,7 @@ export namespace firebasestorage_v1beta {
    */
   export interface Schema$Bucket {
     /**
-     * Resource name of the bucket.
+     * Output only. Resource name of the bucket.
      */
     name?: string | null;
   }
