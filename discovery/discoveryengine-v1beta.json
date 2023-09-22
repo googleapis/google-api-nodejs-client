@@ -2598,7 +2598,7 @@
       }
     }
   },
-  "revision": "20230814",
+  "revision": "20230914",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3489,13 +3489,7 @@
     },
     "GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure": {
       "id": "GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure",
-      "properties": {
-        "totalRequiredQuota": {
-          "description": "This number is an estimation on how much total quota this project needs to successfully complete indexing.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaUpdateSchemaMetadata": {
@@ -3568,7 +3562,7 @@
       "description": "Suggestions as search queries.",
       "id": "GoogleCloudDiscoveryengineV1betaCompleteQueryResponseQuerySuggestion",
       "properties": {
-        "completableFieldPath": {
+        "completableFieldPaths": {
           "description": "The unique document field paths that serve as the source of this suggestion if it was generated from completable fields. This field is only populated for the document-completable model.",
           "items": {
             "type": "string"
@@ -3704,6 +3698,10 @@
         "servingConfig": {
           "description": "The resource name of the Serving Config to use. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}` If this is not set, the default serving config will be used.",
           "type": "string"
+        },
+        "summarySpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpec",
+          "description": "A specification for configuring the summary returned in the response."
         },
         "userLabels": {
           "additionalProperties": {
@@ -4689,9 +4687,15 @@
           "format": "int32",
           "type": "integer"
         },
-        "returnExtractiveSegmentScore": {
-          "description": "Specifies whether to return the confidence score from the extractive segments in each search result. The default value is `false`.",
-          "type": "boolean"
+        "numNextSegments": {
+          "description": "Return at most `num_next_segments` segments after each selected segments.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numPreviousSegments": {
+          "description": "Specifies whether to also include the adjacent from each selected segments. Return at most `num_previous_segments` segments before each selected segments.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4735,7 +4739,7 @@
           "type": "boolean"
         },
         "languageCode": {
-          "description": "Language code for Summary. Use language tags defined by BCP47.",
+          "description": "Language code for Summary. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). Note: This is an experimental feature.",
           "type": "string"
         },
         "summaryResultCount": {
@@ -5091,6 +5095,10 @@
       "description": "Summary of the top N search result specified by the summary spec.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSummary",
       "properties": {
+        "safetyAttributes": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummarySafetyAttributes",
+          "description": "A collection of Safety Attribute categories and their associated confidence scores."
+        },
         "summarySkippedReasons": {
           "description": "Additional summary-skipped reasons. This provides the reason for ignored cases. If nothing is skipped, this field is not set.",
           "items": {
@@ -5098,13 +5106,17 @@
               "SUMMARY_SKIPPED_REASON_UNSPECIFIED",
               "ADVERSARIAL_QUERY_IGNORED",
               "NON_SUMMARY_SEEKING_QUERY_IGNORED",
-              "OUT_OF_DOMAIN_QUERY_IGNORED"
+              "OUT_OF_DOMAIN_QUERY_IGNORED",
+              "POTENTIAL_POLICY_VIOLATION",
+              "LLM_ADDON_NOT_ENABLED"
             ],
             "enumDescriptions": [
               "Default value. The summary skipped reason is not specified.",
               "The adversarial query ignored case. Only populated when SummarySpec.ignore_adversarial_query is set to `true`.",
               "The non-summary seeking query ignored case. Only populated when SummarySpec.ignore_non_summary_seeking_query is set to `true`.",
-              "The out-of-domain query ignored case. Google skips the summary if there are no high-relevance search results. For example, the data store contains facts about company A but the user query is asking questions about company B."
+              "The out-of-domain query ignored case. Google skips the summary if there are no high-relevance search results. For example, the data store contains facts about company A but the user query is asking questions about company B.",
+              "The potential policy violation case. Google skips the summary if there is a potential policy violation detected. This includes content that may be violent or toxic.",
+              "The LLM addon not enabled case. Google skips the summary if the LLM addon is not enabled."
             ],
             "type": "string"
           },
@@ -5113,6 +5125,28 @@
         "summaryText": {
           "description": "The summary content.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSearchResponseSummarySafetyAttributes": {
+      "description": "Safety Attribute categories and their associated confidence scores.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSummarySafetyAttributes",
+      "properties": {
+        "categories": {
+          "description": "The display names of Safety Attribute categories associated with the generated content. Order matches the Scores.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scores": {
+          "description": "The confidence scores of the each category, higher value means higher confidence. Order matches the Categories.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
         }
       },
       "type": "object"

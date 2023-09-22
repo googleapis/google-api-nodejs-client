@@ -105,6 +105,122 @@
   },
   "protocol": "rest",
   "resources": {
+    "locations": {
+      "methods": {
+        "lookupWidgetConfig": {
+          "description": "Gets the Widget Config using the uuid.",
+          "flatPath": "v1alpha/locations/{locationsId}/lookupWidgetConfig",
+          "httpMethod": "POST",
+          "id": "discoveryengine.locations.lookupWidgetConfig",
+          "parameterOrder": [
+            "location"
+          ],
+          "parameters": {
+            "location": {
+              "description": "Required. The location resource where lookup widget will be performed. Format: `locations/{location}`",
+              "location": "path",
+              "pattern": "^locations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+location}/lookupWidgetConfig",
+          "request": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "widgetCompleteQuery": {
+          "description": "Performs a user input completion with keyword suggestion. Similar to the CompletionService.CompleteQuery method, but a widget version that allows CompleteQuery without API Key. It supports CompleteQuery with or without JWT token.",
+          "flatPath": "v1alpha/locations/{locationsId}/widgetCompleteQuery",
+          "httpMethod": "POST",
+          "id": "discoveryengine.locations.widgetCompleteQuery",
+          "parameterOrder": [
+            "location"
+          ],
+          "parameters": {
+            "location": {
+              "description": "Required. The location resource where widget complete query will be performed. Format: `locations/{location}`",
+              "location": "path",
+              "pattern": "^locations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+location}/widgetCompleteQuery",
+          "request": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "widgetConverseConversation": {
+          "description": "Converse a conversation with Widget.",
+          "flatPath": "v1alpha/locations/{locationsId}/widgetConverseConversation",
+          "httpMethod": "POST",
+          "id": "discoveryengine.locations.widgetConverseConversation",
+          "parameterOrder": [
+            "location"
+          ],
+          "parameters": {
+            "location": {
+              "description": "Required. The location resource where widget converse conversation will be performed. Format: `locations/{location}`",
+              "location": "path",
+              "pattern": "^locations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+location}/widgetConverseConversation",
+          "request": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "widgetSearch": {
+          "description": "Performs a search. Similar to the SearchService.Search method, but a widget version that allows search without API Key. It supports search with or without JWT token.",
+          "flatPath": "v1alpha/locations/{locationsId}/widgetSearch",
+          "httpMethod": "POST",
+          "id": "discoveryengine.locations.widgetSearch",
+          "parameterOrder": [
+            "location"
+          ],
+          "parameters": {
+            "location": {
+              "description": "Required. The location resource where widget search will be performed. Format: `locations/{location}`",
+              "location": "path",
+              "pattern": "^locations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+location}/widgetSearch",
+          "request": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetSearchRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
     "projects": {
       "resources": {
         "locations": {
@@ -2654,7 +2770,7 @@
       }
     }
   },
-  "revision": "20230814",
+  "revision": "20230914",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3034,6 +3150,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaAdditionalParams": {
+      "description": "AdditionalParams message for WidgetService methods for security and privacy enhancement.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdditionalParams",
+      "properties": {
+        "token": {
+          "description": "Token that used for non-human user check.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse": {
       "description": "Response message for SiteSearchEngineService.BatchCreateTargetSites method.",
       "id": "GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse",
@@ -3079,6 +3206,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaCompleteQueryRequest": {
+      "description": "Request message for CompletionService.CompleteQuery method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCompleteQueryRequest",
+      "properties": {
+        "dataStore": {
+          "description": "Required. The parent data store resource name for which the completion is performed, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store`.",
+          "type": "string"
+        },
+        "includeTailSuggestions": {
+          "description": "Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.",
+          "type": "boolean"
+        },
+        "query": {
+          "description": "Required. The typeahead input used to fetch suggestions. Maximum length is 128 characters.",
+          "type": "string"
+        },
+        "queryModel": {
+          "description": "Selects data model of query suggestions for serving. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for IndustryVertical.SITE_SEARCH dataStores.",
+          "type": "string"
+        },
+        "userPseudoId": {
+          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaCompleteQueryResponse": {
       "description": "Response message for CompletionService.CompleteQuery method.",
       "id": "GoogleCloudDiscoveryengineV1alphaCompleteQueryResponse",
@@ -3101,7 +3255,7 @@
       "description": "Suggestions as search queries.",
       "id": "GoogleCloudDiscoveryengineV1alphaCompleteQueryResponseQuerySuggestion",
       "properties": {
-        "completableFieldPath": {
+        "completableFieldPaths": {
           "description": "The unique document field paths that serve as the source of this suggestion if it was generated from completable fields. This field is only populated for the document-completable model.",
           "items": {
             "type": "string"
@@ -3226,6 +3380,10 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaConversation",
           "description": "The conversation to be used by auto session only. The name field will be ignored as we automatically assign new name for the conversation in auto session."
         },
+        "name": {
+          "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
+          "type": "string"
+        },
         "query": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaTextInput",
           "description": "Required. Current user input."
@@ -3237,6 +3395,10 @@
         "servingConfig": {
           "description": "The resource name of the Serving Config to use. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}` If this is not set, the default serving config will be used.",
           "type": "string"
+        },
+        "summarySpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpec",
+          "description": "A specification for configuring the summary returned in the response."
         },
         "userLabels": {
           "additionalProperties": {
@@ -3874,6 +4036,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigRequest": {
+      "description": "Request message for WidgetService.LookupWidgetConfig method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigRequest",
+      "properties": {
+        "widgetConfigId": {
+          "description": "Required. The UUID of the Widget Config.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse": {
+      "description": "Response message for WidgetService.LookupWidgetConfig method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse",
+      "properties": {
+        "anonymousWidgetConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfig",
+          "description": "The Anonymous Widget Config associated with the UUID."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaMediaInfo": {
       "description": "Media-specific user event information.",
       "id": "GoogleCloudDiscoveryengineV1alphaMediaInfo",
@@ -4320,6 +4504,10 @@
           "description": "Whether to turn on safe search. This is only supported for website search.",
           "type": "boolean"
         },
+        "servingConfig": {
+          "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
+          "type": "string"
+        },
         "spellCorrectionSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestSpellCorrectionSpec",
           "description": "The spell correction specification that specifies the mode under which spell correction takes effect."
@@ -4405,9 +4593,15 @@
           "format": "int32",
           "type": "integer"
         },
-        "returnExtractiveSegmentScore": {
-          "description": "Specifies whether to return the confidence score from the extractive segments in each search result. The default value is `false`.",
-          "type": "boolean"
+        "numNextSegments": {
+          "description": "Return at most `num_next_segments` segments after each selected segments.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numPreviousSegments": {
+          "description": "Specifies whether to also include the adjacent from each selected segments. Return at most `num_previous_segments` segments before each selected segments.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4451,7 +4645,7 @@
           "type": "boolean"
         },
         "languageCode": {
-          "description": "Language code for Summary. Use language tags defined by BCP47.",
+          "description": "Language code for Summary. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). Note: This is an experimental feature.",
           "type": "string"
         },
         "summaryResultCount": {
@@ -4807,6 +5001,10 @@
       "description": "Summary of the top N search result specified by the summary spec.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummary",
       "properties": {
+        "safetyAttributes": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySafetyAttributes",
+          "description": "A collection of Safety Attribute categories and their associated confidence scores."
+        },
         "summarySkippedReasons": {
           "description": "Additional summary-skipped reasons. This provides the reason for ignored cases. If nothing is skipped, this field is not set.",
           "items": {
@@ -4814,13 +5012,17 @@
               "SUMMARY_SKIPPED_REASON_UNSPECIFIED",
               "ADVERSARIAL_QUERY_IGNORED",
               "NON_SUMMARY_SEEKING_QUERY_IGNORED",
-              "OUT_OF_DOMAIN_QUERY_IGNORED"
+              "OUT_OF_DOMAIN_QUERY_IGNORED",
+              "POTENTIAL_POLICY_VIOLATION",
+              "LLM_ADDON_NOT_ENABLED"
             ],
             "enumDescriptions": [
               "Default value. The summary skipped reason is not specified.",
               "The adversarial query ignored case. Only populated when SummarySpec.ignore_adversarial_query is set to `true`.",
               "The non-summary seeking query ignored case. Only populated when SummarySpec.ignore_non_summary_seeking_query is set to `true`.",
-              "The out-of-domain query ignored case. Google skips the summary if there are no high-relevance search results. For example, the data store contains facts about company A but the user query is asking questions about company B."
+              "The out-of-domain query ignored case. Google skips the summary if there are no high-relevance search results. For example, the data store contains facts about company A but the user query is asking questions about company B.",
+              "The potential policy violation case. Google skips the summary if there is a potential policy violation detected. This includes content that may be violent or toxic.",
+              "The LLM addon not enabled case. Google skips the summary if the LLM addon is not enabled."
             ],
             "type": "string"
           },
@@ -4829,6 +5031,28 @@
         "summaryText": {
           "description": "The summary content.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySafetyAttributes": {
+      "description": "Safety Attribute categories and their associated confidence scores.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySafetyAttributes",
+      "properties": {
+        "categories": {
+          "description": "The display names of Safety Attribute categories associated with the generated content. Order matches the Scores.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scores": {
+          "description": "The confidence scores of the each category, higher value means higher confidence. Order matches the Categories.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4948,13 +5172,7 @@
     },
     "GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure": {
       "id": "GoogleCloudDiscoveryengineV1alphaTargetSiteFailureReasonQuotaFailure",
-      "properties": {
-        "totalRequiredQuota": {
-          "description": "This number is an estimation on how much total quota this project needs to successfully complete indexing.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaTextInput": {
@@ -5126,6 +5344,304 @@
         },
         "userId": {
           "description": "Highly recommended for logged-in users. Unique identifier for logged-in user, such as a user name. Don't set for anonymous users. Always use a hashed value for this ID. Don't set the field to the same fixed ID for different users. This mixes the event history of those users together, which results in degraded model quality. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryRequest": {
+      "description": "Request message for WidgetService.WidgetCompleteQuery method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryRequest",
+      "properties": {
+        "additionalParams": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAdditionalParams",
+          "description": "Additional params for security and privacy enhancement."
+        },
+        "completeQueryRequest": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCompleteQueryRequest",
+          "description": "Required. The CompleteQuery request to perform auto-complete suggestion query."
+        },
+        "configId": {
+          "description": "Required. The UUID of the WidgetConfig. This field is used to identify the widget configuration, set of models used to make the auto complete query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse": {
+      "description": "Response message for WidgetService.WidgetCompleteQuery method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse",
+      "properties": {
+        "uToken": {
+          "description": "The token in response.",
+          "type": "string"
+        },
+        "widgetQuerySuggestions": {
+          "description": "Results of the matched query suggestions in widget. The result list is ordered and the first result is a top suggestion.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponseWidgetQuerySuggestion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponseWidgetQuerySuggestion": {
+      "description": "Suggestions as search queries.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponseWidgetQuerySuggestion",
+      "properties": {
+        "suggestion": {
+          "description": "The suggestion for the query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfig": {
+      "description": "WidgetConfig captures configs at the Widget level.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfig",
+      "properties": {
+        "allowPublicAccess": {
+          "description": "Whether allow no-auth integration with widget. If set true, public access to search or other solutions from widget is allowed without authenication token provided by customer hosted backend server.",
+          "type": "boolean"
+        },
+        "allowlistedDomains": {
+          "description": "Allowlisted domains that can load this widget.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "configId": {
+          "description": "Output only. Unique obfuscated identifier of a WidgetConfig.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "contentSearchSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec",
+          "description": "The content search spec that configs the desired behavior of content search."
+        },
+        "createTime": {
+          "description": "Output only. Timestamp the WidgetConfig was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataStoreType": {
+          "description": "Output only. The type of the parent data store.",
+          "enum": [
+            "DATA_STORE_TYPE_UNSPECIFIED",
+            "SITE_SEARCH",
+            "STRUCTURED",
+            "UNSTRUCTURED"
+          ],
+          "enumDescriptions": [
+            "Unspecified data store type.",
+            "The parent data store contains a site search engine.",
+            "The parent data store contains a search engine for structured data.",
+            "The parent data store contains a search engine for unstructured data."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The human readable widget config display name. Used in Discovery UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "enableAutocomplete": {
+          "description": "Whether or not to enable autocomplete.",
+          "type": "boolean"
+        },
+        "enableConversationalSearch": {
+          "description": "Whether to allow conversational search (LLM, multi-turn) or not (non-LLM, single-turn).",
+          "type": "boolean"
+        },
+        "enableQualityFeedback": {
+          "description": "Turn on or off collecting the search result quality feedback from end users.",
+          "type": "boolean"
+        },
+        "enableResultScore": {
+          "description": "Whether to show the result score.",
+          "type": "boolean"
+        },
+        "enableSafeSearch": {
+          "description": "Whether to enable safe search.",
+          "type": "boolean"
+        },
+        "enableSnippetResultSummary": {
+          "description": "Turn on or off summary for each snippets result.",
+          "type": "boolean"
+        },
+        "enableSummarization": {
+          "description": "Turn on or off summarization for the search response.",
+          "type": "boolean"
+        },
+        "facetField": {
+          "description": "The configuration and appearance of facets in the end user view.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField"
+          },
+          "type": "array"
+        },
+        "fieldsUiComponentsMap": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField"
+          },
+          "description": "The key is the UI component. Mock. Currently supported `title`, `thumbnail`, `url`, `custom1`, `custom2`, `custom3`. The value is the name of the field along with its device visibility. The 3 custom fields are optional and can be added or removed. `title`, `thumbnail`, `url` are required UI components that cannot be removed.",
+          "type": "object"
+        },
+        "llmEnabled": {
+          "description": "Output only. Whether LLM is enabled in the corresponding data store.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the widget config. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/widgetConfigs/{widget_config_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "solutionType": {
+          "description": "Required. Immutable. Specifies the solution type that this WidgetConfig can be used for.",
+          "enum": [
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+            "SOLUTION_TYPE_CHAT"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Used for Recommendations AI.",
+            "Used for Discovery Search.",
+            "Used for use cases related to the Generative AI agent."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp the WidgetConfig was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField": {
+      "description": "Facet fields that store the mapping of fields to end user widget appearance.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField",
+      "properties": {
+        "displayName": {
+          "description": "Optional. The field name that end users will see.",
+          "type": "string"
+        },
+        "field": {
+          "description": "Required. Registered field name. The format is `field.abc`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField": {
+      "description": "Facet field that maps to a UI Component.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField",
+      "properties": {
+        "deviceVisibility": {
+          "description": "The field visibility on different types of devices.",
+          "items": {
+            "enum": [
+              "DEVICE_VISIBILITY_UNSPECIFIED",
+              "MOBILE",
+              "DESKTOP"
+            ],
+            "enumDescriptions": [
+              "Default value when not specified. Server returns INVALID_ARGUMENT if used in requests.",
+              "The UI component is visible on Mobile devices.",
+              "The UI component is visible on Browser-based client."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "displayTemplate": {
+          "description": "The template to customize how the field is displayed. An example value would be a string that looks like: \"Price: {value}\".",
+          "type": "string"
+        },
+        "field": {
+          "description": "Required. Registered field name. The format is `field.abc`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationRequest": {
+      "description": "Request message for WidgetService.WidgetConverseConversation method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationRequest",
+      "properties": {
+        "additionalParams": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAdditionalParams",
+          "description": "Additional params for security and privacy enhancement."
+        },
+        "configId": {
+          "description": "Required. The UUID of the WidgetConfig. This field is used to identify the widget configuration, set of models used to make the user event collection.",
+          "type": "string"
+        },
+        "conversationId": {
+          "description": "The id of the Conversation to get. Use \"-\" to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
+          "type": "string"
+        },
+        "converseConversationRequest": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaConverseConversationRequest",
+          "description": "Required. The ConverseConversationRequest request to perform converse a conversation. The ServingConfig id will be `default_search` by default."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse": {
+      "description": "Response message for WidgetService.WidgetConverseConversation method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse",
+      "properties": {
+        "conversationId": {
+          "description": "The id of the Conversation returned.",
+          "type": "string"
+        },
+        "converseConversationResponse": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaConverseConversationResponse",
+          "description": "ConverseConversationResponse returned from ConversationalSearchService.ConverseConversation."
+        },
+        "uToken": {
+          "description": "The token in response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetSearchRequest": {
+      "description": "Request message for WidgetService.WidgetSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetSearchRequest",
+      "properties": {
+        "additionalParams": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAdditionalParams",
+          "description": "Additional params for security and privacy enhancement."
+        },
+        "configId": {
+          "description": "Required. The UUID of the Search WidgetConfig. This field is used to identify the search widget configuration, set of models used to make the search.",
+          "type": "string"
+        },
+        "searchRequest": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequest",
+          "description": "Required. The search request to perform search."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse": {
+      "description": "Response message for WidgetService.WidgetSearch method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse",
+      "properties": {
+        "searchResponse": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponse",
+          "description": "The search response after performing search."
+        },
+        "uToken": {
+          "description": "The token in response.",
           "type": "string"
         }
       },
