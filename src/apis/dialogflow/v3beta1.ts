@@ -125,6 +125,53 @@ export namespace dialogflow_v3beta1 {
   }
 
   /**
+   * Hierarchical advanced settings for agent/flow/page/fulfillment/parameter. Settings exposed at lower level overrides the settings exposed at higher level. Overriding occurs at the sub-setting level. For example, the playback_interruption_settings at fulfillment level only overrides the playback_interruption_settings at the agent level, leaving other settings at the agent level unchanged. DTMF settings does not override each other. DTMF settings set at different levels define DTMF detections running in parallel. Hierarchy: Agent-\>Flow-\>Page-\>Fulfillment/Parameter.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettings {
+    /**
+     * If present, incoming audio is exported by Dialogflow to the configured Google Cloud Storage destination. Exposed at the following levels: - Agent level - Flow level
+     */
+    audioExportGcsDestination?: Schema$GoogleCloudDialogflowCxV3GcsDestination;
+    /**
+     * Settings for DTMF. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level.
+     */
+    dtmfSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings;
+    /**
+     * Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level.
+     */
+    loggingSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings;
+  }
+  /**
+   * Define behaviors for DTMF (dual tone multi frequency).
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings {
+    /**
+     * If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a "3" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).
+     */
+    enabled?: boolean | null;
+    /**
+     * The digit that terminates a DTMF digit sequence.
+     */
+    finishDigit?: string | null;
+    /**
+     * Max length of DTMF digits.
+     */
+    maxDigits?: number | null;
+  }
+  /**
+   * Define behaviors on logging.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings {
+    /**
+     * If true, DF Interaction logging is currently enabled.
+     */
+    enableInteractionLogging?: boolean | null;
+    /**
+     * If true, StackDriver logging is currently enabled.
+     */
+    enableStackdriverLogging?: boolean | null;
+  }
+  /**
    * Represents the natural speech audio to be processed.
    */
   export interface Schema$GoogleCloudDialogflowCxV3AudioInput {
@@ -164,9 +211,30 @@ export namespace dialogflow_v3beta1 {
      */
     audioExportGcsDestination?: Schema$GoogleCloudDialogflowCxV3beta1GcsDestination;
     /**
+     * Settings for DTMF. Exposed at the following levels: - Agent level - Flow level - Page level - Parameter level.
+     */
+    dtmfSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings;
+    /**
      * Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level.
      */
     loggingSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings;
+  }
+  /**
+   * Define behaviors for DTMF (dual tone multi frequency).
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings {
+    /**
+     * If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a "3" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).
+     */
+    enabled?: boolean | null;
+    /**
+     * The digit that terminates a DTMF digit sequence.
+     */
+    finishDigit?: string | null;
+    /**
+     * Max length of DTMF digits.
+     */
+    maxDigits?: number | null;
   }
   /**
    * Define behaviors on logging.
@@ -214,6 +282,10 @@ export namespace dialogflow_v3beta1 {
      */
     enableStackdriverLogging?: boolean | null;
     /**
+     * Gen App Builder-related agent-level settings.
+     */
+    genAppBuilderSettings?: Schema$GoogleCloudDialogflowCxV3beta1AgentGenAppBuilderSettings;
+    /**
      * Git integration settings for this agent.
      */
     gitIntegrationSettings?: Schema$GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettings;
@@ -249,6 +321,15 @@ export namespace dialogflow_v3beta1 {
      * Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
      */
     timeZone?: string | null;
+  }
+  /**
+   * Settings for Gen App Builder.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AgentGenAppBuilderSettings {
+    /**
+     * Required. The full name of the Gen App Builder engine related to this agent if there is one. Format: `projects/{Project ID\}/locations/{Location ID\}/collections/{Collection ID\}/engines/{Engine ID\}`
+     */
+    engine?: string | null;
   }
   /**
    * Settings for connecting to Git repository for an agent.
@@ -548,6 +629,19 @@ export namespace dialogflow_v3beta1 {
      * Name of the created version. Format: `projects//locations//agents//flows//versions/`.
      */
     version?: string | null;
+  }
+  /**
+   * A data store connection. It represents a data store in Discovery Engine and the type of the contents it contains.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnection {
+    /**
+     * The full name of the referenced data store. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}`
+     */
+    dataStore?: string | null;
+    /**
+     * The type of the connected data store.
+     */
+    dataStoreType?: string | null;
   }
   /**
    * Metadata for DeleteDocument operation.
@@ -1125,6 +1219,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Flow {
     /**
+     * Hierarchical advanced settings for this flow. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
+    /**
      * The description of the flow. The maximum length is 500 characters. If exceeded, the request is rejected.
      */
     description?: string | null;
@@ -1136,6 +1234,10 @@ export namespace dialogflow_v3beta1 {
      * A flow's event handlers serve two purposes: * They are responsible for handling events (e.g. no match, webhook errors) in the flow. * They are inherited by every page's event handlers, which can be used to handle common events regardless of the current page. Event handlers defined in the page have higher priority than those defined in the flow. Unlike transition_routes, these handlers are evaluated on a first-match basis. The first one that matches the event get executed, with the rest being ignored.
      */
     eventHandlers?: Schema$GoogleCloudDialogflowCxV3beta1EventHandler[];
+    /**
+     * Optional. Knowledge connector configuration.
+     */
+    knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings;
     /**
      * The unique identifier of the flow. Format: `projects//locations//agents//flows/`.
      */
@@ -1192,6 +1294,10 @@ export namespace dialogflow_v3beta1 {
    * Represents a form parameter.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1FormParameter {
+    /**
+     * Hierarchical advanced settings for this parameter. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
     /**
      * The default value of an optional parameter. If the parameter is required, the default value will be ignored.
      */
@@ -1277,9 +1383,17 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Fulfillment {
     /**
+     * Hierarchical advanced settings for this fulfillment. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
+    /**
      * Conditional cases for this fulfillment.
      */
     conditionalCases?: Schema$GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases[];
+    /**
+     * If the flag is true, the agent will utilize LLM to generate a text response. If LLM generation fails, the defined responses in the fulfillment will be respected. This flag is only useful for fulfillments associated with no-match event handlers.
+     */
+    enableGenerativeFallback?: boolean | null;
     /**
      * The list of rich message responses to present to the user.
      */
@@ -1357,6 +1471,86 @@ export namespace dialogflow_v3beta1 {
      * Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.
      */
     uri?: string | null;
+  }
+  /**
+   * Settings for Generative AI.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings {
+    /**
+     * Settings for Generative Fallback.
+     */
+    fallbackSettings?: Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettings;
+    /**
+     * Settings for Generative Safety.
+     */
+    generativeSafetySettings?: Schema$GoogleCloudDialogflowCxV3beta1SafetySettings;
+    /**
+     * Settings for knowledge connector.
+     */
+    knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettingsKnowledgeConnectorSettings;
+    /**
+     * Language for this settings.
+     */
+    languageCode?: string | null;
+    /**
+     * Format: `projects//locations//agents//generativeSettings`.
+     */
+    name?: string | null;
+  }
+  /**
+   * Settings for Generative Fallback.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettings {
+    /**
+     * Stored prompts that can be selected, for example default templates like "conservative" or "chatty", or user defined ones.
+     */
+    promptTemplates?: Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettingsPromptTemplate[];
+    /**
+     * Display name of the selected prompt.
+     */
+    selectedPrompt?: string | null;
+  }
+  /**
+   * Prompt template.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettingsPromptTemplate {
+    /**
+     * Prompt name.
+     */
+    displayName?: string | null;
+    /**
+     * If the flag is true, the prompt is frozen and cannot be modified by users.
+     */
+    frozen?: boolean | null;
+    /**
+     * Prompt text that is sent to a LLM on no-match default, placeholders are filled downstream. For example: "Here is a conversation $conversation, a response is: "
+     */
+    promptText?: string | null;
+  }
+  /**
+   * Settings for knowledge connector. These parameters are used for LLM prompt like "You are . You are a helpful and verbose at , . Your task is to help humans on ".
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettingsKnowledgeConnectorSettings {
+    /**
+     * Name of the virtual agent. Used for LLM prompt. Can be left empty.
+     */
+    agent?: string | null;
+    /**
+     * Identity of the agent, e.g. "virtual agent", "AI assistant".
+     */
+    agentIdentity?: string | null;
+    /**
+     * Agent scope, e.g. "Example company website", "internal Example company website for employees", "manual of car owner".
+     */
+    agentScope?: string | null;
+    /**
+     * Name of the company, organization or other entity that the agent represents. Used for knowledge connector LLM prompt and for knowledge search.
+     */
+    business?: string | null;
+    /**
+     * Company description, used for LLM prompt, e.g. "a family company selling freshly roasted coffee beans".
+     */
+    businessDescription?: string | null;
   }
   /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
@@ -1601,6 +1795,31 @@ export namespace dialogflow_v3beta1 {
      * Required. The text for this part.
      */
     text?: string | null;
+  }
+  /**
+   * The Knowledge Connector settings for this page or flow. This includes information such as the attached Knowledge Bases, and the way to execute fulfillment.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings {
+    /**
+     * Optional. List of related data store connections.
+     */
+    dataStoreConnections?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnection[];
+    /**
+     * Whether Knowledge Connector is enabled or not.
+     */
+    enabled?: boolean | null;
+    /**
+     * The target flow to transition to. Format: `projects//locations//agents//flows/`.
+     */
+    targetFlow?: string | null;
+    /**
+     * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
+     */
+    targetPage?: string | null;
+    /**
+     * The fulfillment to be triggered. When the answers from the Knowledge Connector are selected by Dialogflow, you can utitlize the request scoped parameter `$request.knowledge.answers` (contains up to the 5 highest confidence answers) and `$request.knowledge.questions` (contains the corresponding questions) to construct the fulfillment.
+     */
+    triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3beta1Fulfillment;
   }
   /**
    * The response message for Agents.ListAgents.
@@ -1959,6 +2178,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Page {
     /**
+     * Hierarchical advanced settings for this page. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
+    /**
      * Required. The human-readable name of the page, unique within the flow.
      */
     displayName?: string | null;
@@ -1975,11 +2198,15 @@ export namespace dialogflow_v3beta1 {
      */
     form?: Schema$GoogleCloudDialogflowCxV3beta1Form;
     /**
+     * Optional. Knowledge connector configuration.
+     */
+    knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings;
+    /**
      * The unique identifier of the page. Required for the Pages.UpdatePage method. Pages.CreatePage populates the name automatically. Format: `projects//locations//agents//flows//pages/`.
      */
     name?: string | null;
     /**
-     * Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -\> page's transition route group -\> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
+     * Ordered list of `TransitionRouteGroups` added to the page. Transition route groups must be unique within a page. If the page links both flow-level transition route groups and agent-level transition route groups, the flow-level ones will have higher priority and will be put before the agent-level ones. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -\> page's transition route group -\> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
      */
     transitionRouteGroups?: string[] | null;
     /**
@@ -2125,6 +2352,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1QueryResult {
     /**
+     * Returns the current advanced settings including IVR settings. Even though the operations configured by these settings are performed by Dialogflow, the client may need to perform special logic at the moment. For example, if Dialogflow exports audio to Google Cloud Storage, then the client may need to wait for the resulting object to appear in the bucket before proceeding.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
+    /**
      * The current Page. Some, not all fields are filled in this message, including but not limited to `name` and `display_name`.
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3beta1Page;
@@ -2228,6 +2459,10 @@ export namespace dialogflow_v3beta1 {
      */
     endInteraction?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction;
     /**
+     * Represents info card for knowledge answers, to be better rendered in Dialogflow Messenger.
+     */
+    knowledgeInfoCard?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageKnowledgeInfoCard;
+    /**
      * Hands off conversation to a human agent.
      */
     liveAgentHandoff?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff;
@@ -2269,6 +2504,10 @@ export namespace dialogflow_v3beta1 {
    * Indicates that interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only and not supposed to be defined by the user.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction {}
+  /**
+   * Represents info card response. If the response contains generative knowledge prediction, Dialogflow will return a payload with Infobot Messenger compatible info card. Otherwise, the info card response is skipped.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageKnowledgeInfoCard {}
   /**
    * Indicates that the conversation should be handed off to a live agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
    */
@@ -2482,6 +2721,28 @@ export namespace dialogflow_v3beta1 {
     result?: Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult;
   }
   /**
+   * Settings for Generative Safety.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1SafetySettings {
+    /**
+     * Banned phrases for generated text.
+     */
+    bannedPhrases?: Schema$GoogleCloudDialogflowCxV3beta1SafetySettingsPhrase[];
+  }
+  /**
+   * Text input which can be used for prompt or banned phrases.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1SafetySettingsPhrase {
+    /**
+     * Required. Language code of the phrase.
+     */
+    languageCode?: string | null;
+    /**
+     * Required. Text input which can be used for prompt or banned phrases.
+     */
+    text?: string | null;
+  }
+  /**
    * Represents the settings related to security issues, such as data redaction and data retention. It may take hours for updates on the settings to propagate to all the related components and take effect.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings {
@@ -2521,6 +2782,10 @@ export namespace dialogflow_v3beta1 {
      * Strategy that defines how we do redaction.
      */
     redactionStrategy?: string | null;
+    /**
+     * Specifies the retention behavior defined by SecuritySettings.RetentionStrategy.
+     */
+    retentionStrategy?: string | null;
     /**
      * Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must set a value lower than Dialogflow's default 365d TTL (30 days for Agent Assist traffic), higher value will be ignored and use default. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use default TTL.
      */
@@ -2852,6 +3117,10 @@ export namespace dialogflow_v3beta1 {
      * The condition to evaluate against form parameters or session parameters. See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition). At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.
      */
     condition?: string | null;
+    /**
+     * Optional. The description of the transition route. The maximum length is 500 characters.
+     */
+    description?: string | null;
     /**
      * The unique identifier of an Intent. Format: `projects//locations//agents//intents/`. Indicates that the transition can only happen when the given intent is matched. At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.
      */
@@ -3473,6 +3742,19 @@ export namespace dialogflow_v3beta1 {
     version?: string | null;
   }
   /**
+   * A data store connection. It represents a data store in Discovery Engine and the type of the contents it contains.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3DataStoreConnection {
+    /**
+     * The full name of the referenced data store. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}`
+     */
+    dataStore?: string | null;
+    /**
+     * The type of the connected data store.
+     */
+    dataStoreType?: string | null;
+  }
+  /**
    * Metadata for DeleteDocument operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata {
@@ -3679,6 +3961,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3FormParameter {
     /**
+     * Hierarchical advanced settings for this parameter. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettings;
+    /**
      * The default value of an optional parameter. If the parameter is required, the default value will be ignored.
      */
     defaultValue?: any | null;
@@ -3725,9 +4011,17 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3Fulfillment {
     /**
+     * Hierarchical advanced settings for this fulfillment. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettings;
+    /**
      * Conditional cases for this fulfillment.
      */
     conditionalCases?: Schema$GoogleCloudDialogflowCxV3FulfillmentConditionalCases[];
+    /**
+     * If the flag is true, the agent will utilize LLM to generate a text response. If LLM generation fails, the defined responses in the fulfillment will be respected. This flag is only useful for fulfillments associated with no-match event handlers.
+     */
+    enableGenerativeFallback?: boolean | null;
     /**
      * The list of rich message responses to present to the user.
      */
@@ -3796,6 +4090,15 @@ export namespace dialogflow_v3beta1 {
      * The new value of the parameter. A null value clears the parameter.
      */
     value?: any | null;
+  }
+  /**
+   * Google Cloud Storage location for a Dialogflow operation that writes or exports objects (e.g. exported agent or transcripts) outside of Dialogflow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3GcsDestination {
+    /**
+     * Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.
+     */
+    uri?: string | null;
   }
   /**
    * Metadata in google::longrunning::Operation for Knowledge operations.
@@ -3982,9 +4285,38 @@ export namespace dialogflow_v3beta1 {
     text?: string | null;
   }
   /**
+   * The Knowledge Connector settings for this page or flow. This includes information such as the attached Knowledge Bases, and the way to execute fulfillment.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3KnowledgeConnectorSettings {
+    /**
+     * Optional. List of related data store connections.
+     */
+    dataStoreConnections?: Schema$GoogleCloudDialogflowCxV3DataStoreConnection[];
+    /**
+     * Whether Knowledge Connector is enabled or not.
+     */
+    enabled?: boolean | null;
+    /**
+     * The target flow to transition to. Format: `projects//locations//agents//flows/`.
+     */
+    targetFlow?: string | null;
+    /**
+     * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
+     */
+    targetPage?: string | null;
+    /**
+     * The fulfillment to be triggered. When the answers from the Knowledge Connector are selected by Dialogflow, you can utitlize the request scoped parameter `$request.knowledge.answers` (contains up to the 5 highest confidence answers) and `$request.knowledge.questions` (contains the corresponding questions) to construct the fulfillment.
+     */
+    triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3Fulfillment;
+  }
+  /**
    * A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).
    */
   export interface Schema$GoogleCloudDialogflowCxV3Page {
+    /**
+     * Hierarchical advanced settings for this page. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3AdvancedSettings;
     /**
      * Required. The human-readable name of the page, unique within the flow.
      */
@@ -4002,11 +4334,15 @@ export namespace dialogflow_v3beta1 {
      */
     form?: Schema$GoogleCloudDialogflowCxV3Form;
     /**
+     * Optional. Knowledge connector configuration.
+     */
+    knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3KnowledgeConnectorSettings;
+    /**
      * The unique identifier of the page. Required for the Pages.UpdatePage method. Pages.CreatePage populates the name automatically. Format: `projects//locations//agents//flows//pages/`.
      */
     name?: string | null;
     /**
-     * Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -\> page's transition route group -\> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
+     * Ordered list of `TransitionRouteGroups` added to the page. Transition route groups must be unique within a page. If the page links both flow-level transition route groups and agent-level transition route groups, the flow-level ones will have higher priority and will be put before the agent-level ones. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -\> page's transition route group -\> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
      */
     transitionRouteGroups?: string[] | null;
     /**
@@ -4120,6 +4456,10 @@ export namespace dialogflow_v3beta1 {
      */
     endInteraction?: Schema$GoogleCloudDialogflowCxV3ResponseMessageEndInteraction;
     /**
+     * Represents info card for knowledge answers, to be better rendered in Dialogflow Messenger.
+     */
+    knowledgeInfoCard?: Schema$GoogleCloudDialogflowCxV3ResponseMessageKnowledgeInfoCard;
+    /**
      * Hands off conversation to a human agent.
      */
     liveAgentHandoff?: Schema$GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff;
@@ -4165,6 +4505,10 @@ export namespace dialogflow_v3beta1 {
    * Indicates that interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only and not supposed to be defined by the user.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageEndInteraction {}
+  /**
+   * Represents info card response. If the response contains generative knowledge prediction, Dialogflow will return a payload with Infobot Messenger compatible info card. Otherwise, the info card response is skipped.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageKnowledgeInfoCard {}
   /**
    * Indicates that the conversation should be handed off to a live agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
    */
@@ -4435,6 +4779,10 @@ export namespace dialogflow_v3beta1 {
      * The condition to evaluate against form parameters or session parameters. See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition). At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.
      */
     condition?: string | null;
+    /**
+     * Optional. The description of the transition route. The maximum length is 500 characters.
+     */
+    description?: string | null;
     /**
      * The unique identifier of an Intent. Format: `projects//locations//agents//intents/`. Indicates that the transition can only happen when the given intent is matched. At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.
      */
@@ -8698,6 +9046,100 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
+     * Gets the generative settings for the agent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getGenerativeSettings(
+      params: Params$Resource$Projects$Locations$Agents$Getgenerativesettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getGenerativeSettings(
+      params?: Params$Resource$Projects$Locations$Agents$Getgenerativesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>;
+    getGenerativeSettings(
+      params: Params$Resource$Projects$Locations$Agents$Getgenerativesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getGenerativeSettings(
+      params: Params$Resource$Projects$Locations$Agents$Getgenerativesettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+    ): void;
+    getGenerativeSettings(
+      params: Params$Resource$Projects$Locations$Agents$Getgenerativesettings,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+    ): void;
+    getGenerativeSettings(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+    ): void;
+    getGenerativeSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Getgenerativesettings
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Getgenerativesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Getgenerativesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets the latest agent validation result. Agent validation is performed when ValidateAgent is called.
      *
      * @param params - Parameters for request
@@ -9075,6 +9517,100 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
+     * Updates the generative settings for the agent.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateGenerativeSettings(
+      params: Params$Resource$Projects$Locations$Agents$Updategenerativesettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateGenerativeSettings(
+      params?: Params$Resource$Projects$Locations$Agents$Updategenerativesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>;
+    updateGenerativeSettings(
+      params: Params$Resource$Projects$Locations$Agents$Updategenerativesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateGenerativeSettings(
+      params: Params$Resource$Projects$Locations$Agents$Updategenerativesettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+    ): void;
+    updateGenerativeSettings(
+      params: Params$Resource$Projects$Locations$Agents$Updategenerativesettings,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+    ): void;
+    updateGenerativeSettings(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+    ): void;
+    updateGenerativeSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Updategenerativesettings
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Updategenerativesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Updategenerativesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Validates the specified agent and creates or updates validation results. The agent in draft version is validated. Please call this API after the training is completed to get the complete validation results.
      *
      * @param params - Parameters for request
@@ -9209,6 +9745,17 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Agents$Getgenerativesettings
+    extends StandardParameters {
+    /**
+     * Required. Language code of the generative settings.
+     */
+    languageCode?: string;
+    /**
+     * Required. Format: `projects//locations//agents//generativeSettings`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Agents$Getvalidationresult
     extends StandardParameters {
     /**
@@ -9262,6 +9809,22 @@ export namespace dialogflow_v3beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3beta1RestoreAgentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Updategenerativesettings
+    extends StandardParameters {
+    /**
+     * Format: `projects//locations//agents//generativeSettings`.
+     */
+    name?: string;
+    /**
+     * Optional. The mask to control which fields get updated. If the mask is not present, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1GenerativeSettings;
   }
   export interface Params$Resource$Projects$Locations$Agents$Validate
     extends StandardParameters {
