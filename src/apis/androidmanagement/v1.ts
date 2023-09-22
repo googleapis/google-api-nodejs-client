@@ -312,7 +312,7 @@ export namespace androidmanagement_v1 {
     permissionId?: string | null;
   }
   /**
-   * Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled.
+   * Policy for an individual app. Note: Application availability on a given device cannot be changed using this policy if installAppsDisabled is enabled. The maximum number of applications that you can specify per enterprise policy is 3,000.
    */
   export interface Schema$ApplicationPolicy {
     /**
@@ -336,7 +336,7 @@ export namespace androidmanagement_v1 {
      */
     defaultPermissionPolicy?: string | null;
     /**
-     * The scopes delegated to the app from Android Device Policy.
+     * The scopes delegated to the app from Android Device Policy. These provide additional privileges for the applications they are applied to.
      */
     delegatedScopes?: string[] | null;
     /**
@@ -797,6 +797,10 @@ export namespace androidmanagement_v1 {
      */
     crossProfileDataSharing?: string | null;
     /**
+     * List of apps which are excluded from the ShowWorkContactsInPersonalProfile setting. For this to be set, ShowWorkContactsInPersonalProfile must be set to one of the following values: * SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED. In this case, these exemptions act as a blocklist. * SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED. In this case, these exemptions act as an allowlist. * SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM. In this case, these exemptions act as an allowlist, in addition to the already allowlisted system apps. Supported on Android 14 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 14.
+     */
+    exemptionsToShowWorkContactsInPersonalProfile?: Schema$PackageNameList;
+    /**
      * Whether contacts stored in the work profile can be shown in personal profile contact searches and incoming calls.
      */
     showWorkContactsInPersonalProfile?: string | null;
@@ -1002,7 +1006,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$DeviceRadioState {
     /**
-     * Controls whether airplane mode can be toggled by the user or not
+     * Controls whether airplane mode can be toggled by the user or not.
      */
     airplaneModeState?: string | null;
     /**
@@ -2113,7 +2117,7 @@ export namespace androidmanagement_v1 {
      */
     cellBroadcastsConfigDisabled?: boolean | null;
     /**
-     * Rules for determining apps' access to private keys. See ChoosePrivateKeyRule for details.
+     * Rules for determining apps' access to private keys. See ChoosePrivateKeyRule for details. This must be empty if any application has CERT_SELECTION delegation scope.
      */
     choosePrivateKeyRules?: Schema$ChoosePrivateKeyRule[];
     /**
@@ -2301,7 +2305,7 @@ export namespace androidmanagement_v1 {
      */
     preferentialNetworkService?: string | null;
     /**
-     * Allows showing UI on a device for a user to choose a private key alias if there are no matching rules in ChoosePrivateKeyRules. For devices below Android P, setting this may leave enterprise keys vulnerable.
+     * Allows showing UI on a device for a user to choose a private key alias if there are no matching rules in ChoosePrivateKeyRules. For devices below Android P, setting this may leave enterprise keys vulnerable. This value will have no effect if any application has CERT_SELECTION delegation scope.
      */
     privateKeySelectionEnabled?: boolean | null;
     /**
