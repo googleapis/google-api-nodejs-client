@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20230920",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
@@ -1678,6 +1678,28 @@
       "description": "Describes a complete .proto file.",
       "id": "Proto2FileDescriptorProto",
       "properties": {
+        "editionEnum": {
+          "description": "The edition of the proto file.",
+          "enum": [
+            "EDITION_UNKNOWN",
+            "EDITION_2023",
+            "EDITION_1_TEST_ONLY",
+            "EDITION_2_TEST_ONLY",
+            "EDITION_99997_TEST_ONLY",
+            "EDITION_99998_TEST_ONLY",
+            "EDITION_99999_TEST_ONLY"
+          ],
+          "enumDescriptions": [
+            "A placeholder for an unknown edition value.",
+            "Editions that have been released. The specific values are arbitrary and should not be depended on, but they will always be time-ordered for easy comparison.",
+            "Placeholder editions for testing feature resolution. These should not be used or relyed on outside of tests.",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "enumType": {
           "items": {
             "$ref": "Proto2EnumDescriptorProto"
