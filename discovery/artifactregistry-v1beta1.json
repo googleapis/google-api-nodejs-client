@@ -18,6 +18,13 @@
   "description": "Store and manage build artifacts in a scalable and integrated service built on Google infrastructure.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/artifacts/docs/",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://artifactregistry.me-central2.rep.googleapis.com/",
+      "location": "me-central2"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -929,7 +936,7 @@
       }
     }
   },
-  "revision": "20230803",
+  "revision": "20230918",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1289,7 +1296,7 @@
           "type": "string"
         },
         "format": {
-          "description": "The format of packages that are stored in the repository.",
+          "description": "Optional. The format of packages that are stored in the repository.",
           "enum": [
             "FORMAT_UNSPECIFIED",
             "DOCKER",
