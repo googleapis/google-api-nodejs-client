@@ -212,6 +212,10 @@ export namespace gmail_v1 {
    */
   export interface Schema$CsePrivateKeyMetadata {
     /**
+     * Metadata for hardware keys.
+     */
+    hardwareKeyMetadata?: Schema$HardwareKeyMetadata;
+    /**
      * Metadata for a private key instance managed by an external key access control list service.
      */
     kaclsKeyMetadata?: Schema$KaclsKeyMetadata;
@@ -341,6 +345,15 @@ export namespace gmail_v1 {
      * Indicates whether this address has been verified and is usable for forwarding. Read-only.
      */
     verificationStatus?: string | null;
+  }
+  /**
+   * Metadata for hardware keys.
+   */
+  export interface Schema$HardwareKeyMetadata {
+    /**
+     * Description about the hardware key.
+     */
+    description?: string | null;
   }
   /**
    * A record of a change to the user's mailbox. Each history change may affect multiple messages in multiple ways.
