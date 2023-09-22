@@ -125,6 +125,28 @@ export namespace networkconnectivity_v1 {
   }
 
   /**
+   * The request for HubService.AcceptHubSpoke.
+   */
+  export interface Schema$AcceptHubSpokeRequest {
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * Required. The URI of the spoke to accept into the hub.
+     */
+    spokeUri?: string | null;
+  }
+  /**
+   * The response for HubService.AcceptHubSpoke.
+   */
+  export interface Schema$AcceptHubSpokeResponse {
+    /**
+     * The spoke that was operated on.
+     */
+    spoke?: Schema$Spoke;
+  }
+  /**
    * The request for HubService.AcceptSpoke.
    */
   export interface Schema$AcceptSpokeRequest {
@@ -272,6 +294,27 @@ export namespace networkconnectivity_v1 {
     title?: string | null;
   }
   /**
+   * Filter matches L4 traffic.
+   */
+  export interface Schema$Filter {
+    /**
+     * Optional. The destination IP range of outgoing packets that this policy based route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
+     */
+    destRange?: string | null;
+    /**
+     * Optional. The IP protocol that this policy based route applies to. Valid values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.
+     */
+    ipProtocol?: string | null;
+    /**
+     * Required. Internet protocol versions this policy based route applies to. For this version, only IPV4 is supported.
+     */
+    protocolVersion?: string | null;
+    /**
+     * Optional. The source IP range of outgoing packets that this policy based route applies to. Default is "0.0.0.0/0" if protocol version is IPv4.
+     */
+    srcRange?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$GoogleLongrunningCancelOperationRequest {}
@@ -348,7 +391,7 @@ export namespace networkconnectivity_v1 {
     message?: string | null;
   }
   /**
-   * A group is a set of spokes to which you can apply policies. Each group of spokes has its own route table. For each group, you can also set different rules for whether spokes can be automatically attached to the hub.
+   * A group represents a subset of spokes attached to a hub.
    */
   export interface Schema$Group {
     /**
@@ -360,7 +403,7 @@ export namespace networkconnectivity_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
+     * Optional. Labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -393,7 +436,7 @@ export namespace networkconnectivity_v1 {
      */
     description?: string | null;
     /**
-     * Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
+     * Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -424,6 +467,15 @@ export namespace networkconnectivity_v1 {
      * Output only. The time the hub was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * InterconnectAttachment to which this route applies to.
+   */
+  export interface Schema$InterconnectAttachment {
+    /**
+     * Optional. Cloud region to install this policy based route on interconnect attachment. Use `all` to install it on all interconnect attachments.
+     */
+    region?: string | null;
   }
   /**
    * The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characterstics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.
@@ -626,6 +678,23 @@ export namespace networkconnectivity_v1 {
      * The standard List next-page token.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response for PolicyBasedRouting.ListPolicyBasedRoutes method.
+   */
+  export interface Schema$ListPolicyBasedRoutesResponse {
+    /**
+     * The next pagination token in the List response. It should be used as page_token for the following request. An empty value means no more result.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Policy based routes to be returned.
+     */
+    policyBasedRoutes?: Schema$PolicyBasedRoute[];
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response for HubService.ListRoutes method.
@@ -841,6 +910,71 @@ export namespace networkconnectivity_v1 {
     version?: number | null;
   }
   /**
+   * Policy Based Routes (PBR) are more powerful routes that allows GCP customers to route their L4 network traffic based on not just destination IP, but also source IP, protocol and more. A PBR always take precedence when it conflicts with other types of routes. Next id: 22
+   */
+  export interface Schema$PolicyBasedRoute {
+    /**
+     * Output only. Time when the PolicyBasedRoute was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. An optional description of this resource. Provide this field when you create the resource.
+     */
+    description?: string | null;
+    /**
+     * Required. The filter to match L4 traffic.
+     */
+    filter?: Schema$Filter;
+    /**
+     * Optional. The interconnect attachments to which this route applies to.
+     */
+    interconnectAttachment?: Schema$InterconnectAttachment;
+    /**
+     * Output only. Type of this resource. Always networkconnectivity#policyBasedRoute for Policy Based Route resources.
+     */
+    kind?: string | null;
+    /**
+     * User-defined labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. A unique name of the resource in the form of `projects/{project_number\}/locations/global/PolicyBasedRoutes/{policy_based_route_id\}`
+     */
+    name?: string | null;
+    /**
+     * Required. Fully-qualified URL of the network that this route applies to. e.g. projects/my-project/global/networks/my-network.
+     */
+    network?: string | null;
+    /**
+     * Optional. The IP of a global access enabled L4 ILB that should be the next hop to handle matching packets. For this version, only next_hop_ilb_ip is supported.
+     */
+    nextHopIlbIp?: string | null;
+    /**
+     * Optional. Other routes that will be referenced to determine the next hop of the packet.
+     */
+    nextHopOtherRoutes?: string | null;
+    /**
+     * Optional. The priority of this policy based route. Priority is used to break ties in cases where there are more than one matching policy based routes found. In cases where multiple policy based routes are matched, the one with the lowest-numbered priority value wins. The default value is 1000. The priority value must be from 1 to 65535, inclusive.
+     */
+    priority?: number | null;
+    /**
+     * Output only. Server-defined fully-qualified URL for this resource.
+     */
+    selfLink?: string | null;
+    /**
+     * Output only. Time when the PolicyBasedRoute was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. VM instances to which this policy based route applies to.
+     */
+    virtualMachine?: Schema$VirtualMachine;
+    /**
+     * Output only. If potential misconfigurations are detected for this route, this field will be populated with warning messages.
+     */
+    warnings?: Schema$Warnings[];
+  }
+  /**
    * The PSC configurations on producer side.
    */
   export interface Schema$ProducerPscConfig {
@@ -904,6 +1038,32 @@ export namespace networkconnectivity_v1 {
     state?: string | null;
   }
   /**
+   * The request for HubService.RejectHubSpoke.
+   */
+  export interface Schema$RejectHubSpokeRequest {
+    /**
+     * Optional. Additional information provided by the hub administrator.
+     */
+    details?: string | null;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * Required. The URI of the spoke to reject from the hub.
+     */
+    spokeUri?: string | null;
+  }
+  /**
+   * The response for HubService.RejectHubSpoke.
+   */
+  export interface Schema$RejectHubSpokeResponse {
+    /**
+     * The spoke that was operated on.
+     */
+    spoke?: Schema$Spoke;
+  }
+  /**
    * The request for HubService.RejectSpoke.
    */
   export interface Schema$RejectSpokeRequest {
@@ -933,7 +1093,7 @@ export namespace networkconnectivity_v1 {
      */
     ipCidrRange?: string | null;
     /**
-     * Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
+     * Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -992,7 +1152,7 @@ export namespace networkconnectivity_v1 {
      */
     description?: string | null;
     /**
-     * Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
+     * Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1231,7 +1391,7 @@ export namespace networkconnectivity_v1 {
      */
     description?: string | null;
     /**
-     * The name of the group that this spoke is associated with.
+     * Optional. The name of the group that this spoke is associated with.
      */
     group?: string | null;
     /**
@@ -1239,7 +1399,7 @@ export namespace networkconnectivity_v1 {
      */
     hub?: string | null;
     /**
-     * Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
+     * Optional labels in key-value pair format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1373,6 +1533,32 @@ export namespace networkconnectivity_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * VM instances to which this policy based route applies to.
+   */
+  export interface Schema$VirtualMachine {
+    /**
+     * Optional. A list of VM instance tags to which this policy based route applies to. VM instances that have ANY of tags specified here will install this PBR.
+     */
+    tags?: string[] | null;
+  }
+  /**
+   * Informational warning message.
+   */
+  export interface Schema$Warnings {
+    /**
+     * Output only. A warning code, if applicable.
+     */
+    code?: string | null;
+    /**
+     * Output only. Metadata about this warning in key: value format. The key should provides more detail on the warning being returned. For example, for warnings where there are no results in a list request for a particular zone, this key might be scope and the key value might be the zone name. Other examples might be a key indicating a deprecated resource and a suggested replacement.
+     */
+    data?: {[key: string]: string} | null;
+    /**
+     * Output only. A human-readable description of the warning code.
+     */
+    warningMessage?: string | null;
   }
 
   export class Resource$Projects {
@@ -1644,6 +1830,102 @@ export namespace networkconnectivity_v1 {
       );
       this.routeTables =
         new Resource$Projects$Locations$Global$Hubs$Routetables(this.context);
+    }
+
+    /**
+     * Accepts a proposal to attach a Network Connectivity Center spoke to the hub.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    acceptSpoke(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    acceptSpoke(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    acceptSpoke(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    acceptSpoke(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    acceptSpoke(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    acceptSpoke(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    acceptSpoke(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:acceptSpoke').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
     }
 
     /**
@@ -2278,6 +2560,102 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
+     * Rejects a Network Connectivity Center spoke from being attached to the hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rejectSpoke(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rejectSpoke(
+      params?: Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    rejectSpoke(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rejectSpoke(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    rejectSpoke(
+      params: Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    rejectSpoke(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    rejectSpoke(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:rejectSpoke').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * @param params - Parameters for request
@@ -2463,6 +2841,18 @@ export namespace networkconnectivity_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Acceptspoke
+    extends StandardParameters {
+    /**
+     * Required. The name of the hub.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AcceptHubSpokeRequest;
+  }
   export interface Params$Resource$Projects$Locations$Global$Hubs$Create
     extends StandardParameters {
     /**
@@ -2585,6 +2975,18 @@ export namespace networkconnectivity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Hub;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Hubs$Rejectspoke
+    extends StandardParameters {
+    /**
+     * Required. The name of the hub.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RejectHubSpokeRequest;
   }
   export interface Params$Resource$Projects$Locations$Global$Hubs$Setiampolicy
     extends StandardParameters {
@@ -3582,6 +3984,281 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
+     * Creates a new PolicyBasedRoute in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Policybasedroutes$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Policybasedroutes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/policyBasedRoutes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single PolicyBasedRoute.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single PolicyBasedRoute.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PolicyBasedRoute>;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PolicyBasedRoute>,
+      callback: BodyResponseCallback<Schema$PolicyBasedRoute>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$Get,
+      callback: BodyResponseCallback<Schema$PolicyBasedRoute>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PolicyBasedRoute>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Policybasedroutes$Get
+        | BodyResponseCallback<Schema$PolicyBasedRoute>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PolicyBasedRoute>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PolicyBasedRoute>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PolicyBasedRoute> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Policybasedroutes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PolicyBasedRoute>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PolicyBasedRoute>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      *
      * @param params - Parameters for request
@@ -3667,6 +4344,104 @@ export namespace networkconnectivity_v1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists PolicyBasedRoutes in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Global$Policybasedroutes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPolicyBasedRoutesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPolicyBasedRoutesResponse>,
+      callback: BodyResponseCallback<Schema$ListPolicyBasedRoutesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Policybasedroutes$List,
+      callback: BodyResponseCallback<Schema$ListPolicyBasedRoutesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPolicyBasedRoutesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Policybasedroutes$List
+        | BodyResponseCallback<Schema$ListPolicyBasedRoutesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPolicyBasedRoutesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPolicyBasedRoutesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPolicyBasedRoutesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Policybasedroutes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Policybasedroutes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/policyBasedRoutes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPolicyBasedRoutesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPolicyBasedRoutesResponse>(
+          parameters
+        );
       }
     }
 
@@ -3856,6 +4631,44 @@ export namespace networkconnectivity_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Global$Policybasedroutes$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource's name of the PolicyBasedRoute.
+     */
+    parent?: string;
+    /**
+     * Required. Unique id for the Policy Based Route to create.
+     */
+    policyBasedRouteId?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PolicyBasedRoute;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Policybasedroutes$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the PolicyBasedRoute resource to delete.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Policybasedroutes$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the PolicyBasedRoute resource to get.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Global$Policybasedroutes$Getiampolicy
     extends StandardParameters {
     /**
@@ -3866,6 +4679,29 @@ export namespace networkconnectivity_v1 {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Policybasedroutes$List
+    extends StandardParameters {
+    /**
+     * A filter expression that filters the results listed in the response.
+     */
+    filter?: string;
+    /**
+     * Sort the results by a certain order.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of results per page that should be returned.
+     */
+    pageSize?: number;
+    /**
+     * The page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource's name.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Policybasedroutes$Setiampolicy
     extends StandardParameters {
