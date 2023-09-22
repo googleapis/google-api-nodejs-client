@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20230910",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -6000,6 +6000,37 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2InfoTypeLikelihood": {
+      "description": "Configuration to control custom minimum likelihoods per infotype. Used when certain infotypes need to return with higher or lower precision than the baseline, i.e. when wanting PERSON_NAME to return all possible names without lowering the precision of other infotypes.",
+      "id": "GooglePrivacyDlpV2InfoTypeLikelihood",
+      "properties": {
+        "infoType": {
+          "$ref": "GooglePrivacyDlpV2InfoType",
+          "description": "Type of information the likelihood threshold applies to. Only one likelihood per info_type should be provided. If InfoTypeLikelihood does not have an info_type, the configuration fails."
+        },
+        "minLikelihood": {
+          "description": "Only returns findings equal or above this threshold. This field is required or else the configuration fails.",
+          "enum": [
+            "LIKELIHOOD_UNSPECIFIED",
+            "VERY_UNLIKELY",
+            "UNLIKELY",
+            "POSSIBLE",
+            "LIKELY",
+            "VERY_LIKELY"
+          ],
+          "enumDescriptions": [
+            "Default value; same as POSSIBLE.",
+            "Highest chance of a false positive.",
+            "High chance of a false positive.",
+            "Some matching signals. The default value.",
+            "Low chance of a false positive.",
+            "Confidence level is high. Lowest chance of a false positive."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2InfoTypeLimit": {
       "description": "Max findings configuration per infoType, per content item or long running DlpJob.",
       "id": "GooglePrivacyDlpV2InfoTypeLimit",
@@ -6147,6 +6178,13 @@
             "Confidence level is high. Lowest chance of a false positive."
           ],
           "type": "string"
+        },
+        "minLikelihoodPerInfoType": {
+          "description": "Per infotype likelihoods. For each infotype, a user can specify a minimum likelihood, and only return that infotype if it is above that threshold. If an infotype is not included, it uses the InspectConfig min_likelihood.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2InfoTypeLikelihood"
+          },
+          "type": "array"
         },
         "ruleSet": {
           "description": "Set of rules to apply to the findings for this InspectConfig. Exclusion rules, contained in the set are executed in the end, other rules are executed in the order they are specified for each info type.",
