@@ -256,6 +256,10 @@ export namespace metastore_v1 {
    */
   export interface Schema$Consumer {
     /**
+     * Output only. The location of the endpoint URI. Format: projects/{project\}/locations/{location\}.
+     */
+    endpointLocation?: string | null;
+    /**
      * Output only. The URI of the endpoint used to access the metastore service.
      */
     endpointUri?: string | null;
