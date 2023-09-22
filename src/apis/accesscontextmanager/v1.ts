@@ -174,7 +174,7 @@ export namespace accesscontextmanager_v1 {
      */
     parent?: string | null;
     /**
-     * The scopes of a policy define which resources an ACM policy can restrict, and where ACM resources can be referenced. For example, a policy with scopes=["folders/123"] has the following behavior: - vpcsc perimeters can only restrict projects within folders/123 - access levels can only be referenced by resources within folders/123. If empty, there are no limitations on which resources can be restricted by an ACM policy, and there are no limitations on where ACM resources can be referenced. Only one policy can include a given scope (attempting to create a second policy which includes "folders/123" will result in an error). Currently, scopes cannot be modified after a policy is created. Currently, policies can only have a single scope. Format: list of `folders/{folder_number\}` or `projects/{project_number\}`
+     * The scopes of the AccessPolicy. Scopes define which resources a policy can restrict and where its resources can be referenced. For example, policy A with `scopes=["folders/123"]` has the following behavior: - ServicePerimeter can only restrict projects within `folders/123`. - ServicePerimeter within policy A can only reference access levels defined within policy A. - Only one policy can include a given scope; thus, attempting to create a second policy which includes `folders/123` will result in an error. If no scopes are provided, then any resource within the organization can be restricted. Scopes cannot be modified after a policy is created. Policies can only have a single scope. Format: list of `folders/{folder_number\}` or `projects/{project_number\}`
      */
     scopes?: string[] | null;
     /**
@@ -326,6 +326,10 @@ export namespace accesscontextmanager_v1 {
      * A list of other access levels defined in the same `Policy`, referenced by resource name. Referencing an `AccessLevel` which does not exist is an error. All access levels listed must be granted for the Condition to be true. Example: "`accessPolicies/MY_POLICY/accessLevels/LEVEL_NAME"`
      */
     requiredAccessLevels?: string[] | null;
+    /**
+     * The request must originate from one of the provided VPC networks in Google Cloud. Cannot specify this field together with `ip_subnetworks`.
+     */
+    vpcNetworkSources?: Schema$VpcNetworkSource[];
   }
   /**
    * `CustomLevel` is an `AccessLevel` using the Cloud Common Expression Language to represent the necessary conditions for the level to apply to a request. See CEL spec at: https://github.com/google/cel-spec
@@ -377,6 +381,14 @@ export namespace accesscontextmanager_v1 {
      * Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of `identities` field will be allowed access.
      */
     identityType?: string | null;
+    /**
+     * Whether to enforce traffic restrictions based on `sources` field. If the `sources` fields is non-empty, then this field must be set to `SOURCE_RESTRICTION_ENABLED`.
+     */
+    sourceRestriction?: string | null;
+    /**
+     * Sources that this EgressPolicy authorizes access from. If this field is not empty, then `source_restriction` must be set to `SOURCE_RESTRICTION_ENABLED`.
+     */
+    sources?: Schema$EgressSource[];
   }
   /**
    * Policy for egress from perimeter. EgressPolicies match requests based on `egress_from` and `egress_to` stanzas. For an EgressPolicy to match, both `egress_from` and `egress_to` stanzas must be matched. If an EgressPolicy matches a request, the request is allowed to span the ServicePerimeter boundary. For example, an EgressPolicy can be used to allow VMs on networks within the ServicePerimeter to access a defined set of projects outside the perimeter in certain contexts (e.g. to read data from a Cloud Storage bucket or query against a BigQuery dataset). EgressPolicies are concerned with the *resources* that a request relates as well as the API services and API actions being used. They do not related to the direction of data movement. More detailed documentation for this concept can be found in the descriptions of EgressFrom and EgressTo.
@@ -390,6 +402,15 @@ export namespace accesscontextmanager_v1 {
      * Defines the conditions on the ApiOperation and destination resources that cause this EgressPolicy to apply.
      */
     egressTo?: Schema$EgressTo;
+  }
+  /**
+   * The source that EgressPolicy authorizes access from inside the ServicePerimeter to somewhere outside the ServicePerimeter boundaries.
+   */
+  export interface Schema$EgressSource {
+    /**
+     * An AccessLevel resource name that allows protected resources inside the ServicePerimeters to access outside the ServicePerimeter boundaries. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If an AccessLevel name is not specified, only resources within the perimeter can be accessed through Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all EgressSources will be allowed.
+     */
+    accessLevel?: string | null;
   }
   /**
    * Defines the conditions under which an EgressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the `resources` specified. Note that if the destination of the request is also protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed. The request must match `operations` AND `resources` fields in order to be allowed egress out of the perimeter.
@@ -852,6 +873,28 @@ export namespace accesscontextmanager_v1 {
      * Whether to restrict API calls within the Service Perimeter to the list of APIs specified in 'allowed_services'.
      */
     enableRestriction?: boolean | null;
+  }
+  /**
+   * The originating network source in Google Cloud.
+   */
+  export interface Schema$VpcNetworkSource {
+    /**
+     * Sub-segment ranges of a VPC network.
+     */
+    vpcSubnetwork?: Schema$VpcSubNetwork;
+  }
+  /**
+   * Sub-segment ranges inside of a VPC Network.
+   */
+  export interface Schema$VpcSubNetwork {
+    /**
+     * Required. Network name. If the network is not part of the organization, the `compute.network.get` permission must be granted to the caller. Format: `//compute.googleapis.com/projects/{PROJECT_ID\}/global/networks/{NETWORK_NAME\}` Example: `//compute.googleapis.com/projects/my-project/global/networks/network-1`
+     */
+    network?: string | null;
+    /**
+     * CIDR block IP subnetwork specification. The IP address must be an IPv4 address and can be a public or private IP address. Note that for a CIDR IP address block, the specified IP address portion must be properly truncated (i.e. all the host bits must be zero) or the input is considered malformed. For example, "192.0.2.0/24" is accepted but "192.0.2.1/24" is not. If empty, all IP addresses are allowed.
+     */
+    vpcIpSubnetworks?: string[] | null;
   }
 
   export class Resource$Accesspolicies {
