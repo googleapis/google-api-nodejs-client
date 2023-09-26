@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20230907",
+  "revision": "20230914",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2590,6 +2590,41 @@
       },
       "type": "object"
     },
+    "BootDiskDefaults": {
+      "description": "BootDiskDefaults hold information about the boot disk of a VM.",
+      "id": "BootDiskDefaults",
+      "properties": {
+        "deviceName": {
+          "description": "Optional. Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.",
+          "type": "string"
+        },
+        "diskName": {
+          "description": "Optional. The name of the disk.",
+          "type": "string"
+        },
+        "diskType": {
+          "description": "Optional. The type of disk provisioning to use for the VM.",
+          "enum": [
+            "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
+            "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
+            "COMPUTE_ENGINE_DISK_TYPE_SSD",
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+          ],
+          "enumDescriptions": [
+            "An unspecified disk type. Will be used as STANDARD.",
+            "A Standard disk type.",
+            "SSD hard disk type.",
+            "An alternative to SSD persistent disks that balance performance and cost."
+          ],
+          "type": "string"
+        },
+        "image": {
+          "$ref": "DiskImageDefaults",
+          "description": "The image to use when creating the disk."
+        }
+      },
+      "type": "object"
+    },
     "CancelCloneJobRequest": {
       "description": "Request message for 'CancelCloneJob' request.",
       "id": "CancelCloneJobRequest",
@@ -2757,9 +2792,17 @@
           },
           "type": "array"
         },
+        "disksTargetDefaults": {
+          "$ref": "DisksMigrationDisksTargetDefaults",
+          "description": "Details of the disk only migration target."
+        },
         "targetProject": {
           "description": "The full path of the resource of type TargetProject which represents the Compute Engine project in which to create the Persistent Disks.",
           "type": "string"
+        },
+        "vmTargetDefaults": {
+          "$ref": "DisksMigrationVmTargetDefaults",
+          "description": "Details of the VM migration target."
         },
         "zone": {
           "description": "The zone in which to create the Persistent Disks.",
@@ -2778,6 +2821,14 @@
             "$ref": "PersistentDisk"
           },
           "type": "array"
+        },
+        "disksTargetDetails": {
+          "$ref": "DisksMigrationDisksTargetDetails",
+          "description": "Details of the disks-only migration target."
+        },
+        "vmTargetDetails": {
+          "$ref": "DisksMigrationVmTargetDetails",
+          "description": "Details for the VM the migrated data disks are attached to."
         }
       },
       "type": "object"
@@ -3382,6 +3433,115 @@
           "description": "The disk size in GB.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DiskImageDefaults": {
+      "description": "Contains details about the image source used to create the disk.",
+      "id": "DiskImageDefaults",
+      "properties": {
+        "sourceImage": {
+          "description": "Required. The Image resource used when creating the disk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DisksMigrationDisksTargetDefaults": {
+      "description": "Details for a disk only migration.",
+      "id": "DisksMigrationDisksTargetDefaults",
+      "properties": {},
+      "type": "object"
+    },
+    "DisksMigrationDisksTargetDetails": {
+      "description": "Details for a disks-only migration.",
+      "id": "DisksMigrationDisksTargetDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "DisksMigrationVmTargetDefaults": {
+      "description": "Details for creation of a VM that migrated data disks will be attached to.",
+      "id": "DisksMigrationVmTargetDefaults",
+      "properties": {
+        "additionalLicenses": {
+          "description": "Optional. Additional licenses to assign to the VM.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "bootDiskDefaults": {
+          "$ref": "BootDiskDefaults",
+          "description": "Optional. Details of the boot disk of the VM."
+        },
+        "computeScheduling": {
+          "$ref": "ComputeScheduling",
+          "description": "Optional. Compute instance scheduling information (if empty default is used)."
+        },
+        "hostname": {
+          "description": "Optional. The hostname to assign to the VM.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. A map of labels to associate with the VM.",
+          "type": "object"
+        },
+        "machineType": {
+          "description": "Required. The machine type to create the VM with.",
+          "type": "string"
+        },
+        "machineTypeSeries": {
+          "description": "Optional. The machine type series to create the VM with. For presentation only.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The metadata key/value pairs to assign to the VM.",
+          "type": "object"
+        },
+        "networkInterfaces": {
+          "description": "Optional. NICs to attach to the VM.",
+          "items": {
+            "$ref": "NetworkInterface"
+          },
+          "type": "array"
+        },
+        "networkTags": {
+          "description": "Optional. A list of network tags to associate with the VM.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "secureBoot": {
+          "description": "Optional. Defines whether the instance has Secure Boot enabled. This can be set to true only if the VM boot option is EFI.",
+          "type": "boolean"
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account to associate the VM with.",
+          "type": "string"
+        },
+        "vmName": {
+          "description": "Required. The name of the VM to create.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DisksMigrationVmTargetDetails": {
+      "description": "Details for the VM created VM as part of disks migration.",
+      "id": "DisksMigrationVmTargetDetails",
+      "properties": {
+        "vmUri": {
+          "description": "Output only. The URI of the Compute Engine VM.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4304,6 +4464,10 @@
           "description": "Required. The ordinal number of the source VM disk.",
           "format": "int32",
           "type": "integer"
+        },
+        "vmAttachmentDetails": {
+          "$ref": "VmAttachmentDetails",
+          "description": "Optional. Details for attachment of the disk to a VM. Used when the disk is set to be attacked to a target VM."
         }
       },
       "type": "object"
@@ -4922,6 +5086,17 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "VmAttachmentDetails": {
+      "description": "Details for attachment of the disk to a VM.",
+      "id": "VmAttachmentDetails",
+      "properties": {
+        "deviceName": {
+          "description": "Optional. Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.",
+          "type": "string"
         }
       },
       "type": "object"
