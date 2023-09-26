@@ -20,8 +20,8 @@
   "documentationLink": "https://cloud.google.com/artifacts/docs/",
   "endpoints": [
     {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.me-central2.rep.googleapis.com/",
+      "description": "Regional Endpoint",
       "location": "me-central2"
     }
   ],
