@@ -14507,7 +14507,7 @@ export namespace analyticsadmin_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. Format: properties/{property_id\}/dataStreams/{dataStream\}/sKAdNetworkConversionValueSchema Example: properties/1234/dataStreams/5678/sKAdNetworkConversionValueSchema
+     * Required. The DataStream resource to list schemas for. Format: properties/{property_id\}/dataStreams/{dataStream\} Example: properties/1234/dataStreams/5678
      */
     parent?: string;
   }
