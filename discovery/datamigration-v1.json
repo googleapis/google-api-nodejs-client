@@ -2097,7 +2097,7 @@
       }
     }
   },
-  "revision": "20230911",
+  "revision": "20230912",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2443,7 +2443,7 @@
         },
         "dataCacheConfig": {
           "$ref": "DataCacheConfig",
-          "description": "Optional. Configuration for data cache."
+          "description": "Optional. Data cache is an optional feature available for Cloud SQL for MySQL Enterprise Plus edition only. For more information on data cache, see [Data cache overview](https://cloud.google.com/sql/help/mysql-data-cache) in Cloud SQL documentation."
         },
         "dataDiskSizeGb": {
           "description": "The storage capacity available to the database, in GB. The minimum (and default) size is 10GB.",
@@ -2951,7 +2951,7 @@
       "type": "object"
     },
     "DataCacheConfig": {
-      "description": "Data cache configurations.",
+      "description": "Data cache is an optional feature available for Cloud SQL for MySQL Enterprise Plus edition only. For more information on data cache, see [Data cache overview](https://cloud.google.com/sql/help/mysql-data-cache) in Cloud SQL documentation.",
       "id": "DataCacheConfig",
       "properties": {
         "dataCacheEnabled": {
