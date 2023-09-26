@@ -253,7 +253,12 @@ export namespace gkehub_v1 {
   /**
    * CommonFleetDefaultMemberConfigSpec contains default configuration information for memberships of a fleet
    */
-  export interface Schema$CommonFleetDefaultMemberConfigSpec {}
+  export interface Schema$CommonFleetDefaultMemberConfigSpec {
+    /**
+     * Config Management-specific spec.
+     */
+    configmanagement?: Schema$ConfigManagementMembershipSpec;
+  }
   /**
    * Configuration for Config Sync
    */
