@@ -1773,7 +1773,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20230913",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3050,13 +3050,13 @@
           "description": "Enrichment Enabled.",
           "type": "boolean"
         },
+        "eventsListenerIngressEndpoint": {
+          "description": "Optional. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.",
+          "type": "string"
+        },
         "privateConnectivityEnabled": {
           "description": "Optional. Private Connectivity Enabled.",
           "type": "boolean"
-        },
-        "publicEventsListenerEndpoint": {
-          "description": "Optional. Public Events listener endpoint.",
-          "type": "string"
         },
         "registrationDestinationConfig": {
           "$ref": "DestinationConfig",
@@ -3178,6 +3178,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "eventsListenerPscSa": {
+          "description": "Output only. Events listener PSC Service attachment. The value will be populated after provisioning the events listener with private connectivity enabled.",
+          "readOnly": true,
+          "type": "string"
+        },
         "status": {
           "$ref": "EventingStatus",
           "description": "Output only. Current status of eventing.",
@@ -3201,13 +3206,13 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "ERROR",
-            "PUBLIC_ENDPOINT_REQUIRED"
+            "INGRESS_ENDPOINT_REQUIRED"
           ],
           "enumDescriptions": [
             "Default state.",
             "Eventing is enabled and ready to receive events.",
             "Eventing is not active due to an error.",
-            "Public endpoint required."
+            "Ingress endpoint required."
           ],
           "readOnly": true,
           "type": "string"
@@ -4863,6 +4868,16 @@
       "properties": {
         "action": {
           "description": "Output only. Name of the action.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. Brief Description of action",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Display Name of action to be shown on client side",
           "readOnly": true,
           "type": "string"
         },

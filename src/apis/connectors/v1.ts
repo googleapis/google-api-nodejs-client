@@ -862,13 +862,13 @@ export namespace connectors_v1 {
      */
     enrichmentEnabled?: boolean | null;
     /**
+     * Optional. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.
+     */
+    eventsListenerIngressEndpoint?: string | null;
+    /**
      * Optional. Private Connectivity Enabled.
      */
     privateConnectivityEnabled?: boolean | null;
-    /**
-     * Optional. Public Events listener endpoint.
-     */
-    publicEventsListenerEndpoint?: string | null;
     /**
      * Registration endpoint for auto registration.
      */
@@ -952,6 +952,10 @@ export namespace connectors_v1 {
      * Output only. Events listener endpoint. The value will populated after provisioning the events listener.
      */
     eventsListenerEndpoint?: string | null;
+    /**
+     * Output only. Events listener PSC Service attachment. The value will be populated after provisioning the events listener with private connectivity enabled.
+     */
+    eventsListenerPscSa?: string | null;
     /**
      * Output only. Current status of eventing.
      */
@@ -1869,6 +1873,14 @@ export namespace connectors_v1 {
      * Output only. Name of the action.
      */
     action?: string | null;
+    /**
+     * Output only. Brief Description of action
+     */
+    description?: string | null;
+    /**
+     * Output only. Display Name of action to be shown on client side
+     */
+    displayName?: string | null;
     /**
      * Output only. JsonSchema representation of this action's input metadata
      */

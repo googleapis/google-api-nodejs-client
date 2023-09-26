@@ -558,13 +558,21 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20230913",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "Action": {
       "description": "Action message contains metadata information about a single action present in the external system.",
       "id": "Action",
       "properties": {
+        "description": {
+          "description": "Brief Description of action",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display Name of action to be shown on client side",
+          "type": "string"
+        },
         "inputJsonSchema": {
           "$ref": "JsonSchema",
           "description": "JsonSchema representation of this actions's input schema"
@@ -895,6 +903,14 @@
       "description": "Input Parameter message contains metadata about the parameters required for executing an Action.",
       "id": "InputParameter",
       "properties": {
+        "additionalDetails": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The following map contains fields that are not explicitly mentioned above,this give connectors the flexibility to add new metadata fields.",
+          "type": "object"
+        },
         "dataType": {
           "description": "The data type of the Parameter",
           "enum": [
@@ -1512,7 +1528,7 @@
           "type": "string"
         },
         "value": {
-          "type": "string"
+          "type": "any"
         }
       },
       "type": "object"
