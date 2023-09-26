@@ -3162,7 +3162,7 @@
       }
     }
   },
-  "revision": "20230911",
+  "revision": "20230918",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -3457,6 +3457,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "billingProjectId": {
+          "description": "Optional. Project to bill on endpoint uptime usage.",
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. Create time stamp",

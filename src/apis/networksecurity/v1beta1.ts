@@ -331,6 +331,10 @@ export namespace networksecurity_v1beta1 {
      */
     associatedNetworks?: string[] | null;
     /**
+     * Optional. Project to bill on endpoint uptime usage.
+     */
+    billingProjectId?: string | null;
+    /**
      * Output only. Create time stamp
      */
     createTime?: string | null;
