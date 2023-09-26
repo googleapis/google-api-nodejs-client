@@ -211,6 +211,60 @@ export namespace clouddeploy_v1 {
     logType?: string | null;
   }
   /**
+   * Payload proto for "clouddeploy.googleapis.com/automation" Platform Log event that describes the Automation related events.
+   */
+  export interface Schema$AutomationEvent {
+    /**
+     * The name of the `AutomationRun`.
+     */
+    automation?: string | null;
+    /**
+     * Debug message for when there is an update on the AutomationRun. Provides further details about the resource creation or state change.
+     */
+    message?: string | null;
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     */
+    pipelineUid?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
+   * Payload proto for "clouddeploy.googleapis.com/automation_run" Platform Log event that describes the AutomationRun related events.
+   */
+  export interface Schema$AutomationRunEvent {
+    /**
+     * Identifier of the `Automation`.
+     */
+    automationId?: string | null;
+    /**
+     * The name of the `AutomationRun`.
+     */
+    automationRun?: string | null;
+    /**
+     * ID of the `Target` to which the `AutomationRun` is created.
+     */
+    destinationTargetId?: string | null;
+    /**
+     * Debug message for when there is an update on the AutomationRun. Provides further details about the resource creation or state change.
+     */
+    message?: string | null;
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     */
+    pipelineUid?: string | null;
+    /**
+     * Identifier of the `Automation` rule.
+     */
+    ruleId?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
