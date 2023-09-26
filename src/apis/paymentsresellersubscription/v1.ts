@@ -169,7 +169,25 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest {}
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest {
+    /**
+     * Optional. The line items to be entitled. If unspecified, all line items will be entitled.
+     */
+    lineItemEntitlementDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails[];
+  }
+  /**
+   * The details of the line item to be entitled.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails {
+    /**
+     * Required. The index of the line item to be entitled.
+     */
+    lineItemIndex?: number | null;
+    /**
+     * Optional. Only applicable if the line item corresponds to a hard bundle. Product resource names that identify the bundle elements to be entitled in the line item. If unspecified, all bundle elements will be entitled. The format is 'partners/{partner_id\}/products/{product_id\}'.
+     */
+    products?: string[] | null;
+  }
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse {
     /**
      * The subscription that has user linked to it.
