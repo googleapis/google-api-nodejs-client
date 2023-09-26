@@ -662,7 +662,7 @@ export namespace firestore_v1 {
      */
     keyPrefix?: string | null;
     /**
-     * The location of the database. Available databases are listed at https://cloud.google.com/firestore/docs/locations.
+     * The location of the database. Available locations are listed at https://cloud.google.com/firestore/docs/locations.
      */
     locationId?: string | null;
     /**
