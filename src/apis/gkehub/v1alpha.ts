@@ -545,6 +545,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$CommonFleetDefaultMemberConfigSpec {
     /**
+     * Config Management-specific spec.
+     */
+    configmanagement?: Schema$ConfigManagementMembershipSpec;
+    /**
      * Identity Service-specific spec.
      */
     identityservice?: Schema$IdentityServiceMembershipSpec;

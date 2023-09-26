@@ -1834,7 +1834,7 @@
       }
     }
   },
-  "revision": "20230907",
+  "revision": "20230914",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2009,7 +2009,12 @@
     "CommonFleetDefaultMemberConfigSpec": {
       "description": "CommonFleetDefaultMemberConfigSpec contains default configuration information for memberships of a fleet",
       "id": "CommonFleetDefaultMemberConfigSpec",
-      "properties": {},
+      "properties": {
+        "configmanagement": {
+          "$ref": "ConfigManagementMembershipSpec",
+          "description": "Config Management-specific spec."
+        }
+      },
       "type": "object"
     },
     "ConfigManagementConfigSync": {
