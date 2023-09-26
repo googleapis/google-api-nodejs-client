@@ -20,8 +20,8 @@
   "documentationLink": "https://cloud.google.com/artifacts/docs/",
   "endpoints": [
     {
-      "endpointUrl": "https://artifactregistry.me-central2.rep.googleapis.com/",
       "location": "me-central2",
+      "endpointUrl": "https://artifactregistry.me-central2.rep.googleapis.com/",
       "description": "Regional Endpoint"
     }
   ],
@@ -1668,7 +1668,7 @@
       }
     }
   },
-  "revision": "20230913",
+  "revision": "20230918",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {

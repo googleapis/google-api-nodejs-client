@@ -51,6 +51,7 @@ import {
 } from './advisorynotifications';
 import {VERSIONS as aiplatformVersions, aiplatform} from './aiplatform';
 import {VERSIONS as alertcenterVersions, alertcenter} from './alertcenter';
+import {VERSIONS as alloydbVersions, alloydb} from './alloydb';
 import {VERSIONS as analyticsVersions, analytics} from './analytics';
 import {
   VERSIONS as analyticsadminVersions,
@@ -682,6 +683,7 @@ export const APIS: APIList = {
   advisorynotifications: advisorynotificationsVersions,
   aiplatform: aiplatformVersions,
   alertcenter: alertcenterVersions,
+  alloydb: alloydbVersions,
   analytics: analyticsVersions,
   analyticsadmin: analyticsadminVersions,
   analyticsdata: analyticsdataVersions,
@@ -961,6 +963,7 @@ export class GeneratedAPIs {
   advisorynotifications = advisorynotifications;
   aiplatform = aiplatform;
   alertcenter = alertcenter;
+  alloydb = alloydb;
   analytics = analytics;
   analyticsadmin = analyticsadmin;
   analyticsdata = analyticsdata;
