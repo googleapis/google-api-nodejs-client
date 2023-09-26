@@ -713,10 +713,6 @@ export namespace dataproc_v1 {
      * Optional. The Cloud KMS key name to use for PD disk encryption for all instances in the cluster.
      */
     gcePdKmsKeyName?: string | null;
-    /**
-     * Optional. The Cloud KMS key name to use for encrypting customer core content and cluster PD disk for all instances in the cluster.
-     */
-    kmsKey?: string | null;
   }
   /**
    * Endpoint config for this cluster
@@ -777,7 +773,7 @@ export namespace dataproc_v1 {
      */
     subnetworkUri?: string | null;
     /**
-     * Optional. The duration after which the workload will be terminated. When the workload exceeds this duration, it will be unconditionally terminated without waiting for ongoing work to finish. If ttl is not specified for a batch workload, the workload will be allowed to run until it exits naturally (or runs forever without exiting). If ttl is not specified for an interactive session, it defaults to 24h. If ttl is not specified for a batch that uses 2.1+ runtime version, it defaults to 4h. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)). If both ttl and idle_ttl are specified (for an interactive session), the conditions are treated as OR conditions: the workload will be terminated when it has been idle for idle_ttl or when ttl has been exceeded, whichever occurs first.
+     * Optional. The duration after which the workload will be terminated, specified as the JSON representation for Duration (https://protobuf.dev/programming-guides/proto3/#json). When the workload exceeds this duration, it will be unconditionally terminated without waiting for ongoing work to finish. If ttl is not specified for a batch workload, the workload will be allowed to run until it exits naturally (or run forever without exiting). If ttl is not specified for an interactive session, it defaults to 24 hours. If ttl is not specified for a batch that uses 2.1+ runtime version, it defaults to 4 hours. Minimum value is 10 minutes; maximum value is 14 days. If both ttl and idle_ttl are specified (for an interactive session), the conditions are treated as OR conditions: the workload will be terminated when it has been idle for idle_ttl or when ttl has been exceeded, whichever occurs first.
      */
     ttl?: string | null;
   }
@@ -803,11 +799,11 @@ export namespace dataproc_v1 {
     title?: string | null;
   }
   /**
-   * A Dataproc job for running Apache Flink (https://flink.apache.org/) applications on YARN.
+   * A Dataproc job for running Apache Flink applications on YARN.
    */
   export interface Schema$FlinkJob {
     /**
-     * Optional. The arguments to pass to the driver. Do not include arguments, such as --conf, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+     * Optional. The arguments to pass to the driver. Do not include arguments, such as --conf, that can be set as job properties, since a collision might occur that causes an incorrect job submission.
      */
     args?: string[] | null;
     /**
@@ -819,7 +815,7 @@ export namespace dataproc_v1 {
      */
     loggingConfig?: Schema$LoggingConfig;
     /**
-     * The name of the driver's main class. The jar file that contains the class must be in the default CLASSPATH or specified in jar_file_uris.
+     * The name of the driver's main class. The jar file that contains the class must be in the default CLASSPATH or specified in jarFileUris.
      */
     mainClass?: string | null;
     /**
@@ -827,11 +823,11 @@ export namespace dataproc_v1 {
      */
     mainJarFileUri?: string | null;
     /**
-     * Optional. A mapping of property names to values, used to configure Flink. Properties that conflict with values set by the Dataproc API may beoverwritten. Can include properties set in/etc/flink/conf/flink-defaults.conf and classes in user code.
+     * Optional. A mapping of property names to values, used to configure Flink. Properties that conflict with values set by the Dataproc API might beoverwritten. Can include properties set in/etc/flink/conf/flink-defaults.conf and classes in user code.
      */
     properties?: {[key: string]: string} | null;
     /**
-     * Optional. HCFS URI of the savepoint which contains the last saved progress for this job
+     * Optional. HCFS URI of the savepoint, which contains the last saved progress for starting the current job.
      */
     savepointUri?: string | null;
   }
@@ -1033,7 +1029,7 @@ export namespace dataproc_v1 {
      */
     archiveUris?: string[] | null;
     /**
-     * Optional. The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+     * Optional. The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision might occur that causes an incorrect job submission.
      */
     args?: string[] | null;
     /**
@@ -1057,7 +1053,7 @@ export namespace dataproc_v1 {
      */
     mainJarFileUri?: string | null;
     /**
-     * Optional. A mapping of property names to values, used to configure Hadoop. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/x-site and classes in user code.
+     * Optional. A mapping of property names to values, used to configure Hadoop. Properties that conflict with values set by the Dataproc API might be overwritten. Can include properties set in /etc/hadoop/conf/x-site and classes in user code.
      */
     properties?: {[key: string]: string} | null;
   }
@@ -1074,7 +1070,7 @@ export namespace dataproc_v1 {
      */
     jarFileUris?: string[] | null;
     /**
-     * Optional. A mapping of property names and values, used to configure Hive. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/x-site.xml, /etc/hive/conf/hive-site.xml, and classes in user code.
+     * Optional. A mapping of property names and values, used to configure Hive. Properties that conflict with values set by the Dataproc API might be overwritten. Can include properties set in /etc/hadoop/conf/x-site.xml, /etc/hive/conf/hive-site.xml, and classes in user code.
      */
     properties?: {[key: string]: string} | null;
     /**
@@ -1285,7 +1281,7 @@ export namespace dataproc_v1 {
      */
     done?: boolean | null;
     /**
-     * Output only. If present, the location of miscellaneous control files which may be used as part of job setup and handling. If not present, control files may be placed in the same location as driver_output_uri.
+     * Output only. If present, the location of miscellaneous control files which can be used as part of job setup and handling. If not present, control files might be placed in the same location as driver_output_uri.
      */
     driverControlFilesUri?: string | null;
     /**
@@ -1309,11 +1305,11 @@ export namespace dataproc_v1 {
      */
     hiveJob?: Schema$HiveJob;
     /**
-     * Output only. A UUID that uniquely identifies a job within the project over time. This is in contrast to a user-settable reference.job_id that may be reused over time.
+     * Output only. A UUID that uniquely identifies a job within the project over time. This is in contrast to a user-settable reference.job_id that might be reused over time.
      */
     jobUuid?: string | null;
     /**
-     * Optional. The labels to associate with this job. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a job.
+     * Optional. The labels to associate with this job. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values can be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a job.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1353,7 +1349,7 @@ export namespace dataproc_v1 {
      */
     sparkSqlJob?: Schema$SparkSqlJob;
     /**
-     * Output only. The job status. Additional application-specific status information may be contained in the type_job and yarn_applications fields.
+     * Output only. The job status. Additional application-specific status information might be contained in the type_job and yarn_applications fields.
      */
     status?: Schema$JobStatus;
     /**
@@ -1365,7 +1361,7 @@ export namespace dataproc_v1 {
      */
     trinoJob?: Schema$TrinoJob;
     /**
-     * Output only. The collection of YARN applications spun up by this job.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
+     * Output only. The collection of YARN applications spun up by this job.Beta Feature: This report is available for testing purposes only. It might be changed before final release.
      */
     yarnApplications?: Schema$YarnApplication[];
   }
@@ -1425,11 +1421,11 @@ export namespace dataproc_v1 {
    */
   export interface Schema$JobScheduling {
     /**
-     * Optional. Maximum number of times per hour a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed.A job may be reported as thrashing if the driver exits with a non-zero code four times within a 10-minute window.Maximum value is 10.Note: This restartable job option is not supported in Dataproc workflow templates (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).
+     * Optional. Maximum number of times per hour a driver can be restarted as a result of driver exiting with non-zero code before job is reported failed.A job might be reported as thrashing if the driver exits with a non-zero code four times within a 10-minute window.Maximum value is 10.Note: This restartable job option is not supported in Dataproc workflow templates (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).
      */
     maxFailuresPerHour?: number | null;
     /**
-     * Optional. Maximum total number of times a driver may be restarted as a result of the driver exiting with a non-zero code. After the maximum number is reached, the job will be reported as failed.Maximum value is 240.Note: Currently, this restartable job option is not supported in Dataproc workflow templates (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).
+     * Optional. Maximum total number of times a driver can be restarted as a result of the driver exiting with a non-zero code. After the maximum number is reached, the job will be reported as failed.Maximum value is 240.Note: Currently, this restartable job option is not supported in Dataproc workflow templates (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).
      */
     maxFailuresTotal?: number | null;
   }
@@ -1692,7 +1688,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$LoggingConfig {
     /**
-     * The per-package log levels for the driver. This may include "root" package name to configure rootLogger. Examples: - 'com.google = FATAL' - 'root = INFO' - 'org.apache = DEBUG'
+     * The per-package log levels for the driver. This can include "root" package name to configure rootLogger. Examples: - 'com.google = FATAL' - 'root = INFO' - 'org.apache = DEBUG'
      */
     driverLogLevels?: {[key: string]: string} | null;
   }
@@ -1892,6 +1888,10 @@ export namespace dataproc_v1 {
    */
   export interface Schema$OrderedJob {
     /**
+     * Optional. Job is a Flink job.
+     */
+    flinkJob?: Schema$FlinkJob;
+    /**
      * Optional. Job is a Hadoop job.
      */
     hadoopJob?: Schema$HadoopJob;
@@ -1987,7 +1987,7 @@ export namespace dataproc_v1 {
      */
     loggingConfig?: Schema$LoggingConfig;
     /**
-     * Optional. A mapping of property names to values, used to configure Pig. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/hadoop/conf/x-site.xml, /etc/pig/conf/pig.properties, and classes in user code.
+     * Optional. A mapping of property names to values, used to configure Pig. Properties that conflict with values set by the Dataproc API might be overwritten. Can include properties set in /etc/hadoop/conf/x-site.xml, /etc/pig/conf/pig.properties, and classes in user code.
      */
     properties?: {[key: string]: string} | null;
     /**
@@ -2120,7 +2120,7 @@ export namespace dataproc_v1 {
      */
     mainPythonFileUri?: string | null;
     /**
-     * Optional. A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
+     * Optional. A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Dataproc API might be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
     properties?: {[key: string]: string} | null;
     /**
@@ -2432,6 +2432,10 @@ export namespace dataproc_v1 {
      * Output only. The time the template was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. A session template UUID (Unique Universal Identifier). The service generates this value when it creates the session template.
+     */
+    uuid?: string | null;
   }
   /**
    * Request message for SetIamPolicy method.
@@ -2539,7 +2543,7 @@ export namespace dataproc_v1 {
      */
     loggingConfig?: Schema$LoggingConfig;
     /**
-     * The name of the driver's main class. The jar file that contains the class must be in the default CLASSPATH or specified in jar_file_uris.
+     * The name of the driver's main class. The jar file that contains the class must be in the default CLASSPATH or specified in SparkJob.jar_file_uris.
      */
     mainClass?: string | null;
     /**
@@ -2547,7 +2551,7 @@ export namespace dataproc_v1 {
      */
     mainJarFileUri?: string | null;
     /**
-     * Optional. A mapping of property names to values, used to configure Spark. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
+     * Optional. A mapping of property names to values, used to configure Spark. Properties that conflict with values set by the Dataproc API might be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
     properties?: {[key: string]: string} | null;
   }
@@ -2597,7 +2601,7 @@ export namespace dataproc_v1 {
      */
     mainRFileUri?: string | null;
     /**
-     * Optional. A mapping of property names to values, used to configure SparkR. Properties that conflict with values set by the Dataproc API may be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
+     * Optional. A mapping of property names to values, used to configure SparkR. Properties that conflict with values set by the Dataproc API might be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
     properties?: {[key: string]: string} | null;
   }
@@ -2631,7 +2635,7 @@ export namespace dataproc_v1 {
      */
     loggingConfig?: Schema$LoggingConfig;
     /**
-     * Optional. A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Dataproc API may be overwritten.
+     * Optional. A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Dataproc API might be overwritten.
      */
     properties?: {[key: string]: string} | null;
     /**
