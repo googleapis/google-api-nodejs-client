@@ -261,6 +261,10 @@ export namespace composer_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * The current state of the environment.
      */
     state?: string | null;
