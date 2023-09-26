@@ -1672,7 +1672,7 @@
       }
     }
   },
-  "revision": "20230905",
+  "revision": "20230918",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2471,7 +2471,7 @@
           "type": "string"
         },
         "locationId": {
-          "description": "The location of the database. Available databases are listed at https://cloud.google.com/firestore/docs/locations.",
+          "description": "The location of the database. Available locations are listed at https://cloud.google.com/firestore/docs/locations.",
           "type": "string"
         },
         "name": {
