@@ -133,7 +133,7 @@ export namespace workflowexecutions_v1 {
      */
     availablePayloads?: string[] | null;
     /**
-     * Output only. The method accepted by the callback. E.g. GET, POST, PUT.
+     * Output only. The method accepted by the callback. For example: GET, POST, PUT.
      */
     method?: string | null;
     /**
@@ -228,7 +228,7 @@ export namespace workflowexecutions_v1 {
    */
   export interface Schema$ExportDataResponse {
     /**
-     * The JSON string with customer data and metadata of an execution of the given name
+     * The JSON string with customer data and metadata for an execution with the given name
      */
     data?: string | null;
   }
@@ -703,7 +703,7 @@ export namespace workflowexecutions_v1 {
     }
 
     /**
-     * Returns all metadata stored about an execution, excluding most data that is already accessible via other API methods.
+     * Returns all metadata stored about an execution, excluding most data that is already accessible using other API methods.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1002,7 +1002,7 @@ export namespace workflowexecutions_v1 {
   export interface Params$Resource$Projects$Locations$Workflows$Executions$Exportdata
     extends StandardParameters {
     /**
-     * Required. Name of the execution to be data exported. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
+     * Required. Name of the execution for which data is to be exported. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      */
     name?: string;
   }
@@ -1052,7 +1052,7 @@ export namespace workflowexecutions_v1 {
     }
 
     /**
-     * Returns a list of active callbacks which belong to the execution with the given name. The returned callbacks are ordered by callback ID. first).
+     * Returns a list of active callbacks that belong to the execution with the given name. The returned callbacks are ordered by callback ID.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
