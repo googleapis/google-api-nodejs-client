@@ -349,6 +349,10 @@ export namespace iam_v1 {
      */
     issuerUri?: string | null;
     /**
+     * OIDC JWKs in JSON String format. For details on the definition of a JWK, see https://tools.ietf.org/html/rfc7517. If not set, the `jwks_uri` from the discovery document(fetched from the .well-known path of the `issuer_uri`) will be used. Currently, RSA and EC asymmetric keys are supported. The JWK must use following format and include only the following fields: { "keys": [ { "kty": "RSA/EC", "alg": "", "use": "sig", "kid": "", "n": "", "e": "", "x": "", "y": "", "crv": "" \} ] \}
+     */
+    jwksJson?: string | null;
+    /**
      * Required. Configuration for web single sign-on for the OIDC provider. Here, web sign-in refers to console sign-in and gcloud sign-in through the browser.
      */
     webSsoConfig?: Schema$GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfig;
@@ -397,7 +401,7 @@ export namespace iam_v1 {
    */
   export interface Schema$GoogleIamAdminV1WorkforcePoolProviderSaml {
     /**
-     * Required. SAML Identity provider configuration metadata xml doc. The xml document should comply with [SAML 2.0 specification](https://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf). The max size of the acceptable xml document will be bounded to 128k characters. The metadata xml document should satisfy the following constraints: 1) Must contain an Identity Provider Entity ID. 2) Must contain at least one non-expired signing key certificate. 3) For each signing key: a) Valid from should be no more than 7 days from now. b) Valid to should be no more than 14 years in the future. 4) Up to 3 IdP signing keys are allowed in the metadata xml. When updating the provider's metadata xml, at least one non-expired signing key must overlap with the existing metadata. This requirement is skipped if there are no non-expired signing keys present in the existing metadata.
+     * Required. SAML Identity provider configuration metadata xml doc. The xml document should comply with [SAML 2.0 specification](https://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf). The max size of the acceptable xml document will be bounded to 128k characters. The metadata xml document should satisfy the following constraints: 1) Must contain an Identity Provider Entity ID. 2) Must contain at least one non-expired signing key certificate. 3) For each signing key: a) Valid from should be no more than 7 days from now. b) Valid to should be no more than 15 years in the future. 4) Up to 3 IdP signing keys are allowed in the metadata xml. When updating the provider's metadata xml, at least one non-expired signing key must overlap with the existing metadata. This requirement is skipped if there are no non-expired signing keys present in the existing metadata.
      */
     idpMetadataXml?: string | null;
   }
@@ -633,6 +637,39 @@ export namespace iam_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    cancelRequested?: boolean | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusDetail?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
    * The service account patch request. You can patch only the `display_name` and `description` fields. You must use the `update_mask` field to specify which of these fields you want to patch. Only the fields specified in the request are guaranteed to be returned in the response. Other fields may be empty in the response.
    */
   export interface Schema$PatchServiceAccountRequest {
@@ -833,7 +870,7 @@ export namespace iam_v1 {
    */
   export interface Schema$Saml {
     /**
-     * Required. SAML Identity provider configuration metadata xml doc. The xml document should comply with [SAML 2.0 specification](https://www.oasis-open.org/committees/download.php/56785/sstc-saml-metadata-errata-2.0-wd-05.pdf). The max size of the acceptable xml document will be bounded to 128k characters. The metadata xml document should satisfy the following constraints: 1) Must contain an Identity Provider Entity ID. 2) Must contain at least one non-expired signing key certificate. 3) For each signing key: a) Valid from should be no more than 7 days from now. b) Valid to should be no more than 14 years in the future. 4) Upto 3 IdP signing keys are allowed in the metadata xml. When updating the provider's metadata xml, at lease one non-expired signing key must overlap with the existing metadata. This requirement is skipped if there are no non-expired signing keys present in the existing metadata
+     * Required. SAML Identity provider configuration metadata xml doc. The xml document should comply with [SAML 2.0 specification](https://www.oasis-open.org/committees/download.php/56785/sstc-saml-metadata-errata-2.0-wd-05.pdf). The max size of the acceptable xml document will be bounded to 128k characters. The metadata xml document should satisfy the following constraints: 1) Must contain an Identity Provider Entity ID. 2) Must contain at least one non-expired signing key certificate. 3) For each signing key: a) Valid from should be no more than 7 days from now. b) Valid to should be no more than 15 years in the future. 4) Upto 3 IdP signing keys are allowed in the metadata xml. When updating the provider's metadata xml, at lease one non-expired signing key must overlap with the existing metadata. This requirement is skipped if there are no non-expired signing keys present in the existing metadata
      */
     idpMetadataXml?: string | null;
   }
@@ -1179,7 +1216,7 @@ export namespace iam_v1 {
     use?: string | null;
   }
   /**
-   * Represents a collection of external workload identities. You can define IAM policies to grant these identities access to Google Cloud resources.
+   * Represents a collection of workload identities. You can define IAM policies to grant these identities access to Google Cloud resources.
    */
   export interface Schema$WorkloadIdentityPool {
     /**
@@ -1220,7 +1257,7 @@ export namespace iam_v1 {
      */
     attributeCondition?: string | null;
     /**
-     * Maps attributes from authentication credentials issued by an external identity provider to Google Cloud attributes, such as `subject` and `segment`. Each key must be a string specifying the Google Cloud IAM attribute to map to. The following keys are supported: * `google.subject`: The principal IAM is authenticating. You can reference this value in IAM bindings. This is also the subject that appears in Cloud Logging logs. Cannot exceed 127 bytes. * `google.groups`: Groups the external identity belongs to. You can grant groups access to resources using an IAM `principalSet` binding; access applies to all members of the group. You can also provide custom attributes by specifying `attribute.{custom_attribute\}`, where `{custom_attribute\}` is the name of the custom attribute to be mapped. You can define a maximum of 50 custom attributes. The maximum length of a mapped attribute key is 100 characters, and the key may only contain the characters [a-z0-9_]. You can reference these attributes in IAM policies to define fine-grained access for a workload to Google Cloud resources. For example: * `google.subject`: `principal://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/subject/{value\}` * `google.groups`: `principalSet://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/group/{value\}` * `attribute.{custom_attribute\}`: `principalSet://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/attribute.{custom_attribute\}/{value\}` Each value must be a [Common Expression Language] (https://opensource.google/projects/cel) function that maps an identity provider credential to the normalized attribute specified by the corresponding map key. You can use the `assertion` keyword in the expression to access a JSON representation of the authentication credential issued by the provider. The maximum length of an attribute mapping expression is 2048 characters. When evaluated, the total size of all mapped attributes must not exceed 8KB. For AWS providers, if no attribute mapping is defined, the following default mapping applies: ``` { "google.subject":"assertion.arn", "attribute.aws_role": "assertion.arn.contains('assumed-role')" " ? assertion.arn.extract('{account_arn\}assumed-role/')" " + 'assumed-role/'" " + assertion.arn.extract('assumed-role/{role_name\}/')" " : assertion.arn", \} ``` If any custom attribute mappings are defined, they must include a mapping to the `google.subject` attribute. For OIDC providers, you must supply a custom mapping, which must include the `google.subject` attribute. For example, the following maps the `sub` claim of the incoming credential to the `subject` attribute on a Google token: ``` {"google.subject": "assertion.sub"\} ```
+     *  Maps attributes from authentication credentials issued by an external identity provider to Google Cloud attributes, such as `subject` and `segment`. Each key must be a string specifying the Google Cloud IAM attribute to map to. The following keys are supported: * `google.subject`: The principal IAM is authenticating. You can reference this value in IAM bindings. This is also the subject that appears in Cloud Logging logs. Cannot exceed 127 bytes. * `google.groups`: Groups the external identity belongs to. You can grant groups access to resources using an IAM `principalSet` binding; access applies to all members of the group. You can also provide custom attributes by specifying `attribute.{custom_attribute\}`, where `{custom_attribute\}` is the name of the custom attribute to be mapped. You can define a maximum of 50 custom attributes. The maximum length of a mapped attribute key is 100 characters, and the key may only contain the characters [a-z0-9_]. You can reference these attributes in IAM policies to define fine-grained access for a workload to Google Cloud resources. For example: * `google.subject`: `principal://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/subject/{value\}` * `google.groups`: `principalSet://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/group/{value\}` * `attribute.{custom_attribute\}`: `principalSet://iam.googleapis.com/projects/{project\}/locations/{location\}/workloadIdentityPools/{pool\}/attribute.{custom_attribute\}/{value\}` Each value must be a [Common Expression Language] (https://opensource.google/projects/cel) function that maps an identity provider credential to the normalized attribute specified by the corresponding map key. You can use the `assertion` keyword in the expression to access a JSON representation of the authentication credential issued by the provider. The maximum length of an attribute mapping expression is 2048 characters. When evaluated, the total size of all mapped attributes must not exceed 8KB. For AWS providers, if no attribute mapping is defined, the following default mapping applies: ``` { "google.subject":"assertion.arn", "attribute.aws_role": "assertion.arn.contains('assumed-role')" " ? assertion.arn.extract('{account_arn\}assumed-role/')" " + 'assumed-role/'" " + assertion.arn.extract('assumed-role/{role_name\}/')" " : assertion.arn", \} ``` If any custom attribute mappings are defined, they must include a mapping to the `google.subject` attribute. For OIDC providers, you must supply a custom mapping, which must include the `google.subject` attribute. For example, the following maps the `sub` claim of the incoming credential to the `subject` attribute on a Google token: ``` {"google.subject": "assertion.sub"\} ```
      */
     attributeMapping?: {[key: string]: string} | null;
     /**
@@ -5557,7 +5594,6 @@ export namespace iam_v1 {
     context: APIRequestContext;
     managedIdentities: Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities;
     operations: Resource$Projects$Locations$Workloadidentitypools$Namespaces$Operations;
-    workloadSources: Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.managedIdentities =
@@ -5566,10 +5602,6 @@ export namespace iam_v1 {
         );
       this.operations =
         new Resource$Projects$Locations$Workloadidentitypools$Namespaces$Operations(
-          this.context
-        );
-      this.workloadSources =
-        new Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources(
           this.context
         );
     }
@@ -5897,118 +5929,6 @@ export namespace iam_v1 {
   }
 
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Operations$Get
-    extends StandardParameters {
-    /**
-     * The name of the operation resource.
-     */
-    name?: string;
-  }
-
-  export class Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources {
-    context: APIRequestContext;
-    operations: Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.operations =
-        new Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations(
-          this.context
-        );
-    }
-  }
-
-  export class Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    get(
-      params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations$Get,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Operation>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations$Get
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Workloadsources$Operations$Get
     extends StandardParameters {
     /**
      * The name of the operation resource.
