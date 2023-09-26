@@ -250,6 +250,27 @@ export namespace run_v2 {
     workingDir?: string | null;
   }
   /**
+   * Per-container override specification.
+   */
+  export interface Schema$GoogleCloudRunV2ContainerOverride {
+    /**
+     * Optional. Arguments to the entrypoint. Will replace existing args for override.
+     */
+    args?: string[] | null;
+    /**
+     * Optional. True if the intention is to clear out existing args list.
+     */
+    clearArgs?: boolean | null;
+    /**
+     * List of environment variables to set in the container. Will be merged with existing env for override.
+     */
+    env?: Schema$GoogleCloudRunV2EnvVar[];
+    /**
+     * The name of the container specified as a DNS_LABEL.
+     */
+    name?: string | null;
+  }
+  /**
    * ContainerPort represents a network port in a single container.
    */
   export interface Schema$GoogleCloudRunV2ContainerPort {
@@ -683,6 +704,23 @@ export namespace run_v2 {
     tags?: string[] | null;
   }
   /**
+   * RunJob Overrides that contains Execution fields to be overridden.
+   */
+  export interface Schema$GoogleCloudRunV2Overrides {
+    /**
+     * Per container override specification.
+     */
+    containerOverrides?: Schema$GoogleCloudRunV2ContainerOverride[];
+    /**
+     * Optional. The desired number of tasks the execution should run. Will replace existing task_count value.
+     */
+    taskCount?: number | null;
+    /**
+     * Duration in seconds the task may be active before the system will actively try to mark it failed and kill associated containers. Will replace existing timeout_seconds value.
+     */
+    timeout?: string | null;
+  }
+  /**
    * Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
    */
   export interface Schema$GoogleCloudRunV2Probe {
@@ -931,6 +969,10 @@ export namespace run_v2 {
      * A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
     etag?: string | null;
+    /**
+     * Overrides specification for a given execution of a job. If provided, overrides will be applied to update the execution or task spec.
+     */
+    overrides?: Schema$GoogleCloudRunV2Overrides;
     /**
      * Indicates that the request should be validated without actually deleting any resources.
      */
@@ -2954,7 +2996,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Jobs$Executions$Cancel
     extends StandardParameters {
     /**
-     * Required. The name of the Execution to cancel. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}, where {project\} can be project id or number.
+     * Required. The name of the Execution to cancel. Format: `projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}`, where `{project\}` can be project id or number.
      */
     name?: string;
 
@@ -2970,7 +3012,7 @@ export namespace run_v2 {
      */
     etag?: string;
     /**
-     * Required. The name of the Execution to delete. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}, where {project\} can be project id or number.
+     * Required. The name of the Execution to delete. Format: `projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}`, where `{project\}` can be project id or number.
      */
     name?: string;
     /**
@@ -2981,7 +3023,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Jobs$Executions$Get
     extends StandardParameters {
     /**
-     * Required. The full name of the Execution. Format: projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}, where {project\} can be project id or number.
+     * Required. The full name of the Execution. Format: `projects/{project\}/locations/{location\}/jobs/{job\}/executions/{execution\}`, where `{project\}` can be project id or number.
      */
     name?: string;
   }
@@ -2996,7 +3038,7 @@ export namespace run_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use "-" instead of Job name. Format: projects/{project\}/locations/{location\}/jobs/{job\}, where {project\} can be project id or number.
+     * Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use "-" instead of Job name. Format: `projects/{project\}/locations/{location\}/jobs/{job\}`, where `{project\}` can be project id or number.
      */
     parent?: string;
     /**

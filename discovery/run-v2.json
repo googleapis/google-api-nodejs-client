@@ -417,7 +417,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the Execution to cancel. Format: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}, where {project} can be project id or number.",
+                          "description": "Required. The name of the Execution to cancel. Format: `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`, where `{project}` can be project id or number.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+/executions/[^/]+$",
                           "required": true,
@@ -450,7 +450,7 @@
                           "type": "string"
                         },
                         "name": {
-                          "description": "Required. The name of the Execution to delete. Format: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}, where {project} can be project id or number.",
+                          "description": "Required. The name of the Execution to delete. Format: `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`, where `{project}` can be project id or number.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+/executions/[^/]+$",
                           "required": true,
@@ -480,7 +480,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The full name of the Execution. Format: projects/{project}/locations/{location}/jobs/{job}/executions/{execution}, where {project} can be project id or number.",
+                          "description": "Required. The full name of the Execution. Format: `projects/{project}/locations/{location}/jobs/{job}/executions/{execution}`, where `{project}` can be project id or number.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+/executions/[^/]+$",
                           "required": true,
@@ -516,7 +516,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use \"-\" instead of Job name. Format: projects/{project}/locations/{location}/jobs/{job}, where {project} can be project id or number.",
+                          "description": "Required. The Execution from which the Executions should be listed. To list all Executions across Jobs, use \"-\" instead of Job name. Format: `projects/{project}/locations/{location}/jobs/{job}`, where `{project}` can be project id or number.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/jobs/[^/]+$",
                           "required": true,
@@ -1115,7 +1115,7 @@
       }
     }
   },
-  "revision": "20230917",
+  "revision": "20230924",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1376,6 +1376,35 @@
         },
         "workingDir": {
           "description": "Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2ContainerOverride": {
+      "description": "Per-container override specification.",
+      "id": "GoogleCloudRunV2ContainerOverride",
+      "properties": {
+        "args": {
+          "description": "Optional. Arguments to the entrypoint. Will replace existing args for override.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clearArgs": {
+          "description": "Optional. True if the intention is to clear out existing args list.",
+          "type": "boolean"
+        },
+        "env": {
+          "description": "List of environment variables to set in the container. Will be merged with existing env for override.",
+          "items": {
+            "$ref": "GoogleCloudRunV2EnvVar"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The name of the container specified as a DNS_LABEL.",
           "type": "string"
         }
       },
@@ -2012,6 +2041,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2Overrides": {
+      "description": "RunJob Overrides that contains Execution fields to be overridden.",
+      "id": "GoogleCloudRunV2Overrides",
+      "properties": {
+        "containerOverrides": {
+          "description": "Per container override specification.",
+          "items": {
+            "$ref": "GoogleCloudRunV2ContainerOverride"
+          },
+          "type": "array"
+        },
+        "taskCount": {
+          "description": "Optional. The desired number of tasks the execution should run. Will replace existing task_count value.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "timeout": {
+          "description": "Duration in seconds the task may be active before the system will actively try to mark it failed and kill associated containers. Will replace existing timeout_seconds value.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2Probe": {
       "description": "Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.",
       "id": "GoogleCloudRunV2Probe",
@@ -2383,6 +2436,10 @@
         "etag": {
           "description": "A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
           "type": "string"
+        },
+        "overrides": {
+          "$ref": "GoogleCloudRunV2Overrides",
+          "description": "Overrides specification for a given execution of a job. If provided, overrides will be applied to update the execution or task spec."
         },
         "validateOnly": {
           "description": "Indicates that the request should be validated without actually deleting any resources.",
