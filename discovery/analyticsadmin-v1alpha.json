@@ -3309,7 +3309,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Format: properties/{property_id}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema Example: properties/1234/dataStreams/5678/sKAdNetworkConversionValueSchema",
+                      "description": "Required. The DataStream resource to list schemas for. Format: properties/{property_id}/dataStreams/{dataStream} Example: properties/1234/dataStreams/5678",
                       "location": "path",
                       "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
                       "required": true,
@@ -4524,7 +4524,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20230923",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
