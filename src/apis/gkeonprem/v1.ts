@@ -2304,7 +2304,7 @@ export namespace gkeonprem_v1 {
      */
     validationCheck?: Schema$ValidationCheck;
     /**
-     * VmwareVCenterConfig specifies vCenter config for the user cluster. Inherited from the admin cluster.
+     * VmwareVCenterConfig specifies vCenter config for the user cluster. If unspecified, it is inherited from the admin cluster.
      */
     vcenter?: Schema$VmwareVCenterConfig;
     /**
