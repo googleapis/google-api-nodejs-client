@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230920",
+  "revision": "20230924",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -494,7 +494,34 @@
     "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest": {
       "description": "Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest",
-      "properties": {},
+      "properties": {
+        "lineItemEntitlementDetails": {
+          "description": "Optional. The line items to be entitled. If unspecified, all line items will be entitled.",
+          "items": {
+            "$ref": "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails": {
+      "description": "The details of the line item to be entitled.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails",
+      "properties": {
+        "lineItemIndex": {
+          "description": "Required. The index of the line item to be entitled.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "products": {
+          "description": "Optional. Only applicable if the line item corresponds to a hard bundle. Product resource names that identify the bundle elements to be entitled in the line item. If unspecified, all bundle elements will be entitled. The format is 'partners/{partner_id}/products/{product_id}'.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse": {
