@@ -1479,7 +1479,7 @@
       }
     }
   },
-  "revision": "20230904",
+  "revision": "20230913",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -1604,6 +1604,118 @@
             "Admin reads. Example: CloudIAM getIamPolicy",
             "Data writes. Example: CloudSQL Users create",
             "Data reads. Example: CloudSQL Users list"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutomationEvent": {
+      "description": "Payload proto for \"clouddeploy.googleapis.com/automation\" Platform Log event that describes the Automation related events.",
+      "id": "AutomationEvent",
+      "properties": {
+        "automation": {
+          "description": "The name of the `AutomationRun`.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Debug message for when there is an update on the AutomationRun. Provides further details about the resource creation or state change.",
+          "type": "string"
+        },
+        "pipelineUid": {
+          "description": "Unique identifier of the `DeliveryPipeline`.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of this notification, e.g. for a Pub/Sub failure.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+            "TYPE_RESOURCE_STATE_CHANGE",
+            "TYPE_PROCESS_ABORTED",
+            "TYPE_RESTRICTION_VIOLATED",
+            "TYPE_RESOURCE_DELETED",
+            "TYPE_RENDER_STATUES_CHANGE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "A Pub/Sub notification failed to be sent.",
+            "Resource state changed.",
+            "A process aborted.",
+            "Restriction check failed.",
+            "Resource deleted.",
+            "Deprecated: This field is never used. Use release_render log type instead."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutomationRunEvent": {
+      "description": "Payload proto for \"clouddeploy.googleapis.com/automation_run\" Platform Log event that describes the AutomationRun related events.",
+      "id": "AutomationRunEvent",
+      "properties": {
+        "automationId": {
+          "description": "Identifier of the `Automation`.",
+          "type": "string"
+        },
+        "automationRun": {
+          "description": "The name of the `AutomationRun`.",
+          "type": "string"
+        },
+        "destinationTargetId": {
+          "description": "ID of the `Target` to which the `AutomationRun` is created.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Debug message for when there is an update on the AutomationRun. Provides further details about the resource creation or state change.",
+          "type": "string"
+        },
+        "pipelineUid": {
+          "description": "Unique identifier of the `DeliveryPipeline`.",
+          "type": "string"
+        },
+        "ruleId": {
+          "description": "Identifier of the `Automation` rule.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of this notification, e.g. for a Pub/Sub failure.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+            "TYPE_RESOURCE_STATE_CHANGE",
+            "TYPE_PROCESS_ABORTED",
+            "TYPE_RESTRICTION_VIOLATED",
+            "TYPE_RESOURCE_DELETED",
+            "TYPE_RENDER_STATUES_CHANGE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "A Pub/Sub notification failed to be sent.",
+            "Resource state changed.",
+            "A process aborted.",
+            "Restriction check failed.",
+            "Resource deleted.",
+            "Deprecated: This field is never used. Use release_render log type instead."
           ],
           "type": "string"
         }
