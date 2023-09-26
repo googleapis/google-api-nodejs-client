@@ -200,7 +200,7 @@
                       ]
                     },
                     "exportData": {
-                      "description": "Returns all metadata stored about an execution, excluding most data that is already accessible via other API methods.",
+                      "description": "Returns all metadata stored about an execution, excluding most data that is already accessible using other API methods.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}/executions/{executionsId}:exportData",
                       "httpMethod": "GET",
                       "id": "workflowexecutions.projects.locations.workflows.executions.exportData",
@@ -209,7 +209,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the execution to be data exported. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}",
+                          "description": "Required. Name of the execution for which data is to be exported. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/workflows/[^/]+/executions/[^/]+$",
                           "required": true,
@@ -330,7 +330,7 @@
                     "callbacks": {
                       "methods": {
                         "list": {
-                          "description": "Returns a list of active callbacks which belong to the execution with the given name. The returned callbacks are ordered by callback ID. first).",
+                          "description": "Returns a list of active callbacks that belong to the execution with the given name. The returned callbacks are ordered by callback ID.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}/executions/{executionsId}/callbacks",
                           "httpMethod": "GET",
                           "id": "workflowexecutions.projects.locations.workflows.executions.callbacks.list",
@@ -376,7 +376,7 @@
       }
     }
   },
-  "revision": "20230905",
+  "revision": "20230912",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "Callback": {
@@ -392,7 +392,7 @@
           "type": "array"
         },
         "method": {
-          "description": "Output only. The method accepted by the callback. E.g. GET, POST, PUT.",
+          "description": "Output only. The method accepted by the callback. For example: GET, POST, PUT.",
           "readOnly": true,
           "type": "string"
         },
@@ -545,7 +545,7 @@
       "id": "ExportDataResponse",
       "properties": {
         "data": {
-          "description": "The JSON string with customer data and metadata of an execution of the given name",
+          "description": "The JSON string with customer data and metadata for an execution with the given name",
           "type": "string"
         }
       },
