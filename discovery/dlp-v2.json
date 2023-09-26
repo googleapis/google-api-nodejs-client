@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20230910",
+  "revision": "20230917",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5278,7 +5278,7 @@
           "description": "Detailed error codes and messages."
         },
         "timestamps": {
-          "description": "The times the error occurred.",
+          "description": "The times the error occurred. List includes the oldest timestamp, and the last 9 ones.",
           "items": {
             "format": "google-datetime",
             "type": "string"
