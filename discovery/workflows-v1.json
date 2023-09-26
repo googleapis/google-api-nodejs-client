@@ -418,14 +418,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Workflow from which the revisions should be listed. Format: projects/{project}/locations/{location}/workflows/{workflow}",
+                      "description": "Required. Workflow for which the revisions should be listed. Format: projects/{project}/locations/{location}/workflows/{workflow}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflows/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of revisions to return per page. If a value is not specified, a default value of 20 is used. The maximum permitted value is 100 and values greater than 100 coerced down to 100.",
+                      "description": "The maximum number of revisions to return per page. If a value is not specified, a default value of 20 is used. The maximum permitted value is 100. Values greater than 100 are coerced down to 100.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -454,7 +454,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}",
+                      "description": "The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}. This is a workflow-wide field and is not tied to a specific revision.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workflows/[^/]+$",
                       "required": true,
@@ -485,7 +485,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20230913",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -742,7 +742,7 @@
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. The timestamp for when the workflow was created.",
+          "description": "Output only. The timestamp for when the workflow was created. This is a workflow-wide field and is not tied to a specific revision.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -752,18 +752,18 @@
           "type": "string"
         },
         "description": {
-          "description": "Description of the workflow provided by the user. Must be at most 1000 unicode characters long.",
+          "description": "Description of the workflow provided by the user. Must be at most 1000 Unicode characters long. This is a workflow-wide field and is not tied to a specific revision.",
           "type": "string"
         },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores, and dashes. Label keys must start with a letter. International characters are allowed.",
+          "description": "Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores, and dashes. Label keys must start with a letter. International characters are allowed. This is a workflow-wide field and is not tied to a specific revision.",
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}",
+          "description": "The resource name of the workflow. Format: projects/{project}/locations/{location}/workflows/{workflow}. This is a workflow-wide field and is not tied to a specific revision.",
           "type": "string"
         },
         "revisionCreateTime": {
@@ -806,7 +806,7 @@
           "readOnly": true
         },
         "updateTime": {
-          "description": "Output only. The timestamp for when the workflow was last updated.",
+          "description": "Output only. The timestamp for when the workflow was last updated. This is a workflow-wide field and is not tied to a specific revision.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"

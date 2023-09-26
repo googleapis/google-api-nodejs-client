@@ -298,7 +298,7 @@ export namespace workflows_v1 {
      */
     callLogLevel?: string | null;
     /**
-     * Output only. The timestamp for when the workflow was created.
+     * Output only. The timestamp for when the workflow was created. This is a workflow-wide field and is not tied to a specific revision.
      */
     createTime?: string | null;
     /**
@@ -306,15 +306,15 @@ export namespace workflows_v1 {
      */
     cryptoKeyName?: string | null;
     /**
-     * Description of the workflow provided by the user. Must be at most 1000 unicode characters long.
+     * Description of the workflow provided by the user. Must be at most 1000 Unicode characters long. This is a workflow-wide field and is not tied to a specific revision.
      */
     description?: string | null;
     /**
-     * Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores, and dashes. Label keys must start with a letter. International characters are allowed.
+     * Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores, and dashes. Label keys must start with a letter. International characters are allowed. This is a workflow-wide field and is not tied to a specific revision.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the workflow. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
+     * The resource name of the workflow. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}. This is a workflow-wide field and is not tied to a specific revision.
      */
     name?: string | null;
     /**
@@ -342,7 +342,7 @@ export namespace workflows_v1 {
      */
     stateError?: Schema$StateError;
     /**
-     * Output only. The timestamp for when the workflow was last updated.
+     * Output only. The timestamp for when the workflow was last updated. This is a workflow-wide field and is not tied to a specific revision.
      */
     updateTime?: string | null;
     /**
@@ -1472,11 +1472,11 @@ export namespace workflows_v1 {
   export interface Params$Resource$Projects$Locations$Workflows$Listrevisions
     extends StandardParameters {
     /**
-     * Required. Workflow from which the revisions should be listed. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
+     * Required. Workflow for which the revisions should be listed. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
     name?: string;
     /**
-     * The maximum number of revisions to return per page. If a value is not specified, a default value of 20 is used. The maximum permitted value is 100 and values greater than 100 coerced down to 100.
+     * The maximum number of revisions to return per page. If a value is not specified, a default value of 20 is used. The maximum permitted value is 100. Values greater than 100 are coerced down to 100.
      */
     pageSize?: number;
     /**
@@ -1487,7 +1487,7 @@ export namespace workflows_v1 {
   export interface Params$Resource$Projects$Locations$Workflows$Patch
     extends StandardParameters {
     /**
-     * The resource name of the workflow. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
+     * The resource name of the workflow. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}. This is a workflow-wide field and is not tied to a specific revision.
      */
     name?: string;
     /**
