@@ -129,6 +129,14 @@ export namespace connectors_v2 {
    */
   export interface Schema$Action {
     /**
+     * Brief Description of action
+     */
+    description?: string | null;
+    /**
+     * Display Name of action to be shown on client side
+     */
+    displayName?: string | null;
+    /**
      * JsonSchema representation of this actions's input schema
      */
     inputJsonSchema?: Schema$JsonSchema;
@@ -264,6 +272,10 @@ export namespace connectors_v2 {
    * Input Parameter message contains metadata about the parameters required for executing an Action.
    */
   export interface Schema$InputParameter {
+    /**
+     * The following map contains fields that are not explicitly mentioned above,this give connectors the flexibility to add new metadata fields.
+     */
+    additionalDetails?: {[key: string]: any} | null;
     /**
      * The data type of the Parameter
      */
@@ -407,7 +419,7 @@ export namespace connectors_v2 {
    */
   export interface Schema$QueryParameter {
     dataType?: string | null;
-    value?: string | null;
+    value?: any | null;
   }
   export interface Schema$Reference {
     /**
