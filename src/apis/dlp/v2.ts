@@ -1400,7 +1400,7 @@ export namespace dlp_v2 {
      */
     details?: Schema$GoogleRpcStatus;
     /**
-     * The times the error occurred.
+     * The times the error occurred. List includes the oldest timestamp, and the last 9 ones.
      */
     timestamps?: string[] | null;
   }
