@@ -271,6 +271,14 @@ export namespace eventarc_v1 {
      */
     gke?: Schema$GKE;
     /**
+     * An HTTP endpoint destination described by an URI.
+     */
+    httpEndpoint?: Schema$HttpEndpoint;
+    /**
+     * Optional. Network config is used to configure how Eventarc resolves and connect to a destination. This should only be used with HttpEndpoint destination type.
+     */
+    networkConfig?: Schema$NetworkConfig;
+    /**
      * The resource name of the Workflow whose Executions are triggered by the events. The Workflow resource should be deployed in the same project as the trigger. Format: `projects/{project\}/locations/{location\}/workflows/{workflow\}`
      */
     workflow?: string | null;
@@ -461,6 +469,19 @@ export namespace eventarc_v1 {
     message?: string | null;
   }
   /**
+   * Represents a HTTP endpoint destination.
+   */
+  export interface Schema$HttpEndpoint {
+    /**
+     * Optional. Forwards DNS requests to the VPC specified by network config to resolve the HTTP endpoint. Default to false. If set to true, Eventarc will create a peering zone to the consumer VPC and forward DNS requests. See: https://cloud.google.com/dns/docs/zones/zones-overview#peering_zones Enable this if the URI uses an internal DNS name or a private Cloud DNS zone.
+     */
+    forwardDnsRequests?: boolean | null;
+    /**
+     * Required. The URI of the HTTP enpdoint. The value must be a RFC2396 URI string. Examples: `http://10.10.10.8:80/route`, `http://svc.us-central1.p.local:8080/`. Only HTTP and HTTPS protocols are supported. The host can be either a static IP addressable from the VPC specified by the network config, or an internal DNS hostname of the service resolvable via Cloud DNS.
+     */
+    uri?: string | null;
+  }
+  /**
    * The response message for the `ListChannelConnections` method.
    */
   export interface Schema$ListChannelConnectionsResponse {
@@ -565,6 +586,15 @@ export namespace eventarc_v1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * Represents a network config to be used for destination resolution and connectivity.
+   */
+  export interface Schema$NetworkConfig {
+    /**
+     * Required. Name of the NetworkAttachment that allows access to the destination VPC. Format: `projects/{PROJECT_ID\}/regions/{REGION\}/networkAttachments/{NETWORK_ATTACHMENT_NAME\}`
+     */
+    networkAttachment?: string | null;
   }
   /**
    * Represents the metadata of the long-running operation.
