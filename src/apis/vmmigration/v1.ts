@@ -513,6 +513,27 @@ export namespace vmmigration_v1 {
     details?: Schema$AzureVmDetails[];
   }
   /**
+   * BootDiskDefaults hold information about the boot disk of a VM.
+   */
+  export interface Schema$BootDiskDefaults {
+    /**
+     * Optional. Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
+     */
+    deviceName?: string | null;
+    /**
+     * Optional. The name of the disk.
+     */
+    diskName?: string | null;
+    /**
+     * Optional. The type of disk provisioning to use for the VM.
+     */
+    diskType?: string | null;
+    /**
+     * The image to use when creating the disk.
+     */
+    image?: Schema$DiskImageDefaults;
+  }
+  /**
    * Request message for 'CancelCloneJob' request.
    */
   export interface Schema$CancelCloneJobRequest {}
@@ -616,9 +637,17 @@ export namespace vmmigration_v1 {
      */
     disks?: Schema$PersistentDiskDefaults[];
     /**
+     * Details of the disk only migration target.
+     */
+    disksTargetDefaults?: Schema$DisksMigrationDisksTargetDefaults;
+    /**
      * The full path of the resource of type TargetProject which represents the Compute Engine project in which to create the Persistent Disks.
      */
     targetProject?: string | null;
+    /**
+     * Details of the VM migration target.
+     */
+    vmTargetDefaults?: Schema$DisksMigrationVmTargetDefaults;
     /**
      * The zone in which to create the Persistent Disks.
      */
@@ -632,6 +661,14 @@ export namespace vmmigration_v1 {
      * The details of each created Persistent Disk.
      */
     disks?: Schema$PersistentDisk[];
+    /**
+     * Details of the disks-only migration target.
+     */
+    disksTargetDetails?: Schema$DisksMigrationDisksTargetDetails;
+    /**
+     * Details for the VM the migrated data disks are attached to.
+     */
+    vmTargetDetails?: Schema$DisksMigrationVmTargetDetails;
   }
   /**
    * ComputeEngineTargetDefaults is a collection of details for creating a VM in a target Compute Engine project.
@@ -1001,6 +1038,89 @@ export namespace vmmigration_v1 {
      * The disk size in GB.
      */
     sizeGb?: number | null;
+  }
+  /**
+   * Contains details about the image source used to create the disk.
+   */
+  export interface Schema$DiskImageDefaults {
+    /**
+     * Required. The Image resource used when creating the disk.
+     */
+    sourceImage?: string | null;
+  }
+  /**
+   * Details for a disk only migration.
+   */
+  export interface Schema$DisksMigrationDisksTargetDefaults {}
+  /**
+   * Details for a disks-only migration.
+   */
+  export interface Schema$DisksMigrationDisksTargetDetails {}
+  /**
+   * Details for creation of a VM that migrated data disks will be attached to.
+   */
+  export interface Schema$DisksMigrationVmTargetDefaults {
+    /**
+     * Optional. Additional licenses to assign to the VM.
+     */
+    additionalLicenses?: string[] | null;
+    /**
+     * Optional. Details of the boot disk of the VM.
+     */
+    bootDiskDefaults?: Schema$BootDiskDefaults;
+    /**
+     * Optional. Compute instance scheduling information (if empty default is used).
+     */
+    computeScheduling?: Schema$ComputeScheduling;
+    /**
+     * Optional. The hostname to assign to the VM.
+     */
+    hostname?: string | null;
+    /**
+     * Optional. A map of labels to associate with the VM.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. The machine type to create the VM with.
+     */
+    machineType?: string | null;
+    /**
+     * Optional. The machine type series to create the VM with. For presentation only.
+     */
+    machineTypeSeries?: string | null;
+    /**
+     * Optional. The metadata key/value pairs to assign to the VM.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Optional. NICs to attach to the VM.
+     */
+    networkInterfaces?: Schema$NetworkInterface[];
+    /**
+     * Optional. A list of network tags to associate with the VM.
+     */
+    networkTags?: string[] | null;
+    /**
+     * Optional. Defines whether the instance has Secure Boot enabled. This can be set to true only if the VM boot option is EFI.
+     */
+    secureBoot?: boolean | null;
+    /**
+     * Optional. The service account to associate the VM with.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Required. The name of the VM to create.
+     */
+    vmName?: string | null;
+  }
+  /**
+   * Details for the VM created VM as part of disks migration.
+   */
+  export interface Schema$DisksMigrationVmTargetDetails {
+    /**
+     * Output only. The URI of the Compute Engine VM.
+     */
+    vmUri?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -1603,6 +1723,10 @@ export namespace vmmigration_v1 {
      * Required. The ordinal number of the source VM disk.
      */
     sourceDiskNumber?: number | null;
+    /**
+     * Optional. Details for attachment of the disk to a VM. Used when the disk is set to be attacked to a target VM.
+     */
+    vmAttachmentDetails?: Schema$VmAttachmentDetails;
   }
   /**
    * PostProcessingStep contains specific step details.
@@ -1908,6 +2032,15 @@ export namespace vmmigration_v1 {
      * List of utilization information per VM. When sent as part of the request, the "vm_id" field is used in order to specify which VMs to include in the report. In that case all other fields are ignored.
      */
     vms?: Schema$VmUtilizationInfo[];
+  }
+  /**
+   * Details for attachment of the disk to a VM.
+   */
+  export interface Schema$VmAttachmentDetails {
+    /**
+     * Optional. Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
+     */
+    deviceName?: string | null;
   }
   /**
    * Migrating VM source information about the VM capabilities needed for some Compute Engine features.
