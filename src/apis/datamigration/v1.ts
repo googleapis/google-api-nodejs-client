@@ -365,7 +365,7 @@ export namespace datamigration_v1 {
      */
     databaseVersion?: string | null;
     /**
-     * Optional. Configuration for data cache.
+     * Optional. Data cache is an optional feature available for Cloud SQL for MySQL Enterprise Plus edition only. For more information on data cache, see [Data cache overview](https://cloud.google.com/sql/help/mysql-data-cache) in Cloud SQL documentation.
      */
     dataCacheConfig?: Schema$DataCacheConfig;
     /**
@@ -820,7 +820,7 @@ export namespace datamigration_v1 {
     provider?: string | null;
   }
   /**
-   * Data cache configurations.
+   * Data cache is an optional feature available for Cloud SQL for MySQL Enterprise Plus edition only. For more information on data cache, see [Data cache overview](https://cloud.google.com/sql/help/mysql-data-cache) in Cloud SQL documentation.
    */
   export interface Schema$DataCacheConfig {
     /**
