@@ -599,7 +599,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20230917",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -761,6 +761,11 @@
           "description": "The resource name of the environment, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\" EnvironmentId must start with a lowercase letter followed by up to 63 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.",
           "type": "string"
         },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "state": {
           "description": "The current state of the environment.",
           "enum": [
@@ -780,6 +785,10 @@
             "The environment has encountered an error and cannot be used."
           ],
           "type": "string"
+        },
+        "storageConfig": {
+          "$ref": "StorageConfig",
+          "description": "Optional. Storage configuration for this environment."
         },
         "updateTime": {
           "description": "Output only. The time at which this environment was last modified.",
@@ -1663,6 +1672,34 @@
       },
       "type": "object"
     },
+    "StorageConfig": {
+      "description": "The configuration for data storage in the environment.",
+      "id": "StorageConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "TriggererResource": {
+      "description": "Configuration for resources used by Airflow triggerers.",
+      "id": "TriggererResource",
+      "properties": {
+        "count": {
+          "description": "Optional. The number of triggerers.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "cpu": {
+          "description": "Optional. CPU request and limit for a single Airflow triggerer replica.",
+          "format": "float",
+          "type": "number"
+        },
+        "memoryGb": {
+          "description": "Optional. Memory (GB) request and limit for a single Airflow triggerer replica.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "WebServerConfig": {
       "description": "The configuration settings for the Airflow web server App Engine instance. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*",
       "id": "WebServerConfig",
@@ -1749,6 +1786,10 @@
         "scheduler": {
           "$ref": "SchedulerResource",
           "description": "Optional. Resources used by Airflow schedulers."
+        },
+        "triggerer": {
+          "$ref": "TriggererResource",
+          "description": "Optional. Resources used by Airflow triggerers."
         },
         "webServer": {
           "$ref": "WebServerResource",

@@ -336,7 +336,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20230905",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1500,7 +1500,7 @@
       "id": "PropertyReference",
       "properties": {
         "name": {
-          "description": "The name of the property. If name includes \".\"s, it may be interpreted as a property name path.",
+          "description": "A reference to a property. Requires: * MUST be a dot-delimited (`.`) string of segments, where each segment conforms to entity property name limitations.",
           "type": "string"
         }
       },

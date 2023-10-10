@@ -1000,7 +1000,7 @@
       }
     }
   },
-  "revision": "20230813",
+  "revision": "20230917",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -1910,10 +1910,6 @@
         },
         "description": {
           "description": "Policy description. Length of the description is limited to 1024 characters.",
-          "type": "string"
-        },
-        "fingerprint": {
-          "description": "OSPolicy fingerprint (checksum)",
           "type": "string"
         },
         "id": {

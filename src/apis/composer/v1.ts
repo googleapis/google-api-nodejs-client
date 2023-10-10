@@ -243,9 +243,17 @@ export namespace composer_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * The current state of the environment.
      */
     state?: string | null;
+    /**
+     * Optional. Storage configuration for this environment.
+     */
+    storageConfig?: Schema$StorageConfig;
     /**
      * Output only. The time at which this environment was last modified.
      */
@@ -923,6 +931,27 @@ export namespace composer_v1 {
     output?: string[] | null;
   }
   /**
+   * The configuration for data storage in the environment.
+   */
+  export interface Schema$StorageConfig {}
+  /**
+   * Configuration for resources used by Airflow triggerers.
+   */
+  export interface Schema$TriggererResource {
+    /**
+     * Optional. The number of triggerers.
+     */
+    count?: number | null;
+    /**
+     * Optional. CPU request and limit for a single Airflow triggerer replica.
+     */
+    cpu?: number | null;
+    /**
+     * Optional. Memory (GB) request and limit for a single Airflow triggerer replica.
+     */
+    memoryGb?: number | null;
+  }
+  /**
    * The configuration settings for the Airflow web server App Engine instance. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*
    */
   export interface Schema$WebServerConfig {
@@ -990,6 +1019,10 @@ export namespace composer_v1 {
      * Optional. Resources used by Airflow schedulers.
      */
     scheduler?: Schema$SchedulerResource;
+    /**
+     * Optional. Resources used by Airflow triggerers.
+     */
+    triggerer?: Schema$TriggererResource;
     /**
      * Optional. Resources used by Airflow web server.
      */

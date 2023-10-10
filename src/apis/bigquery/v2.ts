@@ -828,6 +828,10 @@ export namespace bigquery_v2 {
      */
     etag?: string | null;
     /**
+     * [Optional] Information about the external metadata storage where the dataset is defined. Filled out when the dataset type is EXTERNAL.
+     */
+    externalDatasetReference?: Schema$ExternalDatasetReference;
+    /**
      * [Optional] A descriptive name for the dataset.
      */
     friendlyName?: string | null;
@@ -1328,6 +1332,16 @@ export namespace bigquery_v2 {
      * [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character and it must come after the 'bucket' name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups, exactly one URI can be specified. Also, the '*' wildcard character is not allowed.
      */
     sourceUris?: string[] | null;
+  }
+  export interface Schema$ExternalDatasetReference {
+    /**
+     * [Required] The connection id that is used to access the external_source. Format: projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}
+     */
+    connection?: string | null;
+    /**
+     * [Required] External source that backs this dataset.
+     */
+    externalSource?: string | null;
   }
   /**
    * Representative value of a single feature within the cluster.
@@ -3668,6 +3682,10 @@ export namespace bigquery_v2 {
      * [Optional] Precision (maximum number of total digits in base 10) and scale (maximum number of digits in the fractional part in base 10) constraints for values of this field for NUMERIC or BIGNUMERIC. It is invalid to set precision or scale if type ≠ "NUMERIC" and ≠ "BIGNUMERIC". If precision and scale are not specified, no value range constraint is imposed on this field insofar as values are permitted by the type. Values of this NUMERIC or BIGNUMERIC field must be in this range when: - Precision (P) and scale (S) are specified: [-10P-S + 10-S, 10P-S - 10-S] - Precision (P) is specified but not scale (and thus scale is interpreted to be equal to zero): [-10P + 1, 10P - 1]. Acceptable values for precision and scale if both are specified: - If type = "NUMERIC": 1 ≤ precision - scale ≤ 29 and 0 ≤ scale ≤ 9. - If type = "BIGNUMERIC": 1 ≤ precision - scale ≤ 38 and 0 ≤ scale ≤ 38. Acceptable values for precision if only precision is specified but not scale (and thus scale is interpreted to be equal to zero): - If type = "NUMERIC": 1 ≤ precision ≤ 29. - If type = "BIGNUMERIC": 1 ≤ precision ≤ 38. If scale is specified but not precision, then it is invalid.
      */
     precision?: string | null;
+    /**
+     * Optional. The subtype of the RANGE, if the type of this field is RANGE. If the type is RANGE, this field is required. Possible values for the field element type of a RANGE include: - DATE - DATETIME - TIMESTAMP
+     */
+    rangeElementType?: {type?: string} | null;
     /**
      * Optional. Rounding Mode specification of the field. It only can be set on NUMERIC or BIGNUMERIC type fields.
      */

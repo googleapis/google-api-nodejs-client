@@ -459,7 +459,7 @@ export namespace displayvideo_v1 {
      */
     name?: string | null;
     /**
-     * Required. The ID of the targeting option assigned to the location list. Must be of type TARGETING_TYPE_GEO_REGION.
+     * Required. The ID of the targeting option assigned to the location list. Assigned locations can only be modified in TARGETING_LOCATION_TYPE_REGIONAL location lists. When creating or deleting assigned locations, this value must be of type TARGETING_TYPE_GEO_REGION.
      */
     targetingOptionId?: string | null;
   }
@@ -1066,9 +1066,6 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Response message for BulkListCampaignAssignedTargetingOptions.
-   */
   export interface Schema$BulkListCampaignAssignedTargetingOptionsResponse {
     /**
      * The list of assigned targeting options. This list will be absent if empty.
@@ -1079,9 +1076,6 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Response message for BulkListInsertionOrderAssignedTargetingOptions.
-   */
   export interface Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse {
     /**
      * The list of assigned targeting options. This list will be absent if empty.
@@ -3729,9 +3723,6 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Response message for ListInsertionOrderAssignedTargetingOptions.
-   */
   export interface Schema$ListInsertionOrderAssignedTargetingOptionsResponse {
     /**
      * The list of assigned targeting options. This list will be absent if empty.
@@ -6104,10 +6095,6 @@ export namespace displayvideo_v1 {
      * Allows filtering by advertiser fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. * A restriction has the form of `{field\} {operator\} {value\}`. * The `updateTime` field must use the `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)` operators. * All other fields must use the `EQUALS (=)` operator. Supported fields: * `advertiserId` * `displayName` * `entityStatus` * `updateTime` (input in ISO 8601 format, or `YYYY-MM-DDTHH:MM:SSZ`) Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` * All advertisers with an update time less than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime<="2020-11-04T18:54:47Z"` * All advertisers with an update time greater than or equal to 2020-11-04T18:54:47Z (format of ISO 8601): `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters. Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more information.
      */
     filter?: string;
-    /**
-     * The config used in internal debugging and manual testing. Use comma to separate multiple values. Examples: To allow entity search to go through tangle `searchUsingTangle` To get only the advertiser Ids use `idOnly`
-     */
-    internalDebuggingConfig?: string;
     /**
      * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      */
@@ -9881,7 +9868,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
+     * Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * lineItems.patch * assignedTargetingOptions.create * assignedTargetingOptions.delete
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10513,7 +10500,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdateLineItems * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
+     * Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdateLineItems * assignedTargetingOptions.create * assignedTargetingOptions.delete
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10752,7 +10739,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdate * UpdateLineItem * DeleteLineItemAssignedTargetingOption
+     * Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * lineItems.bulkEditAssignedTargetingOptions * lineItems.bulkUpdate * lineItems.patch * DeleteLineItemAssignedTargetingOption
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10847,7 +10834,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdate * UpdateLineItem * CreateLineItemAssignedTargetingOption
+     * Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * lineItems.bulkEditAssignedTargetingOptions * lineItems.bulkUpdate * lineItems.patch * CreateLineItemAssignedTargetingOption
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18776,10 +18763,6 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Inventorysources$Get
     extends StandardParameters {
-    /**
-     * Optional. The advertiser_id is optional, when it is provided, the advertiser access is used.
-     */
-    advertiserId?: string;
     /**
      * Required. The ID of the inventory source to fetch.
      */

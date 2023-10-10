@@ -12,7 +12,7 @@ jobs:
       matrix:
         node: [14, 16, 18, 20]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
@@ -30,7 +30,7 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
       - uses: actions/setup-node@v3
         with:
           node-version: 14
@@ -41,7 +41,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
       - uses: actions/setup-node@v3
         with:
           node-version: 14
@@ -50,7 +50,7 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
       - uses: actions/setup-node@v3
         with:
           node-version: 14

@@ -260,9 +260,92 @@
       }
     }
   },
-  "revision": "20230625",
+  "revision": "20230818",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
+    "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
+      "description": "Represents an AdSchedule criterion. AdSchedule is specified as the day of the week and a time interval within which ads will be shown. No more than six AdSchedules can be added for the same day.",
+      "id": "GoogleAdsSearchads360V0Common__AdScheduleInfo",
+      "properties": {
+        "dayOfWeek": {
+          "description": "Day of the week the schedule applies to. This field is required for CREATE operations and is prohibited on UPDATE operations.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The value is unknown in this version.",
+            "Monday.",
+            "Tuesday.",
+            "Wednesday.",
+            "Thursday.",
+            "Friday.",
+            "Saturday.",
+            "Sunday."
+          ],
+          "type": "string"
+        },
+        "endHour": {
+          "description": "Ending hour in 24 hour time; 24 signifies end of the day. This field must be between 0 and 24, inclusive. This field is required for CREATE operations and is prohibited on UPDATE operations.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "endMinute": {
+          "description": "Minutes after the end hour at which this schedule ends. The schedule is exclusive of the end minute. This field is required for CREATE operations and is prohibited on UPDATE operations.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ZERO",
+            "FIFTEEN",
+            "THIRTY",
+            "FORTY_FIVE"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The value is unknown in this version.",
+            "Zero minutes past the hour.",
+            "Fifteen minutes past the hour.",
+            "Thirty minutes past the hour.",
+            "Forty-five minutes past the hour."
+          ],
+          "type": "string"
+        },
+        "startHour": {
+          "description": "Starting hour in 24 hour time. This field must be between 0 and 23, inclusive. This field is required for CREATE operations and is prohibited on UPDATE operations.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startMinute": {
+          "description": "Minutes after the start hour at which this schedule starts. This field is required for CREATE operations and is prohibited on UPDATE operations.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ZERO",
+            "FIFTEEN",
+            "THIRTY",
+            "FORTY_FIVE"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The value is unknown in this version.",
+            "Zero minutes past the hour.",
+            "Fifteen minutes past the hour.",
+            "Thirty minutes past the hour.",
+            "Forty-five minutes past the hour."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Common__AgeRangeInfo": {
       "description": "An age range criterion.",
       "id": "GoogleAdsSearchads360V0Common__AgeRangeInfo",
@@ -291,6 +374,44 @@
             "65 years old and beyond.",
             "Undetermined age range."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__AssetInteractionTarget": {
+      "description": "An AssetInteractionTarget segment.",
+      "id": "GoogleAdsSearchads360V0Common__AssetInteractionTarget",
+      "properties": {
+        "asset": {
+          "description": "The asset resource name.",
+          "type": "string"
+        },
+        "interactionOnThisAsset": {
+          "description": "Only used with CustomerAsset, CampaignAsset and AdGroupAsset metrics. Indicates whether the interaction metrics occurred on the asset itself or a different asset or ad unit.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__BusinessProfileLocation": {
+      "description": "Business Profile location data synced from the linked Business Profile account.",
+      "id": "GoogleAdsSearchads360V0Common__BusinessProfileLocation",
+      "properties": {
+        "labels": {
+          "description": "Advertiser specified label for the location on the Business Profile account. This is synced from the Business Profile account.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "listingId": {
+          "description": "Listing ID of this Business Profile location. This is synced from the linked Business Profile account.",
+          "format": "int64",
+          "type": "string"
+        },
+        "storeCode": {
+          "description": "Business Profile store code of this location. This is synced from the Business Profile account.",
           "type": "string"
         }
       },
@@ -662,12 +783,12 @@
           "type": "number"
         },
         "averageCpc": {
-          "description": "The total cost of all clicks divided by the total number of clicks received.",
+          "description": "The total cost of all clicks divided by the total number of clicks received. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
           "format": "double",
           "type": "number"
         },
         "averageCpm": {
-          "description": "Average cost-per-thousand impressions (CPM).",
+          "description": "Average cost-per-thousand impressions (CPM). This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
           "format": "double",
           "type": "number"
         },
@@ -742,7 +863,7 @@
           "type": "number"
         },
         "costMicros": {
-          "description": "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period.",
+          "description": "The sum of your cost-per-click (CPC) and cost-per-thousand impressions (CPM) costs during this period. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause",
           "format": "int64",
           "type": "string"
         },
@@ -1176,6 +1297,10 @@
           ],
           "type": "string"
         },
+        "assetInteractionTarget": {
+          "$ref": "GoogleAdsSearchads360V0Common__AssetInteractionTarget",
+          "description": "Only used with CustomerAsset, CampaignAsset and AdGroupAsset metrics. Indicates whether the interaction metrics occurred on the asset itself or a different asset or ad unit. Interactions (for example, clicks) are counted across all the parts of the served ad (for example, Ad itself and other components like Sitelinks) when they are served together. When interaction_on_this_asset is true, it means the interactions are on this specific asset and when interaction_on_this_asset is false, it means the interactions is not on this specific asset but on other parts of the served ad this asset is served with."
+        },
         "conversionAction": {
           "description": "Resource name of the conversion action.",
           "type": "string"
@@ -1462,6 +1587,7 @@
           "type": "string"
         },
         "targetSpendMicros": {
+          "deprecated": true,
           "description": "The spend target under which to maximize clicks. A TargetSpend bidder will attempt to spend the smaller of this value or the natural throttling spend amount. If not specified, the budget is used as the spend target. This field is deprecated and should no longer be used. See https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html for details.",
           "format": "int64",
           "type": "string"
@@ -1494,6 +1620,200 @@
         "description": {
           "description": "A short description of the label. The length must be no more than 200 characters.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__UnifiedCallAsset": {
+      "description": "A unified call asset.",
+      "id": "GoogleAdsSearchads360V0Common__UnifiedCallAsset",
+      "properties": {
+        "adScheduleTargets": {
+          "description": "List of non-overlapping schedules specifying all time intervals for which the asset may serve. There can be a maximum of 6 schedules per day, 42 in total.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__AdScheduleInfo"
+          },
+          "type": "array"
+        },
+        "callConversionAction": {
+          "description": "The conversion action to attribute a call conversion to. If not set, the default conversion action is used. This field only has effect if call_conversion_reporting_state is set to USE_RESOURCE_LEVEL_CALL_CONVERSION_ACTION.",
+          "type": "string"
+        },
+        "callConversionReportingState": {
+          "description": "Output only. Indicates whether this CallAsset should use its own call conversion setting, follow the account level setting, or disable call conversion.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "DISABLED",
+            "USE_ACCOUNT_LEVEL_CALL_CONVERSION_ACTION",
+            "USE_RESOURCE_LEVEL_CALL_CONVERSION_ACTION"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Call conversion action is disabled.",
+            "Call conversion action will use call conversion type set at the account level.",
+            "Call conversion action will use call conversion type set at the resource (call only ads/call extensions) level."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "callOnly": {
+          "description": "Whether the call only shows the phone number without a link to the website. Applies to Microsoft Ads.",
+          "type": "boolean"
+        },
+        "callTrackingEnabled": {
+          "description": "Whether the call should be enabled on call tracking. Applies to Microsoft Ads.",
+          "type": "boolean"
+        },
+        "countryCode": {
+          "description": "Two-letter country code of the phone number. Examples: 'US', 'us'.",
+          "type": "string"
+        },
+        "endDate": {
+          "description": "Last date of when this asset is effective and still serving, in yyyy-MM-dd format.",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "The advertiser's raw phone number. Examples: '1234567890', '(123)456-7890'",
+          "type": "string"
+        },
+        "startDate": {
+          "description": "Start date of when this asset is effective and can begin serving, in yyyy-MM-dd format.",
+          "type": "string"
+        },
+        "useSearcherTimeZone": {
+          "description": "Whether to show the call extension in search user's time zone. Applies to Microsoft Ads.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__UnifiedCalloutAsset": {
+      "description": "A unified callout asset.",
+      "id": "GoogleAdsSearchads360V0Common__UnifiedCalloutAsset",
+      "properties": {
+        "adScheduleTargets": {
+          "description": "List of non-overlapping schedules specifying all time intervals for which the asset may serve. There can be a maximum of 6 schedules per day, 42 in total.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__AdScheduleInfo"
+          },
+          "type": "array"
+        },
+        "calloutText": {
+          "description": "The callout text. The length of this string should be between 1 and 25, inclusive.",
+          "type": "string"
+        },
+        "endDate": {
+          "description": "Last date of when this asset is effective and still serving, in yyyy-MM-dd format.",
+          "type": "string"
+        },
+        "startDate": {
+          "description": "Start date of when this asset is effective and can begin serving, in yyyy-MM-dd format.",
+          "type": "string"
+        },
+        "useSearcherTimeZone": {
+          "description": "Whether to show the asset in search user's time zone. Applies to Microsoft Ads.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__UnifiedLocationAsset": {
+      "description": "A unified location asset.",
+      "id": "GoogleAdsSearchads360V0Common__UnifiedLocationAsset",
+      "properties": {
+        "businessProfileLocations": {
+          "description": "The list of business locations for the customer. This will only be returned if the Location Asset is syncing from the Business Profile account. It is possible to have multiple Business Profile listings under the same account that point to the same Place ID.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__BusinessProfileLocation"
+          },
+          "type": "array"
+        },
+        "locationOwnershipType": {
+          "description": "The type of location ownership. If the type is BUSINESS_OWNER, it will be served as a location extension. If the type is AFFILIATE, it will be served as an affiliate location.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "BUSINESS_OWNER",
+            "AFFILIATE"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Business Owner of location(legacy location extension - LE).",
+            "Affiliate location(Third party location extension - ALE)."
+          ],
+          "type": "string"
+        },
+        "placeId": {
+          "description": "Place IDs uniquely identify a place in the Google Places database and on Google Maps. This field is unique for a given customer ID and asset type. See https://developers.google.com/places/web-service/place-id to learn more about Place ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__UnifiedPageFeedAsset": {
+      "description": "A Unified Page Feed asset.",
+      "id": "GoogleAdsSearchads360V0Common__UnifiedPageFeedAsset",
+      "properties": {
+        "labels": {
+          "description": "Labels used to group the page urls.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pageUrl": {
+          "description": "The webpage that advertisers want to target.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__UnifiedSitelinkAsset": {
+      "description": "A unified sitelink asset.",
+      "id": "GoogleAdsSearchads360V0Common__UnifiedSitelinkAsset",
+      "properties": {
+        "adScheduleTargets": {
+          "description": "List of non-overlapping schedules specifying all time intervals for which the asset may serve. There can be a maximum of 6 schedules per day, 42 in total.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__AdScheduleInfo"
+          },
+          "type": "array"
+        },
+        "description1": {
+          "description": "First line of the description for the sitelink. If set, the length should be between 1 and 35, inclusive, and description2 must also be set.",
+          "type": "string"
+        },
+        "description2": {
+          "description": "Second line of the description for the sitelink. If set, the length should be between 1 and 35, inclusive, and description1 must also be set.",
+          "type": "string"
+        },
+        "endDate": {
+          "description": "Last date of when this asset is effective and still serving, in yyyy-MM-dd format.",
+          "type": "string"
+        },
+        "linkText": {
+          "description": "URL display text for the sitelink. The length of this string should be between 1 and 25, inclusive.",
+          "type": "string"
+        },
+        "mobilePreferred": {
+          "description": "Whether the preference is for the sitelink asset to be displayed on mobile devices. Applies to Microsoft Ads.",
+          "type": "boolean"
+        },
+        "startDate": {
+          "description": "Start date of when this asset is effective and can begin serving, in yyyy-MM-dd format.",
+          "type": "string"
+        },
+        "trackingId": {
+          "description": "ID used for tracking clicks for the sitelink asset. This is a Yahoo! Japan only field.",
+          "format": "int64",
+          "type": "string"
+        },
+        "useSearcherTimeZone": {
+          "description": "Whether to show the sitelink asset in search user's time zone. Applies to Microsoft Ads.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1835,6 +2155,20 @@
           ],
           "type": "string"
         },
+        "invalidParameterError": {
+          "description": "The reasons for invalid parameter errors.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "INVALID_CURRENCY_CODE"
+          ],
+          "enumDescriptions": [
+            "Enum unspecified.",
+            "The received error code is not known in this version.",
+            "The specified currency code is invalid."
+          ],
+          "type": "string"
+        },
         "queryError": {
           "description": "An error with the query",
           "enum": [
@@ -2160,6 +2494,19 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates": {
+      "description": "Estimates for criterion bids at various positions.",
+      "id": "GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates",
+      "properties": {
+        "topOfPageCpcMicros": {
+          "description": "Output only. The estimate of the CPC bid required for ad to be displayed at the top of the first page of search results.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources_AdGroupCriterion_QualityInfo": {
       "description": "A container for ad group criterion quality information.",
       "id": "GoogleAdsSearchads360V0Resources_AdGroupCriterion_QualityInfo",
@@ -2285,7 +2632,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization": {
-      "description": "Selective optimization setting for this campaign, which includes a set of conversion actions to optimize this campaign towards.",
+      "description": "Selective optimization setting for this campaign, which includes a set of conversion actions to optimize this campaign towards. This feature only applies to app campaigns that use MULTI_CHANNEL as AdvertisingChannelType and APP_CAMPAIGN or APP_CAMPAIGN_FOR_ENGAGEMENT as AdvertisingChannelSubType.",
       "id": "GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization",
       "properties": {
         "conversionActions": {
@@ -2524,7 +2871,8 @@
             "APP_PRE_REGISTRATION_AD",
             "DISCOVERY_MULTI_ASSET_AD",
             "DISCOVERY_CAROUSEL_AD",
-            "TRAVEL_AD"
+            "TRAVEL_AD",
+            "DISCOVERY_VIDEO_RESPONSIVE_AD"
           ],
           "enumDescriptions": [
             "No value has been specified.",
@@ -2559,7 +2907,8 @@
             "Universal app pre-registration ad.",
             "Discovery multi asset ad.",
             "Discovery carousel ad.",
-            "Travel ad."
+            "Travel ad.",
+            "Discovery video responsive ad."
           ],
           "readOnly": true,
           "type": "string"
@@ -2621,6 +2970,19 @@
             "AD_GROUP_SUBMITTED",
             "CAMPAIGN_PAUSED",
             "ACCOUNT_PAUSED"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -2789,6 +3151,27 @@
             "AD_GROUP_AD_CAMPAIGN_PAUSED",
             "AD_GROUP_AD_AD_GROUP_PAUSED"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "No value has been specified.",
             "Used for return value only. Represents value unknown in this version.",
@@ -2865,6 +3248,79 @@
         },
         "resourceName": {
           "description": "Immutable. The resource name of the ad group ad label. Ad group ad label resource names have the form: `customers/{customer_id}/adGroupAdLabels/{ad_group_id}~{ad_id}~{label_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AdGroupAsset": {
+      "description": "A link between an ad group and an asset.",
+      "id": "GoogleAdsSearchads360V0Resources__AdGroupAsset",
+      "properties": {
+        "adGroup": {
+          "description": "Required. Immutable. The ad group to which the asset is linked.",
+          "type": "string"
+        },
+        "asset": {
+          "description": "Required. Immutable. The asset which is linked to the ad group.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the ad group asset. AdGroupAsset resource names have the form: `customers/{customer_id}/adGroupAssets/{ad_group_id}~{asset_id}~{field_type}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the ad group asset.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED",
+            "PAUSED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Asset link is enabled.",
+            "Asset link has been removed.",
+            "Asset link is paused."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AdGroupAssetSet": {
+      "description": "AdGroupAssetSet is the linkage between an ad group and an asset set. Creating an AdGroupAssetSet links an asset set with an ad group.",
+      "id": "GoogleAdsSearchads360V0Resources__AdGroupAssetSet",
+      "properties": {
+        "adGroup": {
+          "description": "Immutable. The ad group to which this asset set is linked.",
+          "type": "string"
+        },
+        "assetSet": {
+          "description": "Immutable. The asset set which is linked to the ad group.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the ad group asset set. Ad group asset set resource names have the form: `customers/{customer_id}/adGroupAssetSets/{ad_group_id}~{asset_set_id}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The status of the ad group asset set. Read-only.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "The status has not been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "The linkage between asset set and its container is enabled.",
+            "The linkage between asset set and its container is removed."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2971,6 +3427,29 @@
             "AD_GROUP_CRITERION_SERVING",
             "AD_GROUP_CRITERION_ACCOUNT_PAUSED"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Not specified.",
             "Used for return value only. Represents value unknown in this version.",
@@ -3035,12 +3514,16 @@
         },
         "location": {
           "$ref": "GoogleAdsSearchads360V0Common__LocationInfo",
-          "description": "Output only. Location.",
-          "readOnly": true
+          "description": "Immutable. Location."
         },
         "negative": {
           "description": "Immutable. Whether to target (`false`) or exclude (`true`) the criterion. This field is immutable. To switch a criterion from positive to negative, remove then re-add it.",
           "type": "boolean"
+        },
+        "positionEstimates": {
+          "$ref": "GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates",
+          "description": "Output only. Estimates for criterion bids at various positions.",
+          "readOnly": true
         },
         "qualityInfo": {
           "$ref": "GoogleAdsSearchads360V0Resources_AdGroupCriterion_QualityInfo",
@@ -3112,7 +3595,9 @@
             "COMBINED_AUDIENCE",
             "KEYWORD_THEME",
             "AUDIENCE",
-            "LOCAL_SERVICE_ID"
+            "LOCAL_SERVICE_ID",
+            "BRAND",
+            "BRAND_LIST"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -3151,7 +3636,9 @@
             "Combined audience",
             "Smart Campaign keyword theme",
             "Audience",
-            "Local Services Ads Service ID."
+            "Local Services Ads Service ID.",
+            "Brand",
+            "Brand List"
           ],
           "readOnly": true,
           "type": "string"
@@ -3221,6 +3708,16 @@
       "description": "Asset is a part of an ad which can be shared across multiple ads. It can be an image (ImageAsset), a video (YoutubeVideoAsset), etc. Assets are immutable and cannot be removed. To stop an asset from serving, remove the asset from the entity that is using it.",
       "id": "GoogleAdsSearchads360V0Resources__Asset",
       "properties": {
+        "callAsset": {
+          "$ref": "GoogleAdsSearchads360V0Common__UnifiedCallAsset",
+          "description": "Output only. A unified call asset.",
+          "readOnly": true
+        },
+        "calloutAsset": {
+          "$ref": "GoogleAdsSearchads360V0Common__UnifiedCalloutAsset",
+          "description": "Output only. A unified callout asset.",
+          "readOnly": true
+        },
         "creationTime": {
           "description": "Output only. The timestamp when this asset was created. The timestamp is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss\" format.",
           "readOnly": true,
@@ -3267,13 +3764,28 @@
           "readOnly": true,
           "type": "string"
         },
+        "locationAsset": {
+          "$ref": "GoogleAdsSearchads360V0Common__UnifiedLocationAsset",
+          "description": "Output only. A unified location asset.",
+          "readOnly": true
+        },
         "mobileAppAsset": {
           "$ref": "GoogleAdsSearchads360V0Common__MobileAppAsset",
           "description": "A mobile app asset."
         },
+        "pageFeedAsset": {
+          "$ref": "GoogleAdsSearchads360V0Common__UnifiedPageFeedAsset",
+          "description": "Output only. A unified page feed asset.",
+          "readOnly": true
+        },
         "resourceName": {
           "description": "Immutable. The resource name of the asset. Asset resource names have the form: `customers/{customer_id}/assets/{asset_id}`",
           "type": "string"
+        },
+        "sitelinkAsset": {
+          "$ref": "GoogleAdsSearchads360V0Common__UnifiedSitelinkAsset",
+          "description": "Output only. A unified sitelink asset.",
+          "readOnly": true
         },
         "status": {
           "description": "Output only. The status of the asset.",
@@ -3382,6 +3894,42 @@
         },
         "resourceName": {
           "description": "Immutable. The resource name of the asset set. Asset set resource names have the form: `customers/{customer_id}/assetSets/{asset_set_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AssetSetAsset": {
+      "description": "AssetSetAsset is the link between an asset and an asset set. Adding an AssetSetAsset links an asset with an asset set.",
+      "id": "GoogleAdsSearchads360V0Resources__AssetSetAsset",
+      "properties": {
+        "asset": {
+          "description": "Immutable. The asset which this asset set asset is linking to.",
+          "type": "string"
+        },
+        "assetSet": {
+          "description": "Immutable. The asset set which this asset set asset is linking to.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the asset set asset. Asset set asset resource names have the form: `customers/{customer_id}/assetSetAssets/{asset_set_id}~{asset_id}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The status of the asset set asset. Read-only.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "The status has not been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "The asset set asset is enabled.",
+            "The asset set asset is removed."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3927,7 +4475,7 @@
         },
         "selectiveOptimization": {
           "$ref": "GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization",
-          "description": "Selective optimization setting for this campaign, which includes a set of conversion actions to optimize this campaign towards."
+          "description": "Selective optimization setting for this campaign, which includes a set of conversion actions to optimize this campaign towards. This feature only applies to app campaigns that use MULTI_CHANNEL as AdvertisingChannelType and APP_CAMPAIGN or APP_CAMPAIGN_FOR_ENGAGEMENT as AdvertisingChannelSubType."
         },
         "servingStatus": {
           "description": "Output only. The ad serving status of the campaign.",
@@ -4017,6 +4565,80 @@
         "urlExpansionOptOut": {
           "description": "Represents opting out of URL expansion to more targeted URLs. If opted out (true), only the final URLs in the asset group or URLs specified in the advertiser's Google Merchant Center or business data feeds are targeted. If opted in (false), the entire domain will be targeted. This field can only be set for Performance Max campaigns, where the default value is false.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__CampaignAsset": {
+      "description": "A link between a Campaign and an Asset.",
+      "id": "GoogleAdsSearchads360V0Resources__CampaignAsset",
+      "properties": {
+        "asset": {
+          "description": "Immutable. The asset which is linked to the campaign.",
+          "type": "string"
+        },
+        "campaign": {
+          "description": "Immutable. The campaign to which the asset is linked.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the campaign asset. CampaignAsset resource names have the form: `customers/{customer_id}/campaignAssets/{campaign_id}~{asset_id}~{field_type}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. Status of the campaign asset.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED",
+            "PAUSED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Asset link is enabled.",
+            "Asset link has been removed.",
+            "Asset link is paused."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__CampaignAssetSet": {
+      "description": "CampaignAssetSet is the linkage between a campaign and an asset set. Adding a CampaignAssetSet links an asset set with a campaign.",
+      "id": "GoogleAdsSearchads360V0Resources__CampaignAssetSet",
+      "properties": {
+        "assetSet": {
+          "description": "Immutable. The asset set which is linked to the campaign.",
+          "type": "string"
+        },
+        "campaign": {
+          "description": "Immutable. The campaign to which this asset set is linked.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the campaign asset set. Asset set asset resource names have the form: `customers/{customer_id}/campaignAssetSets/{campaign_id}~{asset_set_id}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The status of the campaign asset set asset. Read-only.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "The status has not been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "The linkage between asset set and its container is enabled.",
+            "The linkage between asset set and its container is removed."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4201,7 +4823,9 @@
             "COMBINED_AUDIENCE",
             "KEYWORD_THEME",
             "AUDIENCE",
-            "LOCAL_SERVICE_ID"
+            "LOCAL_SERVICE_ID",
+            "BRAND",
+            "BRAND_LIST"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -4240,7 +4864,9 @@
             "Combined audience",
             "Smart Campaign keyword theme",
             "Audience",
-            "Local Services Ads Service ID."
+            "Local Services Ads Service ID.",
+            "Brand",
+            "Brand List"
           ],
           "readOnly": true,
           "type": "string"
@@ -4492,7 +5118,7 @@
             "The user requests directions to a business location within Google Maps. Smart campaign only. Read only.",
             "Call conversions that occur on Smart campaign Ads with call tracking setup, using Smart campaign custom criteria. Read only.",
             "Conversions that occur when a user visits an advertiser's retail store. Read only.",
-            "Conversions created from website events (such as form submissions or page loads), that don't use individually coded event snippets.",
+            "Conversions created from website events (such as form submissions or page loads), that don't use individually coded event snippets. Read only.",
             "Conversions that come from linked Universal Analytics goals.",
             "Conversions that come from linked Universal Analytics transactions.",
             "Conversions that come from linked Google Analytics 4 custom event conversions.",
@@ -4783,6 +5409,75 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__CustomerAsset": {
+      "description": "A link between a customer and an asset.",
+      "id": "GoogleAdsSearchads360V0Resources__CustomerAsset",
+      "properties": {
+        "asset": {
+          "description": "Required. Immutable. The asset which is linked to the customer.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the customer asset. CustomerAsset resource names have the form: `customers/{customer_id}/customerAssets/{asset_id}~{field_type}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the customer asset.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED",
+            "PAUSED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Used for return value only. Represents value unknown in this version.",
+            "Asset link is enabled.",
+            "Asset link has been removed.",
+            "Asset link is paused."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__CustomerAssetSet": {
+      "description": "CustomerAssetSet is the linkage between a customer and an asset set. Adding a CustomerAssetSet links an asset set with a customer.",
+      "id": "GoogleAdsSearchads360V0Resources__CustomerAssetSet",
+      "properties": {
+        "assetSet": {
+          "description": "Immutable. The asset set which is linked to the customer.",
+          "type": "string"
+        },
+        "customer": {
+          "description": "Immutable. The customer to which this asset set is linked.",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the customer asset set. Asset set asset resource names have the form: `customers/{customer_id}/customerAssetSets/{asset_set_id}`",
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. The status of the customer asset set asset. Read-only.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "The status has not been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "The linkage between asset set and its container is enabled.",
+            "The linkage between asset set and its container is removed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources__CustomerClient": {
       "description": "A link between the given customer and a client customer. CustomerClients only exist for manager customers. All direct and indirect client customers are included, as well as the manager itself.",
       "id": "GoogleAdsSearchads360V0Resources__CustomerClient",
@@ -4962,6 +5657,66 @@
       "properties": {
         "resourceName": {
           "description": "Output only. The resource name of the gender view. Gender view resource names have the form: `customers/{customer_id}/genderViews/{ad_group_id}~{criterion_id}`",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__GeoTargetConstant": {
+      "description": "A geo target constant.",
+      "id": "GoogleAdsSearchads360V0Resources__GeoTargetConstant",
+      "properties": {
+        "canonicalName": {
+          "description": "Output only. The fully qualified English name, consisting of the target's name and that of its parent and country.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "Output only. The ISO-3166-1 alpha-2 country code that is associated with the target.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. The ID of the geo target constant.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Geo target constant English name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parentGeoTarget": {
+          "description": "Output only. The resource name of the parent geo target constant. Geo target constant resource names have the form: `geoTargetConstants/{parent_geo_target_constant_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Output only. The resource name of the geo target constant. Geo target constant resource names have the form: `geoTargetConstants/{geo_target_constant_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. Geo target constant status.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "ENABLED",
+            "REMOVAL_PLANNED"
+          ],
+          "enumDescriptions": [
+            "No value has been specified.",
+            "The received value is not known in this version. This is a response-only value.",
+            "The geo target constant is valid.",
+            "The geo target constant is obsolete and will be removed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetType": {
+          "description": "Output only. Geo target constant target type.",
           "readOnly": true,
           "type": "string"
         }
@@ -5306,6 +6061,14 @@
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroupAdLabel",
           "description": "The ad group ad label referenced in the query."
         },
+        "adGroupAsset": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AdGroupAsset",
+          "description": "The ad group asset referenced in the query."
+        },
+        "adGroupAssetSet": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AdGroupAssetSet",
+          "description": "The ad group asset set referenced in the query."
+        },
         "adGroupAudienceView": {
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroupAudienceView",
           "description": "The ad group audience view referenced in the query."
@@ -5338,6 +6101,10 @@
           "$ref": "GoogleAdsSearchads360V0Resources__AssetSet",
           "description": "The asset set referenced in the query."
         },
+        "assetSetAsset": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AssetSetAsset",
+          "description": "The asset set asset referenced in the query."
+        },
         "biddingStrategy": {
           "$ref": "GoogleAdsSearchads360V0Resources__BiddingStrategy",
           "description": "The bidding strategy referenced in the query."
@@ -5345,6 +6112,14 @@
         "campaign": {
           "$ref": "GoogleAdsSearchads360V0Resources__Campaign",
           "description": "The campaign referenced in the query."
+        },
+        "campaignAsset": {
+          "$ref": "GoogleAdsSearchads360V0Resources__CampaignAsset",
+          "description": "The campaign asset referenced in the query."
+        },
+        "campaignAssetSet": {
+          "$ref": "GoogleAdsSearchads360V0Resources__CampaignAssetSet",
+          "description": "The campaign asset set referenced in the query."
         },
         "campaignAudienceView": {
           "$ref": "GoogleAdsSearchads360V0Resources__CampaignAudienceView",
@@ -5377,6 +6152,14 @@
           "$ref": "GoogleAdsSearchads360V0Resources__Customer",
           "description": "The customer referenced in the query."
         },
+        "customerAsset": {
+          "$ref": "GoogleAdsSearchads360V0Resources__CustomerAsset",
+          "description": "The customer asset referenced in the query."
+        },
+        "customerAssetSet": {
+          "$ref": "GoogleAdsSearchads360V0Resources__CustomerAssetSet",
+          "description": "The customer asset set referenced in the query."
+        },
         "customerClient": {
           "$ref": "GoogleAdsSearchads360V0Resources__CustomerClient",
           "description": "The CustomerClient referenced in the query."
@@ -5392,6 +6175,10 @@
         "genderView": {
           "$ref": "GoogleAdsSearchads360V0Resources__GenderView",
           "description": "The gender view referenced in the query."
+        },
+        "geoTargetConstant": {
+          "$ref": "GoogleAdsSearchads360V0Resources__GeoTargetConstant",
+          "description": "The geo target constant referenced in the query."
         },
         "keywordView": {
           "$ref": "GoogleAdsSearchads360V0Resources__KeywordView",

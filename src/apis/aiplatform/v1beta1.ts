@@ -1233,7 +1233,7 @@ export namespace aiplatform_v1beta1 {
     genericMetadata?: Schema$GoogleCloudAiplatformV1beta1GenericOperationMetadata;
   }
   /**
-   * Request message for FeaturestoreService.CreateFeature and FeatureRegistryService.CreateFeature.
+   * Request message for FeaturestoreService.CreateFeature.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1CreateFeatureRequest {
     /**
@@ -1241,11 +1241,11 @@ export namespace aiplatform_v1beta1 {
      */
     feature?: Schema$GoogleCloudAiplatformV1beta1Feature;
     /**
-     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.
+     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .
      */
     featureId?: string | null;
     /**
-     * Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     * Required. The resource name of the EntityType to create a Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
      */
     parent?: string | null;
   }
@@ -1320,7 +1320,7 @@ export namespace aiplatform_v1beta1 {
      */
     pipelineJob?: Schema$GoogleCloudAiplatformV1beta1PipelineJob;
     /**
-     * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are /a-z-/.
+     * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.
      */
     pipelineJobId?: string | null;
   }
@@ -1364,7 +1364,7 @@ export namespace aiplatform_v1beta1 {
      */
     tensorboardRun?: Schema$GoogleCloudAiplatformV1beta1TensorboardRun;
     /**
-     * Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.
      */
     tensorboardRunId?: string | null;
   }
@@ -1868,7 +1868,7 @@ export namespace aiplatform_v1beta1 {
      */
     privateEndpoints?: Schema$GoogleCloudAiplatformV1beta1IndexPrivateEndpoints;
     /**
-     * Optional. A list of reserved ip ranges under the VPC network that can be used for this DeployedIndex. If set, we will deploy the index within the provided ip ranges. Otherwise, the index might be deployed to any ip ranges under the provided VPC network. The value should be the name of the address (https://cloud.google.com/compute/docs/reference/rest/v1/addresses) Example: 'vertex-ai-ip-range'.
+     * Optional. A list of reserved ip ranges under the VPC network that can be used for this DeployedIndex. If set, we will deploy the index within the provided ip ranges. Otherwise, the index might be deployed to any ip ranges under the provided VPC network. The value should be the name of the address (https://cloud.google.com/compute/docs/reference/rest/v1/addresses) Example: ['vertex-ai-ip-range']. For more information about subnets and network IP ranges, please see https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.
      */
     reservedIpRanges?: string[] | null;
   }
@@ -1944,7 +1944,7 @@ export namespace aiplatform_v1beta1 {
      */
     explanationSpec?: Schema$GoogleCloudAiplatformV1beta1ExplanationSpec;
     /**
-     * Immutable. The ID of the DeployedModel. If not provided upon deployment, Vertex AI will generate a value for this ID. This value should be 1-10 characters, and valid characters are /[0-9]/.
+     * Immutable. The ID of the DeployedModel. If not provided upon deployment, Vertex AI will generate a value for this ID. This value should be 1-10 characters, and valid characters are `/[0-9]/`.
      */
     id?: string | null;
     /**
@@ -2798,6 +2798,33 @@ export namespace aiplatform_v1beta1 {
     exportedFiles?: string[] | null;
   }
   /**
+   * Details of EndpointService.ExportEndpoint operation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ExportEndpointOperationMetadata {
+    /**
+     * The common part of the operation metadata.
+     */
+    genericMetadata?: Schema$GoogleCloudAiplatformV1beta1GenericOperationMetadata;
+  }
+  /**
+   * Response message of EndpointService.ExportEndpoint operation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ExportEndpointResponse {
+    /**
+     * Information further describing the output of this Endpoint export.
+     */
+    outputInfo?: Schema$GoogleCloudAiplatformV1beta1ExportEndpointResponseOutputInfo;
+  }
+  /**
+   * Describes the output of the ExportEndpoint.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ExportEndpointResponseOutputInfo {
+    /**
+     * If the Endpoint is being exported to BigQuery this is the full path of the BigQuery ML model created.
+     */
+    bigQueryDestination?: Schema$GoogleCloudAiplatformV1beta1BigQueryDestination;
+  }
+  /**
    * Details of operations that exports Features values.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ExportFeatureValuesOperationMetadata {
@@ -3013,29 +3040,9 @@ export namespace aiplatform_v1beta1 {
      */
     updateTime?: string | null;
     /**
-     * Required. Immutable. Type of Feature value.
+     * Immutable. Type of Feature value.
      */
     valueType?: string | null;
-    /**
-     * Output only. Timestamp when this version was created.
-     */
-    versionCreateTime?: string | null;
-    /**
-     * The description of this version.
-     */
-    versionDescription?: string | null;
-    /**
-     * Output only. Immutable. The version ID of the feature. It is an auto-incrementing decimal number in string representation. A new version is committed when a new model version is created under an existing feature id.
-     */
-    versionId?: string | null;
-    /**
-     * The labels with user-defined metadata to organize your versions. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information and examples of labels.
-     */
-    versionLabels?: {[key: string]: string} | null;
-    /**
-     * Output only. Timestamp when this version was most recently updated.
-     */
-    versionUpdateTime?: string | null;
   }
   /**
    * A list of historical SnapshotAnalysis or ImportFeaturesAnalysis stats requested by user, sorted by FeatureStatsAnomaly.start_time descending.
@@ -3768,6 +3775,10 @@ export namespace aiplatform_v1beta1 {
      */
     displayName?: string | null;
     /**
+     * Immutable. Customer-managed encryption key spec for an Index. If set, this Index and all sub-resources of this Index will be secured by this key.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1beta1EncryptionSpec;
+    /**
      * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
@@ -3817,7 +3828,7 @@ export namespace aiplatform_v1beta1 {
      */
     featureVector?: number[] | null;
     /**
-     * Optional. List of Restrict of the datapoint, used to perform "restricted searches" where boolean rule are used to filter the subset of the database eligible for matching. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
+     * Optional. List of Restrict of the datapoint, used to perform "restricted searches" where boolean rule are used to filter the subset of the database eligible for matching. This uses categorical tokens. See: https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      */
     restricts?: Schema$GoogleCloudAiplatformV1beta1IndexDatapointRestriction[];
   }
@@ -3835,15 +3846,15 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1IndexDatapointRestriction {
     /**
-     * The attributes to allow in this namespace. eg: 'red'
+     * The attributes to allow in this namespace. e.g.: 'red'
      */
     allowList?: string[] | null;
     /**
-     * The attributes to deny in this namespace. eg: 'blue'
+     * The attributes to deny in this namespace. e.g.: 'blue'
      */
     denyList?: string[] | null;
     /**
-     * The namespace of this restriction. eg: color.
+     * The namespace of this restriction. e.g.: color.
      */
     namespace?: string | null;
   }
@@ -3871,6 +3882,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. Deprecated: If true, expose the IndexEndpoint via private service connect. Only one of the fields, network or enable_private_service_connect, can be set.
      */
     enablePrivateServiceConnect?: boolean | null;
+    /**
+     * Immutable. Customer-managed encryption key spec for an IndexEndpoint. If set, this IndexEndpoint and all sub-resources of this IndexEndpoint will be secured by this key.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1beta1EncryptionSpec;
     /**
      * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
@@ -4192,7 +4207,7 @@ export namespace aiplatform_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
-   * Response message for FeaturestoreService.ListFeatures. Response message for FeatureRegistryService.ListFeatures.
+   * Response message for FeaturestoreService.ListFeatures.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ListFeaturesResponse {
     /**
@@ -6054,6 +6069,10 @@ export namespace aiplatform_v1beta1 {
      */
     healthState?: string | null;
     /**
+     * The labels with user-defined metadata to organize your NotebookRuntime. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one Dataset (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with "aiplatform.googleapis.com/" and are immutable. Following system labels exist for NotebookRuntime: * "aiplatform.googleapis.com/notebook_runtime_gce_instance_id": output only, its value is the Compute Engine instance id. * "aiplatform.googleapis.com/colab_enterprise_entry_service": its value is either "BigQuery" or "Vertex"; if absent, it should be "Vertex". This is to describe the entry service, either BigQuery or Vertex.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Output only. The resource name of the NotebookRuntime.
      */
     name?: string | null;
@@ -6081,6 +6100,10 @@ export namespace aiplatform_v1beta1 {
      * Output only. Timestamp when this NotebookRuntime was most recently updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. The VM os image version of NotebookRuntime.
+     */
+    version?: string | null;
   }
   /**
    * A template that specifies runtime configurations such as machine type, runtime version, network configurations, etc. Multiple runtimes can be created from a runtime template.
@@ -6123,7 +6146,7 @@ export namespace aiplatform_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Immutable. The specification of a single machine used by the prediction.
+     * Optional. Immutable. The specification of a single machine for the template.
      */
     machineSpec?: Schema$GoogleCloudAiplatformV1beta1MachineSpec;
     /**
@@ -7021,13 +7044,17 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RaySpec {
     /**
-     * Optional. Will use the machine from the first workerpool as the head node by default. For Ray-on-Vertex Experimental scope launch, we will only support one resource pool for Ray cluster and thus will not support head machine selection.
+     * Optional. This will be used to indicate which resource pool will serve as the Ray head node(the first node within that pool). Will use the machine from the first workerpool as the head node by default if this field is not set.
      */
-    headMachineSpec?: Schema$GoogleCloudAiplatformV1beta1MachineSpec;
+    headNodeResourcePoolId?: string | null;
     /**
      * Optional. Default image for user to choose a preferred ML framework(e.g. tensorflow or Pytorch) by choosing from Vertex prebuild images(https://cloud.google.com/vertex-ai/docs/training/pre-built-containers). Either this or the resource_pool_images is required. Use this field if you need all the resource pools to have the same Ray image, Otherwise, use the {@code resource_pool_images\} field.
      */
     imageUri?: string | null;
+    /**
+     * Optional. Required if image_uri is not set. A map of resource_pool_id to prebuild Ray image if user need to use different images for different head/worker pools. This map needs to cover all the resource pool ids. Example: { "ray_head_node_pool": "head image" "ray_worker_node_pool1": "worker image" "ray_worker_node_pool2": "another worker image" \}
+     */
+    resourcePoolImages?: {[key: string]: string} | null;
   }
   /**
    * Request message for FeaturestoreOnlineServingService.ReadFeatureValues.
@@ -7289,6 +7316,10 @@ export namespace aiplatform_v1beta1 {
      * Output only. URIs for user to connect to the Cluster. Example: { "RAY_HEAD_NODE_INTERNAL_IP": "head-node-IP:10001" "RAY_DASHBOARD_URI": "ray-dashboard-address:8888" \}
      */
     accessUris?: {[key: string]: string} | null;
+    /**
+     * Output only. The resource name of NotebookRuntimeTemplate for the RoV Persistent Cluster The NotebokRuntimeTemplate is created in the same VPC (if set), and with the same Ray and Python version as the Persistent Cluster. Example: "projects/1000/locations/us-central1/notebookRuntimeTemplates/abc123"
+     */
+    notebookRuntimeTemplate?: string | null;
   }
   /**
    * Configure runtime on a PersistentResource instance, including but may not limited to: * Service accounts used to run the workloads; * Whether make it a dedicated Ray Cluster;
@@ -7526,6 +7557,10 @@ export namespace aiplatform_v1beta1 {
    * All parameters related to queuing and scheduling of custom jobs.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Scheduling {
+    /**
+     * Optional. Indicates if the job should retry for internal errors after the job starts running. If true, overrides `Scheduling.restart_job_on_worker_restart` to false.
+     */
+    disableRetries?: boolean | null;
     /**
      * Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.
      */
@@ -10601,6 +10636,10 @@ export namespace aiplatform_v1beta1 {
      */
     clientId?: string | null;
     /**
+     * Optional. This allows you to specify the "context" for a Trial; a context is a slice (a subspace) of the search space. Typical uses for contexts: 1) You are using Vizier to tune a server for best performance, but there's a strong weekly cycle. The context specifies the day-of-week. This allows Tuesday to generalize from Wednesday without assuming that everything is identical. 2) Imagine you're optimizing some medical treatment for people. As they walk in the door, you know certain facts about them (e.g. sex, weight, height, blood-pressure). Put that information in the context, and Vizier will adapt its suggestions to the patient. 3) You want to do a fair A/B test efficiently. Specify the "A" and "B" conditions as contexts, and Vizier will generalize between "A" and "B" conditions. If they are similar, this will allow Vizier to converge to the optimum faster than if "A" and "B" were separate Studies. NOTE: You can also enter contexts as REQUESTED Trials, e.g. via the CreateTrial() RPC; that's the asynchronous option where you don't need a close association between contexts and suggestions. NOTE: All the Parameters you set in a context MUST be defined in the Study. NOTE: You must supply 0 or $suggestion_count contexts. If you don't supply any contexts, Vizier will make suggestions from the full search space specified in the StudySpec; if you supply a full set of context, each suggestion will match the corresponding context. NOTE: A Context with no features set matches anything, and allows suggestions from the full search space. NOTE: Contexts MUST lie within the search space specified in the StudySpec. It's an error if they don't. NOTE: Contexts preferentially match ACTIVE then REQUESTED trials before new suggestions are generated. NOTE: Generation of suggestions involves a match between a Context and (optionally) a REQUESTED trial; if that match is not fully specified, a suggestion will be geneated in the merged subspace.
+     */
+    contexts?: Schema$GoogleCloudAiplatformV1beta1TrialContext[];
+    /**
      * Required. The number of suggestions requested. It must be positive.
      */
     suggestionCount?: number | null;
@@ -11122,6 +11161,19 @@ export namespace aiplatform_v1beta1 {
     webAccessUris?: {[key: string]: string} | null;
   }
   /**
+   * Next ID: 3
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1TrialContext {
+    /**
+     * A human-readable field which can store a description of this context. This will become part of the resulting Trial's description field.
+     */
+    description?: string | null;
+    /**
+     * If/when a Trial is generated or selected from this Context, its Parameters will match any parameters specified here. (I.e. if this context specifies parameter name:'a' int_value:3, then a resulting Trial will have int_value:3 for its parameter named 'a'.) Note that we first attempt to match existing REQUESTED Trials with contexts, and if there are no matches, we generate suggestions in the subspace defined by the parameters specified here. NOTE: a Context without any Parameters matches the entire feasible search space.
+     */
+    parameters?: Schema$GoogleCloudAiplatformV1beta1TrialParameter[];
+  }
+  /**
    * A message representing a parameter to be tuned.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1TrialParameter {
@@ -11267,6 +11319,15 @@ export namespace aiplatform_v1beta1 {
   export interface Schema$GoogleCloudAiplatformV1beta1UpdateModelDeploymentMonitoringJobOperationMetadata {
     /**
      * The operation generic information.
+     */
+    genericMetadata?: Schema$GoogleCloudAiplatformV1beta1GenericOperationMetadata;
+  }
+  /**
+   * Details of operations that perform update PersistentResource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1UpdatePersistentResourceOperationMetadata {
+    /**
+     * Operation metadata for PersistentResource.
      */
     genericMetadata?: Schema$GoogleCloudAiplatformV1beta1GenericOperationMetadata;
   }
@@ -11767,6 +11828,7 @@ export namespace aiplatform_v1beta1 {
     modelMonitors: Resource$Projects$Locations$Modelmonitors;
     models: Resource$Projects$Locations$Models;
     nasJobs: Resource$Projects$Locations$Nasjobs;
+    notebookExecutionJobs: Resource$Projects$Locations$Notebookexecutionjobs;
     notebookRuntimes: Resource$Projects$Locations$Notebookruntimes;
     notebookRuntimeTemplates: Resource$Projects$Locations$Notebookruntimetemplates;
     operations: Resource$Projects$Locations$Operations;
@@ -11829,6 +11891,8 @@ export namespace aiplatform_v1beta1 {
       );
       this.models = new Resource$Projects$Locations$Models(this.context);
       this.nasJobs = new Resource$Projects$Locations$Nasjobs(this.context);
+      this.notebookExecutionJobs =
+        new Resource$Projects$Locations$Notebookexecutionjobs(this.context);
       this.notebookRuntimes = new Resource$Projects$Locations$Notebookruntimes(
         this.context
       );
@@ -29327,11 +29391,11 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Create
     extends StandardParameters {
     /**
-     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.
+     * Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .
      */
     featureId?: string;
     /**
-     * Required. The resource name of the EntityType or FeatureGroup to create a Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     * Required. The resource name of the EntityType to create a Feature. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
      */
     parent?: string;
 
@@ -29343,14 +29407,14 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the Features to be deleted. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}/features/{feature\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}/features/{feature\}`
+     * Required. The name of the Features to be deleted. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}/features/{feature\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Featurestores$Entitytypes$Features$Get
     extends StandardParameters {
     /**
-     * Required. The name of the Feature resource. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     * Required. The name of the Feature resource. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
      */
     name?: string;
   }
@@ -29365,7 +29429,7 @@ export namespace aiplatform_v1beta1 {
      */
     latestStatsCount?: number;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `feature_id` * `value_type` * `create_time` * `update_time`
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `feature_id` * `value_type` (Not supported for FeatureRegistry Feature) * `create_time` * `update_time`
      */
     orderBy?: string;
     /**
@@ -29377,7 +29441,7 @@ export namespace aiplatform_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Location to list Features. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}` `projects/{project\}/locations/{location\}/featureGroups/{feature_group\}`
+     * Required. The resource name of the Location to list Features. Format: `projects/{project\}/locations/{location\}/featurestores/{featurestore\}/entityTypes/{entity_type\}`
      */
     parent?: string;
     /**
@@ -45122,6 +45186,231 @@ export namespace aiplatform_v1beta1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Notebookexecutionjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Internal only: Called from Compute Engine instance to obtain EUC for owner Anonymous access: authenticates caller using VM identity JWT. Design doc: go/colab-on-vertex-euc-dd
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateAccessToken(
+      params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Generateaccesstoken,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateAccessToken(
+      params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$Generateaccesstoken,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>;
+    generateAccessToken(
+      params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Generateaccesstoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateAccessToken(
+      params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Generateaccesstoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>
+    ): void;
+    generateAccessToken(
+      params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Generateaccesstoken,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>
+    ): void;
+    generateAccessToken(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>
+    ): void;
+    generateAccessToken(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookexecutionjobs$Generateaccesstoken
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookexecutionjobs$Generateaccesstoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookexecutionjobs$Generateaccesstoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:generateAccessToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reportEvent(
+      params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Reportevent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reportEvent(
+      params?: Params$Resource$Projects$Locations$Notebookexecutionjobs$Reportevent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>;
+    reportEvent(
+      params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Reportevent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reportEvent(
+      params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Reportevent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>
+    ): void;
+    reportEvent(
+      params: Params$Resource$Projects$Locations$Notebookexecutionjobs$Reportevent,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>
+    ): void;
+    reportEvent(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>
+    ): void;
+    reportEvent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebookexecutionjobs$Reportevent
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebookexecutionjobs$Reportevent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebookexecutionjobs$Reportevent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:reportEvent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notebookexecutionjobs$Generateaccesstoken
+    extends StandardParameters {
+    /**
+     * Required. The name of the NotebookRuntime resource. Format: `projects/{project\}/locations/{location\}/notebookRuntimes/{notebook_runtime\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1GenerateAccessTokenRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebookexecutionjobs$Reportevent
+    extends StandardParameters {
+    /**
+     * Required. The name of the NotebookRuntime resource. Format: `projects/{project\}/locations/{location\}/notebookRuntimes/{notebook_runtime\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1ReportRuntimeEventRequest;
+  }
+
   export class Resource$Projects$Locations$Notebookruntimes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -47545,6 +47834,98 @@ export namespace aiplatform_v1beta1 {
         );
       }
     }
+
+    /**
+     * Updates a PersistentResource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Persistentresources$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Persistentresources$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Persistentresources$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Persistentresources$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Persistentresources$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Persistentresources$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Persistentresources$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Persistentresources$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Persistentresources$Create
@@ -47554,7 +47935,7 @@ export namespace aiplatform_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. The ID to use for the PersistentResource, which become the final component of the PersistentResource's resource name. The maximum length is 63 characters, and valid characters are /^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$/.
+     * Required. The ID to use for the PersistentResource, which become the final component of the PersistentResource's resource name. The maximum length is 63 characters, and valid characters are `/^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$/`.
      */
     persistentResourceId?: string;
 
@@ -47591,6 +47972,22 @@ export namespace aiplatform_v1beta1 {
      * Required. The resource name of the Location to list the PersistentResources from. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Persistentresources$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Resource name of a PersistentResource.
+     */
+    name?: string;
+    /**
+     * Required. Specify the fields to be overwritten in the PersistentResource by the update method.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1PersistentResource;
   }
 
   export class Resource$Projects$Locations$Persistentresources$Operations {
@@ -48611,7 +49008,7 @@ export namespace aiplatform_v1beta1 {
      */
     parent?: string;
     /**
-     * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are /a-z-/.
+     * The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.
      */
     pipelineJobId?: string;
 
@@ -56301,7 +56698,7 @@ export namespace aiplatform_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. The ID to use for the Tensorboard experiment, which becomes the final component of the Tensorboard experiment's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the Tensorboard experiment, which becomes the final component of the Tensorboard experiment's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.
      */
     tensorboardExperimentId?: string;
 
@@ -57606,7 +58003,7 @@ export namespace aiplatform_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the Tensorboard run, which becomes the final component of the Tensorboard run's resource name. This value should be 1-128 characters, and valid characters are `/a-z-/`.
      */
     tensorboardRunId?: string;
 

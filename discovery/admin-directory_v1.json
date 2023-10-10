@@ -4643,7 +4643,7 @@
       }
     }
   },
-  "revision": "20230815",
+  "revision": "20230918",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5356,30 +5356,43 @@
         "deprovisionReason": {
           "description": "(Read-only) Deprovision reason.",
           "enum": [
-            "deprovisionReasonUnspecified",
-            "deprovisionReasonSameModelReplacement",
-            "deprovisionReasonUpgrade",
-            "deprovisionReasonDomainMove",
-            "deprovisionReasonServiceExpiration",
-            "deprovisionReasonOther",
-            "deprovisionReasonDifferentModelReplacement",
-            "deprovisionReasonRetiringDevice",
-            "deprovisionReasonUpgradeTransfer",
-            "deprovisionReasonNotRequired",
-            "deprovisionReasonRepairCenter"
+            "DEPROVISION_REASON_UNSPECIFIED",
+            "DEPROVISION_REASON_SAME_MODEL_REPLACEMENT",
+            "DEPROVISION_REASON_UPGRADE",
+            "DEPROVISION_REASON_DOMAIN_MOVE",
+            "DEPROVISION_REASON_SERVICE_EXPIRATION",
+            "DEPROVISION_REASON_OTHER",
+            "DEPROVISION_REASON_DIFFERENT_MODEL_REPLACEMENT",
+            "DEPROVISION_REASON_RETIRING_DEVICE",
+            "DEPROVISION_REASON_UPGRADE_TRANSFER",
+            "DEPROVISION_REASON_NOT_REQUIRED",
+            "DEPROVISION_REASON_REPAIR_CENTER"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "The deprovision reason is unknown.",
-            "The device was replaced by a device with the same model.",
+            "Same model replacement. You have return materials authorization (RMA) or you are replacing a malfunctioning device under warranty with the same device model.",
             "The device was upgraded.",
             "The device's domain was changed.",
             "Service expired for the device.",
             "The device was deprovisioned for a legacy reason that is no longer supported.",
-            "The device was replaced by a device with a different model.",
-            "The device was retired.",
-            "The device's perpetual upgrade was transferred to a new device.",
+            "Different model replacement. You are replacing this device with an upgraded or newer device model.",
+            "Retiring from fleet. You are donating, discarding, or otherwise removing the device from use.",
+            "ChromeOS Flex upgrade transfer. This is a ChromeOS Flex device that you are replacing with a Chromebook within a year.",
             "A reason was not required. For example, the licenses were returned to the customer's license pool.",
-            "The device was deprovisioned by a repair service center."
+            "The device was deprovisioned by the Repair Service Center. Can only be set by Repair Service Center during RMA."
           ],
           "type": "string"
         },
@@ -5421,17 +5434,15 @@
             "enterpriseUpgrade",
             "educationUpgrade",
             "education",
-            "terminal",
             "kioskUpgrade"
           ],
           "enumDescriptions": [
-            "UNSPECIFIED type.",
-            "Indicating the device is a Chromebook/Chromebox/Chromebase enterprise, which is packaged with an upgrade(license).",
-            "Indicating the device is consuming standalone Chrome Enterprise Upgrade, a Chrome Enterprise license.",
-            "Indicating the device is consuming Chrome Education Upgrade(AKA Chrome EDU perpetual license).",
-            "Packaged with a license as education.",
-            "Packaged with a license as terminal.",
-            "Indicating the device is consuming standalone Chrome Kiosk Upgrade, a Chrome Kiosk (annual) license."
+            "The license type is unknown.",
+            "The device is bundled with a perpetual Chrome Enterprise Upgrade.",
+            "The device has an annual standalone Chrome Enterprise Upgrade.",
+            "The device has a perpetual standalone Chrome Education Upgrade.",
+            "The device is bundled with a perpetual Chrome Education Upgrade.",
+            "The device has an annual Kiosk Upgrade."
           ],
           "readOnly": true,
           "type": "string"

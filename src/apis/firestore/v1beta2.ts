@@ -416,6 +416,14 @@ export namespace firestore_v1beta2 {
     estimatedWork?: string | null;
   }
   /**
+   * Metadata related to the create database operation.
+   */
+  export interface Schema$GoogleFirestoreAdminV1CreateDatabaseMetadata {}
+  /**
+   * Metadata related to the delete database operation.
+   */
+  export interface Schema$GoogleFirestoreAdminV1DeleteDatabaseMetadata {}
+  /**
    * Describes the progress of the operation. Unit of work is generic and must be interpreted based on where Progress is used.
    */
   export interface Schema$GoogleFirestoreAdminV1Progress {

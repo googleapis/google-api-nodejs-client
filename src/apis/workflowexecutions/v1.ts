@@ -125,6 +125,27 @@ export namespace workflowexecutions_v1 {
   }
 
   /**
+   * An instance of a Callback created by an execution.
+   */
+  export interface Schema$Callback {
+    /**
+     * Output only. The payloads received by the callback that have not been processed by a waiting execution step.
+     */
+    availablePayloads?: string[] | null;
+    /**
+     * Output only. The method accepted by the callback. For example: GET, POST, PUT.
+     */
+    method?: string | null;
+    /**
+     * Output only. The resource name of the callback. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}/callback/{callback\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Number of execution steps waiting on this callback.
+     */
+    waiters?: string | null;
+  }
+  /**
    * Request for the CancelExecution method.
    */
   export interface Schema$CancelExecutionRequest {}
@@ -201,6 +222,28 @@ export namespace workflowexecutions_v1 {
      * Output only. Revision of the workflow this execution is using.
      */
     workflowRevisionId?: string | null;
+  }
+  /**
+   * Response for the ExportData method.
+   */
+  export interface Schema$ExportDataResponse {
+    /**
+     * The JSON string with customer data and metadata for an execution with the given name
+     */
+    data?: string | null;
+  }
+  /**
+   * RPC response object for the ListCallbacks method.
+   */
+  export interface Schema$ListCallbacksResponse {
+    /**
+     * The callbacks which match the request.
+     */
+    callbacks?: Schema$Callback[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response for the ListExecutions method.
@@ -475,8 +518,13 @@ export namespace workflowexecutions_v1 {
 
   export class Resource$Projects$Locations$Workflows$Executions {
     context: APIRequestContext;
+    callbacks: Resource$Projects$Locations$Workflows$Executions$Callbacks;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.callbacks =
+        new Resource$Projects$Locations$Workflows$Executions$Callbacks(
+          this.context
+        );
     }
 
     /**
@@ -651,6 +699,98 @@ export namespace workflowexecutions_v1 {
         );
       } else {
         return createAPIRequest<Schema$Execution>(parameters);
+      }
+    }
+
+    /**
+     * Returns all metadata stored about an execution, excluding most data that is already accessible using other API methods.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportData(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Exportdata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportData(
+      params?: Params$Resource$Projects$Locations$Workflows$Executions$Exportdata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExportDataResponse>;
+    exportData(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Exportdata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportData(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Exportdata,
+      options: MethodOptions | BodyResponseCallback<Schema$ExportDataResponse>,
+      callback: BodyResponseCallback<Schema$ExportDataResponse>
+    ): void;
+    exportData(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Exportdata,
+      callback: BodyResponseCallback<Schema$ExportDataResponse>
+    ): void;
+    exportData(callback: BodyResponseCallback<Schema$ExportDataResponse>): void;
+    exportData(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflows$Executions$Exportdata
+        | BodyResponseCallback<Schema$ExportDataResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExportDataResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExportDataResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExportDataResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflows$Executions$Exportdata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Executions$Exportdata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workflowexecutions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:exportData').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExportDataResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExportDataResponse>(parameters);
       }
     }
 
@@ -859,6 +999,13 @@ export namespace workflowexecutions_v1 {
      */
     requestBody?: Schema$Execution;
   }
+  export interface Params$Resource$Projects$Locations$Workflows$Executions$Exportdata
+    extends StandardParameters {
+    /**
+     * Required. Name of the execution for which data is to be exported. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Workflows$Executions$Get
     extends StandardParameters {
     /**
@@ -896,5 +1043,122 @@ export namespace workflowexecutions_v1 {
      * Optional. A view defining which fields should be filled in the returned executions. The API will default to the BASIC view.
      */
     view?: string;
+  }
+
+  export class Resource$Projects$Locations$Workflows$Executions$Callbacks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns a list of active callbacks that belong to the execution with the given name. The returned callbacks are ordered by callback ID.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCallbacksResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCallbacksResponse>,
+      callback: BodyResponseCallback<Schema$ListCallbacksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List,
+      callback: BodyResponseCallback<Schema$ListCallbacksResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListCallbacksResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List
+        | BodyResponseCallback<Schema$ListCallbacksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCallbacksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCallbacksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCallbacksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workflowexecutions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/callbacks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCallbacksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCallbacksResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workflows$Executions$Callbacks$List
+    extends StandardParameters {
+    /**
+     * Maximum number of callbacks to return per call. The default value is 100 and is also the maximum value.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListCallbacks` call. Provide this to retrieve the subsequent page. Note that pagination is applied to dynamic data. The list of callbacks returned can change between page requests if callbacks are created or deleted.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the execution for which the callbacks should be listed. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
+     */
+    parent?: string;
   }
 }

@@ -524,7 +524,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230908",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ABNFGrammar": {
@@ -585,8 +585,38 @@
       "description": "A set of words or phrases that represents a common concept likely to appear in your audio, for example a list of passenger ship names. CustomClass items can be substituted into placeholders that you set in PhraseSet phrases.",
       "id": "CustomClass",
       "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Allows users to store small amounts of arbitrary data. Both the key and the value must be 63 characters or less each. At most 100 annotations. This field is not used.",
+          "readOnly": true,
+          "type": "object"
+        },
         "customClassId": {
           "description": "If this custom class is a resource, the custom_class_id is the resource id of the CustomClass. Case sensitive.",
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. The time at which this resource was requested for deletion. This field is not used.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. User-settable, human-readable name for the CustomClass. Must be 63 characters or less. This field is not used.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. This checksum is computed by the server based on the value of other fields. This may be sent on update, undelete, and delete requests to ensure the client has an up-to-date value before proceeding. This field is not used.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. The time at which this resource will be purged. This field is not used.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "items": {
@@ -608,6 +638,31 @@
         },
         "name": {
           "description": "The resource name of the custom class.",
+          "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Whether or not this CustomClass is in the process of being updated. This field is not used.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The CustomClass lifecycle state. This field is not used.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state. This is only used/useful for distinguishing unset values.",
+            "The normal and active state.",
+            "This CustomClass has been deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System-assigned unique identifier for the CustomClass. This field is not used.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -810,10 +865,40 @@
       "description": "Provides \"hints\" to the speech recognizer to favor specific words and phrases in the results.",
       "id": "PhraseSet",
       "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Allows users to store small amounts of arbitrary data. Both the key and the value must be 63 characters or less each. At most 100 annotations. This field is not used.",
+          "readOnly": true,
+          "type": "object"
+        },
         "boost": {
           "description": "Hint Boost. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost values would correspond to anti-biasing. Anti-biasing is not enabled, so negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 (exclusive) and 20. We recommend using a binary search approach to finding the optimal value for your use case as well as adding phrases both with and without boost to your requests.",
           "format": "float",
           "type": "number"
+        },
+        "deleteTime": {
+          "description": "Output only. The time at which this resource was requested for deletion. This field is not used.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. User-settable, human-readable name for the PhraseSet. Must be 63 characters or less. This field is not used.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. This checksum is computed by the server based on the value of other fields. This may be sent on update, undelete, and delete requests to ensure the client has an up-to-date value before proceeding. This field is not used.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. The time at which this resource will be purged. This field is not used.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "kmsKeyName": {
           "description": "Output only. The [KMS key name](https://cloud.google.com/kms/docs/resource-hierarchy#keys) with which the content of the PhraseSet is encrypted. The expected format is `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.",
@@ -835,6 +920,31 @@
             "$ref": "Phrase"
           },
           "type": "array"
+        },
+        "reconciling": {
+          "description": "Output only. Whether or not this PhraseSet is in the process of being updated. This field is not used.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "state": {
+          "description": "Output only. The CustomClass lifecycle state. This field is not used.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state. This is only used/useful for distinguishing unset values.",
+            "The normal and active state.",
+            "This CustomClass has been deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System-assigned unique identifier for the PhraseSet. This field is not used.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

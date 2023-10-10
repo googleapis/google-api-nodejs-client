@@ -2112,7 +2112,7 @@ export namespace migrationcenter_v1 {
      */
     displayName?: string | null;
     /**
-     * Count of the number of assets in this group which are also included in another group within the same report.
+     * This field is deprecated, do not rely on it having a value.
      */
     overlappingAssetCount?: string | null;
     /**

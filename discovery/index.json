@@ -289,6 +289,51 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "alloydb:v1alpha",
+      "name": "alloydb",
+      "version": "v1alpha",
+      "title": "AlloyDB API",
+      "description": "AlloyDB for PostgreSQL is an open source-compatible database service that provides a powerful option for migrating, modernizing, or building commercial-grade applications. It offers full compatibility with standard PostgreSQL, and is more than 4x faster for transactional workloads and up to 100x faster for analytical queries than standard PostgreSQL in our performance tests. AlloyDB for PostgreSQL offers a 99.99 percent availability SLA inclusive of maintenance. AlloyDB is optimized for the most demanding use cases, allowing you to build new applications that require high transaction throughput, large database sizes, or multiple read resources; scale existing PostgreSQL workloads with no application changes; and modernize legacy proprietary databases.",
+      "discoveryRestUrl": "https://alloydb.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/alloydb/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "alloydb:v1beta",
+      "name": "alloydb",
+      "version": "v1beta",
+      "title": "AlloyDB API",
+      "description": "AlloyDB for PostgreSQL is an open source-compatible database service that provides a powerful option for migrating, modernizing, or building commercial-grade applications. It offers full compatibility with standard PostgreSQL, and is more than 4x faster for transactional workloads and up to 100x faster for analytical queries than standard PostgreSQL in our performance tests. AlloyDB for PostgreSQL offers a 99.99 percent availability SLA inclusive of maintenance. AlloyDB is optimized for the most demanding use cases, allowing you to build new applications that require high transaction throughput, large database sizes, or multiple read resources; scale existing PostgreSQL workloads with no application changes; and modernize legacy proprietary databases.",
+      "discoveryRestUrl": "https://alloydb.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/alloydb/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "alloydb:v1",
+      "name": "alloydb",
+      "version": "v1",
+      "title": "AlloyDB API",
+      "description": "AlloyDB for PostgreSQL is an open source-compatible database service that provides a powerful option for migrating, modernizing, or building commercial-grade applications. It offers full compatibility with standard PostgreSQL, and is more than 4x faster for transactional workloads and up to 100x faster for analytical queries than standard PostgreSQL in our performance tests. AlloyDB for PostgreSQL offers a 99.99 percent availability SLA inclusive of maintenance. AlloyDB is optimized for the most demanding use cases, allowing you to build new applications that require high transaction throughput, large database sizes, or multiple read resources; scale existing PostgreSQL workloads with no application changes; and modernize legacy proprietary databases.",
+      "discoveryRestUrl": "https://alloydb.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/alloydb/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "analytics:v3",
       "name": "analytics",
       "version": "v3",
@@ -674,6 +719,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/authorized-buyers/apis/marketplace/reference/rest/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "backupdr:v1",
+      "name": "backupdr",
+      "version": "v1",
+      "title": "Backup and DR Service API",
+      "description": "",
+      "discoveryRestUrl": "https://backupdr.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/",
       "preferred": true
     },
     {
@@ -1194,6 +1254,21 @@
       "title": "Cloud Build API",
       "description": "Creates and manages builds on Google Cloud Platform.",
       "discoveryRestUrl": "https://cloudbuild.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/cloud-build/docs/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "cloudbuild:v2",
+      "name": "cloudbuild",
+      "version": "v2",
+      "title": "Cloud Build API",
+      "description": "Creates and manages builds on Google Cloud Platform.",
+      "discoveryRestUrl": "https://cloudbuild.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -1930,7 +2005,7 @@
       "name": "dataform",
       "version": "v1beta1",
       "title": "Dataform API",
-      "description": "",
+      "description": "Service to develop, version control, and operationalize SQL pipelines in BigQuery.",
       "discoveryRestUrl": "https://dataform.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4213,7 +4288,7 @@
       "name": "orgpolicy",
       "version": "v2",
       "title": "Organization Policy API",
-      "description": "The Org Policy API allows users to configure governance rules on their GCP resources across the Cloud Resource Hierarchy.",
+      "description": "The Organization Policy API allows users to configure governance rules on their Google Cloud resources across the resource hierarchy.",
       "discoveryRestUrl": "https://orgpolicy.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4415,6 +4490,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/play/developer/reporting",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "playgrouping:v1alpha1",
+      "name": "playgrouping",
+      "version": "v1alpha1",
+      "title": "Google Play Grouping API",
+      "description": "playgrouping.googleapis.com API.",
+      "discoveryRestUrl": "https://playgrouping.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/playgrouping/",
       "preferred": true
     },
     {
@@ -4700,6 +4790,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/pubsub/lite/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "rapidmigrationassessment:v1",
+      "name": "rapidmigrationassessment",
+      "version": "v1",
+      "title": "Rapid Migration Assessment API",
+      "description": "The Rapid Migration Assessment service is our first-party migration assessment and planning tool.",
+      "discoveryRestUrl": "https://rapidmigrationassessment.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/migration-center",
       "preferred": true
     },
     {
@@ -6165,6 +6270,21 @@
       "title": "Cloud Workstations API",
       "description": "Allows administrators to create managed developer environments in the cloud.",
       "discoveryRestUrl": "https://workstations.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/workstations",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "workstations:v1",
+      "name": "workstations",
+      "version": "v1",
+      "title": "Cloud Workstations API",
+      "description": "Allows administrators to create managed developer environments in the cloud.",
+      "discoveryRestUrl": "https://workstations.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

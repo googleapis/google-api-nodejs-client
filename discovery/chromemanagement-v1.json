@@ -493,6 +493,159 @@
                 "https://www.googleapis.com/auth/chrome.management.reports.readonly"
               ]
             },
+            "countPrintJobsByPrinter": {
+              "description": "Get a summary of printing done by each printer.",
+              "flatPath": "v1/customers/{customersId}/reports:countPrintJobsByPrinter",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countPrintJobsByPrinter",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Customer ID prefixed with \"customers/\" or \"customers/my_customer\" to use the customer associated to the account making the request.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only >= and <= comparators are supported in this filter. Supported filter fields: * complete_time",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field used to order results. If omitted, results will be ordered in ascending order of the 'printer' field. Supported order_by fields: * printer * job_count * device_count * user_count",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Maximum number of results to return. Maximum and default are 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Token to specify the page of the response to be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "printerOrgUnitId": {
+                  "description": "The ID of the organizational unit for printers. If specified, only data for printers from the specified organizational unit will be returned. If omitted, data for printers from all organizational units will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countPrintJobsByPrinter",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountPrintJobsByPrinterResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
+            "countPrintJobsByUser": {
+              "description": "Get a summary of printing done by each user.",
+              "flatPath": "v1/customers/{customersId}/reports:countPrintJobsByUser",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.countPrintJobsByUser",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Customer ID prefixed with \"customers/\" or \"customers/my_customer\" to use the customer associated to the account making the request.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only >= and <= comparators are supported in this filter. Supported filter fields: * complete_time",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field used to order results. If omitted, results will be ordered in ascending order of the 'user_email' field. Supported order_by fields: * user_email * job_count * printer_count * device_count",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Maximum number of results to return. Maximum and default are 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Token to specify the page of the response to be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "printerOrgUnitId": {
+                  "description": "The ID of the organizational unit for printers. If specified, only print jobs initiated with printers from the specified organizational unit will be counted. If omitted, all print jobs will be counted.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:countPrintJobsByUser",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountPrintJobsByUserResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
+            "enumeratePrintJobs": {
+              "description": "Get a list of print jobs.",
+              "flatPath": "v1/customers/{customersId}/reports:enumeratePrintJobs",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.reports.enumeratePrintJobs",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Customer ID prefixed with \"customers/\" or \"customers/my_customer\" to use the customer associated to the account making the request.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only >= and <= comparators are supported for `complete_time`. Note: Only = comparator supported for `user_id` and `printer_id`. Supported filter fields: * complete_time * printer_id * user_id",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field used to order results. If not specified, results will be ordered in descending order of the `complete_time` field. Supported order by fields: * title * state * create_time * complete_time * document_page_count * color_mode * duplex_mode * printer * user_email",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The number of print jobs in the page from 0 to 100 inclusive, if page_size is not specified or zero, the size will be 50.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from a previous `EnumeratePrintJobs` call. Provide this to retrieve the subsequent page. If omitted, the first page of results will be returned. When paginating, all other parameters provided to `EnumeratePrintJobs` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "printerOrgUnitId": {
+                  "description": "The ID of the organizational unit for printers. If specified, only print jobs submitted to printers from the specified organizational unit will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/reports:enumeratePrintJobs",
+              "response": {
+                "$ref": "GoogleChromeManagementV1EnumeratePrintJobsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.reports.readonly"
+              ]
+            },
             "findInstalledAppDevices": {
               "description": "Generate report of managed Chrome browser devices that have a specified app installed.",
               "flatPath": "v1/customers/{customersId}/reports:findInstalledAppDevices",
@@ -707,6 +860,99 @@
                 }
               }
             },
+            "notificationConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Create a telemetry notification config.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/notificationConfigs",
+                  "httpMethod": "POST",
+                  "id": "chromemanagement.customers.telemetry.notificationConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this notification config will be created. Format: `customers/{customer}`",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/telemetry/notificationConfigs",
+                  "request": {
+                    "$ref": "GoogleChromeManagementV1TelemetryNotificationConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1TelemetryNotificationConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a telemetry notification config.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/notificationConfigs/{notificationConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "chromemanagement.customers.telemetry.notificationConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the notification config to delete. Format: `customers/{customer}/telemetry/notificationConfigs/{notification_config}`",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/telemetry/notificationConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "List all telemetry notification configs.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/notificationConfigs",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.telemetry.notificationConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of notification configs to return. The service may return fewer than this value. If unspecified, at most 100 notification configs will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListTelemetryNotificationConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTelemetryNotificationConfigs` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent which owns the notification configs.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/telemetry/notificationConfigs",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1ListTelemetryNotificationConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                }
+              }
+            },
             "users": {
               "methods": {
                 "get": {
@@ -794,7 +1040,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230920",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1581,6 +1827,52 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1CountPrintJobsByPrinterResponse": {
+      "description": "Response containing a summary printing report for each printer from the specified organizational unit for the requested time interval.",
+      "id": "GoogleChromeManagementV1CountPrintJobsByPrinterResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Pagination token for requesting the next page.",
+          "type": "string"
+        },
+        "printerReports": {
+          "description": "List of PrinterReports matching request.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1PrinterReport"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Total number of printers matching request.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountPrintJobsByUserResponse": {
+      "description": "Response containing a summary printing report for each user that has initiated a print job with a printer from the specified organizational unit during the requested time interval.",
+      "id": "GoogleChromeManagementV1CountPrintJobsByUserResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Pagination token for requesting the next page.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "Total number of users matching request.",
+          "format": "int64",
+          "type": "string"
+        },
+        "userPrintReports": {
+          "description": "List of UserPrintReports matching request.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1UserPrintReport"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1CpuInfo": {
       "description": "CPU specifications for the device * This field provides device information, which is static and will not change over time. * Data for this field is controlled via policy: [ReportDeviceCpuInfo](https://chromeenterprise.google/policies/#ReportDeviceCpuInfo) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_CPU_INFO",
       "id": "GoogleChromeManagementV1CpuInfo",
@@ -1684,6 +1976,36 @@
         },
         "machine": {
           "description": "Output only. The name of the machine within its local network.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1DeviceActivityReport": {
+      "description": "Device activity report. * Granular permission needed: TELEMETRY_API_DEVICE_ACTIVITY_REPORT",
+      "id": "GoogleChromeManagementV1DeviceActivityReport",
+      "properties": {
+        "deviceActivityState": {
+          "description": "Output only. Device activity state.",
+          "enum": [
+            "DEVICE_ACTIVITY_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "IDLE",
+            "LOCKED"
+          ],
+          "enumDescriptions": [
+            "Device activity state is unspecified.",
+            "Device is currently being used.",
+            "Device is currently idle.",
+            "Device is currently locked."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "reportTime": {
+          "description": "Output only. Timestamp of when the report was collected.",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         }
@@ -1930,6 +2252,29 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1EnumeratePrintJobsResponse": {
+      "description": "Response containing a list of print jobs.",
+      "id": "GoogleChromeManagementV1EnumeratePrintJobsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be used in a subsequent request to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "printJobs": {
+          "description": "List of requested print jobs.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1PrintJob"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Total number of print jobs matching request.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2251,6 +2596,24 @@
           "description": "Telemetry events returned in the response.",
           "items": {
             "$ref": "GoogleChromeManagementV1TelemetryEvent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1ListTelemetryNotificationConfigsResponse": {
+      "description": "Response message for listing notification configs for a customer.",
+      "id": "GoogleChromeManagementV1ListTelemetryNotificationConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "telemetryNotificationConfigs": {
+          "description": "The telemetry notification configs from the specified customer.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TelemetryNotificationConfig"
           },
           "type": "array"
         }
@@ -2600,6 +2963,137 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1PrintJob": {
+      "description": "Represents a request to print a document that has been submitted to a printer.",
+      "id": "GoogleChromeManagementV1PrintJob",
+      "properties": {
+        "colorMode": {
+          "description": "Color mode.",
+          "enum": [
+            "COLOR_MODE_UNSPECIFIED",
+            "BLACK_AND_WHITE",
+            "COLOR"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Black and white.",
+            "Color."
+          ],
+          "type": "string"
+        },
+        "completeTime": {
+          "description": "Print job completion timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "copyCount": {
+          "description": "Number of copies.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "createTime": {
+          "description": "Print job creation timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "documentPageCount": {
+          "description": "Number of pages in the document.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "duplexMode": {
+          "description": "Duplex mode.",
+          "enum": [
+            "DUPLEX_MODE_UNSPECIFIED",
+            "ONE_SIDED",
+            "TWO_SIDED_LONG_EDGE",
+            "TWO_SIDED_SHORT_EDGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "One-sided.",
+            "Two-sided flipping over long edge.",
+            "Two-sided flipping over short edge."
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "Unique ID of the print job.",
+          "type": "string"
+        },
+        "printer": {
+          "description": "Name of the printer used for printing.",
+          "type": "string"
+        },
+        "printerId": {
+          "description": "API ID of the printer used for printing.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The final state of the job.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PRINTED",
+            "CANCELLED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Print job is in an unspecified state.",
+            "The document was successfully printed.",
+            "Print job was cancelled.",
+            "Print job failed."
+          ],
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the document.",
+          "type": "string"
+        },
+        "userEmail": {
+          "description": "The primary e-mail address of the user who submitted the print job.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "The unique Directory API ID of the user who submitted the print job.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1PrinterReport": {
+      "description": "Report for CountPrintJobsByPrinter, contains statistics on printer usage. Contains the total number of print jobs initiated with this printer, the number of users and the number of devices that have initiated at least one print job with this printer.",
+      "id": "GoogleChromeManagementV1PrinterReport",
+      "properties": {
+        "deviceCount": {
+          "description": "Number of chrome devices that have been used to send print jobs to the specified printer.",
+          "format": "int64",
+          "type": "string"
+        },
+        "jobCount": {
+          "description": "Number of print jobs sent to the printer.",
+          "format": "int64",
+          "type": "string"
+        },
+        "printer": {
+          "description": "Printer name.",
+          "type": "string"
+        },
+        "printerId": {
+          "description": "Printer API ID.",
+          "type": "string"
+        },
+        "printerModel": {
+          "description": "Printer model.",
+          "type": "string"
+        },
+        "userCount": {
+          "description": "Number of users that have sent print jobs to the printer.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1StorageInfo": {
       "description": "Status data for storage. * This field is telemetry information and this will change over time as the device is utilized. * Data for this field is controlled via policy: [ReportDeviceStorageStatus](https://chromeenterprise.google/policies/#ReportDeviceStorageStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_STORAGE_INFO",
       "id": "GoogleChromeManagementV1StorageInfo",
@@ -2888,16 +3382,24 @@
           "enum": [
             "EVENT_TYPE_UNSPECIFIED",
             "AUDIO_SEVERE_UNDERRUN",
+            "NETWORK_STATE_CHANGE",
             "USB_ADDED",
             "USB_REMOVED",
-            "NETWORK_HTTPS_LATENCY_CHANGE"
+            "NETWORK_HTTPS_LATENCY_CHANGE",
+            "WIFI_SIGNAL_STRENGTH_LOW",
+            "WIFI_SIGNAL_STRENGTH_RECOVERED",
+            "VPN_CONNECTION_STATE_CHANGE"
           ],
           "enumDescriptions": [
             "Event type unknown.",
             "Triggered when a audio devices run out of buffer data for more than 5 seconds.",
+            "Triggered immediately on any changes to a network connection.",
             "Triggered when USB devices are added.",
             "Triggered when USB devices are removed.",
-            "Triggered when a new HTTPS latency problem was detected or the device has recovered form an existing HTTPS latency problem."
+            "Triggered when a new HTTPS latency problem was detected or the device has recovered form an existing HTTPS latency problem.",
+            "Triggered when connected WiFi network signal strength drops below -70dBm.",
+            "Triggered when connected WiFi network signal strength is recovered from a signal drop.",
+            "Triggered on changes to VPN connections."
           ],
           "type": "string"
         },
@@ -2910,6 +3412,11 @@
           "description": "Output only. Resource name of the event.",
           "readOnly": true,
           "type": "string"
+        },
+        "networkStateChangeEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent",
+          "description": "Output only. Payload for network connection state change event. Present only when `event_type` is `NETWORK_STATE_CHANGE`.",
+          "readOnly": true
         },
         "reportTime": {
           "description": "Timestamp that represents when the event was reported.",
@@ -2925,6 +3432,52 @@
           "$ref": "GoogleChromeManagementV1TelemetryUserInfo",
           "description": "Output only. Information about the user associated with the event.",
           "readOnly": true
+        },
+        "vpnConnectionStateChangeEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent",
+          "description": "Output only. Payload for VPN connection state change event. Present only when `event_type` is `VPN_CONNECTION_STATE_CHANGE`.",
+          "readOnly": true
+        },
+        "wifiSignalStrengthEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryNetworkSignalStrengthEvent",
+          "description": "Output only. Payload for WiFi signal strength events. Present only when `event_type` is `WIFI_SIGNAL_STRENGTH_LOW` or `WIFI_SIGNAL_STRENGTH_RECOVERED`.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryEventNotificationFilter": {
+      "description": "Configures how the telemetry events should be filtered.",
+      "id": "GoogleChromeManagementV1TelemetryEventNotificationFilter",
+      "properties": {
+        "eventTypes": {
+          "description": "Only sends the notifications for events of these types. Must not be empty.",
+          "items": {
+            "enum": [
+              "EVENT_TYPE_UNSPECIFIED",
+              "AUDIO_SEVERE_UNDERRUN",
+              "NETWORK_STATE_CHANGE",
+              "USB_ADDED",
+              "USB_REMOVED",
+              "NETWORK_HTTPS_LATENCY_CHANGE",
+              "WIFI_SIGNAL_STRENGTH_LOW",
+              "WIFI_SIGNAL_STRENGTH_RECOVERED",
+              "VPN_CONNECTION_STATE_CHANGE"
+            ],
+            "enumDescriptions": [
+              "Event type unknown.",
+              "Triggered when a audio devices run out of buffer data for more than 5 seconds.",
+              "Triggered immediately on any changes to a network connection.",
+              "Triggered when USB devices are added.",
+              "Triggered when USB devices are removed.",
+              "Triggered when a new HTTPS latency problem was detected or the device has recovered form an existing HTTPS latency problem.",
+              "Triggered when connected WiFi network signal strength drops below -70dBm.",
+              "Triggered when connected WiFi network signal strength is recovered from a signal drop.",
+              "Triggered on changes to VPN connections."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2949,6 +3502,105 @@
             "HTTPS latency recovered from a problem.",
             "HTTPS latency problem."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent": {
+      "description": "`TelemetryNetworkConnectionStateChangeEvent` is triggered on network connection state changes. * Granular permission needed: TELEMETRY_API_NETWORK_REPORT",
+      "id": "GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent",
+      "properties": {
+        "connectionState": {
+          "description": "Current connection state of the network.",
+          "enum": [
+            "NETWORK_CONNECTION_STATE_UNSPECIFIED",
+            "ONLINE",
+            "CONNECTED",
+            "PORTAL",
+            "CONNECTING",
+            "NOT_CONNECTED"
+          ],
+          "enumDescriptions": [
+            "Network connection state unspecified.",
+            "The network is connected and internet connectivity is available.",
+            "The network is connected and not in a detected portal state, but internet connectivity may not be available.",
+            "The network is connected but a portal state was detected. Internet connectivity may be limited.",
+            "The network is in the process of connecting.",
+            "The network is not connected."
+          ],
+          "type": "string"
+        },
+        "guid": {
+          "description": "Unique identifier of the network.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryNetworkSignalStrengthEvent": {
+      "description": "`TelemetryNetworkSignalStrengthEvent` is triggered on WiFi signal strength events. * Granular permission needed: TELEMETRY_API_NETWORK_REPORT",
+      "id": "GoogleChromeManagementV1TelemetryNetworkSignalStrengthEvent",
+      "properties": {
+        "guid": {
+          "description": "Unique identifier of the network.",
+          "type": "string"
+        },
+        "signalStrengthDbm": {
+          "description": "Signal strength RSSI value.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryNotificationConfig": {
+      "description": "Configuration to receive notifications of telemetry data.",
+      "id": "GoogleChromeManagementV1TelemetryNotificationConfig",
+      "properties": {
+        "customer": {
+          "description": "Output only. Google Workspace customer that owns the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "filter": {
+          "$ref": "GoogleChromeManagementV1TelemetryNotificationFilter",
+          "description": "Only send notifications for telemetry data matching this filter."
+        },
+        "googleCloudPubsubTopic": {
+          "description": "The pubsub topic to which notifications are published to.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name of the notification configuration.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryNotificationFilter": {
+      "description": "Configures how the telemetry data should be filtered.",
+      "id": "GoogleChromeManagementV1TelemetryNotificationFilter",
+      "properties": {
+        "deviceId": {
+          "description": "If set, only sends notifications for telemetry data coming from this device.",
+          "type": "string"
+        },
+        "deviceOrgUnitId": {
+          "description": "If set, only sends notifications for telemetry data coming from devices in this org unit.",
+          "type": "string"
+        },
+        "telemetryEventNotificationFilter": {
+          "$ref": "GoogleChromeManagementV1TelemetryEventNotificationFilter",
+          "description": "Only sends notifications for the telemetry events matching this filter."
+        },
+        "userEmail": {
+          "description": "If set, only sends notifications for telemetry data coming from devices owned by this user.",
+          "type": "string"
+        },
+        "userOrgUnitId": {
+          "description": "If set, only sends notifications for telemetry data coming from devices owned by users in this org unit.",
           "type": "string"
         }
       },
@@ -3010,6 +3662,14 @@
           "description": "Output only. Audio reports collected periodically sorted in a decreasing order of report_time.",
           "items": {
             "$ref": "GoogleChromeManagementV1AudioStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "deviceActivityReport": {
+          "description": "Output only. Device activity reports collected periodically sorted in a decreasing order of report_time.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1DeviceActivityReport"
           },
           "readOnly": true,
           "type": "array"
@@ -3221,6 +3881,42 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1UserPrintReport": {
+      "description": "Report for CountPrintJobsByUser, contains printing statistics for a user. Contains the number of printers, the number of devices used to initiate print jobs, and the number of print jobs initiated.",
+      "id": "GoogleChromeManagementV1UserPrintReport",
+      "properties": {
+        "deviceCount": {
+          "description": "Number of chrome devices that have been used to initiate print jobs by the user.",
+          "format": "int64",
+          "type": "string"
+        },
+        "jobCount": {
+          "description": "Number of print jobs initiated by the user.",
+          "format": "int64",
+          "type": "string"
+        },
+        "printerCount": {
+          "description": "Number of printers used by the user.",
+          "format": "int64",
+          "type": "string"
+        },
+        "userEmail": {
+          "description": "The primary e-mail address of the user.",
+          "type": "string"
+        },
+        "userId": {
+          "description": "The unique Directory API ID of the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleProtobufEmpty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "GoogleProtobufEmpty",
+      "properties": {},
       "type": "object"
     },
     "GoogleRpcStatus": {

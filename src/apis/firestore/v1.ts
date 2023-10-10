@@ -370,9 +370,6 @@ export namespace firestore_v1 {
      * Output only. The time at which the document was created. This value increases monotonically when a document is deleted then recreated. It can also be compared to values from other documents and the `read_time` of a query.
      */
     createTime?: string | null;
-    /**
-     * The document's fields. The map keys represent field names. A simple field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`, or `_`, and must not start with `0` to `9`. For example, `foo_bar_17`. Field names matching the regular expression `__.*__` are reserved. Reserved field names are forbidden except in certain documented contexts. The map keys, represented as UTF-8, must not exceed 1,500 bytes and cannot be empty. Field paths may be used in other contexts to refer to structured fields defined here. For `map_value`, the field path is represented by the simple or quoted field names of the containing fields, delimited by `.`. For example, the structured field `"foo" : { map_value: { "x&y" : { string_value: "hello" \}\}\}` would be represented by the field path `foo.x&y`. Within a field path, a quoted field name starts and ends with `` ` `` and may contain any character. Some characters, including `` ` ``, must be escaped using a `\`. For example, `` `x&y` `` represents `x&y` and `` `bak\`tik` `` represents `` bak`tik ``.
-     */
     fields?: {[key: string]: Schema$Value} | null;
     /**
      * The resource name of the document, for example `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
@@ -508,7 +505,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$FieldReference {
     /**
-     * The relative path of the document being referenced. Requires: * Conform to document field name limitations.
+     * A reference to a field in a document. Requires: * MUST be a dot-delimited (`.`) string of segments, where each segment conforms to document field name limitations.
      */
     fieldPath?: string | null;
   }
@@ -563,7 +560,7 @@ export namespace firestore_v1 {
     unaryFilter?: Schema$UnaryFilter;
   }
   /**
-   * A Backup of a Cloud Firestore Database. The backup contains all documents and index configurations for the given database at specific point in time.
+   * A Backup of a Cloud Firestore Database. The backup contains all documents and index configurations for the given database at a specific point in time.
    */
   export interface Schema$GoogleFirestoreAdminV1Backup {
     /**
@@ -625,11 +622,15 @@ export namespace firestore_v1 {
     weeklyRecurrence?: Schema$GoogleFirestoreAdminV1WeeklyRecurrence;
   }
   /**
+   * Metadata related to the create database operation.
+   */
+  export interface Schema$GoogleFirestoreAdminV1CreateDatabaseMetadata {}
+  /**
    * Represent a recurring schedule that runs at a specific time every day. The time zone is UTC.
    */
   export interface Schema$GoogleFirestoreAdminV1DailyRecurrence {}
   /**
-   * A Cloud Firestore Database. Currently only one database is allowed per cloud project; this database must have a `database_id` of '(default)'.
+   * A Cloud Firestore Database.
    */
   export interface Schema$GoogleFirestoreAdminV1Database {
     /**
@@ -661,7 +662,7 @@ export namespace firestore_v1 {
      */
     keyPrefix?: string | null;
     /**
-     * The location of the database. Available databases are listed at https://cloud.google.com/firestore/docs/locations.
+     * The location of the database. Available locations are listed at https://cloud.google.com/firestore/docs/locations.
      */
     locationId?: string | null;
     /**
@@ -689,6 +690,10 @@ export namespace firestore_v1 {
      */
     versionRetentionPeriod?: string | null;
   }
+  /**
+   * Metadata related to the delete database operation.
+   */
+  export interface Schema$GoogleFirestoreAdminV1DeleteDatabaseMetadata {}
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.ExportDocuments.
    */
@@ -1626,7 +1631,7 @@ export namespace firestore_v1 {
      */
     resumeToken?: string | null;
     /**
-     * The target ID that identifies the target on the stream. Must be a positive number and non-zero.
+     * The target ID that identifies the target on the stream. Must be a positive number and non-zero. If `target_id` is 0 (or unspecified), the server will assign an ID for this target and return that in a `TargetChange::ADD` event. Once a target with `target_id=0` is added, all subsequent targets must also have `target_id=0`. If an `AddTarget` request with `target_id != 0` is sent to the server after a target with `target_id=0` is added, the server will immediately send a response with a `TargetChange::Remove` event. Note that if the client sends multiple `AddTarget` requests without an ID, the order of IDs returned in `TargetChage.target_ids` are undefined. Therefore, clients should provide a target ID instead of relying on the server to assign one. If `target_id` is non-zero, there must not be an existing active target on this stream with the same ID.
      */
     targetId?: number | null;
   }
@@ -2500,7 +2505,7 @@ export namespace firestore_v1 {
     }
 
     /**
-     * Create a new database by restore from an existing backup. The new database must be in the same cloud region or multi-region location as the existing backup. This behaves similar to FirestoreAdmin.CreateDatabase except instead of creating a new empty database, a new database is created with the database type, index configuration, and documents from an existing backup. The long-running operation can be used to track the progress of the restore, with the Operation's metadata field type being the RestoreDatabaseMetadata. The response type is the Database if the restore was successful. The new database is not readable or writeable until the LRO has completed. Cancelling the returned operation will stop the restore and delete the in-progress database, if the restore is still active.
+     * Creates a new database by restoring from an existing backup. The new database must be in the same cloud region or multi-region location as the existing backup. This behaves similar to FirestoreAdmin.CreateDatabase except instead of creating a new empty database, a new database is created with the database type, index configuration, and documents from an existing backup. The long-running operation can be used to track the progress of the restore, with the Operation's metadata field type being the RestoreDatabaseMetadata. The response type is the Database if the restore was successful. The new database is not readable or writeable until the LRO has completed.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

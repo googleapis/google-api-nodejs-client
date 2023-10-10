@@ -8,6 +8,7 @@
     "integrations:v1alpha",
     "baremetalsolution:v2",
     "policysimulator:v1alpha",
-    "policysimulator:v1beta"
+    "policysimulator:v1beta",
+    "datalineage:v1"
   ]
 }

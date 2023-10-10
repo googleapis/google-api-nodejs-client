@@ -2559,6 +2559,55 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
+        "setomnichannelexperience": {
+          "description": "Sets the omnichannel experience for the specified country.",
+          "flatPath": "{merchantId}/liasettings/{accountId}/setomnichannelexperience",
+          "httpMethod": "POST",
+          "id": "content.liasettings.setomnichannelexperience",
+          "parameterOrder": [
+            "merchantId",
+            "accountId"
+          ],
+          "parameters": {
+            "accountId": {
+              "description": "The ID of the account for which to retrieve accessible Business Profiles.",
+              "format": "uint64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "country": {
+              "description": "The CLDR country code (for example, \"US\") for which the omnichannel experience is selected.",
+              "location": "query",
+              "type": "string"
+            },
+            "lsfType": {
+              "description": "The Local Store Front (LSF) type for this country. Acceptable values are: - \"`ghlsf`\" (Google-Hosted Local Store Front) - \"`mhlsfBasic`\" (Merchant-Hosted Local Store Front Basic) - \"`mhlsfFull`\" (Merchant-Hosted Local Store Front Full) More details about these types can be found here.",
+              "location": "query",
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.",
+              "format": "uint64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "pickupTypes": {
+              "description": "The Pickup types for this country. Acceptable values are: - \"`pickupToday`\" - \"`pickupLater`\" ",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/liasettings/{accountId}/setomnichannelexperience",
+          "response": {
+            "$ref": "LiaOmnichannelExperience"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
         "setposdataprovider": {
           "description": "Sets the POS data provider for the specified country.",
           "flatPath": "{merchantId}/liasettings/{accountId}/setposdataprovider",
@@ -2698,6 +2747,93 @@
           },
           "response": {
             "$ref": "LocalInventory"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
+    "merchantsupport": {
+      "methods": {
+        "renderaccountissues": {
+          "description": "Provide a list of merchant's issues with a support content and available actions. This content and actions are meant to be rendered and shown in third-party applications.",
+          "flatPath": "{merchantId}/merchantsupport/renderaccountissues",
+          "httpMethod": "POST",
+          "id": "content.merchantsupport.renderaccountissues",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "languageCode": {
+              "description": "Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize support content. If not set, the result will be in default language ('en-US').",
+              "location": "query",
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the account to fetch issues for.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "timeZone": {
+              "description": "Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in support content. For example 'America/Los_Angeles'. If not set, results will use as a default UTC.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/merchantsupport/renderaccountissues",
+          "request": {
+            "$ref": "RenderAccountIssuesRequestPayload"
+          },
+          "response": {
+            "$ref": "RenderAccountIssuesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "renderproductissues": {
+          "description": "Provide a list of issues for merchant's product with a support content and available actions. This content and actions are meant to be rendered and shown in third-party applications.",
+          "flatPath": "{merchantId}/merchantsupport/renderproductissues/{productId}",
+          "httpMethod": "POST",
+          "id": "content.merchantsupport.renderproductissues",
+          "parameterOrder": [
+            "merchantId",
+            "productId"
+          ],
+          "parameters": {
+            "languageCode": {
+              "description": "Optional. The [IETF BCP-47](https://tools.ietf.org/html/bcp47) language code used to localize support content. If not set, the result will be in default language ('en-US').",
+              "location": "query",
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the account that contains the product.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "productId": {
+              "description": "Required. The [REST_ID](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.id) of the product to fetch issues for.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "timeZone": {
+              "description": "Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in support content. For example 'America/Los_Angeles'. If not set, results will use as a default UTC.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/merchantsupport/renderproductissues/{productId}",
+          "request": {
+            "$ref": "RenderProductIssuesRequestPayload"
+          },
+          "response": {
+            "$ref": "RenderProductIssuesResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
@@ -6352,7 +6488,7 @@
       }
     }
   },
-  "revision": "20230811",
+  "revision": "20230918",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6657,6 +6793,66 @@
         "allowAutomaticImageImprovements": {
           "description": "Enables automatic image improvements.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AccountIssue": {
+      "description": "An issue affecting specific merchant.",
+      "id": "AccountIssue",
+      "properties": {
+        "actions": {
+          "description": "A list of actionable steps that can be executed to solve the issue. An example is requesting a re-review or providing arguments when merchant disagrees with the issue. Actions that are supported in (your) third-party application can be rendered as buttons and should be available to merchant when they expand the issue.",
+          "items": {
+            "$ref": "Action"
+          },
+          "type": "array"
+        },
+        "impact": {
+          "$ref": "AccountIssueImpact",
+          "description": "Clarifies the severity of the issue. The summarizing message, if present, should be shown right under the title for each issue. It helps merchants to quickly understand the impact of the issue. The detailed breakdown helps the merchant to fully understand the impact of the issue. It can be rendered as dialog that opens when the merchant mouse over the summarized impact statement. Issues with different severity can be styled differently. They may use a different color or icon to signal the difference between `ERROR`, `WARNING` and `INFO`."
+        },
+        "prerenderedContent": {
+          "description": "Details of the issue as a pre-rendered HTML. HTML elements contain CSS classes that can be used to customize the style of the content. Always sanitize the HTML before embedding it directly to your application. The sanitizer needs to allow basic HTML tags, such as: `div`, `span`, `p`, `a`, `ul`, `li`, `table`, `tr`, `td`. For example, you can use [DOMPurify](https://www.npmjs.com/package/dompurify). CSS classes: * `issue-detail` - top level container for the detail of the issue * `callout-banners` - section of the `issue-detail` with callout banners * `callout-banner` - single callout banner, inside `callout-banners` * `callout-banner-info` - callout with important information (default) * `callout-banner-warning` - callout with a warning * `callout-banner-error` - callout informing about an error (most severe) * `issue-content` - section of the `issue-detail`, contains multiple `content-element` * `content-element` - content element such as a list, link or paragraph, inside `issue-content` * `root-causes` - unordered list with items describing root causes of the issue, inside `issue-content` * `root-causes-intro` - intro text before the `root-causes` list, inside `issue-content` * `segment` - section of the text, `span` inside paragraph * `segment-attribute` - section of the text that represents a product attribute, for example 'image\\_link' * `segment-literal` - section of the text that contains a special value, for example '0-1000 kg' * `segment-bold` - section of the text that should be rendered as bold * `segment-italic` - section of the text that should be rendered as italic * `tooltip` - used on paragraphs that should be rendered with a tooltip. A section of the text in such a paragraph will have a class `tooltip-text` and is intended to be shown in a mouse over dialog. If the style is not used, the `tooltip-text` section would be shown on a new line, after the main part of the text. * `tooltip-text` - marks a section of the text within a `tooltip`, that is intended to be shown in a mouse over dialog. * `tooltip-icon` - marks a section of the text within a `tooltip`, that can be replaced with a tooltip icon, for example '?' or 'i'. By default, this section contains a `br` tag, that is separating the main text and the tooltip text when the style is not used. * `tooltip-style-question` - the tooltip shows helpful information, can use the '?' as an icon. * `tooltip-style-info` - the tooltip adds additional information fitting to the context, can use the 'i' as an icon. * `content-moderation` - marks the paragraph that explains how the issue was identified. * `new-element` - Present for new elements added to the pre-rendered content in the future. To make sure that a new content element does not break your style, you can hide everything with this class.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountIssueImpact": {
+      "description": "Overall impact of the issue.",
+      "id": "AccountIssueImpact",
+      "properties": {
+        "breakdowns": {
+          "description": "Detailed impact breakdown. Explains the types of restriction the issue has in different shopping destinations and territory. If present, it should be rendered to the merchant. Can be shown as a mouse over dropdown or a dialog. Each breakdown item represents a group of regions with the same impact details.",
+          "items": {
+            "$ref": "Breakdown"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "Optional. Message summarizing the overall impact of the issue. If present, it should be rendered to the merchant. For example: \"Disapproves 90k offers in 25 countries\"",
+          "type": "string"
+        },
+        "severity": {
+          "description": "The severity of the issue.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Causes either an account suspension or an item disapproval. Errors should be resolved as soon as possible to ensure items are eligible to appear in results again.",
+            "Warnings can negatively impact the performance of ads and can lead to item or account suspensions in the future unless the issue is resolved.",
+            "Infos are suggested optimizations to increase data quality. Resolving these issues is recommended, but not required."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -7537,6 +7733,55 @@
       },
       "type": "object"
     },
+    "Action": {
+      "description": "An actionable step that can be executed to solve the issue.",
+      "id": "Action",
+      "properties": {
+        "builtinSimpleAction": {
+          "$ref": "BuiltInSimpleAction",
+          "description": "Action implemented and performed in (your) third-party application. The application should point the merchant to the place, where they can access the corresponding functionality or provide instructions, if the specific functionality is not available."
+        },
+        "buttonLabel": {
+          "description": "Label of the action button.",
+          "type": "string"
+        },
+        "externalAction": {
+          "$ref": "ExternalAction",
+          "description": "Action that is implemented and performed outside of (your) third-party application. The application needs to redirect the merchant to the external location where they can perform the action."
+        },
+        "isAvailable": {
+          "description": "Controlling whether the button is active or disabled. The value is 'false' when the action was already requested or is not available. If the action is not available then a reason will be present. If (your) third-party application shows a disabled button for action that is not available, then it should also show reasons.",
+          "type": "boolean"
+        },
+        "reasons": {
+          "description": "List of reasons why the action is not available. The list of reasons is empty if the action is available. If there is only one reason, it can be displayed next to the disabled button. If there are more reasons, all of them should be displayed, for example in a pop-up dialog.",
+          "items": {
+            "$ref": "ActionReason"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ActionReason": {
+      "description": "A single reason why the action is not available.",
+      "id": "ActionReason",
+      "properties": {
+        "action": {
+          "$ref": "Action",
+          "description": "Optional. An action that needs to be performed to solve the problem represented by this reason. This action will always be available. Should be rendered as a link or button next to the summarizing message. For example, the review may be available only once merchant configure all required attributes. In such a situation this action can be a link to the form, where they can fill the missing attribute to unblock the main action."
+        },
+        "detail": {
+          "description": "Detailed explanation of the reason. Should be displayed as a hint if present.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Messages summarizing the reason, why the action is not available. For example: \"Review requested on Jan 03. Review requests can take a few days to complete.\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ActivateBuyOnGoogleProgramRequest": {
       "description": "Request message for the ActivateProgram method.",
       "id": "ActivateBuyOnGoogleProgramRequest",
@@ -7564,6 +7809,21 @@
         },
         "streetAddress": {
           "description": "Street-level part of the address. Use `\\n` to add a second line.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AlternateDisputeResolution": {
+      "description": "The Alternate Dispute Resolution (ADR) that may be available to merchants in some regions. If present, the link should be shown on the same page as the list of issues.",
+      "id": "AlternateDisputeResolution",
+      "properties": {
+        "label": {
+          "description": "The label for the alternate dispute resolution link.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URL pointing to a page, where merchant can request alternative dispute resolution with an [external body](https://support.google.com/european-union-digital-services-act-redress-options/answer/13535501).",
           "type": "string"
         }
       },
@@ -7754,6 +8014,103 @@
       },
       "type": "object"
     },
+    "Breakdown": {
+      "description": "A detailed impact breakdown for a group of regions where the impact of the issue on different shopping destinations is the same.",
+      "id": "Breakdown",
+      "properties": {
+        "details": {
+          "description": "Human readable, localized description of issue's effect on different targets. Should be rendered as a list. For example: * \"Products not showing in ads\" * \"Products not showing organically\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "regions": {
+          "description": "Lists of regions. Should be rendered as a title for this group of details. The full list should be shown to merchant. If the list is too long, it is recommended to make it expandable.",
+          "items": {
+            "$ref": "BreakdownRegion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BreakdownRegion": {
+      "description": "Region with code and localized name.",
+      "id": "BreakdownRegion",
+      "properties": {
+        "code": {
+          "description": "The [CLDR territory code] (http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml)",
+          "type": "string"
+        },
+        "name": {
+          "description": "The localized name of the region. For region with code='001' the value is 'All countries' or the equivalent in other languages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BuiltInSimpleAction": {
+      "description": "Action that is implemented and performed in (your) third-party application. Represents various functionality that is expected to be available to merchant and will help them with resolving the issue. The application should point the merchant to the place, where they can access the corresponding functionality. If the functionality is not supported, it is recommended to explain the situation to merchant and provide them with instructions how to solve the issue.",
+      "id": "BuiltInSimpleAction",
+      "properties": {
+        "additionalContent": {
+          "$ref": "BuiltInSimpleActionAdditionalContent",
+          "description": "Long text from an external source that should be available to the merchant. Present when the type is `SHOW_ADDITIONAL_CONTENT`."
+        },
+        "attributeCode": {
+          "description": "The attribute that needs to be updated. Present when the type is `EDIT_ITEM_ATTRIBUTE`. This field contains a code for attribute, represented in snake_case. You can find a list of product's attributes, with their codes [here](https://support.google.com/merchants/answer/7052112).",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of action that represents a functionality that is expected to be available in third-party application.",
+          "enum": [
+            "BUILT_IN_SIMPLE_ACTION_TYPE_UNSPECIFIED",
+            "VERIFY_PHONE",
+            "CLAIM_WEBSITE",
+            "ADD_PRODUCTS",
+            "ADD_CONTACT_INFO",
+            "LINK_ADS_ACCOUNT",
+            "ADD_BUSINESS_REGISTRATION_NUMBER",
+            "EDIT_ITEM_ATTRIBUTE",
+            "FIX_ACCOUNT_ISSUE",
+            "SHOW_ADDITIONAL_CONTENT"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Redirect merchant to the part of your application where they can verify their phone.",
+            "Redirect merchant to the part of your application where they can claim their website.",
+            "Redirect merchant to the part of your application where they can add products.",
+            "Open a form where the merchant can edit their contact information.",
+            "Redirect merchant to the part of your application where they can link ads account.",
+            "Open a form where the merchant can add their business registration number.",
+            "Open a form where the merchant can edit an attribute. The attribute that needs to be updated is specified in attribute_code field of the action.",
+            "Redirect merchant from the product issues to the diagnostic page with their account issues in your application. This action will be returned only for product issues that are caused by an account issue and thus merchant should resolve the problem on the account level.",
+            "Show additional content to the merchant. This action will be used for example to deliver a justification from national authority."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BuiltInSimpleActionAdditionalContent": {
+      "description": "Long text from external source.",
+      "id": "BuiltInSimpleActionAdditionalContent",
+      "properties": {
+        "paragraphs": {
+          "description": "Long text organized into paragraphs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "title": {
+          "description": "Title of the additional content;",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BusinessDayConfig": {
       "id": "BusinessDayConfig",
       "properties": {
@@ -7844,7 +8201,8 @@
             "PENDING_REVIEW",
             "REVIEW_DISAPPROVED",
             "ACTIVE",
-            "PAUSED"
+            "PAUSED",
+            "DEPRECATED"
           ],
           "enumDescriptions": [
             "Default value when participation stage is not set.",
@@ -7855,7 +8213,8 @@
             "Merchant is waiting for the review to be completed in a specific region code.",
             "The review for a merchant has been rejected in a specific region code.",
             "Merchant's program participation is active for a specific region code.",
-            "Participation has been paused."
+            "Participation has been paused.",
+            "The program cannot be further reactivated or paused. See more about [Buy on Google](https://support.google.com/merchants/answer/7679273)."
           ],
           "readOnly": true,
           "type": "string"
@@ -9215,6 +9574,33 @@
       },
       "type": "object"
     },
+    "ExternalAction": {
+      "description": "Action that is implemented and performed outside of the third-party application. It should redirect the merchant to the provided URL of an external system where they can perform the action. For example to request a review in the Merchant Center.",
+      "id": "ExternalAction",
+      "properties": {
+        "type": {
+          "description": "The type of external action.",
+          "enum": [
+            "EXTERNAL_ACTION_TYPE_UNSPECIFIED",
+            "REVIEW_PRODUCT_ISSUE_IN_MERCHANT_CENTER",
+            "REVIEW_ACCOUNT_ISSUE_IN_MERCHANT_CENTER",
+            "LEGAL_APPEAL_IN_HELP_CENTER"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Redirect to Merchant Center where the merchant can request a review for issue related to their product.",
+            "Redirect to Merchant Center where the merchant can request a review for issue related to their account.",
+            "Redirect to the form in Help Center where the merchant can request a legal appeal for the issue."
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "URL to external system, for example Merchant Center, where the merchant can perform the action.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FreeListingsProgramStatus": {
       "description": "Response message for GetFreeListingsProgramStatus.",
       "id": "FreeListingsProgramStatus",
@@ -9684,6 +10070,10 @@
           "$ref": "LiaInventorySettings",
           "description": "LIA inventory verification settings."
         },
+        "omnichannelExperience": {
+          "$ref": "LiaOmnichannelExperience",
+          "description": "The omnichannel experience configured for this country."
+        },
         "onDisplayToOrder": {
           "$ref": "LiaOnDisplayToOrderSettings",
           "description": "LIA \"On Display To Order\" settings."
@@ -9717,6 +10107,28 @@
         "status": {
           "description": "The status of the inventory verification process. Acceptable values are: - \"`active`\" - \"`inactive`\" - \"`pending`\" ",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LiaOmnichannelExperience": {
+      "description": "Omnichannel experience details.",
+      "id": "LiaOmnichannelExperience",
+      "properties": {
+        "country": {
+          "description": "The CLDR country code (for example, \"US\").",
+          "type": "string"
+        },
+        "lsfType": {
+          "description": "The Local Store Front (LSF) type for this country. Acceptable values are: - \"`ghlsf`\" (Google-Hosted Local Store Front) - \"`mhlsfBasic`\" (Merchant-Hosted Local Store Front Basic) - \"`mhlsfFull`\" (Merchant-Hosted Local Store Front Full) More details about these types can be found here.",
+          "type": "string"
+        },
+        "pickupTypes": {
+          "description": "The Pickup types for this country. Acceptable values are: - \"`pickupToday`\" - \"`pickupLater`\" ",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -9828,6 +10240,10 @@
           "description": "The method of the batch entry. Acceptable values are: - \"`get`\" - \"`getAccessibleGmbAccounts`\" - \"`requestGmbAccess`\" - \"`requestInventoryVerification`\" - \"`setInventoryVerificationContact`\" - \"`update`\" ",
           "type": "string"
         },
+        "omnichannelExperience": {
+          "$ref": "LiaOmnichannelExperience",
+          "description": "The omnichannel experience for a country. Required only for SetOmnichannelExperience."
+        },
         "posDataProviderId": {
           "description": "The ID of POS data provider. Required only for SetPosProvider.",
           "format": "uint64",
@@ -9880,6 +10296,10 @@
         "liaSettings": {
           "$ref": "LiaSettings",
           "description": "The retrieved or updated Lia settings."
+        },
+        "omnichannelExperience": {
+          "$ref": "LiaOmnichannelExperience",
+          "description": "The updated omnichannel experience for a country."
         },
         "posDataProviders": {
           "description": "The list of POS data providers.",
@@ -14278,6 +14698,66 @@
       },
       "type": "object"
     },
+    "ProductIssue": {
+      "description": "An issue affecting specific product.",
+      "id": "ProductIssue",
+      "properties": {
+        "actions": {
+          "description": "A list of actionable steps that can be executed to solve the issue. An example is requesting a re-review or providing arguments when merchant disagrees with the issue. Actions that are supported in (your) third-party application can be rendered as buttons and should be available to merchant when they expand the issue.",
+          "items": {
+            "$ref": "Action"
+          },
+          "type": "array"
+        },
+        "impact": {
+          "$ref": "ProductIssueImpact",
+          "description": "Clarifies the severity of the issue. The summarizing message, if present, should be shown right under the title for each issue. It helps merchants to quickly understand the impact of the issue. The detailed breakdown helps the merchant to fully understand the impact of the issue. It can be rendered as dialog that opens when the merchant mouse over the summarized impact statement. Issues with different severity can be styled differently. They may use a different color or icon to signal the difference between `ERROR`, `WARNING` and `INFO`."
+        },
+        "prerenderedContent": {
+          "description": "Details of the issue as a pre-rendered HTML. HTML elements contain CSS classes that can be used to customize the style of the content. Always sanitize the HTML before embedding it directly to your application. The sanitizer needs to allow basic HTML tags, such as: `div`, `span`, `p`, `a`, `ul`, `li`, `table`, `tr`, `td`. For example, you can use [DOMPurify](https://www.npmjs.com/package/dompurify). CSS classes: * `issue-detail` - top level container for the detail of the issue * `callout-banners` - section of the `issue-detail` with callout banners * `callout-banner` - single callout banner, inside `callout-banners` * `callout-banner-info` - callout with important information (default) * `callout-banner-warning` - callout with a warning * `callout-banner-error` - callout informing about an error (most severe) * `issue-content` - section of the `issue-detail`, contains multiple `content-element` * `content-element` - content element such as a list, link or paragraph, inside `issue-content` * `root-causes` - unordered list with items describing root causes of the issue, inside `issue-content` * `root-causes-intro` - intro text before the `root-causes` list, inside `issue-content` * `segment` - section of the text, `span` inside paragraph * `segment-attribute` - section of the text that represents a product attribute, for example 'image\\_link' * `segment-literal` - section of the text that contains a special value, for example '0-1000 kg' * `segment-bold` - section of the text that should be rendered as bold * `segment-italic` - section of the text that should be rendered as italic * `tooltip` - used on paragraphs that should be rendered with a tooltip. A section of the text in such a paragraph will have a class `tooltip-text` and is intended to be shown in a mouse over dialog. If the style is not used, the `tooltip-text` section would be shown on a new line, after the main part of the text. * `tooltip-text` - marks a section of the text within a `tooltip`, that is intended to be shown in a mouse over dialog. * `tooltip-icon` - marks a section of the text within a `tooltip`, that can be replaced with a tooltip icon, for example '?' or 'i'. By default, this section contains a `br` tag, that is separating the main text and the tooltip text when the style is not used. * `tooltip-style-question` - the tooltip shows helpful information, can use the '?' as an icon. * `tooltip-style-info` - the tooltip adds additional information fitting to the context, can use the 'i' as an icon. * `content-moderation` - marks the paragraph that explains how the issue was identified. * `new-element` - Present for new elements added to the pre-rendered content in the future. To make sure that a new content element does not break your style, you can hide everything with this class.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductIssueImpact": {
+      "description": "Overall impact of product issue.",
+      "id": "ProductIssueImpact",
+      "properties": {
+        "breakdowns": {
+          "description": "Detailed impact breakdown. Explains the types of restriction the issue has in different shopping destinations and territory. If present, it should be rendered to the merchant. Can be shown as a mouse over dropdown or a dialog. Each breakdown item represents a group of regions with the same impact details.",
+          "items": {
+            "$ref": "Breakdown"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "Optional. Message summarizing the overall impact of the issue. If present, it should be rendered to the merchant. For example: \"Limits visibility in France\"",
+          "type": "string"
+        },
+        "severity": {
+          "description": "The severity of the issue.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "ERROR",
+            "WARNING",
+            "INFO"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Causes either an account suspension or an item disapproval. Errors should be resolved as soon as possible to ensure items are eligible to appear in results again.",
+            "Warnings can negatively impact the performance of ads and can lead to item or account suspensions in the future unless the issue is resolved.",
+            "Infos are suggested optimizations to increase data quality. Resolving these issues is recommended, but not required."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProductProductDetail": {
       "id": "ProductProductDetail",
       "properties": {
@@ -15861,6 +16341,80 @@
         "regionalInventory": {
           "$ref": "RegionalInventory",
           "description": "Price and availability of the product."
+        }
+      },
+      "type": "object"
+    },
+    "RenderAccountIssuesRequestPayload": {
+      "description": "The payload for configuring how the content should be rendered.",
+      "id": "RenderAccountIssuesRequestPayload",
+      "properties": {
+        "contentOption": {
+          "description": "Optional. How the detailed content should be returned. Default option is to return the content as a pre-rendered HTML text.",
+          "enum": [
+            "CONTENT_OPTION_UNSPECIFIED",
+            "PRE_RENDERED_HTML"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Returns the detail of the issue as a pre-rendered HTML text."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RenderAccountIssuesResponse": {
+      "description": "Response containing support content and actions for listed account issues.",
+      "id": "RenderAccountIssuesResponse",
+      "properties": {
+        "alternateDisputeResolution": {
+          "$ref": "AlternateDisputeResolution",
+          "description": "The Alternate Dispute Resolution (ADR) contains a link to a page where merchant can bring their appeal to an [external body](https://support.google.com/european-union-digital-services-act-redress-options/answer/13535501). If the ADR is present, it MUST be available to the merchant on the page that shows the list with their account issues."
+        },
+        "issues": {
+          "description": "List of account issues for a given account. This list can be shown with compressed, expandable items. In the compressed form, the title and impact should be shown for each issue. Once the issue is expanded, the detailed content and available actions should be rendered.",
+          "items": {
+            "$ref": "AccountIssue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RenderProductIssuesRequestPayload": {
+      "description": "The payload for configuring how the content should be rendered.",
+      "id": "RenderProductIssuesRequestPayload",
+      "properties": {
+        "contentOption": {
+          "description": "Optional. How the detailed content should be returned. Default option is to return the content as a pre-rendered HTML text.",
+          "enum": [
+            "CONTENT_OPTION_UNSPECIFIED",
+            "PRE_RENDERED_HTML"
+          ],
+          "enumDescriptions": [
+            "Default value. Will never be provided by the API.",
+            "Returns the detail of the issue as a pre-rendered HTML text."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RenderProductIssuesResponse": {
+      "description": "Response containing support content and actions for listed product issues.",
+      "id": "RenderProductIssuesResponse",
+      "properties": {
+        "alternateDisputeResolution": {
+          "$ref": "AlternateDisputeResolution",
+          "description": "The Alternate Dispute Resolution (ADR) contains a link to a page where merchant can bring their appeal to an [external body](https://support.google.com/european-union-digital-services-act-redress-options/answer/13535501). If present, the link should be shown on the same page as the list of issues."
+        },
+        "issues": {
+          "description": "List of issues for a given product. This list can be shown with compressed, expandable items. In the compressed form, the title and impact should be shown for each issue. Once the issue is expanded, the detailed content and available actions should be rendered.",
+          "items": {
+            "$ref": "ProductIssue"
+          },
+          "type": "array"
         }
       },
       "type": "object"

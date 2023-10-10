@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20230918",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -857,6 +857,24 @@
       },
       "type": "object"
     },
+    "AggregationFunction": {
+      "description": "Preview: An identifier for an aggregation function. Aggregation functions are SQL functions that group or transform data from multiple points to a single point. This is a preview feature and may be subject to change before final release.",
+      "id": "AggregationFunction",
+      "properties": {
+        "parameters": {
+          "description": "Optional. Parameters applied to the aggregation function. Only used for functions that require them.",
+          "items": {
+            "$ref": "Parameter"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Required. The type of aggregation function, must be one of the following: \"none\" - no function. \"percentile\" - APPROX_QUANTILES() - 1 parameter numeric value \"average\" - AVG() \"count\" - COUNT() \"count-distinct\" - COUNT(DISTINCT) \"count-distinct-approx\" - APPROX_COUNT_DISTINCT() \"max\" - MAX() \"min\" - MIN() \"sum\" - SUM()",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AlertChart": {
       "description": "A chart that displays alert policy data.",
       "id": "AlertChart",
@@ -893,10 +911,50 @@
       },
       "type": "object"
     },
+    "Breakdown": {
+      "description": "Preview: A breakdown is an aggregation applied to the measures over a specified column. A breakdown can result in multiple series across a category for the provided measure. This is a preview feature and may be subject to change before final release.",
+      "id": "Breakdown",
+      "properties": {
+        "aggregationFunction": {
+          "$ref": "AggregationFunction",
+          "description": "Required. The Aggregation function is applied across all data in each breakdown created."
+        },
+        "column": {
+          "description": "Required. The name of the column in the dataset containing the breakdown values.",
+          "type": "string"
+        },
+        "limit": {
+          "description": "Required. A limit to the number of breakdowns. If set to zero then all possible breakdowns are applied. The list of breakdowns is dependent on the value of the sort_order field.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sortOrder": {
+          "description": "Required. The sort order is applied to the values of the breakdown column.",
+          "enum": [
+            "SORT_ORDER_UNSPECIFIED",
+            "SORT_ORDER_NONE",
+            "SORT_ORDER_ASCENDING",
+            "SORT_ORDER_DESCENDING"
+          ],
+          "enumDescriptions": [
+            "An unspecified sort order. This option is invalid when sorting is required.",
+            "No sorting is applied.",
+            "The lowest-valued entries are selected first.",
+            "The highest-valued entries are selected first."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ChartOptions": {
       "description": "Options to control visual rendering of a chart.",
       "id": "ChartOptions",
       "properties": {
+        "displayHorizontal": {
+          "description": "Preview: Configures whether the charted values are shown on the horizontal or vertical axis. By default, values are represented the vertical axis. This is a preview feature and may be subject to change before final release.",
+          "type": "boolean"
+        },
         "mode": {
           "description": "The chart mode.",
           "enum": [
@@ -1067,9 +1125,30 @@
       "description": "Groups a time series query definition with charting options.",
       "id": "DataSet",
       "properties": {
+        "breakdowns": {
+          "description": "Optional. The collection of breakdowns to be applied to the dataset.",
+          "items": {
+            "$ref": "Breakdown"
+          },
+          "type": "array"
+        },
+        "dimensions": {
+          "description": "Optional. A collection of dimension columns.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
         "legendTemplate": {
           "description": "A template string for naming TimeSeries in the resulting data set. This should be a string with interpolations of the form ${label_name}, which will resolve to the label's value.",
           "type": "string"
+        },
+        "measures": {
+          "description": "Optional. A collection of measures.",
+          "items": {
+            "$ref": "Measure"
+          },
+          "type": "array"
         },
         "minAlignmentPeriod": {
           "description": "Optional. The lower bound on data point frequency for this data set, implemented by specifying the minimum alignment period to use in a time series query For example, if the data is published once every 10 minutes, the min_alignment_period should be at least 10 minutes. It would not make sense to fetch and align data at one minute intervals.",
@@ -1111,6 +1190,61 @@
         "timeSeriesQuery": {
           "$ref": "TimeSeriesQuery",
           "description": "Required. Fields for querying time series data from the Stackdriver metrics API."
+        }
+      },
+      "type": "object"
+    },
+    "Dimension": {
+      "description": "Preview: A chart dimension for an SQL query. This is applied over the x-axis. This is a preview feature and may be subject to change before final release.",
+      "id": "Dimension",
+      "properties": {
+        "column": {
+          "description": "Required. The name of the column in the source SQL query that is used to chart the dimension.",
+          "type": "string"
+        },
+        "columnType": {
+          "description": "Optional. The type of the dimension column. This is relevant only if one of the bin_size fields is set. If it is empty, the type TIMESTAMP or INT64 will be assumed based on which bin_size field is set. If populated, this should be set to one of the following types: DATE, TIME, DATETIME, TIMESTAMP, BIGNUMERIC, INT64, NUMERIC, FLOAT64.",
+          "type": "string"
+        },
+        "floatBinSize": {
+          "description": "Optional. float_bin_size is used when the column type used for a dimension is a floating point numeric column.",
+          "format": "double",
+          "type": "number"
+        },
+        "maxBinCount": {
+          "description": "A limit to the number of bins generated. When 0 is specified, the maximum count is not enforced.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numericBinSize": {
+          "description": "numeric_bin_size is used when the column type used for a dimension is numeric or string.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sortColumn": {
+          "description": "The column name to sort on for binning. This column can be the same column as this dimension or any other column used as a measure in the results. If sort_order is set to NONE, then this value is not used.",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "The sort order applied to the sort column.",
+          "enum": [
+            "SORT_ORDER_UNSPECIFIED",
+            "SORT_ORDER_NONE",
+            "SORT_ORDER_ASCENDING",
+            "SORT_ORDER_DESCENDING"
+          ],
+          "enumDescriptions": [
+            "An unspecified sort order. This option is invalid when sorting is required.",
+            "No sorting is applied.",
+            "The lowest-valued entries are selected first.",
+            "The highest-valued entries are selected first."
+          ],
+          "type": "string"
+        },
+        "timeBinSize": {
+          "description": "time_bin_size is used when the data type specified by column is a time type and the bin size is determined by a time duration. If column_type is DATE, this must be a whole value multiple of 1 day. If column_type is TIME, this must be less than or equal to 24 hours.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1375,6 +1509,21 @@
       },
       "type": "object"
     },
+    "Measure": {
+      "description": "Preview: A chart measure for an SQL query. This is applied over the y-axis. This is a preview feature and may be subject to change before final release.",
+      "id": "Measure",
+      "properties": {
+        "aggregationFunction": {
+          "$ref": "AggregationFunction",
+          "description": "Required. The aggregation function applied to the input column. This must not be set to \"none\" unless binning is disabled on the dimension. The aggregation function is used to group points on the dimension bins."
+        },
+        "column": {
+          "description": "Required. The column name within in the dataset used for the measure.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MetricsScope": {
       "description": "Represents a Metrics Scope (https://cloud.google.com/monitoring/settings#concept-scope) in Cloud Monitoring, which specifies one or more Google projects and zero or more AWS accounts to monitor together.",
       "id": "MetricsScope",
@@ -1530,6 +1679,17 @@
       },
       "type": "object"
     },
+    "OpsAnalyticsQuery": {
+      "description": "Preview: A query that produces an aggregated response and supporting data. This is a preview feature and may be subject to change before final release.",
+      "id": "OpsAnalyticsQuery",
+      "properties": {
+        "sql": {
+          "description": "A SQL query to fetch time series, category series, or numeric series data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Option": {
       "description": "A protocol buffer option, which can be attached to a message, field, enumeration, etc.",
       "id": "Option",
@@ -1545,6 +1705,23 @@
           },
           "description": "The option's value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Parameter": {
+      "description": "Preview: Parameter value applied to the aggregation function. This is a preview feature and may be subject to change before final release.",
+      "id": "Parameter",
+      "properties": {
+        "doubleValue": {
+          "description": "A floating-point parameter value.",
+          "format": "double",
+          "type": "number"
+        },
+        "intValue": {
+          "description": "An integer parameter value.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1591,6 +1768,67 @@
             "Select the most recent value."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PieChart": {
+      "description": "A widget that displays timeseries data as a pie or a donut.",
+      "id": "PieChart",
+      "properties": {
+        "chartType": {
+          "description": "Required. Indicates the visualization type for the PieChart.",
+          "enum": [
+            "PIE_CHART_TYPE_UNSPECIFIED",
+            "PIE",
+            "DONUT"
+          ],
+          "enumDescriptions": [
+            "The zero value. No type specified. Do not use.",
+            "A Pie type PieChart.",
+            "Similar to PIE, but the DONUT type PieChart has a hole in the middle."
+          ],
+          "type": "string"
+        },
+        "dataSets": {
+          "description": "Required. The queries for the chart's data.",
+          "items": {
+            "$ref": "PieChartDataSet"
+          },
+          "type": "array"
+        },
+        "showLabels": {
+          "description": "Optional. Indicates whether or not the pie chart should show slices' labels",
+          "type": "boolean"
+        },
+        "showTotal": {
+          "description": "Optional. Indicates whether or not donut chart should show the total in the middle",
+          "type": "boolean"
+        },
+        "sliceAggregatedThreshold": {
+          "description": "Optional. If slices's values are smaller than this value, they will be combined into other category",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "PieChartDataSet": {
+      "description": "Groups a time series query definition.",
+      "id": "PieChartDataSet",
+      "properties": {
+        "minAlignmentPeriod": {
+          "description": "Optional. The lower bound on data point frequency for this data set, implemented by specifying the minimum alignment period to use in a time series query. For example, if the data is published once every 10 minutes, the min_alignment_period should be at least 10 minutes. It would not make sense to fetch and align data at one minute intervals.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "sliceNameTemplate": {
+          "description": "Optional. A template for the name of the slice. This name will be displayed in the legend and the tooltip of the pie chart. It replaces the auto-generated names for the slices. For example, if the template is set to ${resource.labels.zone}, the zone's value will be used for the name instead of the default name.",
+          "type": "string"
+        },
+        "timeSeriesQuery": {
+          "$ref": "TimeSeriesQuery",
+          "description": "Required. The query for the PieChart. See, google.monitoring.dashboard.v1.TimeSeriesQuery."
         }
       },
       "type": "object"
@@ -2175,6 +2413,10 @@
       "description": "TimeSeriesQuery collects the set of supported methods for querying time series data from the Stackdriver metrics API.",
       "id": "TimeSeriesQuery",
       "properties": {
+        "opsAnalyticsQuery": {
+          "$ref": "OpsAnalyticsQuery",
+          "description": "Preview: A query used to fetch a time series, category series, or numeric series with SQL. This is a preview feature and may be subject to change before final release."
+        },
         "outputFullDuration": {
           "description": "Optional. If set, Cloud Monitoring will treat the full query duration as the alignment period so that there will be only 1 output value.*Note: This could override the configured alignment period except for the cases where a series of data points are expected, like - XyChart - Scorecard's spark chart",
           "type": "boolean"
@@ -2314,6 +2556,10 @@
         "logsPanel": {
           "$ref": "LogsPanel",
           "description": "A widget that shows a stream of logs."
+        },
+        "pieChart": {
+          "$ref": "PieChart",
+          "description": "A widget that displays timeseries data as a pie chart."
         },
         "scorecard": {
           "$ref": "Scorecard",

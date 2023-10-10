@@ -133,6 +133,10 @@ export namespace billingbudgets_v1beta1 {
      */
     disableDefaultIamRecipients?: boolean | null;
     /**
+     * Optional. When set to true, and when the budget has a single project configured, notifications will be sent to project level recipients of that project. This field will be ignored if the budget has multiple or no project configured. Currently, project level recipients are the users with `Owner` role on a cloud project.
+     */
+    enableProjectLevelRecipients?: boolean | null;
+    /**
      * Optional. Targets to send notifications to when a threshold is exceeded. This is in addition to default recipients who have billing account IAM roles. The value is the full REST resource name of a monitoring notification channel with the form `projects/{project_id\}/notificationChannels/{channel_id\}`. A maximum of 5 channels are allowed. See https://cloud.google.com/billing/docs/how-to/budgets-notification-recipients for more details.
      */
     monitoringNotificationChannels?: string[] | null;
@@ -862,6 +866,10 @@ export namespace billingbudgets_v1beta1 {
      * Required. Name of billing account to list budgets under. Values are of the form `billingAccounts/{billingAccountId\}`.
      */
     parent?: string;
+    /**
+     * Optional. Set the scope of the budgets to be returned, in the format of the resource name. The scope of a budget is the cost that it tracks, such as costs for a single project, or the costs for all projects in a folder. Only project scope (in the format of "projects/project-id" or "projects/123") is supported in this field. When this field is set to a project's resource name, the budgets returned are tracking the costs for that project.
+     */
+    scope?: string;
   }
   export interface Params$Resource$Billingaccounts$Budgets$Patch
     extends StandardParameters {

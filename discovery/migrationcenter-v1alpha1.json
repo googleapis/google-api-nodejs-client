@@ -2102,7 +2102,7 @@
       }
     }
   },
-  "revision": "20230804",
+  "revision": "20230908",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2980,7 +2980,7 @@
       "id": "DiskUsageSample",
       "properties": {
         "averageIops": {
-          "description": "Average IOPS sampled over a short window. Must be non-negative.",
+          "description": "Average IOPS sampled over a short window. Must be non-negative. Must be equal to the sum of read and write if one of them is positive. if both read and write are zero they are ignored.",
           "format": "float",
           "type": "number"
         }
@@ -4849,7 +4849,8 @@
           "type": "string"
         },
         "overlappingAssetCount": {
-          "description": "Count of the number of assets in this group which are also included in another group within the same report.",
+          "deprecated": true,
+          "description": "This field is deprecated, do not rely on it having a value.",
           "format": "int64",
           "type": "string"
         },

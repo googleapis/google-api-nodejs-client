@@ -169,7 +169,25 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest {}
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest {
+    /**
+     * Optional. The line items to be entitled. If unspecified, all line items will be entitled.
+     */
+    lineItemEntitlementDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails[];
+  }
+  /**
+   * The details of the line item to be entitled.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails {
+    /**
+     * Required. The index of the line item to be entitled.
+     */
+    lineItemIndex?: number | null;
+    /**
+     * Optional. Only applicable if the line item corresponds to a hard bundle. Product resource names that identify the bundle elements to be entitled in the line item. If unspecified, all bundle elements will be entitled. The format is 'partners/{partner_id\}/products/{product_id\}'.
+     */
+    products?: string[] | null;
+  }
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse {
     /**
      * The subscription that has user linked to it.
@@ -311,6 +329,10 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Product {
     /**
+     * Output only. Output Only. Specifies the details for a bundle product.
+     */
+    bundleDetails?: Schema$ProductBundleDetails;
+    /**
      * Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely.
      */
     finiteBillingCycleDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails;
@@ -323,6 +345,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     priceConfigs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig[];
     /**
+     * Output only. Output Only. Specifies the type of the product.
+     */
+    productType?: string | null;
+    /**
      * Output only. 2-letter ISO region code where the product is available in. Ex. "US" Please refers to: https://en.wikipedia.org/wiki/ISO_3166-1
      */
     regionCodes?: string[] | null;
@@ -334,6 +360,15 @@ export namespace paymentsresellersubscription_v1 {
      * Output only. Localized human readable name of the product.
      */
     titles?: Schema$GoogleTypeLocalizedText[];
+  }
+  /**
+   * The individual product that is included in the bundle.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductBundleDetailsBundleElement {
+    /**
+     * Required. Output only. Product resource name that identifies the bundle element. The format is 'partners/{partner_id\}/products/{product_id\}'.
+     */
+    product?: string | null;
   }
   /**
    * Specifies product specific payload.
@@ -373,10 +408,6 @@ export namespace paymentsresellersubscription_v1 {
      * Optional. Specifies the end time (exclusive) of the period that the promotion is available in. If unset, the promotion is available indefinitely.
      */
     endTime?: string | null;
-    /**
-     * Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely. Used only with PROMOTION_TYPE_REGULAR_REDUCTION.
-     */
-    finiteBillingCycleDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails;
     /**
      * Optional. Specifies the duration of the free trial of the subscription when promotion_type is PROMOTION_TYPE_FREE_TRIAL
      */
@@ -544,6 +575,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     amount?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Amount;
     /**
+     * Output only. The bundle details for the line item. Only populated if the line item corresponds to a hard bundle.
+     */
+    bundleDetails?: Schema$SubscriptionLineItemBundleDetails;
+    /**
      * Output only. Description of this line item.
      */
     description?: string | null;
@@ -583,6 +618,19 @@ export namespace paymentsresellersubscription_v1 {
      * Output only. The state of the line item.
      */
     state?: string | null;
+  }
+  /**
+   * The details for an element in the hard bundle.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemBundleDetailsBundleElementDetails {
+    /**
+     * Output only. Product resource name that identifies the bundle element. The format is 'partners/{partner_id\}/products/{product_id\}'.
+     */
+    product?: string | null;
+    /**
+     * Output only. The time when this product is linked to an end user.
+     */
+    userAccountLinkedTime?: string | null;
   }
   /**
    * Details for a ONE_TIME recurrence line item.
@@ -665,6 +713,28 @@ export namespace paymentsresellersubscription_v1 {
      * Localized string in the language corresponding to `language_code' below.
      */
     text?: string | null;
+  }
+  /**
+   * Details for a bundle product.
+   */
+  export interface Schema$ProductBundleDetails {
+    /**
+     * The individual products that are included in the bundle.
+     */
+    bundleElements?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductBundleDetailsBundleElement[];
+    /**
+     * The entitlement mode of the bundle product.
+     */
+    entitlementMode?: string | null;
+  }
+  /**
+   * The bundle details for a line item corresponding to a hard bundle.
+   */
+  export interface Schema$SubscriptionLineItemBundleDetails {
+    /**
+     * The details for each element in the hard bundle.
+     */
+    bundleElementDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemBundleDetailsBundleElementDetails[];
   }
 
   export class Resource$Partners {

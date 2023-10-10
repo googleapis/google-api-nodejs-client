@@ -1220,6 +1220,15 @@ export namespace datacatalog_v1beta1 {
     userManaged?: boolean | null;
   }
   /**
+   * Specification that applies to a dataset. Valid only for entries with the `DATASET` type.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DatasetSpec {
+    /**
+     * Vertex AI Dataset specific fields
+     */
+    vertexDatasetSpec?: Schema$GoogleCloudDatacatalogV1VertexDatasetSpec;
+  }
+  /**
    * Physical location of an entry.
    */
   export interface Schema$GoogleCloudDatacatalogV1DataSource {
@@ -1283,6 +1292,10 @@ export namespace datacatalog_v1beta1 {
      */
     databaseTableSpec?: Schema$GoogleCloudDatacatalogV1DatabaseTableSpec;
     /**
+     * Specification that applies to a dataset.
+     */
+    datasetSpec?: Schema$GoogleCloudDatacatalogV1DatasetSpec;
+    /**
      * Output only. Physical location of the entry.
      */
     dataSource?: Schema$GoogleCloudDatacatalogV1DataSource;
@@ -1326,6 +1339,10 @@ export namespace datacatalog_v1beta1 {
      * Specification that applies to Looker sysstem. Only settable when `user_specified_system` is equal to `LOOKER`
      */
     lookerSystemSpec?: Schema$GoogleCloudDatacatalogV1LookerSystemSpec;
+    /**
+     * Model specification.
+     */
+    modelSpec?: Schema$GoogleCloudDatacatalogV1ModelSpec;
     /**
      * Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
      */
@@ -1473,6 +1490,15 @@ export namespace datacatalog_v1beta1 {
      * ID of the parent View. Empty if it does not exist.
      */
     parentViewId?: string | null;
+  }
+  /**
+   * Specification that applies to a model. Valid only for entries with the `MODEL` type.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ModelSpec {
+    /**
+     * Specification for vertex model resources.
+     */
+    vertexModelSpec?: Schema$GoogleCloudDatacatalogV1VertexModelSpec;
   }
   /**
    * Entry metadata relevant only to the user and private to them.
@@ -1838,6 +1864,57 @@ export namespace datacatalog_v1beta1 {
      * The number of failed attempts to use the underlying entry.
      */
     totalFailures?: number | null;
+  }
+  /**
+   * Specification for vertex dataset resources.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1VertexDatasetSpec {
+    /**
+     * The number of DataItems in this Dataset. Only apply for non-structured Dataset.
+     */
+    dataItemCount?: string | null;
+    /**
+     * Type of the dataset.
+     */
+    dataType?: string | null;
+  }
+  /**
+   * Detail description of the source information of a Vertex model.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1VertexModelSourceInfo {
+    /**
+     * If this Model is copy of another Model. If true then source_type pertains to the original.
+     */
+    copy?: boolean | null;
+    /**
+     * Type of the model source.
+     */
+    sourceType?: string | null;
+  }
+  /**
+   * Specification for vertex model resources.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1VertexModelSpec {
+    /**
+     * URI of the Docker image to be used as the custom container for serving predictions.
+     */
+    containerImageUri?: string | null;
+    /**
+     * User provided version aliases so that a model version can be referenced via alias
+     */
+    versionAliases?: string[] | null;
+    /**
+     * The description of this version.
+     */
+    versionDescription?: string | null;
+    /**
+     * The version ID of the model.
+     */
+    versionId?: string | null;
+    /**
+     * Source of a Vertex model.
+     */
+    vertexModelSourceInfo?: Schema$GoogleCloudDatacatalogV1VertexModelSourceInfo;
   }
   /**
    * Table view specification.

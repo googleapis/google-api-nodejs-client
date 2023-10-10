@@ -332,7 +332,7 @@ export namespace policysimulator_v1 {
    */
   export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlay {
     /**
-     * The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated.
+     * The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.
      */
     customConstraints?: Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayCustomConstraintOverlay[];
     /**
@@ -370,6 +370,14 @@ export namespace policysimulator_v1 {
    * OrgPolicyViolationsPreview is a resource providing a preview of the violations that will exist if an OrgPolicy change is made. The list of violations are modeled as child resources and retrieved via a ListOrgPolicyViolations API call. There are potentially more OrgPolicyViolations than could fit in an embedded field. Thus, the use of a child resource instead of a field.
    */
   export interface Schema$GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreview {
+    /**
+     * Output only. Time when this `OrgPolicyViolationsPreview` was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The names of the constraints against which all `OrgPolicyViolations` were evaluated. If `OrgPolicyOverlay` only contains `PolicyOverlay` then it contains the name of the configured custom constraint, applicable to the specified policies. Otherwise it contains the name of the constraint specified in `CustomConstraintOverlay`. Format: `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms`
+     */
+    customConstraints?: string[] | null;
     /**
      * Output only. The resource name of the `OrgPolicyViolationsPreview`. It has the following format: `organizations/{organization\}/locations/{location\}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreview\}` Example: `organizations/my-example-org/locations/global/orgPolicyViolationsPreviews/506a5f7f`
      */
@@ -450,7 +458,7 @@ export namespace policysimulator_v1 {
    */
   export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay {
     /**
-     * The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated.
+     * The OrgPolicy CustomConstraint changes to preview violations for. Any existing CustomConstraints with the same name will be overridden in the simulation. That is, violations will be determined as if all custom constraints in the overlay were instantiated. Only a single custom_constraint is supported in the overlay at a time. For evaluating multiple constraints, multiple `GenerateOrgPolicyViolationsPreview` requests are made, where each request evaluates a single constraint.
      */
     customConstraints?: Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay[];
     /**
@@ -488,6 +496,14 @@ export namespace policysimulator_v1 {
    * OrgPolicyViolationsPreview is a resource providing a preview of the violations that will exist if an OrgPolicy change is made. The list of violations are modeled as child resources and retrieved via a ListOrgPolicyViolations API call. There are potentially more OrgPolicyViolations than could fit in an embedded field. Thus, the use of a child resource instead of a field.
    */
   export interface Schema$GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview {
+    /**
+     * Output only. Time when this `OrgPolicyViolationsPreview` was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The names of the constraints against which all `OrgPolicyViolations` were evaluated. If `OrgPolicyOverlay` only contains `PolicyOverlay` then it contains the name of the configured custom constraint, applicable to the specified policies. Otherwise it contains the name of the constraint specified in `CustomConstraintOverlay`. Format: `organizations/{organization_id\}/customConstraints/{custom_constraint_id\}` Example: `organizations/123/customConstraints/custom.createOnlyE2TypeVms`
+     */
+    customConstraints?: string[] | null;
     /**
      * Output only. The resource name of the `OrgPolicyViolationsPreview`. It has the following format: `organizations/{organization\}/locations/{location\}/orgPolicyViolationsPreviews/{orgPolicyViolationsPreview\}` Example: `organizations/my-example-org/locations/global/orgPolicyViolationsPreviews/506a5f7f`
      */

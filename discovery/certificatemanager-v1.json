@@ -1122,7 +1122,7 @@
                       "type": "string"
                     },
                     "trustConfigId": {
-                      "description": "Required. A user-provided name of the TrustConfig.",
+                      "description": "Required. A user-provided name of the TrustConfig. Must match the regexp `[a-z0-9-]{1,63}`.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1280,7 +1280,7 @@
       }
     }
   },
-  "revision": "20230802",
+  "revision": "20230906",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AuthorizationAttemptInfo": {
@@ -1397,7 +1397,7 @@
           "enumDescriptions": [
             "Certificates with default scope are served from core Google data centers. If unsure, choose this option.",
             "Certificates with scope EDGE_CACHE are special-purposed certificates, served from Edge Points of Presence. See https://cloud.google.com/vpc/docs/edge-locations.",
-            "Certificates with ALL_REGIONS scope are served from all GCP regions. See https://cloud.google.com/compute/docs/regions-zones."
+            "Certificates with ALL_REGIONS scope are served from all Google Cloud regions. See https://cloud.google.com/compute/docs/regions-zones."
           ],
           "type": "string"
         },

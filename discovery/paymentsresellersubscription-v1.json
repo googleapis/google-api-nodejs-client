@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230813",
+  "revision": "20230924",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -494,7 +494,34 @@
     "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest": {
       "description": "Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest",
-      "properties": {},
+      "properties": {
+        "lineItemEntitlementDetails": {
+          "description": "Optional. The line items to be entitled. If unspecified, all line items will be entitled.",
+          "items": {
+            "$ref": "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails": {
+      "description": "The details of the line item to be entitled.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails",
+      "properties": {
+        "lineItemIndex": {
+          "description": "Required. The index of the line item to be entitled.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "products": {
+          "description": "Optional. Only applicable if the line item corresponds to a hard bundle. Product resource names that identify the bundle elements to be entitled in the line item. If unspecified, all bundle elements will be entitled. The format is 'partners/{partner_id}/products/{product_id}'.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse": {
@@ -715,6 +742,11 @@
       "description": "A Product resource that defines a subscription service that can be resold.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1Product",
       "properties": {
+        "bundleDetails": {
+          "$ref": "ProductBundleDetails",
+          "description": "Output only. Output Only. Specifies the details for a bundle product.",
+          "readOnly": true
+        },
         "finiteBillingCycleDetails": {
           "$ref": "GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails",
           "description": "Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely."
@@ -731,6 +763,21 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "productType": {
+          "description": "Output only. Output Only. Specifies the type of the product.",
+          "enum": [
+            "PRODUCT_TYPE_UNSPECIFIED",
+            "PRODUCT_TYPE_SUBSCRIPTION",
+            "PRODUCT_TYPE_BUNDLE_SUBSCRIPTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified. It's reserved as an unexpected value, should not be used.",
+            "The product is a subscription.",
+            "The product is a bundled subscription plan, which includes multiple subscription elements."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "regionCodes": {
           "description": "Output only. 2-letter ISO region code where the product is available in. Ex. \"US\" Please refers to: https://en.wikipedia.org/wiki/ISO_3166-1",
@@ -752,6 +799,18 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1ProductBundleDetailsBundleElement": {
+      "description": "The individual product that is included in the bundle.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1ProductBundleDetailsBundleElement",
+      "properties": {
+        "product": {
+          "description": "Required. Output only. Product resource name that identifies the bundle element. The format is 'partners/{partner_id}/products/{product_id}'.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -805,10 +864,6 @@
           "format": "google-datetime",
           "type": "string"
         },
-        "finiteBillingCycleDetails": {
-          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails",
-          "description": "Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely. Used only with PROMOTION_TYPE_REGULAR_REDUCTION."
-        },
         "freeTrialDuration": {
           "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Duration",
           "description": "Optional. Specifies the duration of the free trial of the subscription when promotion_type is PROMOTION_TYPE_FREE_TRIAL"
@@ -827,14 +882,12 @@
           "enum": [
             "PROMOTION_TYPE_UNSPECIFIED",
             "PROMOTION_TYPE_FREE_TRIAL",
-            "PROMOTION_TYPE_INTRODUCTORY_PRICING",
-            "PROMOTION_TYPE_REGULAR_REDUCTION"
+            "PROMOTION_TYPE_INTRODUCTORY_PRICING"
           ],
           "enumDescriptions": [
             "The promotion type is unspecified.",
             "The promotion is a free trial.",
-            "The promotion is a reduced introductory pricing.",
-            "The promotion is a reduced price."
+            "The promotion is a reduced introductory pricing."
           ],
           "readOnly": true,
           "type": "string"
@@ -1103,6 +1156,11 @@
           "description": "Output only. The price of the product/service in this line item. The amount could be the wholesale price, or it can include a cost of sale based on the contract.",
           "readOnly": true
         },
+        "bundleDetails": {
+          "$ref": "SubscriptionLineItemBundleDetails",
+          "description": "Output only. The bundle details for the line item. Only populated if the line item corresponds to a hard bundle.",
+          "readOnly": true
+        },
         "description": {
           "description": "Output only. Description of this line item.",
           "readOnly": true,
@@ -1187,6 +1245,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemBundleDetailsBundleElementDetails": {
+      "description": "The details for an element in the hard bundle.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemBundleDetailsBundleElementDetails",
+      "properties": {
+        "product": {
+          "description": "Output only. Product resource name that identifies the bundle element. The format is 'partners/{partner_id}/products/{product_id}'.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userAccountLinkedTime": {
+          "description": "Output only. The time when this product is linked to an end user.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails": {
       "description": "Details for a ONE_TIME recurrence line item.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails",
@@ -1221,14 +1297,12 @@
           "enum": [
             "PROMOTION_TYPE_UNSPECIFIED",
             "PROMOTION_TYPE_FREE_TRIAL",
-            "PROMOTION_TYPE_INTRODUCTORY_PRICING",
-            "PROMOTION_TYPE_REGULAR_REDUCTION"
+            "PROMOTION_TYPE_INTRODUCTORY_PRICING"
           ],
           "enumDescriptions": [
             "The promotion type is unspecified.",
             "The promotion is a free trial.",
-            "The promotion is a reduced introductory pricing.",
-            "The promotion is a reduced price."
+            "The promotion is a reduced introductory pricing."
           ],
           "readOnly": true,
           "type": "string"
@@ -1309,6 +1383,48 @@
         "text": {
           "description": "Localized string in the language corresponding to `language_code' below.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductBundleDetails": {
+      "description": "Details for a bundle product.",
+      "id": "ProductBundleDetails",
+      "properties": {
+        "bundleElements": {
+          "description": "The individual products that are included in the bundle.",
+          "items": {
+            "$ref": "GoogleCloudPaymentsResellerSubscriptionV1ProductBundleDetailsBundleElement"
+          },
+          "type": "array"
+        },
+        "entitlementMode": {
+          "description": "The entitlement mode of the bundle product.",
+          "enum": [
+            "ENTITLEMENT_MODE_UNSPECIFIED",
+            "ENTITLEMENT_MODE_FULL",
+            "ENTITLEMENT_MODE_INCREMENTAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified. It's reserved as an unexpected value, should not be used.",
+            "All the bundle elements must be fully activated in a single request.",
+            "The bundle elements could be incrementally activated."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionLineItemBundleDetails": {
+      "description": "The bundle details for a line item corresponding to a hard bundle.",
+      "id": "SubscriptionLineItemBundleDetails",
+      "properties": {
+        "bundleElementDetails": {
+          "description": "The details for each element in the hard bundle.",
+          "items": {
+            "$ref": "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemBundleDetailsBundleElementDetails"
+          },
+          "type": "array"
         }
       },
       "type": "object"

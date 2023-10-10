@@ -1146,7 +1146,7 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$Parameter {
     /**
-     * Whether or not a reference type parameter is strongly or weakly referenced. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
+     * Whether or not a reference type parameter is strongly or weakly referenced. Only used by Transformations. @mutable tagmanager.accounts.containers.workspaces.transformations.create @mutable tagmanager.accounts.containers.workspaces.transformations.update
      */
     isWeakReference?: boolean | null;
     /**
@@ -7477,7 +7477,7 @@ export namespace tagmanager_v2 {
     }
 
     /**
-     * Moves entities to a GTM Folder.
+     * Moves entities to a GTM Folder. If {folder_id\} in the request path equals 0, this will instead move entities out of the folder they currently belong to.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

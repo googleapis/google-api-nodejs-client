@@ -238,7 +238,7 @@
       }
     }
   },
-  "revision": "20230605",
+  "revision": "20230914",
   "rootUrl": "https://firebasestorage.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -252,7 +252,8 @@
       "id": "Bucket",
       "properties": {
         "name": {
-          "description": "Resource name of the bucket.",
+          "description": "Output only. Resource name of the bucket.",
+          "readOnly": true,
           "type": "string"
         }
       },

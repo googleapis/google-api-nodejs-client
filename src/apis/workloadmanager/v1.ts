@@ -265,11 +265,11 @@ export namespace workloadmanager_v1 {
      */
     instanceId?: string | null;
     /**
-     * The insights data for sap system discovery. This is a copy of SAP System proto and should get updated whenever that one changes.
+     * The insights data for SAP system discovery. This is a copy of SAP System proto and should get updated whenever that one changes.
      */
     sapDiscovery?: Schema$SapDiscovery;
     /**
-     * The insights data for the sap workload validation.
+     * The insights data for the SAP workload validation.
      */
     sapValidation?: Schema$SapValidation;
     /**
@@ -426,7 +426,7 @@ export namespace workloadmanager_v1 {
      */
     name?: string | null;
     /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     * The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
   }
@@ -577,27 +577,27 @@ export namespace workloadmanager_v1 {
     requestId?: string | null;
   }
   /**
-   * LINT.IfChange The schema of SAP system discovery data.
+   * The schema of SAP system discovery data.
    */
   export interface Schema$SapDiscovery {
     /**
-     * An SAP system may run without an application layer.
+     * Optional. An SAP system may run without an application layer.
      */
     applicationLayer?: Schema$SapDiscoveryComponent;
     /**
-     * An SAP System must have a database.
+     * Required. An SAP System must have a database.
      */
     databaseLayer?: Schema$SapDiscoveryComponent;
     /**
-     * The metadata for SAP system discovery data.
+     * Optional. The metadata for SAP system discovery data.
      */
     metadata?: Schema$SapDiscoveryMetadata;
     /**
-     * A combination of database SID, database instance URI and tenant DB name to make a unique identifier per-system.
+     * Output only. A combination of database SID, database instance URI and tenant DB name to make a unique identifier per-system.
      */
     systemId?: string | null;
     /**
-     * Unix timestamp this system has been updated last.
+     * Required. Unix timestamp this system has been updated last.
      */
     updateTime?: string | null;
   }
@@ -614,15 +614,15 @@ export namespace workloadmanager_v1 {
      */
     databaseProperties?: Schema$SapDiscoveryComponentDatabaseProperties;
     /**
-     * Pantheon Project in which the resources reside.
+     * Required. Pantheon Project in which the resources reside.
      */
     hostProject?: string | null;
     /**
-     * The resources in a component.
+     * Optional. The resources in a component.
      */
     resources?: Schema$SapDiscoveryResource[];
     /**
-     * The sap identifier, used by the SAP software and helps differentiate systems for customers.
+     * Optional. The SAP identifier, used by the SAP software and helps differentiate systems for customers.
      */
     sid?: string | null;
   }
@@ -635,7 +635,7 @@ export namespace workloadmanager_v1 {
      */
     applicationType?: string | null;
     /**
-     * Required. Resource URI of the recognized ASCS host of the application.
+     * Optional. Resource URI of the recognized ASCS host of the application.
      */
     ascsUri?: string | null;
     /**
@@ -665,19 +665,19 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapDiscoveryMetadata {
     /**
-     * Customer region string for customer's use. Does not represent GCP region.
+     * Optional. Customer region string for customer's use. Does not represent GCP region.
      */
     customerRegion?: string | null;
     /**
-     * Customer defined, something like "E-commerce pre prod"
+     * Optional. Customer defined, something like "E-commerce pre prod"
      */
     definedSystem?: string | null;
     /**
-     * Should be "prod", "QA", "dev", "staging", etc.
+     * Optional. Should be "prod", "QA", "dev", "staging", etc.
      */
     environmentType?: string | null;
     /**
-     * This sap product name
+     * Optional. This SAP product name
      */
     sapProduct?: string | null;
   }
@@ -686,7 +686,7 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapDiscoveryResource {
     /**
-     * A list of resource URIs related to this resource.
+     * Optional. A list of resource URIs related to this resource.
      */
     relatedResources?: string[] | null;
     /**
@@ -698,11 +698,11 @@ export namespace workloadmanager_v1 {
      */
     resourceType?: string | null;
     /**
-     * URI of the resource, includes project, location, and name.
+     * Required. URI of the resource, includes project, location, and name.
      */
     resourceUri?: string | null;
     /**
-     * Unix timestamp of when this resource last had its discovery data updated.
+     * Required. Unix timestamp of when this resource last had its discovery data updated.
      */
     updateTime?: string | null;
   }
@@ -711,7 +711,7 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapValidation {
     /**
-     * A list of SAP validation metrics data.
+     * Optional. A list of SAP validation metrics data.
      */
     validationDetails?: Schema$SapValidationValidationDetail[];
   }
@@ -720,11 +720,11 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapValidationValidationDetail {
     /**
-     * The pairs of metrics data: field name & field value.
+     * Optional. The pairs of metrics data: field name & field value.
      */
     details?: {[key: string]: string} | null;
     /**
-     * The SAP system that the validation data is from.
+     * Optional. The SAP system that the validation data is from.
      */
     sapValidationType?: string | null;
   }
@@ -742,7 +742,7 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SqlserverValidation {
     /**
-     * The agent version collected this data point
+     * Optional. The agent version collected this data point
      */
     agentVersion?: string | null;
     /**
@@ -754,7 +754,7 @@ export namespace workloadmanager_v1 {
      */
     projectId?: string | null;
     /**
-     * A list of SqlServer validation metrics data.
+     * Optional. A list of SqlServer validation metrics data.
      */
     validationDetails?: Schema$SqlserverValidationValidationDetail[];
   }
@@ -776,7 +776,7 @@ export namespace workloadmanager_v1 {
      */
     details?: Schema$SqlserverValidationDetails[];
     /**
-     * The Sqlserver system that the validation data is from.
+     * Optional. The Sqlserver system that the validation data is from.
      */
     type?: string | null;
   }

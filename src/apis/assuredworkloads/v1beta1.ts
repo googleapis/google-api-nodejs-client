@@ -154,10 +154,6 @@ export namespace assuredworkloads_v1beta1 {
      */
     assetMoveAnalyses?: Schema$GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis[];
     /**
-     * A list of blockers that should be addressed before moving the source project or project-based workload to the destination folder-based workload. This field is now deprecated.
-     */
-    blockers?: string[] | null;
-    /**
      * The next page token. Is empty if the last page is reached.
      */
     nextPageToken?: string | null;
@@ -1021,7 +1017,7 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * Analyzes a hypothetical move of a source resource to a target(destination) folder-based workload to surface compliance risks.
+     * Analyzes a hypothetical move of a source resource to a target workload to surface compliance risks. The analysis is best effort and is not guaranteed to be exhaustive.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1784,9 +1780,9 @@ export namespace assuredworkloads_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Workloads$Analyzeworkloadmove
     extends StandardParameters {
     /**
-     * Optional. Indicates if all child assets of the source resource should also be analyzed in addition to the source.
+     * Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      */
-    analyzeChildAssets?: boolean;
+    assetTypes?: string[];
     /**
      * Optional. Page size. If a value is not specified, the default value of 10 is used.
      */
@@ -1799,10 +1795,6 @@ export namespace assuredworkloads_v1beta1 {
      * The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: "projects/{PROJECT_NUMBER\}" or "projects/{PROJECT_ID\}" For example: "projects/951040570662" when specifying a project number, or "projects/my-project-123" when specifying a project ID.
      */
     project?: string;
-    /**
-     * The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-1" This option is now deprecated.
-     */
-    source?: string;
     /**
      * Required. The resource ID of the folder-based destination workload. This workload is where the source resource will hypothetically be moved to. Specify the workload's relative resource name, formatted as: "organizations/{ORGANIZATION_ID\}/locations/{LOCATION_ID\}/workloads/{WORKLOAD_ID\}" For example: "organizations/123/locations/us-east1/workloads/assured-workload-2"
      */

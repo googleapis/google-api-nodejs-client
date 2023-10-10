@@ -365,6 +365,10 @@ export namespace datamigration_v1 {
      */
     databaseVersion?: string | null;
     /**
+     * Optional. Data cache is an optional feature available for Cloud SQL for MySQL Enterprise Plus edition only. For more information on data cache, see [Data cache overview](https://cloud.google.com/sql/help/mysql-data-cache) in Cloud SQL documentation.
+     */
+    dataCacheConfig?: Schema$DataCacheConfig;
+    /**
      * The storage capacity available to the database, in GB. The minimum (and default) size is 10GB.
      */
     dataDiskSizeGb?: string | null;
@@ -814,6 +818,15 @@ export namespace datamigration_v1 {
      * The database provider.
      */
     provider?: string | null;
+  }
+  /**
+   * Data cache is an optional feature available for Cloud SQL for MySQL Enterprise Plus edition only. For more information on data cache, see [Data cache overview](https://cloud.google.com/sql/help/mysql-data-cache) in Cloud SQL documentation.
+   */
+  export interface Schema$DataCacheConfig {
+    /**
+     * Optional. Whether data cache is enabled for the instance.
+     */
+    dataCacheEnabled?: boolean | null;
   }
   /**
    * Response message for 'DescribeConversionWorkspaceRevisions' request.

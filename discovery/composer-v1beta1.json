@@ -655,7 +655,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20230917",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -839,6 +839,11 @@
         "name": {
           "description": "The resource name of the environment, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\" EnvironmentId must start with a lowercase letter followed by up to 63 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.",
           "type": "string"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "The current state of the environment.",

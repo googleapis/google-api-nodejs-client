@@ -260,6 +260,19 @@ export namespace cloudtasks_v2beta2 {
     scheduleTime?: string | null;
   }
   /**
+   * CMEK, or Customer Managed Encryption Keys, enables GCP products to put control over encryption and key management in their customer’s hands.
+   */
+  export interface Schema$CmekConfig {
+    /**
+     * Resource name of the Cloud KMS key, of the form `projects/PROJECT_ID/locations/LOCATION_ID/keyRings/KEY_RING_ID/cryptoKeys/KEY_ID`, that will be used to encrypt the Queues & Tasks in the region. Setting this as blank will turn off CMEK encryption.
+     */
+    kmsKey?: string | null;
+    /**
+     * Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
+     */
+    name?: string | null;
+  }
+  /**
    * Request message for CreateTask.
    */
   export interface Schema$CreateTaskRequest {
@@ -542,7 +555,7 @@ export namespace cloudtasks_v2beta2 {
    */
   export interface Schema$PauseQueueRequest {}
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1083,6 +1096,90 @@ export namespace cloudtasks_v2beta2 {
     }
 
     /**
+     * Gets the CMEK config. Gets the Customer Managed Encryption Key configured with the Cloud Tasks lcoation. By default there is no kms_key configured.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getCmekConfig(
+      params?: Params$Resource$Projects$Locations$Getcmekconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekConfig>;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekConfig>,
+      callback: BodyResponseCallback<Schema$CmekConfig>
+    ): void;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      callback: BodyResponseCallback<Schema$CmekConfig>
+    ): void;
+    getCmekConfig(callback: BodyResponseCallback<Schema$CmekConfig>): void;
+    getCmekConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getcmekconfig
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getcmekconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getcmekconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CmekConfig>(parameters);
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
      *
      * @param params - Parameters for request
@@ -1173,12 +1270,106 @@ export namespace cloudtasks_v2beta2 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * Creates or Updates a CMEK config. Updates the Customer Managed Encryption Key assotiated with the Cloud Tasks location (Creates if the key does not already exist). All new tasks created in the location will be encrypted at-rest with the KMS-key provided in the config.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateCmekConfig(
+      params?: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekConfig>;
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekConfig>,
+      callback: BodyResponseCallback<Schema$CmekConfig>
+    ): void;
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      callback: BodyResponseCallback<Schema$CmekConfig>
+    ): void;
+    updateCmekConfig(callback: BodyResponseCallback<Schema$CmekConfig>): void;
+    updateCmekConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updatecmekconfig
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updatecmekconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updatecmekconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta2/projects/{projectsId}/locations/{locationsId}/cmekConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectsId', 'locationsId'],
+        pathParams: ['locationsId', 'projectsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CmekConfig>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
      * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Getcmekconfig
+    extends StandardParameters {
+    /**
+     * Required. The config. For example: projects/PROJECT_ID/locations/LOCATION_ID/CmekConfig`
      */
     name?: string;
   }
@@ -1200,6 +1391,26 @@ export namespace cloudtasks_v2beta2 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Updatecmekconfig
+    extends StandardParameters {
+    /**
+     *
+     */
+    locationsId?: string;
+    /**
+     *
+     */
+    projectsId?: string;
+    /**
+     * List of fields to be updated in this request.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CmekConfig;
   }
 
   export class Resource$Projects$Locations$Queues {
@@ -1298,7 +1509,7 @@ export namespace cloudtasks_v2beta2 {
     }
 
     /**
-     * Deletes a queue. This command will delete the queue even if it has tasks in it. Note: If you delete a queue, a queue with the same name can't be created for 7 days. WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using this method.
+     * Deletes a queue. This command will delete the queue even if it has tasks in it. Note: If you delete a queue, you may be prevented from creating a new queue with the same name as the deleted queue for a tombstone window of up to 3 days. During this window, the CreateQueue operation may appear to recreate the queue, but this can be misleading. If you attempt to create a queue with the same name as one that is in the tombstone window, run GetQueue to confirm that the queue creation was successful. If GetQueue returns 200 response code, your queue was successfully created with the name of the previously deleted queue. Otherwise, your queue did not successfully recreate. WARNING: Using this method may have unintended side effects if you are using an App Engine `queue.yaml` or `queue.xml` file to manage your queues. Read [Overview of Queue Management and queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using this method.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

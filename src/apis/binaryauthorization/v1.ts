@@ -139,7 +139,7 @@ export namespace binaryauthorization_v1 {
      */
     evaluationMode?: string | null;
     /**
-     * Optional. The resource names of the attestors that must attest to a container image, in the format `projects/x/attestors/x`. Each attestor must exist before a policy can reference it. To add an attestor to a policy the principal issuing the policy change request must be able to read the attestor resource. Note: this field must be non-empty when the evaluation_mode field specifies REQUIRE_ATTESTATION, otherwise it must be empty.
+     * Optional. The resource names of the attestors that must attest to a container image, in the format `projects/x/attestors/x`. Each attestor must exist before a policy can reference it. To add an attestor to a policy the principal issuing the policy change request must be able to read the attestor resource. Note: this field must be non-empty when the `evaluation_mode` field specifies `REQUIRE_ATTESTATION`, otherwise it must be empty.
      */
     requireAttestationsBy?: string[] | null;
   }
@@ -157,7 +157,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$AttestationAuthenticator {
     /**
-     * Optional. A user-provided name for this AttestationAuthenticator. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.
+     * Optional. A user-provided name for this `AttestationAuthenticator`. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.
      */
     displayName?: string | null;
     /**
@@ -187,7 +187,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$AttestationSource {
     /**
-     * The ids of the GCP projects storing the SLSA attestations as container analysis Occurrences.
+     * The IDs of the GCP projects storing the SLSA attestations as Container Analysis Occurrences.
      */
     containerAnalysisAttestationProjects?: string[] | null;
   }
@@ -221,7 +221,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$AttestorPublicKey {
     /**
-     * ASCII-armored representation of a PGP public key, as the entire output by the command `gpg --export --armor foo@example.com` (either LF or CRLF line endings). When using this field, `id` should be left blank. The BinAuthz API handlers will calculate the ID and fill it in automatically. BinAuthz computes this ID as the OpenPGP RFC4880 V4 fingerprint, represented as upper-case hex. If `id` is provided by the caller, it will be overwritten by the API-calculated ID.
+     * ASCII-armored representation of a PGP public key, as the entire output by the command `gpg --export --armor foo@example.com` (either LF or CRLF line endings). When using this field, `id` should be left blank. The Binary Authorization API handlers will calculate the ID and fill it in automatically. Binary Authorization computes this ID as the OpenPGP RFC4880 V4 fingerprint, represented as upper-case hex. If `id` is provided by the caller, it will be overwritten by the API-calculated ID.
      */
     asciiArmoredPgpPublicKey?: string | null;
     /**
@@ -229,7 +229,7 @@ export namespace binaryauthorization_v1 {
      */
     comment?: string | null;
     /**
-     * The ID of this public key. Signatures verified by BinAuthz must include the ID of the public key that can be used to verify them, and that ID must match the contents of this field exactly. Additional restrictions on this field can be imposed based on which public key type is encapsulated. See the documentation on `public_key` cases below for details.
+     * The ID of this public key. Signatures verified by Binary Authorization must include the ID of the public key that can be used to verify them, and that ID must match the contents of this field exactly. Additional restrictions on this field can be imposed based on which public key type is encapsulated. See the documentation on `public_key` cases below for details.
      */
     id?: string | null;
     /**
@@ -255,19 +255,19 @@ export namespace binaryauthorization_v1 {
     role?: string | null;
   }
   /**
-   * A single check to perform against a Pod. Checks are grouped into CheckSets, which are defined by the top-level policy.
+   * A single check to perform against a Pod. Checks are grouped into `CheckSet` objects, which are defined by the top-level policy.
    */
   export interface Schema$Check {
     /**
-     * Optional. A special-case check that always denies. Note that this still only applies when the scope of the CheckSet applies and the image isn't exempted by an image allowlist. This check is primarily useful for testing, or to set the default behavior for all unmatched scopes to "deny".
+     * Optional. A special-case check that always denies. Note that this still only applies when the scope of the `CheckSet` applies and the image isn't exempted by an image allowlist. This check is primarily useful for testing, or to set the default behavior for all unmatched scopes to "deny".
      */
     alwaysDeny?: boolean | null;
     /**
-     * Optional. A user-provided name for this Check. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.
+     * Optional. A user-provided name for this check. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.
      */
     displayName?: string | null;
     /**
-     * Optional. Images exempted from this Check. If any of the patterns match the image url, the check will not be evaluated.
+     * Optional. Images exempted from this check. If any of the patterns match the image url, the check will not be evaluated.
      */
     imageAllowlist?: Schema$ImageAllowlist;
     /**
@@ -279,7 +279,7 @@ export namespace binaryauthorization_v1 {
      */
     simpleSigningAttestationCheck?: Schema$SimpleSigningAttestationCheck;
     /**
-     * Optional. Require that an image was built by a trusted builder (such as Google Cloud Build or GitHub), meets requirements for Supply chain Levels for Software Artifacts (SLSA), and was built from a trusted source code repostitory.
+     * Optional. Require that an image was built by a trusted builder (such as Google Cloud Build), meets requirements for Supply chain Levels for Software Artifacts (SLSA), and was built from a trusted source code repostitory.
      */
     slsaCheck?: Schema$SlsaCheck;
     /**
@@ -292,23 +292,23 @@ export namespace binaryauthorization_v1 {
     vulnerabilityCheck?: Schema$VulnerabilityCheck;
   }
   /**
-   * A conjunction of policy checks, scoped to a particular namespace or Kubernetes service account. In order for evaluation of a CheckSet to return "allowed" for a given image in a given Pod, one of the following conditions must be satisfied: * The image is explicitly exempted by an entry in `image_allowlist`, OR * ALL of the `checks` evaluate to "allowed".
+   * A conjunction of policy checks, scoped to a particular namespace or Kubernetes service account. In order for evaluation of a `CheckSet` to return "allowed" for a given image in a given Pod, one of the following conditions must be satisfied: * The image is explicitly exempted by an entry in `image_allowlist`, OR * ALL of the `checks` evaluate to "allowed".
    */
   export interface Schema$CheckSet {
     /**
-     * Optional. The checks to apply. The ultimate result of evaluating the check set will be "allow" if and only if every check in 'checks' evaluates to "allow". If `checks` is empty, the default behavior is "always allow".
+     * Optional. The checks to apply. The ultimate result of evaluating the check set will be "allow" if and only if every check in `checks` evaluates to "allow". If `checks` is empty, the default behavior is "always allow".
      */
     checks?: Schema$Check[];
     /**
-     * Optional. A user-provided name for this CheckSet. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.
+     * Optional. A user-provided name for this `CheckSet`. This field has no effect on the policy evaluation behavior except to improve readability of messages in evaluation results.
      */
     displayName?: string | null;
     /**
-     * Optional. Images exempted from this CheckSet. If any of the patterns match the image being evaluated, no checks in the CheckSet will be evaluated.
+     * Optional. Images exempted from this `CheckSet`. If any of the patterns match the image being evaluated, no checks in the `CheckSet` will be evaluated.
      */
     imageAllowlist?: Schema$ImageAllowlist;
     /**
-     * Optional. The scope to which this CheckSet applies. If unset or an empty string (the default), applies to all namespaces and service accounts. See the Scope message documentation for details on scoping rules.
+     * Optional. The scope to which this `CheckSet` applies. If unset or an empty string (the default), applies to all namespaces and service accounts. See the `Scope` message documentation for details on scoping rules.
      */
     scope?: Schema$Scope;
   }
@@ -342,7 +342,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$GkePolicy {
     /**
-     * Optional. The CheckSets to apply, scoped by namespace or namespace and service account. Exactly one CheckSet will be evaluated for a given Pod (unless the list is empty, in which case the behavior is "always allow"). If multiple CheckSets have scopes that match the namespace and service account of the Pod being evaluated, only the CheckSet with the MOST SPECIFIC scope will match. CheckSets must be listed in order of decreasing specificity, i.e. if a scope matches a given service account (which must include the namespace), it must come before a CheckSet with a scope matching just that namespace. This property is enforced by server-side validation. The purpose of this restriction is to ensure that if more than one CheckSet matches a given Pod, the CheckSet that will be evaluated will always be the first in the list to match (because if any other matches, it must be less specific). If `check_sets` is empty, the default behavior is to allow all images. If `check_sets` is non-empty, the last `check_sets` entry must always be a CheckSet with no scope set, i.e. a catchall to handle any situation not caught by the preceding CheckSets.
+     * Optional. The `CheckSet` objects to apply, scoped by namespace or namespace and service account. Exactly one `CheckSet` will be evaluated for a given Pod (unless the list is empty, in which case the behavior is "always allow"). If multiple `CheckSet` objects have scopes that match the namespace and service account of the Pod being evaluated, only the `CheckSet` with the MOST SPECIFIC scope will match. `CheckSet` objects must be listed in order of decreasing specificity, i.e. if a scope matches a given service account (which must include the namespace), it must come before a `CheckSet` with a scope matching just that namespace. This property is enforced by server-side validation. The purpose of this restriction is to ensure that if more than one `CheckSet` matches a given Pod, the `CheckSet` that will be evaluated will always be the first in the list to match (because if any other matches, it must be less specific). If `check_sets` is empty, the default behavior is to allow all images. If `check_sets` is non-empty, the last `check_sets` entry must always be a `CheckSet` with no scope set, i.e. a catchall to handle any situation not caught by the preceding `CheckSet` objects.
      */
     checkSets?: Schema$CheckSet[];
     /**
@@ -392,7 +392,7 @@ export namespace binaryauthorization_v1 {
     compactJwt?: string | null;
   }
   /**
-   * Response message for BinauthzManagementService.ListAttestors.
+   * Response message for BinauthzManagementServiceV1.ListAttestors.
    */
   export interface Schema$ListAttestorsResponse {
     /**
@@ -418,7 +418,7 @@ export namespace binaryauthorization_v1 {
     platformPolicies?: Schema$PlatformPolicy[];
   }
   /**
-   * A public key in the PkixPublicKey format (see https://tools.ietf.org/html/rfc5280#section-4.1.2.7 for details). Public keys of this type are typically textually encoded using the PEM format.
+   * A public key in the PkixPublicKey [format](https://tools.ietf.org/html/rfc5280#section-4.1.2.7). Public keys of this type are typically textually encoded using the PEM format.
    */
   export interface Schema$PkixPublicKey {
     /**
@@ -431,7 +431,7 @@ export namespace binaryauthorization_v1 {
     signatureAlgorithm?: string | null;
   }
   /**
-   * A bundle of PKIX public keys, used to authenticate attestation signatures. Generally, a signature is considered to be authenticated by a PkixPublicKeySet if any of the public keys verify it (i.e. it is an "OR" of the keys).
+   * A bundle of PKIX public keys, used to authenticate attestation signatures. Generally, a signature is considered to be authenticated by a `PkixPublicKeySet` if any of the public keys verify it (i.e. it is an "OR" of the keys).
    */
   export interface Schema$PkixPublicKeySet {
     /**
@@ -452,7 +452,7 @@ export namespace binaryauthorization_v1 {
      */
     gkePolicy?: Schema$GkePolicy;
     /**
-     * Output only. The relative resource name of the BinAuthz platform policy, in the form of `projects/x/platforms/x/policies/x`.
+     * Output only. The relative resource name of the Binary Authorization platform policy, in the form of `projects/x/platforms/x/policies/x`.
      */
     name?: string | null;
     /**
@@ -516,7 +516,7 @@ export namespace binaryauthorization_v1 {
     updateTime?: string | null;
   }
   /**
-   * A scope specifier for CheckSets.
+   * A scope specifier for `CheckSet` objects.
    */
   export interface Schema$Scope {
     /**
@@ -524,7 +524,7 @@ export namespace binaryauthorization_v1 {
      */
     kubernetesNamespace?: string | null;
     /**
-     * Optional. Matches a single Kubernetes service account, e.g. 'my-namespace:my-service-account'. `kubernetes_service_account` scope is always more specific than `kubernetes_namespace` scope for the same namespace.
+     * Optional. Matches a single Kubernetes service account, e.g. `my-namespace:my-service-account`. `kubernetes_service_account` scope is always more specific than `kubernetes_namespace` scope for the same namespace.
      */
     kubernetesServiceAccount?: string | null;
   }
@@ -595,7 +595,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$TrustedDirectoryCheck {
     /**
-     * Required. List of trusted directory patterns. A pattern is in the form "registry/path/to/directory". The registry domain part is defined as two or more dot-separated words, e.g., us.pkg.dev, or gcr.io. Additionally, * can be used in three ways as wildcards: 1. leading * to match varying prefixes in registry subdomain (useful for location prefixes); 2. trailing * after registry/ to match varying endings; 3. trailing ** after registry/ to match "/" as well. For example: -- gcr.io/my-project/my-repo is valid to match a single directory -- *-docker.pkg.dev/my-project/my-repo or *.gcr.io/my-project are valid to match varying prefixes -- gcr.io/my-project/x will match all direct directories in my-project -- gcr.io/my-project/x* would match all directories in my-project -- gcr.i* is not allowed since the registry is not completely specified -- sub*domain.gcr.io/nginx is not valid because only leading * or trailing * are allowed. -- *pkg.dev/my-project/my-repo is not valid because leading * can only match subdomain -- **-docker.pkg.dev is not valid because one leading * is allowed, and that it cannot match "/"
+     * Required. List of trusted directory patterns. A pattern is in the form "registry/path/to/directory". The registry domain part is defined as two or more dot-separated words, e.g., `us.pkg.dev`, or `gcr.io`. Additionally, `*` can be used in three ways as wildcards: 1. leading `*` to match varying prefixes in registry subdomain (useful for location prefixes); 2. trailing `*` after registry/ to match varying endings; 3. trailing `**` after registry/ to match "/" as well. For example: -- `gcr.io/my-project/my-repo` is valid to match a single directory -- `*-docker.pkg.dev/my-project/my-repo` or `*.gcr.io/my-project` are valid to match varying prefixes -- `gcr.io/my-project/x` will match all direct directories in `my-project` -- `gcr.io/my-project/x*` would match all directories in `my-project` -- `gcr.i*` is not allowed since the registry is not completely specified -- `sub*domain.gcr.io/nginx` is not valid because only leading `*` or trailing `*` are allowed. -- `*pkg.dev/my-project/my-repo` is not valid because leading `*` can only match subdomain -- `**-docker.pkg.dev` is not valid because one leading `*` is allowed, and that it cannot match `/`
      */
     trustedDirPatterns?: string[] | null;
   }
@@ -604,7 +604,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$UserOwnedGrafeasNote {
     /**
-     * Output only. This field will contain the service account email address that this Attestor will use as the principal when querying Container Analysis. Attestor administrators must grant this service account the IAM role needed to read attestations from the note_reference in Container Analysis (`containeranalysis.notes.occurrences.viewer`). This email address is fixed for the lifetime of the Attestor, but callers should not make any other assumptions about the service account email; future versions may use an email based on a different naming pattern.
+     * Output only. This field will contain the service account email address that this attestor will use as the principal when querying Container Analysis. Attestor administrators must grant this service account the IAM role needed to read attestations from the note_reference in Container Analysis (`containeranalysis.notes.occurrences.viewer`). This email address is fixed for the lifetime of the attestor, but callers should not make any other assumptions about the service account email; future versions may use an email based on a different naming pattern.
      */
     delegationServiceAccountEmail?: string | null;
     /**
@@ -621,7 +621,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$ValidateAttestationOccurrenceRequest {
     /**
-     * Required. An AttestationOccurrence to be checked that it can be verified by the Attestor. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid AttestationOccurrence.
+     * Required. An AttestationOccurrence to be checked that it can be verified by the `Attestor`. It does not have to be an existing entity in Container Analysis. It must otherwise be a valid `AttestationOccurrence`.
      */
     attestation?: Schema$AttestationOccurrence;
     /**
@@ -655,7 +655,7 @@ export namespace binaryauthorization_v1 {
      */
     attestationSource?: Schema$AttestationSource;
     /**
-     * If true, require the image to be built from a top-level configuration. trusted_source_repo patterns specifies the repositories containing this configuration.
+     * If true, require the image to be built from a top-level configuration. `trusted_source_repo_patterns` specifies the repositories containing this configuration.
      */
     configBasedBuildRequired?: boolean | null;
     /**
@@ -663,7 +663,7 @@ export namespace binaryauthorization_v1 {
      */
     trustedBuilder?: string | null;
     /**
-     * List of trusted source code repository URL patterns. These patterns match the full repository URL without its scheme (e.g. "https://"). The patterns must not include schemes. For example, the pattern "source.cloud.google.com/my-project/my-repo-name" matches the following URLs: - "source.cloud.google.com/my-project/my-repo-name" - "git+ssh://source.cloud.google.com/my-project/my-repo-name" - "https://source.cloud.google.com/my-project/my-repo-name" A pattern matches a URL either exactly or with * wildcards. * can be used in only two ways: 1. trailing * after hosturi/ to match varying endings; 2. trailing ** after hosturi/ to match "/" as well. * and ** can only be used as wildcards and can only occur at the end of the pattern after a /. (So it's not possible to match a URL that contains literal *.) For example: - "github.com/my-project/my-repo" is valid to match a single repo - "github.com/my-project/x" will match all direct repos in my-project - "github.com/x*" matches all repos in GitHub
+     * List of trusted source code repository URL patterns. These patterns match the full repository URL without its scheme (e.g. `https://`). The patterns must not include schemes. For example, the pattern `source.cloud.google.com/my-project/my-repo-name` matches the following URLs: - `source.cloud.google.com/my-project/my-repo-name` - `git+ssh://source.cloud.google.com/my-project/my-repo-name` - `https://source.cloud.google.com/my-project/my-repo-name` A pattern matches a URL either exactly or with `*` wildcards. `*` can be used in only two ways: 1. trailing `*` after hosturi/ to match varying endings; 2. trailing `**` after hosturi/ to match `/` as well. `*` and `**` can only be used as wildcards and can only occur at the end of the pattern after a `/`. (So it's not possible to match a URL that contains literal `*`.) For example: - `github.com/my-project/my-repo` is valid to match a single repo - `github.com/my-project/x` will match all direct repos in `my-project` - `github.com/x*` matches all repos in GitHub
      */
     trustedSourceRepoPatterns?: string[] | null;
   }
@@ -672,15 +672,15 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$VulnerabilityCheck {
     /**
-     * Optional. A list of specific CVEs to ignore even if the vulnerability level violates maximumUnfixableSeverity or maximumFixableSeverity. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will allow vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`.
+     * Optional. A list of specific CVEs to ignore even if the vulnerability level violates `maximumUnfixableSeverity` or `maximumFixableSeverity`. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will allow vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`.
      */
     allowedCves?: string[] | null;
     /**
-     * Optional. A list of specific CVEs to always raise warnings about even if the vulnerability level meets maximumUnfixableSeverity or maximumFixableSeverity. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will block vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`.
+     * Optional. A list of specific CVEs to always raise warnings about even if the vulnerability level meets `maximumUnfixableSeverity` or `maximumFixableSeverity`. CVEs are listed in the format of Container Analysis note id. For example: - CVE-2021-20305 - CVE-2020-10543 The CVEs are applicable regardless of note provider project, e.g., an entry of `CVE-2021-20305` will block vulnerabilities with a note name of either `projects/goog-vulnz/notes/CVE-2021-20305` or `projects/CUSTOM-PROJECT/notes/CVE-2021-20305`.
      */
     blockedCves?: string[] | null;
     /**
-     * Optional. The projects where vulnerabilities are stored as Container Analysis Occurrences. Each project is expressed in the resource format of `projects/[PROJECT_ID]`, e.g., projects/my-gcp-project. An attempt will be made for each project to fetch vulnerabilities, and all valid vulnerabilities will be used to check against the vulnerability policy. If no valid scan is found in all projects configured here, an error will be returned for the check.
+     * Optional. The projects where vulnerabilities are stored as Container Analysis Occurrences. Each project is expressed in the resource format of `projects/[PROJECT_ID]`, e.g., `projects/my-gcp-project`. An attempt will be made for each project to fetch vulnerabilities, and all valid vulnerabilities will be used to check against the vulnerability policy. If no valid scan is found in all projects configured here, an error will be returned for the check.
      */
     containerAnalysisVulnerabilityProjects?: string[] | null;
     /**
@@ -791,7 +791,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Creates or updates a project's policy, and returns a copy of the new policy. A policy is always updated as a whole, to avoid race conditions with concurrent policy enforcement (or management!) requests. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is malformed.
+     * Creates or updates a project's policy, and returns a copy of the new policy. A policy is always updated as a whole, to avoid race conditions with concurrent policy enforcement (or management!) requests. Returns `NOT_FOUND` if the project does not exist, `INVALID_ARGUMENT` if the request is malformed.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -903,7 +903,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Creates an attestor, and returns a copy of the new attestor. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the attestor already exists.
+     * Creates an attestor, and returns a copy of the new attestor. Returns `NOT_FOUND` if the project does not exist, `INVALID_ARGUMENT` if the request is malformed, `ALREADY_EXISTS` if the attestor already exists.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -991,7 +991,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Deletes an attestor. Returns NOT_FOUND if the attestor does not exist.
+     * Deletes an attestor. Returns `NOT_FOUND` if the attestor does not exist.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1076,7 +1076,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Gets an attestor. Returns NOT_FOUND if the attestor does not exist.
+     * Gets an attestor. Returns `NOT_FOUND` if the attestor does not exist.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1249,7 +1249,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Lists attestors. Returns INVALID_ARGUMENT if the project does not exist.
+     * Lists attestors. Returns `INVALID_ARGUMENT` if the project does not exist.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1525,7 +1525,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Updates an attestor. Returns NOT_FOUND if the attestor does not exist.
+     * Updates an attestor. Returns `NOT_FOUND` if the attestor does not exist.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1610,7 +1610,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Returns whether the given Attestation for the given image URI was signed by the given Attestor
+     * Returns whether the given `Attestation` for the given image URI was signed by the given `Attestor`
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1828,7 +1828,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Creates a platform policy, and returns a copy of it. Returns NOT_FOUND if the project or platform doesn't exist, INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the policy already exists, and INVALID_ARGUMENT if the policy contains a platform-specific policy that does not match the platform value specified in the URL.
+     * Creates a platform policy, and returns a copy of it. Returns `NOT_FOUND` if the project or platform doesn't exist, `INVALID_ARGUMENT` if the request is malformed, `ALREADY_EXISTS` if the policy already exists, and `INVALID_ARGUMENT` if the policy contains a platform-specific policy that does not match the platform value specified in the URL.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1916,7 +1916,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Deletes a platform policy. Returns NOT_FOUND if the policy doesn't exist.
+     * Deletes a platform policy. Returns `NOT_FOUND` if the policy doesn't exist.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2001,7 +2001,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Gets a platform policy. Returns NOT_FOUND if the policy doesn't exist.
+     * Gets a platform policy. Returns `NOT_FOUND` if the policy doesn't exist.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2086,7 +2086,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Lists platform policies owned by a project in the specified platform. Returns INVALID_ARGUMENT if the project or the platform doesn't exist.
+     * Lists platform policies owned by a project in the specified platform. Returns `INVALID_ARGUMENT` if the project or the platform doesn't exist.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2183,7 +2183,7 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * Replaces a platform policy. Returns NOT_FOUND if the policy doesn't exist.
+     * Replaces a platform policy. Returns `NOT_FOUND` if the policy doesn't exist.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2319,7 +2319,7 @@ export namespace binaryauthorization_v1 {
   export interface Params$Resource$Projects$Platforms$Policies$Replaceplatformpolicy
     extends StandardParameters {
     /**
-     * Output only. The relative resource name of the BinAuthz platform policy, in the form of `projects/x/platforms/x/policies/x`.
+     * Output only. The relative resource name of the Binary Authorization platform policy, in the form of `projects/x/platforms/x/policies/x`.
      */
     name?: string;
 

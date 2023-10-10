@@ -51,6 +51,7 @@ import {
 } from './advisorynotifications';
 import {VERSIONS as aiplatformVersions, aiplatform} from './aiplatform';
 import {VERSIONS as alertcenterVersions, alertcenter} from './alertcenter';
+import {VERSIONS as alloydbVersions, alloydb} from './alloydb';
 import {VERSIONS as analyticsVersions, analytics} from './analytics';
 import {
   VERSIONS as analyticsadminVersions,
@@ -479,6 +480,7 @@ import {
   VERSIONS as playdeveloperreportingVersions,
   playdeveloperreporting,
 } from './playdeveloperreporting';
+import {VERSIONS as playgroupingVersions, playgrouping} from './playgrouping';
 import {
   VERSIONS as playintegrityVersions,
   playintegrity,
@@ -505,6 +507,10 @@ import {
 import {VERSIONS as publiccaVersions, publicca} from './publicca';
 import {VERSIONS as pubsubVersions, pubsub} from './pubsub';
 import {VERSIONS as pubsubliteVersions, pubsublite} from './pubsublite';
+import {
+  VERSIONS as rapidmigrationassessmentVersions,
+  rapidmigrationassessment,
+} from './rapidmigrationassessment';
 import {
   VERSIONS as readerrevenuesubscriptionlinkingVersions,
   readerrevenuesubscriptionlinking,
@@ -681,6 +687,7 @@ export const APIS: APIList = {
   advisorynotifications: advisorynotificationsVersions,
   aiplatform: aiplatformVersions,
   alertcenter: alertcenterVersions,
+  alloydb: alloydbVersions,
   analytics: analyticsVersions,
   analyticsadmin: analyticsadminVersions,
   analyticsdata: analyticsdataVersions,
@@ -863,6 +870,7 @@ export const APIS: APIList = {
   playablelocations: playablelocationsVersions,
   playcustomapp: playcustomappVersions,
   playdeveloperreporting: playdeveloperreportingVersions,
+  playgrouping: playgroupingVersions,
   playintegrity: playintegrityVersions,
   plus: plusVersions,
   policyanalyzer: policyanalyzerVersions,
@@ -874,6 +882,7 @@ export const APIS: APIList = {
   publicca: publiccaVersions,
   pubsub: pubsubVersions,
   pubsublite: pubsubliteVersions,
+  rapidmigrationassessment: rapidmigrationassessmentVersions,
   readerrevenuesubscriptionlinking: readerrevenuesubscriptionlinkingVersions,
   realtimebidding: realtimebiddingVersions,
   recaptchaenterprise: recaptchaenterpriseVersions,
@@ -959,6 +968,7 @@ export class GeneratedAPIs {
   advisorynotifications = advisorynotifications;
   aiplatform = aiplatform;
   alertcenter = alertcenter;
+  alloydb = alloydb;
   analytics = analytics;
   analyticsadmin = analyticsadmin;
   analyticsdata = analyticsdata;
@@ -1141,6 +1151,7 @@ export class GeneratedAPIs {
   playablelocations = playablelocations;
   playcustomapp = playcustomapp;
   playdeveloperreporting = playdeveloperreporting;
+  playgrouping = playgrouping;
   playintegrity = playintegrity;
   plus = plus;
   policyanalyzer = policyanalyzer;
@@ -1152,6 +1163,7 @@ export class GeneratedAPIs {
   publicca = publicca;
   pubsub = pubsub;
   pubsublite = pubsublite;
+  rapidmigrationassessment = rapidmigrationassessment;
   readerrevenuesubscriptionlinking = readerrevenuesubscriptionlinking;
   realtimebidding = realtimebidding;
   recaptchaenterprise = recaptchaenterprise;

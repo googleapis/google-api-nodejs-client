@@ -198,6 +198,35 @@
             "https://www.googleapis.com/auth/firebase"
           ]
         },
+        "exchangeDebugToken": {
+          "description": "Validates a debug token secret that you have previously created using CreateDebugToken. If valid, returns an AppCheckToken. Note that a restrictive quota is enforced on this method to prevent accidental exposure of the app to abuse.",
+          "flatPath": "v1beta/oauthClients/{oauthClientsId}:exchangeDebugToken",
+          "httpMethod": "POST",
+          "id": "firebaseappcheck.oauthClients.exchangeDebugToken",
+          "parameterOrder": [
+            "app"
+          ],
+          "parameters": {
+            "app": {
+              "description": "Required. The relative resource name of the app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+              "location": "path",
+              "pattern": "^oauthClients/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+app}:exchangeDebugToken",
+          "request": {
+            "$ref": "GoogleFirebaseAppcheckV1betaExchangeDebugTokenRequest"
+          },
+          "response": {
+            "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        },
         "generateAppAttestChallenge": {
           "description": "Generates a challenge that protects the integrity of an immediately following call to ExchangeAppAttestAttestation or ExchangeAppAttestAssertion. A challenge should not be reused for multiple calls.",
           "flatPath": "v1beta/oauthClients/{oauthClientsId}:generateAppAttestChallenge",
@@ -1596,7 +1625,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20230911",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1betaAppAttestConfig": {

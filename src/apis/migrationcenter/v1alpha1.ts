@@ -763,7 +763,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$DiskUsageSample {
     /**
-     * Average IOPS sampled over a short window. Must be non-negative.
+     * Average IOPS sampled over a short window. Must be non-negative. Must be equal to the sum of read and write if one of them is positive. if both read and write are zero they are ignored.
      */
     averageIops?: number | null;
   }
@@ -2075,7 +2075,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     displayName?: string | null;
     /**
-     * Count of the number of assets in this group which are also included in another group within the same report.
+     * This field is deprecated, do not rely on it having a value.
      */
     overlappingAssetCount?: string | null;
     /**

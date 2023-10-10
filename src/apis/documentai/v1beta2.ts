@@ -146,6 +146,10 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus {
     /**
+     * The document id of the auto-labeled document. This will replace the gcs_uri.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
      * The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.
      */
     gcsUri?: string | null;
@@ -228,6 +232,33 @@ export namespace documentai_v1beta2 {
    * Response of the batch move documents operation.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse {}
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata {
+    /**
+     * The basic metadata of the long-running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+    /**
+     * The list of response details of each document.
+     */
+    individualBatchUpdateStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus[];
+  }
+  /**
+   * The status of each individual document in the batch update process.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus {
+    /**
+     * The document id of the document.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
+     * The status of updating the document in storage.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * Response of the batch update documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse {}
   /**
    * The common metadata for long running operations.
    */
@@ -3059,7 +3090,7 @@ export namespace documentai_v1beta2 {
     updateTime?: string | null;
   }
   /**
-   * A singleton resource under a Processor which configures a collection of documents.
+   * A singleton resource under a Processor which configures a collection of documents. Next Id: 8.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
     /**

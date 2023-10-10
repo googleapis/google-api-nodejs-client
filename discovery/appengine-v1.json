@@ -144,6 +144,21 @@
               "location": "path",
               "required": true,
               "type": "string"
+            },
+            "includeExtraData": {
+              "description": "Options to include extra data",
+              "enum": [
+                "INCLUDE_EXTRA_DATA_UNSPECIFIED",
+                "INCLUDE_EXTRA_DATA_NONE",
+                "INCLUDE_GOOGLE_GENERATED_METADATA"
+              ],
+              "enumDescriptions": [
+                "Unspecified: No extra data will be returned",
+                "Do not return any extra data",
+                "Return GGCM associated with the resources"
+              ],
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "v1/apps/{appsId}",
@@ -1595,7 +1610,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20230918",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -1731,6 +1746,14 @@
           "description": "Output only. The Google Container Registry domain used for storing managed build docker images for this application.",
           "readOnly": true,
           "type": "string"
+        },
+        "generatedCustomerMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Additional Google Generated Customer Metadata, this field won't be provided by default and can be requested by setting the IncludeExtraData field in GetApplicationRequest",
+          "type": "object"
         },
         "iap": {
           "$ref": "IdentityAwareProxy"
@@ -3423,6 +3446,14 @@
       "description": "A Service resource is a logical component of an application that can share state and communicate in a secure fashion with other services. For example, an application that handles customer requests might include separate services to handle tasks such as backend data analysis or API requests from mobile devices. Each service has a collection of versions that define a specific set of code used to implement the functionality of that service.",
       "id": "Service",
       "properties": {
+        "generatedCustomerMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Additional Google Generated Customer Metadata, this field won't be provided by default and can be requested by setting the IncludeExtraData field in GetServiceRequest",
+          "type": "object"
+        },
         "id": {
           "description": "Relative name of the service within the application. Example: default.@OutputOnly",
           "type": "string"
@@ -3979,7 +4010,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.",
+          "description": "Full Serverless VPC Access Connector name e.g. projects/my-project/locations/us-central1/connectors/c1.",
           "type": "string"
         }
       },

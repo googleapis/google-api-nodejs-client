@@ -14,27 +14,40 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {workstations_v1} from './v1';
 import {workstations_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: workstations_v1.Workstations,
   v1beta: workstations_v1beta.Workstations,
 };
 
+export function workstations(version: 'v1'): workstations_v1.Workstations;
+export function workstations(
+  options: workstations_v1.Options
+): workstations_v1.Workstations;
 export function workstations(
   version: 'v1beta'
 ): workstations_v1beta.Workstations;
 export function workstations(
   options: workstations_v1beta.Options
 ): workstations_v1beta.Workstations;
-export function workstations<T = workstations_v1beta.Workstations>(
+export function workstations<
+  T = workstations_v1.Workstations | workstations_v1beta.Workstations,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta' | workstations_v1beta.Options
+  versionOrOptions:
+    | 'v1'
+    | workstations_v1.Options
+    | 'v1beta'
+    | workstations_v1beta.Options
 ) {
   return getAPI<T>('workstations', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {workstations_v1};
 export {workstations_v1beta};
 export {
   AuthPlus,

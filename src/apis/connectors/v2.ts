@@ -129,6 +129,18 @@ export namespace connectors_v2 {
    */
   export interface Schema$Action {
     /**
+     * Brief Description of action
+     */
+    description?: string | null;
+    /**
+     * Display Name of action to be shown on client side
+     */
+    displayName?: string | null;
+    /**
+     * JsonSchema representation of this actions's input schema
+     */
+    inputJsonSchema?: Schema$JsonSchema;
+    /**
      * List containing input parameter metadata.
      */
     inputParameters?: Schema$InputParameter[];
@@ -136,6 +148,10 @@ export namespace connectors_v2 {
      * Name of the action.
      */
     name?: string | null;
+    /**
+     * JsonSchema representation of this actions's result schema
+     */
+    resultJsonSchema?: Schema$JsonSchema;
     /**
      * List containing the metadata of result fields.
      */
@@ -166,6 +182,10 @@ export namespace connectors_v2 {
      * List containing metadata information about each field of the entity type.
      */
     fields?: Schema$Field[];
+    /**
+     * JsonSchema representation of this entity's schema
+     */
+    jsonSchema?: Schema$JsonSchema;
     /**
      * The name of the entity type.
      */
@@ -228,6 +248,10 @@ export namespace connectors_v2 {
      */
     description?: string | null;
     /**
+     * JsonSchema of the field, applicable only if field is of type `STRUCT`
+     */
+    jsonSchema?: Schema$JsonSchema;
+    /**
      * The following boolean field specifies if the current Field acts as a primary key or id if the parent is of type entity.
      */
     key?: boolean | null;
@@ -249,6 +273,10 @@ export namespace connectors_v2 {
    */
   export interface Schema$InputParameter {
     /**
+     * The following map contains fields that are not explicitly mentioned above,this give connectors the flexibility to add new metadata fields.
+     */
+    additionalDetails?: {[key: string]: any} | null;
+    /**
      * The data type of the Parameter
      */
     dataType?: string | null;
@@ -261,6 +289,10 @@ export namespace connectors_v2 {
      */
     description?: string | null;
     /**
+     * JsonSchema of the parameter, applicable only if parameter is of type `STRUCT`
+     */
+    jsonSchema?: Schema$JsonSchema;
+    /**
      * Name of the Parameter.
      */
     name?: string | null;
@@ -268,6 +300,51 @@ export namespace connectors_v2 {
      * Specifies whether a null value is allowed.
      */
     nullable?: boolean | null;
+  }
+  /**
+   * JsonSchema representation of schema metadata
+   */
+  export interface Schema$JsonSchema {
+    /**
+     * Additional details apart from standard json schema fields, this gives flexibility to store metadata about the schema
+     */
+    additionalDetails?: {[key: string]: any} | null;
+    /**
+     * The default value of the field or object described by this schema.
+     */
+    default?: any | null;
+    /**
+     * A description of this schema.
+     */
+    description?: string | null;
+    /**
+     * Possible values for an enumeration. This works in conjunction with `type` to represent types with a fixed set of legal values
+     */
+    enum?: any[] | null;
+    /**
+     * Format of the value as per https://json-schema.org/understanding-json-schema/reference/string.html#format
+     */
+    format?: string | null;
+    /**
+     * Schema that applies to array values, applicable only if this is of type `array`.
+     */
+    items?: Schema$JsonSchema;
+    /**
+     * JDBC datatype of the field.
+     */
+    jdbcType?: string | null;
+    /**
+     * The child schemas, applicable only if this is of type `object`. The key is the name of the property and the value is the json schema that describes that property
+     */
+    properties?: {[key: string]: Schema$JsonSchema} | null;
+    /**
+     * Whether this property is required.
+     */
+    required?: string[] | null;
+    /**
+     * JSON Schema Validation: A Vocabulary for Structural Validation of JSON
+     */
+    type?: string[] | null;
   }
   /**
    * Response message for ActionService.ListActions
@@ -321,9 +398,28 @@ export namespace connectors_v2 {
    */
   export interface Schema$Query {
     /**
+     * Sets the limit for the maximum number of rows returned after the query execution.
+     */
+    maxRows?: string | null;
+    /**
      * Required. Sql query to execute.
      */
     query?: string | null;
+    /**
+     * In the struct, the value corresponds to the value of query parameter and date type corresponds to the date type of the query parameter.
+     */
+    queryParameters?: Schema$QueryParameter[];
+    /**
+     * Sets the number of seconds the driver will wait for a query to execute.
+     */
+    timeout?: string | null;
+  }
+  /**
+   * Query parameter definition
+   */
+  export interface Schema$QueryParameter {
+    dataType?: string | null;
+    value?: any | null;
   }
   export interface Schema$Reference {
     /**
@@ -347,6 +443,10 @@ export namespace connectors_v2 {
      * A brief description of the metadata field.
      */
     description?: string | null;
+    /**
+     * JsonSchema of the result, applicable only if parameter is of type `STRUCT`
+     */
+    jsonSchema?: Schema$JsonSchema;
     /**
      * Name of the metadata field.
      */
@@ -604,6 +704,91 @@ export namespace connectors_v2 {
     }
 
     /**
+     * Gets the schema of the given action.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Actions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Connections$Actions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Action>;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Actions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Actions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Action>,
+      callback: BodyResponseCallback<Schema$Action>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Actions$Get,
+      callback: BodyResponseCallback<Schema$Action>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Action>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Actions$Get
+        | BodyResponseCallback<Schema$Action>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Action>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Action>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Action> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Actions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Actions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Action>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Action>(parameters);
+      }
+    }
+
+    /**
      * Gets the schema of all the actions supported by the connector.
      *
      * @param params - Parameters for request
@@ -707,6 +892,13 @@ export namespace connectors_v2 {
      */
     requestBody?: Schema$ExecuteActionRequest;
   }
+  export interface Params$Resource$Projects$Locations$Connections$Actions$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the Action. Format: projects/{project\}/locations/{location\}/connections/{connection\}/actions/{action\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Connections$Actions$List
     extends StandardParameters {
     /**
@@ -721,6 +913,10 @@ export namespace connectors_v2 {
      * Required. Parent resource name of the Action. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      */
     parent?: string;
+    /**
+     * Specifies which fields of the Action are returned in the response.
+     */
+    view?: string;
   }
 
   export class Resource$Projects$Locations$Connections$Entitytypes {
@@ -732,6 +928,91 @@ export namespace connectors_v2 {
         new Resource$Projects$Locations$Connections$Entitytypes$Entities(
           this.context
         );
+    }
+
+    /**
+     * Gets metadata of given entity type
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Entitytypes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Connections$Entitytypes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EntityType>;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Entitytypes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Entitytypes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$EntityType>,
+      callback: BodyResponseCallback<Schema$EntityType>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Connections$Entitytypes$Get,
+      callback: BodyResponseCallback<Schema$EntityType>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$EntityType>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Entitytypes$Get
+        | BodyResponseCallback<Schema$EntityType>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EntityType>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EntityType>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EntityType> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Entitytypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Entitytypes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EntityType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EntityType>(parameters);
+      }
     }
 
     /**
@@ -828,6 +1109,13 @@ export namespace connectors_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{entityType\}
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$List
     extends StandardParameters {
     /**
@@ -842,6 +1130,10 @@ export namespace connectors_v2 {
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}
      */
     parent?: string;
+    /**
+     * Specifies which fields of the Entity Type are returned in the response.
+     */
+    view?: string;
   }
 
   export class Resource$Projects$Locations$Connections$Entitytypes$Entities {

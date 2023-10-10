@@ -1773,7 +1773,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20230913",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2201,6 +2201,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "isTrustedTester": {
+          "description": "Output only. Is trusted tester program enabled for the project.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -2450,6 +2455,10 @@
       "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
       "id": "ConnectorInfraConfig",
       "properties": {
+        "hpaConfig": {
+          "$ref": "HPAConfig",
+          "description": "HPA autoscaling config."
+        },
         "internalclientRatelimitThreshold": {
           "description": "Max QPS supported for internal requests originating from Connd.",
           "format": "int64",
@@ -2458,6 +2467,18 @@
         "ratelimitThreshold": {
           "description": "Max QPS supported by the connector version before throttling of requests.",
           "format": "int64",
+          "type": "string"
+        },
+        "resourceLimits": {
+          "$ref": "ResourceLimits",
+          "description": "System resource limits."
+        },
+        "resourceRequests": {
+          "$ref": "ResourceRequests",
+          "description": "System resource requests."
+        },
+        "sharedDeployment": {
+          "description": "The name of shared connector deployment.",
           "type": "string"
         }
       },
@@ -2590,6 +2611,11 @@
       "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
       "id": "ConnectorVersionInfraConfig",
       "properties": {
+        "hpaConfig": {
+          "$ref": "HPAConfig",
+          "description": "Output only. HPA autoscaling config.",
+          "readOnly": true
+        },
         "internalclientRatelimitThreshold": {
           "description": "Output only. Max QPS supported for internal requests originating from Connd.",
           "format": "int64",
@@ -2599,6 +2625,21 @@
         "ratelimitThreshold": {
           "description": "Output only. Max QPS supported by the connector version before throttling of requests.",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceLimits": {
+          "$ref": "ResourceLimits",
+          "description": "Output only. System resource limits.",
+          "readOnly": true
+        },
+        "resourceRequests": {
+          "$ref": "ResourceRequests",
+          "description": "Output only. System resource requests.",
+          "readOnly": true
+        },
+        "sharedDeployment": {
+          "description": "Output only. The name of shared connector deployment.",
           "readOnly": true,
           "type": "string"
         }
@@ -3009,9 +3050,17 @@
           "description": "Enrichment Enabled.",
           "type": "boolean"
         },
+        "eventsListenerIngressEndpoint": {
+          "description": "Optional. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.",
+          "type": "string"
+        },
+        "privateConnectivityEnabled": {
+          "description": "Optional. Private Connectivity Enabled.",
+          "type": "boolean"
+        },
         "registrationDestinationConfig": {
           "$ref": "DestinationConfig",
-          "description": "Registration endpoint for auto regsitration."
+          "description": "Registration endpoint for auto registration."
         }
       },
       "type": "object"
@@ -3129,6 +3178,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "eventsListenerPscSa": {
+          "description": "Output only. Events listener PSC Service attachment. The value will be populated after provisioning the events listener with private connectivity enabled.",
+          "readOnly": true,
+          "type": "string"
+        },
         "status": {
           "$ref": "EventingStatus",
           "description": "Output only. Current status of eventing.",
@@ -3151,12 +3205,14 @@
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
-            "ERROR"
+            "ERROR",
+            "INGRESS_ENDPOINT_REQUIRED"
           ],
           "enumDescriptions": [
             "Default state.",
             "Eventing is enabled and ready to receive events.",
-            "Eventing is not active due to an error."
+            "Eventing is not active due to an error.",
+            "Ingress endpoint required."
           ],
           "readOnly": true,
           "type": "string"
@@ -3385,6 +3441,10 @@
           "description": "Name of the Field.",
           "type": "string"
         },
+        "jsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "JsonSchema representation of this entity's schema"
+        },
         "key": {
           "description": "The following boolean field specifies if the current Field acts as a primary key or id if the parent is of type entity.",
           "type": "boolean"
@@ -3433,6 +3493,25 @@
         },
         "stringValue": {
           "description": "String value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HPAConfig": {
+      "description": "Autoscaling config for connector deployment system metrics.",
+      "id": "HPAConfig",
+      "properties": {
+        "cpuUtilizationThreshold": {
+          "description": "Output only. Percent CPU utilization where HPA triggers autoscaling.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "memoryUtilizationThreshold": {
+          "description": "Output only. Percent Memory utilization where HPA triggers autoscaling.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3610,6 +3689,10 @@
           "description": "A brief description of the Parameter.",
           "type": "string"
         },
+        "jsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "JsonSchema representation of this action's parameter"
+        },
         "nullable": {
           "description": "Specifies whether a null value is allowed.",
           "type": "boolean"
@@ -3617,6 +3700,202 @@
         "parameter": {
           "description": "Name of the Parameter.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "JsonSchema": {
+      "description": "JsonSchema representation of schema metadata",
+      "id": "JsonSchema",
+      "properties": {
+        "default": {
+          "description": "The default value of the field or object described by this schema.",
+          "type": "any"
+        },
+        "description": {
+          "description": "A description of this schema.",
+          "type": "string"
+        },
+        "enum": {
+          "description": "Possible values for an enumeration. This works in conjunction with `type` to represent types with a fixed set of legal values",
+          "items": {
+            "type": "any"
+          },
+          "type": "array"
+        },
+        "format": {
+          "description": "Format of the value as per https://json-schema.org/understanding-json-schema/reference/string.html#format",
+          "type": "string"
+        },
+        "items": {
+          "$ref": "JsonSchema",
+          "description": "Schema that applies to array values, applicable only if this is of type `array`."
+        },
+        "jdbcType": {
+          "description": "JDBC datatype of the field.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "DATA_TYPE_INT",
+            "DATA_TYPE_SMALLINT",
+            "DATA_TYPE_DOUBLE",
+            "DATA_TYPE_DATE",
+            "DATA_TYPE_DATETIME",
+            "DATA_TYPE_TIME",
+            "DATA_TYPE_STRING",
+            "DATA_TYPE_LONG",
+            "DATA_TYPE_BOOLEAN",
+            "DATA_TYPE_DECIMAL",
+            "DATA_TYPE_UUID",
+            "DATA_TYPE_BLOB",
+            "DATA_TYPE_BIT",
+            "DATA_TYPE_TINYINT",
+            "DATA_TYPE_INTEGER",
+            "DATA_TYPE_BIGINT",
+            "DATA_TYPE_FLOAT",
+            "DATA_TYPE_REAL",
+            "DATA_TYPE_NUMERIC",
+            "DATA_TYPE_CHAR",
+            "DATA_TYPE_VARCHAR",
+            "DATA_TYPE_LONGVARCHAR",
+            "DATA_TYPE_TIMESTAMP",
+            "DATA_TYPE_NCHAR",
+            "DATA_TYPE_NVARCHAR",
+            "DATA_TYPE_LONGNVARCHAR",
+            "DATA_TYPE_NULL",
+            "DATA_TYPE_OTHER",
+            "DATA_TYPE_JAVA_OBJECT",
+            "DATA_TYPE_DISTINCT",
+            "DATA_TYPE_STRUCT",
+            "DATA_TYPE_ARRAY",
+            "DATA_TYPE_CLOB",
+            "DATA_TYPE_REF",
+            "DATA_TYPE_DATALINK",
+            "DATA_TYPE_ROWID",
+            "DATA_TYPE_BINARY",
+            "DATA_TYPE_VARBINARY",
+            "DATA_TYPE_LONGVARBINARY",
+            "DATA_TYPE_NCLOB",
+            "DATA_TYPE_SQLXML",
+            "DATA_TYPE_REF_CURSOR",
+            "DATA_TYPE_TIME_WITH_TIMEZONE",
+            "DATA_TYPE_TIMESTAMP_WITH_TIMEZONE"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "Data type is not specified.",
+            "DEPRECATED! Use DATA_TYPE_INTEGER.",
+            "Short integer(int16) data type.",
+            "Double data type.",
+            "Date data type.",
+            "DEPRECATED! Use DATA_TYPE_TIMESTAMP.",
+            "Time data type.",
+            "DEPRECATED! Use DATA_TYPE_VARCHAR.",
+            "DEPRECATED! Use DATA_TYPE_BIGINT.",
+            "Boolean data type.",
+            "Decimal data type.",
+            "DEPRECATED! Use DATA_TYPE_VARCHAR.",
+            "UNSUPPORTED! Binary data type.",
+            "Bit data type.",
+            "Small integer(int8) data type.",
+            "Integer(int32) data type.",
+            "Long integer(int64) data type.",
+            "Float data type.",
+            "Real data type.",
+            "Numeric data type.",
+            "Char data type.",
+            "Varchar data type.",
+            "Longvarchar data type.",
+            "Timestamp data type.",
+            "Nchar data type.",
+            "Nvarchar data type.",
+            "Longnvarchar data type.",
+            "Null data type.",
+            "UNSUPPORTED! Binary data type.",
+            "UNSUPPORTED! Binary data type.",
+            "UNSUPPORTED! Binary data type.",
+            "UNSUPPORTED! Binary data type.",
+            "UNSUPPORTED! Binary data type.",
+            "UNSUPPORTED! Binary data type.",
+            "UNSUPPORTED! Binary data type.",
+            "UNSUPPORTED! Binary data type.",
+            "UNSUPPORTED! Row id data type.",
+            "UNSUPPORTED! Binary data type.",
+            "UNSUPPORTED! Variable binary data type.",
+            "UNSUPPORTED! Long variable binary data type.",
+            "UNSUPPORTED! NCLOB data type.",
+            "UNSUPPORTED! SQL XML data type is not supported.",
+            "UNSUPPORTED! Cursor reference type is not supported.",
+            "UNSUPPORTED! Use TIME or TIMESTAMP instead.",
+            "UNSUPPORTED! Use TIMESTAMP instead."
+          ],
+          "type": "string"
+        },
+        "properties": {
+          "additionalProperties": {
+            "$ref": "JsonSchema"
+          },
+          "description": "The child schemas, applicable only if this is of type `object`. The key is the name of the property and the value is the json schema that describes that property",
+          "type": "object"
+        },
+        "required": {
+          "description": "Whether this property is required.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "JSON Schema Validation: A Vocabulary for Structural Validation of JSON",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4345,6 +4624,40 @@
       },
       "type": "object"
     },
+    "ResourceLimits": {
+      "description": "Resource limits defined for connection pods of a given connector type.",
+      "id": "ResourceLimits",
+      "properties": {
+        "cpu": {
+          "description": "Output only. CPU limit.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "memory": {
+          "description": "Output only. Memory limit.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceRequests": {
+      "description": "Resource requests defined for connection pods of a given connector type.",
+      "id": "ResourceRequests",
+      "properties": {
+        "cpu": {
+          "description": "Output only. CPU request.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "memory": {
+          "description": "Output only. Memory request.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ResultMetadata": {
       "description": "Metadata of result field.",
       "id": "ResultMetadata",
@@ -4501,6 +4814,10 @@
         "field": {
           "description": "Name of the result field.",
           "type": "string"
+        },
+        "jsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "JsonSchema representation of this action's result"
         }
       },
       "type": "object"
@@ -4554,6 +4871,21 @@
           "readOnly": true,
           "type": "string"
         },
+        "description": {
+          "description": "Output only. Brief Description of action",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Display Name of action to be shown on client side",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inputJsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "Output only. JsonSchema representation of this action's input metadata",
+          "readOnly": true
+        },
         "inputParameters": {
           "description": "Output only. List of input parameter metadata for the action.",
           "items": {
@@ -4561,6 +4893,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "resultJsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "Output only. JsonSchema representation of this action's result metadata",
+          "readOnly": true
         },
         "resultMetadata": {
           "description": "Output only. List of result field metadata.",
@@ -4673,6 +5010,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "jsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "Output only. JsonSchema representation of this entity's metadata",
+          "readOnly": true
         }
       },
       "type": "object"

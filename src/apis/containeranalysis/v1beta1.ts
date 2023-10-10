@@ -1113,7 +1113,7 @@ export namespace containeranalysis_v1beta1 {
      */
     buildStepImages?: string[] | null;
     /**
-     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 4KB of data is stored.
+     * List of build step outputs, produced by builder images, in the order corresponding to build step indices. [Cloud Builders](https://cloud.google.com/cloud-build/docs/cloud-builders) can produce this output by writing to `$BUILDER_OUTPUT/output`. Only the first 50KB of data is stored.
      */
     buildStepOutputs?: string[] | null;
     /**
@@ -1213,6 +1213,14 @@ export namespace containeranalysis_v1beta1 {
         key: string
       ]: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes;
     } | null;
+    /**
+     * Output only. A copy of the build's `source.connected_repository`, if exists, with any revisions resolved.
+     */
+    resolvedConnectedRepository?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository;
+    /**
+     * Output only. A copy of the build's `source.git_source`, if exists, with any revisions resolved.
+     */
+    resolvedGitSource?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource;
     /**
      * A copy of the build's `source.repo_source`, if exists, with any revisions resolved.
      */
@@ -1570,6 +1578,10 @@ export namespace containeranalysis_v1beta1 {
      */
     lastAnalysisTime?: string | null;
     /**
+     * The last time this resource was scanned.
+     */
+    lastScanTime?: string | null;
+    /**
      * The status of an SBOM generation.
      */
     sbomStatus?: Schema$SBOMStatus;
@@ -1613,7 +1625,7 @@ export namespace containeranalysis_v1beta1 {
     url?: string | null;
   }
   /**
-   * DocumentNote represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/v2.3/document-creation-information/
+   * DocumentNote represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/2-document-creation-information/
    */
   export interface Schema$DocumentNote {
     /**
@@ -1626,7 +1638,7 @@ export namespace containeranalysis_v1beta1 {
     spdxVersion?: string | null;
   }
   /**
-   * DocumentOccurrence represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/v2.3/document-creation-information/
+   * DocumentOccurrence represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/2-document-creation-information/
    */
   export interface Schema$DocumentOccurrence {
     /**
@@ -3203,6 +3215,10 @@ export namespace containeranalysis_v1beta1 {
      * All information about the package to specifically identify this vulnerability. One entry per (version range and cpe_uri) the package vulnerability has manifested in.
      */
     details?: Schema$Detail[];
+    /**
+     * Occurrence-specific extra details about the vulnerability.
+     */
+    extraDetails?: string | null;
     /**
      * Note provider assigned impact of the vulnerability.
      */

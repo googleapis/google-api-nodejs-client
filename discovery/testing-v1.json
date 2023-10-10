@@ -130,6 +130,166 @@
     },
     "projects": {
       "resources": {
+        "deviceSessions": {
+          "methods": {
+            "cancel": {
+              "description": "POST /v1/projects/{project_id}/deviceSessions/{device_session_id}:cancel Changes the DeviceSession to state FINISHED and terminates all connections. Canceled sessions are not deleted and can be retrieved or listed by the user until they expire based on the 28 day deletion policy.",
+              "flatPath": "v1/projects/{projectsId}/deviceSessions/{deviceSessionsId}:cancel",
+              "httpMethod": "POST",
+              "id": "testing.projects.deviceSessions.cancel",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the DeviceSession, e.g. \"projects/{project_id}/deviceSessions/{session_id}\"",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/deviceSessions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:cancel",
+              "request": {
+                "$ref": "CancelDeviceSessionRequest"
+              },
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "create": {
+              "description": "POST /v1/projects/{project_id}/deviceSessions",
+              "flatPath": "v1/projects/{projectsId}/deviceSessions",
+              "httpMethod": "POST",
+              "id": "testing.projects.deviceSessions.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The Compute Engine project under which this device will be allocated. \"projects/{project_id}\"",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/deviceSessions",
+              "request": {
+                "$ref": "DeviceSession"
+              },
+              "response": {
+                "$ref": "DeviceSession"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "GET /v1/projects/{project_id}/deviceSessions/{device_session_id} Return a DeviceSession, which documents the allocation status and whether the device is allocated. Clients making requests from this API must poll GetDeviceSession.",
+              "flatPath": "v1/projects/{projectsId}/deviceSessions/{deviceSessionsId}",
+              "httpMethod": "GET",
+              "id": "testing.projects.deviceSessions.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the DeviceSession, e.g. \"projects/{project_id}/deviceSessions/{session_id}\"",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/deviceSessions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "DeviceSession"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "GET /v1/projects/{project_id}/deviceSessions Lists device Sessions owned by the project user.",
+              "flatPath": "v1/projects/{projectsId}/deviceSessions",
+              "httpMethod": "GET",
+              "id": "testing.projects.deviceSessions.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. If specified, responses will be filtered by the given filter. Allowed fields are: session_state.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of DeviceSessions to return.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A continuation token for paging.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the parent to request, e.g. \"projects/{project_id}\"",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/deviceSessions",
+              "response": {
+                "$ref": "ListDeviceSessionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "PATCH /v1/projects/{projectId}/deviceSessions/deviceSessionId}:updateDeviceSession Updates the current device session to the fields described by the update_mask.",
+              "flatPath": "v1/projects/{projectsId}/deviceSessions/{deviceSessionsId}",
+              "httpMethod": "PATCH",
+              "id": "testing.projects.deviceSessions.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Optional. Name of the DeviceSession, e.g. \"projects/{project_id}/deviceSessions/{session_id}\"",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/deviceSessions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "DeviceSession"
+              },
+              "response": {
+                "$ref": "DeviceSession"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "testMatrices": {
           "methods": {
             "cancel": {
@@ -282,7 +442,7 @@
       }
     }
   },
-  "revision": "20230815",
+  "revision": "20230919",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -829,6 +989,12 @@
       },
       "type": "object"
     },
+    "CancelDeviceSessionRequest": {
+      "description": "The request object for cancelling a Device Session.",
+      "id": "CancelDeviceSessionRequest",
+      "properties": {},
+      "type": "object"
+    },
     "CancelTestMatrixResponse": {
       "description": "Response containing the current state of the specified test matrix.",
       "id": "CancelTestMatrixResponse",
@@ -981,6 +1147,107 @@
       },
       "type": "object"
     },
+    "DeviceSession": {
+      "description": "Protobuf message describing the device message, used from several RPCs.",
+      "id": "DeviceSession",
+      "properties": {
+        "activeStartTime": {
+          "description": "Output only. The timestamp that the session first became ACTIVE.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "androidDevice": {
+          "$ref": "AndroidDevice",
+          "description": "Required. The requested device"
+        },
+        "androidDeviceList": {
+          "$ref": "AndroidDeviceList",
+          "deprecated": true,
+          "description": "Optional. The list of requested devices. At most two devices may be simultaneously requested."
+        },
+        "createTime": {
+          "description": "Output only. The time that the Session was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The title of the DeviceSession to be presented in the UI.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Optional. If the device is still in use at this time, any connections will be ended and the SessionState will transition from ACTIVE to FINISHED.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "inactivityTimeout": {
+          "description": "Output only. The interval of time that this device must be interacted with before it transitions from ACTIVE to TIMEOUT_INACTIVITY.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Optional. Name of the DeviceSession, e.g. \"projects/{project_id}/deviceSessions/{session_id}\"",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Current state of the DeviceSession.",
+          "enum": [
+            "SESSION_STATE_UNSPECIFIED",
+            "REQUESTED",
+            "PENDING",
+            "ACTIVE",
+            "EXPIRED",
+            "FINISHED",
+            "UNAVAILABLE",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Initial state of a session request. The session is being validated for correctness and a device is not yet requested.",
+            "The session has been validated and is in the queue for a device.",
+            "The session has been granted and the device is accepting connections.",
+            "The session duration exceeded the device’s reservation time period and timed out automatically.",
+            "The user is finished with the session and it was canceled by the user while the request was still getting allocated or after allocation and during device usage period.",
+            "Unable to complete the session because the device was unavailable and it failed to allocate through the scheduler. For example, a device not in the catalog was requested or the request expired in the allocation queue.",
+            "Unable to complete the session for an internal reason, such as an infrastructure failure."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateHistories": {
+          "description": "Output only. The historical state transitions of the session_state message including the current session state.",
+          "items": {
+            "$ref": "SessionStateEvent"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "ttl": {
+          "description": "Optional. The amount of time that a device will be initially allocated for. This can eventually be extended with the ExtendDeviceSession RPC. Default: 30 minutes.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DirectAccessVersionInfo": {
+      "description": "Denotes whether Direct Access is supported, and by which client versions. DirectAccessService is currently available as a preview to select developers. You can register today on behalf of you and your team at https://developer.android.com/studio/preview/android-device-streaming",
+      "id": "DirectAccessVersionInfo",
+      "properties": {
+        "directAccessSupported": {
+          "description": "Whether direct access is supported at all. Clients are expected to filter down the device list to only android models and versions which support Direct Access when that is the user intent.",
+          "type": "boolean"
+        },
+        "minimumAndroidStudioVersion": {
+          "description": "Output only. Indicates client-device compatibility, where a device is known to work only with certain workarounds implemented in the Android Studio client. Expected format \"major.minor.micro.patch\", e.g. \"5921.22.2211.8881706\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Distribution": {
       "description": "Data about the relative number of devices running a given configuration of the Android platform.",
       "id": "Distribution",
@@ -996,6 +1263,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "Empty",
+      "properties": {},
       "type": "object"
     },
     "Environment": {
@@ -1436,6 +1709,24 @@
       "properties": {},
       "type": "object"
     },
+    "ListDeviceSessionsResponse": {
+      "description": "A list of device sessions.",
+      "id": "ListDeviceSessionsResponse",
+      "properties": {
+        "deviceSessions": {
+          "description": "The sessions matching the specified filter in the given cloud project.",
+          "items": {
+            "$ref": "DeviceSession"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Locale": {
       "description": "A location/region designation for language.",
       "id": "Locale",
@@ -1585,6 +1876,11 @@
             "Devices that are completely missing from the lab. These devices are unavailable either temporarily or permanently and should not be requested. If the device is also marked as deprecated, this state is very likely permanent."
           ],
           "type": "string"
+        },
+        "directAccessVersionInfo": {
+          "$ref": "DirectAccessVersionInfo",
+          "description": "Output only. Identifies supported clients for DirectAccess for this Android version.",
+          "readOnly": true
         },
         "versionId": {
           "description": "An Android version.",
@@ -1744,6 +2040,49 @@
         },
         "name": {
           "description": "The android:name value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SessionStateEvent": {
+      "description": "A message encapsulating a series of Session states and the time that the DeviceSession first entered those states.",
+      "id": "SessionStateEvent",
+      "properties": {
+        "eventTime": {
+          "description": "Output only. The time that the session_state first encountered that state.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sessionState": {
+          "description": "Output only. The session_state tracked by this event",
+          "enum": [
+            "SESSION_STATE_UNSPECIFIED",
+            "REQUESTED",
+            "PENDING",
+            "ACTIVE",
+            "EXPIRED",
+            "FINISHED",
+            "UNAVAILABLE",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Initial state of a session request. The session is being validated for correctness and a device is not yet requested.",
+            "The session has been validated and is in the queue for a device.",
+            "The session has been granted and the device is accepting connections.",
+            "The session duration exceeded the device’s reservation time period and timed out automatically.",
+            "The user is finished with the session and it was canceled by the user while the request was still getting allocated or after allocation and during device usage period.",
+            "Unable to complete the session because the device was unavailable and it failed to allocate through the scheduler. For example, a device not in the catalog was requested or the request expired in the allocation queue.",
+            "Unable to complete the session for an internal reason, such as an infrastructure failure."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateMessage": {
+          "description": "Output only. A human-readable message to explain the state.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2199,7 +2538,7 @@
           "description": "The device will be logged in on this account for the duration of the test."
         },
         "additionalApks": {
-          "description": "APKs to install in addition to those being directly tested. Currently capped at 100.",
+          "description": "APKs to install in addition to those being directly tested. These will be installed after the app under test. Currently capped at 100.",
           "items": {
             "$ref": "Apk"
           },

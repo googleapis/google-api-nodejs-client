@@ -2,6 +2,9 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/androidpublisher": {
+          "description": "View and manage your Google Play Developer account"
+        },
         "https://www.googleapis.com/auth/drive.appdata": {
           "description": "See, create, and delete its own configuration data in your Google Drive"
         },
@@ -168,7 +171,7 @@
               "type": "string"
             },
             "stepsToIncrement": {
-              "description": "The number of steps to increment.",
+              "description": "Required. The number of steps to increment.",
               "format": "int32",
               "location": "query",
               "required": true,
@@ -281,7 +284,7 @@
               "type": "string"
             },
             "steps": {
-              "description": "The minimum value to set the steps to.",
+              "description": "Required. The minimum value to set the steps to.",
               "format": "int32",
               "location": "query",
               "required": true,
@@ -365,13 +368,11 @@
             "platformType": {
               "description": "Restrict application details returned to the specific platform.",
               "enum": [
-                "PLATFORM_TYPE_UNSPECIFIED",
                 "ANDROID",
                 "IOS",
                 "WEB_APP"
               ],
               "enumDescriptions": [
-                "Default value, don't use.",
                 "Retrieve applications that can be played on Android.",
                 "Retrieve applications that can be played on iOS.",
                 "Retrieve applications that can be played on desktop web."
@@ -403,12 +404,10 @@
             "endPointType": {
               "description": "Type of endpoint being requested.",
               "enum": [
-                "END_POINT_TYPE_UNSPECIFIED",
                 "PROFILE_CREATION",
                 "PROFILE_SETTINGS"
               ],
               "enumDescriptions": [
-                "Default value. This value is unused.",
                 "Request a URL to create a new profile.",
                 "Request a URL for the Settings view."
               ],
@@ -649,11 +648,9 @@
             "collection": {
               "description": "The collection of categories for which data will be returned.",
               "enum": [
-                "COLLECTION_UNSPECIFIED",
                 "ALL"
               ],
               "enumDescriptions": [
-                "Default value. This value is unused.",
                 "Retrieve data for all categories. This is the default."
               ],
               "location": "path",
@@ -823,6 +820,88 @@
         }
       }
     },
+    "recall": {
+      "methods": {
+        "linkPersona": {
+          "description": "Associate the PGS Player principal encoded in the provided recall session id with an in-game account",
+          "flatPath": "games/v1/recall:linkPersona",
+          "httpMethod": "POST",
+          "id": "games.recall.linkPersona",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "games/v1/recall:linkPersona",
+          "request": {
+            "$ref": "LinkPersonaRequest"
+          },
+          "response": {
+            "$ref": "LinkPersonaResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "resetPersona": {
+          "description": "Delete all Recall tokens linking the given persona to any player (with or without a profile).",
+          "flatPath": "games/v1/recall:resetPersona",
+          "httpMethod": "POST",
+          "id": "games.recall.resetPersona",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "games/v1/recall:resetPersona",
+          "request": {
+            "$ref": "ResetPersonaRequest"
+          },
+          "response": {
+            "$ref": "ResetPersonaResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "retrieveTokens": {
+          "description": "Retrieve all Recall tokens associated with the PGS Player principal encoded in the provided recall session id. The API is only available for users that have active PGS Player profile.",
+          "flatPath": "games/v1/recall/tokens/{sessionId}",
+          "httpMethod": "GET",
+          "id": "games.recall.retrieveTokens",
+          "parameterOrder": [
+            "sessionId"
+          ],
+          "parameters": {
+            "sessionId": {
+              "description": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "games/v1/recall/tokens/{sessionId}",
+          "response": {
+            "$ref": "RetrievePlayerTokensResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "unlinkPersona": {
+          "description": "Delete a Recall token linking the PGS Player principal identified by the Recall session and an in-game account identified either by the 'persona' or by the token value.",
+          "flatPath": "games/v1/recall:unlinkPersona",
+          "httpMethod": "POST",
+          "id": "games.recall.unlinkPersona",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "games/v1/recall:unlinkPersona",
+          "request": {
+            "$ref": "UnlinkPersonaRequest"
+          },
+          "response": {
+            "$ref": "UnlinkPersonaResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        }
+      }
+    },
     "revisions": {
       "methods": {
         "check": {
@@ -835,7 +914,7 @@
           ],
           "parameters": {
             "clientRevision": {
-              "description": "The revision of the client SDK used by your application. Format: `[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are: * `ANDROID` - Client is running the Android SDK. * `IOS` - Client is running the iOS SDK. * `WEB_APP` - Client is running as a Web App.",
+              "description": "Required. The revision of the client SDK used by your application. Format: `[PLATFORM_TYPE]:[VERSION_NUMBER]`. Possible values of `PLATFORM_TYPE` are: * `ANDROID` - Client is running the Android SDK. * `IOS` - Client is running the iOS SDK. * `WEB_APP` - Client is running as a Web App.",
               "location": "query",
               "required": true,
               "type": "string"
@@ -867,7 +946,6 @@
             "includeRankType": {
               "description": "The types of ranks to return. If the parameter is omitted, no ranks will be returned.",
               "enum": [
-                "INCLUDE_RANK_TYPE_UNSPECIFIED",
                 "ALL",
                 "PUBLIC",
                 "SOCIAL",
@@ -876,12 +954,10 @@
               "enumDeprecated": [
                 false,
                 false,
-                false,
                 true,
                 false
               ],
               "enumDescriptions": [
-                "Default value. Should be unused.",
                 "Retrieve all supported ranks. In HTTP, this parameter value can also be specified as `ALL`.",
                 "Retrieve public ranks, if the player is sharing their gameplay activity publicly.",
                 "(Obsolete) Retrieve the social rank.",
@@ -921,14 +997,12 @@
             "timeSpan": {
               "description": "The time span for the scores and ranks you're requesting.",
               "enum": [
-                "SCORE_TIME_SPAN_UNSPECIFIED",
                 "ALL",
                 "ALL_TIME",
                 "WEEKLY",
                 "DAILY"
               ],
               "enumDescriptions": [
-                "Default value. This value is unused.",
                 "Get the high scores for all time spans. If this is used, maxResults values will be ignored.",
                 "Get the all time high score.",
                 "List the top scores for the current day.",
@@ -961,19 +1035,16 @@
             "collection": {
               "description": "The collection of scores you're requesting.",
               "enum": [
-                "SCORE_COLLECTION_UNSPECIFIED",
                 "PUBLIC",
                 "SOCIAL",
                 "FRIENDS"
               ],
               "enumDeprecated": [
                 false,
-                false,
                 true,
                 false
               ],
               "enumDescriptions": [
-                "Default value. This value is unused.",
                 "List all scores in the public leaderboard.",
                 "(Obsolete) Legacy G+ social scores.",
                 "List only scores of friends."
@@ -1005,15 +1076,13 @@
               "type": "string"
             },
             "timeSpan": {
-              "description": "The time span for the scores and ranks you're requesting.",
+              "description": "Required. The time span for the scores and ranks you're requesting.",
               "enum": [
-                "SCORE_TIME_SPAN_UNSPECIFIED",
                 "ALL_TIME",
                 "WEEKLY",
                 "DAILY"
               ],
               "enumDescriptions": [
-                "Default value. This value is unused.",
                 "The score is an all-time score.",
                 "The score is a weekly score.",
                 "The score is a daily score."
@@ -1045,19 +1114,16 @@
             "collection": {
               "description": "The collection of scores you're requesting.",
               "enum": [
-                "SCORE_COLLECTION_UNSPECIFIED",
                 "PUBLIC",
                 "SOCIAL",
                 "FRIENDS"
               ],
               "enumDeprecated": [
                 false,
-                false,
                 true,
                 false
               ],
               "enumDescriptions": [
-                "Default value. This value is unused.",
                 "List all scores in the public leaderboard.",
                 "(Obsolete) Legacy G+ social scores.",
                 "List only scores of friends."
@@ -1100,15 +1166,13 @@
               "type": "boolean"
             },
             "timeSpan": {
-              "description": "The time span for the scores and ranks you're requesting.",
+              "description": "Required. The time span for the scores and ranks you're requesting.",
               "enum": [
-                "SCORE_TIME_SPAN_UNSPECIFIED",
                 "ALL_TIME",
                 "WEEKLY",
                 "DAILY"
               ],
               "enumDescriptions": [
-                "Default value. This value is unused.",
                 "The score is an all-time score.",
                 "The score is a weekly score.",
                 "The score is a daily score."
@@ -1148,7 +1212,7 @@
               "type": "string"
             },
             "score": {
-              "description": "The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.",
+              "description": "Required. The score you're submitting. The submitted score is ignored if it is worse than a previously submitted score, where worse depends on the leaderboard sort order. The meaning of the score value depends on the leaderboard format type. For fixed-point, the score represents the raw value. For time, the score represents elapsed time in milliseconds. For currency, the score represents a value in micro units.",
               "format": "int64",
               "location": "query",
               "required": true,
@@ -1290,7 +1354,7 @@
       }
     }
   },
-  "revision": "20230724",
+  "revision": "20230906",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -1300,12 +1364,10 @@
         "achievementType": {
           "description": "The type of the achievement.",
           "enum": [
-            "ACHIEVEMENT_TYPE_UNSPECIFIED",
             "STANDARD",
             "INCREMENTAL"
           ],
           "enumDescriptions": [
-            "Safe default, don't use.",
             "Achievement is either locked or unlocked.",
             "Achievement is incremental."
           ],
@@ -1331,13 +1393,11 @@
         "initialState": {
           "description": "The initial state of the achievement.",
           "enum": [
-            "INITIAL_ACHIEVEMENT_STATE_UNSPECIFIED",
             "HIDDEN",
             "REVEALED",
             "UNLOCKED"
           ],
           "enumDescriptions": [
-            "Safe default, don't use.",
             "Achievement is hidden.",
             "Achievement is revealed.",
             "Achievement is unlocked."
@@ -1425,12 +1485,10 @@
         "currentState": {
           "description": "The current state of the achievement for which a reveal was attempted. This might be `UNLOCKED` if the achievement was already unlocked.",
           "enum": [
-            "REVEAL_ACHIEVEMENT_STATE_UNSPECIFIED",
             "REVEALED",
             "UNLOCKED"
           ],
           "enumDescriptions": [
-            "Safe default, don't use.",
             "Achievement is revealed.",
             "Achievement is unlocked."
           ],
@@ -1537,14 +1595,12 @@
         "updateType": {
           "description": "The type of update being applied.",
           "enum": [
-            "ACHIEVEMENT_UPDATE_TYPE_UNSPECIFIED",
             "REVEAL",
             "UNLOCK",
             "INCREMENT",
             "SET_STEPS_AT_LEAST"
           ],
           "enumDescriptions": [
-            "Safe default, don't use.",
             "Achievement is revealed.",
             "Achievement is unlocked.",
             "Achievement is incremented.",
@@ -1566,13 +1622,11 @@
         "currentState": {
           "description": "The current state of the achievement.",
           "enum": [
-            "UPDATED_ACHIEVEMENT_STATE_UNSPECIFIED",
             "HIDDEN",
             "REVEALED",
             "UNLOCKED"
           ],
           "enumDescriptions": [
-            "Safe default, don't use.",
             "Achievement is hidden.",
             "Achievement is revealed.",
             "Achievement is unlocked."
@@ -1631,11 +1685,9 @@
           "description": "A list of features that have been enabled for the application.",
           "items": {
             "enum": [
-              "APPLICATION_FEATURE_UNSPECIFIED",
               "SNAPSHOTS"
             ],
             "enumDescriptions": [
-              "Safe default, don't use.",
               "Saved Games (snapshots)."
             ],
             "type": "string"
@@ -1791,7 +1843,6 @@
         "failureCause": {
           "description": "The cause for the update failure.",
           "enum": [
-            "EVENT_FAILURE_CAUSE_UNSPECIFIED",
             "TOO_LARGE",
             "TIME_PERIOD_EXPIRED",
             "TIME_PERIOD_SHORT",
@@ -1800,7 +1851,6 @@
             "RECORD_RATE_HIGH"
           ],
           "enumDescriptions": [
-            "Default value. Should not be used.",
             "A batch request was issued with more events than are allowed in a single batch.",
             "A batch was sent with data too far in the past to record.",
             "A batch was sent with a time range that was too short.",
@@ -1874,12 +1924,10 @@
         "visibility": {
           "description": "The visibility of event being tracked in this definition.",
           "enum": [
-            "EVENT_VISIBILITY_UNSPECIFIED",
             "REVEALED",
             "HIDDEN"
           ],
           "enumDescriptions": [
-            "Default value. Should not be used.",
             "This event should be visible to all users.",
             "This event should only be shown to users that have recorded this event at least once."
           ],
@@ -1964,12 +2012,10 @@
         "failureCause": {
           "description": "The cause for the update failure.",
           "enum": [
-            "EVENT_UPDATE_FAILURE_CAUSE_UNSPECIFIED",
             "NOT_FOUND",
             "INVALID_UPDATE_VALUE"
           ],
           "enumDescriptions": [
-            "Default value. Should not use.",
             "An attempt was made to set an event that was not defined.",
             "An attempt was made to increment an event by a non-positive value."
           ],
@@ -2170,13 +2216,11 @@
         "platformType": {
           "description": "The platform type.",
           "enum": [
-            "PLATFORM_TYPE_UNSPECIFIED",
             "ANDROID",
             "IOS",
             "WEB_APP"
           ],
           "enumDescriptions": [
-            "Default value. Should be unused.",
             "Instance is for Android.",
             "Instance is for iOS.",
             "Instance is for Web App."
@@ -2302,12 +2346,10 @@
         "order": {
           "description": "How scores are ordered.",
           "enum": [
-            "SCORE_ORDER_UNSPECIFIED",
             "LARGER_IS_BETTER",
             "SMALLER_IS_BETTER"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
             "Larger values are better; scores are sorted in descending order",
             "Smaller values are better; scores are sorted in ascending order"
           ],
@@ -2353,13 +2395,11 @@
         "timeSpan": {
           "description": "The time span of this high score.",
           "enum": [
-            "SCORE_TIME_SPAN_UNSPECIFIED",
             "ALL_TIME",
             "WEEKLY",
             "DAILY"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
             "The score is an all-time score.",
             "The score is a weekly score.",
             "The score is a daily score."
@@ -2460,6 +2500,77 @@
       },
       "type": "object"
     },
+    "LinkPersonaRequest": {
+      "description": "Request to link an in-game account with a PGS principal (encoded in the session id).",
+      "id": "LinkPersonaRequest",
+      "properties": {
+        "cardinalityConstraint": {
+          "description": "Required. Cardinality constraint to observe when linking a persona to a player in the scope of a game.",
+          "enum": [
+            "ONE_PERSONA_TO_ONE_PLAYER"
+          ],
+          "enumDescriptions": [
+            "1:1 cardinality between in-game personas and Play Games Services players. By the end of the linking operation only one entry for the player and the persona should remain in the scope of the application. Whether a new link is created or not when this constraint is specified is determined by the chosen `ConflictingLinksResolutionPolicy`: * If `KEEP_EXISTING_LINKS` is specified and the provided persona is already linked to a different player, or the player is already linked to a different persona, no new link will be created and the already existing link(s) will remain as is(are). * If `CREATE_NEW_LINK` is specified and the provided persona is already linked to a different player, or the player is already linked to another persona, the older link(s) will be removed in favour of the new link being created."
+          ],
+          "type": "string"
+        },
+        "conflictingLinksResolutionPolicy": {
+          "description": "Required. Resolution policy to apply when the linking of a persona to a player would result in violating the specified cardinality constraint.",
+          "enum": [
+            "KEEP_EXISTING_LINKS",
+            "CREATE_NEW_LINK"
+          ],
+          "enumDescriptions": [
+            "If link(s) between a player and persona already exists which would result in violating the specified `RecallTokensCardinalityConstraint` if the new link was created, keep the already existing link(s). For example, if Persona1-Player1 is already linked in the scope of application1 and a new link Persona1-Player2 is attempted to be created in the scope of application1, then the old link will remain and no new link will be added. Note that if the already existing links do violate the specified policy (which could occur if not all `LinkPersona` calls use the same `RecallTokensCardinalityConstraint`) this policy will leave these violations unresolved; in order to resolve conflicts, the {@link `CREATE_NEW_LINK` policy needs to be used to rewrite links resolving conflicts.",
+            "If an existing link between a player and persona already exists which would result in violating the specified `RecallTokensCardinalityConstraint` if the new link was created, replace the already existing link(s) with the new link. For example, if Persona1-Player1 is already linked in the scope of application1 and a new link Persona1-Player2 is attempted to be created in the scope of application1, then the old link will be removed and the new link will be added to replace it."
+          ],
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Input only. Optional expiration time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "persona": {
+          "description": "Required. Stable identifier of the in-game account. Please refrain from re-using the same persona for different games.",
+          "type": "string"
+        },
+        "sessionId": {
+          "description": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.",
+          "type": "string"
+        },
+        "token": {
+          "description": "Required. Value of the token to create. Opaque to Play Games and assumed to be non-stable (encrypted with key rotation).",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Input only. Optional time-to-live.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LinkPersonaResponse": {
+      "description": "Outcome of a persona linking attempt.",
+      "id": "LinkPersonaResponse",
+      "properties": {
+        "state": {
+          "description": "Output only. State of a persona linking attempt.",
+          "enum": [
+            "LINK_CREATED",
+            "PERSONA_OR_PLAYER_ALREADY_LINKED"
+          ],
+          "enumDescriptions": [
+            "The link specified in the request was created.",
+            "The link specified in the request was not created because already existing links would result in the new link violating the specified `RecallTokensCardinalityConstraint` if created."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MetagameConfig": {
       "description": "The metagame config resource",
       "id": "MetagameConfig",
@@ -2510,12 +2621,10 @@
         "friendStatus": {
           "description": "The friend status of the given player, relative to the requester. This is unset if the player is not sharing their friends list with the game.",
           "enum": [
-            "FRIEND_STATUS_UNSPECIFIED",
             "NO_RELATIONSHIP",
             "FRIEND"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
             "There is no relationship between the players.",
             "The player and requester are friends."
           ],
@@ -2569,13 +2678,11 @@
         "achievementState": {
           "description": "The state of the achievement.",
           "enum": [
-            "STATE_UNSPECIFIED",
             "HIDDEN",
             "REVEALED",
             "UNLOCKED"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
             "Achievement is hidden.",
             "Achievement is revealed.",
             "Achievement is unlocked."
@@ -2753,13 +2860,11 @@
         "timeSpan": {
           "description": "The time span of this score.",
           "enum": [
-            "SCORE_TIME_SPAN_UNSPECIFIED",
             "ALL_TIME",
             "WEEKLY",
             "DAILY"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
             "The score is an all-time score.",
             "The score is a weekly score.",
             "The score is a daily score."
@@ -2872,13 +2977,11 @@
         "timeSpan": {
           "description": "The time span for this player score.",
           "enum": [
-            "SCORE_TIME_SPAN_UNSPECIFIED",
             "ALL_TIME",
             "WEEKLY",
             "DAILY"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
             "The score is an all-time score.",
             "The score is a weekly score.",
             "The score is a daily score."
@@ -2914,13 +3017,11 @@
           "description": "The time spans where the submitted score is better than the existing score for that time span.",
           "items": {
             "enum": [
-              "SCORE_TIME_SPAN_UNSPECIFIED",
               "ALL_TIME",
               "WEEKLY",
               "DAILY"
             ],
             "enumDescriptions": [
-              "Default value. This value is unused.",
               "The score is an all-time score.",
               "The score is a weekly score.",
               "The score is a daily score."
@@ -2979,13 +3080,11 @@
       "properties": {
         "friendsListVisibility": {
           "enum": [
-            "FRIENDS_LIST_VISIBILITY_UNSPECIFIED",
             "VISIBLE",
             "REQUEST_REQUIRED",
             "UNAVAILABLE"
           ],
           "enumDescriptions": [
-            "Unused.",
             "The friends list is currently visible to the game.",
             "The developer does not have access to the friends list, but can call the Android API to show a consent dialog.",
             "The friends list is currently unavailable for this user, and it is not possible to request access at this time, either because the user has permanently declined or the friends feature is not available to them. In this state, any attempts to request access to the friends list will be unsuccessful."
@@ -2999,6 +3098,62 @@
         "profileVisible": {
           "description": "Whether the player's profile is visible to the currently signed in player.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RecallToken": {
+      "description": "Recall token data returned from RetrievePlayerTokens RPC",
+      "id": "RecallToken",
+      "properties": {
+        "expireTime": {
+          "description": "Optional. Optional expiration time of the token",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "multiPlayerPersona": {
+          "description": "Required. Whether the persona identified by the token is linked to multiple PGS Players",
+          "type": "boolean"
+        },
+        "token": {
+          "description": "Required. Value of the Recall token as it is provided by the client via LinkPersona RPC",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResetPersonaRequest": {
+      "description": "Request to remove all Recall tokens associated with a persona for an app.",
+      "id": "ResetPersonaRequest",
+      "properties": {
+        "persona": {
+          "description": "Value of the 'persona' field as it was provided by the client in LinkPersona RPC",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResetPersonaResponse": {
+      "description": "Response for the ResetPersona RPC",
+      "id": "ResetPersonaResponse",
+      "properties": {
+        "unlinked": {
+          "description": "Required. Whether any tokens were unlinked as a result of this request.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RetrievePlayerTokensResponse": {
+      "description": "Response for the RetrievePlayerTokens RPC",
+      "id": "RetrievePlayerTokensResponse",
+      "properties": {
+        "tokens": {
+          "description": "Required. Recall tokens associated with the requested PGS Player principal",
+          "items": {
+            "$ref": "RecallToken"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3018,13 +3173,11 @@
         "revisionStatus": {
           "description": "The result of the revision check.",
           "enum": [
-            "REVISION_STATUS_UNSPECIFIED",
             "OK",
             "DEPRECATED",
             "INVALID"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
             "The revision being used is current.",
             "There is currently a newer version available, but the revision being used still works.",
             "The revision being used is not supported in any released version."
@@ -3123,11 +3276,9 @@
         "type": {
           "description": "The type of this snapshot.",
           "enum": [
-            "SNAPSHOT_TYPE_UNSPECIFIED",
             "SAVE_GAME"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
             "A snapshot representing a save game."
           ],
           "type": "string"
@@ -3247,6 +3398,36 @@
           "description": "The predicted amount of money that the player going to spend in the next 28 days. E.g., 1, 30, 60, ... . Not populated if there is not enough information.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "UnlinkPersonaRequest": {
+      "description": "Request to remove a Recall token linking PGS principal and an in-game account",
+      "id": "UnlinkPersonaRequest",
+      "properties": {
+        "persona": {
+          "description": "Value of the 'persona' field as it was provided by the client in LinkPersona RPC",
+          "type": "string"
+        },
+        "sessionId": {
+          "description": "Required. Opaque server-generated string that encodes all the necessary information to identify the PGS player / Google user and application.",
+          "type": "string"
+        },
+        "token": {
+          "description": "Value of the Recall token as it was provided by the client in LinkPersona RPC",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UnlinkPersonaResponse": {
+      "description": "Response for the UnlinkPersona RPC",
+      "id": "UnlinkPersonaResponse",
+      "properties": {
+        "unlinked": {
+          "description": "Required. Whether a Recall token specified by the request was deleted. Can be 'false' when there were no Recall tokens satisfied the criteria from the request.",
+          "type": "boolean"
         }
       },
       "type": "object"

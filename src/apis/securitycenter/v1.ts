@@ -797,6 +797,10 @@ export namespace securitycenter_v1 {
      * If there are multiple targets, each target would get a complete copy of the "joined" source data.
      */
     targets?: Schema$ExfilResource[];
+    /**
+     * Total exfiltrated bytes processed for the entire job.
+     */
+    totalExfiltratedBytes?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -1194,11 +1198,11 @@ export namespace securitycenter_v1 {
      */
     assignees?: string[] | null;
     /**
-     * The most recent time when the corresponding finding's ticket/tracker was updated in the external system.
+     * The time when the case was last updated, as reported by the external system.
      */
     externalSystemUpdateTime?: string | null;
     /**
-     * Identifier that's used to track the given finding in the external system.
+     * The identifier that's used to track the finding's corresponding case in the external system.
      */
     externalUid?: string | null;
     /**
@@ -1206,7 +1210,7 @@ export namespace securitycenter_v1 {
      */
     name?: string | null;
     /**
-     * Most recent status of the corresponding finding's ticket/tracker in the external system.
+     * The most recent status of the finding's corresponding case, as reported by the external system.
      */
     status?: string | null;
   }

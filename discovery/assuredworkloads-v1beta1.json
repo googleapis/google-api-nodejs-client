@@ -182,7 +182,7 @@
             "workloads": {
               "methods": {
                 "analyzeWorkloadMove": {
-                  "description": "Analyzes a hypothetical move of a source resource to a target(destination) folder-based workload to surface compliance risks.",
+                  "description": "Analyzes a hypothetical move of a source resource to a target workload to surface compliance risks. The analysis is best effort and is not guaranteed to be exhaustive.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/workloads/{workloadsId}:analyzeWorkloadMove",
                   "httpMethod": "GET",
                   "id": "assuredworkloads.organizations.locations.workloads.analyzeWorkloadMove",
@@ -190,10 +190,11 @@
                     "target"
                   ],
                   "parameters": {
-                    "analyzeChildAssets": {
-                      "description": "Optional. Indicates if all child assets of the source resource should also be analyzed in addition to the source.",
+                    "assetTypes": {
+                      "description": "Optional. List of asset types to be analyzed, including and under the source resource. If empty, all assets are analyzed. The complete list of asset types is available [here](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).",
                       "location": "query",
-                      "type": "boolean"
+                      "repeated": true,
+                      "type": "string"
                     },
                     "pageSize": {
                       "description": "Optional. Page size. If a value is not specified, the default value of 10 is used.",
@@ -208,12 +209,6 @@
                     },
                     "project": {
                       "description": "The source type is a project. Specify the project's relative resource name, formatted as either a project number or a project ID: \"projects/{PROJECT_NUMBER}\" or \"projects/{PROJECT_ID}\" For example: \"projects/951040570662\" when specifying a project number, or \"projects/my-project-123\" when specifying a project ID.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "source": {
-                      "deprecated": true,
-                      "description": "The source type is a project-based workload. Specify the workloads's relative resource name, formatted as: \"organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}\" For example: \"organizations/123/locations/us-east1/workloads/assured-workload-1\" This option is now deprecated.",
                       "location": "query",
                       "type": "string"
                     },
@@ -568,7 +563,7 @@
       }
     }
   },
-  "revision": "20230811",
+  "revision": "20230914",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -615,14 +610,6 @@
           "description": "List of analysis results for each asset in scope.",
           "items": {
             "$ref": "GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis"
-          },
-          "type": "array"
-        },
-        "blockers": {
-          "deprecated": true,
-          "description": "A list of blockers that should be addressed before moving the source project or project-based workload to the destination folder-based workload. This field is now deprecated.",
-          "items": {
-            "type": "string"
           },
           "type": "array"
         },
@@ -678,7 +665,9 @@
             "ISR_REGIONS",
             "ISR_REGIONS_AND_SUPPORT",
             "CA_PROTECTED_B",
-            "IL5"
+            "IL5",
+            "IL2",
+            "JP_REGIONS_AND_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -697,7 +686,9 @@
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
             "Assured Workloads for Canada Protected B regime",
-            "Information protection as per DoD IL5 requirements."
+            "Information protection as per DoD IL5 requirements.",
+            "Information protection as per DoD IL2 requirements.",
+            "Assured Workloads for Japan Regions"
           ],
           "type": "string"
         },
@@ -1143,7 +1134,9 @@
             "ISR_REGIONS",
             "ISR_REGIONS_AND_SUPPORT",
             "CA_PROTECTED_B",
-            "IL5"
+            "IL5",
+            "IL2",
+            "JP_REGIONS_AND_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1162,7 +1155,9 @@
             "Assured Workloads for Israel",
             "Assured Workloads for Israel Regions",
             "Assured Workloads for Canada Protected B regime",
-            "Information protection as per DoD IL5 requirements."
+            "Information protection as per DoD IL5 requirements.",
+            "Information protection as per DoD IL2 requirements.",
+            "Assured Workloads for Japan Regions"
           ],
           "type": "string"
         },

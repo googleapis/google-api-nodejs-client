@@ -306,11 +306,6 @@
               "location": "query",
               "type": "string"
             },
-            "internalDebuggingConfig": {
-              "description": "The config used in internal debugging and manual testing. Use comma to separate multiple values. Examples: To allow entity search to go through tangle `searchUsingTangle` To get only the advertiser Ids use `idOnly`",
-              "location": "query",
-              "type": "string"
-            },
             "orderBy": {
               "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. For example, `displayName desc`.",
               "location": "query",
@@ -2269,7 +2264,7 @@
         "lineItems": {
           "methods": {
             "bulkEditLineItemAssignedTargetingOptions": {
-              "description": "Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
+              "description": "Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * lineItems.patch * assignedTargetingOptions.create * assignedTargetingOptions.delete",
               "flatPath": "v1/advertisers/{advertisersId}/lineItems/{lineItemsId}:bulkEditLineItemAssignedTargetingOptions",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.lineItems.bulkEditLineItemAssignedTargetingOptions",
@@ -2538,7 +2533,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdateLineItems * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
+              "description": "Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdateLineItems * assignedTargetingOptions.create * assignedTargetingOptions.delete",
               "flatPath": "v1/advertisers/{advertisersId}/lineItems/{lineItemsId}",
               "httpMethod": "PATCH",
               "id": "displayvideo.advertisers.lineItems.patch",
@@ -2588,7 +2583,7 @@
                 "assignedTargetingOptions": {
                   "methods": {
                     "create": {
-                      "description": "Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdate * UpdateLineItem * DeleteLineItemAssignedTargetingOption",
+                      "description": "Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * lineItems.bulkEditAssignedTargetingOptions * lineItems.bulkUpdate * lineItems.patch * DeleteLineItemAssignedTargetingOption",
                       "flatPath": "v1/advertisers/{advertisersId}/lineItems/{lineItemsId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions",
                       "httpMethod": "POST",
                       "id": "displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.create",
@@ -2730,7 +2725,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditAssignedTargetingOptions * BulkUpdate * UpdateLineItem * CreateLineItemAssignedTargetingOption",
+                      "description": "Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * lineItems.bulkEditAssignedTargetingOptions * lineItems.bulkUpdate * lineItems.patch * CreateLineItemAssignedTargetingOption",
                       "flatPath": "v1/advertisers/{advertisersId}/lineItems/{lineItemsId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions/{assignedTargetingOptionsId}",
                       "httpMethod": "DELETE",
                       "id": "displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.delete",
@@ -6232,12 +6227,6 @@
             "inventorySourceId"
           ],
           "parameters": {
-            "advertiserId": {
-              "description": "Optional. The advertiser_id is optional, when it is provided, the advertiser access is used.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
             "inventorySourceId": {
               "description": "Required. The ID of the inventory source to fetch.",
               "format": "int64",
@@ -8157,7 +8146,7 @@
       }
     }
   },
-  "revision": "20230803",
+  "revision": "20230921",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8750,7 +8739,7 @@
           "type": "string"
         },
         "targetingOptionId": {
-          "description": "Required. The ID of the targeting option assigned to the location list. Must be of type TARGETING_TYPE_GEO_REGION.",
+          "description": "Required. The ID of the targeting option assigned to the location list. Assigned locations can only be modified in TARGETING_LOCATION_TYPE_REGIONAL location lists. When creating or deleting assigned locations, this value must be of type TARGETING_TYPE_GEO_REGION.",
           "type": "string"
         }
       },
@@ -9723,7 +9712,6 @@
       "type": "object"
     },
     "BulkListCampaignAssignedTargetingOptionsResponse": {
-      "description": "Response message for BulkListCampaignAssignedTargetingOptions.",
       "id": "BulkListCampaignAssignedTargetingOptionsResponse",
       "properties": {
         "assignedTargetingOptions": {
@@ -9741,7 +9729,6 @@
       "type": "object"
     },
     "BulkListInsertionOrderAssignedTargetingOptionsResponse": {
-      "description": "Response message for BulkListInsertionOrderAssignedTargetingOptions.",
       "id": "BulkListInsertionOrderAssignedTargetingOptionsResponse",
       "properties": {
         "assignedTargetingOptions": {
@@ -13526,7 +13513,9 @@
             "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INVENTORY",
             "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
             "LINE_ITEM_TYPE_AUDIO_DEFAULT",
-            "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP"
+            "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP",
+            "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
+            "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version. Line items of this type and their targeting cannot be created or updated using the API.",
@@ -13537,7 +13526,9 @@
             "Display ads served on mobile app inventory. Line items of this type and their targeting cannot be created or updated using the API.",
             "Video ads served on mobile app inventory. Line items of this type and their targeting cannot be created or updated using the API.",
             "RTB Audio ads sold for a variety of environments.",
-            "Over-the-top ads present in OTT insertion orders. This type is only applicable to line items with an insertion order of insertion_order_type `OVER_THE_TOP`."
+            "Over-the-top ads present in OTT insertion orders. This type is only applicable to line items with an insertion order of insertion_order_type `OVER_THE_TOP`.",
+            "Digital display out of home. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Digital video out of home. Line items of this type and their targeting cannot be created or updated using the API."
           ],
           "type": "string"
         },
@@ -15416,7 +15407,9 @@
             "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INVENTORY",
             "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
             "LINE_ITEM_TYPE_AUDIO_DEFAULT",
-            "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP"
+            "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP",
+            "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
+            "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version. Line items of this type and their targeting cannot be created or updated using the API.",
@@ -15427,7 +15420,9 @@
             "Display ads served on mobile app inventory. Line items of this type and their targeting cannot be created or updated using the API.",
             "Video ads served on mobile app inventory. Line items of this type and their targeting cannot be created or updated using the API.",
             "RTB Audio ads sold for a variety of environments.",
-            "Over-the-top ads present in OTT insertion orders. This type is only applicable to line items with an insertion order of insertion_order_type `OVER_THE_TOP`."
+            "Over-the-top ads present in OTT insertion orders. This type is only applicable to line items with an insertion order of insertion_order_type `OVER_THE_TOP`.",
+            "Digital display out of home. Line items of this type and their targeting cannot be created or updated using the API.",
+            "Digital video out of home. Line items of this type and their targeting cannot be created or updated using the API."
           ],
           "type": "string"
         },
@@ -15504,8 +15499,7 @@
               "CREATIVE_SIZE_NOT_IN_USE_FOR_TARGETED_DEALS",
               "NO_CREATIVE_FOR_TARGETED_DEALS",
               "TARGETING_DEPRECATED_GEO_TARGET",
-              "DEPRECATED_FIRST_PARTY_AUDIENCE_EXCLUSION",
-              "NO_INPUT_REVENUE_MODEL_TYPE_SPECIFIED"
+              "DEPRECATED_FIRST_PARTY_AUDIENCE_EXCLUSION"
             ],
             "enumDescriptions": [
               "Not specified or is unknown.",
@@ -15526,8 +15520,7 @@
               "Deals targeted by this line item accept creative sizes which are not in use. This may limit the line item's delivery or performance.",
               "This line item does not contain any creative for the targeted deals.",
               "This line item targets a geo target that is deprecated.",
-              "This line item uses the exclude_first_party_audience setting, which is deprecated and scheduled to sunset after **March 25, 2023**. Update your API integration to directly exclude any first-party audiences using audience targeting before **March 25, 2023** to account for the sunset of the exclude_first_party_audience field.",
-              "The partner revenue model of the line item was updated without specifying the revenue model type, which is required for updating any of the revenue model fields."
+              "This line item uses the exclude_first_party_audience setting, which is deprecated and scheduled to sunset after **March 25, 2023**. Update your API integration to directly exclude any first-party audiences using audience targeting before **March 25, 2023** to account for the sunset of the exclude_first_party_audience field."
             ],
             "type": "string"
           },
@@ -15872,7 +15865,6 @@
       "type": "object"
     },
     "ListInsertionOrderAssignedTargetingOptionsResponse": {
-      "description": "Response message for ListInsertionOrderAssignedTargetingOptions.",
       "id": "ListInsertionOrderAssignedTargetingOptionsResponse",
       "properties": {
         "assignedTargetingOptions": {
@@ -17027,7 +17019,8 @@
             "PARTNER_COST_TYPE_CUSTOM_FEE_2",
             "PARTNER_COST_TYPE_CUSTOM_FEE_3",
             "PARTNER_COST_TYPE_CUSTOM_FEE_4",
-            "PARTNER_COST_TYPE_CUSTOM_FEE_5"
+            "PARTNER_COST_TYPE_CUSTOM_FEE_5",
+            "PARTNER_COST_TYPE_SCIBIDS_FEE"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version.",
@@ -17059,7 +17052,8 @@
             "The cost is charged as custom fee 2. Billed by the partner.",
             "The cost is charged as custom fee 3. Billed by the partner.",
             "The cost is charged as custom fee 4. Billed by the partner.",
-            "The cost is charged as custom fee 5. Billed by the partner."
+            "The cost is charged as custom fee 5. Billed by the partner.",
+            "The cost is charged for using Scibids. Billed through DV360. This type is currently only available to certain customers. Other customers attempting to use this type will receive an error."
           ],
           "type": "string"
         },

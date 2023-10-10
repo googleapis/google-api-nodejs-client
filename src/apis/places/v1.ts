@@ -113,7 +113,6 @@ export namespace places_v1 {
   export class Places {
     context: APIRequestContext;
     places: Resource$Places;
-    Text: Resource$Text;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -122,7 +121,6 @@ export namespace places_v1 {
       };
 
       this.places = new Resource$Places(this.context);
-      this.Text = new Resource$Text(this.context);
     }
   }
 
@@ -168,19 +166,6 @@ export namespace places_v1 {
      * Required. Radius measured in meters. The radius must be within [0.0, 50000.0].
      */
     radius?: number | null;
-  }
-  /**
-   * int 32 range. Both min and max are optional. If only min is set, then the range only has a lower bound. If only max is set, then range only has an upper bound. At least one of min and max must be set. Values are inclusive.
-   */
-  export interface Schema$GoogleMapsPlacesV1Int32Range {
-    /**
-     * Upper bound. If unset, behavior is documented on the range field.
-     */
-    max?: number | null;
-    /**
-     * Lower bound. If unset, behavior is documented on the range field.
-     */
-    min?: number | null;
   }
   /**
    * All the information representing a Place.
@@ -347,7 +332,7 @@ export namespace places_v1 {
      */
     websiteUri?: string | null;
     /**
-     * Output only. Specifies if the place has an entrance that is wheelchair-accessible.
+     * Output only. [Deprecated!] Specifies if the place has an entrance that is wheelchair-accessible.
      */
     wheelchairAccessibleEntrance?: boolean | null;
   }
@@ -432,10 +417,6 @@ export namespace places_v1 {
      */
     date?: Schema$GoogleTypeDate;
     /**
-     * Output only. Date of the endpoint expressed in RFC3339 format in the local timezone for the place. For example 2010-12-31.
-     */
-    dateDeprecated?: string | null;
-    /**
      * Output only. A day of the week, as an integer in the range 0-6. 0 is Sunday, 1 is Monday, etc.
      */
     day?: number | null;
@@ -516,10 +497,6 @@ export namespace places_v1 {
      */
     languageCode?: string | null;
     /**
-     * [Deprecated!]The region to search. Setting location would usually yields better results. Recommended to set. This location serves as a bias unless strict_restriction is set to true, which turns the location to a strict restriction.
-     */
-    location?: Schema$GoogleMapsPlacesV1SearchTextRequestLocation;
-    /**
      * The region to search. This location serves as a bias which means results around given location might be returned. Cannot be set along with location_restriction.
      */
     locationBias?: Schema$GoogleMapsPlacesV1SearchTextRequestLocationBias;
@@ -544,15 +521,11 @@ export namespace places_v1 {
      */
     priceLevels?: string[] | null;
     /**
-     * [Deprecated!]Used to restrict the search to places that are within a certain price range. This is on a scale of 0 to 4. Set a minimum of 0 or set a maximum of 4 has no effect on the search results. Min price is default to 0 and max price is default to 4. Default value will be used if either min or max is unset.
-     */
-    priceRange?: Schema$GoogleMapsPlacesV1Int32Range;
-    /**
      * How results will be ranked in the response.
      */
     rankPreference?: string | null;
     /**
-     * The Unicode country/region code (CLDR) of the location where the request is coming from. It is used to display the place details, like region-specific place name, if available. For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag. Note that 3-digit region codes are not currently supported.
+     * The Unicode country/region code (CLDR) of the location where the request is coming from. This parameter is used to display the place details, like region-specific place name, if available. The parameter can affect results based on applicable law. For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag. Note that 3-digit region codes are not currently supported.
      */
     regionCode?: string | null;
     /**
@@ -563,19 +536,6 @@ export namespace places_v1 {
      * Required. The text query for textual search.
      */
     textQuery?: string | null;
-  }
-  /**
-   * [Deprecated!]The region to search.
-   */
-  export interface Schema$GoogleMapsPlacesV1SearchTextRequestLocation {
-    /**
-     * A rectangle box defined by northeast and southwest corner.
-     */
-    rectangle?: Schema$GoogleGeoTypeViewport;
-    /**
-     * Make location field a strict restriction and filter out POIs outside of the given location. If location type field is unset this field will have no effect.
-     */
-    strictRestriction?: boolean | null;
   }
   /**
    * The region to search. This location serves as a bias which means results around given location might be returned.
@@ -757,112 +717,6 @@ export namespace places_v1 {
 
   export interface Params$Resource$Places$Searchtext
     extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleMapsPlacesV1SearchTextRequest;
-  }
-
-  export class Resource$Text {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Text query based place search.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    search(
-      params: Params$Resource$Text$Search,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    search(
-      params?: Params$Resource$Text$Search,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleMapsPlacesV1SearchTextResponse>;
-    search(
-      params: Params$Resource$Text$Search,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    search(
-      params: Params$Resource$Text$Search,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchTextResponse>,
-      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchTextResponse>
-    ): void;
-    search(
-      params: Params$Resource$Text$Search,
-      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchTextResponse>
-    ): void;
-    search(
-      callback: BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchTextResponse>
-    ): void;
-    search(
-      paramsOrCallback?:
-        | Params$Resource$Text$Search
-        | BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchTextResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchTextResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleMapsPlacesV1SearchTextResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleMapsPlacesV1SearchTextResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Text$Search;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Text$Search;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://places.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/Text:search').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleMapsPlacesV1SearchTextResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleMapsPlacesV1SearchTextResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Text$Search extends StandardParameters {
     /**
      * Request body metadata
      */

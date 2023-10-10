@@ -146,6 +146,10 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus {
     /**
+     * The document id of the auto-labeled document. This will replace the gcs_uri.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
      * The gcs_uri of the auto-labeling document, which uniquely identifies a dataset document.
      */
     gcsUri?: string | null;
@@ -228,6 +232,33 @@ export namespace documentai_v1beta3 {
    * Response of the batch move documents operation.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse {}
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadata {
+    /**
+     * The basic metadata of the long-running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+    /**
+     * The list of response details of each document.
+     */
+    individualBatchUpdateStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus[];
+  }
+  /**
+   * The status of each individual document in the batch update process.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsMetadataIndividualBatchUpdateStatus {
+    /**
+     * The document id of the document.
+     */
+    documentId?: Schema$GoogleCloudDocumentaiUiv1beta3DocumentId;
+    /**
+     * The status of updating the document in storage.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * Response of the batch update documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchUpdateDocumentsResponse {}
   /**
    * The common metadata for long running operations.
    */
@@ -3036,7 +3067,7 @@ export namespace documentai_v1beta3 {
     updateTime?: string | null;
   }
   /**
-   * A singleton resource under a Processor which configures a collection of documents.
+   * A singleton resource under a Processor which configures a collection of documents. Next Id: 8.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
     /**
@@ -4436,6 +4467,15 @@ export namespace documentai_v1beta3 {
     processorTypes?: Schema$GoogleCloudDocumentaiV1beta3ProcessorType[];
   }
   /**
+   * Metadata for how this field value is extracted.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3FieldExtractionMetadata {
+    /**
+     * Summary options config.
+     */
+    summaryOptions?: Schema$GoogleCloudDocumentaiV1beta3SummaryOptions;
+  }
+  /**
    * Specifies a document stored on Cloud Storage.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3GcsDocument {
@@ -4583,11 +4623,11 @@ export namespace documentai_v1beta3 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
-   * The request message for the ImportProcessorVersion method. Requirements: - The Document AI [Service Agent](https://cloud.google.com/iam/docs/service-agents) of the destination project must have [Document AI Editor role](https://cloud.google.com/document-ai/docs/access-control/iam-roles) on the source project. The destination project is specified as part of the parent field. The source project is specified as part of the source field.
+   * The request message for the ImportProcessorVersion method. The Document AI [Service Agent](https://cloud.google.com/iam/docs/service-agents) of the destination project must have [Document AI Editor role](https://cloud.google.com/document-ai/docs/access-control/iam-roles) on the source project. The destination project is specified as part of the parent field. The source project is specified as part of the source or external_processor_version_source field.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest {
     /**
-     * The source processor version to import from, and can be from different environment and region than the destination processor.
+     * The source processor version to import from. It can be from a different environment and region than the destination processor.
      */
     externalProcessorVersionSource?: Schema$GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequestExternalProcessorVersionSource;
     /**
@@ -4691,9 +4731,13 @@ export namespace documentai_v1beta3 {
      */
     advancedOcrOptions?: string[] | null;
     /**
-     * Turn on font id model and returns font style information. Use PremiumFeatures.compute_style_info instead.
+     * Turn on font identification model and return font style information. Deprecated, use PremiumFeatures.compute_style_info instead.
      */
     computeStyleInfo?: boolean | null;
+    /**
+     * Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0+ processors.
+     */
+    disableCharacterBoxesDetection?: boolean | null;
     /**
      * Enables intelligent document quality scores after OCR. Can help with diagnosing why OCR responses are of poor quality for a given input. Adds additional latency comparable to regular OCR to the process call.
      */
@@ -4710,6 +4754,10 @@ export namespace documentai_v1beta3 {
      * Hints for the OCR model.
      */
     hints?: Schema$GoogleCloudDocumentaiV1beta3OcrConfigHints;
+    /**
+     * Configurations for premium OCR features.
+     */
+    premiumFeatures?: Schema$GoogleCloudDocumentaiV1beta3OcrConfigPremiumFeatures;
   }
   /**
    * Hints for OCR Engine
@@ -4721,13 +4769,55 @@ export namespace documentai_v1beta3 {
     languageHints?: string[] | null;
   }
   /**
+   * Configurations for premium OCR features.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3OcrConfigPremiumFeatures {
+    /**
+     * Turn on font identification model and return font style information.
+     */
+    computeStyleInfo?: boolean | null;
+    /**
+     * Turn on the model that can extract LaTeX math formulas.
+     */
+    enableMathOcr?: boolean | null;
+    /**
+     * Turn on selection mark detector in OCR engine. Only available in OCR 2.0+ processors.
+     */
+    enableSelectionMarkDetection?: boolean | null;
+  }
+  /**
    * Options for Process API
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ProcessOptions {
     /**
+     * Only process certain pages from the end, same as above.
+     */
+    fromEnd?: number | null;
+    /**
+     * Only process certain pages from the start, process all if the document has less pages.
+     */
+    fromStart?: number | null;
+    /**
+     * Which pages to process (1-indexed).
+     */
+    individualPageSelector?: Schema$GoogleCloudDocumentaiV1beta3ProcessOptionsIndividualPageSelector;
+    /**
      * Only applicable to `OCR_PROCESSOR`. Returns error if set on other processor types.
      */
     ocrConfig?: Schema$GoogleCloudDocumentaiV1beta3OcrConfig;
+    /**
+     * Optional. Override the schema of the ProcessorVersion. Will return an Invalid Argument error if this field is set when the underlying ProcessorVersion doesn't support schema override.
+     */
+    schemaOverride?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchema;
+  }
+  /**
+   * A list of individual page numbers.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessOptionsIndividualPageSelector {
+    /**
+     * Optional. Indices of the pages (starting from 1).
+     */
+    pages?: number[] | null;
   }
   /**
    * The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.
@@ -4938,6 +5028,10 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3PropertyMetadata {
     /**
+     * Field extraction metadata on the property.
+     */
+    fieldExtractionMetadata?: Schema$GoogleCloudDocumentaiV1beta3FieldExtractionMetadata;
+    /**
      * Whether the property should be considered as "inactive".
      */
     inactive?: boolean | null;
@@ -4951,7 +5045,7 @@ export namespace documentai_v1beta3 {
      */
     content?: string | null;
     /**
-     * The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `\}`,`'`, `\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID will be generated.
+     * The display name of the document, it supports all Unicode characters except the following: `*`, `?`, `[`, `]`, `%`, `{`, `\}`,`'`, `\"`, `,` `~`, `=` and `:` are reserved. If not specified, a default ID is generated.
      */
     displayName?: string | null;
     /**
@@ -5069,6 +5163,19 @@ export namespace documentai_v1beta3 {
    * Response message for the SetDefaultProcessorVersion method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse {}
+  /**
+   * Metadata for document summarization.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SummaryOptions {
+    /**
+     * The format the summary should be in.
+     */
+    format?: string | null;
+    /**
+     * How long the summary should be.
+     */
+    length?: string | null;
+  }
   /**
    * The metadata that represents a processor version being created.
    */

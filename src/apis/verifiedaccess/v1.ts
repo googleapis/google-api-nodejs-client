@@ -172,6 +172,10 @@ export namespace verifiedaccess_v1 {
    */
   export interface Schema$VerifyChallengeResponseResult {
     /**
+     * Attested device id (ADID) of the device, read from the verified data.
+     */
+    attestedDeviceId?: string | null;
+    /**
      * Device enrollment id is returned in this field (for the machine response only).
      */
     deviceEnrollmentId?: string | null;

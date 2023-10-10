@@ -211,6 +211,60 @@ export namespace clouddeploy_v1 {
     logType?: string | null;
   }
   /**
+   * Payload proto for "clouddeploy.googleapis.com/automation" Platform Log event that describes the Automation related events.
+   */
+  export interface Schema$AutomationEvent {
+    /**
+     * The name of the `AutomationRun`.
+     */
+    automation?: string | null;
+    /**
+     * Debug message for when there is an update on the AutomationRun. Provides further details about the resource creation or state change.
+     */
+    message?: string | null;
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     */
+    pipelineUid?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
+   * Payload proto for "clouddeploy.googleapis.com/automation_run" Platform Log event that describes the AutomationRun related events.
+   */
+  export interface Schema$AutomationRunEvent {
+    /**
+     * Identifier of the `Automation`.
+     */
+    automationId?: string | null;
+    /**
+     * The name of the `AutomationRun`.
+     */
+    automationRun?: string | null;
+    /**
+     * ID of the `Target` to which the `AutomationRun` is created.
+     */
+    destinationTargetId?: string | null;
+    /**
+     * Debug message for when there is an update on the AutomationRun. Provides further details about the resource creation or state change.
+     */
+    message?: string | null;
+    /**
+     * Unique identifier of the `DeliveryPipeline`.
+     */
+    pipelineUid?: string | null;
+    /**
+     * Identifier of the `Automation` rule.
+     */
+    ruleId?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -1425,6 +1479,57 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$RetryJobResponse {}
   /**
+   * Configs for the Rollback rollout.
+   */
+  export interface Schema$RollbackTargetConfig {
+    /**
+     * Optional. The rollback `Rollout` to create.
+     */
+    rollout?: Schema$Rollout;
+    /**
+     * Optional. The starting phase ID for the `Rollout`. If unspecified, the `Rollout` will start in the stable phase.
+     */
+    startingPhaseId?: string | null;
+  }
+  /**
+   * The request object for `RollbackTarget`.
+   */
+  export interface Schema$RollbackTargetRequest {
+    /**
+     * Optional. ID of the `Release` to roll back to. If this isn't specified, the previous successful `Rollout` to the specified target will be used to determine the `Release`.
+     */
+    releaseId?: string | null;
+    /**
+     * Optional. Configs for the rollback `Rollout`.
+     */
+    rollbackConfig?: Schema$RollbackTargetConfig;
+    /**
+     * Required. ID of the rollback `Rollout` to create.
+     */
+    rolloutId?: string | null;
+    /**
+     * Optional. If provided, this must be the latest `Rollout` that is on the `Target`.
+     */
+    rolloutToRollBack?: string | null;
+    /**
+     * Required. ID of the `Target` that is being rolled back.
+     */
+    targetId?: string | null;
+    /**
+     * Optional. If set to true, the request is validated and the user is provided with a `RollbackTargetResponse`.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * The response object from `RollbackTarget`.
+   */
+  export interface Schema$RollbackTargetResponse {
+    /**
+     * The config of the rollback `Rollout` created or will be created.
+     */
+    rollbackConfig?: Schema$RollbackTargetConfig;
+  }
+  /**
    * A `Rollout` resource in the Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.
    */
   export interface Schema$Rollout {
@@ -1496,6 +1601,14 @@ export namespace clouddeploy_v1 {
      * Output only. The phases that represent the workflows of this `Rollout`.
      */
     phases?: Schema$Phase[];
+    /**
+     * Output only. Name of the `Rollout` that is rolled back by this `Rollout`. Empty if this `Rollout` wasn't created as a rollback.
+     */
+    rollbackOfRollout?: string | null;
+    /**
+     * Output only. Names of `Rollouts` that rolled back this `Rollout`.
+     */
+    rolledBackByRollouts?: string[] | null;
     /**
      * Output only. Current state of the `Rollout`.
      */
@@ -2776,6 +2889,101 @@ export namespace clouddeploy_v1 {
     }
 
     /**
+     * Creates a `Rollout` to roll back the specified target.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rollbackTarget(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rollbackTarget(
+      params?: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RollbackTargetResponse>;
+    rollbackTarget(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rollbackTarget(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RollbackTargetResponse>,
+      callback: BodyResponseCallback<Schema$RollbackTargetResponse>
+    ): void;
+    rollbackTarget(
+      params: Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget,
+      callback: BodyResponseCallback<Schema$RollbackTargetResponse>
+    ): void;
+    rollbackTarget(
+      callback: BodyResponseCallback<Schema$RollbackTargetResponse>
+    ): void;
+    rollbackTarget(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget
+        | BodyResponseCallback<Schema$RollbackTargetResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RollbackTargetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RollbackTargetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RollbackTargetResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:rollbackTarget').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RollbackTargetResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RollbackTargetResponse>(parameters);
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * @param params - Parameters for request
@@ -3078,6 +3286,18 @@ export namespace clouddeploy_v1 {
      * Request body metadata
      */
     requestBody?: Schema$DeliveryPipeline;
+  }
+  export interface Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget
+    extends StandardParameters {
+    /**
+     * Required. The `DeliveryPipeline` for which the rollback `Rollout` should be created. Format should be projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RollbackTargetRequest;
   }
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Setiampolicy
     extends StandardParameters {

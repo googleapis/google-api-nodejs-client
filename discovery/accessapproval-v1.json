@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20230606",
+  "revision": "20230915",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -971,6 +971,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "notificationPubsubTopic": {
+          "description": "Optional. A pubsub topic to which notifications relating to approval requests should be sent.",
+          "type": "string"
         },
         "preferNoBroadApprovalRequests": {
           "description": "This preference is communicated to Google personnel when sending an approval request but can be overridden if necessary.",

@@ -336,6 +336,10 @@ export namespace networkmanagement_v1 {
      */
     name?: string | null;
     /**
+     * Output only. The probing details of this test from the latest run, present for applicable tests only. The details are updated when creating a new test, updating an existing test, or triggering a one-time rerun of an existing test.
+     */
+    probingDetails?: Schema$ProbingDetails;
+    /**
      * IP Protocol of the test. When not provided, "TCP" is assumed.
      */
     protocol?: string | null;
@@ -383,6 +387,15 @@ export namespace networkmanagement_v1 {
     resourceUri?: string | null;
   }
   /**
+   * Representation of a network edge location as per https://cloud.google.com/vpc/docs/edge-locations.
+   */
+  export interface Schema$EdgeLocation {
+    /**
+     * Name of the metropolitan area.
+     */
+    metropolitanArea?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -411,6 +424,10 @@ export namespace networkmanagement_v1 {
      */
     forwardingRule?: string | null;
     /**
+     * Output only. Specifies the type of the target of the forwarding rule.
+     */
+    forwardingRuleTarget?: string | null;
+    /**
      * A cluster URI for [Google Kubernetes Engine master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      */
     gkeMasterCluster?: string | null;
@@ -419,9 +436,17 @@ export namespace networkmanagement_v1 {
      */
     instance?: string | null;
     /**
-     * The IP address of the endpoint, which can be an external or internal IP. An IPv6 address is only allowed when the test's destination is a [global load balancer VIP](/load-balancing/docs/load-balancing-overview).
+     * The IP address of the endpoint, which can be an external or internal IP. An IPv6 address is only allowed when the test's destination is a [global load balancer VIP](https://cloud.google.com/load-balancing/docs/load-balancing-overview).
      */
     ipAddress?: string | null;
+    /**
+     * Output only. ID of the load balancer the forwarding rule points to. Empty for forwarding rules not related to load balancers.
+     */
+    loadBalancerId?: string | null;
+    /**
+     * Output only. Type of the load balancer the forwarding rule points to.
+     */
+    loadBalancerType?: string | null;
     /**
      * A Compute Engine network URI.
      */
@@ -459,6 +484,10 @@ export namespace networkmanagement_v1 {
      * IP protocol in string format, for example: "TCP", "UDP", "ICMP".
      */
     protocol?: string | null;
+    /**
+     * URI of the source telemetry agent this packet originates from.
+     */
+    sourceAgentUri?: string | null;
     /**
      * Source IP address.
      */
@@ -654,6 +683,28 @@ export namespace networkmanagement_v1 {
      * URI of a Compute Engine instance.
      */
     uri?: string | null;
+  }
+  /**
+   * Describes measured latency distribution.
+   */
+  export interface Schema$LatencyDistribution {
+    /**
+     * Representative latency percentiles.
+     */
+    latencyPercentiles?: Schema$LatencyPercentile[];
+  }
+  /**
+   * Latency percentile rank and value.
+   */
+  export interface Schema$LatencyPercentile {
+    /**
+     * percent-th percentile of latency observed, in microseconds. Fraction of percent/100 of samples have latency lower or equal to the value of this field.
+     */
+    latencyMicros?: string | null;
+    /**
+     * Percentage of samples this data point applies to.
+     */
+    percent?: number | null;
   }
   /**
    * Response for the `ListConnectivityTests` method.
@@ -868,6 +919,47 @@ export namespace networkmanagement_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Results of active probing from the last run of the test.
+   */
+  export interface Schema$ProbingDetails {
+    /**
+     * The reason probing was aborted.
+     */
+    abortCause?: string | null;
+    /**
+     * The EdgeLocation from which a packet destined for/originating from the internet will egress/ingress the Google network. This will only be populated for a connectivity test which has an internet destination/source address. The absence of this field *must not* be used as an indication that the destination/source is part of the Google network.
+     */
+    destinationEgressLocation?: Schema$EdgeLocation;
+    /**
+     * The source and destination endpoints derived from the test input and used for active probing.
+     */
+    endpointInfo?: Schema$EndpointInfo;
+    /**
+     * Details about an internal failure or the cancellation of active probing.
+     */
+    error?: Schema$Status;
+    /**
+     * Latency as measured by active probing in one direction: from the source to the destination endpoint.
+     */
+    probingLatency?: Schema$LatencyDistribution;
+    /**
+     * The overall result of active probing.
+     */
+    result?: string | null;
+    /**
+     * Number of probes sent.
+     */
+    sentProbeCount?: number | null;
+    /**
+     * Number of probes that reached the destination.
+     */
+    successfulProbeCount?: number | null;
+    /**
+     * The time that reachability was assessed through active probing.
+     */
+    verifyTime?: string | null;
   }
   /**
    * Results of the configuration analysis from the last run of the test.

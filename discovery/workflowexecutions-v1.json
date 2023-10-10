@@ -199,6 +199,31 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "exportData": {
+                      "description": "Returns all metadata stored about an execution, excluding most data that is already accessible using other API methods.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}/executions/{executionsId}:exportData",
+                      "httpMethod": "GET",
+                      "id": "workflowexecutions.projects.locations.workflows.executions.exportData",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the execution for which data is to be exported. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/workflows/[^/]+/executions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:exportData",
+                      "response": {
+                        "$ref": "ExportDataResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Returns an execution of the given name.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}/executions/{executionsId}",
@@ -300,6 +325,48 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
+                  },
+                  "resources": {
+                    "callbacks": {
+                      "methods": {
+                        "list": {
+                          "description": "Returns a list of active callbacks that belong to the execution with the given name. The returned callbacks are ordered by callback ID.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}/executions/{executionsId}/callbacks",
+                          "httpMethod": "GET",
+                          "id": "workflowexecutions.projects.locations.workflows.executions.callbacks.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Maximum number of callbacks to return per call. The default value is 100 and is also the maximum value.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous `ListCallbacks` call. Provide this to retrieve the subsequent page. Note that pagination is applied to dynamic data. The list of callbacks returned can change between page requests if callbacks are created or deleted.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Name of the execution for which the callbacks should be listed. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/workflows/[^/]+/executions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/callbacks",
+                          "response": {
+                            "$ref": "ListCallbacksResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -309,9 +376,40 @@
       }
     }
   },
-  "revision": "20230725",
+  "revision": "20230912",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
+    "Callback": {
+      "description": "An instance of a Callback created by an execution.",
+      "id": "Callback",
+      "properties": {
+        "availablePayloads": {
+          "description": "Output only. The payloads received by the callback that have not been processed by a waiting execution step.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "method": {
+          "description": "Output only. The method accepted by the callback. For example: GET, POST, PUT.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the callback. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}/callback/{callback}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "waiters": {
+          "description": "Output only. Number of execution steps waiting on this callback.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelExecutionRequest": {
       "description": "Request for the CancelExecution method.",
       "id": "CancelExecutionRequest",
@@ -437,6 +535,35 @@
         "workflowRevisionId": {
           "description": "Output only. Revision of the workflow this execution is using.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExportDataResponse": {
+      "description": "Response for the ExportData method.",
+      "id": "ExportDataResponse",
+      "properties": {
+        "data": {
+          "description": "The JSON string with customer data and metadata for an execution with the given name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListCallbacksResponse": {
+      "description": "RPC response object for the ListCallbacks method.",
+      "id": "ListCallbacksResponse",
+      "properties": {
+        "callbacks": {
+          "description": "The callbacks which match the request.",
+          "items": {
+            "$ref": "Callback"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },

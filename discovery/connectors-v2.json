@@ -171,6 +171,31 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "get": {
+                      "description": "Gets the schema of the given action.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/actions/{actionsId}",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.actions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the Action. Format: projects/{project}/locations/{location}/connections/{connection}/actions/{action}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/actions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "Action"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Gets the schema of all the actions supported by the connector.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/actions",
@@ -197,6 +222,21 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Specifies which fields of the Action are returned in the response.",
+                          "enum": [
+                            "ACTION_VIEW_UNSPECIFIED",
+                            "ACTION_VIEW_BASIC",
+                            "ACTION_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "VIEW_UNSPECIFIED. The unset value Defaults to FULL View.",
+                            "Return only action names.",
+                            "Return actions with schema."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v2/{+parent}/actions",
@@ -211,6 +251,31 @@
                 },
                 "entityTypes": {
                   "methods": {
+                    "get": {
+                      "description": "Gets metadata of given entity type",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/entityTypes/{entityTypesId}",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.entityTypes.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the Entity Type. Format: projects/{project}/locations/{location}/connections/{connection}/entityTypes/{entityType}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/entityTypes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "EntityType"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists metadata related to all entity types present in the external system.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/entityTypes",
@@ -236,6 +301,21 @@
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
                           "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Specifies which fields of the Entity Type are returned in the response.",
+                          "enum": [
+                            "ENTITY_TYPE_VIEW_UNSPECIFIED",
+                            "ENTITY_TYPE_VIEW_BASIC",
+                            "ENTITY_TYPE_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "VIEW_UNSPECIFIED. The unset value. Defaults to FULL View.",
+                            "Return only entity type names.",
+                            "Return entity types with schema"
+                          ],
+                          "location": "query",
                           "type": "string"
                         }
                       },
@@ -478,13 +558,25 @@
       }
     }
   },
-  "revision": "20230706",
+  "revision": "20230913",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "Action": {
       "description": "Action message contains metadata information about a single action present in the external system.",
       "id": "Action",
       "properties": {
+        "description": {
+          "description": "Brief Description of action",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display Name of action to be shown on client side",
+          "type": "string"
+        },
+        "inputJsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "JsonSchema representation of this actions's input schema"
+        },
         "inputParameters": {
           "description": "List containing input parameter metadata.",
           "items": {
@@ -495,6 +587,10 @@
         "name": {
           "description": "Name of the action.",
           "type": "string"
+        },
+        "resultJsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "JsonSchema representation of this actions's result schema"
         },
         "resultMetadata": {
           "description": "List containing the metadata of result fields.",
@@ -541,6 +637,10 @@
             "$ref": "Field"
           },
           "type": "array"
+        },
+        "jsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "JsonSchema representation of this entity's schema"
         },
         "name": {
           "description": "The name of the entity type.",
@@ -776,6 +876,10 @@
           "description": "A brief description of the Field.",
           "type": "string"
         },
+        "jsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "JsonSchema of the field, applicable only if field is of type `STRUCT`"
+        },
         "key": {
           "description": "The following boolean field specifies if the current Field acts as a primary key or id if the parent is of type entity.",
           "type": "boolean"
@@ -799,6 +903,14 @@
       "description": "Input Parameter message contains metadata about the parameters required for executing an Action.",
       "id": "InputParameter",
       "properties": {
+        "additionalDetails": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The following map contains fields that are not explicitly mentioned above,this give connectors the flexibility to add new metadata fields.",
+          "type": "object"
+        },
         "dataType": {
           "description": "The data type of the Parameter",
           "enum": [
@@ -952,6 +1064,10 @@
           "description": "A brief description of the Parameter.",
           "type": "string"
         },
+        "jsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "JsonSchema of the parameter, applicable only if parameter is of type `STRUCT`"
+        },
         "name": {
           "description": "Name of the Parameter.",
           "type": "string"
@@ -959,6 +1075,210 @@
         "nullable": {
           "description": "Specifies whether a null value is allowed.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "JsonSchema": {
+      "description": "JsonSchema representation of schema metadata",
+      "id": "JsonSchema",
+      "properties": {
+        "additionalDetails": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Additional details apart from standard json schema fields, this gives flexibility to store metadata about the schema",
+          "type": "object"
+        },
+        "default": {
+          "description": "The default value of the field or object described by this schema.",
+          "type": "any"
+        },
+        "description": {
+          "description": "A description of this schema.",
+          "type": "string"
+        },
+        "enum": {
+          "description": "Possible values for an enumeration. This works in conjunction with `type` to represent types with a fixed set of legal values",
+          "items": {
+            "type": "any"
+          },
+          "type": "array"
+        },
+        "format": {
+          "description": "Format of the value as per https://json-schema.org/understanding-json-schema/reference/string.html#format",
+          "type": "string"
+        },
+        "items": {
+          "$ref": "JsonSchema",
+          "description": "Schema that applies to array values, applicable only if this is of type `array`."
+        },
+        "jdbcType": {
+          "description": "JDBC datatype of the field.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "INT",
+            "SMALLINT",
+            "DOUBLE",
+            "DATE",
+            "DATETIME",
+            "TIME",
+            "STRING",
+            "LONG",
+            "BOOLEAN",
+            "DECIMAL",
+            "UUID",
+            "BLOB",
+            "BIT",
+            "TINYINT",
+            "INTEGER",
+            "BIGINT",
+            "FLOAT",
+            "REAL",
+            "NUMERIC",
+            "CHAR",
+            "VARCHAR",
+            "LONGVARCHAR",
+            "TIMESTAMP",
+            "NCHAR",
+            "NVARCHAR",
+            "LONGNVARCHAR",
+            "NULL",
+            "OTHER",
+            "JAVA_OBJECT",
+            "DISTINCT",
+            "STRUCT",
+            "ARRAY",
+            "CLOB",
+            "REF",
+            "DATALINK",
+            "ROWID",
+            "BINARY",
+            "VARBINARY",
+            "LONGVARBINARY",
+            "NCLOB",
+            "SQLXML",
+            "REF_CURSOR",
+            "TIME_WITH_TIMEZONE",
+            "TIMESTAMP_WITH_TIMEZONE"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "Datatype unspecified.",
+            "Deprecated Int type, use INTEGER type instead.",
+            "Small int type.",
+            "Double type.",
+            "Date type.",
+            "Deprecated Datetime type.",
+            "Time type.",
+            "Deprecated string type, use VARCHAR type instead.",
+            "Deprecated Long type, use BIGINT type instead.",
+            "Boolean type.",
+            "Decimal type.",
+            "Deprecated UUID type, use VARCHAR instead.",
+            "Blob type.",
+            "Bit type.",
+            "Tiny int type.",
+            "Integer type.",
+            "Big int type.",
+            "Float type.",
+            "Real type.",
+            "Numeric type.",
+            "Char type.",
+            "Varchar type.",
+            "Long varchar type.",
+            "Timestamp type.",
+            "Nchar type.",
+            "Nvarchar type.",
+            "Long Nvarchar type.",
+            "Null type.",
+            "Other type.",
+            "Java object type.",
+            "Distinct type keyword.",
+            "Struct type.",
+            "Array type.",
+            "Clob type.",
+            "Ref type.",
+            "Datalink type.",
+            "Row ID type.",
+            "Binary type.",
+            "Varbinary type.",
+            "Long Varbinary type.",
+            "Nclob type.",
+            "SQLXML type.",
+            "Ref_cursor type.",
+            "Time with timezone type.",
+            "Timestamp with timezone type."
+          ],
+          "type": "string"
+        },
+        "properties": {
+          "additionalProperties": {
+            "$ref": "JsonSchema"
+          },
+          "description": "The child schemas, applicable only if this is of type `object`. The key is the name of the property and the value is the json schema that describes that property",
+          "type": "object"
+        },
+        "required": {
+          "description": "Whether this property is required.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "JSON Schema Validation: A Vocabulary for Structural Validation of JSON",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1035,9 +1355,180 @@
       "description": "A wrapper around the SQL query statement. This is needed so that the JSON representation of ExecuteSqlQueryRequest has the following format: `{\"query\":\"select *\"}`.",
       "id": "Query",
       "properties": {
+        "maxRows": {
+          "description": "Sets the limit for the maximum number of rows returned after the query execution.",
+          "format": "int64",
+          "type": "string"
+        },
         "query": {
           "description": "Required. Sql query to execute.",
           "type": "string"
+        },
+        "queryParameters": {
+          "description": "In the struct, the value corresponds to the value of query parameter and date type corresponds to the date type of the query parameter.",
+          "items": {
+            "$ref": "QueryParameter"
+          },
+          "type": "array"
+        },
+        "timeout": {
+          "description": "Sets the number of seconds the driver will wait for a query to execute.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueryParameter": {
+      "description": "Query parameter definition",
+      "id": "QueryParameter",
+      "properties": {
+        "dataType": {
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "INT",
+            "SMALLINT",
+            "DOUBLE",
+            "DATE",
+            "DATETIME",
+            "TIME",
+            "STRING",
+            "LONG",
+            "BOOLEAN",
+            "DECIMAL",
+            "UUID",
+            "BLOB",
+            "BIT",
+            "TINYINT",
+            "INTEGER",
+            "BIGINT",
+            "FLOAT",
+            "REAL",
+            "NUMERIC",
+            "CHAR",
+            "VARCHAR",
+            "LONGVARCHAR",
+            "TIMESTAMP",
+            "NCHAR",
+            "NVARCHAR",
+            "LONGNVARCHAR",
+            "NULL",
+            "OTHER",
+            "JAVA_OBJECT",
+            "DISTINCT",
+            "STRUCT",
+            "ARRAY",
+            "CLOB",
+            "REF",
+            "DATALINK",
+            "ROWID",
+            "BINARY",
+            "VARBINARY",
+            "LONGVARBINARY",
+            "NCLOB",
+            "SQLXML",
+            "REF_CURSOR",
+            "TIME_WITH_TIMEZONE",
+            "TIMESTAMP_WITH_TIMEZONE"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            true,
+            false,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "Datatype unspecified.",
+            "Deprecated Int type, use INTEGER type instead.",
+            "Small int type.",
+            "Double type.",
+            "Date type.",
+            "Deprecated Datetime type.",
+            "Time type.",
+            "Deprecated string type, use VARCHAR type instead.",
+            "Deprecated Long type, use BIGINT type instead.",
+            "Boolean type.",
+            "Decimal type.",
+            "Deprecated UUID type, use VARCHAR instead.",
+            "Blob type.",
+            "Bit type.",
+            "Tiny int type.",
+            "Integer type.",
+            "Big int type.",
+            "Float type.",
+            "Real type.",
+            "Numeric type.",
+            "Char type.",
+            "Varchar type.",
+            "Long varchar type.",
+            "Timestamp type.",
+            "Nchar type.",
+            "Nvarchar type.",
+            "Long Nvarchar type.",
+            "Null type.",
+            "Other type.",
+            "Java object type.",
+            "Distinct type keyword.",
+            "Struct type.",
+            "Array type.",
+            "Clob type.",
+            "Ref type.",
+            "Datalink type.",
+            "Row ID type.",
+            "Binary type.",
+            "Varbinary type.",
+            "Long Varbinary type.",
+            "Nclob type.",
+            "SQLXML type.",
+            "Ref_cursor type.",
+            "Time with timezone type.",
+            "Timestamp with timezone type."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "type": "any"
         }
       },
       "type": "object"
@@ -1208,6 +1699,10 @@
         "description": {
           "description": "A brief description of the metadata field.",
           "type": "string"
+        },
+        "jsonSchema": {
+          "$ref": "JsonSchema",
+          "description": "JsonSchema of the result, applicable only if parameter is of type `STRUCT`"
         },
         "name": {
           "description": "Name of the metadata field.",

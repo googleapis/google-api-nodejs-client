@@ -1688,13 +1688,13 @@ export namespace youtube_v3 {
      */
     enabled?: boolean | null;
     /**
-     * If set, automatic cuepoint insertion is paused until this timestamp ("No Ad Zone").
+     * If set, automatic cuepoint insertion is paused until this timestamp ("No Ad Zone"). The value is specified in ISO 8601 format.
      */
     pauseAdsUntil?: string | null;
     /**
-     * Interval frequency that api uses to insert cuepoints automatically.
+     * Interval frequency in seconds that api uses to insert cuepoints automatically.
      */
-    repeatInterval?: string | null;
+    repeatIntervalSecs?: number | null;
     /**
      * The strategy to use when scheduling cuepoints.
      */
@@ -10652,6 +10652,10 @@ export namespace youtube_v3 {
      * Filter on the license of the videos.
      */
     videoLicense?: string;
+    /**
+     *
+     */
+    videoPaidProductPlacement?: string;
     /**
      * Filter on syndicated videos.
      */

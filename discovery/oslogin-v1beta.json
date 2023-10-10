@@ -408,7 +408,7 @@
       }
     }
   },
-  "revision": "20230729",
+  "revision": "20230917",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -533,6 +533,10 @@
       "description": "The credential information for a Google registered security key.",
       "id": "SecurityKey",
       "properties": {
+        "deviceNickname": {
+          "description": "The security key nickname explicitly set by the user.",
+          "type": "string"
+        },
         "privateKey": {
           "description": "Hardware-backed private key text in SSH format.",
           "type": "string"
