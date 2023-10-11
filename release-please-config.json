@@ -279,6 +279,8 @@
     "src/apis/metastore": {},
     "src/apis/rapidmigrationassessment": {},
     "src/apis/playgrouping": {},
-    "src/apis/alloydb": {}
+    "src/apis/alloydb": {},
+    "src/apis/backupdr": {},
+    "src/apis/vmwareengine": {}
   }
 }
