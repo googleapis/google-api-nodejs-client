@@ -855,11 +855,11 @@ export namespace migrationcenter_v1 {
     entries?: Schema$FstabEntry[];
   }
   /**
-   * An insight about an asset (experimental insight)
+   * A generic insight about an asset.
    */
   export interface Schema$GenericInsight {
     /**
-     * Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links
+     * Output only. Additional information about the insight, each entry can be a logical entry and must make sense if it is displayed with line breaks between each entry. Text can contain md style links.
      */
     additionalInformation?: string[] | null;
     /**
@@ -1111,7 +1111,7 @@ export namespace migrationcenter_v1 {
      */
     createTime?: string | null;
     /**
-     * User-friendly display name. Maximum length is 63 characters.
+     * Optional. User-friendly display name. Maximum length is 256 characters.
      */
     displayName?: string | null;
     /**
@@ -1818,7 +1818,7 @@ export namespace migrationcenter_v1 {
      */
     network?: Schema$NetworkUsageSample;
     /**
-     * Time the sample was If omitted, the frame report time will be used.
+     * Time the sample was collected. If omitted, the frame report time will be used.
      */
     sampleTime?: string | null;
   }
