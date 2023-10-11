@@ -522,9 +522,11 @@ export namespace oslogin_v1beta {
 
   export class Resource$Users$Projects {
     context: APIRequestContext;
+    locations: Resource$Users$Projects$Locations;
     zones: Resource$Users$Projects$Zones;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.locations = new Resource$Users$Projects$Locations(this.context);
       this.zones = new Resource$Users$Projects$Zones(this.context);
     }
 
@@ -619,6 +621,121 @@ export namespace oslogin_v1beta {
      * Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user\}/projects/{project\}`.
      */
     name?: string;
+  }
+
+  export class Resource$Users$Projects$Locations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Signs an SSH public key for a user to authenticate to an instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    signSshPublicKey(
+      params: Params$Resource$Users$Projects$Locations$Signsshpublickey,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    signSshPublicKey(
+      params?: Params$Resource$Users$Projects$Locations$Signsshpublickey,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SignSshPublicKeyResponse>;
+    signSshPublicKey(
+      params: Params$Resource$Users$Projects$Locations$Signsshpublickey,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    signSshPublicKey(
+      params: Params$Resource$Users$Projects$Locations$Signsshpublickey,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SignSshPublicKeyResponse>,
+      callback: BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+    ): void;
+    signSshPublicKey(
+      params: Params$Resource$Users$Projects$Locations$Signsshpublickey,
+      callback: BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+    ): void;
+    signSshPublicKey(
+      callback: BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+    ): void;
+    signSshPublicKey(
+      paramsOrCallback?:
+        | Params$Resource$Users$Projects$Locations$Signsshpublickey
+        | BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SignSshPublicKeyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SignSshPublicKeyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Projects$Locations$Signsshpublickey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Users$Projects$Locations$Signsshpublickey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}:signSshPublicKey').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SignSshPublicKeyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SignSshPublicKeyResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Projects$Locations$Signsshpublickey
+    extends StandardParameters {
+    /**
+     * The parent project and zone for the signing request. This is needed to properly ensure per-organization ISS processing and potentially to provide for the possibility of zone-specific certificates used in the signing process.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SignSshPublicKeyRequest;
   }
 
   export class Resource$Users$Projects$Zones {

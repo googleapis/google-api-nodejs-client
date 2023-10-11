@@ -250,6 +250,39 @@
             }
           },
           "resources": {
+            "locations": {
+              "methods": {
+                "signSshPublicKey": {
+                  "description": "Signs an SSH public key for a user to authenticate to an instance.",
+                  "flatPath": "v1beta/users/{usersId}/projects/{projectsId}/locations/{locationsId}:signSshPublicKey",
+                  "httpMethod": "POST",
+                  "id": "oslogin.users.projects.locations.signSshPublicKey",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "The parent project and zone for the signing request. This is needed to properly ensure per-organization ISS processing and potentially to provide for the possibility of zone-specific certificates used in the signing process.",
+                      "location": "path",
+                      "pattern": "^users/[^/]+/projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}:signSshPublicKey",
+                  "request": {
+                    "$ref": "SignSshPublicKeyRequest"
+                  },
+                  "response": {
+                    "$ref": "SignSshPublicKeyResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                }
+              }
+            },
             "zones": {
               "methods": {
                 "signSshPublicKey": {
@@ -408,7 +441,7 @@
       }
     }
   },
-  "revision": "20230917",
+  "revision": "20231001",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {

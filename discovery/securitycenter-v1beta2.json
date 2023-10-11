@@ -157,31 +157,6 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
-        "getOnboardingState": {
-          "description": "Retrieve the OnboardingState of a resource.",
-          "flatPath": "v1beta2/folders/{foldersId}/onboardingState",
-          "httpMethod": "GET",
-          "id": "securitycenter.folders.getOnboardingState",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization}/onboardingState * folders/{folder}/onboardingState * projects/{project}/onboardingState",
-              "location": "path",
-              "pattern": "^folders/[^/]+/onboardingState$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1beta2/{+name}",
-          "response": {
-            "$ref": "OnboardingState"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
         "getRapidVulnerabilityDetectionSettings": {
           "description": "Get the RapidVulnerabilityDetectionSettings resource. In the returned settings response, a missing field only indicates that it was not explicitly set, so no assumption should be made about these fields. In other words, GetRapidVulnerabilityDetectionSettings does not calculate the effective service settings for the resource, which accounts for inherited settings and defaults. Instead, use CalculateRapidVulnerabilityDetectionSettings for this purpose.",
           "flatPath": "v1beta2/folders/{foldersId}/rapidVulnerabilityDetectionSettings",
@@ -736,31 +711,6 @@
           "path": "v1beta2/{+name}",
           "response": {
             "$ref": "EventThreatDetectionSettings"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "getOnboardingState": {
-          "description": "Retrieve the OnboardingState of a resource.",
-          "flatPath": "v1beta2/organizations/{organizationsId}/onboardingState",
-          "httpMethod": "GET",
-          "id": "securitycenter.organizations.getOnboardingState",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization}/onboardingState * folders/{folder}/onboardingState * projects/{project}/onboardingState",
-              "location": "path",
-              "pattern": "^organizations/[^/]+/onboardingState$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1beta2/{+name}",
-          "response": {
-            "$ref": "OnboardingState"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1345,31 +1295,6 @@
           "path": "v1beta2/{+name}",
           "response": {
             "$ref": "EventThreatDetectionSettings"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "getOnboardingState": {
-          "description": "Retrieve the OnboardingState of a resource.",
-          "flatPath": "v1beta2/projects/{projectsId}/onboardingState",
-          "httpMethod": "GET",
-          "id": "securitycenter.projects.getOnboardingState",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization}/onboardingState * folders/{folder}/onboardingState * projects/{project}/onboardingState",
-              "location": "path",
-              "pattern": "^projects/[^/]+/onboardingState$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1beta2/{+name}",
-          "response": {
-            "$ref": "OnboardingState"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1981,7 +1906,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231005",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2914,6 +2839,13 @@
           "$ref": "Kubernetes",
           "description": "Kubernetes resources associated with the finding."
         },
+        "loadBalancers": {
+          "description": "The load balancers associated with the finding.",
+          "items": {
+            "$ref": "LoadBalancer"
+          },
+          "type": "array"
+        },
         "mitreAttack": {
           "$ref": "MitreAttack",
           "description": "MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org"
@@ -2980,6 +2912,10 @@
           "$ref": "SecurityMarks",
           "description": "Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.",
           "readOnly": true
+        },
+        "securityPosture": {
+          "$ref": "SecurityPosture",
+          "description": "The security posture associated with the finding."
         },
         "severity": {
           "description": "The severity of the finding. This field is managed by the source that writes the finding.",
@@ -3390,7 +3326,7 @@
       "type": "object"
     },
     "GoogleCloudSecuritycenterV1ResourceValueConfig": {
-      "description": "A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.",
+      "description": "A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.",
       "id": "GoogleCloudSecuritycenterV1ResourceValueConfig",
       "properties": {
         "createTime": {
@@ -3906,6 +3842,13 @@
           },
           "type": "array"
         },
+        "objects": {
+          "description": "Kubernetes objects related to the finding.",
+          "items": {
+            "$ref": "Object"
+          },
+          "type": "array"
+        },
         "pods": {
           "description": "Kubernetes [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod) associated with the finding. This field contains Pod records for each container that is owned by a Pod.",
           "items": {
@@ -3933,6 +3876,17 @@
         },
         "value": {
           "description": "Value that corresponds to the label's name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LoadBalancer": {
+      "description": "Contains information related to the load balancer associated with the finding.",
+      "id": "LoadBalancer",
+      "properties": {
+        "name": {
+          "description": "The name of the load balancer associated with the finding.",
           "type": "string"
         }
       },
@@ -4245,26 +4199,24 @@
       },
       "type": "object"
     },
-    "OnboardingState": {
-      "description": "Resource capturing onboarding information for a given CRM resource.",
-      "id": "OnboardingState",
+    "Object": {
+      "description": "Kubernetes object related to the finding, uniquely identified by GKNN. Used if the object Kind is not one of Pod, Node, NodePool, Binding, or AccessReview.",
+      "id": "Object",
       "properties": {
-        "name": {
-          "description": "The resource name of the OnboardingState. Format: organizations/{organization}/onboardingState Format: folders/{folder}/onboardingState Format: projects/{project}/onboardingState",
+        "group": {
+          "description": "Kubernetes object group, such as \"policy.k8s.io/v1\".",
           "type": "string"
         },
-        "onboardingLevel": {
-          "description": "Describes the level a given organization, folder, or project is onboarded with SCC. If the resource wasn't onboarded, NOT_FOUND would have been thrown.",
-          "enum": [
-            "ONBOARDING_LEVEL_UNSPECIFIED",
-            "ONBOARDING_LEVEL_PROJECT",
-            "ONBOARDING_LEVEL_ORGANIZATION"
-          ],
-          "enumDescriptions": [
-            "Unused.",
-            "This resource is onboarded at the project level. Only possible for projects.",
-            "This resource is onboarded at the organization level. Possible for organizations, folders, and projects."
-          ],
+        "kind": {
+          "description": "Kubernetes object kind, such as “Namespace”.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Kubernetes object name. For details see https://kubernetes.io/docs/concepts/overview/working-with-objects/names/.",
+          "type": "string"
+        },
+        "ns": {
+          "description": "Kubernetes object namespace. Must be a valid DNS label. Named \"ns\" to avoid collision with C++ namespace keyword. For details see https://kubernetes.io/docs/tasks/administer-cluster/namespaces/.",
           "type": "string"
         }
       },
@@ -4544,6 +4496,33 @@
         },
         "name": {
           "description": "The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: \"organizations/{organization_id}/assets/{asset_id}/securityMarks\" \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPosture": {
+      "description": "Represents a posture that is deployed on Google Cloud by the Security Command Center Posture Management service. A posture contains one or more policy sets. A policy set is a group of policies that enforce a set of security rules on Google Cloud.",
+      "id": "SecurityPosture",
+      "properties": {
+        "changedPolicy": {
+          "description": "The name of the policy that has been updated, for example, `projects/{project_id}/policies/{constraint_name}`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the posture, for example, `organizations/{org_id}/locations/{location}/postures/{posture_name}`.",
+          "type": "string"
+        },
+        "postureDeployment": {
+          "description": "The name of the posture deployment, for example, `projects/{project_id}/posturedeployments/{posture_deployment_id}`.",
+          "type": "string"
+        },
+        "postureDeploymentResource": {
+          "description": "The project, folder, or organization on which the posture is deployed, for example, `projects/{project_id}`.",
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "The version of the posture, for example, `c7cfa2a8`.",
           "type": "string"
         }
       },

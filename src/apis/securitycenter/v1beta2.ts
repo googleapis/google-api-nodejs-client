@@ -734,6 +734,10 @@ export namespace securitycenter_v1beta2 {
      */
     kubernetes?: Schema$Kubernetes;
     /**
+     * The load balancers associated with the finding.
+     */
+    loadBalancers?: Schema$LoadBalancer[];
+    /**
      * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
      */
     mitreAttack?: Schema$MitreAttack;
@@ -781,6 +785,10 @@ export namespace securitycenter_v1beta2 {
      * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
      */
     securityMarks?: Schema$SecurityMarks;
+    /**
+     * The security posture associated with the finding.
+     */
+    securityPosture?: Schema$SecurityPosture;
     /**
      * The severity of the finding. This field is managed by the source that writes the finding.
      */
@@ -1231,7 +1239,7 @@ export namespace securitycenter_v1beta2 {
     resourceTypes?: string[] | null;
   }
   /**
-   * A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.
+   * A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
    */
   export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
     /**
@@ -1417,6 +1425,10 @@ export namespace securitycenter_v1beta2 {
      */
     nodes?: Schema$Node[];
     /**
+     * Kubernetes objects related to the finding.
+     */
+    objects?: Schema$Object[];
+    /**
      * Kubernetes [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod) associated with the finding. This field contains Pod records for each container that is owned by a Pod.
      */
     pods?: Schema$Pod[];
@@ -1437,6 +1449,15 @@ export namespace securitycenter_v1beta2 {
      * Value that corresponds to the label's name.
      */
     value?: string | null;
+  }
+  /**
+   * Contains information related to the load balancer associated with the finding.
+   */
+  export interface Schema$LoadBalancer {
+    /**
+     * The name of the load balancer associated with the finding.
+     */
+    name?: string | null;
   }
   /**
    * A signature corresponding to memory page hashes.
@@ -1499,17 +1520,25 @@ export namespace securitycenter_v1beta2 {
     nodes?: Schema$Node[];
   }
   /**
-   * Resource capturing onboarding information for a given CRM resource.
+   * Kubernetes object related to the finding, uniquely identified by GKNN. Used if the object Kind is not one of Pod, Node, NodePool, Binding, or AccessReview.
    */
-  export interface Schema$OnboardingState {
+  export interface Schema$Object {
     /**
-     * The resource name of the OnboardingState. Format: organizations/{organization\}/onboardingState Format: folders/{folder\}/onboardingState Format: projects/{project\}/onboardingState
+     * Kubernetes object group, such as "policy.k8s.io/v1".
+     */
+    group?: string | null;
+    /**
+     * Kubernetes object kind, such as “Namespace”.
+     */
+    kind?: string | null;
+    /**
+     * Kubernetes object name. For details see https://kubernetes.io/docs/concepts/overview/working-with-objects/names/.
      */
     name?: string | null;
     /**
-     * Describes the level a given organization, folder, or project is onboarded with SCC. If the resource wasn't onboarded, NOT_FOUND would have been thrown.
+     * Kubernetes object namespace. Must be a valid DNS label. Named "ns" to avoid collision with C++ namespace keyword. For details see https://kubernetes.io/docs/tasks/administer-cluster/namespaces/.
      */
-    onboardingLevel?: string | null;
+    ns?: string | null;
   }
   /**
    * A Kubernetes Pod.
@@ -1703,6 +1732,31 @@ export namespace securitycenter_v1beta2 {
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
     name?: string | null;
+  }
+  /**
+   * Represents a posture that is deployed on Google Cloud by the Security Command Center Posture Management service. A posture contains one or more policy sets. A policy set is a group of policies that enforce a set of security rules on Google Cloud.
+   */
+  export interface Schema$SecurityPosture {
+    /**
+     * The name of the policy that has been updated, for example, `projects/{project_id\}/policies/{constraint_name\}`.
+     */
+    changedPolicy?: string | null;
+    /**
+     * Name of the posture, for example, `organizations/{org_id\}/locations/{location\}/postures/{posture_name\}`.
+     */
+    name?: string | null;
+    /**
+     * The name of the posture deployment, for example, `projects/{project_id\}/posturedeployments/{posture_deployment_id\}`.
+     */
+    postureDeployment?: string | null;
+    /**
+     * The project, folder, or organization on which the posture is deployed, for example, `projects/{project_id\}`.
+     */
+    postureDeploymentResource?: string | null;
+    /**
+     * The version of the posture, for example, `c7cfa2a8`.
+     */
+    revisionId?: string | null;
   }
   /**
    * Identity delegation history of an authenticated service account.
@@ -2028,93 +2082,6 @@ export namespace securitycenter_v1beta2 {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters
         );
-      }
-    }
-
-    /**
-     * Retrieve the OnboardingState of a resource.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getOnboardingState(
-      params: Params$Resource$Folders$Getonboardingstate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getOnboardingState(
-      params?: Params$Resource$Folders$Getonboardingstate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$OnboardingState>;
-    getOnboardingState(
-      params: Params$Resource$Folders$Getonboardingstate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getOnboardingState(
-      params: Params$Resource$Folders$Getonboardingstate,
-      options: MethodOptions | BodyResponseCallback<Schema$OnboardingState>,
-      callback: BodyResponseCallback<Schema$OnboardingState>
-    ): void;
-    getOnboardingState(
-      params: Params$Resource$Folders$Getonboardingstate,
-      callback: BodyResponseCallback<Schema$OnboardingState>
-    ): void;
-    getOnboardingState(
-      callback: BodyResponseCallback<Schema$OnboardingState>
-    ): void;
-    getOnboardingState(
-      paramsOrCallback?:
-        | Params$Resource$Folders$Getonboardingstate
-        | BodyResponseCallback<Schema$OnboardingState>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$OnboardingState>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$OnboardingState>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OnboardingState> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Folders$Getonboardingstate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Getonboardingstate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://securitycenter.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OnboardingState>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$OnboardingState>(parameters);
       }
     }
 
@@ -3169,13 +3136,6 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Folders$Getonboardingstate
-    extends StandardParameters {
-    /**
-     * Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
-     */
-    name?: string;
-  }
   export interface Params$Resource$Folders$Getrapidvulnerabilitydetectionsettings
     extends StandardParameters {
     /**
@@ -4203,93 +4163,6 @@ export namespace securitycenter_v1beta2 {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters
         );
-      }
-    }
-
-    /**
-     * Retrieve the OnboardingState of a resource.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getOnboardingState(
-      params: Params$Resource$Organizations$Getonboardingstate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getOnboardingState(
-      params?: Params$Resource$Organizations$Getonboardingstate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$OnboardingState>;
-    getOnboardingState(
-      params: Params$Resource$Organizations$Getonboardingstate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getOnboardingState(
-      params: Params$Resource$Organizations$Getonboardingstate,
-      options: MethodOptions | BodyResponseCallback<Schema$OnboardingState>,
-      callback: BodyResponseCallback<Schema$OnboardingState>
-    ): void;
-    getOnboardingState(
-      params: Params$Resource$Organizations$Getonboardingstate,
-      callback: BodyResponseCallback<Schema$OnboardingState>
-    ): void;
-    getOnboardingState(
-      callback: BodyResponseCallback<Schema$OnboardingState>
-    ): void;
-    getOnboardingState(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Getonboardingstate
-        | BodyResponseCallback<Schema$OnboardingState>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$OnboardingState>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$OnboardingState>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OnboardingState> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Getonboardingstate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Getonboardingstate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://securitycenter.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OnboardingState>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$OnboardingState>(parameters);
       }
     }
 
@@ -5431,13 +5304,6 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Organizations$Getonboardingstate
-    extends StandardParameters {
-    /**
-     * Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
-     */
-    name?: string;
-  }
   export interface Params$Resource$Organizations$Getrapidvulnerabilitydetectionsettings
     extends StandardParameters {
     /**
@@ -6467,93 +6333,6 @@ export namespace securitycenter_v1beta2 {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters
         );
-      }
-    }
-
-    /**
-     * Retrieve the OnboardingState of a resource.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getOnboardingState(
-      params: Params$Resource$Projects$Getonboardingstate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getOnboardingState(
-      params?: Params$Resource$Projects$Getonboardingstate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$OnboardingState>;
-    getOnboardingState(
-      params: Params$Resource$Projects$Getonboardingstate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getOnboardingState(
-      params: Params$Resource$Projects$Getonboardingstate,
-      options: MethodOptions | BodyResponseCallback<Schema$OnboardingState>,
-      callback: BodyResponseCallback<Schema$OnboardingState>
-    ): void;
-    getOnboardingState(
-      params: Params$Resource$Projects$Getonboardingstate,
-      callback: BodyResponseCallback<Schema$OnboardingState>
-    ): void;
-    getOnboardingState(
-      callback: BodyResponseCallback<Schema$OnboardingState>
-    ): void;
-    getOnboardingState(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Getonboardingstate
-        | BodyResponseCallback<Schema$OnboardingState>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$OnboardingState>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$OnboardingState>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$OnboardingState> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Getonboardingstate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Getonboardingstate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://securitycenter.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OnboardingState>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$OnboardingState>(parameters);
       }
     }
 
@@ -7606,13 +7385,6 @@ export namespace securitycenter_v1beta2 {
     extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Getonboardingstate
-    extends StandardParameters {
-    /**
-     * Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
      */
     name?: string;
   }

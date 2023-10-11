@@ -759,6 +759,10 @@ export namespace storage_v1 {
      */
     generation?: string | null;
     /**
+     * This is the time (in the future) when the soft-deleted object will no longer be restorable. It is equal to the soft delete time plus the current soft delete retention duration of the bucket.
+     */
+    hardDeleteTime?: string | null;
+    /**
      * The ID of the object, including the bucket name, object name, and generation number.
      */
     id?: string | null;
@@ -811,6 +815,10 @@ export namespace storage_v1 {
      */
     size?: string | null;
     /**
+     * The time at which the object became soft-deleted in RFC 3339 format.
+     */
+    softDeleteTime?: string | null;
+    /**
      * Storage class of the object.
      */
     storageClass?: string | null;
@@ -823,7 +831,7 @@ export namespace storage_v1 {
      */
     timeCreated?: string | null;
     /**
-     * The deletion time of the object in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
+     * The time at which the object became noncurrent in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
      */
     timeDeleted?: string | null;
     /**
@@ -6342,6 +6350,10 @@ export namespace storage_v1 {
      * Name of the bucket in which the object resides.
      */
     bucket?: string;
+    /**
+     * If true, copies the source object's ACL; otherwise, uses the bucket's default object ACL. The default is false.
+     */
+    copySourceAcl?: boolean;
     /**
      * Selects a specific revision of this object.
      */

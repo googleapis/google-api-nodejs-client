@@ -2170,7 +2170,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$SubscriptionItemPriceChangeDetails {
     /**
-     * The renewal time at which the price change will become effective for the user. This is subject to change(to a future time) due to cases where the renewal time shifts like pause.
+     * The renewal time at which the price change will become effective for the user. This is subject to change(to a future time) due to cases where the renewal time shifts like pause. This field is only populated if the price change has not taken effect.
      */
     expectedNewPriceChargeTime?: string | null;
     /**

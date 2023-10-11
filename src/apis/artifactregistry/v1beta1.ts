@@ -1559,7 +1559,7 @@ export namespace artifactregistry_v1beta1 {
      */
     parent?: string;
     /**
-     * The repository id to use for this repository.
+     * Required. The repository id to use for this repository.
      */
     repositoryId?: string;
 

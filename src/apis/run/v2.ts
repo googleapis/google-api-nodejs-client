@@ -301,7 +301,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2EnvVar {
     /**
-     * Required. Name of the environment variable. Must be a C_IDENTIFIER, and must not exceed 32768 characters.
+     * Required. Name of the environment variable. Must not exceed 32768 characters.
      */
     name?: string | null;
     /**
@@ -1120,10 +1120,6 @@ export namespace run_v2 {
      * Output only. Detailed status information for corresponding traffic targets. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
      */
     trafficStatuses?: Schema$GoogleCloudRunV2TrafficTargetStatus[];
-    /**
-     * Optional. Override the traffic tag threshold limit. Garbage collection will start cleaning up non-serving tagged traffic targets based on creation item. The default value is 2000.
-     */
-    trafficTagsCleanupThreshold?: string | null;
     /**
      * Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.
      */

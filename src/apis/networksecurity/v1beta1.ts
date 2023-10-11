@@ -339,6 +339,10 @@ export namespace networksecurity_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Description of the firewall endpoint. Max length 2048 characters.
+     */
+    description?: string | null;
+    /**
      * Optional. Labels as key value pairs
      */
     labels?: {[key: string]: string} | null;
@@ -979,7 +983,7 @@ export namespace networksecurity_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
+     * Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
      */
     name?: string | null;
     /**
@@ -1016,7 +1020,7 @@ export namespace networksecurity_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     * Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
     name?: string | null;
     /**
@@ -3646,7 +3650,7 @@ export namespace networksecurity_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Securityprofilegroups$Patch
     extends StandardParameters {
     /**
-     * Immutable. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
+     * Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfileGroups/{security_profile_group\}`.
      */
     name?: string;
     /**
@@ -4164,7 +4168,7 @@ export namespace networksecurity_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Securityprofiles$Patch
     extends StandardParameters {
     /**
-     * Immutable. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
+     * Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/x/locations/{location\}/securityProfiles/{security_profile\}`.
      */
     name?: string;
     /**

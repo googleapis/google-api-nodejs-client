@@ -182,7 +182,7 @@
                 "hubs": {
                   "methods": {
                     "acceptSpoke": {
-                      "description": "Accepts a proposal to attach a Network Connectivity Center spoke to the hub.",
+                      "description": "Accepts a proposal to attach a Network Connectivity Center spoke to a hub.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}:acceptSpoke",
                       "httpMethod": "POST",
                       "id": "networkconnectivity.projects.locations.global.hubs.acceptSpoke",
@@ -191,7 +191,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the hub.",
+                          "description": "Required. The name of the hub into which to accept the spoke.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+$",
                           "required": true,
@@ -231,7 +231,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -264,7 +264,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -463,7 +463,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
@@ -486,7 +486,7 @@
                       ]
                     },
                     "rejectSpoke": {
-                      "description": "Rejects a Network Connectivity Center spoke from being attached to the hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.",
+                      "description": "Rejects a Network Connectivity Center spoke from being attached to a hub. If the spoke was previously in the `ACTIVE` state, it transitions to the `INACTIVE` state and is no longer able to connect to other spokes that are attached to the hub.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/hubs/{hubsId}:rejectSpoke",
                       "httpMethod": "POST",
                       "id": "networkconnectivity.projects.locations.global.hubs.rejectSpoke",
@@ -495,7 +495,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the hub.",
+                          "description": "Required. The name of the hub from which to reject the spoke.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/global/hubs/[^/]+$",
                           "required": true,
@@ -890,7 +890,7 @@
                 "policyBasedRoutes": {
                   "methods": {
                     "create": {
-                      "description": "Creates a new PolicyBasedRoute in a given project and location.",
+                      "description": "Creates a new policy-based route in a given project and location.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/policyBasedRoutes",
                       "httpMethod": "POST",
                       "id": "networkconnectivity.projects.locations.global.policyBasedRoutes.create",
@@ -906,7 +906,7 @@
                           "type": "string"
                         },
                         "policyBasedRouteId": {
-                          "description": "Required. Unique id for the Policy Based Route to create.",
+                          "description": "Required. Unique id for the policy-based route to create.",
                           "location": "query",
                           "type": "string"
                         },
@@ -928,7 +928,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a single PolicyBasedRoute.",
+                      "description": "Deletes a single policy-based route.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/policyBasedRoutes/{policyBasedRoutesId}",
                       "httpMethod": "DELETE",
                       "id": "networkconnectivity.projects.locations.global.policyBasedRoutes.delete",
@@ -937,7 +937,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the PolicyBasedRoute resource to delete.",
+                          "description": "Required. Name of the policy-based route resource to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/global/policyBasedRoutes/[^/]+$",
                           "required": true,
@@ -958,7 +958,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets details of a single PolicyBasedRoute.",
+                      "description": "Gets details of a single policy-based route.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/policyBasedRoutes/{policyBasedRoutesId}",
                       "httpMethod": "GET",
                       "id": "networkconnectivity.projects.locations.global.policyBasedRoutes.get",
@@ -1014,7 +1014,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists PolicyBasedRoutes in a given project and location.",
+                      "description": "Lists policy-based routes in a given project and location.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/policyBasedRoutes",
                       "httpMethod": "GET",
                       "id": "networkconnectivity.projects.locations.global.policyBasedRoutes.list",
@@ -2403,7 +2403,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -2441,7 +2441,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -2573,7 +2573,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -2686,7 +2686,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20230921",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2694,7 +2694,7 @@
       "id": "AcceptHubSpokeRequest",
       "properties": {
         "requestId": {
-          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         },
         "spokeUri": {
@@ -2720,7 +2720,7 @@
       "id": "AcceptSpokeRequest",
       "properties": {
         "requestId": {
-          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         }
       },
@@ -2945,15 +2945,15 @@
       "id": "Filter",
       "properties": {
         "destRange": {
-          "description": "Optional. The destination IP range of outgoing packets that this policy based route applies to. Default is \"0.0.0.0/0\" if protocol version is IPv4.",
+          "description": "Optional. The destination IP range of outgoing packets that this policy-based route applies to. Default is \"0.0.0.0/0\" if protocol version is IPv4.",
           "type": "string"
         },
         "ipProtocol": {
-          "description": "Optional. The IP protocol that this policy based route applies to. Valid values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.",
+          "description": "Optional. The IP protocol that this policy-based route applies to. Valid values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.",
           "type": "string"
         },
         "protocolVersion": {
-          "description": "Required. Internet protocol versions this policy based route applies to. For this version, only IPV4 is supported.",
+          "description": "Required. Internet protocol versions this policy-based route applies to. For this version, only IPV4 is supported.",
           "enum": [
             "PROTOCOL_VERSION_UNSPECIFIED",
             "IPV4"
@@ -2965,7 +2965,7 @@
           "type": "string"
         },
         "srcRange": {
-          "description": "Optional. The source IP range of outgoing packets that this policy based route applies to. Default is \"0.0.0.0/0\" if protocol version is IPv4.",
+          "description": "Optional. The source IP range of outgoing packets that this policy-based route applies to. Default is \"0.0.0.0/0\" if protocol version is IPv4.",
           "type": "string"
         }
       },
@@ -3232,11 +3232,11 @@
       "type": "object"
     },
     "InterconnectAttachment": {
-      "description": "InterconnectAttachment to which this route applies to.",
+      "description": "InterconnectAttachment that this route applies to.",
       "id": "InterconnectAttachment",
       "properties": {
         "region": {
-          "description": "Optional. Cloud region to install this policy based route on interconnect attachment. Use `all` to install it on all interconnect attachments.",
+          "description": "Optional. Cloud region to install this policy-based route on interconnect attachment. Use `all` to install it on all interconnect attachments.",
           "type": "string"
         }
       },
@@ -3563,7 +3563,7 @@
           "type": "string"
         },
         "policyBasedRoutes": {
-          "description": "Policy based routes to be returned.",
+          "description": "Policy-based routes to be returned.",
           "items": {
             "$ref": "PolicyBasedRoute"
           },
@@ -3898,11 +3898,11 @@
       "type": "object"
     },
     "PolicyBasedRoute": {
-      "description": "Policy Based Routes (PBR) are more powerful routes that allows GCP customers to route their L4 network traffic based on not just destination IP, but also source IP, protocol and more. A PBR always take precedence when it conflicts with other types of routes. Next id: 22",
+      "description": "Policy-based routes route L4 network traffic based on not just destination IP address, but also source IP address, protocol, and more. If a policy-based route conflicts with other types of routes, the policy-based route always take precedence.",
       "id": "PolicyBasedRoute",
       "properties": {
         "createTime": {
-          "description": "Output only. Time when the PolicyBasedRoute was created.",
+          "description": "Output only. Time when the policy-based route was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -3917,10 +3917,10 @@
         },
         "interconnectAttachment": {
           "$ref": "InterconnectAttachment",
-          "description": "Optional. The interconnect attachments to which this route applies to."
+          "description": "Optional. The interconnect attachments that this policy-based route applies to."
         },
         "kind": {
-          "description": "Output only. Type of this resource. Always networkconnectivity#policyBasedRoute for Policy Based Route resources.",
+          "description": "Output only. Type of this resource. Always networkconnectivity#policyBasedRoute for policy-based Route resources.",
           "readOnly": true,
           "type": "string"
         },
@@ -3936,11 +3936,11 @@
           "type": "string"
         },
         "network": {
-          "description": "Required. Fully-qualified URL of the network that this route applies to. e.g. projects/my-project/global/networks/my-network.",
+          "description": "Required. Fully-qualified URL of the network that this route applies to, for example: projects/my-project/global/networks/my-network.",
           "type": "string"
         },
         "nextHopIlbIp": {
-          "description": "Optional. The IP of a global access enabled L4 ILB that should be the next hop to handle matching packets. For this version, only next_hop_ilb_ip is supported.",
+          "description": "Optional. The IP address of a global-access-enabled L4 ILB that is the next hop for matching packets. For this version, only nextHopIlbIp is supported.",
           "type": "string"
         },
         "nextHopOtherRoutes": {
@@ -3956,7 +3956,7 @@
           "type": "string"
         },
         "priority": {
-          "description": "Optional. The priority of this policy based route. Priority is used to break ties in cases where there are more than one matching policy based routes found. In cases where multiple policy based routes are matched, the one with the lowest-numbered priority value wins. The default value is 1000. The priority value must be from 1 to 65535, inclusive.",
+          "description": "Optional. The priority of this policy-based route. Priority is used to break ties in cases where there are more than one matching policy-based routes found. In cases where multiple policy-based routes are matched, the one with the lowest-numbered priority value wins. The default value is 1000. The priority value must be from 1 to 65535, inclusive.",
           "format": "int32",
           "type": "integer"
         },
@@ -3966,14 +3966,14 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Time when the PolicyBasedRoute was updated.",
+          "description": "Output only. Time when the policy-based route was updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "virtualMachine": {
           "$ref": "VirtualMachine",
-          "description": "Optional. VM instances to which this policy based route applies to."
+          "description": "Optional. VM instances to which this policy-based route applies to."
         },
         "warnings": {
           "description": "Output only. If potential misconfigurations are detected for this route, this field will be populated with warning messages.",
@@ -4096,7 +4096,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         },
         "spokeUri": {
@@ -4126,7 +4126,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that a request doesn't result in creation of duplicate commitments for at least 60 minutes. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         }
       },
@@ -4909,11 +4909,11 @@
       "type": "object"
     },
     "VirtualMachine": {
-      "description": "VM instances to which this policy based route applies to.",
+      "description": "VM instances to which this policy-based route applies to.",
       "id": "VirtualMachine",
       "properties": {
         "tags": {
-          "description": "Optional. A list of VM instance tags to which this policy based route applies to. VM instances that have ANY of tags specified here will install this PBR.",
+          "description": "Optional. A list of VM instance tags the this policy-based route applies to. VM instances that have ANY of tags specified here will install this PBR.",
           "items": {
             "type": "string"
           },
@@ -4935,8 +4935,8 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "The policy based route is not active and functioning. Common causes are the dependent network was deleted or the resource project was turned off.",
-            "The policy based route is being modified (e.g. created/deleted) at this time."
+            "The policy-based route is not active and functioning. Common causes are the dependent network was deleted or the resource project was turned off.",
+            "The policy-based route is being modified (e.g. created/deleted) at this time."
           ],
           "readOnly": true,
           "type": "string"

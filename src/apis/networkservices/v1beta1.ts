@@ -255,6 +255,65 @@ export namespace networkservices_v1beta1 {
     title?: string | null;
   }
   /**
+   * A single extension chain wrapper that contains the match conditions and extensions to execute.
+   */
+  export interface Schema$ExtensionChain {
+    /**
+     * Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` resource. `LbRouteExtension` chains are limited to 1 extension per extension chain.
+     */
+    extensions?: Schema$ExtensionChainExtension[];
+    /**
+     * Required. Conditions under which this chain is invoked for a request.
+     */
+    matchCondition?: Schema$ExtensionChainMatchCondition;
+    /**
+     * Required. The name for this extension chain. The name is logged as part of the HTTP request logs. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.
+     */
+    name?: string | null;
+  }
+  /**
+   * A single extension in the chain to execute for the matching request.
+   */
+  export interface Schema$ExtensionChainExtension {
+    /**
+     * Required. The `:authority` header in the gRPC request sent from Envoy to the extension service.
+     */
+    authority?: string | null;
+    /**
+     * Optional. Determines how the proxy behaves if the call to the extension fails or times out. When set to `TRUE`, request or response processing continues without error. Any subsequent extensions in the extension chain are also executed. When set to `FALSE`: * If response headers have not been delivered to the downstream client, a generic 500 error is returned to the client. The error response can be tailored by configuring a custom error response in the load balancer. * If response headers have been delivered, then the HTTP stream to the downstream client is reset. Default is `FALSE`.
+     */
+    failOpen?: boolean | null;
+    /**
+     * Optional. List of the HTTP headers to forward to the extension (from the client or backend). If omitted, all headers are sent. Each element is a string indicating the header name.
+     */
+    forwardHeaders?: string[] | null;
+    /**
+     * Required. The name for this extension. The name is logged as part of the HTTP request logs. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.
+     */
+    name?: string | null;
+    /**
+     * Required. The reference to the service that runs the extension. Must be a reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices).
+     */
+    service?: string | null;
+    /**
+     * Optional. A set of events during request or response processing for which this extension is called. This field is required for the `LbTrafficExtension` resource. It's not relevant for the `LbRouteExtension` resource.
+     */
+    supportedEvents?: string[] | null;
+    /**
+     * Required. Specifies the timeout for each individual message on the stream. The timeout must be between 10-1000 milliseconds.
+     */
+    timeout?: string | null;
+  }
+  /**
+   * Conditions under which this chain is invoked for a request.
+   */
+  export interface Schema$ExtensionChainMatchCondition {
+    /**
+     * Required. A Common Expression Language (CEL) expression that is used to match requests for which the extension chain is executed.
+     */
+    celExpression?: string | null;
+  }
+  /**
    * Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway.
    */
   export interface Schema$Gateway {
@@ -484,6 +543,10 @@ export namespace networkservices_v1beta1 {
      */
     retryPolicy?: Schema$GrpcRouteRetryPolicy;
     /**
+     * Optional. Specifies cookie-based stateful session affinity.
+     */
+    statefulSessionAffinity?: Schema$GrpcRouteStatefulSessionAffinityPolicy;
+    /**
      * Optional. Specifies the timeout for selected route. Timeout is computed from the time the request has been fully processed (i.e. end of stream) up until the response has been completely processed. Timeout includes all retries.
      */
     timeout?: string | null;
@@ -513,6 +576,15 @@ export namespace networkservices_v1beta1 {
      * Optional. Matches define conditions used for matching the rule against incoming gRPC requests. Each match is independent, i.e. this rule will be matched if ANY one of the matches is satisfied. If no matches field is specified, this rule will unconditionally match traffic.
      */
     matches?: Schema$GrpcRouteRouteMatch[];
+  }
+  /**
+   * The specification for cookie-based stateful session affinity where the date plane supplies a “session cookie” with the name "GSSA" which encodes a specific destination host and each request containing that cookie will be directed to that host as long as the destination host remains up and healthy. The gRPC proxyless mesh library or sidecar proxy will manage the session cookie but the client application code is responsible for copying the cookie from each RPC in the session to the next.
+   */
+  export interface Schema$GrpcRouteStatefulSessionAffinityPolicy {
+    /**
+     * Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 1 to 86400 seconds (24 hours) inclusive.
+     */
+    cookieTtl?: string | null;
   }
   /**
    * HttpRoute is the resource defining how HTTP traffic should be routed by a Mesh or Gateway resource.
@@ -832,6 +904,10 @@ export namespace networkservices_v1beta1 {
      */
     retryPolicy?: Schema$HttpRouteRetryPolicy;
     /**
+     * Optional. Specifies cookie-based stateful session affinity.
+     */
+    statefulSessionAffinity?: Schema$HttpRouteStatefulSessionAffinityPolicy;
+    /**
      * Specifies the timeout for selected route. Timeout is computed from the time the request has been fully processed (i.e. end of stream) up until the response has been completely processed. Timeout includes all retries.
      */
     timeout?: string | null;
@@ -883,6 +959,15 @@ export namespace networkservices_v1beta1 {
     matches?: Schema$HttpRouteRouteMatch[];
   }
   /**
+   * The specification for cookie-based stateful session affinity where the date plane supplies a “session cookie” with the name "GSSA" which encodes a specific destination host and each request containing that cookie will be directed to that host as long as the destination host remains up and healthy. The gRPC proxyless mesh library or sidecar proxy will manage the session cookie but the client application code is responsible for copying the cookie from each RPC in the session to the next.
+   */
+  export interface Schema$HttpRouteStatefulSessionAffinityPolicy {
+    /**
+     * Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 1 to 86400 seconds (24 hours) inclusive.
+     */
+    cookieTtl?: string | null;
+  }
+  /**
    * The specification for modifying the URL of the request, prior to forwarding the request to the destination.
    */
   export interface Schema$HttpRouteURLRewrite {
@@ -894,6 +979,80 @@ export namespace networkservices_v1beta1 {
      * Prior to forwarding the request to the selected destination, the matching portion of the requests path is replaced by this value.
      */
     pathPrefixRewrite?: string | null;
+  }
+  /**
+   * `LbRouteExtension` is a resource that lets you control where traffic is routed to for a given request.
+   */
+  export interface Schema$LbRouteExtension {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Required. A set of ordered extension chains that contain the match conditions and extensions to execute. Match conditions for each extension chain are evaluated in sequence for a given request. The first extension chain that has a condition that matches the request is executed. Any subsequent extension chains do not execute. Limited to 5 extension chains per resource.
+     */
+    extensionChains?: Schema$ExtensionChain[];
+    /**
+     * Required. A list of references to the forwarding rules to which this service extension is attach to. At least one forwarding rule is required. There can be only one `LbRouteExtension` resource per forwarding rule.
+     */
+    forwardingRules?: string[] | null;
+    /**
+     * Optional. Set of labels associated with the `LbRouteExtension` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`.
+     */
+    loadBalancingScheme?: string | null;
+    /**
+     * Required. Name of the `LbRouteExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbRouteExtensions/{lb_route_extension\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * `LbTrafficExtension` is a resource that lets the extension service modify the headers and payloads of both requests and responses without impacting the choice of backend services or any other security policies associated with the backend service.
+   */
+  export interface Schema$LbTrafficExtension {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Required. A set of ordered extension chains that contain the match conditions and extensions to execute. Match conditions for each extension chain are evaluated in sequence for a given request. The first extension chain that has a condition that matches the request is executed. Any subsequent extension chains do not execute. Limited to 5 extension chains per resource.
+     */
+    extensionChains?: Schema$ExtensionChain[];
+    /**
+     * Required. A list of references to the forwarding rules to which this service extension is attach to. At least one forwarding rule is required. There can be only one `LBTrafficExtension` resource per forwarding rule.
+     */
+    forwardingRules?: string[] | null;
+    /**
+     * Optional. Set of labels associated with the `LbTrafficExtension` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Choosing a load balancer](https://cloud.google.com/load-balancing/docs/backend-service).
+     */
+    loadBalancingScheme?: string | null;
+    /**
+     * Required. Name of the `LbTrafficExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbTrafficExtensions/{lb_traffic_extension\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Response returned by the ListEndpointPolicies method.
@@ -950,6 +1109,40 @@ export namespace networkservices_v1beta1 {
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing `LbRouteExtension` resources.
+   */
+  export interface Schema$ListLbRouteExtensionsResponse {
+    /**
+     * The list of `LbRouteExtension` resources.
+     */
+    lbRouteExtensions?: Schema$LbRouteExtension[];
+    /**
+     * A token identifying a page of results that the server returns.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing `LbTrafficExtension` resources.
+   */
+  export interface Schema$ListLbTrafficExtensionsResponse {
+    /**
+     * The list of `LbTrafficExtension` resources.
+     */
+    lbTrafficExtensions?: Schema$LbTrafficExtension[];
+    /**
+     * A token identifying a page of results that the server returns.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -1548,6 +1741,8 @@ export namespace networkservices_v1beta1 {
     gateways: Resource$Projects$Locations$Gateways;
     grpcRoutes: Resource$Projects$Locations$Grpcroutes;
     httpRoutes: Resource$Projects$Locations$Httproutes;
+    lbRouteExtensions: Resource$Projects$Locations$Lbrouteextensions;
+    lbTrafficExtensions: Resource$Projects$Locations$Lbtrafficextensions;
     meshes: Resource$Projects$Locations$Meshes;
     operations: Resource$Projects$Locations$Operations;
     serviceBindings: Resource$Projects$Locations$Servicebindings;
@@ -1566,6 +1761,10 @@ export namespace networkservices_v1beta1 {
       this.httpRoutes = new Resource$Projects$Locations$Httproutes(
         this.context
       );
+      this.lbRouteExtensions =
+        new Resource$Projects$Locations$Lbrouteextensions(this.context);
+      this.lbTrafficExtensions =
+        new Resource$Projects$Locations$Lbtrafficextensions(this.context);
       this.meshes = new Resource$Projects$Locations$Meshes(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
@@ -4426,6 +4625,1076 @@ export namespace networkservices_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$HttpRoute;
+  }
+
+  export class Resource$Projects$Locations$Lbrouteextensions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `LbRouteExtension` resource in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Lbrouteextensions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbrouteextensions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbrouteextensions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbrouteextensions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/lbRouteExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `LbRouteExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Lbrouteextensions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbrouteextensions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbrouteextensions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbrouteextensions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `LbRouteExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Lbrouteextensions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LbRouteExtension>;
+    get(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LbRouteExtension>,
+      callback: BodyResponseCallback<Schema$LbRouteExtension>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Get,
+      callback: BodyResponseCallback<Schema$LbRouteExtension>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LbRouteExtension>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbrouteextensions$Get
+        | BodyResponseCallback<Schema$LbRouteExtension>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LbRouteExtension>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LbRouteExtension>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LbRouteExtension> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbrouteextensions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Lbrouteextensions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LbRouteExtension>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LbRouteExtension>(parameters);
+      }
+    }
+
+    /**
+     * Lists `LbRouteExtension` resources in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Lbrouteextensions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLbRouteExtensionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLbRouteExtensionsResponse>,
+      callback: BodyResponseCallback<Schema$ListLbRouteExtensionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$List,
+      callback: BodyResponseCallback<Schema$ListLbRouteExtensionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListLbRouteExtensionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbrouteextensions$List
+        | BodyResponseCallback<Schema$ListLbRouteExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLbRouteExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLbRouteExtensionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLbRouteExtensionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbrouteextensions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbrouteextensions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/lbRouteExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLbRouteExtensionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLbRouteExtensionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of the specified `LbRouteExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Lbrouteextensions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Lbrouteextensions$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbrouteextensions$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbrouteextensions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbrouteextensions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Create
+    extends StandardParameters {
+    /**
+     * Required. User-provided ID of the `LbRouteExtension` resource to be created.
+     */
+    lbRouteExtensionId?: string;
+    /**
+     * Required. The parent resource of the `LbRouteExtension` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LbRouteExtension;
+  }
+  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the `LbRouteExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/lbRouteExtensions/{lb_route_extension\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the `LbRouteExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/lbRouteExtensions/{lb_route_extension\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Lbrouteextensions$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results that the server returns.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the `LbRouteExtension` resources are listed, specified in the following format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Lbrouteextensions$Patch
+    extends StandardParameters {
+    /**
+     * Required. Name of the `LbRouteExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbRouteExtensions/{lb_route_extension\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Used to specify the fields to be overwritten in the `LbRouteExtension` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LbRouteExtension;
+  }
+
+  export class Resource$Projects$Locations$Lbtrafficextensions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `LbTrafficExtension` resource in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Lbtrafficextensions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbtrafficextensions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbtrafficextensions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbtrafficextensions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/lbTrafficExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `LbTrafficExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Lbtrafficextensions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbtrafficextensions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbtrafficextensions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbtrafficextensions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `LbTrafficExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Lbtrafficextensions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LbTrafficExtension>;
+    get(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LbTrafficExtension>,
+      callback: BodyResponseCallback<Schema$LbTrafficExtension>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Get,
+      callback: BodyResponseCallback<Schema$LbTrafficExtension>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LbTrafficExtension>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbtrafficextensions$Get
+        | BodyResponseCallback<Schema$LbTrafficExtension>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LbTrafficExtension>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LbTrafficExtension>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LbTrafficExtension>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbtrafficextensions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbtrafficextensions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LbTrafficExtension>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LbTrafficExtension>(parameters);
+      }
+    }
+
+    /**
+     * Lists `LbTrafficExtension` resources in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Lbtrafficextensions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLbTrafficExtensionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLbTrafficExtensionsResponse>,
+      callback: BodyResponseCallback<Schema$ListLbTrafficExtensionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$List,
+      callback: BodyResponseCallback<Schema$ListLbTrafficExtensionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListLbTrafficExtensionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbtrafficextensions$List
+        | BodyResponseCallback<Schema$ListLbTrafficExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLbTrafficExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLbTrafficExtensionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLbTrafficExtensionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbtrafficextensions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbtrafficextensions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/lbTrafficExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLbTrafficExtensionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLbTrafficExtensionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of the specified `LbTrafficExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Lbtrafficextensions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Lbtrafficextensions$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Lbtrafficextensions$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Lbtrafficextensions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Lbtrafficextensions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Create
+    extends StandardParameters {
+    /**
+     * Required. User-provided ID of the `LbTrafficExtension` resource to be created.
+     */
+    lbTrafficExtensionId?: string;
+    /**
+     * Required. The parent resource of the `LbTrafficExtension` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LbTrafficExtension;
+  }
+  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the `LbTrafficExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/lbTrafficExtensions/{lb_traffic_extension\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the `LbTrafficExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/lbTrafficExtensions/{lb_traffic_extension\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results that the server returns.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the `LbTrafficExtension` resources are listed, specified in the following format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Lbtrafficextensions$Patch
+    extends StandardParameters {
+    /**
+     * Required. Name of the `LbTrafficExtension` resource in the following format: `projects/{project\}/locations/{location\}/lbTrafficExtensions/{lb_traffic_extension\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Used to specify the fields to be overwritten in the `LbTrafficExtension` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LbTrafficExtension;
   }
 
   export class Resource$Projects$Locations$Meshes {

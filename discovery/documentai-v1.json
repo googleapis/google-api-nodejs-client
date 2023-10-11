@@ -1042,7 +1042,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231006",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -4034,7 +4034,7 @@
           "type": "boolean"
         },
         "disableCharacterBoxesDetection": {
-          "description": "Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0+ processors.",
+          "description": "Turn off character box detector in OCR engine. Character box detection is enabled by default in OCR 2.0 (and later) processors.",
           "type": "boolean"
         },
         "enableImageQualityScores": {
@@ -4087,7 +4087,7 @@
           "type": "boolean"
         },
         "enableSelectionMarkDetection": {
-          "description": "Turn on selection mark detector in OCR engine. Only available in OCR 2.0+ processors.",
+          "description": "Turn on selection mark detector in OCR engine. Only available in OCR 2.0 (and later) processors.",
           "type": "boolean"
         }
       },
@@ -4103,7 +4103,7 @@
           "type": "integer"
         },
         "fromStart": {
-          "description": "Only process certain pages from the start, process all if the document has less pages.",
+          "description": "Only process certain pages from the start. Process all if the document has fewer pages.",
           "format": "int32",
           "type": "integer"
         },
@@ -7670,7 +7670,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3Dataset": {
-      "description": "A singleton resource under a Processor which configures a collection of documents. Next Id: 8.",
+      "description": "A singleton resource under a Processor which configures a collection of documents.",
       "id": "GoogleCloudDocumentaiV1beta3Dataset",
       "properties": {
         "documentWarehouseConfig": {

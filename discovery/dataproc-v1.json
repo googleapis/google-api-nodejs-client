@@ -17,9 +17,9 @@
   "documentationLink": "https://cloud.google.com/dataproc/",
   "endpoints": [
     {
+      "endpointUrl": "https://dataproc.me-central2.rep.googleapis.com/",
       "location": "me-central2",
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://dataproc.me-central2.rep.googleapis.com/"
+      "description": "Regional Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2028,6 +2028,11 @@
                           "required": true,
                           "type": "string"
                         },
+                        "parentOperationId": {
+                          "description": "Optional. operation id of the parent operation sending the create request",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "requestId": {
                           "description": "Optional. A unique ID used to identify the request. If the server receives two CreateNodeGroupRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateNodeGroupRequests) with the same ID, the second request is ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                           "location": "query",
@@ -3001,7 +3006,7 @@
       }
     }
   },
-  "revision": "20230919",
+  "revision": "20231002",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -4496,6 +4501,10 @@
             "Instances are Spot VMs (https://cloud.google.com/compute/docs/instances/spot).This option is allowed only for secondary worker (https://cloud.google.com/dataproc/docs/concepts/compute/secondary-vms) groups. Spot VMs are the latest version of preemptible VMs (https://cloud.google.com/compute/docs/instances/preemptible), and provide additional features."
           ],
           "type": "string"
+        },
+        "startupConfig": {
+          "$ref": "StartupConfig",
+          "description": "Optional. Configuration to handle the startup of instances during cluster create and update process."
         }
       },
       "type": "object"
@@ -5953,6 +5962,10 @@
           "format": "google-duration",
           "type": "string"
         },
+        "parentOperationId": {
+          "description": "Optional. operation id of the parent operation sending the resize request",
+          "type": "string"
+        },
         "requestId": {
           "description": "Optional. A unique ID used to identify the request. If the server receives two ResizeNodeGroupRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.ResizeNodeGroupRequests) with the same ID, the second request is ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
           "type": "string"
@@ -6640,6 +6653,10 @@
           "format": "google-duration",
           "type": "string"
         },
+        "removeOnlyIdleWorkers": {
+          "description": "Optional. Remove only idle workers when scaling down cluster",
+          "type": "boolean"
+        },
         "scaleDownFactor": {
           "description": "Required. Fraction of required executors to remove from Spark Serverless clusters. A scale-down factor of 1.0 will result in scaling down so that there are no more executors for the Spark Job.(more aggressive scaling). A scale-down factor closer to 0 will result in a smaller magnitude of scaling donw (less aggressive scaling).Bounds: 0.0, 1.0.",
           "format": "double",
@@ -6674,6 +6691,18 @@
         "requestId": {
           "description": "Optional. A unique ID used to identify the request. If the server receives two StartClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StartClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StartupConfig": {
+      "description": "Configuration to handle the startup of instances during cluster create and update process.",
+      "id": "StartupConfig",
+      "properties": {
+        "requiredRegistrationFraction": {
+          "description": "Optional. The config setting to enable cluster creation/ updation to be successful only after required_registration_fraction of instances are up and running. This configuration is applicable to only secondary workers for now. The cluster will fail if required_registration_fraction of instances are not available. This will include instance creation, agent registration, and service registration (if enabled).",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"

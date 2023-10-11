@@ -2414,7 +2414,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20230929",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -6096,10 +6096,6 @@
       "description": "Scope represents a Scope in a Fleet.",
       "id": "Scope",
       "properties": {
-        "allMemberships": {
-          "description": "If true, all Memberships in the Fleet bind to this Scope.",
-          "type": "boolean"
-        },
         "createTime": {
           "description": "Output only. When the scope was created.",
           "format": "google-datetime",

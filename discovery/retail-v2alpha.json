@@ -135,6 +135,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getLoggingConfig": {
+          "description": "Gets the LoggingConfig of the requested project.",
+          "flatPath": "v2alpha/projects/{projectsId}/loggingConfig",
+          "httpMethod": "GET",
+          "id": "retail.projects.getLoggingConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Full LoggingConfig resource name. Format: projects/{project_number}/loggingConfig",
+              "location": "path",
+              "pattern": "^projects/[^/]+/loggingConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v2alpha/{+name}",
+          "response": {
+            "$ref": "GoogleCloudRetailV2alphaLoggingConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "getRetailProject": {
           "description": "Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the Retail API service.",
           "flatPath": "v2alpha/projects/{projectsId}/retailProject",
@@ -180,6 +205,40 @@
           "path": "v2alpha/{+parent}:enrolledSolutions",
           "response": {
             "$ref": "GoogleCloudRetailV2alphaListEnrolledSolutionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "updateLoggingConfig": {
+          "description": "Updates the LoggingConfig of the requested project.",
+          "flatPath": "v2alpha/projects/{projectsId}/loggingConfig",
+          "httpMethod": "PATCH",
+          "id": "retail.projects.updateLoggingConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Immutable. The name of the LoggingConfig singleton resource. Format: projects/*/loggingConfig",
+              "location": "path",
+              "pattern": "^projects/[^/]+/loggingConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Indicates which fields in the provided LoggingConfig to update. The following are the only supported fields: * default_log_generation_rule * per_service_log_generation_rules If not set, all supported fields are updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v2alpha/{+name}",
+          "request": {
+            "$ref": "GoogleCloudRetailV2alphaLoggingConfig"
+          },
+          "response": {
+            "$ref": "GoogleCloudRetailV2alphaLoggingConfig"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -2329,7 +2388,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231005",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4395,6 +4454,73 @@
         "priceInfo": {
           "$ref": "GoogleCloudRetailV2alphaPriceInfo",
           "description": "Product price and cost information. Google Merchant Center property [price](https://support.google.com/merchants/answer/6324371)."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaLoggingConfig": {
+      "description": "Project level logging config to control what level of log will be generated and written to Cloud Logging.",
+      "id": "GoogleCloudRetailV2alphaLoggingConfig",
+      "properties": {
+        "defaultLogGenerationRule": {
+          "$ref": "GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule",
+          "description": "The log generation rule that applies by default to all services supporting log generation. It can be overridden by ServiceLogGenerationRule for service level control."
+        },
+        "name": {
+          "description": "Required. Immutable. The name of the LoggingConfig singleton resource. Format: projects/*/loggingConfig",
+          "type": "string"
+        },
+        "serviceLogGenerationRules": {
+          "description": "Controls logging configurations more granularly for each supported service. This overrides the default_log_generation_rule for the services specified. For those not mentioned, they will fallback to the default log generation rule.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaLoggingConfigServiceLogGenerationRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule": {
+      "description": "The logging configurations for services supporting log generation.",
+      "id": "GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule",
+      "properties": {
+        "infoLogSampleRate": {
+          "description": "The log sample rate for INFO level log entries. You can use this to reduce the number of entries generated for INFO level logs. DO NOT set this field if the logging_level is not LoggingLevel.LOG_ALL. Otherwise, an INVALID_ARGUMENT error is returned. Sample rate for INFO logs defaults to 1 when unset (generate and send all INFO logs to Cloud Logging). Its value must be greater than 0 and less than or equal to 1.",
+          "format": "float",
+          "type": "number"
+        },
+        "loggingLevel": {
+          "description": "The logging level. By default it is set to `LOG_WARNINGS_AND_ABOVE`.",
+          "enum": [
+            "LOGGING_LEVEL_UNSPECIFIED",
+            "LOGGING_DISABLED",
+            "LOG_ERRORS_AND_ABOVE",
+            "LOG_WARNINGS_AND_ABOVE",
+            "LOG_ALL"
+          ],
+          "enumDescriptions": [
+            "Default value. Defaults to `LOG_FOR_WARNINGS_AND_ABOVE` if unset.",
+            "No log will be generated and sent to Cloud Logging.",
+            "Log for operations resulted in fatal error.",
+            "In addition to `LOG_ERRORS_AND_ABOVE`, also log for operations that have soft errors, quality suggestions.",
+            "Log all operations, including successful ones."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaLoggingConfigServiceLogGenerationRule": {
+      "description": "The granular logging configurations for supported services.",
+      "id": "GoogleCloudRetailV2alphaLoggingConfigServiceLogGenerationRule",
+      "properties": {
+        "logGenerationRule": {
+          "$ref": "GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule",
+          "description": "The log generation rule that applies to this service."
+        },
+        "serviceName": {
+          "description": "Required. Supported service names: \"CatalogService\", \"CompletionService\", \"ControlService\", \"MerchantCenterStreaming\", \"ModelService\", \"PredictionService\", \"ProductService\", \"ServingConfigService\", \"UserEventService\",",
+          "type": "string"
         }
       },
       "type": "object"

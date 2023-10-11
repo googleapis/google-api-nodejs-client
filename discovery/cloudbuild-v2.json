@@ -844,7 +844,7 @@
       }
     }
   },
-  "revision": "20230907",
+  "revision": "20230920",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2641,27 +2641,13 @@
           "description": "Operator that represents an Input's relationship to the values",
           "enum": [
             "EXPRESSION_OPERATOR_UNSPECIFIED",
-            "DOES_NOT_EXIST",
-            "EQUALS",
-            "DOUBLE_EQUALS",
             "IN",
-            "NOT_EQUALS",
-            "NOT_IN",
-            "EXISTS",
-            "GREATER_THAN",
-            "LESS_THAN"
+            "NOT_IN"
           ],
           "enumDescriptions": [
             "Default enum type; should not be used.",
-            "Input does not exist.",
-            "Input equals values.",
-            "Input double equals values.",
             "Input is in values.",
-            "Input does not equal values.",
-            "Input is not in values.",
-            "Input exists.",
-            "Input is greater than values.",
-            "Input is less than values."
+            "Input is not in values."
           ],
           "type": "string"
         },

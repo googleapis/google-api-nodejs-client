@@ -1033,6 +1033,10 @@ export namespace batch_v1 {
      */
     container?: Schema$Container;
     /**
+     * Optional. DisplayName is an optional field that can be provided by the caller. If provided, it will be used in logs and other outputs to identify the script, making it easier for users to understand the logs. If not provided the index of the runnable will be used for outputs.
+     */
+    displayName?: string | null;
+    /**
      * Environment variables for this Runnable (overrides variables set for the whole Task or TaskGroup).
      */
     environment?: Schema$Environment;

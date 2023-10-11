@@ -919,6 +919,40 @@ export namespace notebooks_v1 {
     name?: string | null;
   }
   /**
+   * Request for migrating a User-Managed Notebook to Workbench Instances.
+   */
+  export interface Schema$MigrateInstanceRequest {
+    /**
+     * Optional. Specifies the behavior of post startup script during migration.
+     */
+    postStartupScriptOption?: string | null;
+  }
+  /**
+   * Request for migrating a Runtime to a Workbench Instance.
+   */
+  export interface Schema$MigrateRuntimeRequest {
+    /**
+     * Optional. Name of the VPC that the new Instance is in. This is required if the Runtime uses google-managed network. If the Runtime uses customer-owned network, it will reuse the same VPC, and this field must be empty. Format: `projects/{project_id\}/global/networks/{network_id\}`
+     */
+    network?: string | null;
+    /**
+     * Optional. Specifies the behavior of post startup script during migration.
+     */
+    postStartupScriptOption?: string | null;
+    /**
+     * Optional. Idempotent request UUID.
+     */
+    requestId?: string | null;
+    /**
+     * Optional. The service account to be included in the Compute Engine instance of the new Workbench Instance when the Runtime uses "single user only" mode for permission. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used. When the Runtime uses service account mode for permission, it will reuse the same service account, and this field must be empty.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Optional. Name of the subnet that the new Instance is in. This is required if the Runtime uses google-managed network. If the Runtime uses customer-owned network, it will reuse the same subnet, and this field must be empty. Format: `projects/{project_id\}/regions/{region\}/subnetworks/{subnetwork_id\}`
+     */
+    subnet?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -3487,6 +3521,93 @@ export namespace notebooks_v1 {
     }
 
     /**
+     * Migrates an existing User-Managed Notebook to Workbench Instances.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    migrate(
+      params: Params$Resource$Projects$Locations$Instances$Migrate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    migrate(
+      params?: Params$Resource$Projects$Locations$Instances$Migrate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    migrate(
+      params: Params$Resource$Projects$Locations$Instances$Migrate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    migrate(
+      params: Params$Resource$Projects$Locations$Instances$Migrate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    migrate(
+      params: Params$Resource$Projects$Locations$Instances$Migrate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    migrate(callback: BodyResponseCallback<Schema$Operation>): void;
+    migrate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Migrate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Migrate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Migrate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:migrate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Registers an existing legacy notebook instance to the Notebooks API server. Legacy instances are instances created with the legacy Compute Engine calls. They are not manageable by the Notebooks API out of the box. This call makes these instances manageable by the Notebooks API.
      *
      * @param params - Parameters for request
@@ -5074,6 +5195,18 @@ export namespace notebooks_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Instances$Migrate
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MigrateInstanceRequest;
+  }
   export interface Params$Resource$Projects$Locations$Instances$Register
     extends StandardParameters {
     /**
@@ -6204,6 +6337,93 @@ export namespace notebooks_v1 {
     }
 
     /**
+     * Migrate an existing Runtime to a new Workbench Instance.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    migrate(
+      params: Params$Resource$Projects$Locations$Runtimes$Migrate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    migrate(
+      params?: Params$Resource$Projects$Locations$Runtimes$Migrate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    migrate(
+      params: Params$Resource$Projects$Locations$Runtimes$Migrate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    migrate(
+      params: Params$Resource$Projects$Locations$Runtimes$Migrate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    migrate(
+      params: Params$Resource$Projects$Locations$Runtimes$Migrate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    migrate(callback: BodyResponseCallback<Schema$Operation>): void;
+    migrate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$Migrate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$Migrate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$Migrate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:migrate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Update Notebook Runtime configuration.
      *
      * @param params - Parameters for request
@@ -7160,6 +7380,18 @@ export namespace notebooks_v1 {
      * Required. Format: `parent=projects/{project_id\}/locations/{location\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Runtimes$Migrate
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MigrateRuntimeRequest;
   }
   export interface Params$Resource$Projects$Locations$Runtimes$Patch
     extends StandardParameters {

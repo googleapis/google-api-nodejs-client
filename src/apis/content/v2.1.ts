@@ -15768,7 +15768,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Requests a review of free listings in a specific region. This method is only available to selected merchants.
+     * Requests a review of free listings in a specific region. This method deprecated. Use the `MerchantSupportService` to view product and account issues and request a review.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16946,7 +16946,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Sets the omnichannel experience for the specified country.
+     * Sets the omnichannel experience for the specified country. Only supported for merchants whose POS data provider is trusted to enable the corresponding experience. For more context, see these help articles [about LFP](https://support.google.com/merchants/answer/7676652) and [how to get started](https://support.google.com/merchants/answer/7676578) with it.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28801,7 +28801,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Requests a review of Shopping ads in a specific region. This method is only available to selected merchants.
+     * Requests a review of Shopping ads in a specific region. This method deprecated. Use the `MerchantSupportService` to view product and account issues and request a review.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

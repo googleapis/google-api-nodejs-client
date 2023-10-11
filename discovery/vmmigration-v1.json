@@ -1972,7 +1972,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20230927",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -4143,15 +4143,15 @@
           ],
           "enumDescriptions": [
             "Default value. This value is not used.",
-            "Migrate for Compute encountered an unknown error.",
-            "Migrate for Compute encountered an error while validating replication source health.",
-            "Migrate for Compute encountered an error during source data operation.",
-            "Migrate for Compute encountered an error during target data operation.",
-            "Migrate for Compute encountered an error during OS adaptation.",
-            "Migrate for Compute encountered an error in clone operation.",
-            "Migrate for Compute encountered an error in cutover operation.",
-            "Migrate for Compute encountered an error during utilization report creation.",
-            "Migrate for Compute encountered an error during appliance upgrade."
+            "Migrate to Virtual Machines encountered an unknown error.",
+            "Migrate to Virtual Machines encountered an error while validating replication source health.",
+            "Migrate to Virtual Machines encountered an error during source data operation.",
+            "Migrate to Virtual Machines encountered an error during target data operation.",
+            "Migrate to Virtual Machines encountered an error during OS adaptation.",
+            "Migrate to Virtual Machines encountered an error in clone operation.",
+            "Migrate to Virtual Machines encountered an error in cutover operation.",
+            "Migrate to Virtual Machines encountered an error during utilization report creation.",
+            "Migrate to Virtual Machines encountered an error during appliance upgrade."
           ],
           "readOnly": true,
           "type": "string"

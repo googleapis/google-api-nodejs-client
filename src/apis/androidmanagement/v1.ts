@@ -801,7 +801,7 @@ export namespace androidmanagement_v1 {
      */
     exemptionsToShowWorkContactsInPersonalProfile?: Schema$PackageNameList;
     /**
-     * Whether contacts stored in the work profile can be shown in personal profile contact searches and incoming calls.
+     * Whether personal apps can access contacts stored in the work profile.See also exemptions_to_show_work_contacts_in_personal_profile.
      */
     showWorkContactsInPersonalProfile?: string | null;
     /**
@@ -1009,6 +1009,14 @@ export namespace androidmanagement_v1 {
      * Controls whether airplane mode can be toggled by the user or not.
      */
     airplaneModeState?: string | null;
+    /**
+     * Controls whether cellular 2G setting can be toggled by the user or not.
+     */
+    cellularTwoGState?: string | null;
+    /**
+     * Controls the state of the ultra wideband setting and whether the user can toggle it on or off.
+     */
+    ultraWidebandState?: string | null;
     /**
      * Controls current state of Wi-Fi and if user can change its state.
      */
@@ -2028,7 +2036,7 @@ export namespace androidmanagement_v1 {
      */
     cameraDisabled?: boolean | null;
     /**
-     * Controls how long the work profile can stay off. The duration must be at least 3 days.
+     * Controls how long the work profile can stay off. The minimum duration must be at least 3 days. Other details are as follows: - If the duration is set to 0, the feature is turned off. - If the duration is set to any value between 1-2 days, the feature is automatically set to 3 days. *Note:* If you want to avoid personal profiles being suspended during long periods of off-time, you can temporarily set a large value for this parameter.
      */
     maxDaysWithWorkOff?: number | null;
     /**
@@ -2558,7 +2566,7 @@ export namespace androidmanagement_v1 {
     title?: Schema$UserFacingMessage;
   }
   /**
-   * A resource containing sign in details for an enterprise.
+   * A resource containing sign in details for an enterprise. Use enterprises to manage SigninDetails for a given enterprise.For an enterprise, we can have any number of SigninDetails that is uniquely identified by combination of the following three fields (signin_url, allow_personal_usage, token_tag). One cannot create two SigninDetails with the same (signin_url, allow_personal_usage, token_tag). (token_tag is an optional field).Patch: The operation updates the current list of SigninDetails with the new list of SigninDetails. If the stored SigninDetail configuration is passed, it returns the same signin_enrollment_token and qr_code. If we pass multiple identical SigninDetail configurations that are not stored, it will store the first one amongst those SigninDetail configurations. if the configuration already exists we cannot request it more than once in a particular patch API call, otherwise it will give a duplicate key error and the whole operation will fail. If we remove certain SigninDetail configuration from the request then it will get removed from the storage. We can then request another signin_enrollment_token and qr_code for the same SigninDetail configuration.
    */
   export interface Schema$SigninDetail {
     /**
@@ -2577,6 +2585,10 @@ export namespace androidmanagement_v1 {
      * Sign-in URL for authentication when device is provisioned with a sign-in enrollment token. The sign-in endpoint should finish authentication flow with a URL in the form of https://enterprise.google.com/android/enroll?et= for a successful login, or https://enterprise.google.com/android/enroll/invalid for a failed login.
      */
     signinUrl?: string | null;
+    /**
+     * An EMM-specified metadata to distinguish between instances of SigninDetail.
+     */
+    tokenTag?: string | null;
   }
   /**
    * An enterprise signup URL.

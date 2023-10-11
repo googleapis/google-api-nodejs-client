@@ -2644,10 +2644,6 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$Scope {
     /**
-     * If true, all Memberships in the Fleet bind to this Scope.
-     */
-    allMemberships?: boolean | null;
-    /**
      * Output only. When the scope was created.
      */
     createTime?: string | null;

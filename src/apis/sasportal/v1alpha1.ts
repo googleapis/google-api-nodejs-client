@@ -783,7 +783,12 @@ export namespace sasportal_v1alpha1 {
   /**
    * Request for the SetupSasAnalytics rpc.
    */
-  export interface Schema$SasPortalSetupSasAnalyticsRequest {}
+  export interface Schema$SasPortalSetupSasAnalyticsRequest {
+    /**
+     * Optional. User id to setup analytics for, if not provided the user id associated with the project is used. optional
+     */
+    userId?: string | null;
+  }
   /**
    * Response returned by the long running operation for the SetupSasAnalytics rpc.
    */

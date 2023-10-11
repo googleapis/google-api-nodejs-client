@@ -807,53 +807,6 @@ export namespace analyticsadmin_v1alpha {
     scope?: string | null;
   }
   /**
-   * Read-only resource used to summarize a principal's effective roles.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaAuditUserLink {
-    /**
-     * Roles directly assigned to this user for this entity. Format: predefinedRoles/viewer Excludes roles that are inherited from an account (if this is for a property), group, or organization admin role.
-     */
-    directRoles?: string[] | null;
-    /**
-     * Union of all permissions a user has at this account or property (includes direct permissions, group-inherited permissions, etc.). Format: predefinedRoles/viewer
-     */
-    effectiveRoles?: string[] | null;
-    /**
-     * Email address of the linked user
-     */
-    emailAddress?: string | null;
-    /**
-     * Example format: properties/1234/userLinks/5678
-     */
-    name?: string | null;
-  }
-  /**
-   * Request message for AuditUserLinks RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksRequest {
-    /**
-     * The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 1000 user links will be returned. The maximum value is 5000; values above 5000 will be coerced to 5000.
-     */
-    pageSize?: number | null;
-    /**
-     * A page token, received from a previous `AuditUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `AuditUserLinks` must match the call that provided the page token.
-     */
-    pageToken?: string | null;
-  }
-  /**
-   * Response message for AuditUserLinks RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse {
-    /**
-     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-     */
-    nextPageToken?: string | null;
-    /**
-     * List of AuditUserLinks. These will be ordered stably, but in an arbitrary order.
-     */
-    userLinks?: Schema$GoogleAnalyticsAdminV1alphaAuditUserLink[];
-  }
-  /**
    * Request message for BatchCreateAccessBindings RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest {
@@ -872,28 +825,6 @@ export namespace analyticsadmin_v1alpha {
     accessBindings?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding[];
   }
   /**
-   * Request message for BatchCreateUserLinks RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest {
-    /**
-     * Optional. If set, then email the new users notifying them that they've been granted permissions to the resource. Regardless of whether this is set or not, notify_new_user field inside each individual request is ignored.
-     */
-    notifyNewUsers?: boolean | null;
-    /**
-     * Required. The requests specifying the user links to create. A maximum of 1000 user links can be created in a batch.
-     */
-    requests?: Schema$GoogleAnalyticsAdminV1alphaCreateUserLinkRequest[];
-  }
-  /**
-   * Response message for BatchCreateUserLinks RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse {
-    /**
-     * The user links created.
-     */
-    userLinks?: Schema$GoogleAnalyticsAdminV1alphaUserLink[];
-  }
-  /**
    * Request message for BatchDeleteAccessBindings RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest {
@@ -903,15 +834,6 @@ export namespace analyticsadmin_v1alpha {
     requests?: Schema$GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest[];
   }
   /**
-   * Request message for BatchDeleteUserLinks RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest {
-    /**
-     * Required. The requests specifying the user links to update. A maximum of 1000 user links can be updated in a batch.
-     */
-    requests?: Schema$GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest[];
-  }
-  /**
    * Response message for BatchGetAccessBindings RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse {
@@ -919,15 +841,6 @@ export namespace analyticsadmin_v1alpha {
      * The requested access bindings.
      */
     accessBindings?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding[];
-  }
-  /**
-   * Response message for BatchGetUserLinks RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse {
-    /**
-     * The requested user links.
-     */
-    userLinks?: Schema$GoogleAnalyticsAdminV1alphaUserLink[];
   }
   /**
    * Request message for BatchUpdateAccessBindings RPC.
@@ -946,24 +859,6 @@ export namespace analyticsadmin_v1alpha {
      * The access bindings updated.
      */
     accessBindings?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding[];
-  }
-  /**
-   * Request message for BatchUpdateUserLinks RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest {
-    /**
-     * Required. The requests specifying the user links to update. A maximum of 1000 user links can be updated in a batch.
-     */
-    requests?: Schema$GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest[];
-  }
-  /**
-   * Response message for BatchUpdateUserLinks RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse {
-    /**
-     * The user links updated.
-     */
-    userLinks?: Schema$GoogleAnalyticsAdminV1alphaUserLink[];
   }
   /**
    * A link between a GA4 Property and BigQuery project.
@@ -1071,6 +966,10 @@ export namespace analyticsadmin_v1alpha {
      * A snapshot of a CustomMetric resource in change history.
      */
     customMetric?: Schema$GoogleAnalyticsAdminV1alphaCustomMetric;
+    /**
+     * A snapshot of DataRedactionSettings resource in change history.
+     */
+    dataRedactionSettings?: Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings;
     /**
      * A snapshot of a data retention settings resource in change history.
      */
@@ -1349,21 +1248,60 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse {}
   /**
-   * Request message for CreateUserLink RPC. Users can have multiple email addresses associated with their Google account, and one of these email addresses is the "primary" email address. Any of the email addresses associated with a Google account may be used for a new UserLink, but the returned UserLink will always contain the "primary" email address. As a result, the input and output email address for this request may differ.
+   * Request message for CreateRollupProperty RPC.
    */
-  export interface Schema$GoogleAnalyticsAdminV1alphaCreateUserLinkRequest {
+  export interface Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyRequest {
     /**
-     * Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.
+     * Required. The roll-up property to create.
      */
-    notifyNewUser?: boolean | null;
+    rollupProperty?: Schema$GoogleAnalyticsAdminV1alphaProperty;
     /**
-     * Required. Example format: accounts/1234
+     * Optional. The resource names of properties that will be sources to the created roll-up property.
+     */
+    sourceProperties?: string[] | null;
+  }
+  /**
+   * Response message for CreateRollupProperty RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse {
+    /**
+     * The created roll-up property.
+     */
+    rollupProperty?: Schema$GoogleAnalyticsAdminV1alphaProperty;
+    /**
+     * The created roll-up property source links.
+     */
+    rollupPropertySourceLinks?: Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink[];
+  }
+  /**
+   * Request message for CreateSubproperty RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest {
+    /**
+     * Required. The ordinary property for which to create a subproperty. Format: properties/property_id Example: properties/123
      */
     parent?: string | null;
     /**
-     * Required. The user link to create.
+     * Required. The subproperty to create.
      */
-    userLink?: Schema$GoogleAnalyticsAdminV1alphaUserLink;
+    subproperty?: Schema$GoogleAnalyticsAdminV1alphaProperty;
+    /**
+     * Optional. The subproperty event filter to create on an ordinary property.
+     */
+    subpropertyEventFilter?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter;
+  }
+  /**
+   * Response message for CreateSubproperty RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse {
+    /**
+     * The created subproperty.
+     */
+    subproperty?: Schema$GoogleAnalyticsAdminV1alphaProperty;
+    /**
+     * The created subproperty event filter.
+     */
+    subpropertyEventFilter?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter;
   }
   /**
    * A definition for a CustomDimension.
@@ -1426,6 +1364,27 @@ export namespace analyticsadmin_v1alpha {
      * Required. Immutable. The scope of this custom metric.
      */
     scope?: string | null;
+  }
+  /**
+   * Settings for client-side data redaction. Singleton resource under a Web Stream.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings {
+    /**
+     * If enabled, any event parameter or user property values that look like an email will be redacted.
+     */
+    emailRedactionEnabled?: boolean | null;
+    /**
+     * Output only. Name of this Data Redaction Settings resource. Format: properties/{property_id\}/dataStreams/{data_stream\}/dataRedactionSettings Example: "properties/1000/dataStreams/2000/dataRedactionSettings"
+     */
+    name?: string | null;
+    /**
+     * The query parameter keys to apply redaction logic to if present in the URL. Query parameter matching is case-insensitive. Must contain at least one element if query_parameter_replacement_enabled is true. Keys cannot contain commas.
+     */
+    queryParameterKeys?: string[] | null;
+    /**
+     * Query Parameter redaction removes the key and value portions of a query parameter if it is in the configured set of query parameters. If enabled, URL query replacement logic will be run for the Stream. Any query parameters defined in query_parameter_keys will be redacted.
+     */
+    queryParameterRedactionEnabled?: boolean | null;
   }
   /**
    * Settings values for data retention. This is a singleton resource.
@@ -1574,15 +1533,6 @@ export namespace analyticsadmin_v1alpha {
      * Tag ID to forward events to. Also known as the Measurement ID, or the "G-ID" (For example: G-12345).
      */
     tagId?: string | null;
-  }
-  /**
-   * Request message for DeleteUserLink RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest {
-    /**
-     * Required. Example format: accounts/1234/userLinks/5678
-     */
-    name?: string | null;
   }
   /**
    * A link between a GA4 property and a Display & Video 360 advertiser.
@@ -2258,6 +2208,19 @@ export namespace analyticsadmin_v1alpha {
     properties?: Schema$GoogleAnalyticsAdminV1alphaProperty[];
   }
   /**
+   * Response message for ListRollupPropertySourceLinks RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of RollupPropertySourceLinks.
+     */
+    rollupPropertySourceLinks?: Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink[];
+  }
+  /**
    * Response message for ListSearchAds360Links RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse {
@@ -2284,17 +2247,17 @@ export namespace analyticsadmin_v1alpha {
     skadnetworkConversionValueSchemas?: Schema$GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema[];
   }
   /**
-   * Response message for ListUserLinks RPC.
+   * Response message for ListSubpropertyEventFilter RPC.
    */
-  export interface Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse {
+  export interface Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
-     * List of UserLinks. These will be ordered stably, but in an arbitrary order.
+     * List of subproperty event filters.
      */
-    userLinks?: Schema$GoogleAnalyticsAdminV1alphaUserLink[];
+    subpropertyEventFilters?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter[];
   }
   /**
    * Defines a condition for when an Event Edit or Event Creation rule applies to an event.
@@ -2414,7 +2377,7 @@ export namespace analyticsadmin_v1alpha {
      */
     parent?: string | null;
     /**
-     * Immutable. The property type for this Property resource. When creating a property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY" types cannot yet be created with the Google Analytics Admin API.
+     * Immutable. The property type for this Property resource. When creating a property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then "ORDINARY_PROPERTY" will be implied.
      */
     propertyType?: string | null;
     /**
@@ -2474,6 +2437,19 @@ export namespace analyticsadmin_v1alpha {
     accountTicketId?: string | null;
   }
   /**
+   * A link that references a source property under the parent rollup property.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink {
+    /**
+     * Output only. Resource name of this RollupPropertySourceLink. Format: 'properties/{property_id\}/rollupPropertySourceLinks/{rollup_property_source_link\}' Format: 'properties/123/rollupPropertySourceLinks/456'
+     */
+    name?: string | null;
+    /**
+     * Immutable. Resource name of the source property. Format: properties/{property_id\} Example: "properties/789"
+     */
+    sourceProperty?: string | null;
+  }
+  /**
    * The request for a Data Access Record Report.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaRunAccessReportRequest {
@@ -2489,6 +2465,14 @@ export namespace analyticsadmin_v1alpha {
      * The dimensions requested and displayed in the response. Requests are allowed up to 9 dimensions.
      */
     dimensions?: Schema$GoogleAnalyticsAdminV1alphaAccessDimension[];
+    /**
+     * Optional. Decides whether to return the users within user groups. This field works only when include_all_users is set to true. If true, it will return all users with access to the specified property or account. If false, only the users with direct access will be returned.
+     */
+    expandGroups?: boolean | null;
+    /**
+     * Optional. Determines whether to include users who have never made an API call in the response. If true, all users with access to the specified property or account are included in the response, regardless of whether they have made an API call or not. If false, only the users who have made an API call will be included.
+     */
+    includeAllUsers?: boolean | null;
     /**
      * The number of rows to return. If unspecified, 10,000 rows are returned. The API returns a maximum of 100,000 rows per request, no matter how many you ask for. `limit` must be positive. The API may return fewer rows than the requested `limit`, if there aren't as many remaining rows as the `limit`. For instance, there are fewer than 300 possible values for the dimension `country`, so when reporting on only `country`, you can't get more than 300 rows, even if you set `limit` to a higher value. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      */
@@ -2669,6 +2653,96 @@ export namespace analyticsadmin_v1alpha {
     postbackWindowTwo?: Schema$GoogleAnalyticsAdminV1alphaPostbackWindow;
   }
   /**
+   * A resource message representing a GA4 Subproperty event filter.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter {
+    /**
+     * Immutable. Resource name of the Subproperty that uses this filter.
+     */
+    applyToProperty?: string | null;
+    /**
+     * Required. Unordered list. Filter clauses that define the SubpropertyEventFilter. All clauses are AND'ed together to determine what data is sent to the subproperty.
+     */
+    filterClauses?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterClause[];
+    /**
+     * Output only. Format: properties/{ordinary_property_id\}/subpropertyEventFilters/{sub_property_event_filter\} Example: properties/1234/subpropertyEventFilters/5678
+     */
+    name?: string | null;
+  }
+  /**
+   * A clause for defining a filter. A filter may be inclusive (events satisfying the filter clause are included in the subproperty's data) or exclusive (events satisfying the filter clause are excluded from the subproperty's data).
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterClause {
+    /**
+     * Required. The type for the filter clause.
+     */
+    filterClauseType?: string | null;
+    /**
+     * Required. The logical expression for what events are sent to the subproperty.
+     */
+    filterExpression?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression;
+  }
+  /**
+   * A specific filter expression
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterCondition {
+    /**
+     * Required. The field that is being filtered.
+     */
+    fieldName?: string | null;
+    /**
+     * A filter for null values.
+     */
+    nullFilter?: boolean | null;
+    /**
+     * A filter for a string-type dimension that matches a particular pattern.
+     */
+    stringFilter?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterConditionStringFilter;
+  }
+  /**
+   * A filter for a string-type dimension that matches a particular pattern.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterConditionStringFilter {
+    /**
+     * Optional. If true, the string value is case sensitive. If false, the match is case-insensitive.
+     */
+    caseSensitive?: boolean | null;
+    /**
+     * Required. The match type for the string filter.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The string value used for the matching.
+     */
+    value?: string | null;
+  }
+  /**
+   * A logical expression of Subproperty event filters.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression {
+    /**
+     * Creates a filter that matches a specific event. This cannot be set on the top level SubpropertyEventFilterExpression.
+     */
+    filterCondition?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterCondition;
+    /**
+     * A filter expression to be NOT'ed (inverted, complemented). It can only include a filter. This cannot be set on the top level SubpropertyEventFilterExpression.
+     */
+    notExpression?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression;
+    /**
+     * A list of expressions to OR’ed together. Must only contain not_expression or filter_condition expressions.
+     */
+    orGroup?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpressionList;
+  }
+  /**
+   * A list of Subproperty event filter expressions.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpressionList {
+    /**
+     * Required. Unordered list. A list of Subproperty event filter expressions
+     */
+    filterExpressions?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression[];
+  }
+  /**
    * Request message for UpdateAccessBinding RPC.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest {
@@ -2678,32 +2752,6 @@ export namespace analyticsadmin_v1alpha {
     accessBinding?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding;
   }
   /**
-   * Request message for UpdateUserLink RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest {
-    /**
-     * Required. The user link to update.
-     */
-    userLink?: Schema$GoogleAnalyticsAdminV1alphaUserLink;
-  }
-  /**
-   * A resource message representing a user's permissions on an Account or Property resource.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaUserLink {
-    /**
-     * Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/viewer predefinedRoles/analyst predefinedRoles/editor predefinedRoles/admin predefinedRoles/no-cost-data predefinedRoles/no-revenue-data Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.
-     */
-    directRoles?: string[] | null;
-    /**
-     * Immutable. Email address of the user to link
-     */
-    emailAddress?: string | null;
-    /**
-     * Output only. Example format: properties/1234/userLinks/5678
-     */
-    name?: string | null;
-  }
-  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
@@ -2711,15 +2759,13 @@ export namespace analyticsadmin_v1alpha {
   export class Resource$Accounts {
     context: APIRequestContext;
     accessBindings: Resource$Accounts$Accessbindings;
-    userLinks: Resource$Accounts$Userlinks;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.accessBindings = new Resource$Accounts$Accessbindings(this.context);
-      this.userLinks = new Resource$Accounts$Userlinks(this.context);
     }
 
     /**
-     * Marks target Account as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted accounts. However, they can be restored using the Trash Can UI. If the accounts are not restored before the expiration time, the account and all child resources (eg: Properties, GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.
+     * Marks target Account as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted accounts. However, they can be restored using the Trash Can UI. If the accounts are not restored before the expiration time, the account and all child resources (eg: Properties, GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4507,1081 +4553,6 @@ export namespace analyticsadmin_v1alpha {
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding;
   }
 
-  export class Resource$Accounts$Userlinks {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    audit(
-      params: Params$Resource$Accounts$Userlinks$Audit,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    audit(
-      params?: Params$Resource$Accounts$Userlinks$Audit,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>;
-    audit(
-      params: Params$Resource$Accounts$Userlinks$Audit,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    audit(
-      params: Params$Resource$Accounts$Userlinks$Audit,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
-    ): void;
-    audit(
-      params: Params$Resource$Accounts$Userlinks$Audit,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
-    ): void;
-    audit(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
-    ): void;
-    audit(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Userlinks$Audit
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Userlinks$Audit;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Userlinks$Audit;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks:audit').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchCreate(
-      params: Params$Resource$Accounts$Userlinks$Batchcreate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchCreate(
-      params?: Params$Resource$Accounts$Userlinks$Batchcreate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>;
-    batchCreate(
-      params: Params$Resource$Accounts$Userlinks$Batchcreate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchCreate(
-      params: Params$Resource$Accounts$Userlinks$Batchcreate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-    ): void;
-    batchCreate(
-      params: Params$Resource$Accounts$Userlinks$Batchcreate,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-    ): void;
-    batchCreate(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-    ): void;
-    batchCreate(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Userlinks$Batchcreate
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Userlinks$Batchcreate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Userlinks$Batchcreate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks:batchCreate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Deletes information about multiple users' links to an account or property.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchDelete(
-      params: Params$Resource$Accounts$Userlinks$Batchdelete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchDelete(
-      params?: Params$Resource$Accounts$Userlinks$Batchdelete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    batchDelete(
-      params: Params$Resource$Accounts$Userlinks$Batchdelete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchDelete(
-      params: Params$Resource$Accounts$Userlinks$Batchdelete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    batchDelete(
-      params: Params$Resource$Accounts$Userlinks$Batchdelete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    batchDelete(
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    batchDelete(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Userlinks$Batchdelete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Userlinks$Batchdelete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Userlinks$Batchdelete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks:batchDelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets information about multiple users' links to an account or property.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchGet(
-      params: Params$Resource$Accounts$Userlinks$Batchget,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchGet(
-      params?: Params$Resource$Accounts$Userlinks$Batchget,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>;
-    batchGet(
-      params: Params$Resource$Accounts$Userlinks$Batchget,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchGet(
-      params: Params$Resource$Accounts$Userlinks$Batchget,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-    ): void;
-    batchGet(
-      params: Params$Resource$Accounts$Userlinks$Batchget,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-    ): void;
-    batchGet(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-    ): void;
-    batchGet(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Userlinks$Batchget
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Userlinks$Batchget;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Userlinks$Batchget;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks:batchGet').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates information about multiple users' links to an account or property.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchUpdate(
-      params: Params$Resource$Accounts$Userlinks$Batchupdate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchUpdate(
-      params?: Params$Resource$Accounts$Userlinks$Batchupdate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>;
-    batchUpdate(
-      params: Params$Resource$Accounts$Userlinks$Batchupdate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchUpdate(
-      params: Params$Resource$Accounts$Userlinks$Batchupdate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-    ): void;
-    batchUpdate(
-      params: Params$Resource$Accounts$Userlinks$Batchupdate,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-    ): void;
-    batchUpdate(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-    ): void;
-    batchUpdate(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Userlinks$Batchupdate
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Userlinks$Batchupdate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Userlinks$Batchupdate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks:batchUpdate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Accounts$Userlinks$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Accounts$Userlinks$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>;
-    create(
-      params: Params$Resource$Accounts$Userlinks$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Accounts$Userlinks$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    create(
-      params: Params$Resource$Accounts$Userlinks$Create,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Userlinks$Create
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Userlinks$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Userlinks$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Deletes a user link on an account or property.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Accounts$Userlinks$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Accounts$Userlinks$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    delete(
-      params: Params$Resource$Accounts$Userlinks$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Accounts$Userlinks$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Accounts$Userlinks$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Userlinks$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Userlinks$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Userlinks$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets information about a user's link to an account or property.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Accounts$Userlinks$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Accounts$Userlinks$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>;
-    get(
-      params: Params$Resource$Accounts$Userlinks$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Accounts$Userlinks$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    get(
-      params: Params$Resource$Accounts$Userlinks$Get,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Userlinks$Get
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Userlinks$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Userlinks$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Lists all user links on an account or property.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Accounts$Userlinks$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Accounts$Userlinks$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>;
-    list(
-      params: Params$Resource$Accounts$Userlinks$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Accounts$Userlinks$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
-    ): void;
-    list(
-      params: Params$Resource$Accounts$Userlinks$List,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Userlinks$List
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Userlinks$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Userlinks$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates a user link on an account or property.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Accounts$Userlinks$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Accounts$Userlinks$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>;
-    patch(
-      params: Params$Resource$Accounts$Userlinks$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Accounts$Userlinks$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    patch(
-      params: Params$Resource$Accounts$Userlinks$Patch,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Userlinks$Patch
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Userlinks$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Userlinks$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Accounts$Userlinks$Audit
-    extends StandardParameters {
-    /**
-     * Required. Example format: accounts/1234
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksRequest;
-  }
-  export interface Params$Resource$Accounts$Userlinks$Batchcreate
-    extends StandardParameters {
-    /**
-     * Required. The account or property that all user links in the request are for. This field is required. The parent field in the CreateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest;
-  }
-  export interface Params$Resource$Accounts$Userlinks$Batchdelete
-    extends StandardParameters {
-    /**
-     * Required. The account or property that all user links in the request are for. The parent of all values for user link names to delete must match this field. Example format: accounts/1234
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest;
-  }
-  export interface Params$Resource$Accounts$Userlinks$Batchget
-    extends StandardParameters {
-    /**
-     * Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId\}/userLinks/{userLinkId\}
-     */
-    names?: string[];
-    /**
-     * Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Accounts$Userlinks$Batchupdate
-    extends StandardParameters {
-    /**
-     * Required. The account or property that all user links in the request are for. The parent field in the UpdateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest;
-  }
-  export interface Params$Resource$Accounts$Userlinks$Create
-    extends StandardParameters {
-    /**
-     * Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.
-     */
-    notifyNewUser?: boolean;
-    /**
-     * Required. Example format: accounts/1234
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaUserLink;
-  }
-  export interface Params$Resource$Accounts$Userlinks$Delete
-    extends StandardParameters {
-    /**
-     * Required. Example format: accounts/1234/userLinks/5678
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Userlinks$Get
-    extends StandardParameters {
-    /**
-     * Required. Example format: accounts/1234/userLinks/5678
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Userlinks$List
-    extends StandardParameters {
-    /**
-     * The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 200 user links will be returned. The maximum value is 500; values above 500 will be coerced to 500.
-     */
-    pageSize?: number;
-    /**
-     * A page token, received from a previous `ListUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLinks` must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. Example format: accounts/1234
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Accounts$Userlinks$Patch
-    extends StandardParameters {
-    /**
-     * Output only. Example format: properties/1234/userLinks/5678
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaUserLink;
-  }
-
   export class Resource$Accountsummaries {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5714,8 +4685,9 @@ export namespace analyticsadmin_v1alpha {
     expandedDataSets: Resource$Properties$Expandeddatasets;
     firebaseLinks: Resource$Properties$Firebaselinks;
     googleAdsLinks: Resource$Properties$Googleadslinks;
+    rollupPropertySourceLinks: Resource$Properties$Rolluppropertysourcelinks;
     searchAds360Links: Resource$Properties$Searchads360links;
-    userLinks: Resource$Properties$Userlinks;
+    subpropertyEventFilters: Resource$Properties$Subpropertyeventfilters;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.accessBindings = new Resource$Properties$Accessbindings(
@@ -5746,10 +4718,13 @@ export namespace analyticsadmin_v1alpha {
       this.googleAdsLinks = new Resource$Properties$Googleadslinks(
         this.context
       );
+      this.rollupPropertySourceLinks =
+        new Resource$Properties$Rolluppropertysourcelinks(this.context);
       this.searchAds360Links = new Resource$Properties$Searchads360links(
         this.context
       );
-      this.userLinks = new Resource$Properties$Userlinks(this.context);
+      this.subpropertyEventFilters =
+        new Resource$Properties$Subpropertyeventfilters(this.context);
     }
 
     /**
@@ -6042,7 +5017,201 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.
+     * Create a roll-up property and all roll-up property source links.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createRollupProperty(
+      params: Params$Resource$Properties$Createrollupproperty,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createRollupProperty(
+      params?: Params$Resource$Properties$Createrollupproperty,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>;
+    createRollupProperty(
+      params: Params$Resource$Properties$Createrollupproperty,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createRollupProperty(
+      params: Params$Resource$Properties$Createrollupproperty,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>
+    ): void;
+    createRollupProperty(
+      params: Params$Resource$Properties$Createrollupproperty,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>
+    ): void;
+    createRollupProperty(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>
+    ): void;
+    createRollupProperty(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Createrollupproperty
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Createrollupproperty;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Createrollupproperty;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/properties:createRollupProperty').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Create a subproperty and a subproperty event filter that applies to the created subproperty.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    createSubproperty(
+      params: Params$Resource$Properties$Createsubproperty,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    createSubproperty(
+      params?: Params$Resource$Properties$Createsubproperty,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>;
+    createSubproperty(
+      params: Params$Resource$Properties$Createsubproperty,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    createSubproperty(
+      params: Params$Resource$Properties$Createsubproperty,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>
+    ): void;
+    createSubproperty(
+      params: Params$Resource$Properties$Createsubproperty,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>
+    ): void;
+    createSubproperty(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>
+    ): void;
+    createSubproperty(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Createsubproperty
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Createsubproperty;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Createsubproperty;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/properties:createSubproperty').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7583,6 +6752,20 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest;
+  }
+  export interface Params$Resource$Properties$Createrollupproperty
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaCreateRollupPropertyRequest;
+  }
+  export interface Params$Resource$Properties$Createsubproperty
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest;
   }
   export interface Params$Resource$Properties$Delete
     extends StandardParameters {
@@ -12349,6 +11532,101 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Lookup for a single DataRedactionSettings.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDataRedactionSettings(
+      params: Params$Resource$Properties$Datastreams$Getdataredactionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDataRedactionSettings(
+      params?: Params$Resource$Properties$Datastreams$Getdataredactionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>;
+    getDataRedactionSettings(
+      params: Params$Resource$Properties$Datastreams$Getdataredactionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDataRedactionSettings(
+      params: Params$Resource$Properties$Datastreams$Getdataredactionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+    ): void;
+    getDataRedactionSettings(
+      params: Params$Resource$Properties$Datastreams$Getdataredactionsettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+    ): void;
+    getDataRedactionSettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+    ): void;
+    getDataRedactionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Getdataredactionsettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Getdataredactionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Getdataredactionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.
      *
      * @param params - Parameters for request
@@ -12729,6 +12007,101 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Updates a DataRedactionSettings on a property.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateDataRedactionSettings(
+      params: Params$Resource$Properties$Datastreams$Updatedataredactionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateDataRedactionSettings(
+      params?: Params$Resource$Properties$Datastreams$Updatedataredactionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>;
+    updateDataRedactionSettings(
+      params: Params$Resource$Properties$Datastreams$Updatedataredactionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateDataRedactionSettings(
+      params: Params$Resource$Properties$Datastreams$Updatedataredactionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+    ): void;
+    updateDataRedactionSettings(
+      params: Params$Resource$Properties$Datastreams$Updatedataredactionsettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+    ): void;
+    updateDataRedactionSettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+    ): void;
+    updateDataRedactionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Updatedataredactionsettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Updatedataredactionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Updatedataredactionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.
      *
      * @param params - Parameters for request
@@ -12850,6 +12223,13 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Properties$Datastreams$Getdataredactionsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the settings to lookup. Format: properties/{property\}/dataStreams/{data_stream\}/dataRedactionSettings Example: "properties/1000/dataStreams/2000/dataRedactionSettings"
+     */
+    name?: string;
+  }
   export interface Params$Resource$Properties$Datastreams$Getenhancedmeasurementsettings
     extends StandardParameters {
     /**
@@ -12894,6 +12274,22 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaDataStream;
+  }
+  export interface Params$Resource$Properties$Datastreams$Updatedataredactionsettings
+    extends StandardParameters {
+    /**
+     * Output only. Name of this Data Redaction Settings resource. Format: properties/{property_id\}/dataStreams/{data_stream\}/dataRedactionSettings Example: "properties/1000/dataStreams/2000/dataRedactionSettings"
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaDataRedactionSettings;
   }
   export interface Params$Resource$Properties$Datastreams$Updateenhancedmeasurementsettings
     extends StandardParameters {
@@ -17008,6 +16404,432 @@ export namespace analyticsadmin_v1alpha {
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink;
   }
 
+  export class Resource$Properties$Rolluppropertysourcelinks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a roll-up property source link. Only roll-up properties can have source links, so this method will throw an error if used on other types of properties.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Rolluppropertysourcelinks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>;
+    create(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Rolluppropertysourcelinks$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Rolluppropertysourcelinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Rolluppropertysourcelinks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/rollupPropertySourceLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a roll-up property source link. Only roll-up properties can have source links, so this method will throw an error if used on other types of properties.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Rolluppropertysourcelinks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Rolluppropertysourcelinks$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Rolluppropertysourcelinks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Rolluppropertysourcelinks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Lookup for a single roll-up property source Link. Only roll-up properties can have source links, so this method will throw an error if used on other types of properties.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Rolluppropertysourcelinks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>;
+    get(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Rolluppropertysourcelinks$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Rolluppropertysourcelinks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Rolluppropertysourcelinks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists roll-up property source Links on a property. Only roll-up properties can have source links, so this method will throw an error if used on other types of properties.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Rolluppropertysourcelinks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>;
+    list(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Rolluppropertysourcelinks$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Rolluppropertysourcelinks$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Rolluppropertysourcelinks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Rolluppropertysourcelinks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/rollupPropertySourceLinks'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Rolluppropertysourcelinks$Create
+    extends StandardParameters {
+    /**
+     * Required. Format: properties/{property_id\} Example: properties/1234
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaRollupPropertySourceLink;
+  }
+  export interface Params$Resource$Properties$Rolluppropertysourcelinks$Delete
+    extends StandardParameters {
+    /**
+     * Required. Format: properties/{property_id\}/rollupPropertySourceLinks/{rollup_property_source_link_id\} Example: properties/1234/rollupPropertySourceLinks/5678
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Rolluppropertysourcelinks$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the roll-up property source link to lookup. Format: properties/{property_id\}/rollupPropertySourceLinks/{rollup_property_source_link_id\} Example: properties/123/rollupPropertySourceLinks/456
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Rolluppropertysourcelinks$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListRollupPropertySourceLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRollupPropertySourceLinks` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the roll-up property to list roll-up property source links under. Format: properties/{property_id\} Example: properties/1234
+     */
+    parent?: string;
+  }
+
   export class Resource$Properties$Searchads360links {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -17543,71 +17365,72 @@ export namespace analyticsadmin_v1alpha {
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link;
   }
 
-  export class Resource$Properties$Userlinks {
+  export class Resource$Properties$Subpropertyeventfilters {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.
+     * Creates a subproperty Event Filter.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    audit(
-      params: Params$Resource$Properties$Userlinks$Audit,
+    create(
+      params: Params$Resource$Properties$Subpropertyeventfilters$Create,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    audit(
-      params?: Params$Resource$Properties$Userlinks$Audit,
+    create(
+      params?: Params$Resource$Properties$Subpropertyeventfilters$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>;
-    audit(
-      params: Params$Resource$Properties$Userlinks$Audit,
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>;
+    create(
+      params: Params$Resource$Properties$Subpropertyeventfilters$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    audit(
-      params: Params$Resource$Properties$Userlinks$Audit,
+    create(
+      params: Params$Resource$Properties$Subpropertyeventfilters$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
     ): void;
-    audit(
-      params: Params$Resource$Properties$Userlinks$Audit,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
+    create(
+      params: Params$Resource$Properties$Subpropertyeventfilters$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
     ): void;
-    audit(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
     ): void;
-    audit(
+    create(
       paramsOrCallback?:
-        | Params$Resource$Properties$Userlinks$Audit
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
+        | Params$Resource$Properties$Subpropertyeventfilters$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Userlinks$Audit;
+        {}) as Params$Resource$Properties$Subpropertyeventfilters$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Userlinks$Audit;
+        params =
+          {} as Params$Resource$Properties$Subpropertyeventfilters$Create;
         options = {};
       }
 
@@ -17621,10 +17444,9 @@ export namespace analyticsadmin_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks:audit').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (
+              rootUrl + '/v1alpha/{+parent}/subpropertyEventFilters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -17635,500 +17457,19 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>(
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>(
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>(
           parameters
         );
       }
     }
 
     /**
-     * Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchCreate(
-      params: Params$Resource$Properties$Userlinks$Batchcreate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchCreate(
-      params?: Params$Resource$Properties$Userlinks$Batchcreate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>;
-    batchCreate(
-      params: Params$Resource$Properties$Userlinks$Batchcreate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchCreate(
-      params: Params$Resource$Properties$Userlinks$Batchcreate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-    ): void;
-    batchCreate(
-      params: Params$Resource$Properties$Userlinks$Batchcreate,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-    ): void;
-    batchCreate(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-    ): void;
-    batchCreate(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Userlinks$Batchcreate
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Userlinks$Batchcreate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Userlinks$Batchcreate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks:batchCreate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Deletes information about multiple users' links to an account or property.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchDelete(
-      params: Params$Resource$Properties$Userlinks$Batchdelete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchDelete(
-      params?: Params$Resource$Properties$Userlinks$Batchdelete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    batchDelete(
-      params: Params$Resource$Properties$Userlinks$Batchdelete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchDelete(
-      params: Params$Resource$Properties$Userlinks$Batchdelete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    batchDelete(
-      params: Params$Resource$Properties$Userlinks$Batchdelete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    batchDelete(
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    batchDelete(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Userlinks$Batchdelete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Userlinks$Batchdelete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Userlinks$Batchdelete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks:batchDelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets information about multiple users' links to an account or property.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchGet(
-      params: Params$Resource$Properties$Userlinks$Batchget,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchGet(
-      params?: Params$Resource$Properties$Userlinks$Batchget,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>;
-    batchGet(
-      params: Params$Resource$Properties$Userlinks$Batchget,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchGet(
-      params: Params$Resource$Properties$Userlinks$Batchget,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-    ): void;
-    batchGet(
-      params: Params$Resource$Properties$Userlinks$Batchget,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-    ): void;
-    batchGet(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-    ): void;
-    batchGet(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Userlinks$Batchget
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Userlinks$Batchget;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Userlinks$Batchget;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks:batchGet').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates information about multiple users' links to an account or property.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchUpdate(
-      params: Params$Resource$Properties$Userlinks$Batchupdate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchUpdate(
-      params?: Params$Resource$Properties$Userlinks$Batchupdate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>;
-    batchUpdate(
-      params: Params$Resource$Properties$Userlinks$Batchupdate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchUpdate(
-      params: Params$Resource$Properties$Userlinks$Batchupdate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-    ): void;
-    batchUpdate(
-      params: Params$Resource$Properties$Userlinks$Batchupdate,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-    ): void;
-    batchUpdate(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-    ): void;
-    batchUpdate(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Userlinks$Batchupdate
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Userlinks$Batchupdate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Userlinks$Batchupdate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks:batchUpdate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Properties$Userlinks$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Properties$Userlinks$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>;
-    create(
-      params: Params$Resource$Properties$Userlinks$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Properties$Userlinks$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    create(
-      params: Params$Resource$Properties$Userlinks$Create,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Userlinks$Create
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Userlinks$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Userlinks$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Deletes a user link on an account or property.
+     * Deletes a subproperty event filter.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18136,31 +17477,31 @@ export namespace analyticsadmin_v1alpha {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
-      params: Params$Resource$Properties$Userlinks$Delete,
+      params: Params$Resource$Properties$Subpropertyeventfilters$Delete,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     delete(
-      params?: Params$Resource$Properties$Userlinks$Delete,
+      params?: Params$Resource$Properties$Subpropertyeventfilters$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
-      params: Params$Resource$Properties$Userlinks$Delete,
+      params: Params$Resource$Properties$Subpropertyeventfilters$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     delete(
-      params: Params$Resource$Properties$Userlinks$Delete,
+      params: Params$Resource$Properties$Subpropertyeventfilters$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
     delete(
-      params: Params$Resource$Properties$Userlinks$Delete,
+      params: Params$Resource$Properties$Subpropertyeventfilters$Delete,
       callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
     delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
     delete(
       paramsOrCallback?:
-        | Params$Resource$Properties$Userlinks$Delete
+        | Params$Resource$Properties$Subpropertyeventfilters$Delete
         | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -18176,12 +17517,13 @@ export namespace analyticsadmin_v1alpha {
       | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Userlinks$Delete;
+        {}) as Params$Resource$Properties$Subpropertyeventfilters$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Userlinks$Delete;
+        params =
+          {} as Params$Resource$Properties$Subpropertyeventfilters$Delete;
         options = {};
       }
 
@@ -18216,7 +17558,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Gets information about a user's link to an account or property.
+     * Lookup for a single subproperty Event Filter.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18224,56 +17566,56 @@ export namespace analyticsadmin_v1alpha {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
-      params: Params$Resource$Properties$Userlinks$Get,
+      params: Params$Resource$Properties$Subpropertyeventfilters$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     get(
-      params?: Params$Resource$Properties$Userlinks$Get,
+      params?: Params$Resource$Properties$Subpropertyeventfilters$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>;
     get(
-      params: Params$Resource$Properties$Userlinks$Get,
+      params: Params$Resource$Properties$Subpropertyeventfilters$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     get(
-      params: Params$Resource$Properties$Userlinks$Get,
+      params: Params$Resource$Properties$Subpropertyeventfilters$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
     ): void;
     get(
-      params: Params$Resource$Properties$Userlinks$Get,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+      params: Params$Resource$Properties$Subpropertyeventfilters$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
     ): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Properties$Userlinks$Get
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+        | Params$Resource$Properties$Subpropertyeventfilters$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Userlinks$Get;
+        {}) as Params$Resource$Properties$Subpropertyeventfilters$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Userlinks$Get;
+        params = {} as Params$Resource$Properties$Subpropertyeventfilters$Get;
         options = {};
       }
 
@@ -18298,19 +17640,19 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>(
           parameters
         );
       }
     }
 
     /**
-     * Lists all user links on an account or property.
+     * List all subproperty Event Filters on a property.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18318,56 +17660,56 @@ export namespace analyticsadmin_v1alpha {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
-      params: Params$Resource$Properties$Userlinks$List,
+      params: Params$Resource$Properties$Subpropertyeventfilters$List,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     list(
-      params?: Params$Resource$Properties$Userlinks$List,
+      params?: Params$Resource$Properties$Subpropertyeventfilters$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>;
     list(
-      params: Params$Resource$Properties$Userlinks$List,
+      params: Params$Resource$Properties$Subpropertyeventfilters$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Properties$Userlinks$List,
+      params: Params$Resource$Properties$Subpropertyeventfilters$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>
     ): void;
     list(
-      params: Params$Resource$Properties$Userlinks$List,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
+      params: Params$Resource$Properties$Subpropertyeventfilters$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>
     ): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Properties$Userlinks$List
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
+        | Params$Resource$Properties$Subpropertyeventfilters$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Userlinks$List;
+        {}) as Params$Resource$Properties$Subpropertyeventfilters$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Userlinks$List;
+        params = {} as Params$Resource$Properties$Subpropertyeventfilters$List;
         options = {};
       }
 
@@ -18381,10 +17723,9 @@ export namespace analyticsadmin_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/userLinks').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (
+              rootUrl + '/v1alpha/{+parent}/subpropertyEventFilters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -18395,19 +17736,19 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>(
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>(
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse>(
           parameters
         );
       }
     }
 
     /**
-     * Updates a user link on an account or property.
+     * Updates a subproperty Event Filter.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18415,56 +17756,56 @@ export namespace analyticsadmin_v1alpha {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
-      params: Params$Resource$Properties$Userlinks$Patch,
+      params: Params$Resource$Properties$Subpropertyeventfilters$Patch,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     patch(
-      params?: Params$Resource$Properties$Userlinks$Patch,
+      params?: Params$Resource$Properties$Subpropertyeventfilters$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>;
     patch(
-      params: Params$Resource$Properties$Userlinks$Patch,
+      params: Params$Resource$Properties$Subpropertyeventfilters$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     patch(
-      params: Params$Resource$Properties$Userlinks$Patch,
+      params: Params$Resource$Properties$Subpropertyeventfilters$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
     ): void;
     patch(
-      params: Params$Resource$Properties$Userlinks$Patch,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+      params: Params$Resource$Properties$Subpropertyeventfilters$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
     ): void;
     patch(
       paramsOrCallback?:
-        | Params$Resource$Properties$Userlinks$Patch
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+        | Params$Resource$Properties$Subpropertyeventfilters$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaUserLink>
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Userlinks$Patch;
+        {}) as Params$Resource$Properties$Subpropertyeventfilters$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Userlinks$Patch;
+        params = {} as Params$Resource$Properties$Subpropertyeventfilters$Patch;
         options = {};
       }
 
@@ -18489,132 +17830,73 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter>(
           parameters
         );
       }
     }
   }
 
-  export interface Params$Resource$Properties$Userlinks$Audit
+  export interface Params$Resource$Properties$Subpropertyeventfilters$Create
     extends StandardParameters {
     /**
-     * Required. Example format: accounts/1234
+     * Required. The ordinary property for which to create a subproperty event filter. Format: properties/property_id Example: properties/123
      */
     parent?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksRequest;
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter;
   }
-  export interface Params$Resource$Properties$Userlinks$Batchcreate
+  export interface Params$Resource$Properties$Subpropertyeventfilters$Delete
     extends StandardParameters {
     /**
-     * Required. The account or property that all user links in the request are for. This field is required. The parent field in the CreateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest;
-  }
-  export interface Params$Resource$Properties$Userlinks$Batchdelete
-    extends StandardParameters {
-    /**
-     * Required. The account or property that all user links in the request are for. The parent of all values for user link names to delete must match this field. Example format: accounts/1234
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest;
-  }
-  export interface Params$Resource$Properties$Userlinks$Batchget
-    extends StandardParameters {
-    /**
-     * Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId\}/userLinks/{userLinkId\}
-     */
-    names?: string[];
-    /**
-     * Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Properties$Userlinks$Batchupdate
-    extends StandardParameters {
-    /**
-     * Required. The account or property that all user links in the request are for. The parent field in the UpdateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest;
-  }
-  export interface Params$Resource$Properties$Userlinks$Create
-    extends StandardParameters {
-    /**
-     * Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.
-     */
-    notifyNewUser?: boolean;
-    /**
-     * Required. Example format: accounts/1234
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaUserLink;
-  }
-  export interface Params$Resource$Properties$Userlinks$Delete
-    extends StandardParameters {
-    /**
-     * Required. Example format: accounts/1234/userLinks/5678
+     * Required. Resource name of the subproperty event filter to delete. Format: properties/property_id/subpropertyEventFilters/subproperty_event_filter Example: properties/123/subpropertyEventFilters/456
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Userlinks$Get
+  export interface Params$Resource$Properties$Subpropertyeventfilters$Get
     extends StandardParameters {
     /**
-     * Required. Example format: accounts/1234/userLinks/5678
+     * Required. Resource name of the subproperty event filter to lookup. Format: properties/property_id/subpropertyEventFilters/subproperty_event_filter Example: properties/123/subpropertyEventFilters/456
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Userlinks$List
+  export interface Params$Resource$Properties$Subpropertyeventfilters$List
     extends StandardParameters {
     /**
-     * The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 200 user links will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     * Optional. The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLinks` must match the call that provided the page token.
+     * Optional. A page token, received from a previous `ListSubpropertyEventFilters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubpropertyEventFilters` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. Example format: accounts/1234
+     * Required. Resource name of the ordinary property. Format: properties/property_id Example: properties/123
      */
     parent?: string;
   }
-  export interface Params$Resource$Properties$Userlinks$Patch
+  export interface Params$Resource$Properties$Subpropertyeventfilters$Patch
     extends StandardParameters {
     /**
-     * Output only. Example format: properties/1234/userLinks/5678
+     * Output only. Format: properties/{ordinary_property_id\}/subpropertyEventFilters/{sub_property_event_filter\} Example: properties/1234/subpropertyEventFilters/5678
      */
     name?: string;
+    /**
+     * Required. The list of fields to update. Field names must be in snake case (for example, "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaUserLink;
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter;
   }
 }

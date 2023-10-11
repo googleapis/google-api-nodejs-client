@@ -3090,7 +3090,7 @@ export namespace documentai_v1beta2 {
     updateTime?: string | null;
   }
   /**
-   * A singleton resource under a Processor which configures a collection of documents. Next Id: 8.
+   * A singleton resource under a Processor which configures a collection of documents.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Dataset {
     /**

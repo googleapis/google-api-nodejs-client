@@ -3674,7 +3674,7 @@
       }
     }
   },
-  "revision": "20230911",
+  "revision": "20231002",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -5259,6 +5259,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "proxyProtocolConfig": {
+          "$ref": "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig",
+          "description": "Optional. Protocol config data for the Proxy."
+        },
         "proxyUri": {
           "description": "Required. The URI of the proxy server.",
           "type": "string"
@@ -5276,6 +5280,20 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig": {
+      "description": "The protocol data that specifies how to communicate with Partner's Proxy.",
+      "id": "GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig",
+      "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Untyped property bag to be sent back to the proxy using client specific mechanism.",
+          "type": "object"
         }
       },
       "type": "object"

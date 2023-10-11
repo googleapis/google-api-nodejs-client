@@ -517,6 +517,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "generateClientCertificate": {
+                  "description": "Generate a client certificate signed by a Cluster CA. The sole purpose of this endpoint is to support AlloyDB connectors and the Auth Proxy client. The endpoint's behavior is subject to change without notice, so do not rely on its behavior remaining constant. Future changes will not break AlloyDB connectors or the Auth Proxy client.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:generateClientCertificate",
+                  "httpMethod": "POST",
+                  "id": "alloydb.projects.locations.clusters.generateClientCertificate",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the parent resource. The required format is: * projects/{project}/locations/{location}/clusters/{cluster}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:generateClientCertificate",
+                  "request": {
+                    "$ref": "GenerateClientCertificateRequest"
+                  },
+                  "response": {
+                    "$ref": "GenerateClientCertificateResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single Cluster.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}",
@@ -901,6 +929,36 @@
                       "path": "v1/{+name}",
                       "response": {
                         "$ref": "Instance"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "getConnectionInfo": {
+                      "description": "Get instance metadata used for a connection.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/instances/{instancesId}/connectionInfo",
+                      "httpMethod": "GET",
+                      "id": "alloydb.projects.locations.clusters.instances.getConnectionInfo",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the parent resource. The required format is: projects/{project}/locations/{location}/clusters/{cluster}/instances/{instance}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/connectionInfo",
+                      "response": {
+                        "$ref": "ConnectionInfo"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1431,7 +1489,7 @@
       }
     }
   },
-  "revision": "20230821",
+  "revision": "20230918",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AutomatedBackupPolicy": {
@@ -1816,7 +1874,7 @@
         },
         "network": {
           "deprecated": true,
-          "description": "Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project}/global/networks/{network_id}\". This is required to create a cluster. It can be updated, but it cannot be removed. Deprecated, use network_config.network instead.",
+          "description": "Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project}/global/networks/{network_id}\". This is required to create a cluster. Deprecated, use network_config.network instead.",
           "type": "string"
         },
         "networkConfig": {
@@ -1879,6 +1937,27 @@
           "description": "Output only. Update time stamp",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConnectionInfo": {
+      "description": "ConnectionInfo singleton resource. https://google.aip.dev/156",
+      "id": "ConnectionInfo",
+      "properties": {
+        "instanceUid": {
+          "description": "Output only. The unique ID of the Instance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "Output only. The private network IP address for the Instance. This is the default IP for the instance and is always created (even if enable_public_ip is set). This is the connection endpoint for an end-user application.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the ConnectionInfo singleton resource, e.g.: projects/{project}/locations/{location}/clusters/*/instances/*/connectionInfo This field currently has no semantic meaning.",
           "type": "string"
         }
       },
@@ -2030,6 +2109,45 @@
         "validateOnly": {
           "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the failover.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateClientCertificateRequest": {
+      "description": "Message for requests to generate a client certificate signed by the Cluster CA.",
+      "id": "GenerateClientCertificateRequest",
+      "properties": {
+        "certDuration": {
+          "description": "Optional. An optional hint to the endpoint to generate the client certificate with the requested duration. The duration can be from 1 hour to 24 hours. The endpoint may or may not honor the hint. If the hint is left unspecified or is not honored, then the endpoint will pick an appropriate default duration.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "publicKey": {
+          "description": "Optional. The public key from the client.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateClientCertificateResponse": {
+      "description": "Message returned by a GenerateClientCertificate operation.",
+      "id": "GenerateClientCertificateResponse",
+      "properties": {
+        "caCert": {
+          "description": "Optional. The pem-encoded cluster ca X.509 certificate.",
+          "type": "string"
+        },
+        "pemCertificateChain": {
+          "description": "Output only. The pem-encoded chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -2508,7 +2626,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project_number}/global/networks/{network_id}\". This is required to create a cluster. It can be updated, but it cannot be removed.",
+          "description": "Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project_number}/global/networks/{network_id}\". This is required to create a cluster.",
           "type": "string"
         }
       },
@@ -2890,6 +3008,10 @@
         "backupRetentionSettings": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainRetentionSettings",
           "description": "Backup retention settings."
+        },
+        "pointInTimeRecoveryEnabled": {
+          "description": "Whether point-in-time recovery is enabled. This is optional field, if the database service does not have this feature or metadata is not available in control plane, this can be omitted.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2929,6 +3051,21 @@
       },
       "type": "object"
     },
+    "StorageDatabasecenterPartnerapiV1mainCompliance": {
+      "description": "Contains compliance information about a security standard indicating unmet recommendations.",
+      "id": "StorageDatabasecenterPartnerapiV1mainCompliance",
+      "properties": {
+        "standard": {
+          "description": "Industry-wide compliance standards or benchmarks, such as CIS, PCI, and OWASP.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the standard or benchmark, for example, 1.1",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed": {
       "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform.",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed",
@@ -2944,23 +3081,134 @@
             "FEEDTYPE_UNSPECIFIED",
             "RESOURCE_METADATA",
             "OBSERVABILITY_DATA",
-            "COMPLIANCE_DATA"
+            "SECURITY_FINDING_DATA"
           ],
           "enumDescriptions": [
             "",
             "Database resource metadata feed from control plane",
             "Database resource monitoring data",
-            "Database resource compliance feed"
+            "Database resource security health signal data"
           ],
           "type": "string"
+        },
+        "resourceHealthSignalData": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData",
+          "description": "More feed data would be added in subsequent CLs"
         },
         "resourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
           "description": "Required. Primary key associated with the Resource"
         },
         "resourceMetadata": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
-          "description": "More feed data would be added in subsequent CLs"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData": {
+      "description": "Common model for database resource health signal data.",
+      "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData",
+      "properties": {
+        "additionalMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Any other additional metadata",
+          "type": "object"
+        },
+        "compliance": {
+          "description": "Industry standards associated with this signal; if this signal is an issue, that could be a violation of the associated industry standard(s). For example, AUTO_BACKUP_DISABLED signal is associated with CIS GCP 1.1, CIS GCP 1.2, CIS GCP 1.3, NIST 800-53 and ISO-27001 compliance standards. If a database resource does not have automated backup enable, it will violate these following industry standards.",
+          "items": {
+            "$ref": "StorageDatabasecenterPartnerapiV1mainCompliance"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Description associated with signal",
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "The last time at which the event described by this signal took place",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "externalUri": {
+          "description": "The external-uri of the signal, using which more information about this signal can be obtained. In GCP, this will take user to SCC page to get more details about signals.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the signal, ex: PUBLIC_SQL_INSTANCE, SQL_LOG_ERROR_VERBOSITY etc.",
+          "type": "string"
+        },
+        "provider": {
+          "description": "Cloud provider name. Ex: GCP/AWS/Azure/OnPrem/SelfManaged",
+          "enum": [
+            "PROVIDER_UNSPECIFIED",
+            "GCP",
+            "AWS",
+            "AZURE",
+            "ONPREM",
+            "SELFMANAGED",
+            "PROVIDER_OTHER"
+          ],
+          "enumDescriptions": [
+            "",
+            "Google cloud platform provider",
+            "Amazon web service",
+            "Azure web service",
+            "On-prem database resources.",
+            "Self-managed database provider. These are resources on a cloud platform, e.g., database resource installed in a GCE VM, but not a managed database service.",
+            "For the rest of the other categories. Other refers to the rest of other database service providers, this could be smaller cloud provider. This needs to be provided when the provider is known, but it is not present in the existing set of enum values."
+          ],
+          "type": "string"
+        },
+        "resourceContainer": {
+          "description": "Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"gcp/projects/123\".",
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
+          "type": "string"
+        },
+        "signalClass": {
+          "description": "The class of the signal, such as if it's a THREAT or VULNERABILITY.",
+          "enum": [
+            "CLASS_UNSPECIFIED",
+            "THREAT",
+            "VULNERABILITY",
+            "MISCONFIGURATION",
+            "OBSERVATION",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified signal class.",
+            "Describes unwanted or malicious activity.",
+            "Describes a potential weakness in software that increases risk to Confidentiality & Integrity & Availability.",
+            "Describes a potential weakness in cloud resource/asset configuration that increases risk.",
+            "Describes a security observation that is for informational purposes.",
+            "Describes an error that prevents some SCC functionality."
+          ],
+          "type": "string"
+        },
+        "signalId": {
+          "description": "Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "RESOLVED",
+            "MUTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The signal requires attention and has not been addressed yet.",
+            "The signal has been fixed, triaged as a non-issue or otherwise addressed and is no longer active.",
+            "The signal has been muted."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2985,14 +3233,18 @@
             "Google cloud platform provider",
             "Amazon web service",
             "Azure web service",
-            "On-prem database provider",
-            "Self-managed database provider",
-            "For rest of the other category"
+            "On-prem database resources.",
+            "Self-managed database provider. These are resources on a cloud platform, e.g., database resource installed in a GCE VM, but not a managed database service.",
+            "For the rest of the other categories. Other refers to the rest of other database service providers, this could be smaller cloud provider. This needs to be provided when the provider is known, but it is not present in the existing set of enum values."
           ],
           "type": "string"
         },
+        "providerDescription": {
+          "description": "Optional. Needs to be used only when the provider is PROVIDER_OTHER.",
+          "type": "string"
+        },
         "resourceType": {
-          "description": "Required. The type of resource this ID is identifying. Ex google.sqladmin.Instance, google.alloydb.cluster, google.sqladmin.Backup REQUIRED",
+          "description": "Required. The type of resource this ID is identifying. Ex alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel",
           "type": "string"
         },
         "uniqueId": {
@@ -3029,28 +3281,44 @@
             "STATE_UNSPECIFIED",
             "HEALTHY",
             "UNHEALTHY",
+            "SUSPENDED",
+            "DELETED",
             "STATE_OTHER"
           ],
           "enumDescriptions": [
             "",
             "The instance is running.",
             "Instance being created, updated, deleted or under maintenance",
+            "When instance is suspended",
+            "Instance is deleted.",
             "For rest of the other category"
           ],
           "type": "string"
         },
+        "customMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Any custom metadata associated with the resource (a JSON field)",
+          "type": "object"
+        },
         "expectedState": {
-          "description": "The actual instance state.",
+          "description": "The state that the instance is expected to be in. For example, an instance state can transition to UNHEALTHY due to wrong patch update, while the expected state will remain at the HEALTHY.",
           "enum": [
             "STATE_UNSPECIFIED",
             "HEALTHY",
             "UNHEALTHY",
+            "SUSPENDED",
+            "DELETED",
             "STATE_OTHER"
           ],
           "enumDescriptions": [
             "",
             "The instance is running.",
             "Instance being created, updated, deleted or under maintenance",
+            "When instance is suspended",
+            "Instance is deleted.",
             "For rest of the other category"
           ],
           "type": "string"
@@ -3081,18 +3349,18 @@
         },
         "primaryResourceId": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
-          "description": "Unique identifier for this resource's immediate parent resource. This parent resource id would be used to build resource hierarchy in condor platform."
+          "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested"
         },
         "product": {
           "$ref": "StorageDatabasecenterProtoCommonProduct",
           "description": "The product this resource represents."
         },
         "resourceContainer": {
-          "description": "Closest parent Cloud Resource Manager container of this resource. It must either be resource name of a Cloud Resource Manager project, for ex: \"projects/123\".",
+          "description": "Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of \"provider//\", such as \"gcp/projects/123\".",
           "type": "string"
         },
         "resourceName": {
-          "description": "Required. Different from unique_id, a resource name can be reused over time. That is after a resource named \"ABC\" is deleted, the name \"ABC\" can be used to to create a new resource within the same source.",
+          "description": "Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named \"ABC\" is deleted, the name \"ABC\" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
           "type": "string"
         },
         "updationTime": {

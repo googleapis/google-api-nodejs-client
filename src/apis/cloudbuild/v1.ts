@@ -329,6 +329,10 @@ export namespace cloudbuild_v1 {
      */
     peeredNetwork?: string | null;
     /**
+     * Immutable. IP range within the peered network. This is specified in CIDR notation with a slash and the subnet prefix size. You can optionally specify an IP address before the subnet prefix value. e.g. `192.168.0.0/29` would specify an IP range starting at 192.168.0.0 with a 29 bit prefix size. `/16` would specify a prefix size of 16 bits, with an automatically determined IP within the peered VPC. If unspecified, a value of `/24` will be used. The field only has an effect if peered_network is set.
+     */
+    peeredNetworkIpRange?: string | null;
+    /**
      * Required. Secret Manager secrets needed by the config.
      */
     secrets?: Schema$BitbucketServerSecrets;
@@ -2031,6 +2035,14 @@ export namespace cloudbuild_v1 {
      * Output only. Hash(es) of the build source, which can be used to verify that the original source integrity was maintained in the build. Note that `FileHashes` will only be populated if `BuildOptions` has requested a `SourceProvenanceHash`. The keys to this map are file paths used as build source and the values contain the hash values for those files. If the build source came in a single package such as a gzipped tarfile (`.tar.gz`), the `FileHash` will be for the single path to that file.
      */
     fileHashes?: {[key: string]: Schema$FileHashes} | null;
+    /**
+     * Output only. A copy of the build's `source.connected_repository`, if exists, with any revisions resolved.
+     */
+    resolvedConnectedRepository?: Schema$ConnectedRepository;
+    /**
+     * Output only. A copy of the build's `source.git_source`, if exists, with any revisions resolved.
+     */
+    resolvedGitSource?: Schema$GitSource;
     /**
      * A copy of the build's `source.repo_source`, if exists, with any revisions resolved.
      */

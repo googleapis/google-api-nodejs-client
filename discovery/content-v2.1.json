@@ -2174,7 +2174,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests a review of free listings in a specific region. This method is only available to selected merchants.",
+          "description": "Requests a review of free listings in a specific region. This method deprecated. Use the `MerchantSupportService` to view product and account issues and request a review.",
           "flatPath": "{merchantId}/freelistingsprogram/requestreview",
           "httpMethod": "POST",
           "id": "content.freelistingsprogram.requestreview",
@@ -2560,7 +2560,7 @@
           ]
         },
         "setomnichannelexperience": {
-          "description": "Sets the omnichannel experience for the specified country.",
+          "description": "Sets the omnichannel experience for the specified country. Only supported for merchants whose POS data provider is trusted to enable the corresponding experience. For more context, see these help articles [about LFP](https://support.google.com/merchants/answer/7676652) and [how to get started](https://support.google.com/merchants/answer/7676578) with it.",
           "flatPath": "{merchantId}/liasettings/{accountId}/setomnichannelexperience",
           "httpMethod": "POST",
           "id": "content.liasettings.setomnichannelexperience",
@@ -6461,7 +6461,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests a review of Shopping ads in a specific region. This method is only available to selected merchants.",
+          "description": "Requests a review of Shopping ads in a specific region. This method deprecated. Use the `MerchantSupportService` to view product and account issues and request a review.",
           "flatPath": "{merchantId}/shoppingadsprogram/requestreview",
           "httpMethod": "POST",
           "id": "content.shoppingadsprogram.requestreview",
@@ -6488,7 +6488,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20231009",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {

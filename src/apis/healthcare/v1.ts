@@ -522,7 +522,7 @@ export namespace healthcare_v1 {
      */
     text?: Schema$TextConfig;
     /**
-     * Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. `LOCATION` must be excluded within `TextConfig`, and must also be excluded within `ImageConfig` if image redaction is required.
+     * Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.
      */
     useRegionalDataProcessing?: boolean | null;
   }
@@ -643,6 +643,35 @@ export namespace healthcare_v1 {
      * Optional. A list of streaming configs used to configure the destination of streaming exports for every DICOM instance insertion in this DICOM store. After a new config is added to `stream_configs`, DICOM instance insertions are streamed to the new destination. When a config is removed from `stream_configs`, the server stops streaming to that destination. Each config must contain a unique destination.
      */
     streamConfigs?: Schema$GoogleCloudHealthcareV1DicomStreamConfig[];
+  }
+  /**
+   * DicomStoreMetrics contains metrics describing a DICOM store.
+   */
+  export interface Schema$DicomStoreMetrics {
+    /**
+     * Total blob storage bytes for all instances in the store.
+     */
+    blobStorageSizeBytes?: string | null;
+    /**
+     * Number of instances in the store.
+     */
+    instanceCount?: string | null;
+    /**
+     * Resource name of the DICOM store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     */
+    name?: string | null;
+    /**
+     * Number of series in the store.
+     */
+    seriesCount?: string | null;
+    /**
+     * Total structured storage bytes for all instances in the store.
+     */
+    structuredStorageSizeBytes?: string | null;
+    /**
+     * Number of studies in the store.
+     */
+    studyCount?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -1240,6 +1269,36 @@ export namespace healthcare_v1 {
      * Determines whether to reject duplicate messages. A duplicate message is a message with the same raw bytes as a message that has already been ingested/created in this HL7v2 store. The default value is false, meaning that the store accepts the duplicate messages and it also returns the same ACK message in the IngestMessageResponse as has been returned previously. Note that only one resource is created in the store. When this field is set to true, CreateMessage/IngestMessage requests with a duplicate message will be rejected by the store, and IngestMessageErrorDetail returns a NACK message upon rejection.
      */
     rejectDuplicateMessage?: boolean | null;
+  }
+  /**
+   * Count of messages and total storage size by type for a given HL7 store.
+   */
+  export interface Schema$Hl7V2StoreMetric {
+    /**
+     * The total count of HL7v2 messages in the store for the given message type.
+     */
+    count?: string | null;
+    /**
+     * The Hl7v2 message type this metric applies to, such as `ADT` or `ORU`.
+     */
+    messageType?: string | null;
+    /**
+     * The total amount of structured storage used by HL7v2 messages of this message type in the store.
+     */
+    structuredStorageSizeBytes?: string | null;
+  }
+  /**
+   * List of metrics for a given HL7v2 store.
+   */
+  export interface Schema$Hl7V2StoreMetrics {
+    /**
+     * List of HL7v2 store metrics by message type.
+     */
+    metrics?: Schema$Hl7V2StoreMetric[];
+    /**
+     * The resource name of the HL7v2 store to get metrics for, in the format `projects/{project_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
+     */
+    name?: string | null;
   }
   /**
    * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
@@ -1970,6 +2029,27 @@ export namespace healthcare_v1 {
     setId?: string | null;
   }
   /**
+   * SeriesMetrics contains metrics describing a DICOM series.
+   */
+  export interface Schema$SeriesMetrics {
+    /**
+     * Total blob storage bytes for all instances in the series.
+     */
+    blobStorageSizeBytes?: string | null;
+    /**
+     * Number of instances in the series.
+     */
+    instanceCount?: string | null;
+    /**
+     * The series resource path. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}/dicomWeb/studies/{study_uid\}/series/{series_uid\}`.
+     */
+    series?: string | null;
+    /**
+     * Total structured storage bytes for all instances in the series.
+     */
+    structuredStorageSizeBytes?: string | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -2036,6 +2116,31 @@ export namespace healthcare_v1 {
      * Supply a FHIR resource type (such as "Patient" or "Observation"). See https://www.hl7.org/fhir/valueset-resource-types.html for a list of all FHIR resource types. The server treats an empty list as an intent to stream all the supported resource types in this FHIR store.
      */
     resourceTypes?: string[] | null;
+  }
+  /**
+   * StudyMetrics contains metrics describing a DICOM study.
+   */
+  export interface Schema$StudyMetrics {
+    /**
+     * Total blob storage bytes for all instances in the study.
+     */
+    blobStorageSizeBytes?: string | null;
+    /**
+     * Number of instances in the study.
+     */
+    instanceCount?: string | null;
+    /**
+     * Number of series in the study.
+     */
+    seriesCount?: string | null;
+    /**
+     * Total structured storage bytes for all instances in the study.
+     */
+    structuredStorageSizeBytes?: string | null;
+    /**
+     * The study resource path. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}/dicomWeb/studies/{study_uid\}`.
+     */
+    study?: string | null;
   }
   /**
    * List of tags to be filtered.
@@ -7047,9 +7152,14 @@ export namespace healthcare_v1 {
 
   export class Resource$Projects$Locations$Datasets$Dicomstores {
     context: APIRequestContext;
+    dicomWeb: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb;
     studies: Resource$Projects$Locations$Datasets$Dicomstores$Studies;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.dicomWeb =
+        new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb(
+          this.context
+        );
       this.studies =
         new Resource$Projects$Locations$Datasets$Dicomstores$Studies(
           this.context
@@ -7484,6 +7594,99 @@ export namespace healthcare_v1 {
         );
       } else {
         return createAPIRequest<Schema$DicomStore>(parameters);
+      }
+    }
+
+    /**
+     * Gets metrics associated with the DICOM store.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDICOMStoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDICOMStoreMetrics(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DicomStoreMetrics>;
+    getDICOMStoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDICOMStoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics,
+      options: MethodOptions | BodyResponseCallback<Schema$DicomStoreMetrics>,
+      callback: BodyResponseCallback<Schema$DicomStoreMetrics>
+    ): void;
+    getDICOMStoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics,
+      callback: BodyResponseCallback<Schema$DicomStoreMetrics>
+    ): void;
+    getDICOMStoreMetrics(
+      callback: BodyResponseCallback<Schema$DicomStoreMetrics>
+    ): void;
+    getDICOMStoreMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics
+        | BodyResponseCallback<Schema$DicomStoreMetrics>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DicomStoreMetrics>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DicomStoreMetrics>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DicomStoreMetrics>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:getDICOMStoreMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DicomStoreMetrics>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DicomStoreMetrics>(parameters);
       }
     }
 
@@ -8428,6 +8631,13 @@ export namespace healthcare_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Getdicomstoremetrics
+    extends StandardParameters {
+    /**
+     * The resource name of the DICOM store to get metrics for.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy
     extends StandardParameters {
     /**
@@ -8558,6 +8768,231 @@ export namespace healthcare_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb {
+    context: APIRequestContext;
+    studies: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.studies =
+        new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies {
+    context: APIRequestContext;
+    series: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.series =
+        new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series(
+          this.context
+        );
+    }
+
+    /**
+     * GetStudyMetrics returns metrics for a study.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getStudyMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getStudyMetrics(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StudyMetrics>;
+    getStudyMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getStudyMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics,
+      options: MethodOptions | BodyResponseCallback<Schema$StudyMetrics>,
+      callback: BodyResponseCallback<Schema$StudyMetrics>
+    ): void;
+    getStudyMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics,
+      callback: BodyResponseCallback<Schema$StudyMetrics>
+    ): void;
+    getStudyMetrics(callback: BodyResponseCallback<Schema$StudyMetrics>): void;
+    getStudyMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics
+        | BodyResponseCallback<Schema$StudyMetrics>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StudyMetrics>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StudyMetrics>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$StudyMetrics> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+study}:getStudyMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['study'],
+        pathParams: ['study'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StudyMetrics>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StudyMetrics>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics
+    extends StandardParameters {
+    /**
+     * The study resource path. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}/dicomWeb/studies/{study_uid\}`.
+     */
+    study?: string;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * GetSeriesMetrics returns metrics for a series.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSeriesMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSeriesMetrics(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SeriesMetrics>;
+    getSeriesMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSeriesMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics,
+      options: MethodOptions | BodyResponseCallback<Schema$SeriesMetrics>,
+      callback: BodyResponseCallback<Schema$SeriesMetrics>
+    ): void;
+    getSeriesMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics,
+      callback: BodyResponseCallback<Schema$SeriesMetrics>
+    ): void;
+    getSeriesMetrics(
+      callback: BodyResponseCallback<Schema$SeriesMetrics>
+    ): void;
+    getSeriesMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics
+        | BodyResponseCallback<Schema$SeriesMetrics>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SeriesMetrics>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SeriesMetrics>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SeriesMetrics> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+series}:getSeriesMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['series'],
+        pathParams: ['series'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SeriesMetrics>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SeriesMetrics>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Getseriesmetrics
+    extends StandardParameters {
+    /**
+     * The series resource path. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}/dicomWeb/studies/{study_uid\}/series/{series_uid\}`.
+     */
+    series?: string;
   }
 
   export class Resource$Projects$Locations$Datasets$Dicomstores$Studies {
@@ -13475,6 +13910,99 @@ export namespace healthcare_v1 {
     }
 
     /**
+     * Gets metrics asssociated with the HL7v2 store.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getHL7v2StoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getHL7v2StoreMetrics(
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Hl7V2StoreMetrics>;
+    getHL7v2StoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getHL7v2StoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics,
+      options: MethodOptions | BodyResponseCallback<Schema$Hl7V2StoreMetrics>,
+      callback: BodyResponseCallback<Schema$Hl7V2StoreMetrics>
+    ): void;
+    getHL7v2StoreMetrics(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics,
+      callback: BodyResponseCallback<Schema$Hl7V2StoreMetrics>
+    ): void;
+    getHL7v2StoreMetrics(
+      callback: BodyResponseCallback<Schema$Hl7V2StoreMetrics>
+    ): void;
+    getHL7v2StoreMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics
+        | BodyResponseCallback<Schema$Hl7V2StoreMetrics>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Hl7V2StoreMetrics>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Hl7V2StoreMetrics>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$Hl7V2StoreMetrics>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:getHL7v2StoreMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Hl7V2StoreMetrics>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Hl7V2StoreMetrics>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      *
      * @param params - Parameters for request
@@ -14048,6 +14576,13 @@ export namespace healthcare_v1 {
     extends StandardParameters {
     /**
      * The resource name of the HL7v2 store to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Gethl7v2storemetrics
+    extends StandardParameters {
+    /**
+     * The resource name of the HL7v2 store to get metrics for, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
      */
     name?: string;
   }

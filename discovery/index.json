@@ -2447,6 +2447,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/display-video/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "displayvideo:v3",
+      "name": "displayvideo",
+      "version": "v3",
+      "title": "Display & Video 360 API",
+      "description": "Display & Video 360 API allows users to automate complex Display & Video 360 workflows, such as creating insertion orders and setting targeting options for individual line items.",
+      "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v3",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/display-video/",
       "preferred": true
     },
     {
@@ -3536,8 +3551,8 @@
       "id": "indexing:v3",
       "name": "indexing",
       "version": "v3",
-      "title": "Indexing API",
-      "description": "Notifies Google when your web pages change.",
+      "title": "Web Search Indexing API",
+      "description": "Notifies Google Web Search when your web pages change.",
       "discoveryRestUrl": "https://indexing.googleapis.com/$discovery/rest?version=v3",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -5090,6 +5105,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/safe-browsing/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "safebrowsing:v5",
+      "name": "safebrowsing",
+      "version": "v5",
+      "title": "Safe Browsing API",
+      "description": "Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources. The Safe Browsing APIs are for non-commercial use only. If you need to use APIs to detect malicious URLs for commercial purposes – meaning “for sale or revenue-generating purposes” – please refer to the Web Risk API.",
+      "discoveryRestUrl": "https://safebrowsing.googleapis.com/$discovery/rest?version=v5",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/safe-browsing/",
       "preferred": true
     },
     {
@@ -6080,6 +6110,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/migrate/virtual-machines",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "vmwareengine:v1",
+      "name": "vmwareengine",
+      "version": "v1",
+      "title": "VMware Engine API",
+      "description": "The Google VMware Engine API lets you programmatically manage VMware environments.",
+      "discoveryRestUrl": "https://vmwareengine.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/solutions/vmware-as-a-service",
       "preferred": true
     },
     {

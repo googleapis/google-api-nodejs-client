@@ -304,7 +304,7 @@
           ]
         },
         "get": {
-          "description": "Returns details about a space. For an example, see [Get a space](https://developers.google.com/chat/api/guides/v1/spaces/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users). [User authentication](https://developers.google.com/chat/api/guides/auth/users).",
+          "description": "Returns details about a space. For an example, see [Get a space](https://developers.google.com/chat/api/guides/v1/spaces/get). Requires [authentication](https://developers.google.com/chat/api/guides/auth). Fully supports [service account authentication](https://developers.google.com/chat/api/guides/auth/service-accounts) and [user authentication](https://developers.google.com/chat/api/guides/auth/users).",
           "flatPath": "v1/spaces/{spacesId}",
           "httpMethod": "GET",
           "id": "chat.spaces.get",
@@ -474,6 +474,7 @@
                 "$ref": "Membership"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/chat.import",
                 "https://www.googleapis.com/auth/chat.memberships",
                 "https://www.googleapis.com/auth/chat.memberships.app"
               ]
@@ -549,6 +550,7 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/chat.bot",
+                "https://www.googleapis.com/auth/chat.import",
                 "https://www.googleapis.com/auth/chat.memberships",
                 "https://www.googleapis.com/auth/chat.memberships.readonly"
               ]
@@ -955,7 +957,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231008",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1062,7 +1064,7 @@
       "type": "object"
     },
     "Annotation": {
-      "description": "Output only. Annotations associated with the plain-text body of the message. To add basic formatting to a text message, see [Format text messages](https://developers.google.com/chat/api/guides/message-formats/text#format-texts). Example plain-text message body: ``` Hello @FooBot how are you!\" ``` The corresponding annotations metadata: ``` \"annotations\":[{ \"type\":\"USER_MENTION\", \"startIndex\":6, \"length\":7, \"userMention\": { \"user\": { \"name\":\"users/{user}\", \"displayName\":\"FooBot\", \"avatarUrl\":\"https://goo.gl/aeDtrS\", \"type\":\"BOT\" }, \"type\":\"MENTION\" } }] ```",
+      "description": "Output only. Annotations associated with the plain-text body of the message. To add basic formatting to a text message, see [Format text messages](https://developers.google.com/chat/format-messages). Example plain-text message body: ``` Hello @FooBot how are you!\" ``` The corresponding annotations metadata: ``` \"annotations\":[{ \"type\":\"USER_MENTION\", \"startIndex\":6, \"length\":7, \"userMention\": { \"user\": { \"name\":\"users/{user}\", \"displayName\":\"FooBot\", \"avatarUrl\":\"https://goo.gl/aeDtrS\", \"type\":\"BOT\" }, \"type\":\"MENTION\" } }] ```",
       "id": "Annotation",
       "properties": {
         "length": {
@@ -1710,7 +1712,7 @@
           "type": "array"
         },
         "persistValues": {
-          "description": "Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. To let the user make changes while the action is being processed, set [`LoadIndicator`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) to `NONE`. For [card messages](https://developers.google.com/chat/api/guides/message-formats/cards) in Chat apps, you must also set the action's [`ResponseType`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#responsetype) to `UPDATE_MESSAGE` and use the same [`card_id`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#CardWithId) from the card that contained the action. If `false`, the form values are cleared when the action is triggered. To prevent the user from making changes while the action is being processed, set [`LoadIndicator`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) to `SPINNER`.",
+          "description": "Indicates whether form values persist after the action. The default value is `false`. If `true`, form values remain after the action is triggered. To let the user make changes while the action is being processed, set [`LoadIndicator`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) to `NONE`. For [card messages](https://developers.google.com/chat/api/guides/v1/messages/create#create) in Chat apps, you must also set the action's [`ResponseType`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#responsetype) to `UPDATE_MESSAGE` and use the same [`card_id`](https://developers.google.com/chat/api/reference/rest/v1/spaces.messages#CardWithId) from the card that contained the action. If `false`, the form values are cleared when the action is triggered. To prevent the user from making changes while the action is being processed, set [`LoadIndicator`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#loadindicator) to `SPINNER`.",
           "type": "boolean"
         }
       },
@@ -1833,7 +1835,7 @@
         },
         "fixedFooter": {
           "$ref": "GoogleAppsCardV1CardFixedFooter",
-          "description": "The fixed footer shown at the bottom of this card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/message-formats/cards)."
+          "description": "The fixed footer shown at the bottom of this card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/v1/messages/create#create)."
         },
         "header": {
           "$ref": "GoogleAppsCardV1CardHeader",
@@ -1887,7 +1889,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1CardFixedFooter": {
-      "description": "A persistent (sticky) footer that that appears at the bottom of the card. For an example in Google Chat apps, see [Card footer](https://developers.google.com/chat/ui/widgets/card-fixed-footer). Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/message-formats/cards).",
+      "description": "A persistent (sticky) footer that that appears at the bottom of the card. For an example in Google Chat apps, see [Card footer](https://developers.google.com/chat/ui/widgets/card-fixed-footer). Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. Supported by Google Workspace Add-ons and Chat apps. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/chat/how-tos/dialogs), but not [card messages](https://developers.google.com/chat/api/guides/v1/messages/create#create).",
       "id": "GoogleAppsCardV1CardFixedFooter",
       "properties": {
         "primaryButton": {
@@ -2067,7 +2069,7 @@
         },
         "endIcon": {
           "$ref": "GoogleAppsCardV1Icon",
-          "description": "An icon displayed after the text. Supports [built-in](https://developers.google.com/chat/api/guides/message-formats/cards#builtinicons) and [custom](https://developers.google.com/chat/api/guides/message-formats/cards#customicons) icons."
+          "description": "An icon displayed after the text. Supports [built-in](https://developers.google.com/chat/format-messages#builtinicons) and [custom](https://developers.google.com/chat/format-messages#customicons) icons."
         },
         "icon": {
           "$ref": "GoogleAppsCardV1Icon",
@@ -2087,7 +2089,7 @@
           "description": "A switch widget that a user can click to change its state and trigger an action."
         },
         "text": {
-          "description": "Required. The primary text. Supports simple formatting. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
+          "description": "Required. The primary text. Supports simple formatting. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
           "type": "string"
         },
         "topLabel": {
@@ -2176,7 +2178,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1Icon": {
-      "description": "An icon displayed in a widget on a card. For an example in Google Chat apps, see [Icon](https://developers.google.com/chat/ui/widgets/icon). Supports [built-in](https://developers.google.com/chat/api/guides/message-formats/cards#builtinicons) and [custom](https://developers.google.com/chat/api/guides/message-formats/cards#customicons) icons.",
+      "description": "An icon displayed in a widget on a card. For an example in Google Chat apps, see [Icon](https://developers.google.com/chat/ui/widgets/icon). Supports [built-in](https://developers.google.com/chat/format-messages#builtinicons) and [custom](https://developers.google.com/chat/format-messages#customicons) icons.",
       "id": "GoogleAppsCardV1Icon",
       "properties": {
         "altText": {
@@ -2200,7 +2202,7 @@
           "type": "string"
         },
         "knownIcon": {
-          "description": "Display one of the built-in icons provided by Google Workspace. For example, to display an airplane icon, specify `AIRPLANE`. For a bus, specify `BUS`. For a full list of supported icons, see [built-in icons](https://developers.google.com/chat/api/guides/message-formats/cards#builtinicons).",
+          "description": "Display one of the built-in icons provided by Google Workspace. For example, to display an airplane icon, specify `AIRPLANE`. For a bus, specify `BUS`. For a full list of supported icons, see [built-in icons](https://developers.google.com/chat/format-messages#builtinicons).",
           "type": "string"
         }
       },
@@ -2368,7 +2370,7 @@
           "type": "boolean"
         },
         "header": {
-          "description": "Text that appears at the top of a section. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
+          "description": "Text that appears at the top of a section. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
           "type": "string"
         },
         "uncollapsibleWidgetsCount": {
@@ -2589,7 +2591,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1TextParagraph": {
-      "description": "A paragraph of text that supports formatting. For an example in Google Chat apps, see [Text paragraph](https://developers.google.com/chat/ui/widgets/text-paragraph). For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards##card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
+      "description": "A paragraph of text that supports formatting. For an example in Google Chat apps, see [Text paragraph](https://developers.google.com/chat/ui/widgets/text-paragraph). For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
       "id": "GoogleAppsCardV1TextParagraph",
       "properties": {
         "text": {
@@ -2657,7 +2659,7 @@
         },
         "textParagraph": {
           "$ref": "GoogleAppsCardV1TextParagraph",
-          "description": "Displays a text paragraph. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` \"textParagraph\": { \"text\": \" *bold text*\" } ```"
+          "description": "Displays a text paragraph. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` \"textParagraph\": { \"text\": \" *bold text*\" } ```"
         }
       },
       "type": "object"
@@ -2845,7 +2847,7 @@
       "id": "KeyValue",
       "properties": {
         "bottomLabel": {
-          "description": "The text of the bottom label. Formatted text supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
+          "description": "The text of the bottom label. Formatted text supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
           "type": "string"
         },
         "button": {
@@ -2853,7 +2855,7 @@
           "description": "A button that can be clicked to trigger an action."
         },
         "content": {
-          "description": "The text of the content. Formatted text supported and always required. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
+          "description": "The text of the content. Formatted text supported and always required. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
           "type": "string"
         },
         "contentMultiline": {
@@ -2939,7 +2941,7 @@
           "description": "The `onclick` action. Only the top label, bottom label, and content region are clickable."
         },
         "topLabel": {
-          "description": "The text of the top label. Formatted text supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
+          "description": "The text of the top label. Formatted text supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
           "type": "string"
         }
       },
@@ -3055,7 +3057,7 @@
           "type": "string"
         },
         "role": {
-          "description": "Output only. User's role within a Chat space, which determines their permitted actions in the space.",
+          "description": "Optional. User's role within a Chat space, which determines their permitted actions in the space. [Developer Preview](https://developers.google.com/workspace/preview): This field can only be used as input in `UpdateMembership`.",
           "enum": [
             "MEMBERSHIP_ROLE_UNSPECIFIED",
             "ROLE_MEMBER",
@@ -3066,7 +3068,6 @@
             "A member of the space. The user has basic permissions, like sending messages to the space. In 1:1 and unnamed group conversations, everyone has this role.",
             "A space manager. The user has all basic permissions plus administrative permissions that let them manage the space, like adding or removing members. Only supported in SpaceType.SPACE."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -3172,6 +3173,11 @@
           "description": "A plain-text description of the message's cards, used when the actual cards can't be displayed—for example, mobile notifications.",
           "type": "string"
         },
+        "formattedText": {
+          "description": "Output only. Contains the message `text` with markups added to communicate formatting. This field might not capture all formatting visible in the UI, but includes the following: * [Markup syntax](https://developers.google.com/chat/format-messages) for bold, italic, strikethrough, monospace, and monospace block. * [User mentions](https://developers.google.com/chat/format-messages#messages-@mention) using the format ``. * Custom hyperlinks using the format `<{url}|{rendered_text}>` where the first string is the URL and the second is the rendered text—for example, ``. * Custom emoji using the format `:{emoji_name}:`—for example, `:smile:`. This doesn't apply to Unicode emoji, such as `U+1F600` for a grinning face emoji. For more information, see [View text formatting sent in a message](https://developers.google.com/chat/format-messages#view_text_formatting_sent_in_a_message)",
+          "readOnly": true,
+          "type": "string"
+        },
         "lastUpdateTime": {
           "description": "Output only. The time at which the message was last edited by a user. If the message has never been edited, this field is empty.",
           "format": "google-datetime",
@@ -3207,7 +3213,7 @@
           "description": "If your Chat app [authenticates as a user](https://developers.google.com/chat/api/guides/auth/users), the output populates the [space](https://developers.google.com/chat/api/reference/rest/v1/spaces) `name`."
         },
         "text": {
-          "description": "Plain-text body of the message. The first link to an image, video, or web page generates a [preview chip](https://developers.google.com/chat/how-tos/preview-links). You can also [@mention a Google Chat user](https://developers.google.com/chat/api/guides/message-formats/text#messages-@mention), or everyone in the space. To learn about creating text messages, see [Create a text message](https://developers.google.com/chat/api/guides/message-formats/text).",
+          "description": "Plain-text body of the message. The first link to an image, video, or web page generates a [preview chip](https://developers.google.com/chat/how-tos/preview-links). You can also [@mention a Google Chat user](https://developers.google.com/chat/format-messages#messages-@mention), or everyone in the space. To learn about creating text messages, see [Send a text message](https://developers.google.com/chat/api/guides/v1/messages/create#create-text-messages).",
           "type": "string"
         },
         "thread": {
@@ -3291,7 +3297,7 @@
       "id": "Section",
       "properties": {
         "header": {
-          "description": "The header of the section. Formatted text is supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
+          "description": "The header of the section. Formatted text is supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
           "type": "string"
         },
         "widgets": {
@@ -3559,7 +3565,7 @@
       "type": "object"
     },
     "TextParagraph": {
-      "description": "A paragraph of text. Formatted text supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/api/guides/message-formats/cards#card_text_formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
+      "description": "A paragraph of text. Formatted text supported. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/chat/format-messages#card-formatting) and [Formatting text in Google Workspace Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
       "id": "TextParagraph",
       "properties": {
         "text": {

@@ -1266,6 +1266,49 @@ export namespace retail_v2alpha {
     priceInfo?: Schema$GoogleCloudRetailV2alphaPriceInfo;
   }
   /**
+   * Project level logging config to control what level of log will be generated and written to Cloud Logging.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaLoggingConfig {
+    /**
+     * The log generation rule that applies by default to all services supporting log generation. It can be overridden by ServiceLogGenerationRule for service level control.
+     */
+    defaultLogGenerationRule?: Schema$GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule;
+    /**
+     * Required. Immutable. The name of the LoggingConfig singleton resource. Format: projects/x/loggingConfig
+     */
+    name?: string | null;
+    /**
+     * Controls logging configurations more granularly for each supported service. This overrides the default_log_generation_rule for the services specified. For those not mentioned, they will fallback to the default log generation rule.
+     */
+    serviceLogGenerationRules?: Schema$GoogleCloudRetailV2alphaLoggingConfigServiceLogGenerationRule[];
+  }
+  /**
+   * The logging configurations for services supporting log generation.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule {
+    /**
+     * The log sample rate for INFO level log entries. You can use this to reduce the number of entries generated for INFO level logs. DO NOT set this field if the logging_level is not LoggingLevel.LOG_ALL. Otherwise, an INVALID_ARGUMENT error is returned. Sample rate for INFO logs defaults to 1 when unset (generate and send all INFO logs to Cloud Logging). Its value must be greater than 0 and less than or equal to 1.
+     */
+    infoLogSampleRate?: number | null;
+    /**
+     * The logging level. By default it is set to `LOG_WARNINGS_AND_ABOVE`.
+     */
+    loggingLevel?: string | null;
+  }
+  /**
+   * The granular logging configurations for supported services.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaLoggingConfigServiceLogGenerationRule {
+    /**
+     * The log generation rule that applies to this service.
+     */
+    logGenerationRule?: Schema$GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule;
+    /**
+     * Required. Supported service names: "CatalogService", "CompletionService", "ControlService", "MerchantCenterStreaming", "ModelService", "PredictionService", "ProductService", "ServingConfigService", "UserEventService",
+     */
+    serviceName?: string | null;
+  }
+  /**
    * Represents a link between a Merchant Center account and a branch. After a link is established, products from the linked Merchant Center account are streamed to the linked branch.
    */
   export interface Schema$GoogleCloudRetailV2alphaMerchantCenterAccountLink {
@@ -3866,6 +3909,99 @@ export namespace retail_v2alpha {
     }
 
     /**
+     * Gets the LoggingConfig of the requested project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getLoggingConfig(
+      params: Params$Resource$Projects$Getloggingconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getLoggingConfig(
+      params?: Params$Resource$Projects$Getloggingconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaLoggingConfig>;
+    getLoggingConfig(
+      params: Params$Resource$Projects$Getloggingconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getLoggingConfig(
+      params: Params$Resource$Projects$Getloggingconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+    ): void;
+    getLoggingConfig(
+      params: Params$Resource$Projects$Getloggingconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+    ): void;
+    getLoggingConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+    ): void;
+    getLoggingConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getloggingconfig
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getloggingconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getloggingconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaLoggingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaLoggingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the Retail API service.
      *
      * @param params - Parameters for request
@@ -4053,6 +4189,99 @@ export namespace retail_v2alpha {
         );
       }
     }
+
+    /**
+     * Updates the LoggingConfig of the requested project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateLoggingConfig(
+      params: Params$Resource$Projects$Updateloggingconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateLoggingConfig(
+      params?: Params$Resource$Projects$Updateloggingconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaLoggingConfig>;
+    updateLoggingConfig(
+      params: Params$Resource$Projects$Updateloggingconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateLoggingConfig(
+      params: Params$Resource$Projects$Updateloggingconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+    ): void;
+    updateLoggingConfig(
+      params: Params$Resource$Projects$Updateloggingconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+    ): void;
+    updateLoggingConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+    ): void;
+    updateLoggingConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updateloggingconfig
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaLoggingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updateloggingconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Updateloggingconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaLoggingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaLoggingConfig>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Enrollsolution
@@ -4067,6 +4296,13 @@ export namespace retail_v2alpha {
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaEnrollSolutionRequest;
   }
+  export interface Params$Resource$Projects$Getloggingconfig
+    extends StandardParameters {
+    /**
+     * Required. Full LoggingConfig resource name. Format: projects/{project_number\}/loggingConfig
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Getretailproject
     extends StandardParameters {
     /**
@@ -4080,6 +4316,22 @@ export namespace retail_v2alpha {
      * Required. Full resource name of parent. Format: `projects/{project_number_or_id\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Updateloggingconfig
+    extends StandardParameters {
+    /**
+     * Required. Immutable. The name of the LoggingConfig singleton resource. Format: projects/x/loggingConfig
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided LoggingConfig to update. The following are the only supported fields: * default_log_generation_rule * per_service_log_generation_rules If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaLoggingConfig;
   }
 
   export class Resource$Projects$Locations {

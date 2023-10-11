@@ -1317,6 +1317,10 @@ export namespace containeranalysis_v1 {
      * Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
+    /**
+     * Optional. Option to specify the tool to fetch the source file for the build.
+     */
+    sourceFetcher?: string | null;
   }
   /**
    * Location of the source manifest in Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
@@ -3101,10 +3105,6 @@ export namespace containeranalysis_v1 {
      */
     details?: Schema$Detail[];
     /**
-     * Occurrence-specific extra details about the vulnerability.
-     */
-    extraDetails?: string | null;
-    /**
      * The note provider assigned severity of this vulnerability.
      */
     severity?: string | null;
@@ -3141,6 +3141,10 @@ export namespace containeranalysis_v1 {
      * The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity. When there are multiple PackageIssues for this vulnerability, they can have different effective severities because some might be provided by the distro while others are provided by the language ecosystem for a language pack. For this reason, it is advised to use the effective severity on the PackageIssue level. In the case where multiple PackageIssues have differing effective severities, this field should be the highest severity for any of the PackageIssues.
      */
     effectiveSeverity?: string | null;
+    /**
+     * Occurrence-specific extra details about the vulnerability.
+     */
+    extraDetails?: string | null;
     /**
      * Output only. Whether at least one of the affected packages has a fix available.
      */

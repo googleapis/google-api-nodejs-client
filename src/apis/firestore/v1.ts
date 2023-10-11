@@ -752,7 +752,7 @@ export namespace firestore_v1 {
      */
     outputUriPrefix?: string | null;
     /**
-     * The timestamp that corresponds to the version of the database to be exported. The timestamp must be rounded to the minute, in the past, and not older than 1 hour. If specified, then the exported documents will represent a consistent view of the database at the provided time. Otherwise, there are no guarantees about the consistency of the exported documents.
+     * The timestamp that corresponds to the version of the database to be exported. The timestamp must be rounded to the minute, in the past, and not older than 5 days. Please choose a reasonable timestamp based on prior knowledge on how long exports take as data at provided snapshot timestamp can expire during export. If specified, then the exported documents will represent a consistent view of the database at the provided time. Otherwise, there are no guarantees about the consistency of the exported documents.
      */
     snapshotTime?: string | null;
   }
@@ -819,6 +819,10 @@ export namespace firestore_v1 {
      */
     ttlConfigDelta?: Schema$GoogleFirestoreAdminV1TtlConfigDelta;
   }
+  /**
+   * An index that stores vectors in a flat data structure, and supports exhaustive search.
+   */
+  export interface Schema$GoogleFirestoreAdminV1FlatIndex {}
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.ImportDocuments.
    */
@@ -948,6 +952,10 @@ export namespace firestore_v1 {
      * Indicates that this field supports ordering by the specified order or comparing using =, !=, <, <=, \>, \>=.
      */
     order?: string | null;
+    /**
+     * Indicates that this field supports nearest neighbors and distance operations on vector.
+     */
+    vectorConfig?: Schema$GoogleFirestoreAdminV1VectorConfig;
   }
   /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.CreateIndex.
@@ -1086,7 +1094,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1RestoreDatabaseRequest {
     /**
-     * Required. Backup to restore from. Must be from the same project as the parent. Format is: `projects/{project_id\}/locations/{location\}/backups/{backup\}`
+     * Backup to restore from. Must be from the same project as the parent. Format is: `projects/{project_id\}/locations/{location\}/backups/{backup\}`
      */
     backup?: string | null;
     /**
@@ -1133,6 +1141,19 @@ export namespace firestore_v1 {
    * Metadata related to the update database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
+  /**
+   * The index configuration to support vector search operations
+   */
+  export interface Schema$GoogleFirestoreAdminV1VectorConfig {
+    /**
+     * Required. The vector dimension this configuration applies to. The resulting index will only include vectors of this dimension, and can be used for vector search with the same dimension.
+     */
+    dimension?: number | null;
+    /**
+     * Indicates the vector index is a flat index.
+     */
+    flat?: Schema$GoogleFirestoreAdminV1FlatIndex;
+  }
   /**
    * Represents a recurring schedule that runs on a specified day of the week. The time zone is UTC.
    */
@@ -1376,7 +1397,7 @@ export namespace firestore_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Partition results. Each partition is a split point that can be used by RunQuery as a starting or end point for the query results. The RunQuery requests must be made with the same query supplied to this PartitionQuery request. The partition cursors will be ordered according to same ordering as the results of the query supplied to PartitionQuery. For example, if a PartitionQuery request returns partition cursors A and B, running the following three queries will return the entire result set of the original query: * query, end_at A * query, start_at A, end_at B * query, start_at B An empty result may indicate that the query has too few results to be partitioned.
+     * Partition results. Each partition is a split point that can be used by RunQuery as a starting or end point for the query results. The RunQuery requests must be made with the same query supplied to this PartitionQuery request. The partition cursors will be ordered according to same ordering as the results of the query supplied to PartitionQuery. For example, if a PartitionQuery request returns partition cursors A and B, running the following three queries will return the entire result set of the original query: * query, end_at A * query, start_at A, end_at B * query, start_at B An empty result may indicate that the query has too few results to be partitioned, or that the query is not yet supported for partitioning.
      */
     partitions?: Schema$Cursor[];
   }

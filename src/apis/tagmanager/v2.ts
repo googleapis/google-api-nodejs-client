@@ -681,6 +681,10 @@ export namespace tagmanager_v2 {
    */
   export interface Schema$Entity {
     /**
+     * The built in variable being represented by the entity.
+     */
+    builtInVariable?: Schema$BuiltInVariable;
+    /**
      * Represents how the entity has been changed in the workspace.
      */
     changeStatus?: string | null;
@@ -689,9 +693,17 @@ export namespace tagmanager_v2 {
      */
     client?: Schema$Client;
     /**
+     * The custom template being represented by the entity.
+     */
+    customTemplate?: Schema$CustomTemplate;
+    /**
      * The folder being represented by the entity.
      */
     folder?: Schema$Folder;
+    /**
+     * The gtag config being represented by the entity.
+     */
+    gtagConfig?: Schema$GtagConfig;
     /**
      * The tag being represented by the entity.
      */
@@ -708,6 +720,10 @@ export namespace tagmanager_v2 {
      * The variable being represented by the entity.
      */
     variable?: Schema$Variable;
+    /**
+     * The zone being represented by the entity.
+     */
+    zone?: Schema$Zone;
   }
   /**
    * Represents a Google Tag Manager Environment. Note that a user can create, delete and update environments of type USER, but can only update the enable_debug and url fields of environments of other types.

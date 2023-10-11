@@ -19,6 +19,7 @@ import {displayvideo_v1beta} from './v1beta';
 import {displayvideo_v1beta2} from './v1beta2';
 import {displayvideo_v1dev} from './v1dev';
 import {displayvideo_v2} from './v2';
+import {displayvideo_v3} from './v3';
 
 export const VERSIONS = {
   v1: displayvideo_v1.Displayvideo,
@@ -26,6 +27,7 @@ export const VERSIONS = {
   v1beta2: displayvideo_v1beta2.Displayvideo,
   v1dev: displayvideo_v1dev.Displayvideo,
   v2: displayvideo_v2.Displayvideo,
+  v3: displayvideo_v3.Displayvideo,
 };
 
 export function displayvideo(version: 'v1'): displayvideo_v1.Displayvideo;
@@ -52,13 +54,18 @@ export function displayvideo(version: 'v2'): displayvideo_v2.Displayvideo;
 export function displayvideo(
   options: displayvideo_v2.Options
 ): displayvideo_v2.Displayvideo;
+export function displayvideo(version: 'v3'): displayvideo_v3.Displayvideo;
+export function displayvideo(
+  options: displayvideo_v3.Options
+): displayvideo_v3.Displayvideo;
 export function displayvideo<
   T =
     | displayvideo_v1.Displayvideo
     | displayvideo_v1beta.Displayvideo
     | displayvideo_v1beta2.Displayvideo
     | displayvideo_v1dev.Displayvideo
-    | displayvideo_v2.Displayvideo,
+    | displayvideo_v2.Displayvideo
+    | displayvideo_v3.Displayvideo,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -72,6 +79,8 @@ export function displayvideo<
     | displayvideo_v1dev.Options
     | 'v2'
     | displayvideo_v2.Options
+    | 'v3'
+    | displayvideo_v3.Options
 ) {
   return getAPI<T>('displayvideo', versionOrOptions, VERSIONS, this);
 }
@@ -83,6 +92,7 @@ export {displayvideo_v1beta};
 export {displayvideo_v1beta2};
 export {displayvideo_v1dev};
 export {displayvideo_v2};
+export {displayvideo_v3};
 export {
   AuthPlus,
   GlobalOptions,

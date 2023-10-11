@@ -1115,7 +1115,7 @@
       }
     }
   },
-  "revision": "20230924",
+  "revision": "20231001",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1454,7 +1454,7 @@
       "id": "GoogleCloudRunV2EnvVar",
       "properties": {
         "name": {
-          "description": "Required. Name of the environment variable. Must be a C_IDENTIFIER, and must not exceed 32768 characters.",
+          "description": "Required. Name of the environment variable. Must not exceed 32768 characters.",
           "type": "string"
         },
         "value": {
@@ -2667,11 +2667,6 @@
           },
           "readOnly": true,
           "type": "array"
-        },
-        "trafficTagsCleanupThreshold": {
-          "description": "Optional. Override the traffic tag threshold limit. Garbage collection will start cleaning up non-serving tagged traffic targets based on creation item. The default value is 2000.",
-          "format": "int64",
-          "type": "string"
         },
         "uid": {
           "description": "Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.",

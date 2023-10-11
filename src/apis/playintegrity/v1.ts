@@ -125,7 +125,7 @@ export namespace playintegrity_v1 {
   }
 
   /**
-   * Contains a signal helping apps differentiating between likely genuine users and likely non-genuine traffic (such as accounts being used for fraud, accounts used by automated traffic, or accounts used in device farms) based on the presence and volume of Play store activity.
+   * (Restricted Access) Contains a signal helping apps differentiating between likely genuine and likely non-genuine user traffic.
    */
   export interface Schema$AccountActivity {
     /**
@@ -138,7 +138,7 @@ export namespace playintegrity_v1 {
    */
   export interface Schema$AccountDetails {
     /**
-     * Details about the account activity for the user in the scope.
+     * (Restricted Access) Details about the account activity for the user in the scope.
      */
     accountActivity?: Schema$AccountActivity;
     /**
@@ -263,7 +263,7 @@ export namespace playintegrity_v1 {
     testingDetails?: Schema$TestingDetails;
   }
   /**
-   * Contains details of remediation guidance that the user can perform. See go/pia-interstitials-dd
+   * Contains details of remediation guidance that the user can perform.
    */
   export interface Schema$UserRemediationDetails {
     /**

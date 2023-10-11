@@ -1739,10 +1739,6 @@ export namespace gkeonprem_v1 {
      */
     currentVersion?: string | null;
     /**
-     * Local name of the dependency.
-     */
-    localName?: string | null;
-    /**
      * Membership names are formatted as `projects//locations//memberships/`.
      */
     membership?: string | null;

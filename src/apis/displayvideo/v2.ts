@@ -221,7 +221,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string | null;
     /**
-     * Billing related settings of the advertiser.
+     * Required. Billing related settings of the advertiser.
      */
     billingConfig?: Schema$AdvertiserBillingConfig;
     /**
@@ -287,7 +287,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$AdvertiserBillingConfig {
     /**
-     * The ID of a billing profile assigned to the advertiser. This field will default to the default billing profile ID of the advertiser's parent partner if a value is not provided.
+     * The ID of a billing profile assigned to the advertiser.
      */
     billingProfileId?: string | null;
   }
@@ -365,7 +365,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$AgeRangeAssignedTargetingOptionDetails {
     /**
-     * The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1. Required in v2.
+     * Required. The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age.
      */
     ageRange?: string | null;
   }
@@ -469,7 +469,7 @@ export namespace displayvideo_v2 {
     name?: string | null;
   }
   /**
-   * An assignment between a location list and a relevant targeting option. Currently, geo region targeting options are the only supported option for assignment.
+   * An assignment between a location list and a relevant targeting option.
    */
   export interface Schema$AssignedLocation {
     /**
@@ -481,7 +481,7 @@ export namespace displayvideo_v2 {
      */
     name?: string | null;
     /**
-     * Required. The ID of the targeting option assigned to the location list. Assigned locations can only be modified in TARGETING_LOCATION_TYPE_REGIONAL location lists. When creating or deleting assigned locations, this value must be of type TARGETING_TYPE_GEO_REGION.
+     * Required. The ID of the targeting option assigned to the location list.
      */
     targetingOptionId?: string | null;
   }
@@ -778,7 +778,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$AudioContentTypeAssignedTargetingOptionDetails {
     /**
-     * The audio content type. Output only in v1. Required in v2.
+     * Required. The audio content type.
      */
     audioContentType?: string | null;
   }
@@ -985,17 +985,14 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$BulkEditAssignedLocationsRequest {
     /**
-     * The assigned locations to create in bulk, specified as a list of AssignedLocations.
+     * The assigned locations to create in bulk, specified as a list of AssignedLocation resources.
      */
     createdAssignedLocations?: Schema$AssignedLocation[];
     /**
-     * The IDs of the assigned locations to delete in bulk, specified as a list of assigned_location_ids.
+     * The IDs of the assigned locations to delete in bulk, specified as a list of assignedLocationId values.
      */
     deletedAssignedLocations?: string[] | null;
   }
-  /**
-   * Response message for AssignedLocationService.BulkEditAssignedLocations.
-   */
   export interface Schema$BulkEditAssignedLocationsResponse {
     /**
      * The list of assigned locations that have been successfully created. This list will be absent if empty.
@@ -1125,7 +1122,7 @@ export namespace displayvideo_v2 {
   }
   export interface Schema$BulkListAdGroupAssignedTargetingOptionsResponse {
     /**
-     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent call to `BulkListAdGroupAssignedTargetingOptions` to fetch the next page of results. This token will be absent if there are no more youtube_ad_group_assigned_targeting_options or ad_group_assigned_targeting_options to return.
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent call to `BulkListAdGroupAssignedTargetingOptions` to fetch the next page of results. This token will be absent if there are no more AdGroupAssignedTargetingOption resources to return.
      */
     nextPageToken?: string | null;
     /**
@@ -1694,7 +1691,7 @@ export namespace displayvideo_v2 {
      */
     adType?: string | null;
     /**
-     * The content instream position for video or audio ads. Output only in v1. Required in v2.
+     * Required. The content instream position for video or audio ads.
      */
     contentInstreamPosition?: string | null;
   }
@@ -1716,7 +1713,7 @@ export namespace displayvideo_v2 {
      */
     adType?: string | null;
     /**
-     * The content outstream position. Output only in v1. Required in v2.
+     * Required. The content outstream position.
      */
     contentOutstreamPosition?: string | null;
   }
@@ -2126,7 +2123,7 @@ export namespace displayvideo_v2 {
      */
     customBiddingScriptId?: string | null;
     /**
-     * Output only. Error details of a rejected custom bidding script. This field will only be populated when Script.state is REJECTED.
+     * Output only. Error details of a rejected custom bidding script. This field will only be populated when state is REJECTED.
      */
     errors?: Schema$ScriptError[];
     /**
@@ -2298,7 +2295,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$DeviceTypeAssignedTargetingOptionDetails {
     /**
-     * The display name of the device type. Output only in v1. Required in v2.
+     * Required. The display name of the device type.
      */
     deviceType?: string | null;
     /**
@@ -2572,7 +2569,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$EnvironmentAssignedTargetingOptionDetails {
     /**
-     * The serving environment. Output only in v1. Required in v2.
+     * Required. The serving environment.
      */
     environment?: string | null;
   }
@@ -2838,7 +2835,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$GenderAssignedTargetingOptionDetails {
     /**
-     * The gender of the audience. Output only in v1. Required in v2.
+     * Required. The gender of the audience.
      */
     gender?: string | null;
   }
@@ -3046,7 +3043,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$HouseholdIncomeAssignedTargetingOptionDetails {
     /**
-     * The household income of the audience. Output only in v1. Required in v2.
+     * Required. The household income of the audience.
      */
     householdIncome?: string | null;
   }
@@ -4359,7 +4356,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$NativeContentPositionAssignedTargetingOptionDetails {
     /**
-     * The content position. Output only in v1. Required in v2.
+     * Required. The content position.
      */
     contentPosition?: string | null;
   }
@@ -4474,7 +4471,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$OmidAssignedTargetingOptionDetails {
     /**
-     * The type of Open Measurement enabled inventory. Output only in v1. Required in v2.
+     * Required. The type of Open Measurement enabled inventory.
      */
     omid?: string | null;
   }
@@ -4577,7 +4574,7 @@ export namespace displayvideo_v2 {
      */
     dailyMaxMicros?: string | null;
     /**
-     * Required. The time period in which the pacing budget will be spent. When automatic budget allocation is enabled at the insertion order via auto_budget_allocation, this field is output only and defaults to `PACING_PERIOD_FLIGHT`.
+     * Required. The time period in which the pacing budget will be spent. When automatic budget allocation is enabled at the insertion order via automationType, this field is output only and defaults to `PACING_PERIOD_FLIGHT`.
      */
     pacingPeriod?: string | null;
     /**
@@ -4590,7 +4587,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$ParentalStatusAssignedTargetingOptionDetails {
     /**
-     * The parental status of the audience. Output only in v1. Required in v2.
+     * Required. The parental status of the audience.
      */
     parentalStatus?: string | null;
   }
@@ -4731,7 +4728,7 @@ export namespace displayvideo_v2 {
     markupType?: string | null;
   }
   /**
-   * Settings that control the performance goal of a campaign or insertion order.
+   * Settings that control the performance goal of a campaign.
    */
   export interface Schema$PerformanceGoal {
     /**
@@ -5706,7 +5703,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$VideoPlayerSizeAssignedTargetingOptionDetails {
     /**
-     * The video player size. Output only in v1. Required in v2.
+     * Required. The video player size.
      */
     videoPlayerSize?: string | null;
   }
@@ -5724,7 +5721,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$ViewabilityAssignedTargetingOptionDetails {
     /**
-     * The predicted viewability percentage. Output only in v1. Required in v2.
+     * Required. The predicted viewability percentage.
      */
     viewability?: string | null;
   }
@@ -5852,7 +5849,7 @@ export namespace displayvideo_v2 {
     videoPerformanceAd?: Schema$VideoPerformanceAd;
   }
   /**
-   * Wrapper object associating an assigned_targeting_option resource and the youtube ad group it is assigned to.
+   * Wrapper object associating an AssignedTargetingOption resource and the youtube ad group it is assigned to.
    */
   export interface Schema$YoutubeAdGroupAssignedTargetingOption {
     /**
@@ -5869,11 +5866,11 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$YoutubeAndPartnersBiddingStrategy {
     /**
-     * Output only. Source of the effective targetCpa value for AdGroup.
+     * Output only. Source of the effective target CPA value for ad group.
      */
     adGroupEffectiveTargetCpaSource?: string | null;
     /**
-     * Output only. The effective targetCpa for AdGroup, in micros of advertiser's currency.
+     * Output only. The effective target CPA for ad group, in micros of advertiser's currency.
      */
     adGroupEffectiveTargetCpaValue?: string | null;
     /**
@@ -12851,7 +12848,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Bulk edits multiple assignments between locations and a single location list. The operation will delete the assigned locations provided in BulkEditAssignedLocationsRequest.deleted_assigned_locations and then create the assigned locations provided in BulkEditAssignedLocationsRequest.created_assigned_locations.
+     * Bulk edits multiple assignments between locations and a single location list. The operation will delete the assigned locations provided in deletedAssignedLocations and then create the assigned locations provided in createdAssignedLocations.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15751,7 +15748,7 @@ export namespace displayvideo_v2 {
     }
 
     /**
-     * Lists assigned targeting options for multiple YouTube ad groups across targeting types. Inherieted assigned targeting options are not included.
+     * Lists assigned targeting options for multiple YouTube ad groups across targeting types. Inherited assigned targeting options are not included.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16039,7 +16036,7 @@ export namespace displayvideo_v2 {
      */
     filter?: string;
     /**
-     * Optional. Field by which to sort the list. Acceptable values are: * `youtubeAdGroupId` (acceptable in v2) * `adGroupId` (acceptable in v3) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     * Optional. Field by which to sort the list. Acceptable values are: * `adGroupId` (default) * `assignedTargetingOption.targetingType` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
      */
     orderBy?: string;
     /**

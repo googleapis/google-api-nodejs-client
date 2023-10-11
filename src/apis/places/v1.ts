@@ -172,6 +172,10 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1Place {
     /**
+     * Output only. Information about the accessibility options a place offers.
+     */
+    accessibilityOptions?: Schema$GoogleMapsPlacesV1PlaceAccessibilityOptions;
+    /**
      * Output only. Repeated components for each locality level.
      */
     addressComponents?: Schema$GoogleMapsPlacesV1PlaceAddressComponent[];
@@ -252,10 +256,6 @@ export namespace places_v1 {
      */
     nationalPhoneNumber?: string | null;
     /**
-     * Output only. The regular hours of operation.
-     */
-    openingHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours;
-    /**
      * Output only. Plus code of the place location lat/long.
      */
     plusCode?: Schema$GoogleMapsPlacesV1PlacePlusCode;
@@ -268,6 +268,14 @@ export namespace places_v1 {
      */
     rating?: number | null;
     /**
+     * Output only. The regular hours of operation.
+     */
+    regularOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours;
+    /**
+     * Output only. Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.
+     */
+    regularSecondaryOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours[];
+    /**
      * Output only. Specifies if the place supports reservations.
      */
     reservable?: boolean | null;
@@ -275,10 +283,6 @@ export namespace places_v1 {
      * Output only. List of reviews about this place.
      */
     reviews?: Schema$GoogleMapsPlacesV1Review[];
-    /**
-     * Output only. Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.
-     */
-    secondaryOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours[];
     /**
      * Output only. Specifies if the place serves beer.
      */
@@ -331,8 +335,13 @@ export namespace places_v1 {
      * Output only. The authoritative website for this place, e.g. a business' homepage. Note that for places that are part of a chain (e.g. an IKEA store), this will usually be the website for the individual store, not the overall chain.
      */
     websiteUri?: string | null;
+  }
+  /**
+   * Information about the accessibility options a place offers.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceAccessibilityOptions {
     /**
-     * Output only. [Deprecated!] Specifies if the place has an entrance that is wheelchair-accessible.
+     * Places has wheelchair accessible entrance.
      */
     wheelchairAccessibleEntrance?: boolean | null;
   }
