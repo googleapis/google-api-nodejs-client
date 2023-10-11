@@ -159,7 +159,7 @@ export namespace translate_v3 {
      */
     enableShadowRemovalNativePdf?: boolean | null;
     /**
-     * Optional.
+     * Optional. The file format conversion map that is applied to all input files. The map key is the original mime_type. The map value is the target mime_type of translated documents. Supported file format conversion includes: - `application/pdf` to `application/vnd.openxmlformats-officedocument.wordprocessingml.document` If nothing specified, output files will be in the same format as the original file.
      */
     formatConversions?: {[key: string]: string} | null;
     /**

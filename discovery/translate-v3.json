@@ -171,8 +171,7 @@
             "$ref": "SupportedLanguages"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-translation"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "romanizeText": {
@@ -380,8 +379,7 @@
                 "$ref": "SupportedLanguages"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-translation"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
             "list": {
@@ -795,8 +793,7 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-translation"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "get": {
@@ -821,8 +818,7 @@
                     "$ref": "Glossary"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-translation"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "list": {
@@ -863,8 +859,7 @@
                     "$ref": "ListGlossariesResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-translation"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "patch": {
@@ -982,8 +977,7 @@
                         "$ref": "GlossaryEntry"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-translation"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "list": {
@@ -1019,8 +1013,7 @@
                         "$ref": "ListGlossaryEntriesResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-translation"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "patch": {
@@ -1344,7 +1337,7 @@
       }
     }
   },
-  "revision": "20230808",
+  "revision": "20230922",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchDocumentInputConfig": {
@@ -1389,7 +1382,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional.",
+          "description": "Optional. The file format conversion map that is applied to all input files. The map key is the original mime_type. The map value is the target mime_type of translated documents. Supported file format conversion includes: - `application/pdf` to `application/vnd.openxmlformats-officedocument.wordprocessingml.document` If nothing specified, output files will be in the same format as the original file.",
           "type": "object"
         },
         "glossaries": {
