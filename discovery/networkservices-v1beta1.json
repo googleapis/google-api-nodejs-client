@@ -979,6 +979,370 @@
                 }
               }
             },
+            "lbRouteExtensions": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new `LbRouteExtension` resource in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/lbRouteExtensions",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.lbRouteExtensions.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "lbRouteExtensionId": {
+                      "description": "Required. User-provided ID of the `LbRouteExtension` resource to be created.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the `LbRouteExtension` resource. Must be in the format `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/lbRouteExtensions",
+                  "request": {
+                    "$ref": "LbRouteExtension"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the specified `LbRouteExtension` resource.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/lbRouteExtensions/{lbRouteExtensionsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkservices.projects.locations.lbRouteExtensions.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the `LbRouteExtension` resource to delete. Must be in the format `projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/lbRouteExtensions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of the specified `LbRouteExtension` resource.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/lbRouteExtensions/{lbRouteExtensionsId}",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.lbRouteExtensions.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the `LbRouteExtension` resource to get. Must be in the format `projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/lbRouteExtensions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "LbRouteExtension"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists `LbRouteExtension` resources in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/lbRouteExtensions",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.lbRouteExtensions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results that the server returns.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the `LbRouteExtension` resources are listed, specified in the following format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/lbRouteExtensions",
+                  "response": {
+                    "$ref": "ListLbRouteExtensionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of the specified `LbRouteExtension` resource.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/lbRouteExtensions/{lbRouteExtensionsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.lbRouteExtensions.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the `LbRouteExtension` resource in the following format: `projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/lbRouteExtensions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Used to specify the fields to be overwritten in the `LbRouteExtension` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "LbRouteExtension"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "lbTrafficExtensions": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new `LbTrafficExtension` resource in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/lbTrafficExtensions",
+                  "httpMethod": "POST",
+                  "id": "networkservices.projects.locations.lbTrafficExtensions.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "lbTrafficExtensionId": {
+                      "description": "Required. User-provided ID of the `LbTrafficExtension` resource to be created.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the `LbTrafficExtension` resource. Must be in the format `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/lbTrafficExtensions",
+                  "request": {
+                    "$ref": "LbTrafficExtension"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the specified `LbTrafficExtension` resource.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/lbTrafficExtensions/{lbTrafficExtensionsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkservices.projects.locations.lbTrafficExtensions.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the `LbTrafficExtension` resource to delete. Must be in the format `projects/{project}/locations/{location}/lbTrafficExtensions/{lb_traffic_extension}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/lbTrafficExtensions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of the specified `LbTrafficExtension` resource.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/lbTrafficExtensions/{lbTrafficExtensionsId}",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.lbTrafficExtensions.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the `LbTrafficExtension` resource to get. Must be in the format `projects/{project}/locations/{location}/lbTrafficExtensions/{lb_traffic_extension}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/lbTrafficExtensions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "LbTrafficExtension"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists `LbTrafficExtension` resources in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/lbTrafficExtensions",
+                  "httpMethod": "GET",
+                  "id": "networkservices.projects.locations.lbTrafficExtensions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results that the server returns.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the `LbTrafficExtension` resources are listed, specified in the following format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/lbTrafficExtensions",
+                  "response": {
+                    "$ref": "ListLbTrafficExtensionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of the specified `LbTrafficExtension` resource.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/lbTrafficExtensions/{lbTrafficExtensionsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.lbTrafficExtensions.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the `LbTrafficExtension` resource in the following format: `projects/{project}/locations/{location}/lbTrafficExtensions/{lb_traffic_extension}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/lbTrafficExtensions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Used to specify the fields to be overwritten in the `LbTrafficExtension` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "LbTrafficExtension"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "meshes": {
               "methods": {
                 "create": {
@@ -2119,7 +2483,7 @@
       }
     }
   },
-  "revision": "20230910",
+  "revision": "20230927",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2301,6 +2665,95 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExtensionChain": {
+      "description": "A single extension chain wrapper that contains the match conditions and extensions to execute.",
+      "id": "ExtensionChain",
+      "properties": {
+        "extensions": {
+          "description": "Required. A set of extensions to execute for the matching request. At least one extension is required. Up to 3 extensions can be defined for each extension chain for `LbTrafficExtension` resource. `LbRouteExtension` chains are limited to 1 extension per extension chain.",
+          "items": {
+            "$ref": "ExtensionChainExtension"
+          },
+          "type": "array"
+        },
+        "matchCondition": {
+          "$ref": "ExtensionChainMatchCondition",
+          "description": "Required. Conditions under which this chain is invoked for a request."
+        },
+        "name": {
+          "description": "Required. The name for this extension chain. The name is logged as part of the HTTP request logs. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExtensionChainExtension": {
+      "description": "A single extension in the chain to execute for the matching request.",
+      "id": "ExtensionChainExtension",
+      "properties": {
+        "authority": {
+          "description": "Required. The `:authority` header in the gRPC request sent from Envoy to the extension service.",
+          "type": "string"
+        },
+        "failOpen": {
+          "description": "Optional. Determines how the proxy behaves if the call to the extension fails or times out. When set to `TRUE`, request or response processing continues without error. Any subsequent extensions in the extension chain are also executed. When set to `FALSE`: * If response headers have not been delivered to the downstream client, a generic 500 error is returned to the client. The error response can be tailored by configuring a custom error response in the load balancer. * If response headers have been delivered, then the HTTP stream to the downstream client is reset. Default is `FALSE`.",
+          "type": "boolean"
+        },
+        "forwardHeaders": {
+          "description": "Optional. List of the HTTP headers to forward to the extension (from the client or backend). If omitted, all headers are sent. Each element is a string indicating the header name.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. The name for this extension. The name is logged as part of the HTTP request logs. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.",
+          "type": "string"
+        },
+        "service": {
+          "description": "Required. The reference to the service that runs the extension. Must be a reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices).",
+          "type": "string"
+        },
+        "supportedEvents": {
+          "description": "Optional. A set of events during request or response processing for which this extension is called. This field is required for the `LbTrafficExtension` resource. It's not relevant for the `LbRouteExtension` resource.",
+          "items": {
+            "enum": [
+              "EVENT_TYPE_UNSPECIFIED",
+              "REQUEST_HEADERS",
+              "REQUEST_BODY",
+              "RESPONSE_HEADERS",
+              "RESPONSE_BODY"
+            ],
+            "enumDescriptions": [
+              "Unspecified value. Do not use.",
+              "If included in `supported_events`, the extension is called when the HTTP request headers arrive.",
+              "If included in `supported_events`, the extension is called when the HTTP request body arrives.",
+              "If included in `supported_events`, the extension is called when the HTTP response headers arrive.",
+              "If included in `supported_events`, the extension is called when the HTTP response body arrives."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "timeout": {
+          "description": "Required. Specifies the timeout for each individual message on the stream. The timeout must be between 10-1000 milliseconds.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExtensionChainMatchCondition": {
+      "description": "Conditions under which this chain is invoked for a request.",
+      "id": "ExtensionChainMatchCondition",
+      "properties": {
+        "celExpression": {
+          "description": "Required. A Common Expression Language (CEL) expression that is used to match requests for which the extension chain is executed.",
           "type": "string"
         }
       },
@@ -2633,6 +3086,10 @@
           "$ref": "GrpcRouteRetryPolicy",
           "description": "Optional. Specifies the retry policy associated with this route."
         },
+        "statefulSessionAffinity": {
+          "$ref": "GrpcRouteStatefulSessionAffinityPolicy",
+          "description": "Optional. Specifies cookie-based stateful session affinity."
+        },
         "timeout": {
           "description": "Optional. Specifies the timeout for selected route. Timeout is computed from the time the request has been fully processed (i.e. end of stream) up until the response has been completely processed. Timeout includes all retries.",
           "format": "google-duration",
@@ -2673,6 +3130,18 @@
             "$ref": "GrpcRouteRouteMatch"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GrpcRouteStatefulSessionAffinityPolicy": {
+      "description": "The specification for cookie-based stateful session affinity where the date plane supplies a “session cookie” with the name \"GSSA\" which encodes a specific destination host and each request containing that cookie will be directed to that host as long as the destination host remains up and healthy. The gRPC proxyless mesh library or sidecar proxy will manage the session cookie but the client application code is responsible for copying the cookie from each RPC in the session to the next.",
+      "id": "GrpcRouteStatefulSessionAffinityPolicy",
+      "properties": {
+        "cookieTtl": {
+          "description": "Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 1 to 86400 seconds (24 hours) inclusive.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3096,6 +3565,10 @@
           "$ref": "HttpRouteRetryPolicy",
           "description": "Specifies the retry policy associated with this route."
         },
+        "statefulSessionAffinity": {
+          "$ref": "HttpRouteStatefulSessionAffinityPolicy",
+          "description": "Optional. Specifies cookie-based stateful session affinity."
+        },
         "timeout": {
           "description": "Specifies the timeout for selected route. Timeout is computed from the time the request has been fully processed (i.e. end of stream) up until the response has been completely processed. Timeout includes all retries.",
           "format": "google-duration",
@@ -3163,6 +3636,18 @@
       },
       "type": "object"
     },
+    "HttpRouteStatefulSessionAffinityPolicy": {
+      "description": "The specification for cookie-based stateful session affinity where the date plane supplies a “session cookie” with the name \"GSSA\" which encodes a specific destination host and each request containing that cookie will be directed to that host as long as the destination host remains up and healthy. The gRPC proxyless mesh library or sidecar proxy will manage the session cookie but the client application code is responsible for copying the cookie from each RPC in the session to the next.",
+      "id": "HttpRouteStatefulSessionAffinityPolicy",
+      "properties": {
+        "cookieTtl": {
+          "description": "Required. The cookie TTL value for the Set-Cookie header generated by the data plane. The lifetime of the cookie may be set to a value from 1 to 86400 seconds (24 hours) inclusive.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "HttpRouteURLRewrite": {
       "description": "The specification for modifying the URL of the request, prior to forwarding the request to the destination.",
       "id": "HttpRouteURLRewrite",
@@ -3173,6 +3658,130 @@
         },
         "pathPrefixRewrite": {
           "description": "Prior to forwarding the request to the selected destination, the matching portion of the requests path is replaced by this value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LbRouteExtension": {
+      "description": "`LbRouteExtension` is a resource that lets you control where traffic is routed to for a given request.",
+      "id": "LbRouteExtension",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A human-readable description of the resource.",
+          "type": "string"
+        },
+        "extensionChains": {
+          "description": "Required. A set of ordered extension chains that contain the match conditions and extensions to execute. Match conditions for each extension chain are evaluated in sequence for a given request. The first extension chain that has a condition that matches the request is executed. Any subsequent extension chains do not execute. Limited to 5 extension chains per resource.",
+          "items": {
+            "$ref": "ExtensionChain"
+          },
+          "type": "array"
+        },
+        "forwardingRules": {
+          "description": "Required. A list of references to the forwarding rules to which this service extension is attach to. At least one forwarding rule is required. There can be only one `LbRouteExtension` resource per forwarding rule.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Set of labels associated with the `LbRouteExtension` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).",
+          "type": "object"
+        },
+        "loadBalancingScheme": {
+          "description": "Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`.",
+          "enum": [
+            "LOAD_BALANCING_SCHEME_UNSPECIFIED",
+            "INTERNAL_MANAGED",
+            "EXTERNAL_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Default value. Do not use.",
+            "Signifies that this is used for Internal HTTP(S) Load Balancing.",
+            "Signifies that this is used for External Managed HTTP(S) Load Balancing."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the `LbRouteExtension` resource in the following format: `projects/{project}/locations/{location}/lbRouteExtensions/{lb_route_extension}`.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LbTrafficExtension": {
+      "description": "`LbTrafficExtension` is a resource that lets the extension service modify the headers and payloads of both requests and responses without impacting the choice of backend services or any other security policies associated with the backend service.",
+      "id": "LbTrafficExtension",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. A human-readable description of the resource.",
+          "type": "string"
+        },
+        "extensionChains": {
+          "description": "Required. A set of ordered extension chains that contain the match conditions and extensions to execute. Match conditions for each extension chain are evaluated in sequence for a given request. The first extension chain that has a condition that matches the request is executed. Any subsequent extension chains do not execute. Limited to 5 extension chains per resource.",
+          "items": {
+            "$ref": "ExtensionChain"
+          },
+          "type": "array"
+        },
+        "forwardingRules": {
+          "description": "Required. A list of references to the forwarding rules to which this service extension is attach to. At least one forwarding rule is required. There can be only one `LBTrafficExtension` resource per forwarding rule.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Set of labels associated with the `LbTrafficExtension` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).",
+          "type": "object"
+        },
+        "loadBalancingScheme": {
+          "description": "Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Choosing a load balancer](https://cloud.google.com/load-balancing/docs/backend-service).",
+          "enum": [
+            "LOAD_BALANCING_SCHEME_UNSPECIFIED",
+            "INTERNAL_MANAGED",
+            "EXTERNAL_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Default value. Do not use.",
+            "Signifies that this is used for Internal HTTP(S) Load Balancing.",
+            "Signifies that this is used for External Managed HTTP(S) Load Balancing."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the `LbTrafficExtension` resource in the following format: `projects/{project}/locations/{location}/lbTrafficExtensions/{lb_traffic_extension}`.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3253,6 +3862,56 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListLbRouteExtensionsResponse": {
+      "description": "Message for response to listing `LbRouteExtension` resources.",
+      "id": "ListLbRouteExtensionsResponse",
+      "properties": {
+        "lbRouteExtensions": {
+          "description": "The list of `LbRouteExtension` resources.",
+          "items": {
+            "$ref": "LbRouteExtension"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results that the server returns.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListLbTrafficExtensionsResponse": {
+      "description": "Message for response to listing `LbTrafficExtension` resources.",
+      "id": "ListLbTrafficExtensionsResponse",
+      "properties": {
+        "lbTrafficExtensions": {
+          "description": "The list of `LbTrafficExtension` resources.",
+          "items": {
+            "$ref": "LbTrafficExtension"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results that the server returns.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
