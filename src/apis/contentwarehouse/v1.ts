@@ -2250,7 +2250,13 @@ export namespace contentwarehouse_v1 {
      * Reminder to connect with a Contact (part of go/people-prompts). Also contains contact-level prompts settings. Each Contact can have a single `connection_reminder` (but can have multiple Prompts inside of it). Field is repeated per PeopleAPI data model go/people-api-concepts#repeated. Only supported for CONTACT container.
      */
     connectionReminder?: Schema$AppsPeopleOzExternalMergedpeopleapiConnectionReminder[];
+    /**
+     * ContactCreateContextInfo has a timestamp timestamp and additional metadata (e.g. the source of the creation) for when the contact was created. See also `ContactEditContextInfo`.
+     */
     contactCreateContextInfo?: Schema$AppsPeopleOzExternalMergedpeopleapiContactCreateContextInfo[];
+    /**
+     * ContactEditContextInfo is a timestamp and additional metadata (e.g. the source of the edit) for the last 'human initiated edit'. See also `ContactCreateContextInfo`.
+     */
     contactEditContextInfo?: Schema$AppsPeopleOzExternalMergedpeopleapiContactEditContextInfo[];
     /**
      * Contact groups that this person is a member of.
@@ -2570,7 +2576,7 @@ export namespace contentwarehouse_v1 {
      */
     edgeKeyInfo?: Schema$AppsPeopleOzExternalMergedpeopleapiEdgeKeyInfo[];
     /**
-     * The encoded id of the data source. The id is only unique within a single container type. This field correlates to person.metadata.identity_info.source_id.id. This field may not be populated in some special cases, where the id is not visible to the querying user. e.g. ListAutocompletions with full phone number query.
+     * The encoded id of the data source. The id is only unique within a single container type. This field correlates to person.metadata.identity_info.source_id.id. This field may not be populated in some special cases, where the id is not visible to the querying user. e.g. ListAutocompletions with full phone number query. For value format, see google3/social/graph/api/proto/main_merged_person.proto?q=symbol:SourceIdentity.id
      */
     encodedContainerId?: string | null;
     /**
@@ -3068,7 +3074,7 @@ export namespace contentwarehouse_v1 {
      */
     googleContactId?: string | null;
     /**
-     * The base64 serialized social.graph.peopleapi.proto.internal.RawDeviceContactId. This id should be used to correlate to field.metadata.encoded_container_id when the field.metadata.container_type is RAW_DEVICE_CONTACT The id also correlates to person.metadata.identity_info.source_id.id.
+     * The base64 serialized social.graph.peopleapi.proto.internal.RawDeviceContactId. This id should be used to correlate to field.metadata.encoded_container_id when the field.metadata.container_type is RAW_DEVICE_CONTACT The id also correlates to person.metadata.identity_info.source_id.id. For value format, see google3/social/graph/api/proto/main_merged_person.proto?q=symbol:SourceIdentity.id
      */
     id?: string | null;
     /**
@@ -8087,7 +8093,7 @@ export namespace contentwarehouse_v1 {
     surfaceType?: string | null;
   }
   /**
-   * The states of the device. They are dynamic and may change based on the current context. Next ID: 10
+   * The states of the device. They are dynamic and may change based on the current context. Next ID: 13
    */
   export interface Schema$AssistantGroundingRankerDeviceTargetingFeaturesStates {
     /**
@@ -8107,9 +8113,21 @@ export namespace contentwarehouse_v1 {
      */
     hasPlayingMediaSession?: boolean | null;
     /**
-     * Indicates whether or not the device is in the same structure as any local or hearing devices.
+     * Indicates whether or not the device is in the same room as any hearing devices. Does not consider the device itself or the local device as a hearing device. If no valid hearing devices, this field is not set.
      */
-    hasSameStructure?: boolean | null;
+    inSameRoomAsHearingDevice?: boolean | null;
+    /**
+     * Indicates whether or not the device is in the same room as the local device. If the device is the local device, this field is not set.
+     */
+    inSameRoomAsLocalDevice?: boolean | null;
+    /**
+     * Indicates whether or not the device is in the same structure as any hearing devices. Does not consider the device itself or the local device as a hearing device. If no valid hearing devices, this field is not set.
+     */
+    inSameStructureAsHearingDevice?: boolean | null;
+    /**
+     * Indicates whether or not the device is in the same structure as the local device. If the device is the local device, this field is not set.
+     */
+    inSameStructureAsLocalDevice?: boolean | null;
     /**
      * Indicate whether the device is docked on a base.
      */
@@ -9010,7 +9028,7 @@ export namespace contentwarehouse_v1 {
     sortedNameString?: string | null;
   }
   /**
-   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 65
+   * Signals to be used by the Prefulfillment Ranker. Derived from the ParsingSignals and GroundingSignals carried by the FunctionCall. LINT.IfChange Next ID: 66
    */
   export interface Schema$AssistantPrefulfillmentRankerPrefulfillmentSignals {
     /**
@@ -9129,6 +9147,10 @@ export namespace contentwarehouse_v1 {
      * Whether this intent was generated by Sage.
      */
     isSageIntent?: boolean | null;
+    /**
+     * Whether this intent is a score-based intent, relying on PFR for scoring and pruning to the top intent.
+     */
+    isScoreBasedIntent?: boolean | null;
     /**
      * Whether the intent is a media object tvm intent.
      */
@@ -10136,10 +10158,6 @@ export namespace contentwarehouse_v1 {
      * This field is only filled for the CSAI vertical.
      */
     csaiClassification?: string | null;
-    /**
-     * DO NOT USE: This field is temporary and should be used only for the CSAI Onebox. This field is the result of the regular expression classifier alone as opposed to a combination with Seti classifier as in csai_classification field.
-     */
-    csaiRegexpHighConfidenceClassification?: string | null;
     /**
      * Human-readable debug information about the classification. This field is only set if output_debug is set in the classification input.
      */
@@ -13460,12 +13478,12 @@ export namespace contentwarehouse_v1 {
     /**
      * Offset of each vertex in the new coordinate system relative to the old coordinate system.
      */
-    translate?: Schema$GeostoreCityJsonProtoTransformXyzVector;
+    translate?: Schema$GeostoreCityJsonProtoTransformTranslate;
   }
   /**
-   * Vector of length three whose values respectively correspond to the x, y, and z axes.
+   * How the object will be moved along the x, y, and z axes, respectively.
    */
-  export interface Schema$GeostoreCityJsonProtoTransformXyzVector {
+  export interface Schema$GeostoreCityJsonProtoTransformTranslate {
     x?: number | null;
     y?: number | null;
     z?: number | null;
@@ -14038,7 +14056,7 @@ export namespace contentwarehouse_v1 {
      */
     displayData?: Schema$GeostoreDisplayDataProto;
     /**
-     * RESERVED
+     * Represents information about disputed areas. Only TYPE_DISPUTED_AREA features should have the field set.
      */
     disputedArea?: Schema$GeostoreDisputedAreaProto;
     /**
@@ -14075,9 +14093,6 @@ export namespace contentwarehouse_v1 {
      * If set, the feature's actual location can be assumed to be somewhere within a circle of this radius, centered on the feature's location. More information on this field at go/gpm-definition-update. NOTE: Only applicable to features with 'point' geometry. Please contact geo-schema-team@ if you have non-point use cases for which this field would be useful.
      */
     geometryPrecisionMeters?: number | null;
-    /**
-     * RESERVED
-     */
     geopolitical?: Schema$GeostoreGeopoliticalProto;
     /**
      * Geopolitical (unsimplified) polygons for a feature for different geopolitical use cases.
@@ -14252,9 +14267,6 @@ export namespace contentwarehouse_v1 {
      * RESERVED
      */
     transitLineVariant?: Schema$GeostoreTransitLineVariantProto;
-    /**
-     * RESERVED
-     */
     transitStation?: Schema$GeostoreTransitStationProto;
     /**
      * The type of this feature -- see comments above.
@@ -14322,7 +14334,7 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GeostoreFlowLineProto {
     /**
-     * RESERVED
+     * Curvature of the flowline. Note that, curvature can be present even if the flowline doesn't have a track. In which case, curvature will be derived from the segment polyline.
      */
     curvature?: Schema$GeostoreCurvatureProto;
     track?: Schema$GeostoreTrackProto;
@@ -14551,11 +14563,11 @@ export namespace contentwarehouse_v1 {
    */
   export interface Schema$GeostoreInternalSegmentProto {
     /**
-     * RESERVED
+     * A list of lane connections that are explicitly not allowed to be added. NOTE: This should never reference existing lane connections on this segment.
      */
     disallowedConnections?: Schema$GeostoreInternalSegmentProtoLaneConnectionReference[];
     /**
-     * RESERVED
+     * A list of lane connections which cannot have the primary_connection bit set.
      */
     disallowedPrimaryConnection?: Schema$GeostoreInternalSegmentProtoLaneConnectionReference[];
     /**
@@ -15198,7 +15210,7 @@ export namespace contentwarehouse_v1 {
      */
     capital?: Schema$GeostoreFeatureIdProto;
     /**
-     * RESERVED
+     * Feature IDs of the features claimed by this feature's government that are not necessarily included in the feature's geometry.
      */
     claim?: Schema$GeostoreFeatureIdProto[];
     /**
@@ -15693,7 +15705,7 @@ export namespace contentwarehouse_v1 {
      */
     travelMode?: string[] | null;
     /**
-     * clang-format on The type of restriction. This is not a condition, but rather tells you what kind of restriction it is. This field should always be set.
+     * LINT.ThenChange(//depot/google3/google/geo/entities/v1/fields/segment.proto) clang-format on The type of restriction. This is not a condition, but rather tells you what kind of restriction it is. This field should always be set.
      */
     type?: string | null;
     /**
@@ -17559,7 +17571,7 @@ export namespace contentwarehouse_v1 {
     surfaceIdentity?: Schema$GoogleAssistantEmbeddedV1SurfaceIdentity;
   }
   /**
-   * Information about the state of the device. This contains any state that Assistant may need to know about in order to fulfill requests, for example which timers and alarms are set. Next ID: 11
+   * Information about the state of the device. This contains any state that Assistant may need to know about in order to fulfill requests, for example which timers and alarms are set. Next ID: 13
    */
   export interface Schema$GoogleAssistantAccessoryV1DeviceState {
     /**
@@ -17587,6 +17599,14 @@ export namespace contentwarehouse_v1 {
      */
     fitnessActivitiesState?: Schema$GoogleAssistantEmbeddedV1FitnessActivities;
     /**
+     * Information about apps currently installed on device.
+     */
+    installedApps?: Schema$GoogleAssistantAccessoryV1DeviceStateInstalledAppsState;
+    /**
+     * This contains a zlib-compressed binary-encoded `InstalledAppsState` proto message.
+     */
+    installedAppsZlib?: string | null;
+    /**
      * *Optional* Information about on-device timers. For devices that support timers, all on-device timers must be sent up with the DeviceState in order for Assistant Server to be able to perform operations on them.
      */
     timerState?: Schema$GoogleAssistantEmbeddedV1Timers;
@@ -17594,6 +17614,15 @@ export namespace contentwarehouse_v1 {
      * This indicates which specific settings are currently unavailable for modification, despite being listed as a supported setting. Assistant can use this field to trigger unavailability messages, rather than claiming that a setting is entirely unsupported on device.
      */
     unavailableSettings?: string[] | null;
+  }
+  /**
+   * State of the apps currently installed on the device.
+   */
+  export interface Schema$GoogleAssistantAccessoryV1DeviceStateInstalledAppsState {
+    /**
+     * List of apps currently installed on the device.
+     */
+    apps?: Schema$AssistantApiCoreTypesProvider[];
   }
   /**
    * Configuration for the response. Next Id: 11
@@ -19329,6 +19358,10 @@ export namespace contentwarehouse_v1 {
      * Document that matches the specified SearchDocumentsRequest. This document only contains indexed metadata information.
      */
     document?: Schema$GoogleCloudContentwarehouseV1Document;
+    /**
+     * Return the 1-based page indices where those pages have one or more matched tokens.
+     */
+    matchedTokenPageIndices?: string[] | null;
     /**
      * Experimental. Additional result info if the question-answering feature is enabled.
      */
@@ -27038,6 +27071,15 @@ export namespace contentwarehouse_v1 {
     id?: Schema$ConceptsConceptId;
   }
   /**
+   * Signal data for associated Concepts (go/concept-roofshot).
+   */
+  export interface Schema$KnowledgeAnswersIntentQueryConceptSignals {
+    /**
+     * Concepts data epoch used to annotate the queries.
+     */
+    dataEpochId?: number | null;
+  }
+  /**
    * A message representing a coreferenced value defined elsewhere in the meaning struct.
    */
   export interface Schema$KnowledgeAnswersIntentQueryCoreference {
@@ -27117,7 +27159,7 @@ export namespace contentwarehouse_v1 {
     unexplainedTokens?: Schema$KnowledgeAnswersIntentQueryTokens[];
   }
   /**
-   * Next ID: 38
+   * Next ID: 39
    */
   export interface Schema$KnowledgeAnswersIntentQueryFunctionCallSignals {
     /**
@@ -27132,6 +27174,10 @@ export namespace contentwarehouse_v1 {
      * An entity that represents the concept of an entity-attribute intent by being composed of an intent equivalent MID and the argument MID.
      */
     conceptEntityMid?: string | null;
+    /**
+     * Information about the corresponding Concept attached to the FunctionCall. go/concept-roofshot.
+     */
+    conceptSignals?: Schema$KnowledgeAnswersIntentQueryConceptSignals;
     confidenceLevel?: string | null;
     /**
      * FunctionCall-s that this funcall was deduped against.
@@ -38042,6 +38088,9 @@ export namespace contentwarehouse_v1 {
      */
     version?: number | null;
   }
+  /**
+   * These scores are for image scores *in the context of a landing page*, which is now a discouraged path of building image classifications. See go/orbit-for-images-v2 for an alternative.
+   */
   export interface Schema$QualityOrbitAsteroidBeltImageIntentScores {
     /**
      * The unique identifier for an Asteroid Belt document intent is being reused here
@@ -38142,7 +38191,7 @@ export namespace contentwarehouse_v1 {
     snippetInfo?: Schema$QualityPreviewChosenSnippetInfo;
   }
   /**
-   * A collection of data corresponding to a single title candidate. This will be used as: - a collection of signals to score and select titles in production - an input for training title models NOTE: When adding a floating point value for Ranklab purposes, use float32 instead of float64, because some of the Ranklab library still does not fully support float64. Next ID: 67
+   * A collection of data corresponding to a single title candidate. This will be used as: - a collection of signals to score and select titles in production - an input for training title models NOTE: When adding a floating point value for Ranklab purposes, use float32 instead of float64, because some of the Ranklab library still does not fully support float64. Next ID: 68
    */
   export interface Schema$QualityPreviewRanklabTitle {
     /**
@@ -38255,6 +38304,7 @@ export namespace contentwarehouse_v1 {
      * Deprecated experimental features.
      */
     queryRelevance?: number | null;
+    sourceGeneratedTitle?: boolean | null;
     sourceGeometry?: boolean | null;
     sourceHeadingTag?: boolean | null;
     sourceLocalTitle?: boolean | null;
@@ -40676,19 +40726,11 @@ export namespace contentwarehouse_v1 {
    * --------------------------------------------------------------------------- Enums defining the available modifier options.
    */
   export interface Schema$RepositoryWebrefFprintModifierProto {
-    capitalization?: string | null;
-    enclosing?: string | null;
     /**
      * i18.languages.Language enum defined in i18n/languages/proto/languages.proto UNKNOWN_LANGUAGE
      */
     language?: number | null;
     namespaceType?: string | null;
-    punctuation?: string | null;
-    sentence?: string | null;
-    sourceType?: string | null;
-    stemming?: string | null;
-    style?: string | null;
-    tokenType?: string | null;
   }
   /**
    * The Freebase type information.
@@ -41329,6 +41371,13 @@ export namespace contentwarehouse_v1 {
     resultCount?: number | null;
     taskData?: Schema$RepositoryWebrefTaskData;
     topicMentionedInResult?: string[] | null;
+  }
+  /**
+   * Identifies the source of the Meta Content Tag segment in the Cdoc https://www.w3schools.com/tags/tag_meta.asp
+   */
+  export interface Schema$RepositoryWebrefMetaTagIndices {
+    index?: number | null;
+    metaName?: string | null;
   }
   /**
    * Collects signals from one query used for prior learning.
@@ -42059,6 +42108,10 @@ export namespace contentwarehouse_v1 {
      * Pointer to the proto in the cdoc and index within the proto for Spore.
      */
     jgnIndex?: Schema$RepositoryWebrefJuggernautIndices;
+    /**
+     * Informs about the 'name' attribute of the referenced tag.
+     */
+    metaTagIndex?: Schema$RepositoryWebrefMetaTagIndices;
     /**
      * Pointer to the exact set of queries in the cdoc.
      */
@@ -46237,6 +46290,10 @@ export namespace contentwarehouse_v1 {
      * Affinity score for the cloud contact.
      */
     cloudScore?: number | null;
+    /**
+     * Indicator of the confidence in suggestion relevance.
+     */
+    suggestionConfidence?: string | null;
   }
   export interface Schema$SocialGraphWireProtoPeopleapiAffinityMetadataClientInteractionInfo {
     /**
@@ -46321,7 +46378,7 @@ export namespace contentwarehouse_v1 {
     hideType?: string | null;
   }
   /**
-   * NEXT_ID: 5
+   * NEXT_ID: 6
    */
   export interface Schema$SocialGraphWireProtoPeopleapiExtensionPeopleStackPersonExtendedData {
     /**
@@ -46340,6 +46397,7 @@ export namespace contentwarehouse_v1 {
      * If this field is not set, the person is visible (implicit).
      */
     hideType?: string | null;
+    suggestionConfidence?: string | null;
   }
   export interface Schema$SocialPersonalizationKnexAnnotation {
     item?: Schema$SocialPersonalizationKnexAnnotationItem[];
