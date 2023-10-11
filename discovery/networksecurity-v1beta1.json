@@ -842,7 +842,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfileGroups/{security_profile_group}`.",
+                      "description": "Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfileGroups/{security_profile_group}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/securityProfileGroups/[^/]+$",
                       "required": true,
@@ -1004,7 +1004,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Name of the SecurityProfile resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfiles/{security_profile}`.",
+                      "description": "Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfiles/{security_profile}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/securityProfiles/[^/]+$",
                       "required": true,
@@ -3162,7 +3162,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20231003",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -3466,6 +3466,10 @@
           "description": "Output only. Create time stamp",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the firewall endpoint. Max length 2048 characters.",
           "type": "string"
         },
         "labels": {
@@ -4398,7 +4402,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Immutable. Name of the SecurityProfile resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfiles/{security_profile}`.",
+          "description": "Immutable. Identifier. Name of the SecurityProfile resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfiles/{security_profile}`.",
           "type": "string"
         },
         "threatPreventionProfile": {
@@ -4453,7 +4457,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Immutable. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfileGroups/{security_profile_group}`.",
+          "description": "Immutable. Identifier. Name of the SecurityProfileGroup resource. It matches pattern `projects|organizations/*/locations/{location}/securityProfileGroups/{security_profile_group}`.",
           "type": "string"
         },
         "threatPreventionProfile": {
