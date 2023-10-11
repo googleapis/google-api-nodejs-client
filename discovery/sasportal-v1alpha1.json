@@ -2636,7 +2636,7 @@
       }
     }
   },
-  "revision": "20230917",
+  "revision": "20231006",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -3584,7 +3584,12 @@
     "SasPortalSetupSasAnalyticsRequest": {
       "description": "Request for the SetupSasAnalytics rpc.",
       "id": "SasPortalSetupSasAnalyticsRequest",
-      "properties": {},
+      "properties": {
+        "userId": {
+          "description": "Optional. User id to setup analytics for, if not provided the user id associated with the project is used. optional",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SasPortalSetupSasAnalyticsResponse": {
