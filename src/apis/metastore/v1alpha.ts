@@ -600,6 +600,10 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$LocationMetadata {
     /**
+     * The multi-region metadata if the current region is a multi-region.
+     */
+    multiRegionMetadata?: Schema$MultiRegionMetadata;
+    /**
      * The versions of Hive Metastore that can be used when creating a new metastore service in this location. The server guarantees that exactly one HiveMetastoreVersion in the list will set is_default.
      */
     supportedHiveMetastoreVersions?: Schema$HiveMetastoreVersion[];
@@ -722,6 +726,15 @@ export namespace metastore_v1alpha {
    * Response message for DataprocMetastore.MoveTableToDatabase.
    */
   export interface Schema$MoveTableToDatabaseResponse {}
+  /**
+   * The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region, it will be empty.
+   */
+  export interface Schema$MultiRegionMetadata {
+    /**
+     * The regions constituting the multi-region.
+     */
+    constituentRegions?: string[] | null;
+  }
   /**
    * Network configuration for the Dataproc Metastore service.Next available ID: 4
    */
