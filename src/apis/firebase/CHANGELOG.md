@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v6.3.1...firebase-v6.4.0) (2023-10-11)
+
+
+### Features
+
+* **firebase:** update the API ([db24c70](https://github.com/googleapis/google-api-nodejs-client/commit/db24c70a61edcdfd062cfae9485b6e1dea2224b5))
+* **firebase:** update the API ([fdafcaa](https://github.com/googleapis/google-api-nodejs-client/commit/fdafcaa9692d6829a4bb67fa98a796a182d700c3))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [6.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v6.3.0...firebase-v6.3.1) (2023-08-25)
 
 

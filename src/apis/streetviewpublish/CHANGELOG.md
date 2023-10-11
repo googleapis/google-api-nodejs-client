@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v4.0.2...streetviewpublish-v4.0.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **streetviewpublish:** update the API ([1c6bb94](https://github.com/googleapis/google-api-nodejs-client/commit/1c6bb94e2ef745913506df7921ad5dd88d44873b))
+
 ## [4.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v4.0.1...streetviewpublish-v4.0.2) (2023-08-25)
 
 

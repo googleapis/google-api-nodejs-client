@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessbusinessinformation-v4.0.4...mybusinessbusinessinformation-v4.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **mybusinessbusinessinformation:** update the API ([fb250ff](https://github.com/googleapis/google-api-nodejs-client/commit/fb250ffc72d5b67aa178540397b18eb6c8819b6c))
+* **mybusinessbusinessinformation:** update the API ([565b3fa](https://github.com/googleapis/google-api-nodejs-client/commit/565b3fa86bb3ca7c6c60f5eebf33d80b6297047e))
+
 ## [4.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessbusinessinformation-v4.0.3...mybusinessbusinessinformation-v4.0.4) (2023-08-25)
 
 

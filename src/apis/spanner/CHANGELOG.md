@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v1.1.1...spanner-v2.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+* **spanner:** update the API ([3d046d5](https://github.com/googleapis/google-api-nodejs-client/commit/3d046d5e6193f876b4ade162c3581e43f057031f))
+
 ## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v1.1.0...spanner-v1.1.1) (2023-08-25)
 
 

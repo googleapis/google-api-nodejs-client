@@ -1,5 +1,19 @@
 # Changelog
 
+## [5.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappcheck-v5.2.1...firebaseappcheck-v5.3.0) (2023-10-11)
+
+
+### Features
+
+* **firebaseappcheck:** update the API ([53b090f](https://github.com/googleapis/google-api-nodejs-client/commit/53b090fa9cd814770613a746cc7fbd92efa7ae0a))
+* **firebaseappcheck:** update the API ([13f8c86](https://github.com/googleapis/google-api-nodejs-client/commit/13f8c865f8fdc33370f422a6024b95e96284f727))
+* **firebaseappcheck:** update the API ([7c4888c](https://github.com/googleapis/google-api-nodejs-client/commit/7c4888c182066b7ef1fd1ff56f8dde0b7e9bff52))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [5.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappcheck-v5.2.0...firebaseappcheck-v5.2.1) (2023-08-25)
 
 

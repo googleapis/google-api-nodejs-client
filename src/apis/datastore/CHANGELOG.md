@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v1.1.1...datastore-v1.1.2) (2023-10-11)
+
+
+### Bug Fixes
+
+* **datastore:** update the API ([ee0bd25](https://github.com/googleapis/google-api-nodejs-client/commit/ee0bd25a29d550814911dee4908cd9c23ccc85d8))
+
 ## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v1.1.0...datastore-v1.1.1) (2023-08-25)
 
 

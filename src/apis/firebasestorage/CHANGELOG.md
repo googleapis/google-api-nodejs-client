@@ -1,5 +1,18 @@
 # Changelog
 
+## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v6.0.4...firebasestorage-v6.1.0) (2023-10-11)
+
+
+### Features
+
+* **firebasestorage:** update the API ([22bb1f7](https://github.com/googleapis/google-api-nodejs-client/commit/22bb1f7f9003b2b14996b5869053f328667f5fa1))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **firebasestorage:** update the API ([ea95e22](https://github.com/googleapis/google-api-nodejs-client/commit/ea95e22fb299a71c519b4c415e4c26b6809aef51))
+
 ## [6.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v6.0.3...firebasestorage-v6.0.4) (2023-08-25)
 
 

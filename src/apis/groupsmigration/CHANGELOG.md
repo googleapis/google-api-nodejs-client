@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/groupsmigration-v1.0.4...groupsmigration-v1.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **groupsmigration:** update the API ([e0c396e](https://github.com/googleapis/google-api-nodejs-client/commit/e0c396e9d05480f0eb2815758187b69e14b33dcd))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/groupsmigration-v1.0.3...groupsmigration-v1.0.4) (2023-08-25)
 
 

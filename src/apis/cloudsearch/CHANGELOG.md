@@ -1,5 +1,14 @@
 # Changelog
 
+## [14.1.4](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v14.1.3...cloudsearch-v14.1.4) (2023-10-11)
+
+
+### Bug Fixes
+
+* **cloudsearch:** update the API ([5f25dae](https://github.com/googleapis/google-api-nodejs-client/commit/5f25dae49cdb0bb64e1863d7c1fc2d21094d8a57))
+* **cloudsearch:** update the API ([25771c7](https://github.com/googleapis/google-api-nodejs-client/commit/25771c752c1162aa0d6af3c819627a3bb64894e8))
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [14.1.3](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v14.1.2...cloudsearch-v14.1.3) (2023-08-25)
 
 

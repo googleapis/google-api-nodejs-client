@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudresourcemanager",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "cloudresourcemanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",

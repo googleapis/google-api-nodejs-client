@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v3.0.6...genomics-v3.0.7) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **genomics:** update the API ([c64bc84](https://github.com/googleapis/google-api-nodejs-client/commit/c64bc848cbdb14bc01ab7622ba433ede797b6cc1))
+
 ## [3.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v3.0.5...genomics-v3.0.6) (2023-08-25)
 
 

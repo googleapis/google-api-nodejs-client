@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/testing",
-  "version": "5.3.0",
+  "version": "5.4.0",
   "description": "testing",
   "main": "build/index.js",
   "types": "build/index.d.ts",

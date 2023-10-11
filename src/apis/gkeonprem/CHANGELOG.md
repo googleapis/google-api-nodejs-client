@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v2.0.1...gkeonprem-v3.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **gkeonprem:** This release has breaking changes.
+
+### Features
+
+* **gkeonprem:** update the API ([26188f7](https://github.com/googleapis/google-api-nodejs-client/commit/26188f73ed1ef87e216b3fd0773a6db23e69f662))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **gkeonprem:** update the API ([77c0ea4](https://github.com/googleapis/google-api-nodejs-client/commit/77c0ea49777150108e8cdf914450176a952d9660))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v2.0.0...gkeonprem-v2.0.1) (2023-08-25)
 
 

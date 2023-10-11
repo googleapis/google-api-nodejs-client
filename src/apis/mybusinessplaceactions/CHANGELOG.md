@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessplaceactions-v1.0.4...mybusinessplaceactions-v1.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **mybusinessplaceactions:** update the API ([bc8e5c7](https://github.com/googleapis/google-api-nodejs-client/commit/bc8e5c7259319d1fc811a24f4787823644078601))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessplaceactions-v1.0.3...mybusinessplaceactions-v1.0.4) (2023-08-25)
 
 

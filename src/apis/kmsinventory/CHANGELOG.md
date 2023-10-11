@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v1.1.1...kmsinventory-v1.1.2) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **kmsinventory:** update the API ([9492458](https://github.com/googleapis/google-api-nodejs-client/commit/9492458165913a20a2eb2acf8122c5017cf115a5))
+
 ## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v1.1.0...kmsinventory-v1.1.1) (2023-08-25)
 
 

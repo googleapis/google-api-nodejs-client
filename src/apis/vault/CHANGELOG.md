@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v3.1.2...vault-v3.2.0) (2023-10-11)
+
+
+### Features
+
+* **vault:** update the API ([e1d2dc4](https://github.com/googleapis/google-api-nodejs-client/commit/e1d2dc4ca37c8ad55e9d7e19ebcf2f34e5f82234))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **vault:** update the API ([6f14118](https://github.com/googleapis/google-api-nodejs-client/commit/6f1411871ca5bc99087cbc97d6e9c28dbc0f78ad))
+
 ## [3.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/vault-v3.1.1...vault-v3.1.2) (2023-08-25)
 
 

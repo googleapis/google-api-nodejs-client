@@ -1,5 +1,18 @@
 # Changelog
 
+## [10.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v10.1.1...sqladmin-v10.2.0) (2023-10-11)
+
+
+### Features
+
+* **sqladmin:** update the API ([2d1c8c4](https://github.com/googleapis/google-api-nodejs-client/commit/2d1c8c4d4985cfb9706a4431f39aebf6b54bdefb))
+* **sqladmin:** update the API ([0c9f7b6](https://github.com/googleapis/google-api-nodejs-client/commit/0c9f7b666da6d51fd7174c76e5cf79335d48e1d0))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [10.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v10.1.0...sqladmin-v10.1.1) (2023-08-25)
 
 

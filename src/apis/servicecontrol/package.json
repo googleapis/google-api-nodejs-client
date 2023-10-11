@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/servicecontrol",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "servicecontrol",
   "main": "build/index.js",
   "types": "build/index.d.ts",

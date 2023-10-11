@@ -1,5 +1,22 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v6.0.4...cloudsupport-v7.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([f37e735](https://github.com/googleapis/google-api-nodejs-client/commit/f37e735d7f94223313f3bf39b187f0c54a3b07ef))
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [6.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v6.0.3...cloudsupport-v6.0.4) (2023-08-25)
 
 

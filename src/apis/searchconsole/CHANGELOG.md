@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v1.0.2...searchconsole-v1.0.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **searchconsole:** update the API ([208d0a5](https://github.com/googleapis/google-api-nodejs-client/commit/208d0a5dc718bcfcc100034fcbb1f086793d0ad6))
+
 ## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v1.0.1...searchconsole-v1.0.2) (2023-08-25)
 
 

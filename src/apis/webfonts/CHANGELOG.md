@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.3](https://github.com/googleapis/google-api-nodejs-client/compare/webfonts-v1.1.2...webfonts-v1.1.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **webfonts:** update the API ([f0a4421](https://github.com/googleapis/google-api-nodejs-client/commit/f0a44217601e0fb49d1f8627ea28035812830bb1))
+
 ## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/webfonts-v1.1.1...webfonts-v1.1.2) (2023-08-25)
 
 

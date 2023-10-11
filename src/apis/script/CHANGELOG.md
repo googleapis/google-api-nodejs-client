@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/script-v3.0.3...script-v3.0.4) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **script:** update the API ([09d1558](https://github.com/googleapis/google-api-nodejs-client/commit/09d1558a81ecba58aab099623ff9b1264a734576))
+* **script:** update the API ([207587b](https://github.com/googleapis/google-api-nodejs-client/commit/207587b2b77bb281f68a311edff22727527c988b))
+
 ## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/script-v3.0.2...script-v3.0.3) (2023-08-25)
 
 

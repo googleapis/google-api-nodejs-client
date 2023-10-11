@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v2.0.1...aiplatform-v3.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **aiplatform:** This release has breaking changes.
+
+### Features
+
+* **aiplatform:** update the API ([c1ba635](https://github.com/googleapis/google-api-nodejs-client/commit/c1ba635cfa41ed1cd44892a671a7539944c9934f))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v2.0.0...aiplatform-v2.0.1) (2023-08-25)
 
 

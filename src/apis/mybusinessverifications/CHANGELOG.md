@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessverifications-v1.2.4...mybusinessverifications-v2.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* **mybusinessverifications:** This release has breaking changes.
+
+### Features
+
+* **mybusinessverifications:** update the API ([e51db62](https://github.com/googleapis/google-api-nodejs-client/commit/e51db6202b87ba9ec9612b546ecbcc135b717021))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **mybusinessverifications:** update the API ([d5de2b9](https://github.com/googleapis/google-api-nodejs-client/commit/d5de2b9692517453d5f5ce790543105012dc2b3b))
+
 ## [1.2.4](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessverifications-v1.2.3...mybusinessverifications-v1.2.4) (2023-08-25)
 
 

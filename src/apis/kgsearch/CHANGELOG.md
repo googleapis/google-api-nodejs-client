@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/kgsearch-v1.0.4...kgsearch-v1.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **kgsearch:** update the API ([9cee192](https://github.com/googleapis/google-api-nodejs-client/commit/9cee192c083e98dca098ba829f41eae6743abfaf))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/kgsearch-v1.0.3...kgsearch-v1.0.4) (2023-08-25)
 
 

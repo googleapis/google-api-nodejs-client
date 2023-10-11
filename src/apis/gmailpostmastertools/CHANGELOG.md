@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmailpostmastertools-v1.0.4...gmailpostmastertools-v1.1.0) (2023-10-11)
+
+
+### Features
+
+* **gmailpostmastertools:** update the API ([5dfb9b5](https://github.com/googleapis/google-api-nodejs-client/commit/5dfb9b5e6ec320f2408dfd372daea4bd45ecb2a7))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **gmailpostmastertools:** update the API ([3b25276](https://github.com/googleapis/google-api-nodejs-client/commit/3b25276be01f6dec109af16a055d095818271d99))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/gmailpostmastertools-v1.0.3...gmailpostmastertools-v1.0.4) (2023-08-25)
 
 

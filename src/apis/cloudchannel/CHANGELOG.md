@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v1.1.1...cloudchannel-v1.2.0) (2023-10-11)
+
+
+### Features
+
+* **cloudchannel:** update the API ([b940b40](https://github.com/googleapis/google-api-nodejs-client/commit/b940b403ca254a8b308e7938677f4d2daaa69922))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [1.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v1.1.0...cloudchannel-v1.1.1) (2023-08-25)
 
 

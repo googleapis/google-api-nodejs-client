@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.8](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v3.0.7...mybusinessaccountmanagement-v3.0.8) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **mybusinessaccountmanagement:** update the API ([6bc90e9](https://github.com/googleapis/google-api-nodejs-client/commit/6bc90e95759cad41e70e9f3c75f706cd66d7bd4a))
+
 ## [3.0.7](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessaccountmanagement-v3.0.6...mybusinessaccountmanagement-v3.0.7) (2023-08-25)
 
 

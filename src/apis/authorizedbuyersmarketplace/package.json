@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/authorizedbuyersmarketplace",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "authorizedbuyersmarketplace",
   "main": "build/index.js",
   "types": "build/index.d.ts",

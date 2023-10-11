@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.5](https://github.com/googleapis/google-api-nodejs-client/compare/pubsublite-v2.1.4...pubsublite-v2.1.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **pubsublite:** update the API ([383264c](https://github.com/googleapis/google-api-nodejs-client/commit/383264cadb0134a9f133b0f84f387d96bd68e65f))
+* **pubsublite:** update the API ([87e148d](https://github.com/googleapis/google-api-nodejs-client/commit/87e148d025cbc44e472bc1733b133d8f65f4d04c))
+
 ## [2.1.4](https://github.com/googleapis/google-api-nodejs-client/compare/pubsublite-v2.1.3...pubsublite-v2.1.4) (2023-08-25)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v9.3.1...calendar-v9.3.2) (2023-10-11)
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([8fdd6c4](https://github.com/googleapis/google-api-nodejs-client/commit/8fdd6c400d909f6d60ffcfed068dbe93400de709))
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [9.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v9.3.0...calendar-v9.3.1) (2023-08-25)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/youtubeanalytics-v2.0.2...youtubeanalytics-v2.0.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **youtubeAnalytics:** update the API ([203afe6](https://github.com/googleapis/google-api-nodejs-client/commit/203afe652d22ae85553a08262bbb7c1b19cf43c4))
+
 ## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/youtubeanalytics-v2.0.1...youtubeanalytics-v2.0.2) (2023-08-25)
 
 
