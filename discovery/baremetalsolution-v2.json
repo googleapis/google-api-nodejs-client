@@ -345,7 +345,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to update. The currently supported fields are: `labels` `hyperthreading_enabled` `os_image`",
+                      "description": "The list of fields to update. The currently supported fields are: `labels` `hyperthreading_enabled` `os_image` `ssh_keys`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -849,6 +849,31 @@
             },
             "osImages": {
               "methods": {
+                "get": {
+                  "description": "Get details of a single OS image.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/osImages/{osImagesId}",
+                  "httpMethod": "GET",
+                  "id": "baremetalsolution.projects.locations.osImages.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the OS image.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/osImages/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "OSImage"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Retrieves the list of OS images which are currently approved.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/osImages",
@@ -870,7 +895,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListProvisioningQuotasRequest.",
+                      "description": "Required. Parent value for ListOSImagesRequest.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1588,7 +1613,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20231004",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {

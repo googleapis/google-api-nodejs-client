@@ -106,6 +106,7 @@ import {
   VERSIONS as authorizedbuyersmarketplaceVersions,
   authorizedbuyersmarketplace,
 } from './authorizedbuyersmarketplace';
+import {VERSIONS as backupdrVersions, backupdr} from './backupdr';
 import {
   VERSIONS as baremetalsolutionVersions,
   baremetalsolution,
@@ -634,6 +635,7 @@ import {
 } from './videointelligence';
 import {VERSIONS as visionVersions, vision} from './vision';
 import {VERSIONS as vmmigrationVersions, vmmigration} from './vmmigration';
+import {VERSIONS as vmwareengineVersions, vmwareengine} from './vmwareengine';
 import {VERSIONS as vpcaccessVersions, vpcaccess} from './vpcaccess';
 import {VERSIONS as webfontsVersions, webfonts} from './webfonts';
 import {VERSIONS as webmastersVersions, webmasters} from './webmasters';
@@ -702,6 +704,7 @@ export const APIS: APIList = {
   artifactregistry: artifactregistryVersions,
   assuredworkloads: assuredworkloadsVersions,
   authorizedbuyersmarketplace: authorizedbuyersmarketplaceVersions,
+  backupdr: backupdrVersions,
   baremetalsolution: baremetalsolutionVersions,
   batch: batchVersions,
   beyondcorp: beyondcorpVersions,
@@ -933,6 +936,7 @@ export const APIS: APIList = {
   videointelligence: videointelligenceVersions,
   vision: visionVersions,
   vmmigration: vmmigrationVersions,
+  vmwareengine: vmwareengineVersions,
   vpcaccess: vpcaccessVersions,
   webfonts: webfontsVersions,
   webmasters: webmastersVersions,
@@ -982,6 +986,7 @@ export class GeneratedAPIs {
   artifactregistry = artifactregistry;
   assuredworkloads = assuredworkloads;
   authorizedbuyersmarketplace = authorizedbuyersmarketplace;
+  backupdr = backupdr;
   baremetalsolution = baremetalsolution;
   batch = batch;
   beyondcorp = beyondcorp;
@@ -1213,6 +1218,7 @@ export class GeneratedAPIs {
   videointelligence = videointelligence;
   vision = vision;
   vmmigration = vmmigration;
+  vmwareengine = vmwareengine;
   vpcaccess = vpcaccess;
   webfonts = webfonts;
   webmasters = webmasters;

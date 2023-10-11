@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20230918",
+  "revision": "20231001",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2238,6 +2238,40 @@
             "Medium padding",
             "Large padding",
             "Extra large padding"
+          ],
+          "type": "string"
+        },
+        "pointerLocation": {
+          "description": "The pointer location for this widget (also sometimes called a \"tail\")",
+          "enum": [
+            "POINTER_LOCATION_UNSPECIFIED",
+            "PL_TOP",
+            "PL_RIGHT",
+            "PL_BOTTOM",
+            "PL_LEFT",
+            "PL_TOP_LEFT",
+            "PL_TOP_RIGHT",
+            "PL_RIGHT_TOP",
+            "PL_RIGHT_BOTTOM",
+            "PL_BOTTOM_RIGHT",
+            "PL_BOTTOM_LEFT",
+            "PL_LEFT_BOTTOM",
+            "PL_LEFT_TOP"
+          ],
+          "enumDescriptions": [
+            "No visual pointer",
+            "Placed in the middle of the top of the widget",
+            "Placed in the middle of the right side of the widget",
+            "Placed in the middle of the bottom of the widget",
+            "Placed in the middle of the left side of the widget",
+            "Placed on the left side of the top of the widget",
+            "Placed on the right side of the top of the widget",
+            "Placed on the top of the right side of the widget",
+            "Placed on the bottom of the right side of the widget",
+            "Placed on the right side of the bottom of the widget",
+            "Placed on the left side of the bottom of the widget",
+            "Placed on the bottom of the left side of the widget",
+            "Placed on the top of the left side of the widget"
           ],
           "type": "string"
         },

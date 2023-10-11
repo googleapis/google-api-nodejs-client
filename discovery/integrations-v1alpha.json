@@ -939,7 +939,7 @@
                     "suspensions": {
                       "methods": {
                         "lift": {
-                          "description": "* Lifts suspension for advanced suspension task. Fetch corresponding suspension with provided suspension Id, resolve suspension, and set up suspension result for the Suspension Task.",
+                          "description": "* Lifts suspension for the Suspension task. Fetch corresponding suspension with provided suspension Id, resolve suspension, and set up suspension result for the Suspension Task.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/executions/{executionsId}/suspensions/{suspensionsId}:lift",
                           "httpMethod": "POST",
                           "id": "integrations.projects.locations.integrations.executions.suspensions.lift",
@@ -1371,6 +1371,215 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    }
+                  },
+                  "resources": {
+                    "testCases": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a new test case",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}/testCases",
+                          "httpMethod": "POST",
+                          "id": "integrations.projects.locations.integrations.versions.testCases.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "testCaseId": {
+                              "description": "Required. Required",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/testCases",
+                          "request": {
+                            "$ref": "GoogleCloudIntegrationsV1alphaTestCase"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudIntegrationsV1alphaTestCase"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a test case",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}/testCases/{testCasesId}",
+                          "httpMethod": "DELETE",
+                          "id": "integrations.projects.locations.integrations.versions.testCases.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. ID for the test case to be deleted",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+/testCases/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "executeTest": {
+                          "description": "Executes functional test",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}/testCases/{testCasesId}:executeTest",
+                          "httpMethod": "POST",
+                          "id": "integrations.projects.locations.integrations.versions.testCases.executeTest",
+                          "parameterOrder": [
+                            "testCaseName"
+                          ],
+                          "parameters": {
+                            "testCaseName": {
+                              "description": "Required. Test case resource name",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+/testCases/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+testCaseName}:executeTest",
+                          "request": {
+                            "$ref": "GoogleCloudIntegrationsV1alphaExecuteTestCaseRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Get a test case",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}/testCases/{testCasesId}",
+                          "httpMethod": "GET",
+                          "id": "integrations.projects.locations.integrations.versions.testCases.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The ID of the test case to retrieve",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+/testCases/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudIntegrationsV1alphaTestCase"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "listExecutions": {
+                          "description": "Lists the results of all functional test executions. The response includes the same information as the [execution log](https://cloud.google.com/application-integration/docs/viewing-logs) in the Integration UI.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}/testCases/{testCasesId}:executions",
+                          "httpMethod": "GET",
+                          "id": "integrations.projects.locations.integrations.versions.testCases.listExecutions",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. Standard filter field, we support filtering on following fields: test_case_id: the ID of the test case. CreateTimestamp: the execution created time. event_execution_state: the state of the executions. execution_id: the id of the execution. trigger_id: the id of the trigger. parameter_type: the type of the parameters involved in the execution. All fields support for EQUALS, in additional: CreateTimestamp support for LESS_THAN, GREATER_THAN ParameterType support for HAS For example: \"parameter_type\" HAS \\\"string\\\" Also supports operators like AND, OR, NOT For example, trigger_id=\\\"id1\\\" AND test_case_id=\\\"testCaseId\\\"",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Optional. The results would be returned in order you specified here. Currently supporting \"last_modified_time\" and \"create_time\".",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The size of entries in the response.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The token returned in the previous response.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource name of the test case execution.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+/testCases/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "readMask": {
+                              "description": "Optional. View mask for the response data. If set, only the field specified will be returned as part of the result. If not set, all fields in event execution info will be filled and returned.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "truncateParams": {
+                              "deprecated": true,
+                              "description": "Optional. If true, the service will truncate the params to only keep the first 1000 characters of string params and empty the executions in order to make response smaller. Only works for UI and when the params fields are not filtered out.",
+                              "location": "query",
+                              "type": "boolean"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}:executions",
+                          "response": {
+                            "$ref": "GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates a test case",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}/testCases/{testCasesId}",
+                          "httpMethod": "PATCH",
+                          "id": "integrations.projects.locations.integrations.versions.testCases.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Output only. Auto-generated primary key.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+/testCases/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Optional. Field mask specifying the fields in the above integration that have been modified and need to be updated.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudIntegrationsV1alphaTestCase"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudIntegrationsV1alphaTestCase"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
                     }
                   }
                 }
@@ -2055,7 +2264,7 @@
                         "suspensions": {
                           "methods": {
                             "lift": {
-                              "description": "* Lifts suspension for advanced suspension task. Fetch corresponding suspension with provided suspension Id, resolve suspension, and set up suspension result for the Suspension Task.",
+                              "description": "* Lifts suspension for the Suspension task. Fetch corresponding suspension with provided suspension Id, resolve suspension, and set up suspension result for the Suspension Task.",
                               "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/executions/{executionsId}/suspensions/{suspensionsId}:lift",
                               "httpMethod": "POST",
                               "id": "integrations.projects.locations.products.integrations.executions.suspensions.lift",
@@ -2487,6 +2696,64 @@
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
+                        }
+                      },
+                      "resources": {
+                        "testCases": {
+                          "methods": {
+                            "list": {
+                              "description": "Lists all the test cases that satisfy the filters.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/products/{productsId}/integrations/{integrationsId}/versions/{versionsId}/testCases",
+                              "httpMethod": "GET",
+                              "id": "integrations.projects.locations.products.integrations.versions.testCases.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "filter": {
+                                  "description": "Optional. Standard filter field. Filtering as supported in https://developers.google.com/authorized-buyers/apis/guides/list-filters.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "orderBy": {
+                                  "description": "Optional. The results would be returned in order specified here. Currently supported sort keys are: Descending sort order for \"last_modified_time\", \"created_time\". Ascending sort order for \"name\".",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "pageSize": {
+                                  "description": "Optional. The maximum number of test cases to return. The service may return fewer than this value. If unspecified, at most 100 test cases will be returned.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "Optional. A page token, received from a previous `ListTestCases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTestCases` must match the call that provided the page token.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The parent resource where this TestCase was created.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/products/[^/]+/integrations/[^/]+/versions/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "readMask": {
+                                  "description": "Optional. The mask which specifies fields that need to be returned in the TestCases's response.",
+                                  "format": "google-fieldmask",
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/testCases",
+                              "response": {
+                                "$ref": "GoogleCloudIntegrationsV1alphaListTestCasesResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
                         }
                       }
                     }
@@ -3257,7 +3524,7 @@
       }
     }
   },
-  "revision": "20230906",
+  "revision": "20231006",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -8276,6 +8543,12 @@
       "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
       "id": "GoogleCloudConnectorsV1ConnectorVersionInfraConfig",
       "properties": {
+        "connectionRatelimitWindowSeconds": {
+          "description": "Output only. The window used for ratelimiting runtime requests to connections.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "hpaConfig": {
           "$ref": "GoogleCloudConnectorsV1HPAConfig",
           "description": "Output only. HPA autoscaling config.",
@@ -8324,6 +8597,7 @@
           "type": "integer"
         },
         "serviceAttachment": {
+          "deprecated": true,
           "description": "PSC service attachments. Format: projects/*/regions/*/serviceAttachments/*",
           "type": "string"
         }
@@ -8396,13 +8670,13 @@
           "description": "Enrichment Enabled.",
           "type": "boolean"
         },
+        "eventsListenerIngressEndpoint": {
+          "description": "Optional. Ingress endpoint of the event listener. This is used only when private connectivity is enabled.",
+          "type": "string"
+        },
         "privateConnectivityEnabled": {
           "description": "Optional. Private Connectivity Enabled.",
           "type": "boolean"
-        },
-        "publicEventsListenerEndpoint": {
-          "description": "Optional. Public Events listener endpoint.",
-          "type": "string"
         },
         "registrationDestinationConfig": {
           "$ref": "GoogleCloudConnectorsV1DestinationConfig",
@@ -8417,6 +8691,11 @@
       "properties": {
         "eventsListenerEndpoint": {
           "description": "Output only. Events listener endpoint. The value will populated after provisioning the events listener.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "eventsListenerPscSa": {
+          "description": "Output only. Events listener PSC Service attachment. The value will be populated after provisioning the events listener with private connectivity enabled.",
           "readOnly": true,
           "type": "string"
         },
@@ -8443,13 +8722,13 @@
             "STATE_UNSPECIFIED",
             "ACTIVE",
             "ERROR",
-            "PUBLIC_ENDPOINT_REQUIRED"
+            "INGRESS_ENDPOINT_REQUIRED"
           ],
           "enumDescriptions": [
             "Default state.",
             "Eventing is enabled and ready to receive events.",
             "Eventing is not active due to an error.",
-            "Public endpoint required."
+            "Ingress endpoint required."
           ],
           "readOnly": true,
           "type": "string"
@@ -8675,6 +8954,50 @@
         "tokenType": {
           "description": "Only support \"bearer\" token in v1 as bearer token is the predominant type used with OAuth 2.0.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaAssertion": {
+      "description": "An assertion which will check for a condition over task execution status or an expression for task output variables Next available id: 5",
+      "id": "GoogleCloudIntegrationsV1alphaAssertion",
+      "properties": {
+        "assertionStrategy": {
+          "description": "The type of assertion to perform.",
+          "enum": [
+            "ASSERTION_STRATEGY_UNSPECIFIED",
+            "ASSERT_SUCCESSFUL_EXECUTION",
+            "ASSERT_FAILED_EXECUTION",
+            "ASSERT_NO_EXECUTION",
+            "ASSERT_EQUALS",
+            "ASSERT_NOT_EQUALS",
+            "ASSERT_CONTAINS",
+            "ASSERT_CONDITION"
+          ],
+          "enumDescriptions": [
+            "Unspecified Assertion strategy",
+            "Test a successful execution",
+            "Test a failed execution",
+            "Test that the task was never executed",
+            "Test the parameter selected is equal to the expected value",
+            "Test the parameter selected is not equal to the expected value",
+            "Test the parameter selected contains the configured value",
+            "Test a specific condition"
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "description": "Optional. Standard filter expression for ASSERT_CONDITION to succeed",
+          "type": "string"
+        },
+        "parameter": {
+          "$ref": "GoogleCloudIntegrationsV1alphaEventParameter",
+          "description": "Optional. Key-value pair for ASSERT_EQUALS, ASSERT_NOT_EQUALS, ASSERT_CONTAINS to succeed"
+        },
+        "retryCount": {
+          "description": "Number of times given task should be retried in case of ASSERT_FAILED_EXECUTION",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -9300,6 +9623,39 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaExecuteTestCaseRequest": {
+      "description": "The request for executing a functional test.",
+      "id": "GoogleCloudIntegrationsV1alphaExecuteTestCaseRequest",
+      "properties": {
+        "inputParameters": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudIntegrationsV1alphaValueType"
+          },
+          "description": "Optional. Input parameters used by test case execution.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse": {
+      "description": "The response for executing a functional test.",
+      "id": "GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse",
+      "properties": {
+        "executionId": {
+          "description": "The id of the execution corresponding to this run of integration.",
+          "type": "string"
+        },
+        "outputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "OUTPUT parameters in format of Map. Where Key is the name of the parameter. Note: Name of the system generated parameters are wrapped by backtick(`) to distinguish them from the user defined parameters.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaExecution": {
       "description": "The Execution resource contains detailed information of an individual integration execution.",
       "id": "GoogleCloudIntegrationsV1alphaExecution",
@@ -9779,11 +10135,13 @@
           "description": "Optional. Flag to disable database persistence for execution data, including event execution info, execution export info, execution metadata index and execution param index.",
           "enum": [
             "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
-            "DATABASE_PERSISTENCE_DISABLED"
+            "DATABASE_PERSISTENCE_DISABLED",
+            "DATABASE_PERSISTENCE_ASYNC"
           ],
           "enumDescriptions": [
             "Enables persistence for all execution data.",
-            "Disables persistence for all execution data."
+            "Disables persistence for all execution data.",
+            "Asynchronously persist all execution data."
           ],
           "type": "string"
         },
@@ -9884,11 +10242,13 @@
           "description": "Optional. Flag to disable database persistence for execution data, including event execution info, execution export info, execution metadata index and execution param index.",
           "enum": [
             "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
-            "DATABASE_PERSISTENCE_DISABLED"
+            "DATABASE_PERSISTENCE_DISABLED",
+            "DATABASE_PERSISTENCE_ASYNC"
           ],
           "enumDescriptions": [
             "Enables persistence for all execution data.",
-            "Disables persistence for all execution data."
+            "Disables persistence for all execution data.",
+            "Asynchronously persist all execution data."
           ],
           "type": "string"
         },
@@ -10343,6 +10703,79 @@
           "description": "The suspensions for the relevant execution which the caller has permissions to view and resolve.",
           "items": {
             "$ref": "GoogleCloudIntegrationsV1alphaSuspension"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse": {
+      "description": "The response for listing the functional test execution data.",
+      "id": "GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse",
+      "properties": {
+        "executions": {
+          "description": "The detailed information of requested executions",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaExecution"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The token used to retrieve the next page results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaListTestCasesResponse": {
+      "description": "Response for ListTestCases",
+      "id": "GoogleCloudIntegrationsV1alphaListTestCasesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "testCases": {
+          "description": "The test cases corresponding to the specified filter",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaTestCase"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaMockConfig": {
+      "description": "The configuration for mocking of a task during test execution Next available id: 4",
+      "id": "GoogleCloudIntegrationsV1alphaMockConfig",
+      "properties": {
+        "failedExecutions": {
+          "description": "Optional. Number of times the given task should fail for failure mock strategy",
+          "format": "int64",
+          "type": "string"
+        },
+        "mockStrategy": {
+          "description": "Mockstrategy defines how the particular task should be mocked during test execution",
+          "enum": [
+            "MOCK_STRATEGY_UNSPECIFIED",
+            "NO_MOCK_STRATEGY",
+            "SPECIFIC_MOCK_STRATEGY",
+            "FAILURE_MOCK_STRATEGY",
+            "SKIP_MOCK_STRATEGY"
+          ],
+          "enumDescriptions": [
+            "This should never be used to annotate a field",
+            "Execute actual task",
+            "Don't execute actual task, instead use the values specified by user for output of the task",
+            "Don't execute actual task, instead return task failure",
+            "Don't execute actual task, instead mark it as successful"
+          ],
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Optional. List of key-value pairs for specific mock strategy",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaEventParameter"
           },
           "type": "array"
         }
@@ -11261,6 +11694,110 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaTestCase": {
+      "description": "Defines the functional test case for Application Integration. Next available id: 15",
+      "id": "GoogleCloudIntegrationsV1alphaTestCase",
+      "properties": {
+        "createTime": {
+          "description": "Auto-generated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "creatorEmail": {
+          "description": "Optional. The creator's email address. Generated based on the End User Credentials/LOAS role of the user making the call.",
+          "type": "string"
+        },
+        "databasePersistencePolicy": {
+          "description": "Optional. Various policies for how to persist the test execution info including execution info, execution export info, execution metadata index and execution param index..",
+          "enum": [
+            "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
+            "DATABASE_PERSISTENCE_DISABLED",
+            "DATABASE_PERSISTENCE_ASYNC"
+          ],
+          "enumDescriptions": [
+            "Enables persistence for all execution data.",
+            "Disables persistence for all execution data.",
+            "Asynchronously persist all execution data."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the test case.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of test case.",
+          "type": "string"
+        },
+        "lastModifierEmail": {
+          "description": "The last modifer's email address. Generated based on the End User Credentials/LOAS role of the user making the call.",
+          "type": "string"
+        },
+        "lockHolderEmail": {
+          "description": "Optional. The edit lock holder's email address. Generated based on the End User Credentials/LOAS role of the user making the call.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Auto-generated primary key.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "testInputParameters": {
+          "description": "Optional. Parameters that are expected to be passed to the test case when the test case is triggered. This gives the user the ability to provide default values. This should include all the output variables of the trigger as input variables.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaIntegrationParameter"
+          },
+          "type": "array"
+        },
+        "testTaskConfigs": {
+          "description": "Optional. However, the test case doesn't mock or assert anything without test_task_configs.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaTestTaskConfig"
+          },
+          "type": "array"
+        },
+        "triggerId": {
+          "description": "Required. This defines the trigger ID in workflow which is considered to be executed as starting point of the test case",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Auto-generated.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "workflowId": {
+          "description": "ID of the workflow with which this test case is associated",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaTestTaskConfig": {
+      "description": "The task mock configuration details and assertions for functional tests. Next available id: 5",
+      "id": "GoogleCloudIntegrationsV1alphaTestTaskConfig",
+      "properties": {
+        "assertions": {
+          "description": "Optional. List of conditions or expressions which should be evaluated to true unless there is a bug/problem in the integration. These are evaluated one the task execution is completed as per the mock strategy in test case",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaAssertion"
+          },
+          "type": "array"
+        },
+        "mockConfig": {
+          "$ref": "GoogleCloudIntegrationsV1alphaMockConfig",
+          "description": "Optional. Defines how to mock the given task during test execution"
+        },
+        "task": {
+          "description": "Required. This defines in the test case, the task name in integration which will be mocked by this test task config",
+          "type": "string"
+        },
+        "taskNumber": {
+          "description": "Required. This defines in the test case, the task in integration which will be mocked by this test task config",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaTriggerConfig": {
       "description": "Configuration detail of a trigger.",
       "id": "GoogleCloudIntegrationsV1alphaTriggerConfig",
@@ -11462,7 +11999,7 @@
       "type": "object"
     },
     "GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest": {
-      "description": "Use this request to post all workflows associated with a given trigger id. Next available id: 11",
+      "description": "LINT.IfChange Use this request to post all workflows associated with a given trigger id. Next available id: 12",
       "id": "GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest",
       "properties": {
         "clientId": {
@@ -11514,6 +12051,10 @@
         },
         "triggerId": {
           "description": "Matched against all {@link TriggerConfig}s across all workflows. i.e. TriggerConfig.trigger_id.equals(trigger_id) Required.",
+          "type": "string"
+        },
+        "userGeneratedExecutionId": {
+          "description": "This is a unique id provided by the method caller. If provided this will be used as the execution_id when a new execution info is created. This is a string representation of a UUID. Must have no more than 36 characters and contain only alphanumeric characters and hyphens.",
           "type": "string"
         },
         "workflowName": {

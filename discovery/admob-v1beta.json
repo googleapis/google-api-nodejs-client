@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20230921",
+  "revision": "20231010",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdSource": {
@@ -1115,7 +1115,8 @@
               "CLICK_THROUGH_RATE",
               "INSTALLS",
               "ESTIMATED_COST",
-              "AVERAGE_CPI"
+              "AVERAGE_CPI",
+              "INTERACTIONS"
             ],
             "enumDescriptions": [
               "Default value for an unset field. Do not use.",
@@ -1124,7 +1125,8 @@
               "The number of clicks an ad receives divided by the number of times the ad is shown.",
               "The number of times apps were downloaded to devices.",
               "The estimated cost of serving a campaign ad instead of an ad that earns revenue. The currency is the reporting currency for campaigns.",
-              "The average cost per install. This means the average amount that was spent to acquire a new user. The currency is the reporting currency for campaigns."
+              "The average cost per install. This means the average amount that was spent to acquire a new user. The currency is the reporting currency for campaigns.",
+              "The number of times a user interacts with an ad. This consists of clicks and engagements."
             ],
             "type": "string"
           },
