@@ -4750,7 +4750,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231005",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -5957,6 +5957,13 @@
           "$ref": "Kubernetes",
           "description": "Kubernetes resources associated with the finding."
         },
+        "loadBalancers": {
+          "description": "The load balancers associated with the finding.",
+          "items": {
+            "$ref": "LoadBalancer"
+          },
+          "type": "array"
+        },
         "mitreAttack": {
           "$ref": "MitreAttack",
           "description": "MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org"
@@ -6023,6 +6030,10 @@
           "$ref": "SecurityMarks",
           "description": "Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.",
           "readOnly": true
+        },
+        "securityPosture": {
+          "$ref": "SecurityPosture",
+          "description": "The security posture associated with the finding."
         },
         "severity": {
           "description": "The severity of the finding. This field is managed by the source that writes the finding.",
@@ -6456,7 +6467,7 @@
       "type": "object"
     },
     "GoogleCloudSecuritycenterV1ResourceValueConfig": {
-      "description": "A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.",
+      "description": "A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.",
       "id": "GoogleCloudSecuritycenterV1ResourceValueConfig",
       "properties": {
         "createTime": {
@@ -7126,6 +7137,13 @@
           },
           "type": "array"
         },
+        "objects": {
+          "description": "Kubernetes objects related to the finding.",
+          "items": {
+            "$ref": "Object"
+          },
+          "type": "array"
+        },
         "pods": {
           "description": "Kubernetes [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod) associated with the finding. This field contains Pod records for each container that is owned by a Pod.",
           "items": {
@@ -7496,6 +7514,17 @@
       },
       "type": "object"
     },
+    "LoadBalancer": {
+      "description": "Contains information related to the load balancer associated with the finding.",
+      "id": "LoadBalancer",
+      "properties": {
+        "name": {
+          "description": "The name of the load balancer associated with the finding.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MemoryHashSignature": {
       "description": "A signature corresponding to memory page hashes.",
       "id": "MemoryHashSignature",
@@ -7827,6 +7856,29 @@
         "streamingConfig": {
           "$ref": "StreamingConfig",
           "description": "The config for triggering streaming-based notifications."
+        }
+      },
+      "type": "object"
+    },
+    "Object": {
+      "description": "Kubernetes object related to the finding, uniquely identified by GKNN. Used if the object Kind is not one of Pod, Node, NodePool, Binding, or AccessReview.",
+      "id": "Object",
+      "properties": {
+        "group": {
+          "description": "Kubernetes object group, such as \"policy.k8s.io/v1\".",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Kubernetes object kind, such as “Namespace”.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Kubernetes object name. For details see https://kubernetes.io/docs/concepts/overview/working-with-objects/names/.",
+          "type": "string"
+        },
+        "ns": {
+          "description": "Kubernetes object namespace. Must be a valid DNS label. Named \"ns\" to avoid collision with C++ namespace keyword. For details see https://kubernetes.io/docs/tasks/administer-cluster/namespaces/.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8226,6 +8278,33 @@
       },
       "type": "object"
     },
+    "SecurityPosture": {
+      "description": "Represents a posture that is deployed on Google Cloud by the Security Command Center Posture Management service. A posture contains one or more policy sets. A policy set is a group of policies that enforce a set of security rules on Google Cloud.",
+      "id": "SecurityPosture",
+      "properties": {
+        "changedPolicy": {
+          "description": "The name of the policy that has been updated, for example, `projects/{project_id}/policies/{constraint_name}`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the posture, for example, `organizations/{org_id}/locations/{location}/postures/{posture_name}`.",
+          "type": "string"
+        },
+        "postureDeployment": {
+          "description": "The name of the posture deployment, for example, `projects/{project_id}/posturedeployments/{posture_deployment_id}`.",
+          "type": "string"
+        },
+        "postureDeploymentResource": {
+          "description": "The project, folder, or organization on which the posture is deployed, for example, `projects/{project_id}`.",
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "The version of the posture, for example, `c7cfa2a8`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServiceAccountDelegationInfo": {
       "description": "Identity delegation history of an authenticated service account.",
       "id": "ServiceAccountDelegationInfo",
@@ -8335,7 +8414,7 @@
       "id": "Source",
       "properties": {
         "canonicalName": {
-          "description": "The canonical name of the finding. It's either \"organizations/{organization_id}/sources/{source_id}\", \"folders/{folder_id}/sources/{source_id}\" or \"projects/{project_number}/sources/{source_id}\", depending on the closest CRM ancestor of the resource associated with the finding.",
+          "description": "The canonical name of the finding source. It's either \"organizations/{organization_id}/sources/{source_id}\", \"folders/{folder_id}/sources/{source_id}\", or \"projects/{project_number}/sources/{source_id}\", depending on the closest CRM ancestor of the resource associated with the finding.",
           "type": "string"
         },
         "description": {

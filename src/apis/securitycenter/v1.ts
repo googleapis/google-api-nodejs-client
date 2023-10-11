@@ -951,6 +951,10 @@ export namespace securitycenter_v1 {
      */
     kubernetes?: Schema$Kubernetes;
     /**
+     * The load balancers associated with the finding.
+     */
+    loadBalancers?: Schema$LoadBalancer[];
+    /**
      * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
      */
     mitreAttack?: Schema$MitreAttack;
@@ -998,6 +1002,10 @@ export namespace securitycenter_v1 {
      * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
      */
     securityMarks?: Schema$SecurityMarks;
+    /**
+     * The security posture associated with the finding.
+     */
+    securityPosture?: Schema$SecurityPosture;
     /**
      * The severity of the finding. This field is managed by the source that writes the finding.
      */
@@ -1466,7 +1474,7 @@ export namespace securitycenter_v1 {
     resourceTypes?: string[] | null;
   }
   /**
-   * A resource value config is a mapping configuration of user's tag values to resource values. Used by the attack path simulation.
+   * A resource value config (RVC) is a mapping configuration of user's resources to resource values. Used in Attack path simulations.
    */
   export interface Schema$GoogleCloudSecuritycenterV1ResourceValueConfig {
     /**
@@ -1774,6 +1782,10 @@ export namespace securitycenter_v1 {
      */
     nodes?: Schema$Node[];
     /**
+     * Kubernetes objects related to the finding.
+     */
+    objects?: Schema$Object[];
+    /**
      * Kubernetes [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod) associated with the finding. This field contains Pod records for each container that is owned by a Pod.
      */
     pods?: Schema$Pod[];
@@ -2028,6 +2040,15 @@ export namespace securitycenter_v1 {
     valuedResources?: Schema$ValuedResource[];
   }
   /**
+   * Contains information related to the load balancer associated with the finding.
+   */
+  export interface Schema$LoadBalancer {
+    /**
+     * The name of the load balancer associated with the finding.
+     */
+    name?: string | null;
+  }
+  /**
    * A signature corresponding to memory page hashes.
    */
   export interface Schema$MemoryHashSignature {
@@ -2111,6 +2132,27 @@ export namespace securitycenter_v1 {
      * The config for triggering streaming-based notifications.
      */
     streamingConfig?: Schema$StreamingConfig;
+  }
+  /**
+   * Kubernetes object related to the finding, uniquely identified by GKNN. Used if the object Kind is not one of Pod, Node, NodePool, Binding, or AccessReview.
+   */
+  export interface Schema$Object {
+    /**
+     * Kubernetes object group, such as "policy.k8s.io/v1".
+     */
+    group?: string | null;
+    /**
+     * Kubernetes object kind, such as “Namespace”.
+     */
+    kind?: string | null;
+    /**
+     * Kubernetes object name. For details see https://kubernetes.io/docs/concepts/overview/working-with-objects/names/.
+     */
+    name?: string | null;
+    /**
+     * Kubernetes object namespace. Must be a valid DNS label. Named "ns" to avoid collision with C++ namespace keyword. For details see https://kubernetes.io/docs/tasks/administer-cluster/namespaces/.
+     */
+    ns?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -2417,6 +2459,31 @@ export namespace securitycenter_v1 {
     name?: string | null;
   }
   /**
+   * Represents a posture that is deployed on Google Cloud by the Security Command Center Posture Management service. A posture contains one or more policy sets. A policy set is a group of policies that enforce a set of security rules on Google Cloud.
+   */
+  export interface Schema$SecurityPosture {
+    /**
+     * The name of the policy that has been updated, for example, `projects/{project_id\}/policies/{constraint_name\}`.
+     */
+    changedPolicy?: string | null;
+    /**
+     * Name of the posture, for example, `organizations/{org_id\}/locations/{location\}/postures/{posture_name\}`.
+     */
+    name?: string | null;
+    /**
+     * The name of the posture deployment, for example, `projects/{project_id\}/posturedeployments/{posture_deployment_id\}`.
+     */
+    postureDeployment?: string | null;
+    /**
+     * The project, folder, or organization on which the posture is deployed, for example, `projects/{project_id\}`.
+     */
+    postureDeploymentResource?: string | null;
+    /**
+     * The version of the posture, for example, `c7cfa2a8`.
+     */
+    revisionId?: string | null;
+  }
+  /**
    * Identity delegation history of an authenticated service account.
    */
   export interface Schema$ServiceAccountDelegationInfo {
@@ -2486,7 +2553,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$Source {
     /**
-     * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}", "folders/{folder_id\}/sources/{source_id\}" or "projects/{project_number\}/sources/{source_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
+     * The canonical name of the finding source. It's either "organizations/{organization_id\}/sources/{source_id\}", "folders/{folder_id\}/sources/{source_id\}", or "projects/{project_number\}/sources/{source_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
      */
     canonicalName?: string | null;
     /**
