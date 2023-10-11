@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20230807",
+  "revision": "20231009",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2835,6 +2835,10 @@
             "High severity.",
             "Critical severity."
           ],
+          "type": "string"
+        },
+        "extraDetails": {
+          "description": "Occurrence-specific extra details about the vulnerability.",
           "type": "string"
         },
         "fixAvailable": {
