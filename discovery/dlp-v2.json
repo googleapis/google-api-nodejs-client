@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20230917",
+  "revision": "20231001",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5194,6 +5194,11 @@
           "description": "If created by a job trigger, the resource name of the trigger that instantiated the job.",
           "type": "string"
         },
+        "lastModified": {
+          "description": "Time when the job was last modified by the system.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "name": {
           "description": "The server-assigned name.",
           "type": "string"
@@ -5852,8 +5857,8 @@
             "JAPAN",
             "KOREA",
             "MEXICO",
-            "NEW_ZEALAND",
             "THE_NETHERLANDS",
+            "NEW_ZEALAND",
             "NORWAY",
             "PARAGUAY",
             "PERU",
@@ -5863,6 +5868,7 @@
             "SOUTH_AFRICA",
             "SPAIN",
             "SWEDEN",
+            "SWITZERLAND",
             "TAIWAN",
             "THAILAND",
             "TURKEY",
@@ -5897,8 +5903,8 @@
             "The infoType is typically used in Japan.",
             "The infoType is typically used in Korea.",
             "The infoType is typically used in Mexico.",
-            "The infoType is typically used in New Zealand.",
             "The infoType is typically used in the Netherlands.",
+            "The infoType is typically used in New Zealand.",
             "The infoType is typically used in Norway.",
             "The infoType is typically used in Paraguay.",
             "The infoType is typically used in Peru.",
@@ -5908,6 +5914,7 @@
             "The infoType is typically used in South Africa.",
             "The infoType is typically used in Spain.",
             "The infoType is typically used in Sweden.",
+            "The infoType is typically used in Switzerland.",
             "The infoType is typically used in Taiwan.",
             "The infoType is typically used in Thailand.",
             "The infoType is typically used in Turkey.",

@@ -1353,6 +1353,10 @@ export namespace dlp_v2 {
      */
     jobTriggerName?: string | null;
     /**
+     * Time when the job was last modified by the system.
+     */
+    lastModified?: string | null;
+    /**
      * The server-assigned name.
      */
     name?: string | null;
