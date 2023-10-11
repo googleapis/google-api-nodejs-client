@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v5.0.2...safebrowsing-v6.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **safebrowsing:** update the API ([fe23d83](https://github.com/googleapis/google-api-nodejs-client/commit/fe23d83559d427ae9b5aea1a78faaecd0be92c10))
+
 ## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/safebrowsing-v5.0.1...safebrowsing-v5.0.2) (2023-08-25)
 
 

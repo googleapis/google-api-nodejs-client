@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/siteverification-v2.0.2...siteverification-v2.0.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **siteVerification:** update the API ([760447c](https://github.com/googleapis/google-api-nodejs-client/commit/760447c31306ecfff4e66d6d0b10390a398a97fc))
+
 ## [2.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/siteverification-v2.0.1...siteverification-v2.0.2) (2023-08-25)
 
 

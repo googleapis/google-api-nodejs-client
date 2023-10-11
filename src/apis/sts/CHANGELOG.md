@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.3.3](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v3.3.2...sts-v3.3.3) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **sts:** update the API ([5765d2a](https://github.com/googleapis/google-api-nodejs-client/commit/5765d2a4a1966c4a67eae4ccaf7ad094aeee0fb6))
+
 ## [3.3.2](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v3.3.1...sts-v3.3.2) (2023-08-25)
 
 

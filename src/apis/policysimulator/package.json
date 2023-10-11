@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/policysimulator",
-  "version": "5.1.2",
+  "version": "5.2.0",
   "description": "policysimulator",
   "main": "build/index.js",
   "types": "build/index.d.ts",

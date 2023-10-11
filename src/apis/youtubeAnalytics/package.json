@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/youtubeanalytics",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "youtubeAnalytics",
   "main": "build/index.js",
   "types": "build/index.d.ts",
