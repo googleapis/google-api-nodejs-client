@@ -366,7 +366,7 @@ export namespace alloydb_v1 {
      */
     name?: string | null;
     /**
-     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project\}/global/networks/{network_id\}". This is required to create a cluster. It can be updated, but it cannot be removed. Deprecated, use network_config.network instead.
+     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project\}/global/networks/{network_id\}". This is required to create a cluster. Deprecated, use network_config.network instead.
      */
     network?: string | null;
     networkConfig?: Schema$NetworkConfig;
@@ -398,6 +398,23 @@ export namespace alloydb_v1 {
      * Output only. Update time stamp
      */
     updateTime?: string | null;
+  }
+  /**
+   * ConnectionInfo singleton resource. https://google.aip.dev/156
+   */
+  export interface Schema$ConnectionInfo {
+    /**
+     * Output only. The unique ID of the Instance.
+     */
+    instanceUid?: string | null;
+    /**
+     * Output only. The private network IP address for the Instance. This is the default IP for the instance and is always created (even if enable_public_ip is set). This is the connection endpoint for an end-user application.
+     */
+    ipAddress?: string | null;
+    /**
+     * The name of the ConnectionInfo singleton resource, e.g.: projects/{project\}/locations/{location\}/clusters/x/instances/x/connectionInfo This field currently has no semantic meaning.
+     */
+    name?: string | null;
   }
   /**
    * ContinuousBackupConfig describes the continuous backups recovery configurations of a cluster.
@@ -488,6 +505,36 @@ export namespace alloydb_v1 {
      * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the failover.
      */
     validateOnly?: boolean | null;
+  }
+  /**
+   * Message for requests to generate a client certificate signed by the Cluster CA.
+   */
+  export interface Schema$GenerateClientCertificateRequest {
+    /**
+     * Optional. An optional hint to the endpoint to generate the client certificate with the requested duration. The duration can be from 1 hour to 24 hours. The endpoint may or may not honor the hint. If the hint is left unspecified or is not honored, then the endpoint will pick an appropriate default duration.
+     */
+    certDuration?: string | null;
+    /**
+     * Optional. The public key from the client.
+     */
+    publicKey?: string | null;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
+   * Message returned by a GenerateClientCertificate operation.
+   */
+  export interface Schema$GenerateClientCertificateResponse {
+    /**
+     * Optional. The pem-encoded cluster ca X.509 certificate.
+     */
+    caCert?: string | null;
+    /**
+     * Output only. The pem-encoded chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246.
+     */
+    pemCertificateChain?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -800,7 +847,7 @@ export namespace alloydb_v1 {
      */
     allocatedIpRange?: string | null;
     /**
-     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster. It can be updated, but it cannot be removed.
+     * Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: "projects/{project_number\}/global/networks/{network_id\}". This is required to create a cluster.
      */
     network?: string | null;
   }
@@ -1062,6 +1109,10 @@ export namespace alloydb_v1 {
      * Backup retention settings.
      */
     backupRetentionSettings?: Schema$StorageDatabasecenterPartnerapiV1mainRetentionSettings;
+    /**
+     * Whether point-in-time recovery is enabled. This is optional field, if the database service does not have this feature or metadata is not available in control plane, this can be omitted.
+     */
+    pointInTimeRecoveryEnabled?: boolean | null;
   }
   /**
    * A backup run.
@@ -1085,6 +1136,19 @@ export namespace alloydb_v1 {
     status?: string | null;
   }
   /**
+   * Contains compliance information about a security standard indicating unmet recommendations.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainCompliance {
+    /**
+     * Industry-wide compliance standards or benchmarks, such as CIS, PCI, and OWASP.
+     */
+    standard?: string | null;
+    /**
+     * Version of the standard or benchmark, for example, 1.1
+     */
+    version?: string | null;
+  }
+  /**
    * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform.
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed {
@@ -1097,13 +1161,64 @@ export namespace alloydb_v1 {
      */
     feedType?: string | null;
     /**
+     * More feed data would be added in subsequent CLs
+     */
+    resourceHealthSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData;
+    /**
      * Required. Primary key associated with the Resource
      */
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
-    /**
-     * More feed data would be added in subsequent CLs
-     */
     resourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata;
+  }
+  /**
+   * Common model for database resource health signal data.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData {
+    /**
+     * Any other additional metadata
+     */
+    additionalMetadata?: {[key: string]: any} | null;
+    /**
+     * Industry standards associated with this signal; if this signal is an issue, that could be a violation of the associated industry standard(s). For example, AUTO_BACKUP_DISABLED signal is associated with CIS GCP 1.1, CIS GCP 1.2, CIS GCP 1.3, NIST 800-53 and ISO-27001 compliance standards. If a database resource does not have automated backup enable, it will violate these following industry standards.
+     */
+    compliance?: Schema$StorageDatabasecenterPartnerapiV1mainCompliance[];
+    /**
+     * Description associated with signal
+     */
+    description?: string | null;
+    /**
+     * The last time at which the event described by this signal took place
+     */
+    eventTime?: string | null;
+    /**
+     * The external-uri of the signal, using which more information about this signal can be obtained. In GCP, this will take user to SCC page to get more details about signals.
+     */
+    externalUri?: string | null;
+    /**
+     * The name of the signal, ex: PUBLIC_SQL_INSTANCE, SQL_LOG_ERROR_VERBOSITY etc.
+     */
+    name?: string | null;
+    /**
+     * Cloud provider name. Ex: GCP/AWS/Azure/OnPrem/SelfManaged
+     */
+    provider?: string | null;
+    /**
+     * Closest parent container of this resource. In GCP, 'container' refers to a Cloud Resource Manager project. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123".
+     */
+    resourceContainer?: string | null;
+    /**
+     * Database resource name associated with the signal. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
+     */
+    resourceName?: string | null;
+    /**
+     * The class of the signal, such as if it's a THREAT or VULNERABILITY.
+     */
+    signalClass?: string | null;
+    /**
+     * Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.
+     */
+    signalId?: string | null;
+    state?: string | null;
   }
   /**
    * DatabaseResourceId will serve as primary key for any resource ingestion event.
@@ -1114,7 +1229,11 @@ export namespace alloydb_v1 {
      */
     provider?: string | null;
     /**
-     * Required. The type of resource this ID is identifying. Ex google.sqladmin.Instance, google.alloydb.cluster, google.sqladmin.Backup REQUIRED
+     * Optional. Needs to be used only when the provider is PROVIDER_OTHER.
+     */
+    providerDescription?: string | null;
+    /**
+     * Required. The type of resource this ID is identifying. Ex alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel
      */
     resourceType?: string | null;
     /**
@@ -1147,7 +1266,11 @@ export namespace alloydb_v1 {
      */
     currentState?: string | null;
     /**
-     * The actual instance state.
+     * Any custom metadata associated with the resource (a JSON field)
+     */
+    customMetadata?: {[key: string]: any} | null;
+    /**
+     * The state that the instance is expected to be in. For example, an instance state can transition to UNHEALTHY due to wrong patch update, while the expected state will remain at the HEALTHY.
      */
     expectedState?: string | null;
     /**
@@ -1163,7 +1286,7 @@ export namespace alloydb_v1 {
      */
     location?: string | null;
     /**
-     * Unique identifier for this resource's immediate parent resource. This parent resource id would be used to build resource hierarchy in condor platform.
+     * Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested
      */
     primaryResourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
@@ -1171,11 +1294,11 @@ export namespace alloydb_v1 {
      */
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
     /**
-     * Closest parent Cloud Resource Manager container of this resource. It must either be resource name of a Cloud Resource Manager project, for ex: "projects/123".
+     * Closest parent Cloud Resource Manager container of this resource. It must be resource name of a Cloud Resource Manager project with the format of "provider//", such as "gcp/projects/123".
      */
     resourceContainer?: string | null;
     /**
-     * Required. Different from unique_id, a resource name can be reused over time. That is after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source.
+     * Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
     resourceName?: string | null;
     /**
@@ -2376,6 +2499,103 @@ export namespace alloydb_v1 {
     }
 
     /**
+     * Generate a client certificate signed by a Cluster CA. The sole purpose of this endpoint is to support AlloyDB connectors and the Auth Proxy client. The endpoint's behavior is subject to change without notice, so do not rely on its behavior remaining constant. Future changes will not break AlloyDB connectors or the Auth Proxy client.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateClientCertificate(
+      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateClientCertificate(
+      params?: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateClientCertificateResponse>;
+    generateClientCertificate(
+      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateClientCertificate(
+      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>,
+      callback: BodyResponseCallback<Schema$GenerateClientCertificateResponse>
+    ): void;
+    generateClientCertificate(
+      params: Params$Resource$Projects$Locations$Clusters$Generateclientcertificate,
+      callback: BodyResponseCallback<Schema$GenerateClientCertificateResponse>
+    ): void;
+    generateClientCertificate(
+      callback: BodyResponseCallback<Schema$GenerateClientCertificateResponse>
+    ): void;
+    generateClientCertificate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Generateclientcertificate
+        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateClientCertificateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateClientCertificateResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Generateclientcertificate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Generateclientcertificate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alloydb.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:generateClientCertificate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateClientCertificateResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateClientCertificateResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets details of a single Cluster.
      *
      * @param params - Parameters for request
@@ -2880,6 +3100,18 @@ export namespace alloydb_v1 {
      * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
      */
     validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Generateclientcertificate
+    extends StandardParameters {
+    /**
+     * Required. The name of the parent resource. The required format is: * projects/{project\}/locations/{location\}/clusters/{cluster\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateClientCertificateRequest;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Get
     extends StandardParameters {
@@ -3409,6 +3641,96 @@ export namespace alloydb_v1 {
     }
 
     /**
+     * Get instance metadata used for a connection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConnectionInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConnectionInfo(
+      params?: Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConnectionInfo>;
+    getConnectionInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConnectionInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo,
+      options: MethodOptions | BodyResponseCallback<Schema$ConnectionInfo>,
+      callback: BodyResponseCallback<Schema$ConnectionInfo>
+    ): void;
+    getConnectionInfo(
+      params: Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo,
+      callback: BodyResponseCallback<Schema$ConnectionInfo>
+    ): void;
+    getConnectionInfo(
+      callback: BodyResponseCallback<Schema$ConnectionInfo>
+    ): void;
+    getConnectionInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo
+        | BodyResponseCallback<Schema$ConnectionInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConnectionInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConnectionInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConnectionInfo> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://alloydb.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/connectionInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConnectionInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ConnectionInfo>(parameters);
+      }
+    }
+
+    /**
      * Injects fault in an instance. Imperative only.
      *
      * @param params - Parameters for request
@@ -3852,6 +4174,17 @@ export namespace alloydb_v1 {
      * The view of the instance to return.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Instances$Getconnectioninfo
+    extends StandardParameters {
+    /**
+     * Required. The name of the parent resource. The required format is: projects/{project\}/locations/{location\}/clusters/{cluster\}/instances/{instance\}
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Instances$Injectfault
     extends StandardParameters {
