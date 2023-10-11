@@ -945,9 +945,22 @@ export namespace dataplex_v1 {
     fieldNames?: string[] | null;
   }
   /**
+   * A dimension captures data quality intent about a defined subset of the rules specified.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataQualityDimension {
+    /**
+     * The dimension name a rule belongs to. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"
+     */
+    name?: string | null;
+  }
+  /**
    * DataQualityDimensionResult provides a more detailed, per-dimension view of the results.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityDimensionResult {
+    /**
+     * Output only. The dimension config specified in the DataQualitySpec, as is.
+     */
+    dimension?: Schema$GoogleCloudDataplexV1DataQualityDimension;
     /**
      * Whether the dimension passed or failed.
      */
@@ -1967,6 +1980,36 @@ export namespace dataplex_v1 {
      * Output only. Queries over sessions to mark whether the environment is currently active or not
      */
     active?: boolean | null;
+  }
+  /**
+   * Payload associated with Governance related log events.
+   */
+  export interface Schema$GoogleCloudDataplexV1GovernanceEvent {
+    /**
+     * Entity resource information if the log event is associated with a specific entity.
+     */
+    entity?: Schema$GoogleCloudDataplexV1GovernanceEventEntity;
+    /**
+     * The type of the event.
+     */
+    eventType?: string | null;
+    /**
+     * The log message.
+     */
+    message?: string | null;
+  }
+  /**
+   * Information about Entity resource that the log event is associated with.
+   */
+  export interface Schema$GoogleCloudDataplexV1GovernanceEventEntity {
+    /**
+     * The Entity resource the log event is associated with. Format: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}
+     */
+    entity?: string | null;
+    /**
+     * Type of entity.
+     */
+    entityType?: string | null;
   }
   /**
    * A job represents an instance of a task.
