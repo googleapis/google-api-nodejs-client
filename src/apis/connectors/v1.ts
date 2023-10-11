@@ -549,6 +549,10 @@ export namespace connectors_v1 {
    */
   export interface Schema$ConnectorInfraConfig {
     /**
+     * The window used for ratelimiting runtime requests to connections.
+     */
+    connectionRatelimitWindowSeconds?: string | null;
+    /**
      * HPA autoscaling config.
      */
     hpaConfig?: Schema$HPAConfig;
@@ -659,6 +663,10 @@ export namespace connectors_v1 {
    * This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version
    */
   export interface Schema$ConnectorVersionInfraConfig {
+    /**
+     * Output only. The window used for ratelimiting runtime requests to connections.
+     */
+    connectionRatelimitWindowSeconds?: string | null;
     /**
      * Output only. HPA autoscaling config.
      */

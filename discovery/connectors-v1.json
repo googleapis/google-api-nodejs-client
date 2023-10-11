@@ -1773,7 +1773,7 @@
       }
     }
   },
-  "revision": "20230913",
+  "revision": "20230920",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2455,6 +2455,11 @@
       "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
       "id": "ConnectorInfraConfig",
       "properties": {
+        "connectionRatelimitWindowSeconds": {
+          "description": "The window used for ratelimiting runtime requests to connections.",
+          "format": "int64",
+          "type": "string"
+        },
         "hpaConfig": {
           "$ref": "HPAConfig",
           "description": "HPA autoscaling config."
@@ -2611,6 +2616,12 @@
       "description": "This cofiguration provides infra configs like rate limit threshold which need to be configurable for every connector version",
       "id": "ConnectorVersionInfraConfig",
       "properties": {
+        "connectionRatelimitWindowSeconds": {
+          "description": "Output only. The window used for ratelimiting runtime requests to connections.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "hpaConfig": {
           "$ref": "HPAConfig",
           "description": "Output only. HPA autoscaling config.",
