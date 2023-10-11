@@ -15,18 +15,30 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {safebrowsing_v4} from './v4';
+import {safebrowsing_v5} from './v5';
 
 export const VERSIONS = {
   v4: safebrowsing_v4.Safebrowsing,
+  v5: safebrowsing_v5.Safebrowsing,
 };
 
 export function safebrowsing(version: 'v4'): safebrowsing_v4.Safebrowsing;
 export function safebrowsing(
   options: safebrowsing_v4.Options
 ): safebrowsing_v4.Safebrowsing;
-export function safebrowsing<T = safebrowsing_v4.Safebrowsing>(
+export function safebrowsing(version: 'v5'): safebrowsing_v5.Safebrowsing;
+export function safebrowsing(
+  options: safebrowsing_v5.Options
+): safebrowsing_v5.Safebrowsing;
+export function safebrowsing<
+  T = safebrowsing_v4.Safebrowsing | safebrowsing_v5.Safebrowsing,
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v4' | safebrowsing_v4.Options
+  versionOrOptions:
+    | 'v4'
+    | safebrowsing_v4.Options
+    | 'v5'
+    | safebrowsing_v5.Options
 ) {
   return getAPI<T>('safebrowsing', versionOrOptions, VERSIONS, this);
 }
@@ -34,6 +46,7 @@ export function safebrowsing<T = safebrowsing_v4.Safebrowsing>(
 const auth = new AuthPlus();
 export {auth};
 export {safebrowsing_v4};
+export {safebrowsing_v5};
 export {
   AuthPlus,
   GlobalOptions,
