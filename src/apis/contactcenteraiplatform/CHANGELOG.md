@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenteraiplatform-v2.0.1...contactcenteraiplatform-v2.1.0) (2023-10-11)
+
+
+### Features
+
+* **contactcenteraiplatform:** update the API ([d7abdc8](https://github.com/googleapis/google-api-nodejs-client/commit/d7abdc8a313a5f42bb180825d065964b68da8883))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenteraiplatform-v2.0.0...contactcenteraiplatform-v2.0.1) (2023-08-25)
 
 

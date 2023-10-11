@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v9.0.1...serviceusage-v9.0.2) (2023-10-11)
+
+
+### Bug Fixes
+
+* **serviceusage:** update the API ([e5db392](https://github.com/googleapis/google-api-nodejs-client/commit/e5db392a4024390b43c4d3e70c7ff3dec3029611))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v9.0.0...serviceusage-v9.0.1) (2023-08-25)
 
 
