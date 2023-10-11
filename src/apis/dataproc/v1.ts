@@ -1194,6 +1194,10 @@ export namespace dataproc_v1 {
      * Optional. Specifies the preemptibility of the instance group.The default value for master and worker groups is NON_PREEMPTIBLE. This default cannot be changed.The default value for secondary instances is PREEMPTIBLE.
      */
     preemptibility?: string | null;
+    /**
+     * Optional. Configuration to handle the startup of instances during cluster create and update process.
+     */
+    startupConfig?: Schema$StartupConfig;
   }
   /**
    * A reference to a Compute Engine instance.
@@ -2206,6 +2210,10 @@ export namespace dataproc_v1 {
      */
     gracefulDecommissionTimeout?: string | null;
     /**
+     * Optional. operation id of the parent operation sending the resize request
+     */
+    parentOperationId?: string | null;
+    /**
      * Optional. A unique ID used to identify the request. If the server receives two ResizeNodeGroupRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.ResizeNodeGroupRequests) with the same ID, the second request is ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string | null;
@@ -2660,6 +2668,10 @@ export namespace dataproc_v1 {
      */
     gracefulDecommissionTimeout?: string | null;
     /**
+     * Optional. Remove only idle workers when scaling down cluster
+     */
+    removeOnlyIdleWorkers?: boolean | null;
+    /**
      * Required. Fraction of required executors to remove from Spark Serverless clusters. A scale-down factor of 1.0 will result in scaling down so that there are no more executors for the Spark Job.(more aggressive scaling). A scale-down factor closer to 0 will result in a smaller magnitude of scaling donw (less aggressive scaling).Bounds: 0.0, 1.0.
      */
     scaleDownFactor?: number | null;
@@ -2688,6 +2700,15 @@ export namespace dataproc_v1 {
      * Optional. A unique ID used to identify the request. If the server receives two StartClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StartClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string | null;
+  }
+  /**
+   * Configuration to handle the startup of instances during cluster create and update process.
+   */
+  export interface Schema$StartupConfig {
+    /**
+     * Optional. The config setting to enable cluster creation/ updation to be successful only after required_registration_fraction of instances are up and running. This configuration is applicable to only secondary workers for now. The cluster will fail if required_registration_fraction of instances are not available. This will include instance creation, agent registration, and service registration (if enabled).
+     */
+    requiredRegistrationFraction?: number | null;
   }
   /**
    * Historical state information.
@@ -9271,6 +9292,10 @@ export namespace dataproc_v1 {
      * Required. The parent resource where this node group will be created. Format: projects/{project\}/regions/{region\}/clusters/{cluster\}
      */
     parent?: string;
+    /**
+     * Optional. operation id of the parent operation sending the create request
+     */
+    parentOperationId?: string;
     /**
      * Optional. A unique ID used to identify the request. If the server receives two CreateNodeGroupRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateNodeGroupRequests) with the same ID, the second request is ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
