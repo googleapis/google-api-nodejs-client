@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/orgpolicy",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "orgpolicy",
   "main": "build/index.js",
   "types": "build/index.d.ts",
