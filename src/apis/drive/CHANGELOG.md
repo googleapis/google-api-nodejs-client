@@ -1,5 +1,18 @@
 # Changelog
 
+## [8.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.3.1...drive-v8.4.0) (2023-10-11)
+
+
+### Features
+
+* **drive:** update the API ([2432651](https://github.com/googleapis/google-api-nodejs-client/commit/243265177fa7e8779436e48dd57357d6d9739be1))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **drive:** update the API ([ce1bfe0](https://github.com/googleapis/google-api-nodejs-client/commit/ce1bfe0b0bb23f0aa17ef3562ab0801a6d757b52))
+
 ## [8.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v8.3.0...drive-v8.3.1) (2023-08-25)
 
 

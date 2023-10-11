@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v5.0.4...dfareporting-v5.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **dfareporting:** update the API ([d4124d2](https://github.com/googleapis/google-api-nodejs-client/commit/d4124d2165c6b1e3e8c804a859b53aec143c7237))
+* **dfareporting:** update the API ([f9c9934](https://github.com/googleapis/google-api-nodejs-client/commit/f9c99346880cee32c1fb4debf61b4e2edea347ea))
+
 ## [5.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v5.0.3...dfareporting-v5.0.4) (2023-08-25)
 
 

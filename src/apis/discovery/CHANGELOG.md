@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/discovery-v1.4.1...discovery-v1.5.0) (2023-10-11)
+
+
+### Features
+
+* **discovery:** update the API ([c82eebd](https://github.com/googleapis/google-api-nodejs-client/commit/c82eebd5f1a47d886c5da95a2659b38f6fe65974))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [1.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/discovery-v1.4.0...discovery-v1.4.1) (2023-08-25)
 
 

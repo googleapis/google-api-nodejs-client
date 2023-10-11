@@ -1,5 +1,17 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v10.0.4...chromemanagement-v10.1.0) (2023-10-11)
+
+
+### Features
+
+* **chromemanagement:** update the API ([f272fb5](https://github.com/googleapis/google-api-nodejs-client/commit/f272fb5278b9fa0394a4077008cf01b7480be7e3))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [10.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v10.0.3...chromemanagement-v10.0.4) (2023-08-25)
 
 

@@ -1,5 +1,22 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v7.1.4...chromepolicy-v8.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **chromepolicy:** update the API ([8ad0e35](https://github.com/googleapis/google-api-nodejs-client/commit/8ad0e35a4d36786210245536f9ba6afc5494f58f))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [7.1.4](https://github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v7.1.3...chromepolicy-v7.1.4) (2023-08-25)
 
 

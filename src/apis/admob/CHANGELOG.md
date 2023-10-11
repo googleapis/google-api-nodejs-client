@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v2.2.5...admob-v2.3.0) (2023-10-11)
+
+
+### Features
+
+* **admob:** update the API ([d366fa5](https://github.com/googleapis/google-api-nodejs-client/commit/d366fa5c155eb392c27382e649c05fd443cf5b7a))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [2.2.5](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v2.2.4...admob-v2.2.5) (2023-08-25)
 
 
