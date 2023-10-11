@@ -149,7 +149,7 @@
     "accounts": {
       "methods": {
         "delete": {
-          "description": "Marks target Account as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted accounts. However, they can be restored using the Trash Can UI. If the accounts are not restored before the expiration time, the account and all child resources (eg: Properties, GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.",
+          "description": "Marks target Account as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted accounts. However, they can be restored using the Trash Can UI. If the accounts are not restored before the expiration time, the account and all child resources (eg: Properties, GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.",
           "flatPath": "v1alpha/accounts/{accountsId}",
           "httpMethod": "DELETE",
           "id": "analyticsadmin.accounts.delete",
@@ -632,304 +632,6 @@
               ]
             }
           }
-        },
-        "userLinks": {
-          "methods": {
-            "audit": {
-              "description": "Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.",
-              "flatPath": "v1alpha/accounts/{accountsId}/userLinks:audit",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.accounts.userLinks.audit",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks:audit",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaAuditUserLinksRequest"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaAuditUserLinksResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users",
-                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
-              ]
-            },
-            "batchCreate": {
-              "description": "Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.",
-              "flatPath": "v1alpha/accounts/{accountsId}/userLinks:batchCreate",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.accounts.userLinks.batchCreate",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The account or property that all user links in the request are for. This field is required. The parent field in the CreateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks:batchCreate",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
-              ]
-            },
-            "batchDelete": {
-              "description": "Deletes information about multiple users' links to an account or property.",
-              "flatPath": "v1alpha/accounts/{accountsId}/userLinks:batchDelete",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.accounts.userLinks.batchDelete",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The account or property that all user links in the request are for. The parent of all values for user link names to delete must match this field. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks:batchDelete",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest"
-              },
-              "response": {
-                "$ref": "GoogleProtobufEmpty"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
-              ]
-            },
-            "batchGet": {
-              "description": "Gets information about multiple users' links to an account or property.",
-              "flatPath": "v1alpha/accounts/{accountsId}/userLinks:batchGet",
-              "httpMethod": "GET",
-              "id": "analyticsadmin.accounts.userLinks.batchGet",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "names": {
-                  "description": "Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId}/userLinks/{userLinkId}",
-                  "location": "query",
-                  "repeated": true,
-                  "type": "string"
-                },
-                "parent": {
-                  "description": "Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks:batchGet",
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users",
-                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
-              ]
-            },
-            "batchUpdate": {
-              "description": "Updates information about multiple users' links to an account or property.",
-              "flatPath": "v1alpha/accounts/{accountsId}/userLinks:batchUpdate",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.accounts.userLinks.batchUpdate",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The account or property that all user links in the request are for. The parent field in the UpdateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks:batchUpdate",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
-              ]
-            },
-            "create": {
-              "description": "Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.",
-              "flatPath": "v1alpha/accounts/{accountsId}/userLinks",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.accounts.userLinks.create",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "notifyNewUser": {
-                  "description": "Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.",
-                  "location": "query",
-                  "type": "boolean"
-                },
-                "parent": {
-                  "description": "Required. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
-              ]
-            },
-            "delete": {
-              "description": "Deletes a user link on an account or property.",
-              "flatPath": "v1alpha/accounts/{accountsId}/userLinks/{userLinksId}",
-              "httpMethod": "DELETE",
-              "id": "analyticsadmin.accounts.userLinks.delete",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. Example format: accounts/1234/userLinks/5678",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+/userLinks/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+name}",
-              "response": {
-                "$ref": "GoogleProtobufEmpty"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
-              ]
-            },
-            "get": {
-              "description": "Gets information about a user's link to an account or property.",
-              "flatPath": "v1alpha/accounts/{accountsId}/userLinks/{userLinksId}",
-              "httpMethod": "GET",
-              "id": "analyticsadmin.accounts.userLinks.get",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. Example format: accounts/1234/userLinks/5678",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+/userLinks/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+name}",
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users",
-                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
-              ]
-            },
-            "list": {
-              "description": "Lists all user links on an account or property.",
-              "flatPath": "v1alpha/accounts/{accountsId}/userLinks",
-              "httpMethod": "GET",
-              "id": "analyticsadmin.accounts.userLinks.list",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "pageSize": {
-                  "description": "The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 200 user links will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
-                  "format": "int32",
-                  "location": "query",
-                  "type": "integer"
-                },
-                "pageToken": {
-                  "description": "A page token, received from a previous `ListUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLinks` must match the call that provided the page token.",
-                  "location": "query",
-                  "type": "string"
-                },
-                "parent": {
-                  "description": "Required. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks",
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaListUserLinksResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users",
-                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
-              ]
-            },
-            "patch": {
-              "description": "Updates a user link on an account or property.",
-              "flatPath": "v1alpha/accounts/{accountsId}/userLinks/{userLinksId}",
-              "httpMethod": "PATCH",
-              "id": "analyticsadmin.accounts.userLinks.patch",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Output only. Example format: properties/1234/userLinks/5678",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+/userLinks/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+name}",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
-              ]
-            }
-          }
         }
       }
     },
@@ -999,8 +701,44 @@
             "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
+        "createRollupProperty": {
+          "description": "Create a roll-up property and all roll-up property source links.",
+          "flatPath": "v1alpha/properties:createRollupProperty",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.createRollupProperty",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:createRollupProperty",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateRollupPropertyRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "createSubproperty": {
+          "description": "Create a subproperty and a subproperty event filter that applies to the created subproperty.",
+          "flatPath": "v1alpha/properties:createSubproperty",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.createSubproperty",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:createSubproperty",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
         "delete": {
-          "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.",
+          "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
           "httpMethod": "DELETE",
           "id": "analyticsadmin.properties.delete",
@@ -2740,6 +2478,32 @@
                 "https://www.googleapis.com/auth/analytics.readonly"
               ]
             },
+            "getDataRedactionSettings": {
+              "description": "Lookup for a single DataRedactionSettings.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/dataRedactionSettings",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.dataStreams.getDataRedactionSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the settings to lookup. Format: properties/{property}/dataStreams/{data_stream}/dataRedactionSettings Example: \"properties/1000/dataStreams/2000/dataRedactionSettings\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/dataStreams/[^/]+/dataRedactionSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaDataRedactionSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
             "getEnhancedMeasurementSettings": {
               "description": "Returns the enhanced measurement settings for this data stream. Note that the stream must enable enhanced measurement for these settings to take effect.",
               "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/enhancedMeasurementSettings",
@@ -2858,6 +2622,40 @@
               },
               "response": {
                 "$ref": "GoogleAnalyticsAdminV1alphaDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "updateDataRedactionSettings": {
+              "description": "Updates a DataRedactionSettings on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/dataRedactionSettings",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.dataStreams.updateDataRedactionSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Name of this Data Redaction Settings resource. Format: properties/{property_id}/dataStreams/{data_stream}/dataRedactionSettings Example: \"properties/1000/dataStreams/2000/dataRedactionSettings\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/dataStreams/[^/]+/dataRedactionSettings$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaDataRedactionSettings"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaDataRedactionSettings"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit"
@@ -4069,6 +3867,126 @@
             }
           }
         },
+        "rollupPropertySourceLinks": {
+          "methods": {
+            "create": {
+              "description": "Creates a roll-up property source link. Only roll-up properties can have source links, so this method will throw an error if used on other types of properties.",
+              "flatPath": "v1alpha/properties/{propertiesId}/rollupPropertySourceLinks",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.rollupPropertySourceLinks.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Format: properties/{property_id} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/rollupPropertySourceLinks",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a roll-up property source link. Only roll-up properties can have source links, so this method will throw an error if used on other types of properties.",
+              "flatPath": "v1alpha/properties/{propertiesId}/rollupPropertySourceLinks/{rollupPropertySourceLinksId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.rollupPropertySourceLinks.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Format: properties/{property_id}/rollupPropertySourceLinks/{rollup_property_source_link_id} Example: properties/1234/rollupPropertySourceLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/rollupPropertySourceLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single roll-up property source Link. Only roll-up properties can have source links, so this method will throw an error if used on other types of properties.",
+              "flatPath": "v1alpha/properties/{propertiesId}/rollupPropertySourceLinks/{rollupPropertySourceLinksId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.rollupPropertySourceLinks.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the roll-up property source link to lookup. Format: properties/{property_id}/rollupPropertySourceLinks/{rollup_property_source_link_id} Example: properties/123/rollupPropertySourceLinks/456",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/rollupPropertySourceLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists roll-up property source Links on a property. Only roll-up properties can have source links, so this method will throw an error if used on other types of properties.",
+              "flatPath": "v1alpha/properties/{propertiesId}/rollupPropertySourceLinks",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.rollupPropertySourceLinks.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListRollupPropertySourceLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRollupPropertySourceLinks` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the roll-up property to list roll-up property source links under. Format: properties/{property_id} Example: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/rollupPropertySourceLinks",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            }
+          }
+        },
         "searchAds360Links": {
           "methods": {
             "create": {
@@ -4223,199 +4141,49 @@
             }
           }
         },
-        "userLinks": {
+        "subpropertyEventFilters": {
           "methods": {
-            "audit": {
-              "description": "Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.",
-              "flatPath": "v1alpha/properties/{propertiesId}/userLinks:audit",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.properties.userLinks.audit",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks:audit",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaAuditUserLinksRequest"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaAuditUserLinksResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users",
-                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
-              ]
-            },
-            "batchCreate": {
-              "description": "Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.",
-              "flatPath": "v1alpha/properties/{propertiesId}/userLinks:batchCreate",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.properties.userLinks.batchCreate",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The account or property that all user links in the request are for. This field is required. The parent field in the CreateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks:batchCreate",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
-              ]
-            },
-            "batchDelete": {
-              "description": "Deletes information about multiple users' links to an account or property.",
-              "flatPath": "v1alpha/properties/{propertiesId}/userLinks:batchDelete",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.properties.userLinks.batchDelete",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The account or property that all user links in the request are for. The parent of all values for user link names to delete must match this field. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks:batchDelete",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest"
-              },
-              "response": {
-                "$ref": "GoogleProtobufEmpty"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
-              ]
-            },
-            "batchGet": {
-              "description": "Gets information about multiple users' links to an account or property.",
-              "flatPath": "v1alpha/properties/{propertiesId}/userLinks:batchGet",
-              "httpMethod": "GET",
-              "id": "analyticsadmin.properties.userLinks.batchGet",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "names": {
-                  "description": "Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId}/userLinks/{userLinkId}",
-                  "location": "query",
-                  "repeated": true,
-                  "type": "string"
-                },
-                "parent": {
-                  "description": "Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks:batchGet",
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users",
-                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
-              ]
-            },
-            "batchUpdate": {
-              "description": "Updates information about multiple users' links to an account or property.",
-              "flatPath": "v1alpha/properties/{propertiesId}/userLinks:batchUpdate",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.properties.userLinks.batchUpdate",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The account or property that all user links in the request are for. The parent field in the UpdateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/userLinks:batchUpdate",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
-              ]
-            },
             "create": {
-              "description": "Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.",
-              "flatPath": "v1alpha/properties/{propertiesId}/userLinks",
+              "description": "Creates a subproperty Event Filter.",
+              "flatPath": "v1alpha/properties/{propertiesId}/subpropertyEventFilters",
               "httpMethod": "POST",
-              "id": "analyticsadmin.properties.userLinks.create",
+              "id": "analyticsadmin.properties.subpropertyEventFilters.create",
               "parameterOrder": [
                 "parent"
               ],
               "parameters": {
-                "notifyNewUser": {
-                  "description": "Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.",
-                  "location": "query",
-                  "type": "boolean"
-                },
                 "parent": {
-                  "description": "Required. Example format: accounts/1234",
+                  "description": "Required. The ordinary property for which to create a subproperty event filter. Format: properties/property_id Example: properties/123",
                   "location": "path",
                   "pattern": "^properties/[^/]+$",
                   "required": true,
                   "type": "string"
                 }
               },
-              "path": "v1alpha/{+parent}/userLinks",
+              "path": "v1alpha/{+parent}/subpropertyEventFilters",
               "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+                "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter"
               },
               "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+                "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
+                "https://www.googleapis.com/auth/analytics.edit"
               ]
             },
             "delete": {
-              "description": "Deletes a user link on an account or property.",
-              "flatPath": "v1alpha/properties/{propertiesId}/userLinks/{userLinksId}",
+              "description": "Deletes a subproperty event filter.",
+              "flatPath": "v1alpha/properties/{propertiesId}/subpropertyEventFilters/{subpropertyEventFiltersId}",
               "httpMethod": "DELETE",
-              "id": "analyticsadmin.properties.userLinks.delete",
+              "id": "analyticsadmin.properties.subpropertyEventFilters.delete",
               "parameterOrder": [
                 "name"
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Example format: accounts/1234/userLinks/5678",
+                  "description": "Required. Resource name of the subproperty event filter to delete. Format: properties/property_id/subpropertyEventFilters/subproperty_event_filter Example: properties/123/subpropertyEventFilters/456",
                   "location": "path",
-                  "pattern": "^properties/[^/]+/userLinks/[^/]+$",
+                  "pattern": "^properties/[^/]+/subpropertyEventFilters/[^/]+$",
                   "required": true,
                   "type": "string"
                 }
@@ -4425,98 +4193,104 @@
                 "$ref": "GoogleProtobufEmpty"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
+                "https://www.googleapis.com/auth/analytics.edit"
               ]
             },
             "get": {
-              "description": "Gets information about a user's link to an account or property.",
-              "flatPath": "v1alpha/properties/{propertiesId}/userLinks/{userLinksId}",
+              "description": "Lookup for a single subproperty Event Filter.",
+              "flatPath": "v1alpha/properties/{propertiesId}/subpropertyEventFilters/{subpropertyEventFiltersId}",
               "httpMethod": "GET",
-              "id": "analyticsadmin.properties.userLinks.get",
+              "id": "analyticsadmin.properties.subpropertyEventFilters.get",
               "parameterOrder": [
                 "name"
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Example format: accounts/1234/userLinks/5678",
+                  "description": "Required. Resource name of the subproperty event filter to lookup. Format: properties/property_id/subpropertyEventFilters/subproperty_event_filter Example: properties/123/subpropertyEventFilters/456",
                   "location": "path",
-                  "pattern": "^properties/[^/]+/userLinks/[^/]+$",
+                  "pattern": "^properties/[^/]+/subpropertyEventFilters/[^/]+$",
                   "required": true,
                   "type": "string"
                 }
               },
               "path": "v1alpha/{+name}",
               "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+                "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users",
-                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
               ]
             },
             "list": {
-              "description": "Lists all user links on an account or property.",
-              "flatPath": "v1alpha/properties/{propertiesId}/userLinks",
+              "description": "List all subproperty Event Filters on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/subpropertyEventFilters",
               "httpMethod": "GET",
-              "id": "analyticsadmin.properties.userLinks.list",
+              "id": "analyticsadmin.properties.subpropertyEventFilters.list",
               "parameterOrder": [
                 "parent"
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 200 user links will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+                  "description": "Optional. The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A page token, received from a previous `ListUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLinks` must match the call that provided the page token.",
+                  "description": "Optional. A page token, received from a previous `ListSubpropertyEventFilters` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubpropertyEventFilters` must match the call that provided the page token.",
                   "location": "query",
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Example format: accounts/1234",
+                  "description": "Required. Resource name of the ordinary property. Format: properties/property_id Example: properties/123",
                   "location": "path",
                   "pattern": "^properties/[^/]+$",
                   "required": true,
                   "type": "string"
                 }
               },
-              "path": "v1alpha/{+parent}/userLinks",
+              "path": "v1alpha/{+parent}/subpropertyEventFilters",
               "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaListUserLinksResponse"
+                "$ref": "GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users",
-                "https://www.googleapis.com/auth/analytics.manage.users.readonly"
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
               ]
             },
             "patch": {
-              "description": "Updates a user link on an account or property.",
-              "flatPath": "v1alpha/properties/{propertiesId}/userLinks/{userLinksId}",
+              "description": "Updates a subproperty Event Filter.",
+              "flatPath": "v1alpha/properties/{propertiesId}/subpropertyEventFilters/{subpropertyEventFiltersId}",
               "httpMethod": "PATCH",
-              "id": "analyticsadmin.properties.userLinks.patch",
+              "id": "analyticsadmin.properties.subpropertyEventFilters.patch",
               "parameterOrder": [
                 "name"
               ],
               "parameters": {
                 "name": {
-                  "description": "Output only. Example format: properties/1234/userLinks/5678",
+                  "description": "Output only. Format: properties/{ordinary_property_id}/subpropertyEventFilters/{sub_property_event_filter} Example: properties/1234/subpropertyEventFilters/5678",
                   "location": "path",
-                  "pattern": "^properties/[^/]+/userLinks/[^/]+$",
+                  "pattern": "^properties/[^/]+/subpropertyEventFilters/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to update. Field names must be in snake case (for example, \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
                   "type": "string"
                 }
               },
               "path": "v1alpha/{+name}",
               "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+                "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter"
               },
               "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+                "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/analytics.manage.users"
+                "https://www.googleapis.com/auth/analytics.edit"
               ]
             }
           }
@@ -4524,7 +4298,7 @@
       }
     }
   },
-  "revision": "20230923",
+  "revision": "20231006",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5542,69 +5316,6 @@
       },
       "type": "object"
     },
-    "GoogleAnalyticsAdminV1alphaAuditUserLink": {
-      "description": "Read-only resource used to summarize a principal's effective roles.",
-      "id": "GoogleAnalyticsAdminV1alphaAuditUserLink",
-      "properties": {
-        "directRoles": {
-          "description": "Roles directly assigned to this user for this entity. Format: predefinedRoles/viewer Excludes roles that are inherited from an account (if this is for a property), group, or organization admin role.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "effectiveRoles": {
-          "description": "Union of all permissions a user has at this account or property (includes direct permissions, group-inherited permissions, etc.). Format: predefinedRoles/viewer",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "emailAddress": {
-          "description": "Email address of the linked user",
-          "type": "string"
-        },
-        "name": {
-          "description": "Example format: properties/1234/userLinks/5678",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaAuditUserLinksRequest": {
-      "description": "Request message for AuditUserLinks RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaAuditUserLinksRequest",
-      "properties": {
-        "pageSize": {
-          "description": "The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 1000 user links will be returned. The maximum value is 5000; values above 5000 will be coerced to 5000.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "pageToken": {
-          "description": "A page token, received from a previous `AuditUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `AuditUserLinks` must match the call that provided the page token.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaAuditUserLinksResponse": {
-      "description": "Response message for AuditUserLinks RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaAuditUserLinksResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
-          "type": "string"
-        },
-        "userLinks": {
-          "description": "List of AuditUserLinks. These will be ordered stably, but in an arbitrary order.",
-          "items": {
-            "$ref": "GoogleAnalyticsAdminV1alphaAuditUserLink"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest": {
       "description": "Request message for BatchCreateAccessBindings RPC.",
       "id": "GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest",
@@ -5633,38 +5344,6 @@
       },
       "type": "object"
     },
-    "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest": {
-      "description": "Request message for BatchCreateUserLinks RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest",
-      "properties": {
-        "notifyNewUsers": {
-          "description": "Optional. If set, then email the new users notifying them that they've been granted permissions to the resource. Regardless of whether this is set or not, notify_new_user field inside each individual request is ignored.",
-          "type": "boolean"
-        },
-        "requests": {
-          "description": "Required. The requests specifying the user links to create. A maximum of 1000 user links can be created in a batch.",
-          "items": {
-            "$ref": "GoogleAnalyticsAdminV1alphaCreateUserLinkRequest"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse": {
-      "description": "Response message for BatchCreateUserLinks RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse",
-      "properties": {
-        "userLinks": {
-          "description": "The user links created.",
-          "items": {
-            "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest": {
       "description": "Request message for BatchDeleteAccessBindings RPC.",
       "id": "GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest",
@@ -5679,20 +5358,6 @@
       },
       "type": "object"
     },
-    "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest": {
-      "description": "Request message for BatchDeleteUserLinks RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest",
-      "properties": {
-        "requests": {
-          "description": "Required. The requests specifying the user links to update. A maximum of 1000 user links can be updated in a batch.",
-          "items": {
-            "$ref": "GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse": {
       "description": "Response message for BatchGetAccessBindings RPC.",
       "id": "GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse",
@@ -5701,20 +5366,6 @@
           "description": "The requested access bindings.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse": {
-      "description": "Response message for BatchGetUserLinks RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse",
-      "properties": {
-        "userLinks": {
-          "description": "The requested user links.",
-          "items": {
-            "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
           },
           "type": "array"
         }
@@ -5743,34 +5394,6 @@
           "description": "The access bindings updated.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest": {
-      "description": "Request message for BatchUpdateUserLinks RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest",
-      "properties": {
-        "requests": {
-          "description": "Required. The requests specifying the user links to update. A maximum of 1000 user links can be updated in a batch.",
-          "items": {
-            "$ref": "GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse": {
-      "description": "Response message for BatchUpdateUserLinks RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse",
-      "properties": {
-        "userLinks": {
-          "description": "The user links updated.",
-          "items": {
-            "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
           },
           "type": "array"
         }
@@ -5909,6 +5532,10 @@
         "customMetric": {
           "$ref": "GoogleAnalyticsAdminV1alphaCustomMetric",
           "description": "A snapshot of a CustomMetric resource in change history."
+        },
+        "dataRedactionSettings": {
+          "$ref": "GoogleAnalyticsAdminV1alphaDataRedactionSettings",
+          "description": "A snapshot of DataRedactionSettings resource in change history."
         },
         "dataRetentionSettings": {
           "$ref": "GoogleAnalyticsAdminV1alphaDataRetentionSettings",
@@ -6291,21 +5918,72 @@
       "properties": {},
       "type": "object"
     },
-    "GoogleAnalyticsAdminV1alphaCreateUserLinkRequest": {
-      "description": "Request message for CreateUserLink RPC. Users can have multiple email addresses associated with their Google account, and one of these email addresses is the \"primary\" email address. Any of the email addresses associated with a Google account may be used for a new UserLink, but the returned UserLink will always contain the \"primary\" email address. As a result, the input and output email address for this request may differ.",
-      "id": "GoogleAnalyticsAdminV1alphaCreateUserLinkRequest",
+    "GoogleAnalyticsAdminV1alphaCreateRollupPropertyRequest": {
+      "description": "Request message for CreateRollupProperty RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateRollupPropertyRequest",
       "properties": {
-        "notifyNewUser": {
-          "description": "Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.",
-          "type": "boolean"
+        "rollupProperty": {
+          "$ref": "GoogleAnalyticsAdminV1alphaProperty",
+          "description": "Required. The roll-up property to create."
         },
+        "sourceProperties": {
+          "description": "Optional. The resource names of properties that will be sources to the created roll-up property.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse": {
+      "description": "Response message for CreateRollupProperty RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse",
+      "properties": {
+        "rollupProperty": {
+          "$ref": "GoogleAnalyticsAdminV1alphaProperty",
+          "description": "The created roll-up property."
+        },
+        "rollupPropertySourceLinks": {
+          "description": "The created roll-up property source links.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest": {
+      "description": "Request message for CreateSubproperty RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest",
+      "properties": {
         "parent": {
-          "description": "Required. Example format: accounts/1234",
+          "description": "Required. The ordinary property for which to create a subproperty. Format: properties/property_id Example: properties/123",
           "type": "string"
         },
-        "userLink": {
-          "$ref": "GoogleAnalyticsAdminV1alphaUserLink",
-          "description": "Required. The user link to create."
+        "subproperty": {
+          "$ref": "GoogleAnalyticsAdminV1alphaProperty",
+          "description": "Required. The subproperty to create."
+        },
+        "subpropertyEventFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter",
+          "description": "Optional. The subproperty event filter to create on an ordinary property."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse": {
+      "description": "Response message for CreateSubproperty RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse",
+      "properties": {
+        "subproperty": {
+          "$ref": "GoogleAnalyticsAdminV1alphaProperty",
+          "description": "The created subproperty."
+        },
+        "subpropertyEventFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter",
+          "description": "The created subproperty event filter."
         }
       },
       "type": "object"
@@ -6433,6 +6111,33 @@
             "Metric scoped to an event."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDataRedactionSettings": {
+      "description": "Settings for client-side data redaction. Singleton resource under a Web Stream.",
+      "id": "GoogleAnalyticsAdminV1alphaDataRedactionSettings",
+      "properties": {
+        "emailRedactionEnabled": {
+          "description": "If enabled, any event parameter or user property values that look like an email will be redacted.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. Name of this Data Redaction Settings resource. Format: properties/{property_id}/dataStreams/{data_stream}/dataRedactionSettings Example: \"properties/1000/dataStreams/2000/dataRedactionSettings\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "queryParameterKeys": {
+          "description": "The query parameter keys to apply redaction logic to if present in the URL. Query parameter matching is case-insensitive. Must contain at least one element if query_parameter_replacement_enabled is true. Keys cannot contain commas.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "queryParameterRedactionEnabled": {
+          "description": "Query Parameter redaction removes the key and value portions of a query parameter if it is in the configured set of query parameters. If enabled, URL query replacement logic will be run for the Stream. Any query parameters defined in query_parameter_keys will be redacted.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6635,17 +6340,6 @@
         },
         "tagId": {
           "description": "Tag ID to forward events to. Also known as the Measurement ID, or the \"G-ID\" (For example: G-12345).",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest": {
-      "description": "Request message for DeleteUserLink RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest",
-      "properties": {
-        "name": {
-          "description": "Required. Example format: accounts/1234/userLinks/5678",
           "type": "string"
         }
       },
@@ -7572,6 +7266,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse": {
+      "description": "Response message for ListRollupPropertySourceLinks RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "rollupPropertySourceLinks": {
+          "description": "List of RollupPropertySourceLinks.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse": {
       "description": "Response message for ListSKAdNetworkConversionValueSchemas RPC",
       "id": "GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse",
@@ -7608,18 +7320,18 @@
       },
       "type": "object"
     },
-    "GoogleAnalyticsAdminV1alphaListUserLinksResponse": {
-      "description": "Response message for ListUserLinks RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaListUserLinksResponse",
+    "GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse": {
+      "description": "Response message for ListSubpropertyEventFilter RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse",
       "properties": {
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         },
-        "userLinks": {
-          "description": "List of UserLinks. These will be ordered stably, but in an arbitrary order.",
+        "subpropertyEventFilters": {
+          "description": "List of subproperty event filters.",
           "items": {
-            "$ref": "GoogleAnalyticsAdminV1alphaUserLink"
+            "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter"
           },
           "type": "array"
         }
@@ -7860,7 +7572,7 @@
           "type": "string"
         },
         "propertyType": {
-          "description": "Immutable. The property type for this Property resource. When creating a property, if the type is \"PROPERTY_TYPE_UNSPECIFIED\", then \"ORDINARY_PROPERTY\" will be implied. \"SUBPROPERTY\" and \"ROLLUP_PROPERTY\" types cannot yet be created with the Google Analytics Admin API.",
+          "description": "Immutable. The property type for this Property resource. When creating a property, if the type is \"PROPERTY_TYPE_UNSPECIFIED\", then \"ORDINARY_PROPERTY\" will be implied.",
           "enum": [
             "PROPERTY_TYPE_UNSPECIFIED",
             "PROPERTY_TYPE_ORDINARY",
@@ -7964,6 +7676,22 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink": {
+      "description": "A link that references a source property under the parent rollup property.",
+      "id": "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink",
+      "properties": {
+        "name": {
+          "description": "Output only. Resource name of this RollupPropertySourceLink. Format: 'properties/{property_id}/rollupPropertySourceLinks/{rollup_property_source_link}' Format: 'properties/123/rollupPropertySourceLinks/456'",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceProperty": {
+          "description": "Immutable. Resource name of the source property. Format: properties/{property_id} Example: \"properties/789\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaRunAccessReportRequest": {
       "description": "The request for a Data Access Record Report.",
       "id": "GoogleAnalyticsAdminV1alphaRunAccessReportRequest",
@@ -7985,6 +7713,14 @@
             "$ref": "GoogleAnalyticsAdminV1alphaAccessDimension"
           },
           "type": "array"
+        },
+        "expandGroups": {
+          "description": "Optional. Decides whether to return the users within user groups. This field works only when include_all_users is set to true. If true, it will return all users with access to the specified property or account. If false, only the users with direct access will be returned.",
+          "type": "boolean"
+        },
+        "includeAllUsers": {
+          "description": "Optional. Determines whether to include users who have never made an API call in the response. If true, all users with access to the specified property or account are included in the response, regardless of whether they have made an API call or not. If false, only the users who have made an API call will be included.",
+          "type": "boolean"
         },
         "limit": {
           "description": "The number of rows to return. If unspecified, 10,000 rows are returned. The API returns a maximum of 100,000 rows per request, no matter how many you ask for. `limit` must be positive. The API may return fewer rows than the requested `limit`, if there aren't as many remaining rows as the `limit`. For instance, there are fewer than 300 possible values for the dimension `country`, so when reporting on only `country`, you can't get more than 300 rows, even if you set `limit` to a higher value. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).",
@@ -8203,6 +7939,7 @@
               "EXPANDED_DATA_SET",
               "CHANNEL_GROUP",
               "ENHANCED_MEASUREMENT_SETTINGS",
+              "DATA_REDACTION_SETTINGS",
               "SKADNETWORK_CONVERSION_VALUE_SCHEMA",
               "ADSENSE_LINK",
               "AUDIENCE",
@@ -8228,6 +7965,7 @@
               "ExpandedDataSet resource",
               "ChannelGroup resource",
               "EnhancedMeasurementSettings resource",
+              "DataRedactionSettings resource",
               "SKAdNetworkConversionValueSchema resource",
               "AdSenseLink resource",
               "Audience resource",
@@ -8279,6 +8017,143 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter": {
+      "description": "A resource message representing a GA4 Subproperty event filter.",
+      "id": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter",
+      "properties": {
+        "applyToProperty": {
+          "description": "Immutable. Resource name of the Subproperty that uses this filter.",
+          "type": "string"
+        },
+        "filterClauses": {
+          "description": "Required. Unordered list. Filter clauses that define the SubpropertyEventFilter. All clauses are AND'ed together to determine what data is sent to the subproperty.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterClause"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Format: properties/{ordinary_property_id}/subpropertyEventFilters/{sub_property_event_filter} Example: properties/1234/subpropertyEventFilters/5678",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterClause": {
+      "description": "A clause for defining a filter. A filter may be inclusive (events satisfying the filter clause are included in the subproperty's data) or exclusive (events satisfying the filter clause are excluded from the subproperty's data).",
+      "id": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterClause",
+      "properties": {
+        "filterClauseType": {
+          "description": "Required. The type for the filter clause.",
+          "enum": [
+            "FILTER_CLAUSE_TYPE_UNSPECIFIED",
+            "INCLUDE",
+            "EXCLUDE"
+          ],
+          "enumDescriptions": [
+            "Filter clause type unknown or not specified.",
+            "Events will be included in the Sub property if the filter clause is met.",
+            "Events will be excluded from the Sub property if the filter clause is met."
+          ],
+          "type": "string"
+        },
+        "filterExpression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression",
+          "description": "Required. The logical expression for what events are sent to the subproperty."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterCondition": {
+      "description": "A specific filter expression",
+      "id": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterCondition",
+      "properties": {
+        "fieldName": {
+          "description": "Required. The field that is being filtered.",
+          "type": "string"
+        },
+        "nullFilter": {
+          "description": "A filter for null values.",
+          "type": "boolean"
+        },
+        "stringFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterConditionStringFilter",
+          "description": "A filter for a string-type dimension that matches a particular pattern."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterConditionStringFilter": {
+      "description": "A filter for a string-type dimension that matches a particular pattern.",
+      "id": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterConditionStringFilter",
+      "properties": {
+        "caseSensitive": {
+          "description": "Optional. If true, the string value is case sensitive. If false, the match is case-insensitive.",
+          "type": "boolean"
+        },
+        "matchType": {
+          "description": "Required. The match type for the string filter.",
+          "enum": [
+            "MATCH_TYPE_UNSPECIFIED",
+            "EXACT",
+            "BEGINS_WITH",
+            "ENDS_WITH",
+            "CONTAINS",
+            "FULL_REGEXP",
+            "PARTIAL_REGEXP"
+          ],
+          "enumDescriptions": [
+            "Match type unknown or not specified.",
+            "Exact match of the string value.",
+            "Begins with the string value.",
+            "Ends with the string value.",
+            "Contains the string value.",
+            "Full regular expression matches with the string value.",
+            "Partial regular expression matches with the string value."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The string value used for the matching.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression": {
+      "description": "A logical expression of Subproperty event filters.",
+      "id": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression",
+      "properties": {
+        "filterCondition": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterCondition",
+          "description": "Creates a filter that matches a specific event. This cannot be set on the top level SubpropertyEventFilterExpression."
+        },
+        "notExpression": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression",
+          "description": "A filter expression to be NOT'ed (inverted, complemented). It can only include a filter. This cannot be set on the top level SubpropertyEventFilterExpression."
+        },
+        "orGroup": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpressionList",
+          "description": "A list of expressions to OR’ed together. Must only contain not_expression or filter_condition expressions."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpressionList": {
+      "description": "A list of Subproperty event filter expressions.",
+      "id": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpressionList",
+      "properties": {
+        "filterExpressions": {
+          "description": "Required. Unordered list. A list of Subproperty event filter expressions",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest": {
       "description": "Request message for UpdateAccessBinding RPC.",
       "id": "GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest",
@@ -8286,40 +8161,6 @@
         "accessBinding": {
           "$ref": "GoogleAnalyticsAdminV1alphaAccessBinding",
           "description": "Required. The access binding to update."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest": {
-      "description": "Request message for UpdateUserLink RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest",
-      "properties": {
-        "userLink": {
-          "$ref": "GoogleAnalyticsAdminV1alphaUserLink",
-          "description": "Required. The user link to update."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaUserLink": {
-      "description": "A resource message representing a user's permissions on an Account or Property resource.",
-      "id": "GoogleAnalyticsAdminV1alphaUserLink",
-      "properties": {
-        "directRoles": {
-          "description": "Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/viewer predefinedRoles/analyst predefinedRoles/editor predefinedRoles/admin predefinedRoles/no-cost-data predefinedRoles/no-revenue-data Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "emailAddress": {
-          "description": "Immutable. Email address of the user to link",
-          "type": "string"
-        },
-        "name": {
-          "description": "Output only. Example format: properties/1234/userLinks/5678",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
