@@ -1181,6 +1181,44 @@ export namespace dialogflow_v3beta1 {
     flowUri?: string | null;
   }
   /**
+   * Metadata returned for the Intents.ExportIntents long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportIntentsMetadata {}
+  /**
+   * The request message for Intents.ExportIntents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportIntentsRequest {
+    /**
+     * Optional. The data format of the exported intents. If not specified, `BLOB` is assumed.
+     */
+    dataFormat?: string | null;
+    /**
+     * Required. The name of the intents to export. Format: `projects//locations//agents//intents/`.
+     */
+    intents?: string[] | null;
+    /**
+     * Optional. The option to return the serialized intents inline.
+     */
+    intentsContentInline?: boolean | null;
+    /**
+     * Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the intents to. The format of this URI must be `gs:///`. Dialogflow performs a write operation for the Cloud Storage object on the caller's behalf, so your request authentication must have write permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
+     */
+    intentsUri?: string | null;
+  }
+  /**
+   * The response message for Intents.ExportIntents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportIntentsResponse {
+    /**
+     * Uncompressed byte content for intents. This field is populated only if `intents_content_inline` is set to true in ExportIntentsRequest.
+     */
+    intentsContent?: Schema$GoogleCloudDialogflowCxV3beta1InlineDestination;
+    /**
+     * The URI to a file containing the exported intents. This field is populated only if `intents_uri` is specified in ExportIntentsRequest.
+     */
+    intentsUri?: string | null;
+  }
+  /**
    * Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata {}
@@ -1610,6 +1648,53 @@ export namespace dialogflow_v3beta1 {
     flow?: string | null;
   }
   /**
+   * Metadata returned for the Intents.ImportIntents long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportIntentsMetadata {}
+  /**
+   * The request message for Intents.ImportIntents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportIntentsRequest {
+    /**
+     * Uncompressed byte content of intents.
+     */
+    intentsContent?: Schema$GoogleCloudDialogflowCxV3beta1InlineSource;
+    /**
+     * The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to import intents from. The format of this URI must be `gs:///`. Dialogflow performs a read operation for the Cloud Storage object on the caller's behalf, so your request authentication must have read permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
+     */
+    intentsUri?: string | null;
+    /**
+     * Merge option for importing intents. If not specified, `REJECT` is assumed.
+     */
+    mergeOption?: string | null;
+  }
+  /**
+   * The response message for Intents.ImportIntents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportIntentsResponse {
+    /**
+     * Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportIntentsRequest.
+     */
+    conflictingResources?: Schema$GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources;
+    /**
+     * The unique identifier of the imported intents. Format: `projects//locations//agents//intents/`.
+     */
+    intents?: string[] | null;
+  }
+  /**
+   * Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources {
+    /**
+     * Display names of conflicting entities.
+     */
+    entityDisplayNames?: string[] | null;
+    /**
+     * Display names of conflicting intents.
+     */
+    intentDisplayNames?: string[] | null;
+  }
+  /**
    * Metadata returned for the TestCases.ImportTestCases long running operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ImportTestCasesMetadata {
@@ -1639,6 +1724,24 @@ export namespace dialogflow_v3beta1 {
      * The unique identifiers of the new test cases. Format: `projects//locations//agents//testCases/`.
      */
     names?: string[] | null;
+  }
+  /**
+   * Inline destination for a Dialogflow operation that writes or exports objects (e.g. intents) outside of Dialogflow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1InlineDestination {
+    /**
+     * Output only. The uncompressed byte content for the objects. Only populated in responses.
+     */
+    content?: string | null;
+  }
+  /**
+   * Inline source for a Dialogflow operation that reads or imports objects (e.g. intents) into Dialogflow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1InlineSource {
+    /**
+     * The uncompressed byte content for the objects.
+     */
+    content?: string | null;
   }
   /**
    * Instructs the speech recognizer on how to process the audio content.
@@ -3931,6 +4034,23 @@ export namespace dialogflow_v3beta1 {
     flowUri?: string | null;
   }
   /**
+   * Metadata returned for the Intents.ExportIntents long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportIntentsMetadata {}
+  /**
+   * The response message for Intents.ExportIntents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportIntentsResponse {
+    /**
+     * Uncompressed byte content for intents. This field is populated only if `intents_content_inline` is set to true in ExportIntentsRequest.
+     */
+    intentsContent?: Schema$GoogleCloudDialogflowCxV3InlineDestination;
+    /**
+     * The URI to a file containing the exported intents. This field is populated only if `intents_uri` is specified in ExportIntentsRequest.
+     */
+    intentsUri?: string | null;
+  }
+  /**
    * Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ExportTestCasesMetadata {}
@@ -4137,6 +4257,36 @@ export namespace dialogflow_v3beta1 {
     flow?: string | null;
   }
   /**
+   * Metadata returned for the Intents.ImportIntents long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportIntentsMetadata {}
+  /**
+   * The response message for Intents.ImportIntents.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportIntentsResponse {
+    /**
+     * Info which resources have conflicts when REPORT_CONFLICT merge_option is set in ImportIntentsRequest.
+     */
+    conflictingResources?: Schema$GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources;
+    /**
+     * The unique identifier of the imported intents. Format: `projects//locations//agents//intents/`.
+     */
+    intents?: string[] | null;
+  }
+  /**
+   * Conflicting resources detected during the import process. Only filled when REPORT_CONFLICT is set in the request and there are conflicts in the display names.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources {
+    /**
+     * Display names of conflicting entities.
+     */
+    entityDisplayNames?: string[] | null;
+    /**
+     * Display names of conflicting intents.
+     */
+    intentDisplayNames?: string[] | null;
+  }
+  /**
    * Metadata returned for the TestCases.ImportTestCases long running operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ImportTestCasesMetadata {
@@ -4153,6 +4303,15 @@ export namespace dialogflow_v3beta1 {
      * The unique identifiers of the new test cases. Format: `projects//locations//agents//testCases/`.
      */
     names?: string[] | null;
+  }
+  /**
+   * Inline destination for a Dialogflow operation that writes or exports objects (e.g. intents) outside of Dialogflow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3InlineDestination {
+    /**
+     * Output only. The uncompressed byte content for the objects. Only populated in responses.
+     */
+    content?: string | null;
   }
   /**
    * Instructs the speech recognizer on how to process the audio content.
@@ -16605,6 +16764,100 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
+     * Exports the selected intents. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ExportIntentsMetadata - `response`: ExportIntentsResponse
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Intents$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Agents$Intents$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Intents$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Intents$Export,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Intents$Export,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Intents$Export
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Intents$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Intents$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+parent}/intents:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Retrieves the specified intent.
      *
      * @param params - Parameters for request
@@ -16694,6 +16947,100 @@ export namespace dialogflow_v3beta1 {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Intent>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Imports the specified intents into the agent. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ImportIntentsMetadata - `response`: ImportIntentsResponse
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Intents$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Agents$Intents$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Intents$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Intents$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Intents$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Intents$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Intents$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Intents$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+parent}/intents:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -16910,6 +17257,18 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Agents$Intents$Export
+    extends StandardParameters {
+    /**
+     * Required. The name of the parent agent to export intents. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1ExportIntentsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Agents$Intents$Get
     extends StandardParameters {
     /**
@@ -16920,6 +17279,18 @@ export namespace dialogflow_v3beta1 {
      * Required. The name of the intent. Format: `projects//locations//agents//intents/`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Intents$Import
+    extends StandardParameters {
+    /**
+     * Required. The agent to import the intents into. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1ImportIntentsRequest;
   }
   export interface Params$Resource$Projects$Locations$Agents$Intents$List
     extends StandardParameters {
