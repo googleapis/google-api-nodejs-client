@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v5.4.1...games-v5.5.0) (2023-10-11)
+
+
+### Features
+
+* **games:** update the API ([30dc810](https://github.com/googleapis/google-api-nodejs-client/commit/30dc8101b3869c2bcc397a6b49d9a14f5df291b8))
+* **games:** update the API ([55fed7d](https://github.com/googleapis/google-api-nodejs-client/commit/55fed7d4ec12c70cba143039fdbb5e45b3fcd526))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+
 ## [5.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/games-v5.4.0...games-v5.4.1) (2023-08-25)
 
 

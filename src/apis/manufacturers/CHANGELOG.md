@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v5.0.4...manufacturers-v5.1.0) (2023-10-11)
+
+
+### Features
+
+* **manufacturers:** update the API ([2cdbd73](https://github.com/googleapis/google-api-nodejs-client/commit/2cdbd7329094999d3db1190dbc06575ea20fb091))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **manufacturers:** update the API ([c6c1398](https://github.com/googleapis/google-api-nodejs-client/commit/c6c13988060b1eb932984ded4d3569949ee70cc8))
+
 ## [5.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v5.0.3...manufacturers-v5.0.4) (2023-08-25)
 
 

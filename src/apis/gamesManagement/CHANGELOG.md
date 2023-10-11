@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/gamesmanagement-v2.0.4...gamesmanagement-v2.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **gamesManagement:** update the API ([7997150](https://github.com/googleapis/google-api-nodejs-client/commit/799715027a5d50782f5b34439961bf446882e867))
+
 ## [2.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/gamesmanagement-v2.0.3...gamesmanagement-v2.0.4) (2023-08-25)
 
 

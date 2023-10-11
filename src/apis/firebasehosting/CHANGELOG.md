@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v7.0.4...firebasehosting-v7.1.0) (2023-10-11)
+
+
+### Features
+
+* **firebasehosting:** update the API ([64cbaa6](https://github.com/googleapis/google-api-nodejs-client/commit/64cbaa6b39452f05e1e4393e73b928c22fdecc38))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **firebasehosting:** update the API ([c23f76b](https://github.com/googleapis/google-api-nodejs-client/commit/c23f76bf5ef6974eaef995cbf62819539fc5f74d))
+
 ## [7.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v7.0.3...firebasehosting-v7.0.4) (2023-08-25)
 
 

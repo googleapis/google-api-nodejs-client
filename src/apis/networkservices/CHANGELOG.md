@@ -1,5 +1,24 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v7.0.3...networkservices-v8.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **networkservices:** update the API ([fe7e04d](https://github.com/googleapis/google-api-nodejs-client/commit/fe7e04da776cfe880d3cc59119ba34770d4b8096))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **networkservices:** update the API ([c2ca6b5](https://github.com/googleapis/google-api-nodejs-client/commit/c2ca6b5b297a7d234ab303da9562099c4a860b0c))
+* **networkservices:** update the API ([8133c74](https://github.com/googleapis/google-api-nodejs-client/commit/8133c7471ec23e36550fc655b8af3de4818e0649))
+
 ## [7.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v7.0.2...networkservices-v7.0.3) (2023-08-25)
 
 

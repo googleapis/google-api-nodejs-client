@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/fcmdata-v1.0.4...fcmdata-v1.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **fcmdata:** update the API ([3b19295](https://github.com/googleapis/google-api-nodejs-client/commit/3b192956b2a4508f62d55d1a21a240bbb579bf3a))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/fcmdata-v1.0.3...fcmdata-v1.0.4) (2023-08-25)
 
 

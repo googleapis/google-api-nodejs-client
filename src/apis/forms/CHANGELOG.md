@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v2.0.4...forms-v2.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **forms:** update the API ([8ba614a](https://github.com/googleapis/google-api-nodejs-client/commit/8ba614a2aab87eca8ffd770a8bbf6912e1ed9c66))
+
 ## [2.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v2.0.3...forms-v2.0.4) (2023-08-25)
 
 

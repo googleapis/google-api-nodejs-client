@@ -1,5 +1,23 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v5.0.4...gmail-v6.0.0) (2023-10-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **gmail:** update the API ([e943c90](https://github.com/googleapis/google-api-nodejs-client/commit/e943c90dbba2603cafb29e8045ba8969f1d51505))
+* run the generator ([#3355](https://github.com/googleapis/google-api-nodejs-client/issues/3355)) ([5504c86](https://github.com/googleapis/google-api-nodejs-client/commit/5504c86fd61740886047320e2ed70f02a164acd7))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **gmail:** update the API ([6ee8730](https://github.com/googleapis/google-api-nodejs-client/commit/6ee873005b2b97a54a4a7d3af9d8ae0d42c6ca6e))
+
 ## [5.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v5.0.3...gmail-v5.0.4) (2023-08-25)
 
 

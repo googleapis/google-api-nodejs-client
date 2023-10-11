@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/licensing-v1.0.4...licensing-v1.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v7 ([9491ec1](https://github.com/googleapis/google-api-nodejs-client/commit/9491ec1cdc3c413e7d73edcfcd59cf5c28a7c855))
+* **licensing:** update the API ([c5271b5](https://github.com/googleapis/google-api-nodejs-client/commit/c5271b559eb8af944208071595672e1e4468cfc8))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/licensing-v1.0.3...licensing-v1.0.4) (2023-08-25)
 
 

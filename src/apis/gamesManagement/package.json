@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/gamesmanagement",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "gamesManagement",
   "main": "build/index.js",
   "types": "build/index.d.ts",
