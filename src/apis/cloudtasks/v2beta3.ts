@@ -236,6 +236,19 @@ export namespace cloudtasks_v2beta3 {
     task?: Schema$Task;
   }
   /**
+   * CMEK, or Customer Managed Encryption Keys, enables GCP products to put control over encryption and key management in their customer’s hands.
+   */
+  export interface Schema$CmekConfig {
+    /**
+     * Resource name of the Cloud KMS key, of the form `projects/PROJECT_ID/locations/LOCATION_ID/keyRings/KEY_RING_ID/cryptoKeys/KEY_ID`, that will be used to encrypt the Queues & Tasks in the region. Setting this as blank will turn off CMEK encryption.
+     */
+    kmsKey?: string | null;
+    /**
+     * Output only. The config resource name which includes the project and location and must end in 'cmekConfig', in the format projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
+     */
+    name?: string | null;
+  }
+  /**
    * Request message for CreateTask.
    */
   export interface Schema$CreateTaskRequest {
@@ -901,6 +914,90 @@ export namespace cloudtasks_v2beta3 {
     }
 
     /**
+     * Gets the CMEK config. Gets the Customer Managed Encryption Key configured with the Cloud Tasks lcoation. By default there is no kms_key configured.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getCmekConfig(
+      params?: Params$Resource$Projects$Locations$Getcmekconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekConfig>;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekConfig>,
+      callback: BodyResponseCallback<Schema$CmekConfig>
+    ): void;
+    getCmekConfig(
+      params: Params$Resource$Projects$Locations$Getcmekconfig,
+      callback: BodyResponseCallback<Schema$CmekConfig>
+    ): void;
+    getCmekConfig(callback: BodyResponseCallback<Schema$CmekConfig>): void;
+    getCmekConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getcmekconfig
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getcmekconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getcmekconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CmekConfig>(parameters);
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
      *
      * @param params - Parameters for request
@@ -991,12 +1088,106 @@ export namespace cloudtasks_v2beta3 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * Creates or Updates a CMEK config. Updates the Customer Managed Encryption Key assotiated with the Cloud Tasks location (Creates if the key does not already exist). All new tasks created in the location will be encrypted at-rest with the KMS-key provided in the config.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateCmekConfig(
+      params?: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CmekConfig>;
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$CmekConfig>,
+      callback: BodyResponseCallback<Schema$CmekConfig>
+    ): void;
+    updateCmekConfig(
+      params: Params$Resource$Projects$Locations$Updatecmekconfig,
+      callback: BodyResponseCallback<Schema$CmekConfig>
+    ): void;
+    updateCmekConfig(callback: BodyResponseCallback<Schema$CmekConfig>): void;
+    updateCmekConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updatecmekconfig
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CmekConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CmekConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updatecmekconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updatecmekconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta3/projects/{projectsId}/locations/{locationsId}/cmekConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectsId', 'locationsId'],
+        pathParams: ['locationsId', 'projectsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CmekConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CmekConfig>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
      * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Getcmekconfig
+    extends StandardParameters {
+    /**
+     * Required. The config resource name. For example: projects/PROJECT_ID/locations/LOCATION_ID/cmekConfig`
      */
     name?: string;
   }
@@ -1018,6 +1209,26 @@ export namespace cloudtasks_v2beta3 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Updatecmekconfig
+    extends StandardParameters {
+    /**
+     *
+     */
+    locationsId?: string;
+    /**
+     *
+     */
+    projectsId?: string;
+    /**
+     * List of fields to be updated in this request.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CmekConfig;
   }
 
   export class Resource$Projects$Locations$Queues {
