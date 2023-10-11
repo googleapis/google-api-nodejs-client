@@ -20,19 +20,19 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
-      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
+      "location": "asia-east1",
       "description": "Locational Endpoint",
-      "location": "asia-east1"
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
     },
     {
-      "location": "asia-east2",
       "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
+      "location": "asia-east2",
       "description": "Locational Endpoint"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
-      "location": "asia-northeast1",
-      "description": "Locational Endpoint"
+      "location": "asia-northeast1"
     },
     {
       "endpointUrl": "https://asia-northeast2-aiplatform.googleapis.com/",
@@ -40,29 +40,29 @@
       "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
       "location": "asia-northeast3",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/"
     },
     {
-      "location": "asia-south1",
       "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
+      "location": "asia-south1",
       "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
-      "location": "asia-southeast1"
-    },
-    {
-      "location": "asia-southeast2",
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
+      "location": "asia-southeast1",
       "description": "Locational Endpoint"
     },
     {
-      "location": "australia-southeast1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/"
+      "location": "asia-southeast2",
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/"
+    },
+    {
+      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
+      "location": "australia-southeast1",
+      "description": "Locational Endpoint"
     },
     {
       "location": "australia-southeast2",
@@ -70,9 +70,9 @@
       "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
-      "location": "europe-central2"
+      "location": "europe-central2",
+      "description": "Locational Endpoint"
     },
     {
       "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
@@ -80,9 +80,9 @@
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
+      "location": "europe-southwest1",
       "description": "Locational Endpoint",
-      "location": "europe-southwest1"
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
@@ -90,58 +90,58 @@
       "description": "Locational Endpoint"
     },
     {
-      "location": "europe-west2",
       "description": "Locational Endpoint",
+      "location": "europe-west2",
       "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
-      "location": "europe-west3",
-      "description": "Locational Endpoint"
-    },
-    {
-      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "europe-west4"
+      "location": "europe-west3"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/",
-      "location": "europe-west6"
+      "location": "europe-west4",
+      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
+      "location": "europe-west6",
       "description": "Locational Endpoint",
-      "location": "europe-west8"
+      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
     },
     {
+      "location": "europe-west8",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
-      "location": "europe-west9",
+      "location": "europe-west9"
+    },
+    {
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
+      "location": "me-west1",
       "description": "Locational Endpoint"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
-      "location": "me-west1"
+      "location": "northamerica-northeast1",
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
-      "location": "northamerica-northeast1"
-    },
-    {
-      "description": "Locational Endpoint",
       "location": "northamerica-northeast2",
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "southamerica-east1",
-      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/"
+      "location": "southamerica-east1"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "southamerica-west1"
     },
     {
@@ -150,14 +150,14 @@
       "endpointUrl": "https://us-central1-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "location": "us-central2",
-      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
-      "location": "us-east1",
       "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "us-east1"
     },
     {
       "location": "us-east4",
@@ -165,9 +165,9 @@
       "endpointUrl": "https://us-east4-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
       "location": "us-south1",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
@@ -175,19 +175,19 @@
       "endpointUrl": "https://us-west1-aiplatform.googleapis.com/"
     },
     {
+      "location": "us-west2",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
-      "location": "us-west2"
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
       "location": "us-west3"
     },
     {
-      "location": "us-west4",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
+      "location": "us-west4"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2064,6 +2064,171 @@
                           ]
                         }
                       }
+                    }
+                  }
+                },
+                "datasetVersions": {
+                  "methods": {
+                    "create": {
+                      "description": "Create a version from a Dataset.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the Dataset resource. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/datasetVersions",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1DatasetVersion"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Dataset version.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Dataset version to delete. Format: `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/datasetVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Dataset version.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Dataset version to delete. Format: `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/datasetVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "readMask": {
+                          "description": "Mask specifying which fields to read.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1DatasetVersion"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists DatasetVersions in a Dataset.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the Dataset to list DatasetVersions from. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "readMask": {
+                          "description": "Optional. Mask specifying which fields to read.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/datasetVersions",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1ListDatasetVersionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "restore": {
+                      "description": "Restores a dataset version.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}:restore",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.restore",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DatasetVersion resource. Format: `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/datasetVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:restore",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 },
@@ -3944,12 +4109,11 @@
                           ],
                           "parameters": {
                             "featureId": {
-                              "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .",
+                              "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.",
                               "location": "query",
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the EntityType to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -3977,7 +4141,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the Features to be deleted. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`",
+                              "description": "Required. The name of the Features to be deleted. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+/features/[^/]+$",
                               "required": true,
@@ -4002,7 +4166,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the Feature resource. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
+                              "description": "Required. The name of the Feature resource. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+/features/[^/]+$",
                               "required": true,
@@ -4054,7 +4218,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the Location to list Features. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
+                              "description": "Required. The resource name of the Location to list Features. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -8595,7 +8759,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. Some examples: * `notebookRuntimeTemplate=notebookRuntimeTemplate123` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"`",
+                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. Some examples: * `notebookRuntimeTemplate=notebookRuntimeTemplate123` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"` * `notebookRuntimeType=USER_DEFINED`",
                       "location": "query",
                       "type": "string"
                     },
@@ -8788,7 +8952,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. Some examples: * `notebookRuntime=\"notebookRuntime123\"` * `displayName=\"myDisplayName\"` and `displayName=~\"myDisplayNameRegex\"` * `notebookRuntimeTemplate=\"notebookRuntimeTemplate321\"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser=\"test@google.com\"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED`",
+                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. Some examples: * `notebookRuntime=\"notebookRuntime123\"` * `displayName=\"myDisplayName\"` and `displayName=~\"myDisplayNameRegex\"` * `notebookRuntimeTemplate=\"notebookRuntimeTemplate321\"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser=\"test@google.com\"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED` * `notebookRuntimeType=USER_DEFINED`",
                       "location": "query",
                       "type": "string"
                     },
@@ -12833,7 +12997,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231002",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -14238,7 +14402,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1CreateFeatureRequest": {
-      "description": "Request message for FeaturestoreService.CreateFeature.",
+      "description": "Request message for FeaturestoreService.CreateFeature. Request message for FeatureRegistryService.CreateFeature.",
       "id": "GoogleCloudAiplatformV1CreateFeatureRequest",
       "properties": {
         "feature": {
@@ -14246,11 +14410,10 @@
           "description": "Required. The Feature to create."
         },
         "featureId": {
-          "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .",
+          "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.",
           "type": "string"
         },
         "parent": {
-          "description": "Required. The resource name of the EntityType to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
           "type": "string"
         }
       },
@@ -14831,6 +14994,39 @@
         },
         "updateTime": {
           "description": "Output only. Timestamp when this Dataset was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1DatasetVersion": {
+      "description": "Describes the dataset version.",
+      "id": "GoogleCloudAiplatformV1DatasetVersion",
+      "properties": {
+        "bigQueryDatasetName": {
+          "description": "Output only. Name of the associated BigQuery dataset.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when this DatasetVersion was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the DatasetVersion.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this DatasetVersion was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -18064,6 +18260,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1ListDatasetVersionsResponse": {
+      "description": "Response message for DatasetService.ListDatasetVersions.",
+      "id": "GoogleCloudAiplatformV1ListDatasetVersionsResponse",
+      "properties": {
+        "datasetVersions": {
+          "description": "A list of DatasetVersions that matches the specified filter in the request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1DatasetVersion"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1ListDatasetsResponse": {
       "description": "Response message for DatasetService.ListDatasets.",
       "id": "GoogleCloudAiplatformV1ListDatasetsResponse",
@@ -18137,7 +18351,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1ListFeaturesResponse": {
-      "description": "Response message for FeaturestoreService.ListFeatures.",
+      "description": "Response message for FeaturestoreService.ListFeatures. Response message for FeatureRegistryService.ListFeatures.",
       "id": "GoogleCloudAiplatformV1ListFeaturesResponse",
       "properties": {
         "features": {
@@ -18696,6 +18910,10 @@
         },
         "machineType": {
           "description": "Immutable. The type of the machine. See the [list of machine types supported for prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types) See the [list of machine types supported for custom training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types). For DeployedModel this field is optional, and the default value is `n1-standard-2`. For BatchPredictionJob or as part of WorkerPoolSpec this field is required.",
+          "type": "string"
+        },
+        "tpuTopology": {
+          "description": "Immutable. The topology of the TPUs. Corresponds to the TPU topologies available from GKE. (Example: tpu_topology: \"2x2x1\").",
           "type": "string"
         }
       },
@@ -19836,6 +20054,13 @@
         "enableLogging": {
           "description": "Dump the anomalies to Cloud Logging. The anomalies will be put to json payload encoded from proto google.cloud.aiplatform.logging.ModelMonitoringAnomaliesLogEntry. This can be further sinked to Pub/Sub or any other services supported by Cloud Logging.",
           "type": "boolean"
+        },
+        "notificationChannels": {
+          "description": "Resource names of the NotificationChannels to send alert. Must be of the format `projects//notificationChannels/`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -20735,7 +20960,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The labels with user-defined metadata to organize your NotebookRuntime. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one Dataset (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with \"aiplatform.googleapis.com/\" and are immutable. Following system labels exist for NotebookRuntime: * \"aiplatform.googleapis.com/notebook_runtime_gce_instance_id\": output only, its value is the Compute Engine instance id. * \"aiplatform.googleapis.com/colab_enterprise_entry_service\": its value is either \"BigQuery\" or \"Vertex\"; if absent, it should be \"Vertex\". This is to describe the entry service, either BigQuery or Vertex.",
+          "description": "The labels with user-defined metadata to organize your NotebookRuntime. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one NotebookRuntime (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with \"aiplatform.googleapis.com/\" and are immutable. Following system labels exist for NotebookRuntime: * \"aiplatform.googleapis.com/notebook_runtime_gce_instance_id\": output only, its value is the Compute Engine instance id. * \"aiplatform.googleapis.com/colab_enterprise_entry_service\": its value is either \"bigquery\" or \"vertex\"; if absent, it should be \"vertex\". This is to describe the entry service, either BigQuery or Vertex.",
           "type": "object"
         },
         "name": {
@@ -20747,6 +20972,21 @@
           "$ref": "GoogleCloudAiplatformV1NotebookRuntimeTemplateRef",
           "description": "Output only. The pointer to NotebookRuntimeTemplate this NotebookRuntime is created from.",
           "readOnly": true
+        },
+        "notebookRuntimeType": {
+          "description": "Output only. The type of the notebook runtime.",
+          "enum": [
+            "NOTEBOOK_RUNTIME_TYPE_UNSPECIFIED",
+            "USER_DEFINED",
+            "ONE_CLICK"
+          ],
+          "enumDescriptions": [
+            "Unspecified notebook runtime type, NotebookRuntimeType will default to USER_DEFINED.",
+            "runtime or template with coustomized configurations from user.",
+            "runtime or template with system defined configurations."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "proxyUri": {
           "description": "Output only. The proxy endpoint used to access the NotebookRuntime.",
@@ -20855,6 +21095,20 @@
         "networkSpec": {
           "$ref": "GoogleCloudAiplatformV1NetworkSpec",
           "description": "Optional. Network spec."
+        },
+        "notebookRuntimeType": {
+          "description": "Optional. Immutable. The type of the notebook runtime template.",
+          "enum": [
+            "NOTEBOOK_RUNTIME_TYPE_UNSPECIFIED",
+            "USER_DEFINED",
+            "ONE_CLICK"
+          ],
+          "enumDescriptions": [
+            "Unspecified notebook runtime type, NotebookRuntimeType will default to USER_DEFINED.",
+            "runtime or template with coustomized configurations from user.",
+            "runtime or template with system defined configurations."
+          ],
+          "type": "string"
         },
         "serviceAccount": {
           "description": "The service account that the runtime workload runs as. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.",
@@ -21025,7 +21279,7 @@
           "readOnly": true
         },
         "templateUri": {
-          "description": "A template uri from where the PipelineJob.pipeline_spec, if empty, will be downloaded.",
+          "description": "A template uri from where the PipelineJob.pipeline_spec, if empty, will be downloaded. Currently, only uri from Vertex Template Registry & Gallery is supported. Reference to https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.",
           "type": "string"
         },
         "updateTime": {
@@ -23595,6 +23849,45 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfig": {
+      "description": "The configuration for grounding checking.",
+      "id": "GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfig",
+      "properties": {
+        "sources": {
+          "description": "The sources for the grounding checking.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfigSourceEntry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfigSourceEntry": {
+      "description": "Single source entry for the grounding checking.",
+      "id": "GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfigSourceEntry",
+      "properties": {
+        "enterpriseDatastore": {
+          "description": "The uri of the Enterprise Search data source.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the grounding checking source.",
+          "enum": [
+            "UNSPECIFIED",
+            "WEB",
+            "ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "",
+            "Uses Web Search to check the grounding.",
+            "Uses Enterprise Search to check the grounding."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1SchemaPredictParamsImageClassificationPredictionParams": {
       "description": "Prediction model parameters for Image Classification.",
       "id": "GoogleCloudAiplatformV1SchemaPredictParamsImageClassificationPredictionParams",
@@ -24313,9 +24606,18 @@
       "description": "The metadata of Datasets that contain Text Prompt data.",
       "id": "GoogleCloudAiplatformV1SchemaTextPromptDatasetMetadata",
       "properties": {
+        "candidateCount": {
+          "description": "Number of candidates.",
+          "format": "int64",
+          "type": "string"
+        },
         "gcsUri": {
           "description": "The Google Cloud Storage URI that stores the prompt data.",
           "type": "string"
+        },
+        "groundingConfig": {
+          "$ref": "GoogleCloudAiplatformV1SchemaPredictParamsGroundingConfig",
+          "description": "Grounding checking configuration."
         },
         "maxOutputTokens": {
           "description": "Value of the maximum number of tokens generated set when the dataset was saved.",
@@ -24325,6 +24627,13 @@
         "promptType": {
           "description": "Type of the prompt dataset.",
           "type": "string"
+        },
+        "stopSequences": {
+          "description": "Customized stop sequences.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "temperature": {
           "description": "Temperature value used for sampling set when the dataset was saved. This value is used to tune the degree of randomness.",

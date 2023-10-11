@@ -21,17 +21,17 @@
   "endpoints": [
     {
       "location": "asia-east1",
-      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
-    },
-    {
-      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "location": "asia-east2",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
+      "location": "asia-east2"
+    },
+    {
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "asia-northeast1"
     },
     {
@@ -45,48 +45,48 @@
       "location": "asia-northeast3"
     },
     {
-      "location": "asia-south1",
       "endpointUrl": "https://asia-south1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-south1"
     },
     {
-      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
       "location": "asia-southeast1"
     },
     {
       "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
-      "location": "asia-southeast2",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "location": "asia-southeast2"
     },
     {
-      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
       "location": "australia-southeast1"
     },
     {
-      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "australia-southeast2",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
     },
     {
       "location": "europe-central2",
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
     },
     {
-      "description": "Locational Endpoint",
       "location": "europe-north1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
-      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
-      "location": "europe-southwest1"
+      "location": "europe-southwest1",
+      "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/"
     },
     {
-      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
       "location": "europe-west1"
     },
     {
@@ -95,9 +95,9 @@
       "location": "europe-west2"
     },
     {
-      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
+      "location": "europe-west3",
       "description": "Locational Endpoint",
-      "location": "europe-west3"
+      "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/"
     },
     {
       "location": "europe-west4",
@@ -105,34 +105,34 @@
       "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "europe-west6"
     },
     {
-      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "europe-west8"
+      "location": "europe-west8",
+      "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/"
     },
     {
       "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint",
-      "location": "europe-west9"
-    },
-    {
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
-      "location": "me-west1"
-    },
-    {
-      "location": "northamerica-northeast1",
-      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
+      "location": "europe-west9",
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "northamerica-northeast2"
+      "location": "me-west1",
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/"
+    },
+    {
+      "description": "Locational Endpoint",
+      "location": "northamerica-northeast1",
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
+    },
+    {
+      "location": "northamerica-northeast2",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
@@ -145,48 +145,48 @@
       "description": "Locational Endpoint"
     },
     {
-      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
-      "location": "us-central1"
+      "location": "us-central1",
+      "endpointUrl": "https://us-central1-aiplatform.googleapis.com/"
     },
     {
+      "description": "Locational Endpoint",
       "location": "us-central2",
-      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
-    },
-    {
-      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
-      "location": "us-east1",
-      "description": "Locational Endpoint"
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
       "location": "us-east4",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-east4-aiplatform.googleapis.com/"
     },
     {
       "location": "us-south1",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "us-west1"
     },
     {
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
+      "location": "us-west2",
       "description": "Locational Endpoint",
-      "location": "us-west2"
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/"
     },
     {
       "description": "Locational Endpoint",
-      "location": "us-west3",
-      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
+      "location": "us-west3"
     },
     {
-      "description": "Locational Endpoint",
       "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
+      "description": "Locational Endpoint",
       "location": "us-west4"
     }
   ],
@@ -2064,6 +2064,171 @@
                           ]
                         }
                       }
+                    }
+                  }
+                },
+                "datasetVersions": {
+                  "methods": {
+                    "create": {
+                      "description": "Create a version from a Dataset.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the Dataset resource. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/datasetVersions",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1DatasetVersion"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Dataset version.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Dataset version to delete. Format: `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/datasetVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Dataset version.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Dataset version to delete. Format: `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/datasetVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "readMask": {
+                          "description": "Mask specifying which fields to read.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1DatasetVersion"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists DatasetVersions in a Dataset.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The standard list filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The standard list page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The standard list page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the Dataset to list DatasetVersions from. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "readMask": {
+                          "description": "Optional. Mask specifying which fields to read.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/datasetVersions",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1ListDatasetVersionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "restore": {
+                      "description": "Restores a dataset version.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}:restore",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.datasets.datasetVersions.restore",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DatasetVersion resource. Format: `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/datasetVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:restore",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 },
@@ -4017,8 +4182,354 @@
               }
             },
             "featureGroups": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new FeatureGroup in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.featureGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "featureGroupId": {
+                      "description": "Required. The ID to use for this FeatureGroup, which will become the final component of the FeatureGroup's resource name. This value may be up to 60 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within the project and location.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location to create FeatureGroups. Format: `projects/{project}/locations/{location}'`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/featureGroups",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1FeatureGroup"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single FeatureGroup.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.featureGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "If set to true, any Features under this FeatureGroup will also be deleted. (Otherwise, the request will only work if the FeatureGroup has no Features.)",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. The name of the FeatureGroup to be deleted. Format: `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single FeatureGroup.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.featureGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the FeatureGroup resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1FeatureGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists FeatureGroups in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.featureGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Lists the FeatureGroups that match the filter expression. The following fields are supported: * `create_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons. Values must be in RFC 3339 format. * `update_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons. Values must be in RFC 3339 format. * `labels`: Supports key-value equality and key presence. Examples: * `create_time > \"2020-01-01\" OR update_time > \"2020-01-01\"` FeatureGroups created or updated after 2020-01-01. * `labels.env = \"prod\"` FeatureGroups with label \"env\" set to \"prod\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported Fields: * `create_time` * `update_time`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of FeatureGroups to return. The service may return fewer than this value. If unspecified, at most 100 FeatureGroups will be returned. The maximum value is 100; any value greater than 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous FeatureGroupAdminService.ListFeatureGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeatureGroupAdminService.ListFeatureGroups must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location to list FeatureGroups. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/featureGroups",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ListFeatureGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single FeatureGroup.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "aiplatform.projects.locations.featureGroups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Name of the FeatureGroup. Format: `projects/{project}/locations/{location}/featureGroups/{featureGroup}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1FeatureGroup"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "features": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new Feature in a given FeatureGroup.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/features",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureGroups.features.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "featureId": {
+                          "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/features",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1Feature"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single Feature.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/features/{featuresId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.featureGroups.features.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the Features to be deleted. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+/features/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single Feature.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/features/{featuresId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.featureGroups.features.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the Feature resource. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+/features/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1Feature"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Features in a given FeatureGroup.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/features",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.featureGroups.features.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Lists the Features that match the filter expression. The following filters are supported: * `value_type`: Supports = and != comparisons. * `create_time`: Supports =, !=, <, >, >=, and <= comparisons. Values must be in RFC 3339 format. * `update_time`: Supports =, !=, <, >, >=, and <= comparisons. Values must be in RFC 3339 format. * `labels`: Supports key-value equality as well as key presence. Examples: * `value_type = DOUBLE` --> Features whose type is DOUBLE. * `create_time > \\\"2020-01-31T15:30:00.000000Z\\\" OR update_time > \\\"2020-01-31T15:30:00.000000Z\\\"` --> EntityTypes created or updated after 2020-01-31T15:30:00.000000Z. * `labels.active = yes AND labels.env = prod` --> Features having both (active: yes) and (env: prod) labels. * `labels.env: *` --> Any Feature which has a label with 'env' as the key.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "latestStatsCount": {
+                          "description": "If set, return the most recent ListFeaturesRequest.latest_stats_count of stats for each Feature in response. Valid value is [0, 10]. If number of stats exists < ListFeaturesRequest.latest_stats_count, return all existing stats.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "orderBy": {
+                          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `feature_id` * `value_type` (Not supported for FeatureRegistry Feature) * `create_time` * `update_time`",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of Features to return. The service may return fewer than this value. If unspecified, at most 1000 Features will be returned. The maximum value is 1000; any value greater than 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous FeaturestoreService.ListFeatures call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeaturestoreService.ListFeatures must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the Location to list Features. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "readMask": {
+                          "description": "Mask specifying which fields to read.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/features",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1ListFeaturesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the parameters of a single Feature.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureGroups/{featureGroupsId}/features/{featuresId}",
+                      "httpMethod": "PATCH",
+                      "id": "aiplatform.projects.locations.featureGroups.features.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Immutable. Name of the Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` The last part feature is assigned by the client. The feature can be up to 64 characters long and can consist only of ASCII Latin letters A-Z and a-z, underscore(_), and ASCII digits 0-9 starting with a letter. The value will be unique given an entity type.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureGroups/[^/]+/features/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1Feature"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
                   "resources": {
                     "operations": {
                       "methods": {
@@ -4277,9 +4788,508 @@
               }
             },
             "featureOnlineStores": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new FeatureOnlineStore in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "featureOnlineStoreId": {
+                      "description": "Required. The ID to use for this FeatureOnlineStore, which will become the final component of the FeatureOnlineStore's resource name. This value may be up to 60 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within the project and location.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location to create FeatureOnlineStores. Format: `projects/{project}/locations/{location}'`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/featureOnlineStores",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1FeatureOnlineStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single FeatureOnlineStore. The FeatureOnlineStore must not contain any FeatureViews.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "If set to true, any FeatureViews and Features for this FeatureOnlineStore will also be deleted. (Otherwise, the request will only work if the FeatureOnlineStore has no FeatureViews.)",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "Required. The name of the FeatureOnlineStore to be deleted. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single FeatureOnlineStore.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the FeatureOnlineStore resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1FeatureOnlineStore"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists FeatureOnlineStores in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Lists the FeatureOnlineStores that match the filter expression. The following fields are supported: * `create_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons. Values must be in RFC 3339 format. * `update_time`: Supports `=`, `!=`, `<`, `>`, `<=`, and `>=` comparisons. Values must be in RFC 3339 format. * `labels`: Supports key-value equality and key presence. Examples: * `create_time > \"2020-01-01\" OR update_time > \"2020-01-01\"` FeatureOnlineStores created or updated after 2020-01-01. * `labels.env = \"prod\"` FeatureOnlineStores with label \"env\" set to \"prod\".",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported Fields: * `create_time` * `update_time`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of FeatureOnlineStores to return. The service may return fewer than this value. If unspecified, at most 100 FeatureOnlineStores will be returned. The maximum value is 100; any value greater than 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous FeatureOnlineStoreAdminService.ListFeatureOnlineStores call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeatureOnlineStoreAdminService.ListFeatureOnlineStores must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location to list FeatureOnlineStores. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/featureOnlineStores",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ListFeatureOnlineStoresResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single FeatureOnlineStore.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}",
+                  "httpMethod": "PATCH",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Name of the FeatureOnlineStore. Format: `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `big_query_source` * `labels` * `sync_config`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1FeatureOnlineStore"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "featureViews": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new FeatureView in a given FeatureOnlineStore.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "featureViewId": {
+                          "description": "Required. The ID to use for the FeatureView, which will become the final component of the FeatureView's resource name. This value may be up to 60 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within a FeatureOnlineStore.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the FeatureOnlineStore to create FeatureViews. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "runSyncImmediately": {
+                          "description": "Immutable. If set to true, one on demand sync will be run immediately, regardless whether the FeatureView.sync_config is configured or not.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/featureViews",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1FeatureView"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single FeatureView.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the FeatureView to be deleted. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchFeatureValues": {
+                      "description": "Fetch feature values under a FeatureView.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:fetchFeatureValues",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.fetchFeatureValues",
+                      "parameterOrder": [
+                        "featureView"
+                      ],
+                      "parameters": {
+                        "featureView": {
+                          "description": "Required. FeatureView resource format `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+featureView}:fetchFeatureValues",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1FetchFeatureValuesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1FetchFeatureValuesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single FeatureView.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the FeatureView resource. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1FeatureView"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists FeatureViews in a given FeatureOnlineStore.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews",
+                      "httpMethod": "GET",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Lists the FeatureViews that match the filter expression. The following filters are supported: * `create_time`: Supports `=`, `!=`, `<`, `>`, `>=`, and `<=` comparisons. Values must be in RFC 3339 format. * `update_time`: Supports `=`, `!=`, `<`, `>`, `>=`, and `<=` comparisons. Values must be in RFC 3339 format. * `labels`: Supports key-value equality as well as key presence. Examples: * `create_time > \\\"2020-01-31T15:30:00.000000Z\\\" OR update_time > \\\"2020-01-31T15:30:00.000000Z\\\"` --> FeatureViews created or updated after 2020-01-31T15:30:00.000000Z. * `labels.active = yes AND labels.env = prod` --> FeatureViews having both (active: yes) and (env: prod) labels. * `labels.env: *` --> Any FeatureView which has a label with 'env' as the key.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `feature_view_id` * `create_time` * `update_time`",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of FeatureViews to return. The service may return fewer than this value. If unspecified, at most 1000 FeatureViews will be returned. The maximum value is 1000; any value greater than 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous FeatureOnlineStoreAdminService.ListFeatureViews call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeatureOnlineStoreAdminService.ListFeatureViews must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the FeatureOnlineStore to list FeatureViews. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/featureViews",
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1ListFeatureViewsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the parameters of a single FeatureView.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}",
+                      "httpMethod": "PATCH",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. Name of the FeatureView. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1FeatureView"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "searchNearestEntities": {
+                      "description": "Search the nearest entities under a FeatureView. Search only works for indexable feature view; if a feature view isn't indexable, returns Invalid argument response.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:searchNearestEntities",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.searchNearestEntities",
+                      "parameterOrder": [
+                        "featureView"
+                      ],
+                      "parameters": {
+                        "featureView": {
+                          "description": "Required. FeatureView resource format `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+featureView}:searchNearestEntities",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1SearchNearestEntitiesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1SearchNearestEntitiesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "sync": {
+                      "description": "Triggers on-demand sync for the FeatureView.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:sync",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.sync",
+                      "parameterOrder": [
+                        "featureView"
+                      ],
+                      "parameters": {
+                        "featureView": {
+                          "description": "Required. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+featureView}:sync",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1beta1SyncFeatureViewRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1beta1SyncFeatureViewResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
                   "resources": {
+                    "featureViewSyncs": {
+                      "methods": {
+                        "get": {
+                          "description": "Gets details of a single FeatureViewSync.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}/featureViewSyncs/{featureViewSyncsId}",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.featureViewSyncs.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the FeatureViewSync resource. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+/featureViewSyncs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudAiplatformV1beta1FeatureViewSync"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists FeatureViewSyncs in a given FeatureView.",
+                          "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}/featureViewSyncs",
+                          "httpMethod": "GET",
+                          "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.featureViewSyncs.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Lists the FeatureViewSyncs that match the filter expression. The following filters are supported: * `create_time`: Supports `=`, `!=`, `<`, `>`, `>=`, and `<=` comparisons. Values must be in RFC 3339 format. Examples: * `create_time > \\\"2020-01-31T15:30:00.000000Z\\\"` --> FeatureViewSyncs created after 2020-01-31T15:30:00.000000Z.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `create_time`",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The maximum number of FeatureViewSyncs to return. The service may return fewer than this value. If unspecified, at most 1000 FeatureViewSyncs will be returned. The maximum value is 1000; any value greater than 1000 will be coerced to 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous FeatureOnlineStoreAdminService.ListFeatureViewSyncs call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to FeatureOnlineStoreAdminService.ListFeatureViewSyncs must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The resource name of the FeatureView to list FeatureViewSyncs. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta1/{+parent}/featureViewSyncs",
+                          "response": {
+                            "$ref": "GoogleCloudAiplatformV1beta1ListFeatureViewSyncsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
                     "operations": {
                       "methods": {
                         "delete": {
@@ -5343,12 +6353,11 @@
                           ],
                           "parameters": {
                             "featureId": {
-                              "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .",
+                              "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.",
                               "location": "query",
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the EntityType to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -5376,7 +6385,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the Features to be deleted. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}`",
+                              "description": "Required. The name of the Features to be deleted. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}/features/{feature}` `projects/{project}/locations/{location}/featureGroups/{feature_group}/features/{feature}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+/features/[^/]+$",
                               "required": true,
@@ -5401,7 +6410,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the Feature resource. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
+                              "description": "Required. The name of the Feature resource. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+/features/[^/]+$",
                               "required": true,
@@ -5453,7 +6462,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The resource name of the Location to list Features. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
+                              "description": "Required. The resource name of the Location to list Features. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -10120,7 +11129,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the NotebookRuntime resource. Format: `projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}`",
+                      "description": "Required. The name of the resource requesting the OAuth2 token. Format: `projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}` `projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_job}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+$",
                       "required": true,
@@ -10148,7 +11157,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the NotebookRuntime resource. Format: `projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}`",
+                      "description": "Required. The name of the NotebookExecutionJob resource. Format: `projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_jobs}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/notebookExecutionJobs/[^/]+$",
                       "required": true,
@@ -10157,10 +11166,10 @@
                   },
                   "path": "v1beta1/{+name}:reportEvent",
                   "request": {
-                    "$ref": "GoogleCloudAiplatformV1beta1ReportRuntimeEventRequest"
+                    "$ref": "GoogleCloudAiplatformV1beta1ReportExecutionEventRequest"
                   },
                   "response": {
-                    "$ref": "GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse"
+                    "$ref": "GoogleCloudAiplatformV1beta1ReportExecutionEventResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -10294,7 +11303,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. Some examples: * `notebookRuntimeTemplate=notebookRuntimeTemplate123` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"`",
+                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `display_name` supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. Some examples: * `notebookRuntimeTemplate=notebookRuntimeTemplate123` * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"` * `notebookRuntimeType=USER_DEFINED`",
                       "location": "query",
                       "type": "string"
                     },
@@ -10462,7 +11471,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the NotebookRuntime resource. Format: `projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}`",
+                      "description": "Required. The name of the resource requesting the OAuth2 token. Format: `projects/{project}/locations/{location}/notebookRuntimes/{notebook_runtime}` `projects/{project}/locations/{location}/notebookExecutionJobs/{notebook_execution_job}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/notebookRuntimes/[^/]+$",
                       "required": true,
@@ -10515,7 +11524,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. Some examples: * `notebookRuntime=\"notebookRuntime123\"` * `displayName=\"myDisplayName\"` and `displayName=~\"myDisplayNameRegex\"` * `notebookRuntimeTemplate=\"notebookRuntimeTemplate321\"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser=\"test@google.com\"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED`",
+                      "description": "Optional. An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `notebookRuntime` supports = and !=. `notebookRuntime` represents the NotebookRuntime ID, i.e. the last segment of the NotebookRuntime's resource name. * `displayName` supports = and != and regex. * `notebookRuntimeTemplate` supports = and !=. `notebookRuntimeTemplate` represents the NotebookRuntimeTemplate ID, i.e. the last segment of the NotebookRuntimeTemplate's resource name. * `healthState` supports = and !=. healthState enum: [HEALTHY, UNHEALTHY, HEALTH_STATE_UNSPECIFIED]. * `runtimeState` supports = and !=. runtimeState enum: [RUNTIME_STATE_UNSPECIFIED, RUNNING, BEING_STARTED, BEING_STOPPED, STOPPED, BEING_UPGRADED]. * `runtimeUser` supports = and !=. * API version is UI only: `uiState` supports = and !=. uiState enum: [UI_RESOURCE_STATE_UNSPECIFIED, UI_RESOURCE_STATE_BEING_CREATED, UI_RESOURCE_STATE_ACTIVE, UI_RESOURCE_STATE_BEING_DELETED, UI_RESOURCE_STATE_CREATION_FAILED]. * `notebookRuntimeType` supports = and !=. notebookRuntimeType enum: [USER_DEFINED, ONE_CLICK]. Some examples: * `notebookRuntime=\"notebookRuntime123\"` * `displayName=\"myDisplayName\"` and `displayName=~\"myDisplayNameRegex\"` * `notebookRuntimeTemplate=\"notebookRuntimeTemplate321\"` * `healthState=HEALTHY` * `runtimeState=RUNNING` * `runtimeUser=\"test@google.com\"` * `uiState=UI_RESOURCE_STATE_BEING_DELETED` * `notebookRuntimeType=USER_DEFINED`",
                       "location": "query",
                       "type": "string"
                     },
@@ -15009,13 +16018,81 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "list": {
+              "description": "Lists publisher models in Model Garden.",
+              "flatPath": "v1beta1/publishers/{publishersId}/models",
+              "httpMethod": "GET",
+              "id": "aiplatform.publishers.models.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. The standard list filter.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "languageCode": {
+                  "description": "Optional. The IETF BCP-47 language code representing the language in which the publisher models' text information should be written in (see go/bcp47). If not set, by default English (en).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The standard list page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The standard list page token. Typically obtained via ListPublisherModelsResponse.next_page_token of the previous ModelGardenService.ListPublisherModels call.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the Publisher from which to list the PublisherModels. Format: `publishers/{publisher}`",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "view": {
+                  "description": "Optional. PublisherModel view specifying which fields to read.",
+                  "enum": [
+                    "PUBLISHER_MODEL_VIEW_UNSPECIFIED",
+                    "PUBLISHER_MODEL_VIEW_BASIC",
+                    "PUBLISHER_MODEL_VIEW_FULL",
+                    "PUBLISHER_MODEL_VERSION_VIEW_BASIC"
+                  ],
+                  "enumDescriptions": [
+                    "The default / unset value. The API will default to the BASIC view.",
+                    "Include basic metadata about the publisher model, but not the full contents.",
+                    "Include everything.",
+                    "Include: VersionId, ModelVersionExternalName, and SupportedActions."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/models",
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1ListPublisherModelsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         }
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20231002",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -16503,6 +17580,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1CreateFeatureGroupOperationMetadata": {
+      "description": "Details of operations that perform create FeatureGroup.",
+      "id": "GoogleCloudAiplatformV1beta1CreateFeatureGroupOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Operation metadata for FeatureGroup."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1CreateFeatureOnlineStoreOperationMetadata": {
+      "description": "Details of operations that perform create FeatureOnlineStore.",
+      "id": "GoogleCloudAiplatformV1beta1CreateFeatureOnlineStoreOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Operation metadata for FeatureOnlineStore."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1CreateFeatureOperationMetadata": {
       "description": "Details of operations that perform create Feature.",
       "id": "GoogleCloudAiplatformV1beta1CreateFeatureOperationMetadata",
@@ -16515,7 +17614,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1CreateFeatureRequest": {
-      "description": "Request message for FeaturestoreService.CreateFeature.",
+      "description": "Request message for FeaturestoreService.CreateFeature. Request message for FeatureRegistryService.CreateFeature.",
       "id": "GoogleCloudAiplatformV1beta1CreateFeatureRequest",
       "properties": {
         "feature": {
@@ -16523,12 +17622,22 @@
           "description": "Required. The Feature to create."
         },
         "featureId": {
-          "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType .",
+          "description": "Required. The ID to use for the Feature, which will become the final component of the Feature's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within an EntityType/FeatureGroup.",
           "type": "string"
         },
         "parent": {
-          "description": "Required. The resource name of the EntityType to create a Feature. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1CreateFeatureViewOperationMetadata": {
+      "description": "Details of operations that perform create FeatureView.",
+      "id": "GoogleCloudAiplatformV1beta1CreateFeatureViewOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Operation metadata for FeatureView Create."
         }
       },
       "type": "object"
@@ -16618,6 +17727,17 @@
         "pipelineJobId": {
           "description": "The ID to use for the PipelineJob, which will become the final component of the PipelineJob name. If not provided, an ID will be automatically generated. This value should be less than 128 characters, and valid characters are `/a-z-/`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1CreateRegistryFeatureOperationMetadata": {
+      "description": "Details of operations that perform create FeatureGroup.",
+      "id": "GoogleCloudAiplatformV1beta1CreateRegistryFeatureOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Operation metadata for Feature."
         }
       },
       "type": "object"
@@ -17134,6 +18254,39 @@
         },
         "updateTime": {
           "description": "Output only. Timestamp when this Dataset was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DatasetVersion": {
+      "description": "Describes the dataset version.",
+      "id": "GoogleCloudAiplatformV1beta1DatasetVersion",
+      "properties": {
+        "bigQueryDatasetName": {
+          "description": "Output only. Name of the associated BigQuery dataset.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when this DatasetVersion was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the DatasetVersion.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this DatasetVersion was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -19006,6 +20159,67 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1FeatureGroup": {
+      "description": "Vertex AI Feature Group.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureGroup",
+      "properties": {
+        "bigQuery": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureGroupBigQuery",
+          "description": "Indicates that features for this group come from BigQuery Table/View. By default treats the source as a sparse time series source, which is required to have an entity_id and a feature_timestamp column in the source."
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when this FeatureGroup was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of the FeatureGroup.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata to organize your FeatureGroup. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information on and examples of labels. No more than 64 user labels can be associated with one FeatureGroup(System labels are excluded).\" System reserved label keys are prefixed with \"aiplatform.googleapis.com/\" and are immutable.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Name of the FeatureGroup. Format: `projects/{project}/locations/{location}/featureGroups/{featureGroup}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this FeatureGroup was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureGroupBigQuery": {
+      "description": "Input source type for BigQuery Tables and Views.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureGroupBigQuery",
+      "properties": {
+        "bigQuerySource": {
+          "$ref": "GoogleCloudAiplatformV1beta1BigQuerySource",
+          "description": "Required. Immutable. The BigQuery source URI that points to either a BigQuery Table or View."
+        },
+        "entityIdColumns": {
+          "description": "Optional. Columns to construct entity_id / row keys. Currently only supports 1 entity_id_column. If not provided defaults to `entity_id`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1FeatureMonitoringStatsAnomaly": {
       "description": "A list of historical SnapshotAnalysis or ImportFeaturesAnalysis stats requested by user, sorted by FeatureStatsAnomaly.start_time descending.",
       "id": "GoogleCloudAiplatformV1beta1FeatureMonitoringStatsAnomaly",
@@ -19059,6 +20273,122 @@
           "description": "This represents the standard deviation of the Gaussian kernel that will be used to add noise to the feature prior to computing gradients. Similar to noise_sigma but represents the noise added to the current feature. Defaults to 0.1.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureOnlineStore": {
+      "description": "Vertex AI Feature Online Store provides a centralized repository for serving ML features and embedding indexes at low latency. The Feature Online Store is a top-level container.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureOnlineStore",
+      "properties": {
+        "bigtable": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreBigtable",
+          "description": "Contains settings for the Cloud Bigtable instance that will be created to serve featureValues for all FeatureViews under this FeatureOnlineStore."
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when this FeatureOnlineStore was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dedicatedServingEndpoint": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreDedicatedServingEndpoint",
+          "description": "Optional. The dedicated serving endpoint for this FeatureOnlineStore, which is different from common Vertex service endpoint."
+        },
+        "embeddingManagement": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreEmbeddingManagement",
+          "description": "Optional. The settings for embedding management in FeatureOnlineStore."
+        },
+        "etag": {
+          "description": "Optional. Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata to organize your FeatureOnlineStore. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information on and examples of labels. No more than 64 user labels can be associated with one FeatureOnlineStore(System labels are excluded).\" System reserved label keys are prefixed with \"aiplatform.googleapis.com/\" and are immutable.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Name of the FeatureOnlineStore. Format: `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the featureOnlineStore.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "STABLE",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "State when the featureOnlineStore configuration is not being updated and the fields reflect the current configuration of the featureOnlineStore. The featureOnlineStore is usable in this state.",
+            "The state of the featureOnlineStore configuration when it is being updated. During an update, the fields reflect either the original configuration or the updated configuration of the featureOnlineStore. The featureOnlineStore is still usable in this state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this FeatureOnlineStore was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureOnlineStoreBigtable": {
+      "id": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreBigtable",
+      "properties": {
+        "autoScaling": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreBigtableAutoScaling",
+          "description": "Required. Autoscaling config applied to Bigtable Instance."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureOnlineStoreBigtableAutoScaling": {
+      "id": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreBigtableAutoScaling",
+      "properties": {
+        "cpuUtilizationTarget": {
+          "description": "Optional. A percentage of the cluster's CPU capacity. Can be from 10% to 80%. When a cluster's CPU utilization exceeds the target that you have set, Bigtable immediately adds nodes to the cluster. When CPU utilization is substantially lower than the target, Bigtable removes nodes. If not set will default to 50%.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxNodeCount": {
+          "description": "Required. The maximum number of nodes to scale up to. Must be greater than or equal to min_node_count, and less than or equal to 10 times of 'min_node_count'.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minNodeCount": {
+          "description": "Required. The minimum number of nodes to scale down to. Must be greater than or equal to 1.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureOnlineStoreDedicatedServingEndpoint": {
+      "description": "The dedicated serving endpoint for this FeatureOnlineStore.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreDedicatedServingEndpoint",
+      "properties": {
+        "publicEndpointDomainName": {
+          "description": "Output only. This field will be populated with the domain name to use for this FeatureOnlineStore",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureOnlineStoreEmbeddingManagement": {
+      "description": "Contains settings for embedding management.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureOnlineStoreEmbeddingManagement",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Immutable. Whether to enable embedding management in this FeatureOnlineStore. It's immutable after creation to ensure the FeatureOnlineStore availability.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -19204,6 +20534,211 @@
         "generateTime": {
           "description": "Feature generation timestamp. Typically, it is provided by user at feature ingestion time. If not, feature store will use the system timestamp when the data is ingested into feature store. For streaming ingestion, the time, aligned by days, must be no older than five years (1825 days) and no later than one year (366 days) in the future.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureView": {
+      "description": "FeatureView is representation of values that the FeatureOnlineStore will serve based on its syncConfig.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureView",
+      "properties": {
+        "bigQuerySource": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureViewBigQuerySource",
+          "description": "Optional. Configures how data is supposed to be extracted from a BigQuery source to be loaded onto the FeatureOnlineStore."
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when this FeatureView was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
+          "type": "string"
+        },
+        "featureRegistrySource": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySource",
+          "description": "Optional. Configures the features from a Feature Registry source that need to be loaded onto the FeatureOnlineStore."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata to organize your FeatureViews. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. See https://goo.gl/xmQnxf for more information on and examples of labels. No more than 64 user labels can be associated with one FeatureOnlineStore(System labels are excluded).\" System reserved label keys are prefixed with \"aiplatform.googleapis.com/\" and are immutable.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Name of the FeatureView. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "syncConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureViewSyncConfig",
+          "description": "Configures when data is to be synced/updated for this FeatureView. At the end of the sync the latest featureValues for each entityId of this FeatureView are made ready for online serving."
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this FeatureView was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vectorSearchConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfig",
+          "description": "Optional. Configuration for vector search. It contains the required configurations to create an index from source data, so that approximate nearest neighbor (a.k.a ANN) algorithms search can be performed during online serving."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureViewBigQuerySource": {
+      "id": "GoogleCloudAiplatformV1beta1FeatureViewBigQuerySource",
+      "properties": {
+        "entityIdColumns": {
+          "description": "Required. Columns to construct entity_id / row keys. Start by supporting 1 only.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "description": "Required. The BigQuery view URI that will be materialized on each sync trigger based on FeatureView.SyncConfig.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySource": {
+      "description": "A Feature Registry source for features that need to be synced to Online Store.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySource",
+      "properties": {
+        "featureGroups": {
+          "description": "Required. List of features that need to be synced to Online Store.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySourceFeatureGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySourceFeatureGroup": {
+      "description": "Features belonging to a single feature group that will be synced to Online Store.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySourceFeatureGroup",
+      "properties": {
+        "featureGroupId": {
+          "description": "Required. Identifier of the feature group.",
+          "type": "string"
+        },
+        "featureIds": {
+          "description": "Required. Identifiers of features under the feature group.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureViewSync": {
+      "description": "FeatureViewSync is a representation of sync operation which copies data from data source to Feature View in Online Store.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureViewSync",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time when this FeatureViewSync is created. Creation of a FeatureViewSync means that the job is pending / waiting for sufficient resources but may not have started the actual data transfer yet.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "finalStatus": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Output only. Final status of the FeatureViewSync.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Output only. Name of the FeatureViewSync. Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "runTime": {
+          "$ref": "GoogleTypeInterval",
+          "description": "Output only. Time when this FeatureViewSync is finished.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureViewSyncConfig": {
+      "id": "GoogleCloudAiplatformV1beta1FeatureViewSyncConfig",
+      "properties": {
+        "cron": {
+          "description": "Cron schedule (https://en.wikipedia.org/wiki/Cron) to launch scheduled runs. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or \"TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, \"CRON_TZ=America/New_York 1 * * * *\", or \"TZ=America/New_York 1 * * * *\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfig": {
+      "description": "Configuration for vector search.",
+      "id": "GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfig",
+      "properties": {
+        "bruteForceConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfigBruteForceConfig",
+          "description": "Optional. Configuration options for using brute force search, which simply implements the standard linear search in the database for each query. It is primarily meant for benchmarking and to generate the ground truth for approximate search."
+        },
+        "crowdingColumn": {
+          "description": "Optional. Column of crowding. This column contains crowding attribute which is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than some value k' of the k neighbors returned have the same value of crowding_attribute.",
+          "type": "string"
+        },
+        "distanceMeasureType": {
+          "description": "Optional. The distance measure used in nearest neighbor search.",
+          "enum": [
+            "DISTANCE_MEASURE_TYPE_UNSPECIFIED",
+            "SQUARED_L2_DISTANCE",
+            "COSINE_DISTANCE",
+            "DOT_PRODUCT_DISTANCE"
+          ],
+          "enumDescriptions": [
+            "Should not be set.",
+            "Euclidean (L_2) Distance.",
+            "Cosine Distance. Defined as 1 - cosine similarity. We strongly suggest using DOT_PRODUCT_DISTANCE + UNIT_L2_NORM instead of COSINE distance. Our algorithms have been more optimized for DOT_PRODUCT distance which, when combined with UNIT_L2_NORM, is mathematically equivalent to COSINE distance and results in the same ranking.",
+            "Dot Product Distance. Defined as a negative of the dot product."
+          ],
+          "type": "string"
+        },
+        "embeddingColumn": {
+          "description": "Optional. Column of embedding. This column contains the source data to create index for vector search. embedding_column must be set when using vector search.",
+          "type": "string"
+        },
+        "embeddingDimension": {
+          "description": "Optional. The number of dimensions of the input embedding.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "filterColumns": {
+          "description": "Optional. Columns of features that're used to filter vector search results.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "treeAhConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfigTreeAHConfig",
+          "description": "Optional. Configuration options for the tree-AH algorithm (Shallow tree + Asymmetric Hashing). Please refer to this paper for more details: https://arxiv.org/abs/1908.10396"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfigBruteForceConfig": {
+      "id": "GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfigBruteForceConfig",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfigTreeAHConfig": {
+      "id": "GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfigTreeAHConfig",
+      "properties": {
+        "leafNodeEmbeddingCount": {
+          "description": "Optional. Number of embeddings on each leaf node. The default value is 1000 if not set.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -19407,6 +20942,79 @@
           "description": "Required. The minimum number of nodes to scale down to. Must be greater than or equal to 1.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FetchFeatureValuesRequest": {
+      "description": "Request message for FeatureOnlineStoreService.FetchFeatureValues. All the features under the requested feature view will be returned.",
+      "id": "GoogleCloudAiplatformV1beta1FetchFeatureValuesRequest",
+      "properties": {
+        "format": {
+          "description": "Specify response data format. If not set, KeyValue format will be used.",
+          "enum": [
+            "FORMAT_UNSPECIFIED",
+            "KEY_VALUE",
+            "PROTO_STRUCT"
+          ],
+          "enumDescriptions": [
+            "Not set. Will be treated as the KeyValue format.",
+            "Return response data in key-value format.",
+            "Return response data in proto Struct format."
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "Simple ID. The whole string will be used as is to identify Entity to fetch feature values for.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FetchFeatureValuesResponse": {
+      "description": "Response message for FeatureOnlineStoreService.FetchFeatureValues",
+      "id": "GoogleCloudAiplatformV1beta1FetchFeatureValuesResponse",
+      "properties": {
+        "keyValues": {
+          "$ref": "GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseFeatureNameValuePairList",
+          "description": "Feature values in KeyValue format."
+        },
+        "protoStruct": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Feature values in proto Struct format.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseFeatureNameValuePairList": {
+      "description": "Response structure in the format of key (feature name) and (feature) value pair.",
+      "id": "GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseFeatureNameValuePairList",
+      "properties": {
+        "features": {
+          "description": "List of feature names and values.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseFeatureNameValuePairListFeatureNameValuePair"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseFeatureNameValuePairListFeatureNameValuePair": {
+      "description": "Feature name & value pair.",
+      "id": "GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseFeatureNameValuePairListFeatureNameValuePair",
+      "properties": {
+        "name": {
+          "description": "Feature short name.",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureValue",
+          "description": "Feature value."
         }
       },
       "type": "object"
@@ -19635,6 +21243,17 @@
           "description": "Output only. Time when the operation was updated for the last time. If the operation has finished (successfully or not), this is the finish time.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenieSource": {
+      "description": "Contains information about the source of the models generated from Generative AI Studio.",
+      "id": "GoogleCloudAiplatformV1beta1GenieSource",
+      "properties": {
+        "baseModelUri": {
+          "description": "Required. The public base model URI.",
           "type": "string"
         }
       },
@@ -20509,6 +22128,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ListDatasetVersionsResponse": {
+      "description": "Response message for DatasetService.ListDatasetVersions.",
+      "id": "GoogleCloudAiplatformV1beta1ListDatasetVersionsResponse",
+      "properties": {
+        "datasetVersions": {
+          "description": "A list of DatasetVersions that matches the specified filter in the request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1DatasetVersion"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ListDatasetsResponse": {
       "description": "Response message for DatasetService.ListDatasets.",
       "id": "GoogleCloudAiplatformV1beta1ListDatasetsResponse",
@@ -20599,8 +22236,80 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ListFeatureGroupsResponse": {
+      "description": "Response message for FeatureRegistryService.ListFeatureGroups.",
+      "id": "GoogleCloudAiplatformV1beta1ListFeatureGroupsResponse",
+      "properties": {
+        "featureGroups": {
+          "description": "The FeatureGroups matching the request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1FeatureGroup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as ListFeatureGroupsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ListFeatureOnlineStoresResponse": {
+      "description": "Response message for FeatureOnlineStoreAdminService.ListFeatureOnlineStores.",
+      "id": "GoogleCloudAiplatformV1beta1ListFeatureOnlineStoresResponse",
+      "properties": {
+        "featureOnlineStores": {
+          "description": "The FeatureOnlineStores matching the request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1FeatureOnlineStore"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as ListFeatureOnlineStoresRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ListFeatureViewSyncsResponse": {
+      "description": "Response message for FeatureOnlineStoreAdminService.ListFeatureViewSyncs.",
+      "id": "GoogleCloudAiplatformV1beta1ListFeatureViewSyncsResponse",
+      "properties": {
+        "featureViewSyncs": {
+          "description": "The FeatureViewSyncs matching the request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1FeatureViewSync"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as ListFeatureViewSyncsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ListFeatureViewsResponse": {
+      "description": "Response message for FeatureOnlineStoreAdminService.ListFeatureViews.",
+      "id": "GoogleCloudAiplatformV1beta1ListFeatureViewsResponse",
+      "properties": {
+        "featureViews": {
+          "description": "The FeatureViews matching the request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1FeatureView"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as ListFeatureViewsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ListFeaturesResponse": {
-      "description": "Response message for FeaturestoreService.ListFeatures.",
+      "description": "Response message for FeaturestoreService.ListFeatures. Response message for FeatureRegistryService.ListFeatures.",
       "id": "GoogleCloudAiplatformV1beta1ListFeaturesResponse",
       "properties": {
         "features": {
@@ -20942,6 +22651,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ListPublisherModelsResponse": {
+      "description": "Response message for ModelGardenService.ListPublisherModels.",
+      "id": "GoogleCloudAiplatformV1beta1ListPublisherModelsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass to ListPublisherModels.page_token to obtain that page.",
+          "type": "string"
+        },
+        "publisherModels": {
+          "description": "List of PublisherModels in the requested page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1PublisherModel"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ListSavedQueriesResponse": {
       "description": "Response message for DatasetService.ListSavedQueries.",
       "id": "GoogleCloudAiplatformV1beta1ListSavedQueriesResponse",
@@ -21180,6 +22907,10 @@
         },
         "machineType": {
           "description": "Immutable. The type of the machine. See the [list of machine types supported for prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types) See the [list of machine types supported for custom training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types). For DeployedModel this field is optional, and the default value is `n1-standard-2`. For BatchPredictionJob or as part of WorkerPoolSpec this field is required.",
+          "type": "string"
+        },
+        "tpuTopology": {
+          "description": "Immutable. The topology of the TPUs. Corresponds to the TPU topologies available from GKE. (Example: tpu_topology: \"2x2x1\").",
           "type": "string"
         }
       },
@@ -21641,6 +23372,10 @@
         "explanationSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1ExplanationSpec",
           "description": "The default explanation specification for this Model. The Model can be used for requesting explanation after being deployed if it is populated. The Model can be used for batch explanation if it is populated. All fields of the explanation_spec can be overridden by explanation_spec of DeployModelRequest.deployed_model, or explanation_spec of BatchPredictionJob. If the default explanation specification is not set for this Model, this Model can still be used for requesting explanation by setting explanation_spec of DeployModelRequest.deployed_model and for batch explanation by setting explanation_spec of BatchPredictionJob."
+        },
+        "generatedModelSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1ModelGeneratedModelSource",
+          "description": "Optional. Used to specify the source of the Model Garden model or Genie models. Only present for models created or tuned from Model Garden and Genie."
         },
         "labels": {
           "additionalProperties": {
@@ -22316,6 +24051,32 @@
           "description": "Output only. The ID of the export format. The possible format IDs are: * `tflite` Used for Android mobile devices. * `edgetpu-tflite` Used for [Edge TPU](https://cloud.google.com/edge-tpu/) devices. * `tf-saved-model` A tensorflow model in SavedModel format. * `tf-js` A [TensorFlow.js](https://www.tensorflow.org/js) model that can be used in the browser and in Node.js using JavaScript. * `core-ml` Used for iOS mobile devices. * `custom-trained` A Model that was uploaded or trained by custom code.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ModelGardenSource": {
+      "description": "Contains information about the source of the models generated from Model Garden.",
+      "id": "GoogleCloudAiplatformV1beta1ModelGardenSource",
+      "properties": {
+        "publicModelName": {
+          "description": "Required. The model garden source model resource name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ModelGeneratedModelSource": {
+      "description": "Used to specify the source of the Model Garden model or Genie models. Only present for models created or tuned from Model Garden and Genie.",
+      "id": "GoogleCloudAiplatformV1beta1ModelGeneratedModelSource",
+      "properties": {
+        "genieSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenieSource",
+          "description": "Information about the base model of Genie models."
+        },
+        "modelGardenSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1ModelGardenSource",
+          "description": "Source information of Model Garden models."
         }
       },
       "type": "object"
@@ -23039,6 +24800,99 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1NearestNeighborQuery": {
+      "description": "A query to find a number of similar entities.",
+      "id": "GoogleCloudAiplatformV1beta1NearestNeighborQuery",
+      "properties": {
+        "embedding": {
+          "$ref": "GoogleCloudAiplatformV1beta1NearestNeighborQueryEmbedding",
+          "description": "Optional. The embedding vector that be used for similar search."
+        },
+        "entityId": {
+          "description": "Optional. The entity id whose similar entities should be searched for. If embedding is set, search will use embedding instead of entity_id.",
+          "type": "string"
+        },
+        "neighborCount": {
+          "description": "Optional. The number of similar entities to be retrieved from feature view for each query.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "parameters": {
+          "$ref": "GoogleCloudAiplatformV1beta1NearestNeighborQueryParameters",
+          "description": "Optional. Parameters that can be set to tune query on the fly."
+        },
+        "perCrowdingAttributeNeighborCount": {
+          "description": "Optional. Crowding is a constraint on a neighbor list produced by nearest neighbor search requiring that no more than sper_crowding_attribute_neighbor_count of the k neighbors returned have the same value of crowding_attribute. It's used for improving result diversity.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "stringFilters": {
+          "description": "Optional. The list of string filters.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1NearestNeighborQueryStringFilter"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1NearestNeighborQueryEmbedding": {
+      "description": "The embedding vector.",
+      "id": "GoogleCloudAiplatformV1beta1NearestNeighborQueryEmbedding",
+      "properties": {
+        "value": {
+          "description": "Optional. Individual value in the embedding.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1NearestNeighborQueryParameters": {
+      "description": "Parameters that can be overrided in each query to tune query latency and recall.",
+      "id": "GoogleCloudAiplatformV1beta1NearestNeighborQueryParameters",
+      "properties": {
+        "approximateNeighborCandidates": {
+          "description": "Optional. The number of neighbors to find via approximate search before exact reordering is performed; if set, this value must be > neighbor_count.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "leafNodesSearchFraction": {
+          "description": "Optional. The fraction of the number of leaves to search, set at query time allows user to tune search performance. This value increase result in both search accuracy and latency increase. The value should be between 0.0 and 1.0.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1NearestNeighborQueryStringFilter": {
+      "description": "String filter is used to search a subset of the entities by using boolean rules. For example: if a query specifies string filter with 'name = color, allow_tokens = {red, blue}, deny_tokens = {purple}',' then that query will match entities that are red or blue, but if those points are also purple, then they will be excluded even if they are red/blue. Only string filter is supported for now, numeric filter will be supported in the near future.",
+      "id": "GoogleCloudAiplatformV1beta1NearestNeighborQueryStringFilter",
+      "properties": {
+        "allowTokens": {
+          "description": "Optional. The allowed tokens.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "denyTokens": {
+          "description": "Optional. The denied tokens.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Column names in BigQuery that used as filters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadata": {
       "description": "Runtime operation metadata with regard to Matching Engine Index.",
       "id": "GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadata",
@@ -23127,6 +24981,40 @@
         "sourceGcsUri": {
           "description": "Cloud Storage URI pointing to the original file in user's bucket.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1NearestNeighbors": {
+      "description": "Nearest neighbors for one query.",
+      "id": "GoogleCloudAiplatformV1beta1NearestNeighbors",
+      "properties": {
+        "neighbors": {
+          "description": "All its neighbors.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1NearestNeighborsNeighbor"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1NearestNeighborsNeighbor": {
+      "description": "A neighbor of the query vector.",
+      "id": "GoogleCloudAiplatformV1beta1NearestNeighborsNeighbor",
+      "properties": {
+        "distance": {
+          "description": "The distance between the neighbor and the query vector.",
+          "format": "double",
+          "type": "number"
+        },
+        "entityId": {
+          "description": "The id of the similar entity.",
+          "type": "string"
+        },
+        "entityKeyValues": {
+          "$ref": "GoogleCloudAiplatformV1beta1FetchFeatureValuesResponse",
+          "description": "The attributes of the neighbor, e.g. filters, crowding and metadata Note that full entities are returned only when \"return_full_entity\" is set to true. Otherwise, only the \"entity_id\" and \"distance\" fields are populated."
         }
       },
       "type": "object"
@@ -23262,7 +25150,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The labels with user-defined metadata to organize your NotebookRuntime. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one Dataset (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with \"aiplatform.googleapis.com/\" and are immutable. Following system labels exist for NotebookRuntime: * \"aiplatform.googleapis.com/notebook_runtime_gce_instance_id\": output only, its value is the Compute Engine instance id. * \"aiplatform.googleapis.com/colab_enterprise_entry_service\": its value is either \"BigQuery\" or \"Vertex\"; if absent, it should be \"Vertex\". This is to describe the entry service, either BigQuery or Vertex.",
+          "description": "The labels with user-defined metadata to organize your NotebookRuntime. Label keys and values can be no longer than 64 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. No more than 64 user labels can be associated with one NotebookRuntime (System labels are excluded). See https://goo.gl/xmQnxf for more information and examples of labels. System reserved label keys are prefixed with \"aiplatform.googleapis.com/\" and are immutable. Following system labels exist for NotebookRuntime: * \"aiplatform.googleapis.com/notebook_runtime_gce_instance_id\": output only, its value is the Compute Engine instance id. * \"aiplatform.googleapis.com/colab_enterprise_entry_service\": its value is either \"bigquery\" or \"vertex\"; if absent, it should be \"vertex\". This is to describe the entry service, either BigQuery or Vertex.",
           "type": "object"
         },
         "name": {
@@ -23274,6 +25162,21 @@
           "$ref": "GoogleCloudAiplatformV1beta1NotebookRuntimeTemplateRef",
           "description": "Output only. The pointer to NotebookRuntimeTemplate this NotebookRuntime is created from.",
           "readOnly": true
+        },
+        "notebookRuntimeType": {
+          "description": "Output only. The type of the notebook runtime.",
+          "enum": [
+            "NOTEBOOK_RUNTIME_TYPE_UNSPECIFIED",
+            "USER_DEFINED",
+            "ONE_CLICK"
+          ],
+          "enumDescriptions": [
+            "Unspecified notebook runtime type, NotebookRuntimeType will default to USER_DEFINED.",
+            "runtime or template with coustomized configurations from user.",
+            "runtime or template with system defined configurations."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "proxyUri": {
           "description": "Output only. The proxy endpoint used to access the NotebookRuntime.",
@@ -23383,6 +25286,20 @@
           "$ref": "GoogleCloudAiplatformV1beta1NetworkSpec",
           "description": "Optional. Network spec."
         },
+        "notebookRuntimeType": {
+          "description": "Optional. Immutable. The type of the notebook runtime template.",
+          "enum": [
+            "NOTEBOOK_RUNTIME_TYPE_UNSPECIFIED",
+            "USER_DEFINED",
+            "ONE_CLICK"
+          ],
+          "enumDescriptions": [
+            "Unspecified notebook runtime type, NotebookRuntimeType will default to USER_DEFINED.",
+            "runtime or template with coustomized configurations from user.",
+            "runtime or template with system defined configurations."
+          ],
+          "type": "string"
+        },
         "serviceAccount": {
           "description": "The service account that the runtime workload runs as. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.",
           "type": "string"
@@ -23470,11 +25387,11 @@
           "type": "string"
         },
         "network": {
-          "description": "Optional. The full name of the Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to peered with Vertex AI to host the persistent resources. For example, `projects/12345/global/networks/myVPC`. [Format](/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project}/global/networks/{network}`. Where {project} is a project number, as in `12345`, and {network} is a network name. To specify this field, you must have already [configured VPC Network Peering for Vertex AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering). If this field is left unspecified, the resources is not peered with any network.",
+          "description": "Optional. The full name of the Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to peered with Vertex AI to host the persistent resources. For example, `projects/12345/global/networks/myVPC`. [Format](/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project}/global/networks/{network}`. Where {project} is a project number, as in `12345`, and {network} is a network name. To specify this field, you must have already [configured VPC Network Peering for Vertex AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering). If this field is left unspecified, the resources aren't peered with any network.",
           "type": "string"
         },
         "reservedIpRanges": {
-          "description": "Optional. A list of names for the reserved ip ranges under the VPC network that can be used for this persistent resource. If set, we will deploy the persistent resource within the provided ip ranges. Otherwise, the persistent resource will be deployed to any ip ranges under the provided VPC network. Example: ['vertex-ai-ip-range'].",
+          "description": "Optional. A list of names for the reserved IP ranges under the VPC network that can be used for this persistent resource. If set, we will deploy the persistent resource within the provided IP ranges. Otherwise, the persistent resource is deployed to any IP ranges under the provided VPC network. Example: ['vertex-ai-ip-range'].",
           "items": {
             "type": "string"
           },
@@ -23494,7 +25411,7 @@
         },
         "resourceRuntimeSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1ResourceRuntimeSpec",
-          "description": "Optional. Persistent Resource runtime spec. Used for e.g. Ray cluster configuration."
+          "description": "Optional. Persistent Resource runtime spec. For example, used for Ray cluster configuration."
         },
         "startTime": {
           "description": "Output only. Time when the PersistentResource for the first time entered the `RUNNING` state.",
@@ -23647,7 +25564,7 @@
           "readOnly": true
         },
         "templateUri": {
-          "description": "A template uri from where the PipelineJob.pipeline_spec, if empty, will be downloaded.",
+          "description": "A template uri from where the PipelineJob.pipeline_spec, if empty, will be downloaded. Currently, only uri from Vertex Template Registry & Gallery is supported. Reference to https://cloud.google.com/vertex-ai/docs/pipelines/create-pipeline-template.",
           "type": "string"
         },
         "updateTime": {
@@ -24662,18 +26579,18 @@
       "id": "GoogleCloudAiplatformV1beta1RaySpec",
       "properties": {
         "headNodeResourcePoolId": {
-          "description": "Optional. This will be used to indicate which resource pool will serve as the Ray head node(the first node within that pool). Will use the machine from the first workerpool as the head node by default if this field is not set.",
+          "description": "Optional. This will be used to indicate which resource pool will serve as the Ray head node(the first node within that pool). Will use the machine from the first workerpool as the head node by default if this field isn't set.",
           "type": "string"
         },
         "imageUri": {
-          "description": "Optional. Default image for user to choose a preferred ML framework(e.g. tensorflow or Pytorch) by choosing from Vertex prebuild images(https://cloud.google.com/vertex-ai/docs/training/pre-built-containers). Either this or the resource_pool_images is required. Use this field if you need all the resource pools to have the same Ray image, Otherwise, use the {@code resource_pool_images} field.",
+          "description": "Optional. Default image for user to choose a preferred ML framework (for example, TensorFlow or Pytorch) by choosing from [Vertex prebuilt images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers). Either this or the resource_pool_images is required. Use this field if you need all the resource pools to have the same Ray image. Otherwise, use the {@code resource_pool_images} field.",
           "type": "string"
         },
         "resourcePoolImages": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Required if image_uri is not set. A map of resource_pool_id to prebuild Ray image if user need to use different images for different head/worker pools. This map needs to cover all the resource pool ids. Example: { \"ray_head_node_pool\": \"head image\" \"ray_worker_node_pool1\": \"worker image\" \"ray_worker_node_pool2\": \"another worker image\" }",
+          "description": "Optional. Required if image_uri isn't set. A map of resource_pool_id to prebuild Ray image if user need to use different images for different head/worker pools. This map needs to cover all the resource pool ids. Example: { \"ray_head_node_pool\": \"head image\" \"ray_worker_node_pool1\": \"worker image\" \"ray_worker_node_pool2\": \"another worker image\" }",
           "type": "object"
         }
       },
@@ -24924,6 +26841,39 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ReportExecutionEventRequest": {
+      "description": "Request message for NotebookInternalService.ReportExecutionEvent.",
+      "id": "GoogleCloudAiplatformV1beta1ReportExecutionEventRequest",
+      "properties": {
+        "eventType": {
+          "description": "Required. The type of the event.",
+          "enum": [
+            "EVENT_TYPE_UNSPECIFIED",
+            "ACTIVE",
+            "DONE",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Notebook execution process has started. Expect this message within expected time to provision compute.",
+            "Notebook execution process is completed. Expect this message within timeout.",
+            "Notebook execution process has failed. Expect this message within timeout."
+          ],
+          "type": "string"
+        },
+        "vmToken": {
+          "description": "Required. The VM identity token (a JWT) for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ReportExecutionEventResponse": {
+      "description": "Response message for NotebookInternalService.ReportExecutionEvent.",
+      "id": "GoogleCloudAiplatformV1beta1ReportExecutionEventResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ReportRuntimeEventRequest": {
       "description": "LINT.IfChange(report_event_message_types) Request message for NotebookInternalService.ReportRuntimeEvent.",
       "id": "GoogleCloudAiplatformV1beta1ReportRuntimeEventRequest",
@@ -24968,7 +26918,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1ResourcePool": {
-      "description": "Represents the spec a group of resources of same type, e.g. machine, disk and accelerators, in a PersistentResource.",
+      "description": "Represents the spec of a group of resources of the same type, for example machine type, disk, and accelerators, in a PersistentResource.",
       "id": "GoogleCloudAiplatformV1beta1ResourcePool",
       "properties": {
         "autoscalingSpec": {
@@ -24980,7 +26930,7 @@
           "description": "Optional. Disk spec for the machine in this node pool."
         },
         "id": {
-          "description": "Immutable. The unique ID in a PersistentResource to refer the this resource pool. User can specify it if need to use it, otherwise we will generate it automatically.",
+          "description": "Immutable. The unique ID in a PersistentResource for referring to this resource pool. User can specify it if necessary. Otherwise, it's generated automatically.",
           "type": "string"
         },
         "machineSpec": {
@@ -25039,7 +26989,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1ResourceRuntimeSpec": {
-      "description": "Configure runtime on a PersistentResource instance, including but may not limited to: * Service accounts used to run the workloads; * Whether make it a dedicated Ray Cluster;",
+      "description": "Configuration for the runtime on a PersistentResource instance, including but not limited to: * Service accounts used to run the workloads. * Whether to make it a dedicated Ray Cluster.",
       "id": "GoogleCloudAiplatformV1beta1ResourceRuntimeSpec",
       "properties": {
         "raySpec": {
@@ -29103,16 +31053,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1SearchNearestEntitiesRequest": {
+      "description": "The request message for FeatureOnlineStoreService.SearchNearestEntities.",
+      "id": "GoogleCloudAiplatformV1beta1SearchNearestEntitiesRequest",
+      "properties": {
+        "query": {
+          "$ref": "GoogleCloudAiplatformV1beta1NearestNeighborQuery",
+          "description": "Required. The query."
+        },
+        "returnFullEntity": {
+          "description": "Optional. If set to true, the full entities (including all vector values and metadata) of the nearest neighbors are returned; otherwise only entity id of the nearest neighbors will be returned. Note that returning full entities will significantly increase the latency and cost of the query.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1SearchNearestEntitiesResponse": {
+      "description": "Response message for FeatureOnlineStoreService.SearchNearestEntities",
+      "id": "GoogleCloudAiplatformV1beta1SearchNearestEntitiesResponse",
+      "properties": {
+        "nearestNeighbors": {
+          "$ref": "GoogleCloudAiplatformV1beta1NearestNeighbors",
+          "description": "The nearest neighbors of the query entity."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ServiceAccountSpec": {
       "description": "Configuration for the use of custom service account to run the workloads.",
       "id": "GoogleCloudAiplatformV1beta1ServiceAccountSpec",
       "properties": {
         "enableCustomServiceAccount": {
-          "description": "Required. If true, custom user-managed service account is enforced to run any workloads (e.g. Vertex Jobs) on the resource; Otherwise, will always use [Vertex AI Custom Code Service Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)",
+          "description": "Required. If true, custom user-managed service account is enforced to run any workloads (for example, Vertex Jobs) on the resource. Otherwise, uses the [Vertex AI Custom Code Service Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents).",
           "type": "boolean"
         },
         "serviceAccount": {
-          "description": "Optional. Default service account that this PersistentResource's workloads run as. The workloads include: * Any runtime specified via `ResourceRuntimeSpec` on creation time, e.g. Ray; * Jobs submitted to PersistentResource, if no other service account specified in the job specs. Only works when custom service account is enabled and users have the `iam.serviceAccounts.actAs` permission on this service account. Required if any containers specified in `ResourceRuntimeSpec`.",
+          "description": "Optional. Default service account that this PersistentResource's workloads run as. The workloads include: * Any runtime specified via `ResourceRuntimeSpec` on creation time, for example, Ray. * Jobs submitted to PersistentResource, if no other service account specified in the job specs. Only works when custom service account is enabled and users have the `iam.serviceAccounts.actAs` permission on this service account. Required if any containers are specified in `ResourceRuntimeSpec`.",
           "type": "string"
         }
       },
@@ -29860,6 +31836,23 @@
             "$ref": "GoogleCloudAiplatformV1beta1Trial"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1SyncFeatureViewRequest": {
+      "description": "Request message for FeatureOnlineStoreAdminService.SyncFeatureView.",
+      "id": "GoogleCloudAiplatformV1beta1SyncFeatureViewRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1SyncFeatureViewResponse": {
+      "description": "Respose message for FeatureOnlineStoreAdminService.SyncFeatureView.",
+      "id": "GoogleCloudAiplatformV1beta1SyncFeatureViewResponse",
+      "properties": {
+        "featureViewSync": {
+          "description": "Format: `projects/{project}/locations/{location}/featureOnlineStores/{feature_online_store}/featureViews/{feature_view}/featureViewSyncs/{feature_view_sync}`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -30789,6 +32782,50 @@
       "description": "Response message of ModelService.UpdateExplanationDataset operation.",
       "id": "GoogleCloudAiplatformV1beta1UpdateExplanationDatasetResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1UpdateFeatureGroupOperationMetadata": {
+      "description": "Details of operations that perform update FeatureGroup.",
+      "id": "GoogleCloudAiplatformV1beta1UpdateFeatureGroupOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Operation metadata for FeatureGroup."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1UpdateFeatureOnlineStoreOperationMetadata": {
+      "description": "Details of operations that perform update FeatureOnlineStore.",
+      "id": "GoogleCloudAiplatformV1beta1UpdateFeatureOnlineStoreOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Operation metadata for FeatureOnlineStore."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1UpdateFeatureOperationMetadata": {
+      "description": "Details of operations that perform update Feature.",
+      "id": "GoogleCloudAiplatformV1beta1UpdateFeatureOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Operation metadata for Feature Update."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1UpdateFeatureViewOperationMetadata": {
+      "description": "Details of operations that perform update FeatureView.",
+      "id": "GoogleCloudAiplatformV1beta1UpdateFeatureViewOperationMetadata",
+      "properties": {
+        "genericMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
+          "description": "Operation metadata for FeatureView Update."
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1UpdateFeaturestoreOperationMetadata": {
