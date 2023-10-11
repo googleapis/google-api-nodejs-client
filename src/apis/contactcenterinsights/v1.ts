@@ -946,10 +946,6 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponse {}
   /**
-   * Response from export issue model
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelResponse {}
-  /**
    * Agent Assist frequently-asked-question answer data.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData {
@@ -995,10 +991,6 @@ export namespace contactcenterinsights_v1 {
    * The data for a hold annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1HoldData {}
-  /**
-   * Response from import issue model
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelResponse {}
   /**
    * The metadata for an IngestConversations operation.
    */
@@ -1397,6 +1389,15 @@ export namespace contactcenterinsights_v1 {
     reply?: string | null;
   }
   /**
+   * Speech-to-Text configuration.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1SpeechConfig {
+    /**
+     * The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id\}/locations/{location\}/recognizer/{recognizer\}`
+     */
+    speechRecognizer?: string | null;
+  }
+  /**
    * Metadata for undeploying an issue model.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadata {
@@ -1471,6 +1472,10 @@ export namespace contactcenterinsights_v1 {
      * Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings.
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1RedactionConfig;
+    /**
+     * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
+     */
+    speechConfig?: Schema$GoogleCloudContactcenterinsightsV1alpha1SpeechConfig;
   }
   /**
    * The analysis resource.
@@ -2375,10 +2380,6 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1ExportInsightsDataResponse {}
   /**
-   * Response from export issue model
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1ExportIssueModelResponse {}
-  /**
    * Agent Assist frequently-asked-question answer data.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1FaqAnswerData {
@@ -2424,10 +2425,6 @@ export namespace contactcenterinsights_v1 {
    * The data for a hold annotation.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1HoldData {}
-  /**
-   * Response from import issue model
-   */
-  export interface Schema$GoogleCloudContactcenterinsightsV1ImportIssueModelResponse {}
   /**
    * The metadata for an IngestConversations operation.
    */
@@ -2995,6 +2992,10 @@ export namespace contactcenterinsights_v1 {
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
     /**
+     * Optional. Default Speech-to-Text resources to be used while ingesting audio files. Optional, CCAI Insights will create a default if not provided.
+     */
+    speechConfig?: Schema$GoogleCloudContactcenterinsightsV1SpeechConfig;
+    /**
      * Output only. The time at which the settings were last updated.
      */
     updateTime?: string | null;
@@ -3061,6 +3062,15 @@ export namespace contactcenterinsights_v1 {
      * The content of the reply.
      */
     reply?: string | null;
+  }
+  /**
+   * Speech-to-Text configuration.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1SpeechConfig {
+    /**
+     * The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id\}/locations/{location\}/recognizer/{recognizer\}`
+     */
+    speechRecognizer?: string | null;
   }
   /**
    * Metadata for undeploying an issue model.
@@ -3137,6 +3147,10 @@ export namespace contactcenterinsights_v1 {
      * Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings.
      */
     redactionConfig?: Schema$GoogleCloudContactcenterinsightsV1RedactionConfig;
+    /**
+     * Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings.
+     */
+    speechConfig?: Schema$GoogleCloudContactcenterinsightsV1SpeechConfig;
   }
   /**
    * The View resource.

@@ -1384,7 +1384,7 @@
       }
     }
   },
-  "revision": "20230919",
+  "revision": "20231009",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -2605,12 +2605,6 @@
       "properties": {},
       "type": "object"
     },
-    "GoogleCloudContactcenterinsightsV1ExportIssueModelResponse": {
-      "description": "Response from export issue model",
-      "id": "GoogleCloudContactcenterinsightsV1ExportIssueModelResponse",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudContactcenterinsightsV1FaqAnswerData": {
       "description": "Agent Assist frequently-asked-question answer data.",
       "id": "GoogleCloudContactcenterinsightsV1FaqAnswerData",
@@ -2664,12 +2658,6 @@
     "GoogleCloudContactcenterinsightsV1HoldData": {
       "description": "The data for a hold annotation.",
       "id": "GoogleCloudContactcenterinsightsV1HoldData",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudContactcenterinsightsV1ImportIssueModelResponse": {
-      "description": "Response from import issue model",
-      "id": "GoogleCloudContactcenterinsightsV1ImportIssueModelResponse",
       "properties": {},
       "type": "object"
     },
@@ -3466,6 +3454,10 @@
           "$ref": "GoogleCloudContactcenterinsightsV1RedactionConfig",
           "description": "Default DLP redaction resources to be applied while ingesting conversations."
         },
+        "speechConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SpeechConfig",
+          "description": "Optional. Default Speech-to-Text resources to be used while ingesting audio files. Optional, CCAI Insights will create a default if not provided."
+        },
         "updateTime": {
           "description": "Output only. The time at which the settings were last updated.",
           "format": "google-datetime",
@@ -3551,6 +3543,17 @@
         },
         "reply": {
           "description": "The content of the reply.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1SpeechConfig": {
+      "description": "Speech-to-Text configuration.",
+      "id": "GoogleCloudContactcenterinsightsV1SpeechConfig",
+      "properties": {
+        "speechRecognizer": {
+          "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
           "type": "string"
         }
       },
@@ -3649,6 +3652,10 @@
         "redactionConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1RedactionConfig",
           "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
+        },
+        "speechConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SpeechConfig",
+          "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
         }
       },
       "type": "object"
@@ -4786,12 +4793,6 @@
       "properties": {},
       "type": "object"
     },
-    "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelResponse": {
-      "description": "Response from export issue model",
-      "id": "GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelResponse",
-      "properties": {},
-      "type": "object"
-    },
     "GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData": {
       "description": "Agent Assist frequently-asked-question answer data.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData",
@@ -4845,12 +4846,6 @@
     "GoogleCloudContactcenterinsightsV1alpha1HoldData": {
       "description": "The data for a hold annotation.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1HoldData",
-      "properties": {},
-      "type": "object"
-    },
-    "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelResponse": {
-      "description": "Response from import issue model",
-      "id": "GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelResponse",
       "properties": {},
       "type": "object"
     },
@@ -5391,6 +5386,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig": {
+      "description": "Speech-to-Text configuration.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig",
+      "properties": {
+        "speechRecognizer": {
+          "description": "The fully-qualified Speech Recognizer resource name. Format: `projects/{project_id}/locations/{location}/recognizer/{recognizer}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadata": {
       "description": "Metadata for undeploying an issue model.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadata",
@@ -5484,6 +5490,10 @@
         "redactionConfig": {
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1RedactionConfig",
           "description": "Optional. DLP settings for transcript redaction. Optional, will default to the config specified in Settings."
+        },
+        "speechConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1SpeechConfig",
+          "description": "Optional. Default Speech-to-Text configuration. Optional, will default to the config specified in Settings."
         }
       },
       "type": "object"
