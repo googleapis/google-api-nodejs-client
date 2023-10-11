@@ -561,7 +561,7 @@
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20230929",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1858,6 +1858,10 @@
         "container": {
           "$ref": "Container",
           "description": "Container runnable."
+        },
+        "displayName": {
+          "description": "Optional. DisplayName is an optional field that can be provided by the caller. If provided, it will be used in logs and other outputs to identify the script, making it easier for users to understand the logs. If not provided the index of the runnable will be used for outputs.",
+          "type": "string"
         },
         "environment": {
           "$ref": "Environment",
